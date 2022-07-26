@@ -66,7 +66,7 @@
                             :to="{ name: 'application', params: { name: sonod.enname.replaceAll(' ', '_') } }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="sonod.icon" width="50%" alt="" />
+                                    <img :src="$asseturl+sonod.icon" width="50%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
                                     <a href="#">{{ sonod.bnname }}</a>
@@ -81,7 +81,7 @@
                         <div class="col-md-3 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img src="/assets/img/pic-06.png" width="50%" alt="" />
+                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="50%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
                                     <a href="https://bdris.gov.bd/br/application">জন্ম নিবন্ধন সনদের আবেদন</a>
@@ -93,7 +93,7 @@
                             data-toggle="modal" data-target="#exampleModal">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img src="//assets/img/pic-10.png" width="50%" alt="" />
+                                    <img :src="$asseturl+'assets/img/pic-10.png'" width="50%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
                                     <a href="https://bdris.gov.bd/dr/application">মৃত্যু নিবন্ধন সনদের আবেদন</a>
@@ -104,7 +104,7 @@
                         <div class="col-md-3 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img src="/assets/img/pic-06.png" width="50%" alt="" />
+                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="50%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
                                     <a href="#">হোল্ডিং ট্যাক্স</a>
@@ -202,10 +202,10 @@ export default {
                 autoplay: true,
             },
             vfImages: [
-                "/assets/img/National-Portal-Card-PM.jpeg",
-                "/assets/img/padmabanner.jpeg",
-                "/assets/img/slide12.jpg",
-                "/assets/img/slide11.jpg",
+                this.$asseturl+"assets/img/National-Portal-Card-PM.jpeg",
+                this.$asseturl+"assets/img/padmabanner.jpeg",
+                this.$asseturl+"assets/img/slide12.jpg",
+                this.$asseturl+"assets/img/slide11.jpg",
                 // "/assets/img/slider2.png",
             ],
             vfTransitions: [

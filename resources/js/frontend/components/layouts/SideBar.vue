@@ -4,7 +4,7 @@
                     <h4>উপদেষ্টা ও তত্ত্বাবধানে</h4>
                 </div>
                 <p class="sidebaruser text-center">
-                    <img width="70%" alt="" src="/assets/img/fb71ff2546046a9a64178679c70a6521.png" />
+                    <img width="70%" alt="" :src="$asseturl+'assets/img/fb71ff2546046a9a64178679c70a6521.png'" />
                 </p>
                 <div class="contactInfo text-center" >
                     <span><b>জসীম উদ্দীন হায়দার</b></span> <br />
@@ -15,7 +15,7 @@
                     <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
                 </div>
                 <p class="sidebaruser text-center"  v-if="getType=='main'">
-                    <img width="70%" alt="" src="/assets/img/uno-pic.png" />
+                    <img width="70%" alt="" :src="$asseturl+'assets/img/uno-pic.png'" />
                 </p>
                 <div class="contactInfo text-center"  v-if="getType=='main'">
                     <span><b> সোহাগ চন্দ্র সাহা</b></span> <br />
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="column block">
-                    <img width="100%" src="/assets/img/suport.jpg" alt="" />
+                    <img width="100%" :src="$asseturl+'assets/img/suport.jpg'" alt="" />
                 </div>
 
                 <div class="fb-page" data-href="https://www.facebook.com/unotetuliaofficial" data-width="350"
