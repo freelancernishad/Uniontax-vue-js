@@ -1,0 +1,219 @@
+<template>
+    <div>
+
+<div class="breadcrumbs-area">
+    <h3>{{ SonodName.bnname }} {{ Type }}</h3>
+    <ul>
+        <li>
+            <router-link :to="{name:'Dashboard'}">Home</router-link>
+        </li>
+        <li>{{ SonodName.bnname }}  {{ Type }}</li>
+    </ul>
+</div>
+
+
+
+
+        <div class="card">
+        <div class="card-body">
+<table-component :sonod-type="$route.params.name" :sort-options-staus="sortstatus" :Filter="Filter" :filter-on="FilterOn"  :per-page="PerPage" :Items="items" :Fields="fields" :per-page-data="PerPageData" :total-rows="TotalRows"  :delete-route="deleteRoute" :edit-route="editRoute" :application-route="applicationRoute"  :view-route="viewRoute"    :approve-route="approveRoute" :pay-route="payRoute" :cancel-route="cancelRoute"   :approve-type="approveType" :approve-data="approveData"  @event-name="sonodList" >
+
+</table-component>
+
+<!-- <approve-component></approve-component> -->
+
+    </div>
+
+            </div>
+        </div>
+</template>
+
+<script>
+import { mapGetters,mapState } from 'vuex'
+
+export default {
+
+     computed: {
+
+
+
+    },
+    created() {
+
+
+    },
+    data() {
+        return {
+
+
+            access:'',
+            sortstatus:false,
+            Filter:true,
+            FilterOn:false,
+            PerPage:false,
+            deleteRoute:'',
+            editRoute:'',
+            applicationRoute:'/document',
+            viewRoute:'',
+            approveRoute:'',
+            cancelRoute:'',
+            approveType:'',
+            approveData:'',
+            payRoute:'',
+            PerPageData:'10',
+            TotalRows:'1',
+            Type:'',
+            items: [],
+            fields: [
+                { key: 'applicant_name', label: 'নাম', sortable: true },
+                { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
+                { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
+                { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
+                { key: 'actions', label: 'Actions' }
+            ],
+
+
+        }
+    },
+    // updated(){
+
+    //  this.sonodList();
+
+    // },
+
+  watch: {
+        '$route':  {
+            handler(newValue, oldValue) {
+            this.sonodList();
+
+
+      },
+      deep: true
+
+
+
+        }
+    },
+
+    methods: {
+
+        actionAccess(){
+
+
+
+
+
+            if(this.$route.params.type=='new'){
+                this.cancelRoute='';
+                this.deleteRoute='/api/sonod/delete';
+                // this.editRoute='sonodedit';
+                this.editRoute='';
+                this.viewRoute='sonodview';
+                    this.approveRoute='';
+                    this.approveType='vueAction';
+                    this.approveData='sec_approved';
+
+
+                if(this.$localStorage.getItem('position')=='super-admin'){
+                    this.approveRoute='';
+                    this.approveType='vueAction';
+                    this.approveData='sec_approved';
+                }else if(this.$localStorage.getItem('position')=='Chairman'){
+                    this.approveRoute='/api/sonod';
+                    this.approveType='apiAction';
+                    this.approveData=`approved`;
+                }else{
+                    this.approveRoute='approvetrade';
+                    this.approveType='vueAction';
+                    this.approveData=`${this.$localStorage.getItem('position')}_approved`;
+
+                }
+
+
+
+                this.Type='নতুন আবেদন';
+            }else if(this.$route.params.type=='approved'){
+                this.cancelRoute='';
+                this.approveRoute='';
+                this.approveType='';
+
+                this.deleteRoute='';
+                // this.editRoute='sonodedit';
+                this.editRoute='';
+                this.viewRoute='sonodview';
+                 this.Type='অনুমোদিত আবেদন';
+
+                if(this.$localStorage.getItem('position')=='Secretary'){
+                   this.payRoute = '/api/sonod/pay';
+                }
+
+
+            }else if(this.$route.params.type=='cancel'){
+                this.approveRoute='';
+                this.approveType='';
+                this.editRoute='';
+                this.cancelRoute='';
+                this.deleteRoute='/api/sonod/delete';
+                this.viewRoute='sonodview';
+                 this.Type='বাতিল আবেদন';
+            }
+        },
+
+
+        sonodname(){
+            if(this.$route.params.name){
+              axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`)
+                .then(({ data }) => {
+                  this.sonodnamedata = data
+                })
+                .catch()
+            }
+
+        },
+       async sonodList(){
+           if(this.$route.params.name){
+            var stutus = '';
+            var payment_status = '';
+                if(this.$route.params.type=='new'){
+                    stutus='Pending'
+                if(this.$localStorage.getItem('position')=='super-admin'){
+                    stutus='Pending'
+                }else if(this.$localStorage.getItem('position')=='Chairman'){
+                    stutus='Secretary_approved'
+                }else{
+                    stutus='Pending'
+                }
+
+
+
+                }else if(this.$route.params.type=='approved'){
+                    stutus='approved'
+            if(this.$localStorage.getItem('position')=='Chairman'){
+                  stutus='approved'
+                  payment_status='Paid'
+
+                }else{
+                    stutus='approved'
+                }
+
+                }else{
+                    stutus = this.$route.params.type;
+                }
+
+
+             var res = await this.callApi('get',`/api/sonod/list?sonod_name=${this.$route.params.name}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`,[]);
+            this.items = res.data
+            this.TotalRows = `${this.items.length}`;
+                this.actionAccess();
+             }
+        }
+    },
+    mounted() {
+        this.sonodList();
+
+
+    }
+
+
+}
+</script>
