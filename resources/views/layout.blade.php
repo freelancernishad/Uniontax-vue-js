@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AKKHOR | Home 1</title>
+    <title>Welcome To {{ Auth::user()->position }} Pannel</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -45,6 +45,8 @@ li.page-item.active button {
 
 </head>
 <body>
+
+
 
     <div id="app">
         <component :is="$route.meta.layout || 'div'"   :user="{{Auth::user()}}" :permission="{{ Auth::user()->roles}}" :roles="{{ $roles }}">
