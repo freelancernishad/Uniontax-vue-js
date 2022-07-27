@@ -14,7 +14,7 @@
     {{-- <script src="{{ asset('assets/js/jquery-3.2.1.slim.min.js') }}"></script> --}}
     {{-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
     {{-- <link href="css/style.css" rel="stylesheet" type="text/css" /> --}}
-    {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script> --}}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     {{-- <script type="text/javascript" src="{{ asset('assets/js/jquery.rcbrand.js') }}"></script> --}}
 
 	<link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
@@ -74,7 +74,7 @@ div#exampleModal {
 
     </div>
 
-{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
 
 {{-- <script type="text/javascript" src="{{ asset('slider/js/jquery.bbslider.min.js') }}"></script> --}}
