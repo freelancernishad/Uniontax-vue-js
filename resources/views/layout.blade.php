@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Welcome To {{ Auth::user()->position }} Pannel</title>
+    <title>:: Welcome To {{ Auth::user()->position }} Pannel ::</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/bangladesh-govt.png') }}" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"> --}}
     <!-- Normalize CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard_asset/css/normalize.css') }}">
     <!-- Main CSS -->
