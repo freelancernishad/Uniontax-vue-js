@@ -111,10 +111,10 @@
                     Pay Now
                 </span>
 
-                <a :href="'/invoice/'+SonodName.enname+'/'+row.item.id" target="_blank" size="sm" v-if="row.item.stutus=='approved'" class="btn btn-info mr-1">
+                <a :href="'/invoice/d/'+row.item.id" target="_blank" size="sm" v-if="row.item.stutus=='approved'" class="btn btn-info mr-1">
                     রশিদ
                 </a>
-                <a :href="'/sonod/'+SonodName.enname+'/'+row.item.id" target="_blank" size="sm"  v-if="row.item.payment_status=='Paid'" class="btn btn-info mr-1">
+                <a :href="'/sonod/d/'+row.item.id" target="_blank" size="sm"  v-if="row.item.payment_status=='Paid'" class="btn btn-info mr-1">
                      সনদ
                 </a>
 <!--

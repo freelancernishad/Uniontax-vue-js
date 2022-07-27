@@ -30,8 +30,10 @@ class SonodController extends Controller
             $sonod = Sonod::find($id);
             $payment->update(['status'=>'Paid']);
             $sonod->update(['payment_status'=>'Paid']);
-            $sonodUrl =  url("/sonod/$sonod->sonod_name/$id");
-            $InvoiceUrl =  url("/invoice/$sonod->sonod_name/$id");
+            // $sonod_name = sonodEnName($sonod->sonod_name);
+            $sonodUrl =  url("/sonod/d/$id");
+            $InvoiceUrl =  url("/invoice/d/$id");
+
             $deccription = "Congratulation! Your application has been Paid. Sonod : ".$sonodUrl ." Invoice : ".$InvoiceUrl;
             $messages = array();
             array_push(
