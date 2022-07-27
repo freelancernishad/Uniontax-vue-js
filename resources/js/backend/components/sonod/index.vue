@@ -30,6 +30,8 @@
 
 <script>
 import { mapGetters,mapState } from 'vuex'
+import moment from 'moment';
+import User from '../../../helpers/User';
 
 export default {
 
@@ -69,6 +71,13 @@ export default {
                 { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
                 { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
                 { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
+                { key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
+
+                formatter: (value, key, item) => {
+                        // return new Date().getFullYear()
+                          return   User.dateformat(value)[7]
+                        }
+                },
                 { key: 'actions', label: 'Actions' }
             ],
 
@@ -96,6 +105,12 @@ export default {
     },
 
     methods: {
+
+
+   teacherEmailTCellFormat(value) {
+    console.log(value)
+      return 'hello'
+    },
 
         actionAccess(){
 
