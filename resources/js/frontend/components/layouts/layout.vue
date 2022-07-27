@@ -184,7 +184,7 @@
             </div>
             <footer>
                 <div class="footer_top_bg"
-                    style="background: url('/assets/img/footer_top_bg.png'); height: 93px; background-repeat: no-repeat; background-size: cover;">
+                    style="background: url($asseturl+'assets/img/footer_top_bg.png'); height: 93px; background-repeat: no-repeat; background-size: cover;">
                 </div>
                 <div class="footerBottom">
                     <div class="row">
@@ -192,7 +192,7 @@
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার (Jashim Uddin Haider) জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
                                 <li style="font-size:font-size:15px"><img style="width:40px !important"
-                                        src="/assets/img/bd-logo.png" alt=""> সার্বিক তত্ত্বাবধানে: উপজেলা প্রশাসন,
+                                        :src="$asseturl+'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: উপজেলা প্রশাসন,
                                     বরিশাল</li>
                             </ul>
                         </div>
