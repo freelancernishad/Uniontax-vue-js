@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-Vue.prototype.$asseturl = '/public/'
-// Vue.prototype.$asseturl = '/'
+// Vue.prototype.$asseturl = '/public/'
+Vue.prototype.$asseturl = '/'
 
 Vue.prototype.$localStorage = localStorage
 window.ASSETURL = Vue.prototype.$asseturl
@@ -23,4 +23,3 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.RootUrl = window.location.origin;
 // window.ASSETURL = '/public/';
 // window.ASSETURL = '/';
-

@@ -14,7 +14,7 @@
                 <div class="middleHeader ">
                     <div class="row">
                         <div class="middleHeaderItem col-md-6 mt-3 mb-3"><a href="">
-                            <img width="50%" v-if="getType=='main'" src="/assets/img/mail_logo-01.png" alt="">
+                            <img width="50%" v-if="getType=='main'" :src="$asseturl+'assets/img/mail_logo-01.png'" alt="">
                             <img width="50%" v-else-if="getType=='Union'" :src="getunionInfos.web_logo" alt="">
 
                             </a> </div>
@@ -136,11 +136,11 @@
                                                 href="http://www.bangladesh.gov.bd" title="জাতীয় তথ্য বাতায়ন">জাতীয় তথ্য
                                                 বাতায়ন</a></li>
                                         <li><i class="fas fa-check-circle"></i> &nbsp;<a
-                                                href="http://www.panchagarh.gov.bd" title="পঞ্চগড় জেলা">পঞ্চগড় জেলা</a>
+                                                href="http://www.barisal.gov.bd/" title="বরিশাল জেলা">বরিশাল জেলা</a>
                                         </li>
                                         <li><i class="fas fa-check-circle"></i> &nbsp;<a
-                                                href="https://tetulia.panchagarh.gov.bd/"
-                                                title="তেঁতুলিয়া উপজেলা">তেঁতুলিয়া উপজেলা</a></li>
+                                                href="http://barisalsadar.barisal.gov.bd/"
+                                                title="বরিশাল সদর উপজেলা">বরিশাল সদর উপজেলা</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -190,11 +190,10 @@
                     <div class="row">
                         <div class="col-6">
                             <ul class="footerList">
-                                <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: সোহাগ চন্দ্র সাহা, উপজেলা
-                                    নির্বাহী অফিসার, তেঁতুলিয়া, পঞ্চগড় </li>
+                                <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার (Jashim Uddin Haider) জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
                                 <li style="font-size:font-size:15px"><img style="width:40px !important"
                                         src="/assets/img/bd-logo.png" alt=""> সার্বিক তত্ত্বাবধানে: উপজেলা প্রশাসন,
-                                    তেঁতুলিয়া</li>
+                                    বরিশাল</li>
                             </ul>
                         </div>
                         <div class="col-6">
@@ -203,11 +202,11 @@
                             <p class="help text-right" style="display: flex;
                 justify-content: end;
                 align-items: center;
-                width: 100%;"> <img style="    width: 40px !important;" class="footerImg"
-                                    src="/assets/img/favicon1.png" alt="" /> <span style="font-size: 14px;"> <span
-                                        style="    border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
-                                        target="_blank" style="    color: #4e4e4e;" href="https://softlabltd.com">
-                                        সফটল্যাব লিমিটেড </a></span> </p>
+                width: 100%;"> <img style="    width: 106px !important;" class="footerImg"
+                                    :src="$asseturl+'assets/img/s2a.png'" alt="" /> <span style="font-size: 14px;"> <span
+                                        style="border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
+                                        target="_blank" style="color: #4e4e4e;" href="https://www.facebook.com/SYED.SHAHAREAR.ARAFAT">
+                                        এস এস আরাফাত </a></span> </p>
                         </div>
                     </div>
                 </div>
