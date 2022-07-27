@@ -624,7 +624,7 @@
 
                     <div class="col-md-6">
                         <b-form-group id="applicant_mobile-group-1" label="মোবাইল" label-for="applicant_mobile">
-                            <b-form-input id="applicant_mobile" name="applicant_mobile"
+                            <b-form-input id="applicant_mobile" name="applicant_mobile"  maxlength=11
                                 v-model="$v.form.applicant_mobile.$model" :state="validateState('applicant_mobile')"
                                 aria-describedby="applicant_mobile-feedback"></b-form-input>
                             <b-form-invalid-feedback id="applicant_mobile-feedback">This is a required field

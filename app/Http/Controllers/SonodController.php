@@ -275,6 +275,33 @@ return $sonod->update($updateData);
         // return $request->all();
 
 $sonod = Sonod::find($id);
+
+$sonodUrl =  url("/sonod/d/$id");
+$InvoiceUrl =  url("/invoice/d/$id");
+
+$deccription = "Congratulation! Your application has been Paid. Sonod : ".$sonodUrl ." Invoice : ".$InvoiceUrl;
+$messages = array();
+array_push(
+    $messages,
+    [
+        "number" => '88' . int_bn_to_en($sonod->applicant_mobile),
+        "message" => "$deccription"
+    ]
+);
+
+///sms functions
+
+try {
+$msgs = sendMessages($messages);
+} catch (Exception $e) {
+array_push($responsemessege,$e->getMessage());
+}
+
+
+
+
+
+
 return $sonod->update(['payment_status'=>'Paid']);
 
     }
