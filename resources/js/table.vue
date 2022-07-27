@@ -95,9 +95,13 @@
                     Edit
                 </router-link>
 
-                <router-link size="sm" :to="{name:ViewRoute,params:{id:row.item.id}}"  v-if="ViewRoute!=''" class="btn btn-success mr-1">
+                <span size="sm" @click="info(row.item,row.index, $event.target)"  v-if="ViewRoute!=''" class="btn btn-success mr-1">
                     View
-                </router-link>
+                </span>
+
+                <!-- <router-link size="sm" :to="{name:ViewRoute,params:{id:row.item.id}}" @click="info(ApproveRoute,row.item.id,ApproveData, $event.target)"  v-if="ViewRoute!=''" class="btn btn-success mr-1">
+                    View
+                </router-link> -->
 
                 <span size="sm" @click="approve(ApproveRoute,row.item.id,ApproveData, $event.target)" v-if="ApproveRoute!=''" class="btn btn-success mr-1">
                     Approve
@@ -162,6 +166,74 @@
             <approvesonod :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"  v-else></approvesonod>
 
             <!-- <pre>{{ infoModal.content_id }}</pre> -->
+
+
+        </b-modal>
+
+        <!-- Info modal -->
+        <b-modal :id="viewModal.id" size="xl" :title="viewModal.title" ok-only @hide="resetInfoModal">
+
+
+            <div class="row">
+
+                <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ viewModal.content.applicant_national_id_number }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ viewModal.content.applicant_birth_certificate_number }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ viewModal.content.applicant_passport_number }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ viewModal.content.applicant_date_of_birth }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>নাম: </b>{{ viewModal.content.applicant_name }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ: </b>{{ viewModal.content.applicant_gender }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ viewModal.content.applicant_marriage_status }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>পিতার নাম: </b>{{ viewModal.content.applicant_father_name }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>মাতার নাম: </b>{{ viewModal.content.applicant_mother_name }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>পেশা : </b>{{ viewModal.content.applicant_occupation }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ viewModal.content.applicant_education }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>ধর্ম : </b>{{ viewModal.content.applicant_religion }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা : </b>{{ viewModal.content.applicant_resident_status }}</div>
+
+
+            <div class="col-md-12 mt-5 mb-1">
+                <h5>বর্তমান ঠিকানা</h5>
+            </div>
+
+                <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ viewModal.content.applicant_present_village }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ viewModal.content.applicant_present_road_block_sector }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>ওয়ার্ড নং: </b>{{ viewModal.content.applicant_present_word_number }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>জেলা: </b>{{ viewModal.content.applicant_present_district }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ viewModal.content.applicant_present_Upazila }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ viewModal.content.applicant_present_post_office }}</div>
+
+            <div class="col-md-12 mt-5 mb-1">
+                <h5>স্থায়ী ঠিকানা</h5>
+            </div>
+
+                <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ viewModal.content.applicant_permanent_village }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ viewModal.content.applicant_permanent_road_block_sector }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>ওয়ার্ড নং: </b>{{ viewModal.content.applicant_permanent_word_number }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>জেলা: </b>{{ viewModal.content.applicant_permanent_district }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ viewModal.content.applicant_permanent_Upazila }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ viewModal.content.applicant_permanent_post_office }}</div>
+
+            <div class="col-md-12 mt-5 mb-1">
+                <h5>Attachment</h5>
+            </div>
+
+                <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Front page)</span> <br> <img width="100%" :src="$asseturl + viewModal.content.applicant_national_id_front_attachment" alt=""></div>
+
+
+                <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Back page)</span> <br> <img width="100%" :src="$asseturl + viewModal.content.applicant_national_id_back_attachment" alt=""></div>
+
+                <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%" :src="$asseturl + viewModal.content.applicant_birth_certificate_attachment" alt=""></div>
+
+
+
+
+
+            </div>
 
 
         </b-modal>
@@ -272,6 +344,12 @@ export default {
                 title: '',
                 content: '',
                 content_id: '',
+            },
+            viewModal: {
+                id: 'view-modal',
+                title: '',
+                content: '',
+                content_id: '',
             }
         }
     },
@@ -295,9 +373,9 @@ export default {
     },
     methods: {
         info(item, index, button) {
-            this.infoModal.title = `Row index: ${index}`
-            this.infoModal.content = JSON.stringify(item, null, 2)
-            this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+            this.viewModal.title = `${item.applicant_name}`
+            this.viewModal.content = item
+            this.$root.$emit('bv::show::modal', this.viewModal.id, button)
         },
 
 

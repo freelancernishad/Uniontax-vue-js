@@ -2,7 +2,7 @@ import Vue from 'vue'
 require('../bootstrap');
 
 
-require('../bootstrap');
+// require('../bootstrap');
 // import "datatables.net-dt/js/dataTables.dataTables";
 // import 'datatables.net-buttons-bs4'
 // // import 'datatables.net-buttons'
