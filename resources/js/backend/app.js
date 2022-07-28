@@ -87,6 +87,11 @@ import approvetrade from './components/sonod/approvetrade.vue'
 Vue.component('Approvetrade', approvetrade);
 Vue.prototype.$localStorage = localStorage;
 
+import loader from "vue-ui-preloader";
+
+Vue.use(loader);
+
+
 window.Reload = new Vue();
 const router = new VueRouter({
   routes,

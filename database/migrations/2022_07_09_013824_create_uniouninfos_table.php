@@ -31,6 +31,7 @@ class CreateUniouninfosTable extends Migration
             $table->string('contact_email')->nullable();
             $table->text('google_map')->nullable();
             $table->string('defaultColor')->nullable();
+            $table->string('payment_type')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

@@ -298,10 +298,13 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
 
 
 .serviceBox {
-    border-top-right-radius: 60px;
-    border-bottom-left-radius: 60px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
 }
 .defaltColor{
     background: var(--defaultColor) !important;
+}
+.defaltTextColor{
+    color: var(--defaultColor) !important;
 }
 </style>

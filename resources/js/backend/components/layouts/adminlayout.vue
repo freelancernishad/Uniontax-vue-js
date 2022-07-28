@@ -109,16 +109,36 @@
                                     class="flaticon-dashboard"></i><span>Dashboard</span></router-link>
                         </li>
 
+            <li  class="nav-item" @click="submenu(0)">
+                            <router-link :to="{name:'sonodlist'}" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Sonod List</span></router-link>
+                        </li>
+
 
 
                         <li class="nav-item sidebar-nav-item" v-for="(sonod,index) in SonodNames" :class="{ active: selected == index+1 }">
                             <a href="javascript:void(0)" class="nav-link" @click="submenu(index+1)" ><i
-                                    class="flaticon-technological"></i><span>{{ sonod.bnname }}</span></a>
+                                    class="flaticon-technological"></i><span>{{ sonod.bnname }}</span>
+                                    <label  v-if="allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')]>0"  style="
+                                        width: 24px;
+                                        height: 24px;
+                                        background: rgb(223 12 12);
+                                        padding: 0px 7px;
+                                        color: wheat;
+                                        border-radius: 50%;
+                                    " >{{ allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] }}</label></a>
                             <transition name="slide">
                                 <ul class="nav sub-group-menu menu-open child" v-if="selected == index+1"
                                     style="display:block">
                                     <li class="nav-item">
-                                        <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'new'} }" class="nav-link"><i class="fas fa-angle-right"></i> নতুন আবেদন</router-link>
+                                        <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'new'} }" class="nav-link"><i class="fas fa-angle-right"></i> নতুন আবেদন <label  v-if="allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')]>0" style="
+                                        width: 24px;
+                                        height: 24px;
+                                        background: rgb(223 12 12);
+                                        padding: 0px 7px;
+                                        color: wheat;
+                                        border-radius: 50%;
+                                    " >{{ allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] }}</label></router-link>
                                     </li>
                                     <li class="nav-item">
                                         <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'approved'} }" class="nav-link"><i class="fas fa-angle-right"></i> অনুমোদিত আবেদন</router-link>
@@ -174,7 +194,8 @@ export default {
         this.$store.commit('setUpdateSonodName', result.data)
             }
 
-        var res =  await this.callApi('get','/api/get/sonodname/list',[]);
+
+        var res =  await this.callApi('get','/api/get/sonodname/list?admin=1',[]);
 
 
        this.$store.commit('setUpdateSonodNames', res.data)
@@ -212,9 +233,35 @@ export default {
             selected: 0,
             sidebarstatus: false,
             mobileSidebar: false,
+            allSonodCount: {
+                Pending:{},
+                Secretary_approved:{},
+                approved:{},
+            },
+        }
+    },
+      watch: {
+        '$route':  {
+            handler(newValue, oldValue) {
+            this.sidebarstatus = false
+            this.mobileSidebar = false
+
+
+      },
+      deep: true
+
+
+
         }
     },
     methods: {
+
+
+       async sonodlistCount(){
+            var allSonodc =  await this.callApi('get','/api/get/sonod/count',[]);
+            this.allSonodCount = allSonodc.data
+            // console.log(allSonodc)
+        },
 
         myscroll(){
 
@@ -287,6 +334,10 @@ var sticky = header.offsetTop;
     },
     mounted() {
         this.myEventHandler();
+
+        setInterval(() => {
+            this.sonodlistCount()
+        }, 5000);
     }
 }
 </script>
@@ -327,4 +378,9 @@ ul.nav.sub-group-menu.menu-open.child li {
     overflow: hidden;
     max-height: 0;
 }
+
+a.nav-link span {
+    font-size: 12px !important;
+}
+
 </style>

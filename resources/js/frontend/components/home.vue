@@ -45,15 +45,15 @@
 
 
 
-                        <div class="col-md-3 col-6 mt-3 mb-3 text-center" v-if="getType == 'main'"
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-if="getType == 'main'"
                             v-for="(sonod, r) in SonodNames" :key="'main' + r" v-b-modal="'myModal'"
                             @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'))">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
                                     <img :src="sonod.icon" width="50%" alt="" />
                                 </div>
-                                <div class="serviceTitle">
-                                    <a href="#">{{ sonod.bnname }}</a>
+                                <div class="serviceTitle defaltTextColor">
+                                    {{ sonod.bnname }}
 
                                 </div>
                             </div>
@@ -61,15 +61,15 @@
 
 
 
-                        <router-link class="col-md-3 col-6 mt-3 mb-3 text-center" v-for="(sonod, rk) in SonodNames"
+                        <router-link class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-for="(sonod, rk) in SonodNames"
                             :key="'union' + rk"
                             :to="{ name: 'application', params: { name: sonod.enname.replaceAll(' ', '_') } }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+sonod.icon" width="50%" alt="" />
+                                    <img :src="$asseturl+sonod.icon" width="33%" alt="" />
                                 </div>
-                                <div class="serviceTitle">
-                                    <a href="#">{{ sonod.bnname }}</a>
+                                <div class="serviceTitle defaltTextColor">
+                                    {{ sonod.bnname }}
 
                                 </div>
                             </div>
@@ -78,33 +78,33 @@
 
 
 
-                        <div class="col-md-3 col-6 mt-3 mb-3 text-center">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="50%" alt="" />
+                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
-                                    <a href="https://bdris.gov.bd/br/application">জন্ম নিবন্ধন সনদের আবেদন</a>
+                                    <a href="https://bdris.gov.bd/br/application" class="defaltTextColor">জন্ম নিবন্ধন সনদের আবেদন</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-3 col-6 mt-3 mb-3 text-center" onclick="item('citizen_apps/2')"
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" onclick="item('citizen_apps/2')"
                             data-toggle="modal" data-target="#exampleModal">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+'assets/img/pic-10.png'" width="50%" alt="" />
+                                    <img :src="$asseturl+'assets/img/pic-10.png'" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
-                                    <a href="https://bdris.gov.bd/dr/application">মৃত্যু নিবন্ধন সনদের আবেদন</a>
+                                    <a href="https://bdris.gov.bd/dr/application" class="defaltTextColor">মৃত্যু নিবন্ধন সনদের আবেদন</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-3 col-6 mt-3 mb-3 text-center">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="50%" alt="" />
+                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
                                     <a href="#">হোল্ডিং ট্যাক্স</a>

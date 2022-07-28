@@ -875,7 +875,7 @@ export default {
             image: {
             },
             sonod_name: {
-                required
+                // required
             },
             utname: {
                 // required
@@ -884,31 +884,31 @@ export default {
                 // required
             },
             applicant_date_of_birth: {
-                required
+                // required
             },
             applicant_name: {
-                required
+                // required
             },
             applicant_name_of_the_organization: {
                 // required
             },
             applicant_gender: {
-                required
+                // required
             },
             applicant_marriage_status: {
-                required
+                // required
             },
             applicant_father_name: {
-                required
+                // required
             },
             applicant_mother_name: {
-                required
+                // required
             },
             applicant_religion: {
                 // required
             },
             applicant_resident_status: {
-                required
+                // required
             },
             applicant_mobile: {
                 required
@@ -981,7 +981,7 @@ export default {
     //    var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
 axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
   .then( (response)=> {
-      console.log(response.data)
+    //   console.log(response.data)
 
     this.form.sonod_Id = `${response.data}`;
 
@@ -1135,12 +1135,20 @@ axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
 
             var res = await this.callApi('post', '/api/sonod/submit', this.form);
             var datas = res.data;
-            var redirect = '/document/'+datas.sonod_name+'/'+datas.id;
+            var redirect;
+            var payment_type = this.getunionInfos.payment_type;
             this.$router.push({ name: 'home'})
+            if(payment_type=='Prepaid'){
+            redirect = `sonod/payment/${datas.id}`
+            window.open(redirect,'_blank');
+            }else if(payment_type=='Postpaid'){
+                redirect = '/document/'+datas.sonod_name+'/'+datas.id;
+                window.open(redirect,'_blank');
+            }
+            // console.log(payment_type);
             // this.resetForm();
 
             // window.location.href = redirect
-            window.open(redirect,'_blank');
 
 
         }

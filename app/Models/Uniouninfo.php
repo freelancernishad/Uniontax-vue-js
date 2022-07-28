@@ -26,6 +26,7 @@ class Uniouninfo extends Model
         'contact_email',
         'google_map',
         'defaultColor',
+        'payment_type',
         'status',
     ];
 }

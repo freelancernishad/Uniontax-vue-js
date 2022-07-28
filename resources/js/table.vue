@@ -45,6 +45,13 @@
                 </b-form-group>
             </b-col>
 
+             <b-col lg="6" class="my-1 text-right" v-if="AddNew!=''">
+
+             <router-link :to="{name:AddNew}" class="btn btn-info">Add New</router-link>
+            </b-col>
+
+
+
             <b-col lg="6" class="my-1" v-if="FilterOn">
                 <b-form-group v-model="sortDirection" label="Filter On"
                     description="Leave all unchecked to filter on all data" label-cols-sm="3" label-align-sm="right"
@@ -246,6 +253,11 @@
 export default {
     props: {
         SonodType: {
+            type: String,
+            default: ''
+        },
+
+        AddNew: {
             type: String,
             default: ''
         },
@@ -469,7 +481,7 @@ export default {
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: `Yes, ${this.action} it!`
+				confirmButtonText: `Yes, Delete it!`
 			}).then(async (result) => {
 				if (result.isConfirmed) {
 

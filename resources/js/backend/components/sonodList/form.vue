@@ -1,0 +1,90 @@
+<template>
+    <div>
+
+<div class="breadcrumbs-area">
+    <h3>Sonod List</h3>
+    <ul>
+        <li>
+            <router-link :to="{name:'Dashboard'}">Home</router-link>
+        </li>
+        <li>Sonod List</li>
+    </ul>
+</div>
+
+    <form class="row" @submit.stop.prevent="onSubmit">
+
+
+        <div class="form-group col-md-6">
+          <label for="">সনদের বাংলা নাম</label>
+          <input type="text" v-model="form.bnname" class="form-control" placeholder="" aria-describedby="helpId">
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="">সনদের ইংলিশ নাম</label>
+          <input type="text" v-model="form.enname" class="form-control" placeholder="" aria-describedby="helpId">
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="">সনদের ফি</label>
+          <input type="text" v-model="form.sonod_fee" class="form-control" placeholder="" aria-describedby="helpId">
+        </div>
+
+
+
+        <div class="form-group col-md-6">
+          <label for="">সনদের আইকন</label>
+          <input type="text" v-model="form.icon" class="form-control" placeholder="" aria-describedby="helpId">
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="">সনদের বিবরন</label>
+          <textarea v-model="form.template" class="form-control" cols="30" rows="10" style="height: 100px;
+    background: #DFDFDF;
+    resize: none;"></textarea>
+        </div>
+        <div class="col-md-12">
+    <button class="btn btn-info" type="submit">Submit</button>
+</div>
+    </form>
+
+
+    </div>
+</template>
+
+<script>
+export default {
+    data(){
+        return {
+            form:{
+                bnname:null,
+            }
+        }
+    },
+    methods:{
+
+        async getsonodById(){
+           var id =  this.$route.params.id;
+            var res = await this.callApi('get', `/api/update/sonodname/${id}`, []);
+            this.form = res.data;
+        },
+
+
+        async onSubmit() {
+
+            var res = await this.callApi('post', '/api/update/sonodname', this.form);
+             this.$router.push({ name: 'sonodlist'})
+            Notification.customSuccess('Sonod Name Update Success');
+
+        }
+    },
+    mounted(){
+        if(this.$route.params.id){
+
+            this.getsonodById();
+        }
+        }
+}
+</script>

@@ -1,5 +1,6 @@
 <template>
     <div>
+ <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
 
 <div class="breadcrumbs-area">
     <h3>{{ SonodName.bnname }} {{ Type }}</h3>
@@ -47,6 +48,7 @@ export default {
     data() {
         return {
 
+            preLooding:false,
 
             access:'',
             sortstatus:false,
@@ -185,7 +187,8 @@ export default {
             }
 
         },
-       async sonodList(){
+       async sonodList(auto=false){
+        if(!auto)this.preLooding = true
            if(this.$route.params.name){
             var stutus = '';
             var payment_status = '';
@@ -220,11 +223,16 @@ export default {
             this.items = res.data
             this.TotalRows = `${this.items.length}`;
                 this.actionAccess();
+        if(!auto)this.preLooding = false
+
              }
         }
     },
     mounted() {
         this.sonodList();
+        setInterval(() => {
+            this.sonodList(true)
+        }, 5000);
 
 
     }

@@ -81,7 +81,7 @@
           <div class="form-group">
               <label class="control-label col-form-label">ইউনিয়নের বিবরন (বাংলা)</label>
 
-              <textarea id="u_description" class="form-control" v-model="form.u_description" cols="30" rows="6" style="resize:none"></textarea>
+              <textarea id="u_description" class="form-control" v-model="form.u_description" cols="30" rows="6" style="resize:none;height:120px"></textarea>
 
           </div>
           </div>
@@ -91,7 +91,7 @@
           <div class="form-group">
               <label class="control-label col-form-label">ইউনিয়নের নোটিশ (বাংলা)</label>
 
-                  <textarea id="u_notice" class="form-control"  v-model="form.u_notice" cols="30" rows="6"  style="resize:none" ></textarea>
+                  <textarea id="u_notice" class="form-control"  v-model="form.u_notice" cols="30" rows="6"  style="resize:none;height:120px" ></textarea>
 
           </div>
           </div>
@@ -101,7 +101,7 @@
           <div class="form-group">
               <label class="control-label col-form-label">ইউনিয়নের ম্যাপ</label>
 
-                  <textarea id="u_notice" class="form-control"  v-model="form.google_map" cols="30" rows="6"  style="resize:none" ></textarea>
+                  <textarea id="u_notice" class="form-control"  v-model="form.google_map" cols="30" rows="6"  style="resize:none;height:120px" ></textarea>
 
           </div>
           </div>
@@ -109,9 +109,24 @@
 
           <div class="col-md-6">
           <div class="form-group">
-              <label class="control-label col-form-label">ইউনিয়নের ম্যাপ</label>
+              <label class="control-label col-form-label">ইউনিয়নের কালার</label>
 
                  <input type="color" id="head" v-model="form.defaultColor" class="form-control" >
+          </div>
+          </div>
+
+
+
+          <div class="col-md-6">
+          <div class="form-group">
+              <label class="control-label col-form-label">পেমেন্টের ধরণ</label>
+
+                <select class="form-control" v-model="form.payment_type">
+                    <option value="Postpaid">Postpaid</option>
+                    <option value="Prepaid">Prepaid</option>
+
+                </select>
+
           </div>
           </div>
 
@@ -216,6 +231,7 @@ export default {
                 contact_email:null,
                 google_map:null,
                 defaultColor:null,
+                payment_type:null,
                 status:null,
              },
         }

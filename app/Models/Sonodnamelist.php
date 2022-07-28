@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Sonod;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Sonodnamelist extends Model
 {
@@ -11,6 +12,19 @@ class Sonodnamelist extends Model
     protected $fillable = [
         'bnname',
         'enname',
+        'icon',
         'template',
+        'sonod_fee',
     ];
+
+
+     function sonods()
+    {
+        return $this->hasMany(Sonod::class, 'sonod_name', 'bnname')->where('stutus','=', 'Pending');
+    }
+
+//    public function sonodsRel(){
+//         return $this->hasOne(Sonod::class, 'sonod_name', 'bnname');
+//     }
+
 }

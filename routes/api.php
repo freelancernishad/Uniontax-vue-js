@@ -41,6 +41,12 @@ Route::post('register', [authController::class,'register']);
 Route::get('get/roles',[authController::class,'getRoles']);
 
 Route::get('get/sonodname/list',[SonodnamelistController::class,'index']);
+
+Route::get('get/sonodname/delete/{id}',[SonodnamelistController::class,'deletesonodname']);
+Route::get('update/sonodname/{id}',[SonodnamelistController::class,'getsonodname']);
+Route::post('update/sonodname',[SonodnamelistController::class,'updatesonodname']);
+
+Route::get('get/sonod/count',[SonodnamelistController::class,'sonodCount']);
 Route::get('sonod/list',[SonodController::class,'index']);
 
 Route::post('role/assign',[authController::class,'roleAssign']);
