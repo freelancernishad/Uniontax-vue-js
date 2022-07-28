@@ -14,7 +14,8 @@
 <body style="font-family: 'bangla', sans-serif;">
 
 @php
-
+print_r($uniouninfo);
+die();
 
 
     $html = "
