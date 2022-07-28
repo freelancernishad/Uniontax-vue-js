@@ -88,7 +88,7 @@ export default {
         '$route':  {
             handler(newValue, oldValue) {
 
-
+        // hello
 
 
       },
