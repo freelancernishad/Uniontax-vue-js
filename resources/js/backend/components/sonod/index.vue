@@ -288,7 +288,10 @@ this.fields = [
                     stutus = this.$route.params.type;
                 }
 
-            var unioun = this.Users.unioun
+var unioun = ''
+            if(this.$localStorage.getItem('position')!='District_admin')var unioun = this.Users.unioun
+
+
 
              var res = await this.callApi('get',`/api/sonod/list?sonod_name=${this.$route.params.name}&filter[unioun_name]=${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`,[]);
             this.items = res.data
