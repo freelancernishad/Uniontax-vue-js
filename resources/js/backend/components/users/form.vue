@@ -71,7 +71,7 @@
         </div>
 
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6" v-if="!this.$route.params.id">
           <label for="">পাসওয়ার্ড</label>
           <input type="text" v-model="form.password" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
