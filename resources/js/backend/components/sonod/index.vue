@@ -218,8 +218,9 @@ export default {
                     stutus = this.$route.params.type;
                 }
 
+            var unioun = this.Users.unioun
 
-             var res = await this.callApi('get',`/api/sonod/list?sonod_name=${this.$route.params.name}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`,[]);
+             var res = await this.callApi('get',`/api/sonod/list?sonod_name=${this.$route.params.name}&filter[unioun_name]=${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`,[]);
             this.items = res.data
             this.TotalRows = `${this.items.length}`;
                 this.actionAccess();
@@ -229,7 +230,14 @@ export default {
         }
     },
     mounted() {
-        this.sonodList();
+
+
+        setTimeout(() => {
+
+            this.sonodList();
+        }, 2000);
+
+
         setInterval(() => {
             this.sonodList(true)
         }, 5000);

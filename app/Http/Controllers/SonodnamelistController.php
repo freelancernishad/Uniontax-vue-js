@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sonod;
-use App\Models\Sonodnamelist;
 use Illuminate\Http\Request;
+use App\Models\Sonodnamelist;
+use Illuminate\Support\Facades\Auth;
 
 class SonodnamelistController extends Controller
 {
@@ -64,14 +65,41 @@ class SonodnamelistController extends Controller
 
     public function sonodCount(Request $request)
     {
+        $union = $request->union;
+         $position = $request->postion;
+
+        // return $request->all();
+
        $sonodCount = [];
         $sonodnamelist = Sonodnamelist::all();
         foreach ($sonodnamelist as $value) {
 
-            $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name'=>$value->bnname,'stutus'=>'Pending'])->count();
+            $penddingStatus = 'Pending';
+            if($position=='Secretary'){
+                $penddingStatus = 'Pending';
+                $Secretary_approvedstatus = 'Secretary_approved';
+                $approvedstatus = 'approved';
+            }else
+            if($position=='Chairman'){
+                $penddingStatus = 'Secretary_approved';
+                $Secretary_approvedstatus = 'approved';
+                $approvedstatus = 'approved';
+            }
 
-            $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name'=>$value->bnname,'stutus'=>'Secretary_approved'])->count();
-            $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name'=>$value->bnname,'stutus'=>'approved'])->count();
+// return $penddingStatus;
+            if(!$union){
+
+                $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name'=>$value->bnname,'stutus'=>$penddingStatus])->count();
+            }
+
+            $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$penddingStatus])->count();
+
+
+
+            $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>'Secretary_approved'])->count();
+
+
+            $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>'approved'])->count();
 
 
             // print_r($value->bnname);

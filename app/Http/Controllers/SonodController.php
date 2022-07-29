@@ -476,11 +476,12 @@ class SonodController extends Controller
     }
     public function invoice(Request $request, $name, $id)
     {
-      return  $row = Sonod::find($id);
-       return $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
-       return  $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $row = Sonod::find($id);
+         $row->unioun_name;
+        $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
+         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
         $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
-        return $pdf->stream("pdf.pdf");
+         $pdf->stream("pdf.pdf");
     }
     public function userDocument(Request $request, $name, $id)
     {

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SonodController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\UniouninfoController;
@@ -40,11 +41,26 @@ Route::group([
 Route::post('register', [authController::class,'register']);
 Route::get('get/roles',[authController::class,'getRoles']);
 
-Route::get('get/sonodname/list',[SonodnamelistController::class,'index']);
 
+
+Route::get('get/users/list',[RoleController::class,'index']);
+Route::get('get/users/delete/{id}',[RoleController::class,'deleteuser']);
+
+Route::get('update/users/{id}',[RoleController::class,'getuser']);
+Route::post('update/users',[RoleController::class,'updateuser']);
+
+
+
+
+
+Route::get('get/sonodname/list',[SonodnamelistController::class,'index']);
 Route::get('get/sonodname/delete/{id}',[SonodnamelistController::class,'deletesonodname']);
+
 Route::get('update/sonodname/{id}',[SonodnamelistController::class,'getsonodname']);
 Route::post('update/sonodname',[SonodnamelistController::class,'updatesonodname']);
+
+
+
 
 Route::get('get/sonod/count',[SonodnamelistController::class,'sonodCount']);
 Route::get('sonod/list',[SonodController::class,'index']);

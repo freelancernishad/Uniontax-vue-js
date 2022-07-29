@@ -50,7 +50,7 @@
                         <a class="navbar-nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                             aria-expanded="false">
                             <div class="admin-title">
-                                <h5 class="item-title">{{ user.name }}</h5>
+                                <h5 class="item-title">{{ user.names }}</h5>
                                 <span>{{ user.position }}</span>
                             </div>
                             <div class="admin-img">
@@ -112,6 +112,12 @@
             <li  class="nav-item" @click="submenu(0)">
                             <router-link :to="{name:'sonodlist'}" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Sonod List</span></router-link>
+                        </li>
+
+
+            <li  class="nav-item" @click="submenu(0)">
+                            <router-link :to="{name:'userlist'}" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Users List</span></router-link>
                         </li>
 
 
@@ -258,7 +264,7 @@ export default {
 
 
        async sonodlistCount(){
-            var allSonodc =  await this.callApi('get','/api/get/sonod/count',[]);
+            var allSonodc =  await this.callApi('get',`/api/get/sonod/count?union=${this.user.unioun}&postion=${this.user.position}`,[]);
             this.allSonodCount = allSonodc.data
             // console.log(allSonodc)
         },

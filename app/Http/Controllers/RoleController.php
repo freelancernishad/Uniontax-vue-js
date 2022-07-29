@@ -3,18 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+
+    public function deleteuser(Request $request,$id)
+    {
+
+        $User =  User::find($id);
+        $User->delete();
+        return 'User deleted!';
+
+
+    }
+    public function getuser(Request $request,$id)
+    {
+       return User::find($id);
+
+    }
+
+
+    public function updateuser(Request $request)
+    {
+        $id = $request->id;
+
+
+          $data = $request->all();
+          if($id){
+            $sonodNameList = User::find($id);
+              return $sonodNameList->update($data);
+            }else{
+
+                return User::create($data);
+          }
+
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        return User::all();
     }
 
     /**

@@ -60,6 +60,10 @@ export default {
         return {
             form:{
                 bnname:null,
+                enname:null,
+                sonod_fee:null,
+                icon:null,
+                template:null,
             }
         }
     },
