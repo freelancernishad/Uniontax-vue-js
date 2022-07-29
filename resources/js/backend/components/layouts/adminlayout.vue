@@ -125,14 +125,14 @@
                         <li class="nav-item sidebar-nav-item" v-for="(sonod,index) in SonodNames" :class="{ active: selected == index+1 }">
                             <a href="javascript:void(0)" class="nav-link" @click="submenu(index+1)" ><i
                                     class="flaticon-technological"></i><span>{{ sonod.bnname }}</span>
-                                    <label  v-if="allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')]>0"  style="
+                                    <label  v-if="(allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] + allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')])>0"  style="
                                         width: 24px;
                                         height: 24px;
                                         background: rgb(223 12 12);
                                         padding: 0px 7px;
                                         color: wheat;
                                         border-radius: 50%;
-                                    " >{{ allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] }}</label></a>
+                                    " >{{ allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] + allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')] }}</label></a>
                             <transition name="slide">
                                 <ul class="nav sub-group-menu menu-open child" v-if="selected == index+1"
                                     style="display:block">
@@ -147,7 +147,14 @@
                                     " >{{ allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] }}</label></router-link>
                                     </li>
                                     <li class="nav-item">
-                                        <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'approved'} }" class="nav-link"><i class="fas fa-angle-right"></i> অনুমোদিত আবেদন</router-link>
+                                        <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'approved'} }" class="nav-link"><i class="fas fa-angle-right"></i> অনুমোদিত আবেদন <label  v-if="allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')]>0" style="
+                                        width: 24px;
+                                        height: 24px;
+                                        background: rgb(223 12 12);
+                                        padding: 0px 7px;
+                                        color: wheat;
+                                        border-radius: 50%;
+                                    " >{{ allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')] }}</label></router-link>
                                     </li>
                                     <li class="nav-item">
                                         <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'cancel'} }" class="nav-link"><i class="fas fa-angle-right"></i> বাতিল আবেদন</router-link>

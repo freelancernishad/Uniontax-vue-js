@@ -94,12 +94,19 @@ class SonodnamelistController extends Controller
             }else{
              $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$penddingStatus])->count();
 
+            
+                    $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$Secretary_approvedstatus])->count();
 
+                
 
-            $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>'Secretary_approved'])->count();
+                    if($Secretary_approvedstatus=='Secretary_approved'){
+                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$approvedstatus,'payment_status'=>'Unpaid'])->count();
+                    }else{
+                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$approvedstatus])->count();
+    
+                    }
 
-
-            $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>'approved'])->count();
+            
             }
 
 
@@ -107,6 +114,7 @@ class SonodnamelistController extends Controller
 
             // print_r($value->bnname);
         }
+        // return $Secretary_approvedstatus;
         return $sonodCount;
 
     }

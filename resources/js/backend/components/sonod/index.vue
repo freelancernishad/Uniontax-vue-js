@@ -149,13 +149,21 @@ export default {
 
                 }
             } else if (this.$route.params.type == 'cancel') {
-                this.approveRoute = '';
-                this.approveType = '';
+                this.approveType = 'vueAction';
+                 this.approveData = `${this.$localStorage.getItem('position')}_approved`;
                 this.editRoute = '';
                 this.cancelRoute = '';
                 // this.deleteRoute='/api/sonod/delete';
                 this.viewRoute = 'sonodview';
                 this.Type = 'বাতিল আবেদন';
+
+           if (this.$localStorage.getItem('position') == 'Secretary') {
+               this.approveRoute = 'approvetrade';
+                }else{
+                    this.approveRoute = '';
+
+                }
+
                 if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
 
                 }
