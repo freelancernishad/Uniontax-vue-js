@@ -68,10 +68,10 @@ export default {
             items: [],
             fields: [
                 { key: 'names', label: 'নাম', sortable: true },
-                { key: 'unioun', label: 'ইউনিয়নের নাম', sortable: true },
+                { key: 'unioun', label: 'ইউনিয়ন', sortable: true },
+                { key: 'thana', label: 'উপজেলা', sortable: true },
+                { key: 'district', label: 'জেলা', sortable: true },
                 { key: 'position', label: 'পদবি', sortable: true },
-                { key: 'position', label: 'পদবি', sortable: true },
-
 
                 { key: 'actions', label: 'Actions' }
             ],
