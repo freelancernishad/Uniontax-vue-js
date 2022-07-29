@@ -182,6 +182,12 @@
 
 
             <div class="row">
+                <div class="col-md-4 mt-3"></div>
+
+                <div class="col-md-4mt-3"><img width="100%" :src="$asseturl + viewModal.content.image" alt=""></div>
+
+                <div class="col-md-4 mt-3"></div>
+
 
                 <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ viewModal.content.applicant_national_id_number }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ viewModal.content.applicant_birth_certificate_number }}</div>

@@ -198,7 +198,7 @@
                             <b-form-file id="image" name="image"
                                 :state="validateState('image')"   @change="FileSelected($event, 'image')" aria-describedby="image-feedback" >
                             </b-form-file>
-                             <!-- <b-img thumbnail fluid :src="form.image" alt="Image 3"></b-img> -->
+                             <b-img thumbnail fluid v-if="form.image!=null" :src="form.image" alt="Image 3"></b-img>
 
                             <b-form-invalid-feedback id="image-feedback">This is a required field
                             </b-form-invalid-feedback>
@@ -655,7 +655,7 @@
                             <b-form-file id="applicant_national_id_front_attachment" name="applicant_national_id_front_attachment"
                                 :state="validateState('applicant_national_id_front_attachment')" @change="FileSelected($event, 'applicant_national_id_front_attachment')" aria-describedby="applicant_national_id_front_attachment-feedback">
                             </b-form-file>
-                             <!-- <b-img thumbnail fluid :src="form.applicant_national_id_front_attachment" alt="Image 3"></b-img> -->
+                             <b-img thumbnail fluid v-if="form.applicant_national_id_front_attachment!=null"  :src="form.applicant_national_id_front_attachment" alt="Image 3"></b-img>
 
                             <b-form-invalid-feedback id="applicant_national_id_front_attachment-feedback">This is a required field
                             </b-form-invalid-feedback>
@@ -670,7 +670,7 @@
                             <b-form-file id="applicant_national_id_back_attachment" name="applicant_national_id_back_attachment"
                                 :state="validateState('applicant_national_id_back_attachment')" @change="FileSelected($event, 'applicant_national_id_back_attachment')" aria-describedby="applicant_national_id_back_attachment-feedback">
                             </b-form-file>
-                             <!-- <b-img thumbnail fluid :src="form.applicant_national_id_back_attachment" alt="Image 3"></b-img> -->
+                             <b-img thumbnail fluid v-if="form.imagapplicant_national_id_back_attachmente!=null"  :src="form.applicant_national_id_back_attachment" alt="Image 3"></b-img>
 
                             <b-form-invalid-feedback id="applicant_national_id_back_attachment-feedback">This is a required field
                             </b-form-invalid-feedback>
@@ -685,7 +685,7 @@
                             <b-form-file id="applicant_birth_certificate_attachment" name="applicant_birth_certificate_attachment"
                                 :state="validateState('applicant_birth_certificate_attachment')"  @change="FileSelected($event, 'applicant_birth_certificate_attachment')"  aria-describedby="applicant_birth_certificate_attachment-feedback">
                             </b-form-file>
-                             <!-- <b-img thumbnail fluid :src="form.applicant_birth_certificate_attachment" alt="Image 3"></b-img> -->
+                             <b-img thumbnail fluid v-if="form.applicant_birth_certificate_attachment!=null"  :src="form.applicant_birth_certificate_attachment" alt="Image 3"></b-img>
 
                             <b-form-invalid-feedback id="applicant_birth_certificate_attachment-feedback">This is a required field
                             </b-form-invalid-feedback>
@@ -1171,7 +1171,7 @@ this.form.year = new Date().getFullYear();
     //    var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
 axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
   .then( (response)=> {
-      console.log(response.data)
+    //   console.log(response.data)
 
     this.form.sonod_Id = `${response.data}`;
 
