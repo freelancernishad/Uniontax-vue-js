@@ -115,6 +115,8 @@ watch: {
             var res = await this.callApi('post',`/api/sonod/search`,this.form);
             // console.log(res);
 
+
+
              if(this.$route.query.sonod_Id!=this.form.sonod_Id || this.$route.query.sonod_name!=this.form.sonod_name){
                 this.$router.push({ name: 'sonodsearch', query: { sonod_name: this.form.sonod_name,sonod_Id: this.form.sonod_Id }})
                 // console.log('dd')
@@ -128,6 +130,7 @@ watch: {
             this.sonoddata = res.data
              this.search=true;
              this.notfound = false;
+             this.$router.push({ name: 'sonodVerify',params:{id:res.data.id}})
             }
 
 

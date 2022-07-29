@@ -6,7 +6,11 @@
                     <div class="d-flex justify-content-between">
                         <div class="col-md-12 p-sm-0">
                             <div class="text-right mb-2 no-print">
-                                <button class="btn btn-sm btn-success">Download</button>
+
+                                <a :href="'/sonod/d/'+row.id" v-if="row.payment_status=='Paid'" target="_blank" class="btn btn-sm btn-success">Download</a>
+
+                                <a :href="'/sonod/d/'+row.id" v-if="row.payment_status=='Unpaid'" target="_blank" class="btn btn-sm btn-success">Pay</a>
+
                             </div>
                             <div class="border">
                                 <div class="row m-0 mt-2">
@@ -23,7 +27,8 @@
                                 </div>
                                 <div class="verification-sec text-center mt-2 mb-2">
                                     <h2>Verification Successful !</h2>
-                                    <h2>This Certificate is Valid.</h2>
+                                    <h2 v-if="row.payment_status=='Paid'">This Certificate is Valid.</h2>
+                                    <h2 v-if="row.payment_status=='Unpaid'" style="color:red">This Certificate is Unpaid.</h2>
                                 </div>
                             </div>
                             <div>
