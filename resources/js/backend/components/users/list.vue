@@ -45,7 +45,7 @@ export default {
     data() {
         return {
 
-            preLooding:false,
+            preLooding:true,
 
             access:'',
             sortstatus:false,
@@ -104,10 +104,11 @@ export default {
 
 
         sonodname(){
-            this.preLooding = true
-              axios.get(`/api/get/users/list`)
+            var position = this.Users.position
+            var thana = this.Users.thana
+              axios.get(`/api/get/users/list?position=${position}&thana=${thana}`)
                 .then(({ data }) => {
-                    console.log(data)
+                    // console.log(data)
                   this.items = data
                   this.TotalRows = `${this.items.length}`;
                   this.preLooding = false
@@ -117,8 +118,10 @@ export default {
 
     },
     mounted() {
+        setTimeout(()=>{
 
-        this.sonodname();
+            this.sonodname();
+        }, 2000);
 
 
     }

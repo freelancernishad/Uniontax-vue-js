@@ -266,7 +266,7 @@ class SonodController extends Controller
         $Insertdata = [];
         $Insertdata = $r->except(['image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
         $imageCount =  count(explode(';', $r->image));
-        $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
+      return  $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
         $birth_certificateCount =  count(explode(';', $r->applicant_birth_certificate_attachment));
         if ($imageCount > 1) {

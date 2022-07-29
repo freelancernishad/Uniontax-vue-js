@@ -1137,7 +1137,7 @@ axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
             var datas = res.data;
             var redirect;
             var payment_type = this.getunionInfos.payment_type;
-            this.$router.push({ name: 'home'})
+            // this.$router.push({ name: 'home'})
             if(payment_type=='Prepaid'){
             redirect = `sonod/payment/${datas.id}`
             window.open(redirect,'_blank');

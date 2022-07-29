@@ -51,7 +51,18 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+            $position = $request->position;
+             $thana = $request->thana;
+            if($position=='Thana_admin'){
 
+                $positions = ['Secretary', 'Chairman'];
+                return User::whereIn('position',$positions)
+                ->where(['thana'=>$thana])
+                ->get();
+
+
+
+            }
         return User::all();
     }
 
