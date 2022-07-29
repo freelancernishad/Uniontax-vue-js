@@ -1,72 +1,59 @@
 <template>
     <div>
- <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
-
-<div class="breadcrumbs-area">
-    <h3>{{ SonodName.bnname }} {{ Type }}</h3>
-    <ul>
-        <li>
-            <router-link :to="{name:'Dashboard'}">Home</router-link>
-        </li>
-        <li>{{ SonodName.bnname }}  {{ Type }}</li>
-    </ul>
-</div>
-
-
-
-
+        <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"
+            objectbg="#999793" opacity="80" name="circular"></loader>
+        <div class="breadcrumbs-area">
+            <h3>{{ SonodName.bnname }} {{ Type }}</h3>
+            <ul>
+                <li>
+                    <router-link :to="{ name: 'Dashboard' }">Home</router-link>
+                </li>
+                <li>{{ SonodName.bnname }} {{ Type }}</li>
+            </ul>
+        </div>
         <div class="card">
-        <div class="card-body">
-<table-component :sonod-type="$route.params.name" :sort-options-staus="sortstatus" :Filter="Filter" :filter-on="FilterOn"  :per-page="PerPage" :Items="items" :Fields="fields" :per-page-data="PerPageData" :total-rows="TotalRows"  :delete-route="deleteRoute" :edit-route="editRoute" :application-route="applicationRoute"  :view-route="viewRoute"    :approve-route="approveRoute" :pay-route="payRoute" :cancel-route="cancelRoute"   :approve-type="approveType" :approve-data="approveData"  @event-name="sonodList" >
-
-</table-component>
-
-<!-- <approve-component></approve-component> -->
-
-    </div>
-
+            <div class="card-body">
+                <table-component :sonod-type="$route.params.name" :sort-options-staus="sortstatus" :Filter="Filter"
+                    :filter-on="FilterOn" :per-page="PerPage" :Items="items" :Fields="fields"
+                    :per-page-data="PerPageData" :total-rows="TotalRows" :delete-route="deleteRoute"
+                    :edit-route="editRoute" :application-route="applicationRoute" :view-route="viewRoute"
+                    :approve-route="approveRoute" :pay-route="payRoute" :cancel-route="cancelRoute"
+                    :approve-type="approveType" :approve-data="approveData" @event-name="sonodList">
+                </table-component>
+                <!-- <approve-component></approve-component> -->
             </div>
         </div>
+    </div>
 </template>
-
 <script>
-import { mapGetters,mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import moment from 'moment';
 import User from '../../../helpers/User';
-
 export default {
-
-     computed: {
-
-
-
+    computed: {
     },
     created() {
-
-
     },
     data() {
         return {
-
-            preLooding:false,
-
-            access:'',
-            sortstatus:false,
-            Filter:true,
-            FilterOn:false,
-            PerPage:false,
-            deleteRoute:'',
-            editRoute:'',
-            applicationRoute:'/document',
-            viewRoute:'',
-            approveRoute:'',
-            cancelRoute:'',
-            approveType:'',
-            approveData:'',
-            payRoute:'',
-            PerPageData:'10',
-            TotalRows:'1',
-            Type:'',
+            preLooding: false,
+            access: '',
+            sortstatus: false,
+            Filter: true,
+            FilterOn: false,
+            PerPage: false,
+            deleteRoute: '',
+            editRoute: '',
+            applicationRoute: '/document',
+            viewRoute: '',
+            approveRoute: '',
+            cancelRoute: '',
+            approveType: '',
+            approveData: '',
+            payRoute: '',
+            PerPageData: '10',
+            TotalRows: '1',
+            Type: '',
             items: [],
             fields: [[
                 { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
@@ -74,250 +61,197 @@ export default {
                 { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
                 { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
                 { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
-                { key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
-
-                formatter: (value, key, item) => {
+                {
+                    key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
+                    formatter: (value, key, item) => {
                         // return new Date().getFullYear()
-                          return   User.dateformat(value)[7]
-                        }
+                        return User.dateformat(value)[7]
+                    }
                 },
                 { key: 'actions', label: 'Actions' }
             ]],
-
-
         }
     },
     // updated(){
-
     //  this.sonodList();
-
     // },
-
-  watch: {
-        '$route':  {
+    watch: {
+        '$route': {
             handler(newValue, oldValue) {
-            this.sonodList();
-
-
-      },
-      deep: true
-
-
-
+                this.sonodList();
+            },
+            deep: true
         }
     },
-
     methods: {
-
-
-   teacherEmailTCellFormat(value) {
-    console.log(value)
-      return 'hello'
-    },
-
-        actionAccess(){
-
-
-
-
-
-            if(this.$route.params.type=='new'){
-                this.cancelRoute='';
-                this.deleteRoute='/api/sonod/delete';
+        teacherEmailTCellFormat(value) {
+            console.log(value)
+            return 'hello'
+        },
+        actionAccess() {
+            if (this.$route.params.type == 'new') {
+                this.cancelRoute = '';
+                // this.deleteRoute='/api/sonod/delete';
                 // this.editRoute='sonodedit';
-                this.editRoute='';
-                this.viewRoute='sonodview';
-                    this.approveRoute='';
-                    this.approveType='vueAction';
-                    this.approveData='sec_approved';
-
-
-                if(this.$localStorage.getItem('position')=='District_admin' || this.$localStorage.getItem('position')=='Thana_admin'){
-
-this.fields = [
-                { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
-                { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
-                { key: 'applicant_name', label: 'নাম', sortable: true },
-                { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
-                { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
-                { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
-                { key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
-
-                formatter: (value, key, item) => {
-                        // return new Date().getFullYear()
-                          return   User.dateformat(value)[7]
-                        }
-                },
-                { key: 'actions', label: 'Actions' }
-            ]
-
-
-
-                    this.approveRoute='';
-                    this.approveType='vueAction';
-                    this.approveData='sec_approved';
-                }else if(this.$localStorage.getItem('position')=='Chairman'){
-                    this.approveRoute='/api/sonod';
-                    this.approveType='apiAction';
-                    this.approveData=`approved`;
-                }else{
-                    this.approveRoute='approvetrade';
-                    this.approveType='vueAction';
-                    this.approveData=`${this.$localStorage.getItem('position')}_approved`;
-
+                this.editRoute = '';
+                this.viewRoute = 'sonodview';
+                this.approveRoute = '';
+                this.approveType = 'vueAction';
+                this.approveData = 'sec_approved';
+                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                    this.fields = [
+                        { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
+                        { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
+                        { key: 'applicant_name', label: 'নাম', sortable: true },
+                        { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
+                        { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
+                        { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
+                        {
+                            key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
+                            formatter: (value, key, item) => {
+                                // return new Date().getFullYear()
+                                return User.dateformat(value)[7]
+                            }
+                        },
+                        { key: 'actions', label: 'Actions' }
+                    ]
+                    this.approveRoute = '';
+                    this.approveType = 'vueAction';
+                    this.approveData = 'sec_approved';
+                } else if (this.$localStorage.getItem('position') == 'Chairman') {
+                    this.approveRoute = '/api/sonod';
+                    this.approveType = 'apiAction';
+                    this.approveData = `approved`;
+                } else {
+                    this.approveRoute = 'approvetrade';
+                    this.approveType = 'vueAction';
+                    this.approveData = `${this.$localStorage.getItem('position')}_approved`;
                 }
-
-
-
-                this.Type='নতুন আবেদন';
-            }else if(this.$route.params.type=='approved'){
-                this.cancelRoute='';
-                this.approveRoute='';
-                this.approveType='';
-
-                this.deleteRoute='';
+                this.Type = 'নতুন আবেদন';
+            } else if (this.$route.params.type == 'approved') {
+                this.cancelRoute = '';
+                this.approveRoute = '';
+                this.approveType = '';
+                this.deleteRoute = '';
                 // this.editRoute='sonodedit';
-                this.editRoute='';
-                this.viewRoute='sonodview';
-                 this.Type='অনুমোদিত আবেদন';
-
-                if(this.$localStorage.getItem('position')=='Secretary'){
-                   this.payRoute = '/api/sonod/pay';
+                this.editRoute = '';
+                this.viewRoute = 'sonodview';
+                this.Type = 'অনুমোদিত আবেদন';
+                if (this.$localStorage.getItem('position') == 'Secretary') {
+                    this.payRoute = '/api/sonod/pay';
                 }
-
-
-                if(this.$localStorage.getItem('position')=='District_admin' || this.$localStorage.getItem('position')=='Thana_admin'){
-
-this.fields = [
-                { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
-                   { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
-                { key: 'applicant_name', label: 'নাম', sortable: true },
-                { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
-                { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
-                { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
-                { key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
-
-                formatter: (value, key, item) => {
-                        // return new Date().getFullYear()
-                          return   User.dateformat(value)[7]
-                        }
-                },
-                { key: 'actions', label: 'Actions' }
-            ]
-
+                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                    this.fields = [
+                        { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
+                        { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
+                        { key: 'applicant_name', label: 'নাম', sortable: true },
+                        { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
+                        { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
+                        { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
+                        {
+                            key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
+                            formatter: (value, key, item) => {
+                                // return new Date().getFullYear()
+                                return User.dateformat(value)[7]
+                            }
+                        },
+                        { key: 'actions', label: 'Actions' }
+                    ]
                 }
-
-
-
-
-            }else if(this.$route.params.type=='cancel'){
-                this.approveRoute='';
-                this.approveType='';
-                this.editRoute='';
-                this.cancelRoute='';
-                this.deleteRoute='/api/sonod/delete';
-                this.viewRoute='sonodview';
-                 this.Type='বাতিল আবেদন';
-
-
-
-         if(this.$localStorage.getItem('position')=='District_admin' || this.$localStorage.getItem('position')=='Thana_admin'){
-
-this.fields = [
-                { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
-                { key: 'applicant_name', label: 'নাম', sortable: true },
-                { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
-                { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
-                { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
-                { key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
-
-                formatter: (value, key, item) => {
-                        // return new Date().getFullYear()
-                          return   User.dateformat(value)[7]
-                        }
-                },
-                { key: 'actions', label: 'Actions' }
-            ]
-
+            } else if (this.$route.params.type == 'cancel') {
+                this.approveRoute = '';
+                this.approveType = '';
+                this.editRoute = '';
+                this.cancelRoute = '';
+                // this.deleteRoute='/api/sonod/delete';
+                this.viewRoute = 'sonodview';
+                this.Type = 'বাতিল আবেদন';
+                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                    this.fields = [
+                        { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
+                        { key: 'applicant_name', label: 'নাম', sortable: true },
+                        { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
+                        { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
+                        { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
+                        {
+                            key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
+                            formatter: (value, key, item) => {
+                                // return new Date().getFullYear()
+                                return User.dateformat(value)[7]
+                            }
+                        },
+                        { key: 'actions', label: 'Actions' }
+                    ]
                 }
-
-
-
             }
         },
-
-
-        sonodname(){
-            if(this.$route.params.name){
-              axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`)
-                .then(({ data }) => {
-                  this.sonodnamedata = data
-                })
-                .catch()
+        sonodname() {
+            if (this.$route.params.name) {
+                axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`)
+                    .then(({ data }) => {
+                        this.sonodnamedata = data
+                    })
+                    .catch()
             }
-
         },
-       async sonodList(auto=false){
-        if(!auto)this.preLooding = true
-           if(this.$route.params.name){
-            var stutus = '';
-            var payment_status = '';
-                if(this.$route.params.type=='new'){
-                    stutus='Pending'
-                if(this.$localStorage.getItem('position')=='super-admin'){
-                    stutus='Pending'
-                }else if(this.$localStorage.getItem('position')=='Chairman'){
-                    stutus='Secretary_approved'
-                }else{
-                    stutus='Pending'
-                }
-
-
-
-                }else if(this.$route.params.type=='approved'){
-                    stutus='approved'
-            if(this.$localStorage.getItem('position')=='Chairman'){
-                  stutus='approved'
-                  payment_status='Paid'
-
-                }else{
-                    stutus='approved'
-                }
-
-                }else{
+        async sonodList(auto = false) {
+            if (!auto) this.preLooding = true
+            if (this.$route.params.name) {
+                var stutus = '';
+                var payment_status = '';
+                if (this.$route.params.type == 'new') {
+                    stutus = 'Pending'
+                    if (this.$localStorage.getItem('position') == 'super-admin') {
+                        stutus = 'Pending'
+                    } else if (this.$localStorage.getItem('position') == 'Chairman') {
+                        stutus = 'Secretary_approved'
+                    } else {
+                        stutus = 'Pending'
+                    }
+                } else if (this.$route.params.type == 'approved') {
+                    stutus = 'approved'
+                    if (this.$localStorage.getItem('position') == 'Chairman') {
+                        stutus = 'approved'
+                        payment_status = 'Paid'
+                    } else {
+                        stutus = 'approved'
+                    }
+                } else {
                     stutus = this.$route.params.type;
                 }
-
-var unioun = ''
-            if(this.$localStorage.getItem('position')!='District_admin')var unioun = this.Users.unioun
-
+                var unioun = ``
+                if (this.$localStorage.getItem('position') == 'Chairman' || this.$localStorage.getItem('position') == 'Secretary') var unioun = `&filter[unioun_name]=${this.Users.unioun}`
 
 
-             var res = await this.callApi('get',`/api/sonod/list?sonod_name=${this.$route.params.name}&filter[unioun_name]=${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`,[]);
-            this.items = res.data
-            this.TotalRows = `${this.items.length}`;
+                if (this.$localStorage.getItem('position') == 'Thana_admin'){
+
+                    var unioun = ``
+                }
+
+
+                var res = await this.callApi('get', `/api/sonod/list?sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
+                this.items = res.data
+                this.TotalRows = `${this.items.length}`;
                 this.actionAccess();
-        if(!auto)this.preLooding = false
-
-             }
+                if (!auto) this.preLooding = false
+            }
         }
     },
     mounted() {
-
-
         setTimeout(() => {
-
             this.sonodList();
         }, 2000);
-
-
         setInterval(() => {
             this.sonodList(true)
         }, 5000);
-
-
     }
-
-
 }
 </script>
+<style>
+th.position-relative {
+    font-size: 13px;
+}
+td {
+    font-size: 14px;
+}
+</style>

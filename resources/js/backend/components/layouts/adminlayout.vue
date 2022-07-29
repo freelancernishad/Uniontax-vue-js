@@ -264,7 +264,13 @@ export default {
 
 
        async sonodlistCount(){
-            var allSonodc =  await this.callApi('get',`/api/get/sonod/count?union=${this.user.unioun}&postion=${this.user.position}`,[]);
+var unionname = this.user.unioun;
+        if(this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin'){
+
+            var unionname = '';
+        }
+
+            var allSonodc =  await this.callApi('get',`/api/get/sonod/count?union=${unionname}&postion=${this.user.position}`,[]);
             this.allSonodCount = allSonodc.data
             // console.log(allSonodc)
         },
