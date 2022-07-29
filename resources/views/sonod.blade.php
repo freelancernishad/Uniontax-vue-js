@@ -105,9 +105,10 @@
                         <td  style="text-align: center;" width="40%">
                    <div class="signature text-center position-relative">
                     @php
+                     $qrurl = url("/verification/sonod/$row->id");
                         $qrcode = \QrCode::size(70)
                     ->format('svg')
-                    ->generate('hello');
+                    ->generate($qrurl);
 
                    echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
                     @endphp

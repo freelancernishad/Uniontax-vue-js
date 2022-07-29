@@ -66,7 +66,10 @@ Route::get('get/sonod/count',[SonodnamelistController::class,'sonodCount']);
 Route::get('sonod/list',[SonodController::class,'index']);
 
 Route::post('role/assign',[authController::class,'roleAssign']);
+
+Route::get('sonod/single/{id}',[SonodController::class, 'singlesonod']);
 Route::post('sonod/submit',[SonodController::class, 'sonod_submit']);
+
 Route::get('sonod/delete/{id}',[SonodController::class, 'sonod_delete']);
 Route::post('sonod/sec/approve/{id}',[SonodController::class, 'sec_sonod_action']);
 Route::get('sonod/pay/{id}',[SonodController::class, 'sonod_pay']);

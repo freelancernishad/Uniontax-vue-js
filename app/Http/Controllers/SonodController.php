@@ -266,20 +266,20 @@ class SonodController extends Controller
         $Insertdata = [];
         $Insertdata = $r->except(['image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
         $imageCount =  count(explode(';', $r->image));
-      return  $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
+        $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
         $birth_certificateCount =  count(explode(';', $r->applicant_birth_certificate_attachment));
         if ($imageCount > 1) {
-            $Insertdata['image'] =  fileupload($r->image, env('FILE_PATH')+"sonod/$filepath/image/", 250, 300);
+            $Insertdata['image'] =  fileupload($r->image, "sonod/$filepath/image/", 250, 300);
         }
         if ($national_id_frontCount > 1) {
-            $Insertdata['applicant_national_id_front_attachment'] =  fileupload($r->applicant_national_id_front_attachment, env('FILE_PATH')+"sonod/$filepath/applicant_national_id_front_attachment/", 250, 300);
+            $Insertdata['applicant_national_id_front_attachment'] =  fileupload($r->applicant_national_id_front_attachment, "sonod/$filepath/applicant_national_id_front_attachment/");
         }
         if ($national_id_backCount > 1) {
-            $Insertdata['applicant_national_id_back_attachment'] =  fileupload($r->applicant_national_id_back_attachment, env('FILE_PATH')+"sonod/$filepath/applicant_national_id_back_attachment/", 250, 300);
+            $Insertdata['applicant_national_id_back_attachment'] =  fileupload($r->applicant_national_id_back_attachment, "sonod/$filepath/applicant_national_id_back_attachment/");
         }
         if ($birth_certificateCount > 1) {
-            $Insertdata['applicant_birth_certificate_attachment'] =  fileupload($r->applicant_birth_certificate_attachment, env('FILE_PATH')+"sonod/$filepath/applicant_birth_certificate_attachment/", 250, 300);
+            $Insertdata['applicant_birth_certificate_attachment'] =  fileupload($r->applicant_birth_certificate_attachment, "sonod/$filepath/applicant_birth_certificate_attachment/");
         }
         $Insertdata['successor_list'] = $successors;
         $Uniouninfo =   Uniouninfo::where('short_name_e', $r->unioun_name)->latest()->first();
@@ -501,6 +501,12 @@ class SonodController extends Controller
             return  $sonod;
         }
         return '';
+    }
+
+
+    public function singlesonod(Request $request,$id)
+    {
+        return Sonod::find($id);
     }
     /**
      * Show the form for creating a new resource.

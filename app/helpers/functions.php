@@ -762,8 +762,8 @@ $ext =  pathinfo($Image, PATHINFO_EXTENSION);;
  function fileupload($Image,$path,$width='',$height='',$customname='')
 {
 
-    if (!file_exists($path)) {
-        File::makeDirectory($path, 0777, true, true);
+    if (!file_exists(env('FILE_PATH').$path)) {
+        File::makeDirectory(env('FILE_PATH').$path, 0777, true, true);
     }
 
      $position = strpos($Image, ';');

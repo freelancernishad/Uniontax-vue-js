@@ -102,7 +102,7 @@
                     Edit
                 </router-link>
 
-                <span size="sm" @click="info(row.item,row.index, $event.target)"  v-if="ViewRoute!=''" class="btn btn-success mr-1">
+                <span size="sm" @click="info(row.item,row.index, $event.target)"  v-if="ViewRoute!=''" class="btn btn-info mr-1">
                     View
                 </span>
 

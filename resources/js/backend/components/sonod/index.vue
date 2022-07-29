@@ -33,6 +33,22 @@ export default {
     computed: {
     },
     created() {
+        this.fields =  [
+                { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
+                { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
+                { key: 'applicant_name', label: 'নাম', sortable: true },
+                { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
+                { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
+                { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
+                {
+                    key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
+                    formatter: (value, key, item) => {
+                        // return new Date().getFullYear()
+                        return User.dateformat(value)[7]
+                    }
+                },
+                { key: 'actions', label: 'Actions' }
+            ]
     },
     data() {
         return {
@@ -55,8 +71,10 @@ export default {
             TotalRows: '1',
             Type: '',
             items: [],
-            fields: [[
+            fields: [
+                [
                 { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
+                { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
                 { key: 'applicant_name', label: 'নাম', sortable: true },
                 { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
                 { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
@@ -69,7 +87,8 @@ export default {
                     }
                 },
                 { key: 'actions', label: 'Actions' }
-            ]],
+            ]
+            ],
         }
     },
     // updated(){
@@ -99,22 +118,7 @@ export default {
                 this.approveType = 'vueAction';
                 this.approveData = 'sec_approved';
                 if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
-                    this.fields = [
-                        { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
-                        { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
-                        { key: 'applicant_name', label: 'নাম', sortable: true },
-                        { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
-                        { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
-                        { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
-                        {
-                            key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
-                            formatter: (value, key, item) => {
-                                // return new Date().getFullYear()
-                                return User.dateformat(value)[7]
-                            }
-                        },
-                        { key: 'actions', label: 'Actions' }
-                    ]
+
                     this.approveRoute = '';
                     this.approveType = 'vueAction';
                     this.approveData = 'sec_approved';
@@ -141,22 +145,7 @@ export default {
                     this.payRoute = '/api/sonod/pay';
                 }
                 if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
-                    this.fields = [
-                        { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
-                        { key: 'unioun_name', label: 'ইউনিয়ন', sortable: true },
-                        { key: 'applicant_name', label: 'নাম', sortable: true },
-                        { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
-                        { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
-                        { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
-                        {
-                            key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
-                            formatter: (value, key, item) => {
-                                // return new Date().getFullYear()
-                                return User.dateformat(value)[7]
-                            }
-                        },
-                        { key: 'actions', label: 'Actions' }
-                    ]
+
                 }
             } else if (this.$route.params.type == 'cancel') {
                 this.approveRoute = '';
@@ -167,23 +156,13 @@ export default {
                 this.viewRoute = 'sonodview';
                 this.Type = 'বাতিল আবেদন';
                 if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
-                    this.fields = [
-                        { key: 'sonod_Id', label: 'সনদ নাম্বার', sortable: true },
-                        { key: 'applicant_name', label: 'নাম', sortable: true },
-                        { key: 'applicant_father_name', label: 'পিতার/স্বামীর নাম', sortable: true },
-                        { key: 'applicant_present_village', label: 'গ্রাম/মহল্লা', sortable: true },
-                        { key: 'applicant_national_id_number', label: 'ন্যাশনাল আইডি', sortable: true },
-                        {
-                            key: 'created_at', label: 'আবেদনের তারিখ', sortable: true,
-                            formatter: (value, key, item) => {
-                                // return new Date().getFullYear()
-                                return User.dateformat(value)[7]
-                            }
-                        },
-                        { key: 'actions', label: 'Actions' }
-                    ]
+
                 }
             }
+
+
+
+
         },
         sonodname() {
             if (this.$route.params.name) {
