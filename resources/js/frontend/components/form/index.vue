@@ -881,7 +881,7 @@ export default {
                 // required
             },
             applicant_type_of_business: {
-                required
+                // required
             },
             applicant_date_of_birth: {
                 required
@@ -890,7 +890,7 @@ export default {
                 required
             },
             applicant_name_of_the_organization: {
-                required
+                // required
             },
             applicant_gender: {
                 required
