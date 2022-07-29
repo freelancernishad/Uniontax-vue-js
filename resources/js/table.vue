@@ -129,8 +129,8 @@
                     Approve
                 </router-link> -->
 
-                <span size="sm" @click="approve(CancelRoute,row.item.id,'cancel', $event.target)" v-if="CancelRoute!=''" class="btn btn-danger mr-1">
-                    Cancel
+                <span size="sm" @click="cancel(CancelRoute,row.item.id,'cancel', $event.target)" v-if="CancelRoute!=''" class="btn btn-danger mr-1">
+                    Not-Approve
                 </span>
 
             </template>
@@ -441,6 +441,39 @@ export default {
                 })
 
                 }
+
+
+        },
+
+        async cancel(route,id,status,button){
+
+//             if(this.ApproveType=='vueAction'){
+//  this.infoModal.content_id = `${id}`;
+//                 this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+
+//             }else if(this.ApproveType=='apiAction'){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: `${status} this data!`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: `Yes, Not Approve it!`
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+
+
+                var res = await this.callApi('get',`${route}/${status}/${id}`,[]);
+                Notification.customSuccess(`Your data has been Not Approve Success`);
+                this.$emit('event-name')
+
+
+
+                    }
+                })
+
+                // }
 
 
         },

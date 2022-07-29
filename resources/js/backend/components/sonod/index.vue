@@ -109,7 +109,7 @@ export default {
         },
         actionAccess() {
             if (this.$route.params.type == 'new') {
-                this.cancelRoute = '';
+                this.cancelRoute = '/api/sonod';
                 // this.deleteRoute='/api/sonod/delete';
                 // this.editRoute='sonodedit';
                 this.editRoute = '';
@@ -123,6 +123,7 @@ export default {
                     this.approveType = 'vueAction';
                     this.approveData = 'sec_approved';
                 } else if (this.$localStorage.getItem('position') == 'Chairman') {
+                    this.cancelRoute = '/api/sonod';
                     this.approveRoute = '/api/sonod';
                     this.approveType = 'apiAction';
                     this.approveData = `approved`;

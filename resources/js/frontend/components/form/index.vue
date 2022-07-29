@@ -1153,7 +1153,7 @@ axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
             // console.log(payment_type);
             // this.resetForm();
 
-            window.location.href = redirect
+            // window.location.href = redirect
 
 
         }
