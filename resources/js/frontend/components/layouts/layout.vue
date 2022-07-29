@@ -32,7 +32,8 @@
                                 <button class="navbar-toggler  text-white" style="color:white !important" type="button" data-toggle="collapse"
                                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                     aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
+                                    <!-- <span class="navbar-toggler-icon"></span> -->
+                                  <i class="fas fa-bars"></i>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav mr-auto">
@@ -250,6 +251,20 @@ export default {
             selectedUser: ''
         }
     },
+
+  watch: {
+        '$route':  {
+            handler(newValue, oldValue) {
+                        
+                document.getElementById('navbarSupportedContent').classList.remove("show");
+      },
+      deep: true
+
+
+
+        }
+    },
+
     methods: {
         sendInfo(item) {
             // console.log(item)
