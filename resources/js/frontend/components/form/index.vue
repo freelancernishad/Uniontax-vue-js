@@ -875,40 +875,40 @@ export default {
             image: {
             },
             sonod_name: {
-                // required
+                required
             },
             utname: {
                 // required
             },
             applicant_type_of_business: {
-                // required
+                required
             },
             applicant_date_of_birth: {
-                // required
+                required
             },
             applicant_name: {
-                // required
+                required
             },
             applicant_name_of_the_organization: {
-                // required
+                required
             },
             applicant_gender: {
-                // required
+                required
             },
             applicant_marriage_status: {
-                // required
+                required
             },
             applicant_father_name: {
-                // required
+                required
             },
             applicant_mother_name: {
-                // required
+                required
             },
             applicant_religion: {
-                // required
+                required
             },
             applicant_resident_status: {
-                // required
+                required
             },
             applicant_mobile: {
                 required
@@ -1133,28 +1133,35 @@ axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
                 return;
             }
 
+    //    localStorage.setItem('form',JSON.stringify(this.form));
+    //         this.$router.push({ name: 'certificate'})
+
             var res = await this.callApi('post', '/api/sonod/submit', this.form);
             var datas = res.data;
             var redirect;
             var payment_type = this.getunionInfos.payment_type;
-            // this.$router.push({ name: 'home'})
+
+           this.$router.push({ name: 'home'})
+
             if(payment_type=='Prepaid'){
             redirect = `sonod/payment/${datas.id}`
-            // window.open(redirect,'_blank');
+            window.open(redirect,'_blank');
             }else if(payment_type=='Postpaid'){
                 redirect = '/document/'+datas.sonod_name+'/'+datas.id;
-                // window.open(redirect,'_blank');
+                window.open(redirect,'_blank');
             }
             // console.log(payment_type);
             // this.resetForm();
 
-            // window.location.href = redirect
+            window.location.href = redirect
 
 
         }
     },
     mounted(){
-
+        // if(localStorage.getItem('form')){
+        //     this.form = JSON.parse(localStorage.getItem('form'))
+        // }
 this.form.year = new Date().getFullYear();
         this.sonodname();
         setTimeout(() => {
