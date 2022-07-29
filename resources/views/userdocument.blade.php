@@ -32,12 +32,12 @@
         আবেদনের ক্রমিক নং	: {{ int_en_to_bn($row->sonod_Id) }} <br>
         আবেদনের তারিখ	: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }} <br>
         আবেদনকারীর নাম	: {{ $row->applicant_name }} <br>
-        এনআইডি নং	: {{ $row->applicant_national_id_number }} <br>
+        এনআইডি নং	: {{ int_en_to_bn($row->applicant_national_id_number) }} <br>
         পিতা/স্বামীর নাম	: {{ $row->applicant_father_name }} <br>
 
         বর্তমান ঠিকানা	: হোল্ডিং নং- {{ $row->applicant_holding_tax_number }}, গ্রাম: {{ $row->applicant_present_village }}, ডাকঘর: {{ $row->applicant_present_post_office }}, উপজেলা: {{ $row->applicant_present_Upazila }} , জেলা: {{ $row->applicant_present_district }}। <br>
 
-        মোবাইল নম্বর	: {{ $row->applicant_phone }} <br>
+        মোবাইল নম্বর	: {{ int_en_to_bn($row->applicant_mobile) }} <br>
 
         </p>
 
