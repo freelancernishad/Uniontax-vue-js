@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('position')->nullable();
             $table->string('full_unioun_name')->nullable();
+            $table->string('district')->nullable();
+            $table->string('thana')->nullable();
             $table->string('gram')->nullable();
             $table->string('word')->nullable();
             $table->string('description')->nullable();

@@ -32,56 +32,58 @@
           </select>
 
         </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="">জেলা</label>
+
+          <select v-model="form.district" class="form-control">
+            <option selected value="বরিশাল">বরিশাল</option>
+          </select>
+
         </div>
 
 
         <div class="form-group col-md-6">
-          <label for="">সনদের ইংলিশ নাম</label>
+          <label for="">উপজেলা</label>
+
+          <select v-model="form.thana" class="form-control">
+            <option selected value="বরিশাল সদর">বরিশাল সদর</option>
+          </select>
+
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="">ইউনিয়ন</label>
+          <select v-model="form.unioun" class="form-control">
+            <option value="">নির্বাচন করুন</option>
+            <option value="tungibaria">টুঙ্গীবাড়িয়া</option>
+          </select>
+
+        </div>
+
+
+
+        <div class="form-group col-md-6">
+          <label for="">ইমেইল</label>
           <input type="text" v-model="form.email" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
 
         <div class="form-group col-md-6">
-          <label for="">সনদের ফি</label>
+          <label for="">পাসওয়ার্ড</label>
           <input type="text" v-model="form.password" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
 
 
         <div class="form-group col-md-6">
-          <label for="">সনদের ফি</label>
+          <label for="">মোবাইল নাম্বার</label>
           <input type="text" v-model="form.phone" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
 
-
-        <div class="form-group col-md-6">
-          <label for="">সনদের আইকন</label>
-          <select v-model="form.unioun" class="form-control">
-            <option value="">নির্বাচন করুন</option>
-            <option value="tungibaria">টুঙ্গীবাড়িয়া</option>
-          </select>
-        </div>
-
-
-
-
-        <div class="form-group col-md-6">
-          <label for="">সনদের আইকন</label>
-          <input type="text" v-model="form.full_unioun_name" class="form-control" placeholder="" aria-describedby="helpId">
-        </div>
-
-
-
-
-
-
-        <div class="form-group col-md-6">
-          <label for="">সনদের বিবরন</label>
-          <textarea v-model="form.template" class="form-control" cols="30" rows="10" style="height: 100px;
-    background: #DFDFDF;
-    resize: none;"></textarea>
-        </div>
         <div class="col-md-12">
     <button class="btn btn-info" type="submit">Submit</button>
 </div>
@@ -105,12 +107,14 @@ export default {
                 password:null,
                 position:null,
                 full_unioun_name:null,
+                district:'বরিশাল',
+                thana:'বরিশাল সদর',
                 gram:null,
                 word:null,
                 description:null,
                 image:null,
                 status:null,
-                role:null,
+                role:1,
                 remember_token:null,
                 created_at:null,
                 updated_at:null,
@@ -121,16 +125,16 @@ export default {
 
         async getsonodById(){
            var id =  this.$route.params.id;
-            var res = await this.callApi('get', `/api/update/sonodname/${id}`, []);
+            var res = await this.callApi('get', `/api/update/users/${id}`, []);
             this.form = res.data;
         },
 
 
         async onSubmit() {
 
-            var res = await this.callApi('post', '/api/update/sonodname', this.form);
-             this.$router.push({ name: 'sonodlist'})
-            Notification.customSuccess('Sonod Name Update Success');
+            var res = await this.callApi('post', '/api/update/users', this.form);
+             this.$router.push({ name: 'userlist'})
+            Notification.customSuccess('User Update Success');
 
         }
     },

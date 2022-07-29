@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 class RoleController extends Controller
 {
 
@@ -30,7 +30,10 @@ class RoleController extends Controller
         $id = $request->id;
 
 
-          $data = $request->all();
+          $data = $request->except(['password']);
+
+        $data['password'] = hash::make($request->password);
+
           if($id){
             $sonodNameList = User::find($id);
               return $sonodNameList->update($data);
