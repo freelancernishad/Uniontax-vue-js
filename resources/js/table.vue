@@ -133,7 +133,7 @@
                 </span>
 
 
-                <span size="sm" @click="approve('/api/sonod',row.item.id,'Secretary_approved', $event.target,'apiAction')" v-else-if="ApproveRoute!='' && row.item.payment_status=='Paid'" class="btn btn-success mr-1">
+                <span size="sm" @click="approve('/api/sonod',row.item.id,ApproveData, $event.target,'apiAction')" v-else-if="ApproveRoute!='' && row.item.payment_status=='Paid'" class="btn btn-success mr-1">
                     Approve
                 </span>
 
