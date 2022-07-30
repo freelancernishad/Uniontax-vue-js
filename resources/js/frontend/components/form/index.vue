@@ -352,12 +352,17 @@
 
 
 
-                    <!-- col-md-4 -->
+             <!-- col-md-4 -->
                     <div class="col-md-4">
                         <b-form-group id="applicant_religion-group-1" label="ধর্ম" label-for="applicant_religion">
-                            <b-form-input id="applicant_religion" name="applicant_religion"
+                            <b-form-select id="applicant_religion" name="applicant_religion" :options="applicant_religions"
                                 v-model="$v.form.applicant_religion.$model" :state="validateState('applicant_religion')"
-                                aria-describedby="applicant_religion-feedback"></b-form-input>
+                                aria-describedby="applicant_religion-feedback">
+
+
+
+
+                                </b-form-select>
                             <b-form-invalid-feedback id="applicant_religion-feedback">This is a required field
                             </b-form-invalid-feedback>
                         </b-form-group>
@@ -760,6 +765,11 @@ export default {
             sameStatus: '',
             sonodnamedata: {},
             SonodNamesOptions: {},
+                        applicant_religions: [
+                { value: null, text: 'ধর্ম নির্বাচন করুন' },
+                { value: 'ইসলাম', text: 'ইসলাম' },
+                { value: 'হিন্দু', text: 'হিন্দু' }
+            ],
             applicant_genders: [
                  { value: null, text: 'লিঙ্গ নির্বাচন করুন' },
                  { value: 'পুরুষ', text: 'পুরুষ' },
