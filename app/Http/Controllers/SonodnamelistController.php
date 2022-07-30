@@ -1,46 +1,32 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Sonod;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\Auth;
-
 class SonodnamelistController extends Controller
 {
-
-
     public function updatesonodname(Request $request)
     {
         $id = $request->id;
-
-
-          $data = $request->all();
-          if($id){
+        $data = $request->all();
+        if ($id) {
             $sonodNameList = Sonodnamelist::find($id);
-              return $sonodNameList->update($data);
-            }else{
-
-                return Sonodnamelist::create($data);
-          }
-
+            return $sonodNameList->update($data);
+        } else {
+            return Sonodnamelist::create($data);
+        }
     }
-    public function getsonodname(Request $request,$id)
+    public function getsonodname(Request $request, $id)
     {
-       return Sonodnamelist::find($id);
-
+        return Sonodnamelist::find($id);
     }
-    public function deletesonodname(Request $request,$id)
+    public function deletesonodname(Request $request, $id)
     {
-
         $sonodnamelist =  Sonodnamelist::find($id);
         $sonodnamelist->delete();
         return 'Sonod Name deleted!';
-
-
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -48,81 +34,60 @@ class SonodnamelistController extends Controller
      */
     public function index(Request $request)
     {
-
         $data = $request->data;
         $admin = $request->admin;
-        if($admin){
-
+        if ($admin) {
             return Sonodnamelist::with('sonods')->get();
         }
-
-        if($data){
-            return Sonodnamelist::where('enname',$data)->first();
+        if ($data) {
+            return Sonodnamelist::where('enname', $data)->first();
         }
         return Sonodnamelist::all();
     }
-
-
     public function sonodCount(Request $request)
     {
         $union = $request->union;
-         $position = $request->postion;
-
+        $position = $request->postion;
         // return $request->all();
-
-       $sonodCount = [];
+        $sonodCount = [];
         $sonodnamelist = Sonodnamelist::all();
         foreach ($sonodnamelist as $value) {
-
             $penddingStatus = 'Pending';
-            if($position=='Secretary'){
+            $Secretary_approvedstatus = 'Secretary_approved';
+            $approvedstatus = 'approved';
+            if ($position == 'Secretary') {
                 $penddingStatus = 'Pending';
                 $Secretary_approvedstatus = 'Secretary_approved';
                 $approvedstatus = 'approved';
-            }else
-            if($position=='Chairman'){
+            } else
+            if ($position == 'Chairman') {
                 $penddingStatus = 'Secretary_approved';
                 $Secretary_approvedstatus = 'Secretary_approved';
                 $approvedstatus = 'approved';
             }
-
-// return $penddingStatus;
-            if($union==''){
-
-
-                $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name'=>$value->bnname,'stutus'=>$penddingStatus])->count();
-            }else{
-             $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$penddingStatus])->count();
-
-
-                    $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$Secretary_approvedstatus])->count();
-
-
-
-                    if($Secretary_approvedstatus=='Secretary_approved'){
-
-                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$approvedstatus,'payment_status'=>'Unpaid'])->count();
-
-                    }else{
-
-                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name'=>$union,'sonod_name'=>$value->bnname,'stutus'=>$approvedstatus])->count();
-
-                    }
-
-
+            // return $penddingStatus;
+            if ($union == '') {
+                $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $penddingStatus])->count();
+                $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $Secretary_approvedstatus])->count();
+                if ($Secretary_approvedstatus == 'Secretary_approved') {
+                    $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus, 'payment_status' => 'Unpaid'])->count();
+                } else {
+                    $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus])->count();
+                }
+            } else {
+                $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $value->bnname, 'stutus' => $penddingStatus])->count();
+                $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $value->bnname, 'stutus' => $Secretary_approvedstatus])->count();
+                if ($Secretary_approvedstatus == 'Secretary_approved') {
+                    $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $value->bnname, 'stutus' => $approvedstatus, 'payment_status' => 'Unpaid'])->count();
+                } else {
+                    $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $value->bnname, 'stutus' => $approvedstatus])->count();
+                }
             }
-
-
-
-
             // print_r($value->bnname);
         }
         // return $Secretary_approvedstatus;
         return $sonodCount;
-
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -132,7 +97,6 @@ class SonodnamelistController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -143,7 +107,6 @@ class SonodnamelistController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -154,7 +117,6 @@ class SonodnamelistController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -165,7 +127,6 @@ class SonodnamelistController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -177,7 +138,6 @@ class SonodnamelistController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
