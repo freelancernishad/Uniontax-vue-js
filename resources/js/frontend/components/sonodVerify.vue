@@ -224,7 +224,7 @@
                                 <h3>In Cooperation With</h3>
                             </div>
                             <div class="credit-Logo text-center p-2 mb-3 footer-cert-verify-img border">
-                                <img :src="$asseturl+'assets/img/Credit_Logo.68be46aa.png'" alt="ict logo" />
+                                <img :src="$asseturl+'assets/img/bnict.jpeg'" alt="ict logo" />
                             </div>
                         </div>
                     </div>
