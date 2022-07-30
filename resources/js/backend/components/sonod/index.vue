@@ -103,7 +103,12 @@ export default {
     watch: {
         '$route': {
             handler(newValue, oldValue) {
+
+
+
+                this.uniondata();
                 this.sonodList();
+
             },
             deep: true
         }
@@ -114,7 +119,12 @@ export default {
             return 'hello'
         },
 
-
+    async uniondata(){
+                    if(this.$route.params.name){
+       var res =  await this.callApi('get',`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`,[]);
+        this.$store.commit('setUpdateSonodName', res.data)
+            }
+    },
 
 
 
@@ -245,6 +255,7 @@ export default {
         }
     },
     mounted() {
+        this.uniondata();
         setTimeout(() => {
             this.sonodList();
         }, 2000);

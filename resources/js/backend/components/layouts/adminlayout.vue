@@ -230,10 +230,7 @@ export default {
     },
     watch: {
         '$route': async function(to, from) {
-            if(this.$route.params.name){
-       var res =  await this.callApi('get',`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`,[]);
-        this.$store.commit('setUpdateSonodName', res.data)
-            }
+
 
         }
     },
