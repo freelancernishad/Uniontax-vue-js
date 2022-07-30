@@ -12,7 +12,7 @@ class SonodnamelistController extends Controller
         $data = $request->except(['icon']);
         $iconCount =  count(explode(';',$request->icon));
         if($iconCount>1){
-            $data['icon'] =  fileupload($request->icon,"assets/img/");
+            $data['icon'] =  fileupload($request->icon,"assets/icon/");
         }
 
         if ($id) {

@@ -47,7 +47,9 @@ export default {
                         return User.dateformat(value)[7]
                     }
                 },
-                { key: 'actions', label: 'Actions' }
+                { key: 'actions', label: 'Actions' },
+                { key: 'status', label: 'Status' },
+
             ]
     },
     data() {
@@ -86,7 +88,8 @@ export default {
                         return User.dateformat(value)[7]
                     }
                 },
-                { key: 'actions', label: 'Actions' }
+                { key: 'actions', label: 'Actions' },
+                { key: 'status', label: 'Status' },
             ]
             ],
         }

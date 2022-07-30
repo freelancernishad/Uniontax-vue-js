@@ -85,6 +85,23 @@
                 {{ row.value.first }} {{ row.value.last }}
             </template>
 
+           <template #cell(status)="row">
+
+
+
+                <span size="sm" class="btn btn-success mr-1  mt-1" v-if="row.item.payment_status=='Paid'" >
+                    {{ row.item.payment_status }}
+                </span>
+
+
+                <span size="sm" class="btn btn-danger mr-1  mt-1" v-else-if="row.item.payment_status=='Unpaid'" >
+                    {{ row.item.payment_status }}
+                </span>
+
+
+            </template>
+
+
             <template #cell(actions)="row">
 
 
@@ -134,6 +151,8 @@
                 </span>
 
             </template>
+
+
 
             <template #row-details="row">
                 <b-card>
