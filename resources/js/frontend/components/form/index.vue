@@ -768,7 +768,10 @@ export default {
                         applicant_religions: [
                 { value: null, text: 'ধর্ম নির্বাচন করুন' },
                 { value: 'ইসলাম', text: 'ইসলাম' },
-                { value: 'হিন্দু', text: 'হিন্দু' }
+                { value: 'হিন্দু', text: 'হিন্দু' },
+                { value: 'বৌদ্ধ', text: 'বৌদ্ধ' },
+                { value: 'খ্রিস্টান', text: 'খ্রিস্টান' },
+                { value: 'অন্যান্য', text: 'অন্যান্য' },
             ],
             applicant_genders: [
                  { value: null, text: 'লিঙ্গ নির্বাচন করুন' },

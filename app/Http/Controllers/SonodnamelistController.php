@@ -82,7 +82,7 @@ class SonodnamelistController extends Controller
             }else
             if($position=='Chairman'){
                 $penddingStatus = 'Secretary_approved';
-                $Secretary_approvedstatus = 'approved';
+                $Secretary_approvedstatus = 'Secretary_approved';
                 $approvedstatus = 'approved';
             }
 
