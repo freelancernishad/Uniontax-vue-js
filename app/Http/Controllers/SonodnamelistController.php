@@ -9,7 +9,12 @@ class SonodnamelistController extends Controller
     public function updatesonodname(Request $request)
     {
         $id = $request->id;
-        $data = $request->all();
+        $data = $request->except(['icon']);
+        $iconCount =  count(explode(';',$request->icon));
+        if($iconCount>1){
+            $data['icon'] =  fileupload($request->icon,"assets/img/");
+        }
+
         if ($id) {
             $sonodNameList = Sonodnamelist::find($id);
             return $sonodNameList->update($data);
@@ -19,7 +24,9 @@ class SonodnamelistController extends Controller
     }
     public function getsonodname(Request $request, $id)
     {
-        return Sonodnamelist::find($id);
+        $data =  Sonodnamelist::find($id);
+        $data['icon'] =  asset($data->icon);
+        return $data;
     }
     public function deletesonodname(Request $request, $id)
     {

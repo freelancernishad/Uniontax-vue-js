@@ -35,7 +35,10 @@
 
         <div class="form-group col-md-6">
           <label for="">সনদের আইকন</label>
-          <input type="text" v-model="form.icon" class="form-control" placeholder="" aria-describedby="helpId">
+          <input type="file"  class="form-control" placeholder="" @change="FileSelected($event, 'icon')"   aria-describedby="helpId">
+
+         <b-img thumbnail fluid v-if="form.icon!=null"  :src="form.icon" alt="Image"></b-img>
+
         </div>
 
 
@@ -69,6 +72,25 @@ export default {
     },
     methods:{
 
+	FileSelected($event, parent_index){
+
+
+
+			let file = $event.target.files[0];
+			if (file.size > 5048576) {
+				Notification.image_validation();
+			} else {
+				let reader = new FileReader;
+				reader.onload = event => {
+					this.form[parent_index] = event.target.result
+					// console.log(event.target.result);
+				};
+				reader.readAsDataURL(file)
+			}
+                    //   console.log($event.target.result);
+		},
+
+
         async getsonodById(){
            var id =  this.$route.params.id;
             var res = await this.callApi('get', `/api/update/sonodname/${id}`, []);
@@ -79,8 +101,8 @@ export default {
         async onSubmit() {
 
             var res = await this.callApi('post', '/api/update/sonodname', this.form);
-             this.$router.push({ name: 'sonodlist'})
-            Notification.customSuccess('Sonod Name Update Success');
+            //  this.$router.push({ name: 'sonodlist'})
+            // Notification.customSuccess('Sonod Name Update Success');
 
         }
     },
