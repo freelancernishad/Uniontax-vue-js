@@ -63,7 +63,8 @@ class SonodController extends Controller
             } catch (Exception $e) {
                 array_push($responsemessege, $e->getMessage());
             }
-            return redirect("/document/$sonod->sonod_name/$id");
+            // return redirect("/document/$sonod->sonod_name/$id");
+            echo "<script>window.close();</script>";
 
 
 
@@ -89,7 +90,8 @@ class SonodController extends Controller
             } catch (Exception $e) {
                 array_push($responsemessege, $e->getMessage());
             }
-            return redirect("/sonod/$sonod->sonod_name/$id");
+            // return redirect("/sonod/$sonod->sonod_name/$id");
+            echo "<script>window.close();</script>";
 
         }
 

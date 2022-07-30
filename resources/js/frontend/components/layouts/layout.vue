@@ -13,11 +13,11 @@
                 </div>
                 <div class="middleHeader ">
                     <div class="row">
-                        <div class="middleHeaderItem col-md-6 mt-3 mb-3"><a href="">
+                        <div class="middleHeaderItem col-md-6 mt-3 mb-3"><router-link :to="{ name: 'home' }">
                             <img width="50%" v-if="getType=='main'" :src="$asseturl+'assets/img/mail_logo-01.png'" alt="">
                             <img width="50%" v-else-if="getType=='Union'" :src="getunionInfos.web_logo" alt="">
 
-                            </a> </div>
+                            </router-link> </div>
                         <div class="middleHeaderItem col-md-6 mb-3">
                             <h3 class="searchHeader defaltColor">ইউনিয়ন নির্বাচন করুন </h3>
                             <union-select />
@@ -204,7 +204,7 @@
                 justify-content: end;
                 align-items: center;
                 width: 100%;"> <img style="    width: 106px !important;" class="footerImg"
-                                    :src="$asseturl+'assets/img/s2a.png'" alt="" /> <span style="font-size: 14px;"> <span
+                                    :src="$asseturl+'assets/img/ownlogo.png'" alt="" /> <span style="font-size: 14px;"> <span
                                         style="border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
                                         target="_blank" style="color: #4e4e4e;" href="https://www.facebook.com/SYED.SHAHAREAR.ARAFAT">
                                         এস এস আরাফাত </a></span> </p>
@@ -255,7 +255,7 @@ export default {
   watch: {
         '$route':  {
             handler(newValue, oldValue) {
-                        
+
                 document.getElementById('navbarSupportedContent').classList.remove("show");
       },
       deep: true

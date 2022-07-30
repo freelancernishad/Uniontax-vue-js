@@ -26,6 +26,8 @@ import SideBar from './components/layouts/SideBar.vue'
 Vue.component('SideBar', SideBar);
 import store from '../store'
 window.Reload = new Vue();
+import Swal from 'sweetalert2'
+window.Swal = Swal;
 
 
 
