@@ -72,6 +72,9 @@ export default {
             PerPageData: '10',
             TotalRows: '1',
             Type: '',
+            unionsInfos: {
+                payment_type:''
+            },
             items: [],
             fields: [
                 [
@@ -110,6 +113,11 @@ export default {
             console.log(value)
             return 'hello'
         },
+
+
+
+
+
         actionAccess() {
             if (this.$route.params.type == 'new') {
                 this.cancelRoute = '/api/sonod';
@@ -131,9 +139,16 @@ export default {
                     this.approveType = 'apiAction';
                     this.approveData = `approved`;
                 } else {
-                    this.approveRoute = 'approvetrade';
-                    this.approveType = 'vueAction';
-                    this.approveData = `${this.$localStorage.getItem('position')}_approved`;
+
+                        this.approveRoute = 'approvetrade';
+                        this.approveType = 'vueAction';
+                        this.approveData = `${this.$localStorage.getItem('position')}_approved`;
+
+
+
+
+
+
                 }
                 this.Type = 'নতুন আবেদন';
             } else if (this.$route.params.type == 'approved') {
@@ -223,6 +238,7 @@ export default {
                 var res = await this.callApi('get', `/api/sonod/list?sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
                 this.items = res.data
                 this.TotalRows = `${this.items.length}`;
+
                 this.actionAccess();
                 if (!auto) this.preLooding = false
             }

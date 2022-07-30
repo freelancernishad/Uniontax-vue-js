@@ -127,9 +127,17 @@
                     View
                 </router-link> -->
 
-                <span size="sm" @click="approve(ApproveRoute,row.item.id,ApproveData, $event.target)" v-if="ApproveRoute!=''" class="btn btn-success mr-1">
+
+                <span size="sm" @click="approve(ApproveRoute,row.item.id,ApproveData, $event.target,ApproveType)" v-if="ApproveRoute!='' && row.item.payment_status=='Unpaid'" class="btn btn-success mr-1">
                     Approve
                 </span>
+
+
+                <span size="sm" @click="approve('/api/sonod',row.item.id,'Secretary_approved', $event.target,'apiAction')" v-else-if="ApproveRoute!='' && row.item.payment_status=='Paid'" class="btn btn-success mr-1">
+                    Approve
+                </span>
+
+
 
                 <span size="sm" @click="paynow(PayRoute,row.item.id, $event.target)" v-if="row.item.payment_status=='Unpaid' && row.item.stutus=='approved' && PayRoute!=''" class="btn btn-info mr-1">
                     Pay Now
@@ -409,6 +417,15 @@ export default {
 
     },
     methods: {
+
+
+
+
+
+
+
+
+
         info(item, index, button) {
             this.viewModal.title = `${item.applicant_name}`
             this.viewModal.content = item
@@ -431,13 +448,13 @@ export default {
             return this.$emit('event-name')
         },
 
-        async approve(route,id,status,button){
+        async approve(route,id,status,button,ApproveType){
 
-            if(this.ApproveType=='vueAction'){
+            if(ApproveType=='vueAction'){
  this.infoModal.content_id = `${id}`;
                 this.$root.$emit('bv::show::modal', this.infoModal.id, button)
 
-            }else if(this.ApproveType=='apiAction'){
+            }else if(ApproveType=='apiAction'){
                 Swal.fire({
                     title: 'Are you sure?',
                     text: `${status} this data!`,

@@ -586,12 +586,21 @@
         <!-- Info modal -->
         <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only ok-disabled no-close-on-esc no-close-on-backdrop >
 
-                  <b-form @submit.stop.prevent="finalSubmit">
-                  <div class="text-center" style="width:50%;margin:0 auto">
-                    <h3>আপনার আবেদনটি সফলভাবে সাবমিট করার জন্য আগে সনদের ফি প্রদান করুন</h3> <button type="submit" class="btn btn-info">Pay And Submit</button>
-</div>
+            <b-form @submit.stop.prevent="finalSubmit">
 
-                </b-form>
+                <div class="text-center" style="width:50%;margin:0 auto" v-if="getunionInfos.payment_type=='Prepaid'">
+                    <h3>আপনার আবেদনটি সফলভাবে সাবমিট করার জন্য সনদের ফি প্রদান করুন</h3>
+                    <button type="submit" class="btn btn-info" v-if="!submitLoad">Pay And Submit</button>
+                    <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
+                </div>
+
+                <div class="text-center" style="width:50%;margin:0 auto" v-else-if="getunionInfos.payment_type=='Postpaid'">
+                    <h3>আপনার আবেদনটি সফলভাবে সাবমিট করার জন্য Confirm বাটন এ চাপ দিন</h3>
+                    <button type="submit" class="btn btn-info" v-if="!submitLoad">Confirm</button>
+                    <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
+                </div>
+
+            </b-form>
 
         </b-modal>
 
@@ -617,6 +626,7 @@ export default {
                 content_id: '',
             },
             waitForPayment: false,
+            submitLoad: false,
             sameStatus: '',
             sonodnamedata: {},
             SonodNamesOptions: {},
@@ -955,13 +965,20 @@ export default {
 
         },
         async finalSubmit() {
+            this.submitLoad = true;
+ var redirect;
+            var payment_type = this.getunionInfos.payment_type;
 
+            if (payment_type == 'Prepaid') {
+                this.form.stutus = 'Prepaid';
+            } else if (payment_type == 'Postpaid') {
+                this.form.stutus = 'Pending';
+            }
 
             var res = await this.callApi('post', '/api/sonod/submit', this.form);
             var datas = res.data;
 
-            var redirect;
-            var payment_type = this.getunionInfos.payment_type;
+
             // this.$router.push({ name: 'home' })
             if (payment_type == 'Prepaid') {
                 redirect = `/sonod/payment/${datas.id}`
@@ -969,8 +986,12 @@ export default {
                 this.checkPayment(datas.id);
                 window.open(redirect, '_blank');
             } else if (payment_type == 'Postpaid') {
-                redirect = '/document/' + datas.sonod_name + '/' + datas.id;
-                window.open(redirect, '_blank');
+                 this.waitForPayment = true;
+                  this.checkPayment(datas.id);
+                //  console.log(this.waitForPayment)
+
+                // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
+                // window.open(redirect, '_blank');
             }
 
         },
@@ -989,12 +1010,12 @@ export default {
                         if(res.data.stutus=='Pending' && res.data.payment_status=='Paid'){
 
                             this.waitForPayment = false;
-console.log(this.waitForPayment)
+// console.log(this.waitForPayment)
                         Swal.fire({
                                     title: 'Success',
                                     text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
                                     icon: 'success',
-                                    showCancelButton: true,
+
                                     confirmButtonColor: 'green',
                                     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`
                                 }).then(async (result) => {
@@ -1021,7 +1042,7 @@ console.log(this.waitForPayment)
                                     title: 'Success',
                                     text: `আপনার সনদটি সফলভাবে সাবমিট হয়েছে`,
                                     icon: 'success',
-                                    showCancelButton: true,
+
                                     confirmButtonColor: 'green',
                                     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`
                                 }).then(async (result) => {
@@ -1039,7 +1060,7 @@ console.log(this.waitForPayment)
                             }
 
                      }
-                    console.log(res)
+                    // console.log(res)
                 })
 
         }

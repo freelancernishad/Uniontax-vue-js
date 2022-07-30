@@ -45,7 +45,7 @@ class SonodController extends Controller
 
 
             $payment->update(['status' => 'Paid']);
-            $sonod->update(['payment_status' => 'Paid']);
+            $sonod->update(['stutus' => 'Pending','payment_status' => 'Paid']);
             // $sonod_name = sonodEnName($sonod->sonod_name);
 
             $deccription = "Congratulation! Your application has been Paid.Wait for Approval.";

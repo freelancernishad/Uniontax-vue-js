@@ -116,8 +116,11 @@ const store = new Vuex.Store({
                 state.siteType = 'Union'
             }else{
                 state.siteType = 'main'
-
             }
+
+
+
+
         }
 
     },
