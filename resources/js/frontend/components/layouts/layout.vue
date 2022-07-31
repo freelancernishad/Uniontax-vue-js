@@ -189,36 +189,31 @@
                 </div>
                 <div class="footerBottom">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার (Jashim Uddin Haider) জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
                                 <li style="font-size:font-size:15px"><img style="width:40px !important"
-                                        :src="$asseturl+'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: উপজেলা প্রশাসন,
+                                        :src="$asseturl+'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: জেলা প্রশাসন,
                                     বরিশাল</li>
 
       </ul>
-<!-- <div class="row">
-
-
-<div class="col-6 text-center">
-
-    <img width="20%" alt="" :src="$asseturl+'assets/img/0f0a882a453a4d2b22037af67bbecb27.png'" /> <br />
-           <span><b>মোঃ আতিকুর রহমান</b></span> <br />
-                       <span><b>প্রোগ্রামার</b></span> <br />
-</div>
-
-<div class="col-6 text-center">
-
-    <img width="20%" alt="" :src="$asseturl+'assets/img/61fa48285f305025824869.jpg'" /><br />
-           <span><b>মিথুন কুমার রায়</b></span> <br />
-                       <span><b>সহকারী নেটওয়ার্ক ইঞ্জিনিয়ার</b></span> <br />
-</div>
-</div> -->
-
 
 
                         </div>
-                        <div class="col-6">
+
+                        <div class="col-4">
+                            <ul class="footerList">
+                                <li style="font-size:font-size:15px"> </li>
+                                <li style="font-size:font-size:15px;    display: flex;
+    justify-content: center;
+    align-items: center;">
+                                <img style="width:40px !important":src="$asseturl+'assets/img/DoICT.svg.png'" alt=""> <span style="padding: 0 15px;">তথ্য ও যোগাযোগ প্রযুক্তি অধিদপ্তর, জেলা কার্যালয়, বরিশাল</span> </li>
+
+                             </ul>
+
+
+                        </div>
+                        <div class="col-4">
                             <p class="footerText" style="font-size: 14px; !important">ইউনিয়ন পরিষদের ডিজিটাল সেবা
                                 গ্রহণের জন্য ধন্যবাদ</p>
                             <p class="help text-right" style="display: flex;
