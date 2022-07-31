@@ -50,8 +50,8 @@ export default {
             'SonodName' : 'getUpdateSonodName',
             'SonodNames' : 'getUpdateSonodNames',
             'Users' : 'getUpdateUser',
-            'userPermission' : 'getUserPermission',
-            'getUserRoles' : 'getUserRoles',
+            // 'userPermission' : 'getUserPermission',
+            // 'getUserRoles' : 'getUserRoles',
             'getUnions' : 'getUnions',
             'getType' : 'getType',
             'getUnion' : 'getUnion',
@@ -63,18 +63,18 @@ export default {
 
         },
 
-        isReadPermitted(){
-            return this.checkUserPermission('read')
-         },
-         isWritePermitted(){
-             return this.checkUserPermission('write')
-         },
-         isUpdatePermitted(){
-             return this.checkUserPermission('update')
-         },
-         isDeletePermitted(){
-             return this.checkUserPermission('delete')
-         },
+        // isReadPermitted(){
+        //     return this.checkUserPermission('read')
+        //  },
+        //  isWritePermitted(){
+        //      return this.checkUserPermission('write')
+        //  },
+        //  isUpdatePermitted(){
+        //      return this.checkUserPermission('update')
+        //  },
+        //  isDeletePermitted(){
+        //      return this.checkUserPermission('delete')
+        //  },
 
     },
 

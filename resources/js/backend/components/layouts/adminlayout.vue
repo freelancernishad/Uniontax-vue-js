@@ -88,7 +88,11 @@
             <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
                 <div class="mobile-sidebar-header d-md-none">
                     <div class="header-logo">
-                        <a href="/" style="    padding: 10px !important;"><img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"></a>
+                        <a href="/" style="    padding: 10px !important;">
+                         {{ user.position }} Panel
+                        <!-- <img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"> -->
+
+                        </a>
                     </div>
                 </div>
                 <div class="sidebar-menu-content" id="dashboardheight">

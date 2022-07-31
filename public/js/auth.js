@@ -2204,8 +2204,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     'SonodName': 'getUpdateSonodName',
     'SonodNames': 'getUpdateSonodNames',
     'Users': 'getUpdateUser',
-    'userPermission': 'getUserPermission',
-    'getUserRoles': 'getUserRoles',
+    // 'userPermission' : 'getUserPermission',
+    // 'getUserRoles' : 'getUserRoles',
     'getUnions': 'getUnions',
     'getType': 'getType',
     'getUnion': 'getUnion',
@@ -2213,19 +2213,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   })), {}, {
     getUsers: function getUsers() {
       return this.$store.getters.getUpdateUser;
-    },
-    isReadPermitted: function isReadPermitted() {
-      return this.checkUserPermission('read');
-    },
-    isWritePermitted: function isWritePermitted() {
-      return this.checkUserPermission('write');
-    },
-    isUpdatePermitted: function isUpdatePermitted() {
-      return this.checkUserPermission('update');
-    },
-    isDeletePermitted: function isDeletePermitted() {
-      return this.checkUserPermission('delete');
-    }
+    } // isReadPermitted(){
+    //     return this.checkUserPermission('read')
+    //  },
+    //  isWritePermitted(){
+    //      return this.checkUserPermission('write')
+    //  },
+    //  isUpdatePermitted(){
+    //      return this.checkUserPermission('update')
+    //  },
+    //  isDeletePermitted(){
+    //      return this.checkUserPermission('delete')
+    //  },
+
   })
 });
 
