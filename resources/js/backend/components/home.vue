@@ -3,7 +3,7 @@
 
         <!-- {{ isReadPermitted }} -->
 
-{{ isReadPermitted }}
+
 
 <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempus blandit metus vitae consectetur. Aliquam a dolor odio. Sed diam leo, accumsan id libero et, suscipit accumsan lacus. Aenean pretium at arcu nec faucibus. Etiam cursus risus eu justo vulputate blandit. Suspendisse potenti. Sed quis nisl non lectus ultrices mollis et a dui. Ut tincidunt vitae eros ac porta. Morbi et nibh ut dolor dictum lobortis. Cras lorem felis, tincidunt viverra ipsum ut, suscipit consequat nisl. Mauris eget leo ut arcu tincidunt ullamcorper. Quisque imperdiet, erat non sollicitudin ultricies, felis enim laoreet tortor, vitae cursus lectus nibh at nunc. Proin eget nisi ac eros facilisis viverra sit amet id elit. Phasellus consequat sapien auctor massa volutpat finibus. Vestibulum accumsan rutrum mauris, id laoreet magna luctus in. Suspendisse a metus tincidunt, hendrerit risus sed, blandit ipsum.
 
