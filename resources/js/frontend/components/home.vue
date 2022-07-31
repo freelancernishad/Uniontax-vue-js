@@ -203,9 +203,12 @@ export default {
             },
             vfImages: [
                 this.$asseturl+"assets/img/National-Portal-Card-PM.jpeg",
-                this.$asseturl+"assets/img/padmabanner.jpeg",
-                this.$asseturl+"assets/img/slide12.jpg",
-                this.$asseturl+"assets/img/slide11.jpg",
+                this.$asseturl+"assets/img/61ed07bbaac6b597183901.jpg",
+                this.$asseturl+"assets/img/slide1.jpeg",
+                this.$asseturl+"assets/img/slide2.jpeg",
+                // this.$asseturl+"assets/img/padmabanner.jpeg",
+                // this.$asseturl+"assets/img/slide12.jpg",
+                // this.$asseturl+"assets/img/slide11.jpg",
                 // "/assets/img/slider2.png",
             ],
             vfTransitions: [
