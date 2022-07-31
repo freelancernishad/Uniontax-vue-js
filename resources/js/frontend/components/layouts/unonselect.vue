@@ -12,8 +12,9 @@
                         </select>
 
                         <select  @change="changeunioun()"  class='searchFrom form-control' v-model="unioun" id="unioun">
-                           <option value="">ইউনিয়ন</option><option value="Tungibaria">টুঙ্গীবাড়িয়া</option>
-                        </select> 
+                           <!-- <option value="">ইউনিয়ন</option> -->
+                           <option value="Tungibaria">টুঙ্গীবাড়িয়া</option>
+                        </select>
 <!--
                         <select  @change="changeunioun()"  class='searchFrom form-control' v-model="unioun" id="unioun">
                            <option value="">ইউনিয়ন</option><option value="Chilahati">চিলাহাটি</option><option value="Shaldanga">শালডাঙ্গা</option><option value="Debiganj Sadar">দেবীগঞ্জ সদর</option><option value="Pamuli">পামুলী</option><option value="Sundardighi">সুন্দরদিঘী</option><option value="Sonahar Mollikadaha">সোনাহার মল্লিকাদহ</option><option value="Tepriganj">টেপ্রীগঞ্জ</option><option value="Dandopal">দন্ডপাল</option><option value="Debiduba">দেবীডুবা</option><option value="Chengthi Hazra Danga">চেংঠী হাজরা ডাঙ্গা</option>
@@ -32,7 +33,7 @@ export default {
     },
     data(){
         return {
-            unioun:''
+            unioun:'Tungibaria'
         }
     },
     methods: {
