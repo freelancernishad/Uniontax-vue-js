@@ -762,6 +762,31 @@ $ext =  pathinfo($Image, PATHINFO_EXTENSION);;
  function fileupload($Image,$path,$width='',$height='',$customname='')
 {
 
+
+    // separate file server
+// $url = env('FILE_SERVER');
+// $curl = curl_init($url);
+// curl_setopt($curl, CURLOPT_URL, $url);
+// curl_setopt($curl, CURLOPT_POST, true);
+// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+// // $headers = array(
+// //    "Content-Type: application/json",
+// // );
+// // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+// $data = ["files"=> $Image,'customname'=>$customname,'path'=>$path,'width'=>$width,'height'=>$height];
+// curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+// curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+// curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+// $resp = curl_exec($curl);
+// curl_close($curl);
+// return json_decode($resp);
+
+
+
+
+
+
+    // same file server
     if (!file_exists(env('FILE_PATH').$path)) {
         File::makeDirectory(env('FILE_PATH').$path, 0777, true, true);
     }
@@ -790,6 +815,10 @@ $image_url = $upload_path.$name;
 
      $img->save(env('FILE_PATH').$image_url);
      return $image_url;
+
+
+
+
 }
 
 
