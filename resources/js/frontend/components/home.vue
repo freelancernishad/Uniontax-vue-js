@@ -114,11 +114,11 @@
 
 
 
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <h6 class="serviceTitle position-relative defaltColor">
                                 ইউনিয়ন পরিষদ ডিজিটাল সেবা
                             </h6>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-12">
                             <p>
