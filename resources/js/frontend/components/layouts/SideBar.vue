@@ -27,7 +27,7 @@
 
 
                 <div class="sidebarTitle mb-3 defaltColor"  >
-                    <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
+                    <h4>কারিগরী পরামর্শক</h4>
                 </div>
 
 
