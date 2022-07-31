@@ -130,7 +130,7 @@ export default {
 
         actionAccess() {
             if (this.$route.params.type == 'new') {
-                this.cancelRoute = '/api/sonod';
+
                 // this.deleteRoute='/api/sonod/delete';
                 // this.editRoute='sonodedit';
                 this.editRoute = '';
@@ -139,17 +139,18 @@ export default {
                 this.approveType = 'vueAction';
                 this.approveData = 'sec_approved';
                 if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
-
+   this.cancelRoute = '';
                     this.approveRoute = '';
                     this.approveType = 'vueAction';
                     this.approveData = 'sec_approved';
                 } else if (this.$localStorage.getItem('position') == 'Chairman') {
-                    this.cancelRoute = '/api/sonod';
+
                     this.approveRoute = '/api/sonod';
                     this.approveType = 'apiAction';
                     this.approveData = `approved`;
+                       this.cancelRoute = '/api/sonod';
                 } else {
-
+   this.cancelRoute = '/api/sonod';
                         this.approveRoute = 'approvetrade';
                         this.approveType = 'vueAction';
                         this.approveData = `${this.$localStorage.getItem('position')}_approved`;

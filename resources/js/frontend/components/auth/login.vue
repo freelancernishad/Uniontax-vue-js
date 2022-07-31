@@ -41,7 +41,7 @@
           <div class="d-flex justify-content-between align-items-center">
             <!-- Checkbox -->
             <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <input class="form-check-input me-2" type="checkbox" v-model="rememberme" id="form2Example3" />
               <label class="form-check-label" for="form2Example3">
                 Remember me
               </label>
@@ -79,6 +79,10 @@ export default {
 		if (User.loggedIn()) {
 			window.location.href = '/dashboard'
 		}
+        if(localStorage.getItem('login')){
+            this.form = JSON.parse(localStorage.getItem('login'))
+            this.rememberme = true
+        }
 	},
 
 	data () {
@@ -89,6 +93,7 @@ export default {
             emailReg: "",
             passwordReg: "",
             confirmReg: "",
+            rememberme: false,
             emptyFields: false,
 			form: {
 				email: '',
@@ -103,6 +108,13 @@ export default {
          if (this.form.email == "" || this.form.password == "") {
             this.emptyFields = true;
          } else {
+
+            if(this.rememberme){
+                localStorage.setItem('login',JSON.stringify(this.form))
+            }else{
+                localStorage.removeItem('login')
+            }
+
 
        		axios.post('/login', this.form)
 			.then(res => {

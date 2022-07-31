@@ -520,7 +520,7 @@
                                 @change="FileSelected($event, 'applicant_national_id_back_attachment')"
                                 aria-describedby="applicant_national_id_back_attachment-feedback">
                             </b-form-file>
-                            <b-img thumbnail fluid v-if="form.imagapplicant_national_id_back_attachmente != null"
+                            <b-img thumbnail fluid v-if="form.applicant_national_id_back_attachment != null"
                                 :src="form.applicant_national_id_back_attachment" alt="Image 3"></b-img>
                             <b-form-invalid-feedback id="applicant_national_id_back_attachment-feedback">This is a
                                 required field
