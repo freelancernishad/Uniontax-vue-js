@@ -126,7 +126,7 @@
 
 
 
-                        <li class="nav-item sidebar-nav-item" v-for="(sonod,index) in SonodNames" :class="{ active: selected == index+1 }">
+                        <li class="nav-item sidebar-nav-item" v-for="(sonod,index) in SonodNames" :class="{ active: selected == index+1 }" :key="'add'+index">
                             <a href="javascript:void(0)" class="nav-link" @click="submenu(index+1)" ><i
                                     class="flaticon-technological"></i><span>{{ sonod.bnname }}</span>
                                     <label  v-if="(allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] + allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')])>0"  style="
