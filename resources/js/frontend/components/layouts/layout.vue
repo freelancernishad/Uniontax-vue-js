@@ -207,7 +207,7 @@
                                 <li style="font-size:font-size:15px;    display: flex;
     justify-content: center;
     align-items: center;">
-                                <img style="width:40px !important":src="$asseturl+'assets/img/DoICT.svg.png'" alt=""> <span style="padding: 0 15px;">তথ্য ও যোগাযোগ প্রযুক্তি অধিদপ্তর, জেলা কার্যালয়, বরিশাল</span> </li>
+                                <img style="width:40px !important":src="$asseturl+'assets/img/DoICT.svg.png'" alt=""> <span style="padding: 0 15px;">কারিগরি তত্বাবধায়নে: তথ্য ও যোগাযোগ প্রযুক্তি অধিদপ্তর, জেলা কার্যালয়, বরিশাল</span> </li>
 
                              </ul>
 
