@@ -11,6 +11,37 @@
                     <span><b>জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট</b></span> <br />
                 </div>
 
+        <div class="sidebarTitle mb-3 defaltColor"  >
+                    <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
+                </div>
+
+
+                <p class="sidebaruser text-center"  >
+                    <img width="70%" alt="" :src="$asseturl+'assets/img/0f0a882a453a4d2b22037af67bbecb27.png'" />
+                </p>
+                <div class="contactInfo text-center"  >
+                    <span><b> মোঃ আতিকুর রহমান</b></span> <br />
+                    <span><b>প্রোগ্রামার</b></span> <br />
+                </div>
+
+
+
+                <div class="sidebarTitle mb-3 defaltColor"  >
+                    <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
+                </div>
+
+
+                <p class="sidebaruser text-center"  >
+                    <img width="70%" alt="" :src="$asseturl+'assets/img/61fa48285f305025824869.jpg'" />
+                </p>
+                <div class="contactInfo text-center"  >
+                    <span><b> মিথুন কুমার রায়</b></span> <br />
+                    <span><b>সহকারী নেটওয়ার্ক ইঞ্জিনিয়ার</b></span> <br />
+                </div>
+
+
+
+
                 <div class="sidebarTitle mb-3 defaltColor"  v-if="getType=='main'">
                     <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
                 </div>

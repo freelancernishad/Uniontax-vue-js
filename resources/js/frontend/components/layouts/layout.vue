@@ -195,7 +195,28 @@
                                 <li style="font-size:font-size:15px"><img style="width:40px !important"
                                         :src="$asseturl+'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: উপজেলা প্রশাসন,
                                     বরিশাল</li>
-                            </ul>
+
+      </ul>
+<!-- <div class="row">
+
+
+<div class="col-6 text-center">
+
+    <img width="20%" alt="" :src="$asseturl+'assets/img/0f0a882a453a4d2b22037af67bbecb27.png'" /> <br />
+           <span><b>মোঃ আতিকুর রহমান</b></span> <br />
+                       <span><b>প্রোগ্রামার</b></span> <br />
+</div>
+
+<div class="col-6 text-center">
+
+    <img width="20%" alt="" :src="$asseturl+'assets/img/61fa48285f305025824869.jpg'" /><br />
+           <span><b>মিথুন কুমার রায়</b></span> <br />
+                       <span><b>সহকারী নেটওয়ার্ক ইঞ্জিনিয়ার</b></span> <br />
+</div>
+</div> -->
+
+
+
                         </div>
                         <div class="col-6">
                             <p class="footerText" style="font-size: 14px; !important">ইউনিয়ন পরিষদের ডিজিটাল সেবা
