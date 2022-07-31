@@ -101,7 +101,7 @@ export default {
         async onSubmit() {
 
             var res = await this.callApi('post', '/api/update/sonodname', this.form);
-            //  this.$router.push({ name: 'sonodlist'})
+             this.$router.push({ name: 'sonodlist'})
             Notification.customSuccess('Sonod Name Update Success');
 
         }
