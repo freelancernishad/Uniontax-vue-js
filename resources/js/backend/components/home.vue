@@ -1,19 +1,434 @@
 <template>
     <div>
 
-        <!-- {{ isReadPermitted }} -->
+        <!-- Sidebar Area End Here -->
+            <div class="dashboard-content-one">
+                <!-- Breadcubs Area Start Here -->
+                <div class="breadcrumbs-area">
+                    <h3>{{ Users.position.replaceAll('_',' ') }} Dashboard</h3>
+                    <ul>
+                        <li>
+                           <router-link :to="{ name: 'Dashboard' }">Home</router-link>
+                        </li>
+                        <li>{{ Users.position.replaceAll('_',' ') }} </li>
+                    </ul>
+                </div>
+                <!-- Breadcubs Area End Here -->
+                <!-- Dashboard summery Start Here -->
+                <div class="row gutters-20">
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-green ">
+                                        <i class="flaticon-classmates text-green"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
+                                        <div class="item-title">মোট সনদ</div>
+                                        <div class="item-number"><span class="counter" data-num="150000">1,50,000</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-blue">
+                                        <i class="flaticon-multiple-users-silhouette text-blue"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
+                                        <div class="item-title">নতুন আবেদন</div>
+                                        <div class="item-number"><span class="counter" data-num="2250">2,250</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-yellow">
+                                        <i class="flaticon-couple text-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
+                                        <div class="item-title">অনুমোদিত আবেদন</div>
+                                        <div class="item-number"><span class="counter" data-num="5690">5,690</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-red">
+                                        <i class="flaticon-money text-red"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
+                                        <div class="item-title">বাতিল আবেদন</div>
+                                        <div class="item-number"><span>$</span><span class="counter" data-num="193000">1,93,000</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dashboard summery End Here -->
+                <!-- Dashboard Content Start Here -->
+                <div class="row gutters-20">
+                    <div class="col-12 col-xl-8 col-6-xxxl">
+                        <div class="card dashboard-card-one pd-b-20">
+                            <div class="card-body">
+                                <div class="heading-layout1">
+                                    <div class="item-title">
+                                        <h3>মাসিক আয়</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-expanded="false">...</a>
 
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-times text-orange-red"></i>Close</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="earning-report">
+                                    <div class="item-content">
+                                        <div class="single-item pseudo-bg-blue">
+                                            <h4>Prepaid</h4>
+                                            <span>75,000</span>
+                                        </div>
+                                        <div class="single-item pseudo-bg-red">
+                                            <h4>Postpaid</h4>
+                                            <span>15,000</span>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="date-dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-expanded="false">Jan 20, 2019</a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Jan 20, 2019</a>
+                                            <a class="dropdown-item" href="#">Jan 20, 2021</a>
+                                            <a class="dropdown-item" href="#">Jan 20, 2020</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="earning-chart-wrap">
+                                    <!-- https://www.chartjs.org/docs/latest/samples/line/line.html -->
+                                    <canvas id="earning-line-chart" width="660" height="320"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4 col-3-xxxl">
+                        <div class="card dashboard-card-two pd-b-20">
+                            <div class="card-body">
+                                <div class="heading-layout1">
+                                    <div class="item-title">
+                                        <h3>Expenses</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-expanded="false">...</a>
 
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-times text-orange-red"></i>Close</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="expense-report">
+                                    <div class="monthly-expense pseudo-bg-Aquamarine">
+                                        <div class="expense-date">Jan 2019</div>
+                                        <div class="expense-amount"><span>$</span> 15,000</div>
+                                    </div>
+                                    <div class="monthly-expense pseudo-bg-blue">
+                                        <div class="expense-date">Feb 2019</div>
+                                        <div class="expense-amount"><span>$</span> 10,000</div>
+                                    </div>
+                                    <div class="monthly-expense pseudo-bg-yellow">
+                                        <div class="expense-date">Mar 2019</div>
+                                        <div class="expense-amount"><span>$</span> 8,000</div>
+                                    </div>
+                                </div>
+                                <div class="expense-chart-wrap">
+                                    <canvas id="expense-bar-chart" width="100" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-6 col-3-xxxl">
+                        <div class="card dashboard-card-three pd-b-20">
+                            <div class="card-body">
+                                <div class="heading-layout1">
+                                    <div class="item-title">
+                                        <h3>Students</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-expanded="false">...</a>
 
-<!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempus blandit metus vitae consectetur. Aliquam a dolor odio. Sed diam leo, accumsan id libero et, suscipit accumsan lacus. Aenean pretium at arcu nec faucibus. Etiam cursus risus eu justo vulputate blandit. Suspendisse potenti. Sed quis nisl non lectus ultrices mollis et a dui. Ut tincidunt vitae eros ac porta. Morbi et nibh ut dolor dictum lobortis. Cras lorem felis, tincidunt viverra ipsum ut, suscipit consequat nisl. Mauris eget leo ut arcu tincidunt ullamcorper. Quisque imperdiet, erat non sollicitudin ultricies, felis enim laoreet tortor, vitae cursus lectus nibh at nunc. Proin eget nisi ac eros facilisis viverra sit amet id elit. Phasellus consequat sapien auctor massa volutpat finibus. Vestibulum accumsan rutrum mauris, id laoreet magna luctus in. Suspendisse a metus tincidunt, hendrerit risus sed, blandit ipsum.
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-times text-orange-red"></i>Close</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="doughnut-chart-wrap">
+                                    <canvas id="student-doughnut-chart" width="100" height="300"></canvas>
+                                </div>
+                                <div class="student-report">
+                                    <div class="student-count pseudo-bg-blue">
+                                        <h4 class="item-title">Female Students</h4>
+                                        <div class="item-number">45,000</div>
+                                    </div>
+                                    <div class="student-count pseudo-bg-yellow">
+                                        <h4 class="item-title">Male Students</h4>
+                                        <div class="item-number">1,05,000</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-6 col-4-xxxl">
+                        <div class="card dashboard-card-four pd-b-20">
+                            <div class="card-body">
+                                <div class="heading-layout1">
+                                    <div class="item-title">
+                                        <h3>Event Calender</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-expanded="false">...</a>
 
-Etiam vitae massa ut velit posuere mattis. Mauris et consectetur est. Aliquam tincidunt, lorem vel molestie mattis, ex velit finibus erat, vitae luctus massa quam ac mauris. Curabitur fermentum tellus eu ipsum convallis dapibus. Duis accumsan pretium purus a porta. Nam convallis ligula leo, quis rutrum risus blandit id. Vivamus sollicitudin felis eget felis efficitur aliquam. Nullam lectus neque, dignissim quis egestas non, consectetur quis ipsum. Aliquam quis porta libero. Ut condimentum eget dui ut molestie. Donec in nisl vel nisi posuere euismod lobortis id magna. Curabitur eget diam lobortis, tincidunt nisl vel, fringilla tortor. Nulla hendrerit imperdiet consectetur.
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-times text-orange-red"></i>Close</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="calender-wrap">
+                                    <div id="fc-calender" class="fc-calender"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-6 col-4-xxxl">
+                        <div class="card dashboard-card-five pd-b-20">
+                            <div class="card-body pd-b-14">
+                                <div class="heading-layout1">
+                                    <div class="item-title">
+                                        <h3>Website Traffic</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-expanded="false">...</a>
 
-Proin dignissim, arcu eget euismod egestas, ligula massa luctus urna, in blandit ante lectus at enim. Proin consectetur faucibus luctus. Aliquam faucibus lacus non risus scelerisque hendrerit eu in felis. Donec consequat elit auctor dui aliquam, at molestie orci ornare. Vestibulum id pharetra nisi, in semper sapien. Donec accumsan eu risus consequat interdum. Mauris lacinia massa metus, consequat elementum nunc tempus eget. Nulla facilisi. In ullamcorper diam ex, non laoreet risus posuere eu. Cras quis ultrices nisi. Nunc a enim eget massa fringilla efficitur in facilisis purus.
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-times text-orange-red"></i>Close</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class="traffic-title">Unique Visitors</h6>
+                                <div class="traffic-number">2,590</div>
+                                <div class="traffic-bar">
+                                    <div class="direct" data-toggle="tooltip" data-placement="top" title="Direct">
+                                    </div>
+                                    <div class="search" data-toggle="tooltip" data-placement="top" title="Search">
+                                    </div>
+                                    <div class="referrals" data-toggle="tooltip" data-placement="top" title="Referrals">
+                                    </div>
+                                    <div class="social" data-toggle="tooltip" data-placement="top" title="Social">
+                                    </div>
+                                </div>
+                                <div class="traffic-table table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="t-title pseudo-bg-Aquamarine">Direct</td>
+                                                <td>12,890</td>
+                                                <td>50%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="t-title pseudo-bg-blue">Search</td>
+                                                <td>7,245</td>
+                                                <td>27%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="t-title pseudo-bg-yellow">Referrals</td>
+                                                <td>4,256</td>
+                                                <td>8%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="t-title pseudo-bg-red">Social</td>
+                                                <td>500</td>
+                                                <td>7%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-6 col-4-xxxl">
+                        <div class="card dashboard-card-six pd-b-20">
+                            <div class="card-body">
+                                <div class="heading-layout1 mg-b-17">
+                                    <div class="item-title">
+                                        <h3>Notice Board</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-expanded="false">...</a>
 
-Morbi viverra ultricies mollis. Vestibulum tortor erat, lobortis a lobortis ut, faucibus eget dolor. Curabitur lacinia pharetra mauris, id rhoncus lorem posuere in. Cras nec dui rhoncus, tincidunt risus vitae, sollicitudin orci. Nam maximus tellus sed velit tempor, sed blandit sapien interdum. Cras vitae accumsan orci. Donec venenatis facilisis turpis id fermentum. Donec sagittis arcu at sagittis lacinia. Curabitur vel nunc leo. Proin ac arcu egestas, pharetra metus in, aliquam magna. Sed turpis felis, sodales non bibendum et, auctor vel diam. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-Praesent nulla arcu, gravida non hendrerit nec, posuere sed lacus. Donec convallis quis tortor vel tristique. Sed dapibus luctus neque, quis semper dolor eleifend eget. Donec sed diam ornare, consequat metus ac, porta nisi. Maecenas dictum vulputate nibh vel tempus. Mauris mi magna, volutpat at facilisis at, dapibus a ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat mi eu elit egestas dictum. Praesent massa ligula, bibendum quis vulputate et, vulputate nec odio. Sed tincidunt justo id ex hendrerit congue. Integer sit amet pharetra diam, sit amet dignissim felis. Praesent porta laoreet vestibulum. Nullam id posuere risus. Aliquam erat volutpat. Phasellus eleifend ac eros eget ultrices. Nullam bibendum placerat lacus, ac euismod lectus convallis nec. -->
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-times text-orange-red"></i>Close</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notice-box-wrap">
+                                    <div class="notice-list">
+                                        <div class="post-date bg-skyblue">16 June, 2019</div>
+                                        <h6 class="notice-title"><a href="#">Great School manag mene esom text of the
+                                                printing.</a></h6>
+                                        <div class="entry-meta"> Jennyfar Lopez / <span>5 min ago</span></div>
+                                    </div>
+                                    <div class="notice-list">
+                                        <div class="post-date bg-yellow">16 June, 2019</div>
+                                        <h6 class="notice-title"><a href="#">Great School manag printing.</a></h6>
+                                        <div class="entry-meta"> Jennyfar Lopez / <span>5 min ago</span></div>
+                                    </div>
+                                    <div class="notice-list">
+                                        <div class="post-date bg-pink">16 June, 2019</div>
+                                        <h6 class="notice-title"><a href="#">Great School manag meneesom.</a></h6>
+                                        <div class="entry-meta"> Jennyfar Lopez / <span>5 min ago</span></div>
+                                    </div>
+                                    <div class="notice-list">
+                                        <div class="post-date bg-skyblue">16 June, 2019</div>
+                                        <h6 class="notice-title"><a href="#">Great School manag mene esom text of the
+                                                printing.</a></h6>
+                                        <div class="entry-meta"> Jennyfar Lopez / <span>5 min ago</span></div>
+                                    </div>
+                                    <div class="notice-list">
+                                        <div class="post-date bg-yellow">16 June, 2019</div>
+                                        <h6 class="notice-title"><a href="#">Great School manag printing.</a></h6>
+                                        <div class="entry-meta"> Jennyfar Lopez / <span>5 min ago</span></div>
+                                    </div>
+                                    <div class="notice-list">
+                                        <div class="post-date bg-pink">16 June, 2019</div>
+                                        <h6 class="notice-title"><a href="#">Great School manag meneesom.</a></h6>
+                                        <div class="entry-meta"> Jennyfar Lopez / <span>5 min ago</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dashboard Content End Here -->
+                <!-- Social Media Start Here -->
+                <div class="row gutters-20">
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="card dashboard-card-seven">
+                            <div class="social-media bg-fb hover-fb">
+                                <div class="media media-none--lg">
+                                    <div class="social-icon">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </div>
+                                    <div class="media-body space-sm">
+                                        <h6 class="item-title">Like us on facebook</h6>
+                                    </div>
+                                </div>
+                                <div class="social-like">30,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="card dashboard-card-seven">
+                            <div class="social-media bg-twitter hover-twitter">
+                                <div class="media media-none--lg">
+                                        <div class="social-icon">
+                                        <i class="fab fa-twitter"></i>
+                                        </div>
+                                        <div class="media-body space-sm">
+                                            <h6 class="item-title">Follow us on twitter</h6>
+                                        </div>
+                                </div>
+                                <div class="social-like">1,11,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="card dashboard-card-seven">
+                            <div class="social-media bg-gplus hover-gplus">
+                                <div class="media media-none--lg">
+                                    <div class="social-icon">
+                                        <i class="fab fa-google-plus-g"></i>
+                                    </div>
+                                    <div class="media-body space-sm">
+                                        <h6 class="item-title">Follow us on googleplus</h6>
+                                    </div>
+                                </div>
+                                <div class="social-like">19,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="card dashboard-card-seven">
+                            <div class="social-media bg-linkedin hover-linked">
+                                <div class="media media-none--lg">
+                                    <div class="social-icon">
+                                    <i class="fab fa-linkedin-in"></i>
+                                    </div>
+                                    <div class="media-body space-sm">
+                                        <h6 class="item-title">Follow us on linked</h6>
+                                    </div>
+                                </div>
+                                <div class="social-like">45,000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Social Media End Here -->
+    </div>
     </div>
 </template>
 <script>

@@ -208,35 +208,62 @@
         <b-modal :id="viewModal.id" size="xl" :title="viewModal.title" ok-only @hide="resetInfoModal">
 
 
-            <div class="row">
+
+         <div class="row">
+
+             <div class="col-md-12">
+                        <div class="app-heading">আবেদনকারীর তথ্য</div>
+                    </div>
+
+
                 <div class="col-md-4 mt-3"></div>
 
-                <div class="col-md-4mt-3"><img width="100%" :src="$asseturl + viewModal.content.image" alt=""></div>
+                <div class="col-md-4 mt-3"><img width="100%" :src="$asseturl + viewModal.content.image" alt=""></div>
 
                 <div class="col-md-4 mt-3"></div>
 
 
-                <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ viewModal.content.applicant_national_id_number }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ viewModal.content.applicant_birth_certificate_number }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ viewModal.content.applicant_passport_number }}</div>
-
-                <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ viewModal.content.applicant_date_of_birth }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>নাম: </b>{{ viewModal.content.applicant_name }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ: </b>{{ viewModal.content.applicant_gender }}</div>
-
-                <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ viewModal.content.applicant_marriage_status }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>পিতার নাম: </b>{{ viewModal.content.applicant_father_name }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>মাতার নাম: </b>{{ viewModal.content.applicant_mother_name }}</div>
-
-                <div class="col-md-4 col-6 mt-3"><b>পেশা : </b>{{ viewModal.content.applicant_occupation }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ viewModal.content.applicant_education }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>ধর্ম : </b>{{ viewModal.content.applicant_religion }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা : </b>{{ viewModal.content.applicant_resident_status }}</div>
 
 
-            <div class="col-md-12 mt-5 mb-1">
-                <h5>বর্তমান ঠিকানা</h5>
-            </div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ viewModal.content.applicant_name }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ viewModal.content.applicant_gender }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{ viewModal.content.applicant_father_name }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা জীবিত কিনা : </b>{{ viewModal.content.successor_father_alive_status }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতার নাম : </b>{{ viewModal.content.applicant_mother_name }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতা জীবিত কিনা : </b>{{ viewModal.content.successor_mother_alive_status }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ viewModal.content.applicant_national_id_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ viewModal.content.applicant_birth_certificate_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ viewModal.content.applicant_holding_tax_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ viewModal.content.applicant_date_of_birth }}</div>
+
+         <div class="col-md-4 col-6 mt-3"><b>বয়স: </b>{{ age(viewModal.content.applicant_date_of_birth) }}</div>
+
+         <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ viewModal.content.applicant_passport_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ viewModal.content.applicant_marriage_status }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>পেশা: </b>{{ viewModal.content.applicant_occupation }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ viewModal.content.applicant_education }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ viewModal.content.applicant_religion }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ viewModal.content.applicant_resident_status }}</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             <div class="col-md-12">
+                        <div class="app-heading">বর্তমান ঠিকানা</div>
+                    </div>
 
                 <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ viewModal.content.applicant_present_village }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ viewModal.content.applicant_present_road_block_sector }}</div>
@@ -246,9 +273,12 @@
                 <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ viewModal.content.applicant_present_Upazila }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ viewModal.content.applicant_present_post_office }}</div>
 
-            <div class="col-md-12 mt-5 mb-1">
-                <h5>স্থায়ী ঠিকানা</h5>
-            </div>
+
+         <div class="col-md-12">
+                        <div class="app-heading">স্থায়ী ঠিকানা</div>
+                    </div>
+
+
 
                 <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ viewModal.content.applicant_permanent_village }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ viewModal.content.applicant_permanent_road_block_sector }}</div>
@@ -258,9 +288,22 @@
                 <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ viewModal.content.applicant_permanent_Upazila }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ viewModal.content.applicant_permanent_post_office }}</div>
 
-            <div class="col-md-12 mt-5 mb-1">
-                <h5>Attachment</h5>
-            </div>
+
+         <div class="col-md-12">
+                        <div class="app-heading">যোগাযোগের ঠিকানা</div>
+                    </div>
+
+
+
+                <div class="col-md-6 col-6 mt-3"><b>মোবাইল: </b>{{ viewModal.content.applicant_mobile }}</div>
+                <div class="col-md-6 col-6 mt-3"><b>ইমেল: </b>{{ viewModal.content.applicant_email }}</div>
+
+
+
+
+                    <div class="col-md-12">
+                        <div class="app-heading">Attachment</div>
+                    </div>
 
                 <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Front page)</span> <br> <img width="100%" :src="$asseturl + viewModal.content.applicant_national_id_front_attachment" alt=""></div>
 
@@ -420,9 +463,31 @@ export default {
 
 
 
+        age(dateOf='2001-08-25'){
+    var dateofbirth =  dateOf.split("-");
 
+  var y1 = dateofbirth[0];
+  var m1 = dateofbirth[1];
+            var d1 = dateofbirth[2];
 
-
+ var date = new Date();
+  var d2 = date.getDate();
+  var m2 = 1 + date.getMonth();
+  var y2 = date.getFullYear();
+  var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+ if(d1 > d2){
+    d2 = d2 + month[m2 - 1];
+    m2 = m2 - 1;
+  }
+  if(m1 > m2){
+    m2 = m2 + 12;
+    y2 = y2 - 1;
+  }
+    var d = d2 - d1;
+  var m = m2 - m1;
+  var y = y2 - y1;
+return y+' Years '+m+' Months '+d+' Days ';
+        },
 
 
 
@@ -585,5 +650,12 @@ export default {
 <style>
 .modal-dialog.modal-xl {
     max-width: 1200px;
+}
+.app-heading {
+  text-align: center;
+  margin: 32px 0;
+  font-size: 23px;
+  border-bottom: 1px solid #159513;
+  color: #159513;
 }
 </style>

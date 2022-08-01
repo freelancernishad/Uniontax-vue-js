@@ -357,7 +357,7 @@ var sticky = header.offsetTop;
 
         setInterval(() => {
             this.sonodlistCount()
-        }, 3000);
+        }, 5000);
     }
 }
 </script>

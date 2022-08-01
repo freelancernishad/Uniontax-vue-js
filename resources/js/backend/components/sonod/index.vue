@@ -256,6 +256,10 @@ export default {
         }
     },
     mounted() {
+
+
+
+
         this.uniondata();
         setTimeout(() => {
             this.sonodList();

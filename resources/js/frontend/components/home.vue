@@ -237,7 +237,12 @@ export default {
         };
     },
 
-    mounted() { },
+    mounted() {
+
+
+
+
+     },
     methods: {
 
         sendInfo(item) {
