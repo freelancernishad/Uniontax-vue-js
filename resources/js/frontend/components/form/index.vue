@@ -586,7 +586,120 @@
         <!-- Info modal -->
         <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only ok-disabled no-close-on-esc no-close-on-backdrop >
 
-            <b-form @submit.stop.prevent="finalSubmit">
+
+         <div class="row">
+
+             <div class="col-md-12">
+                        <div class="app-heading">আবেদনকারীর তথ্য</div>
+                    </div>
+
+
+                <div class="col-md-4 mt-3"></div>
+
+                <div class="col-md-4 mt-3"><img width="100%" :src="form.image" alt=""></div>
+
+                <div class="col-md-4 mt-3"></div>
+
+
+
+
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ form.applicant_name }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা জীবিত কিনা : </b>{{ form.successor_father_alive_status }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতার নাম : </b>{{ form.applicant_mother_name }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতা জীবিত কিনা : </b>{{ form.successor_mother_alive_status }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ form.applicant_national_id_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ form.applicant_birth_certificate_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ form.applicant_holding_tax_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ form.applicant_date_of_birth }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ form.applicant_passport_number }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ form.applicant_marriage_status }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>পেশা: </b>{{ form.applicant_occupation }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ form.applicant_education }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ form.applicant_religion }}</div>
+         <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ form.applicant_resident_status }}</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             <div class="col-md-12">
+                        <div class="app-heading">বর্তমান ঠিকানা</div>
+                    </div>
+
+                <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ form.applicant_present_village }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ form.applicant_present_road_block_sector }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>ওয়ার্ড নং: </b>{{ form.applicant_present_word_number }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>জেলা: </b>{{ form.applicant_present_district }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ form.applicant_present_Upazila }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ form.applicant_present_post_office }}</div>
+
+
+         <div class="col-md-12">
+                        <div class="app-heading">স্থায়ী ঠিকানা</div>
+                    </div>
+
+
+
+                <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ form.applicant_permanent_village }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ form.applicant_permanent_road_block_sector }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>ওয়ার্ড নং: </b>{{ form.applicant_permanent_word_number }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>জেলা: </b>{{ form.applicant_permanent_district }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ form.applicant_permanent_Upazila }}</div>
+                <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ form.applicant_permanent_post_office }}</div>
+
+
+         <div class="col-md-12">
+                        <div class="app-heading">যোগাযোগের ঠিকানা</div>
+                    </div>
+
+
+
+                <div class="col-md-6 col-6 mt-3"><b>মোবাইল: </b>{{ form.applicant_mobile }}</div>
+                <div class="col-md-6 col-6 mt-3"><b>ইমেল: </b>{{ form.applicant_email }}</div>
+
+
+
+
+                    <div class="col-md-12">
+                        <div class="app-heading">Attachment</div>
+                    </div>
+
+                <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Front page)</span> <br> <img width="100%" :src="form.applicant_national_id_front_attachment" alt=""></div>
+
+
+                <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Back page)</span> <br> <img width="100%" :src="form.applicant_national_id_back_attachment" alt=""></div>
+
+                <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%" :src="form.applicant_birth_certificate_attachment" alt=""></div>
+
+
+
+
+
+            </div>
+
+
+    <br>
+    <br>
+
+
+
+            <b-form @submit.stop.prevent="finalSubmit" style="margin-top: 50px;">
 
                 <div class="text-center" style="width:50%;margin:0 auto" v-if="getunionInfos.payment_type=='Prepaid'">
                     <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{ sonodnamedata.sonod_fee }} টাকা ।</h3>
