@@ -7,6 +7,8 @@ use App\Http\Controllers\SonodController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\SonodnamelistController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -61,6 +63,16 @@ Route::post('update/sonodname',[SonodnamelistController::class,'updatesonodname'
 
 
 
+Route::get('get/union/list',[UniouninfoController::class,'index']);
+Route::get('get/union/delete/{id}',[UniouninfoController::class,'deleteunion']);
+
+Route::get('update/union/{id}',[UniouninfoController::class,'getunion']);
+// Route::post('update/union',[UniouninfoController::class,'updateunion']);
+Route::post('union/info',[UniouninfoController::class, 'unionInfo']);
+Route::post('profile/submit',[UniouninfoController::class, 'unionInfoUpdate']);
+Route::post('payment/update',[UniouninfoController::class, 'paymentUpdate']);
+
+
 
 Route::get('get/sonod/count',[SonodnamelistController::class,'sonodCount']);
 Route::get('sonod/list',[SonodController::class,'index']);
@@ -83,5 +95,10 @@ Route::get('akpay',[SonodController::class, 'akpay']);
 
 
 Route::post('contact',[UniouninfoController::class, 'contact']);
-Route::post('union/info',[UniouninfoController::class, 'unionInfo']);
-Route::post('profile/submit',[UniouninfoController::class, 'unionInfoUpdate']);
+
+//////
+// Dashboard all counting and chart
+
+
+
+Route::get('count/sonod/{status}',[SonodController::class, 'counting']);

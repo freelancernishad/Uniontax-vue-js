@@ -530,6 +530,17 @@ class SonodController extends Controller
     {
         return Sonod::find($id);
     }
+
+    public function counting(Request $request,$status)
+    {
+
+if($status=='all'){
+
+    return  Sonod::where('stutus','!=','Prepaid')->count();
+}
+        return  Sonod::where(['stutus'=>$status])->count();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -71,15 +71,69 @@ return $Insertdata;
             return $request->all();
         //   return   Uniouninfo::where(['short_name_e'=>$request->union])->first();
         }
+        public function paymentUpdate(Request $request)
+        {
+            $paymentType =  $request->paymentType;
+            $district =  $request->district;
+             $unions =  Uniouninfo::where('district',$district)->get();
+
+            foreach ($unions as $value) {
+                // return $value->id;
+               $singleunion = Uniouninfo::find($value->id);
+               $singleunion->update(['payment_type'=>$paymentType]);
+            }
+            return 'Payment Type Updated';
+
+        }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+         $position =$request->position;
+         $thana = $request->thana;
+         $district = $request->district;
+
+        if ($position && $thana && $district) {
+
+
+            if($position=='District_admin'){
+                return Uniouninfo::where('district', $district)->get();
+
+
+
+            }else
+            if($position=='Thana_admin'){
+                return Uniouninfo::where(['district'=> $district,'thana'=> $thana])->get();
+
+            }else{
+                return '';
+            }
+
+
+        }
+        return Uniouninfo::all();
+    }
+    public function getunion(Request $request, $id)
+    {
+            // return $request->all();
+            $uniouninfo =   Uniouninfo::find($id);
+
+            $data = $uniouninfo;
+            $data['c_signture'] =  asset($uniouninfo->c_signture);
+              $data['sonod_logo'] =  asset($uniouninfo->sonod_logo);
+              $data['u_image'] =  asset($uniouninfo->u_image);
+              $data['web_logo'] =  asset($uniouninfo->web_logo);
+  return $data;
+    }
+    public function deleteunion(Request $request, $id)
+    {
+        $sonodnamelist =  Uniouninfo::find($id);
+        $sonodnamelist->delete();
+        return 'Union deleted!';
     }
 
     /**

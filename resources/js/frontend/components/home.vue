@@ -4,36 +4,27 @@
             <div class="mainBody col-md-9 mt-3">
                 <div class="pmCover">
                     <!-- <vue-image-slider :images="imageArray" :intervalVal=5000 :width="width" :height="height"  /> -->
-
                     <vue-flux :options="vfOptions" :images="vfImages" :transitions="vfTransitions" ref="slider">
                         <template v-slot:preloader>
                             <flux-preloader />
                         </template>
-
                         <!-- <template v-slot:caption>
       <flux-caption />
    </template> -->
-
                         <!-- <template v-slot:controls>
       <flux-controls />
    </template> -->
-
                         <!-- <template v-slot:pagination>
       <flux-pagination />
    </template> -->
-
                         <!-- <template v-slot:index>
       <flux-index />
    </template> -->
                     </vue-flux>
-
                     <!--        <img width="100%" src="assets/img/National-Portal-Card-PM.jpeg" alt=""> --->
                 </div>
                 <b-modal id="myModal">
-
                     <union-select :custom-url="selectedUser" />
-
-
                 </b-modal>
                 <div class="services mt-3">
                     <div class="row">
@@ -42,9 +33,6 @@
                                 সেবাসমূহ
                             </h6>
                         </div>
-
-
-
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-if="getType == 'main'"
                             v-for="(sonod, r) in SonodNames" :key="'main' + r" v-b-modal="'myModal'"
                             @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'))">
@@ -54,72 +42,59 @@
                                 </div>
                                 <div class="serviceTitle defaltTextColor">
                                     {{ sonod.bnname }}
-
                                 </div>
                             </div>
                         </div>
-
-
-
-                        <router-link class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-for="(sonod, rk) in SonodNames"
-                            :key="'union' + rk"
+                        <router-link class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
+                            v-for="(sonod, rk) in SonodNames" :key="'union' + rk"
                             :to="{ name: 'application', params: { name: sonod.enname.replaceAll(' ', '_') } }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+sonod.icon" width="33%" alt="" />
+                                    <img :src="$asseturl + sonod.icon" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle defaltTextColor">
                                     {{ sonod.bnname }}
-
                                 </div>
                             </div>
                         </router-link>
-
-
-
-
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="33%" alt="" />
+                                    <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
-                                    <a href="https://bdris.gov.bd/br/application" class="defaltTextColor">জন্ম নিবন্ধন সনদের আবেদন</a>
+                                    <a href="https://bdris.gov.bd/br/application" class="defaltTextColor">জন্ম নিবন্ধন
+                                        সনদের আবেদন</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" onclick="item('citizen_apps/2')"
-                            data-toggle="modal" data-target="#exampleModal">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
+                            onclick="item('citizen_apps/2')" data-toggle="modal" data-target="#exampleModal">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+'assets/img/pic-10.png'" width="33%" alt="" />
+                                    <img :src="$asseturl + 'assets/img/pic-10.png'" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
-                                    <a href="https://bdris.gov.bd/dr/application" class="defaltTextColor">মৃত্যু নিবন্ধন সনদের আবেদন</a>
+                                    <a href="https://bdris.gov.bd/dr/application" class="defaltTextColor">মৃত্যু নিবন্ধন
+                                        সনদের আবেদন</a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl+'assets/img/pic-06.png'" width="33%" alt="" />
+                                    <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
                                     <a href="#">হোল্ডিং ট্যাক্স</a>
                                 </div>
                             </div>
                         </div>
-
-
-
                         <div class="col-md-12">
                             <h6 class="serviceTitle position-relative defaltColor">
                                 ইউনিয়ন পরিষদ ডিজিটাল সেবা
                             </h6>
                         </div>
-
                         <div class="col-md-12">
                             <p>
                                 <!-- ইউনিয়ন পরিষদ হল বাংলাদেশে পল্লী অঞ্চলের
@@ -160,10 +135,7 @@
                     </div>
                 </div>
             </div>
-
-          <side-bar class-name="col-md-3"></side-bar>
-
-
+            <side-bar class-name="col-md-3"></side-bar>
         </div>
     </div>
 </template>
@@ -177,7 +149,6 @@ import {
     FluxPreloader,
 } from "vue-flux";
 import FlipCard from "./layouts/FlipCard.vue";
-
 export default {
     created() {
         // if (!User.loggedIn()) {
@@ -193,7 +164,6 @@ export default {
         FluxPreloader,
         FlipCard,
     },
-
     data() {
         return {
             selectedUser: '',
@@ -202,10 +172,10 @@ export default {
                 autoplay: true,
             },
             vfImages: [
-                this.$asseturl+"assets/img/National-Portal-Card-PM.jpeg",
-                this.$asseturl+"assets/img/61ed07bbaac6b597183901.jpg",
-                this.$asseturl+"assets/img/slide1.jpeg",
-                this.$asseturl+"assets/img/slide2.jpeg",
+                this.$asseturl + "assets/img/National-Portal-Card-PM.jpeg",
+                this.$asseturl + "assets/img/61ed07bbaac6b597183901.jpg",
+                this.$asseturl + "assets/img/slide1.jpeg",
+                this.$asseturl + "assets/img/slide2.jpeg",
                 // this.$asseturl+"assets/img/padmabanner.jpeg",
                 // this.$asseturl+"assets/img/slide12.jpg",
                 // this.$asseturl+"assets/img/slide11.jpg",
@@ -236,20 +206,13 @@ export default {
             //   vfCaptions: [],
         };
     },
-
     mounted() {
-
-
-
-
-     },
+    },
     methods: {
-
         sendInfo(item) {
             // console.log(item)
             this.selectedUser = item;
         }
-
     },
 };
 </script>
@@ -257,7 +220,6 @@ export default {
 a.prev {
     display: none !important;
 }
-
 a.next {
     display: none !important;
 }

@@ -54,7 +54,7 @@ export default {
     },
     data() {
         return {
-            preLooding: false,
+            preLooding: true,
             access: '',
             sortstatus: false,
             Filter: true,

@@ -16,6 +16,9 @@ let userlistedit = require('./components/users/form.vue').default;
 let sonodlist = require('./components/sonodList/list.vue').default;
 let sonodlistedit = require('./components/sonodList/form.vue').default;
 
+let unionlist = require('./components/unionList/list.vue').default;
+let unionlistedit = require('./components/unionList/form.vue').default;
+
 let sonod = require('./components/sonod/index.vue').default;
 let sonodedit = require('./components/sonod/form.vue').default;
 let sonodview = require('./components/sonod/view.vue').default;
@@ -49,6 +52,10 @@ export const routes = [
   { path:  `${prefix}/sonod/list`, component: sonodlist, name:'sonodlist',meta: { layout: adminlayout } },
   { path:  `${prefix}/sonod/list/add`, component: sonodlistedit, name:'sonodlistadd',meta: { layout: adminlayout } },
   { path:  `${prefix}/sonod/list/edit/:id`, component: sonodlistedit, name:'sonodlistedit',meta: { layout: adminlayout } },
+
+  { path:  `${prefix}/union/list`, component: unionlist, name:'unionlist',meta: { layout: adminlayout } },
+  { path:  `${prefix}/union/list/add`, component: unionlistedit, name:'unionlistadd',meta: { layout: adminlayout } },
+  { path:  `${prefix}/union/list/edit/:id`, component: unionlistedit, name:'unionlistedit',meta: { layout: adminlayout } },
 
   { path:  `${prefix}/sonod/:name/:type`, component: sonod, name:'sonod',meta: { layout: adminlayout } },
 
