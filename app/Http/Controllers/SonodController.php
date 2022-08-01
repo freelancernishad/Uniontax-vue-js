@@ -48,8 +48,8 @@ class SonodController extends Controller
             $sonod->update(['stutus' => 'Pending','payment_status' => 'Paid']);
             // $sonod_name = sonodEnName($sonod->sonod_name);
 
-            $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
-            // $deccription = "Congratulation! Your application has been Paid.Wait for Approval.";
+            // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
+            $deccription = "Congratulation! Your application has been Paid.Wait for Approval.";
             $messages = array();
             array_push(
                 $messages,
@@ -76,8 +76,8 @@ class SonodController extends Controller
             // $sonod_name = sonodEnName($sonod->sonod_name);
             $sonodUrl =  url("/sonod/d/$id");
             $InvoiceUrl =  url("/invoice/d/$id");
-            $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
-            // $deccription = "Congratulation! Your application has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
+            // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
+            $deccription = "Congratulation! Your application has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
             $messages = array();
             array_push(
                 $messages,
@@ -340,8 +340,8 @@ class SonodController extends Controller
         $sonod = Sonod::find($id);
         $sonodUrl =  url("/sonod/d/$id");
         $InvoiceUrl =  url("/invoice/d/$id");
-        // $deccription = "Congratulation! Your application has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
-        $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
+        $deccription = "Congratulation! Your application has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
+        // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
         $messages = array();
         array_push(
             $messages,
@@ -380,11 +380,14 @@ class SonodController extends Controller
             if ($payment_type == 'Prepaid') {
                 $sonodUrl =  url("/sonod/d/$id");
                 $InvoiceUrl =  url("/invoice/d/$id");
-                // $deccription = "Congratulation! Your application has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
-                $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
+                $deccription = "Congratulation! Your application has been Approved. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
+                // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
             }elseif($payment_type == 'Postpaid'){
                 $paymentUrl =  url("/sonod/payment/$id");
-            $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
+
+
+            $deccription = "Congratulation! Your application has been Approved. Pay: " . $paymentUrl;
+            // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
             }
 
             $messages = array();
