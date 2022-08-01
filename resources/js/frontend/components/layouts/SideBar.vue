@@ -17,7 +17,7 @@
 
 
                 <p class="sidebaruser text-center"  >
-                    <img width="70%" alt="" :src="$asseturl+'assets/img/0f0a882a453a4d2b22037af67bbecb27.png'" />
+                    <img width="60%" alt="" :src="$asseturl+'assets/img/0f0a882a453a4d2b22037af67bbecb27.png'" />
                 </p>
                 <div class="contactInfo text-center"  >
                     <span><b> মোঃ আতিকুর রহমান</b></span> <br />
@@ -32,7 +32,7 @@
 
 
                 <p class="sidebaruser text-center"  >
-                    <img width="70%" alt="" :src="$asseturl+'assets/img/61fa48285f305025824869.jpg'" />
+                    <img width="60%" alt="" :src="$asseturl+'assets/img/61fa48285f305025824869.jpg'" />
                 </p>
                 <div class="contactInfo text-center"  >
                     <span><b> মিথুন কুমার রায়</b></span> <br />
