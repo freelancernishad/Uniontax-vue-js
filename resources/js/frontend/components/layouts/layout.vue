@@ -8,7 +8,7 @@
                                 স্বাগতম</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right"><span
                                 style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curentdate }}
-                            </span><span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span><span style="">visit</span></div>
+                            </span><span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span><span style="">Visitors : {{ visitors }}</span></div>
                     </div>
                 </div>
                 <div class="middleHeader ">
@@ -118,7 +118,7 @@
                 </nav>
             </header>
             <div class="middeleContent">
-                <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="100" style="background: var(--defaultColor); 
+                <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="100" style="background: var(--defaultColor);
 color: white;
 font-size: 18px;
 padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas delectus provident iste,
@@ -277,6 +277,7 @@ export default {
             selectedUser: '',
             curentdate: '',
             curenttime: '',
+            visitors: '',
         }
     },
     watch: {
@@ -291,9 +292,22 @@ export default {
         sendInfo(item) {
             // console.log(item)
            this.selectedUser = item;
+        },
+        async visitorfun(){
+            var unionname = 'all';
+            if(this.getType=='Union'){
+             unionname = this.getUnion;
+            }
+            var visitcreate = await this.callApi('post',`api/visitorcreate`,[])
+            var res = await this.callApi('get',`api/visitorcount?union=${unionname}`,[])
+            this.visitors = res.data;
         }
+
     },
     mounted() {
+ setTimeout(()=> {
+       this.visitorfun();
+  }, 2000);
         var date = new Date();
         this.curentdate =  User.dateformat(new Date())[0]
        setInterval(()=> {

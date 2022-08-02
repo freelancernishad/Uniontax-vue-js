@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SonodController;
+use App\Http\Controllers\VisitorController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\SonodnamelistController;
@@ -102,3 +103,5 @@ Route::post('contact',[UniouninfoController::class, 'contact']);
 
 
 Route::get('count/sonod/{status}',[SonodController::class, 'counting']);
+Route::post('visitorcreate',[VisitorController::class, 'visitorcreate']);
+Route::get('visitorcount',[VisitorController::class, 'visitorCount']);
