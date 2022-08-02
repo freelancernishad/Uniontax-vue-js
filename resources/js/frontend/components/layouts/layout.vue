@@ -74,6 +74,7 @@
                                                     {{ sonod.bnname }}</router-link>
                                             </div>
                                         </li>
+
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -87,6 +88,7 @@
                                                     আবেদন</a>
                                             </div>
                                         </li>
+
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'sonodsearch' }">ইস্যুকৃত সনদ
                                                 যাচাই
@@ -103,6 +105,22 @@
                                             <router-link class="nav-link" :to="{ name: 'home' }">হোল্ডিং ট্যাক্স
                                             </router-link>
                                         </li>
+
+
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">খবর</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                 <router-link class="nav-link" v-for="(cat,indexs) in categorys" :to="{ name: 'blogs',params:{name:cat.slug} }" :key="'cat'+indexs">{{ cat.name }}
+                                            </router-link>
+
+                                            </div>
+                                        </li>
+
+
+
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'login' }">লগইন</router-link>
                                         </li>
@@ -278,6 +296,7 @@ export default {
             curentdate: '',
             curenttime: '',
             visitors: '',
+            categorys: {},
         }
     },
     watch: {
@@ -298,13 +317,22 @@ export default {
             if(this.getType=='Union'){
              unionname = this.getUnion;
             }
-            var visitcreate = await this.callApi('post',`api/visitorcreate`,[])
-            var res = await this.callApi('get',`api/visitorcount?union=${unionname}`,[])
+            var visitcreate = await this.callApi('post',`/api/visitorcreate`,[])
+            var res = await this.callApi('get',`/api/visitorcount?union=${unionname}`,[])
             this.visitors = res.data;
+        },
+       getCategory(){
+                axios.get(`/api/get/category/list`)
+                .then((res)=>{
+
+                    this.categorys = res.data
+                })
+
         }
 
     },
     mounted() {
+        this.getCategory();
  setTimeout(()=> {
        this.visitorfun();
   }, 2000);

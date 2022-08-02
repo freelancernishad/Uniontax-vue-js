@@ -114,6 +114,38 @@
                         </li>
 
 
+
+
+                        <li class="nav-item sidebar-nav-item"  :class="{ active: selected == 101 }" >
+                            <a href="javascript:void(0)" class="nav-link" @click="submenu(101)" ><i
+                                    class="flaticon-technological"></i><span>Blogs</span>
+                                   </a>
+                            <transition name="slide">
+                                <ul class="nav sub-group-menu menu-open child" v-if="selected == 101"
+                                    style="display:block">
+
+                                    <li class="nav-item">
+                                        <router-link :to="{ name:'category'}" class="nav-link"><i class="fas fa-angle-right"></i> Category </router-link>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <router-link :to="{ name:'blogs'}" class="nav-link"><i class="fas fa-angle-right"></i> Blogs </router-link>
+                                    </li>
+
+
+                                </ul>
+                            </transition>
+                        </li>
+
+
+
+
+
+
+
+
+
+
             <li  class="nav-item" @click="submenu(0)" v-if="Users.position=='Chairman' || Users.position=='Secretary'">
                             <router-link :to="{name:'unionprofile'}" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Union Profile</span></router-link>

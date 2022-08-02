@@ -7,6 +7,8 @@ use App\Http\Controllers\SonodController;
 use App\Http\Controllers\VisitorController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\UniouninfoController;
+use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\blogController;
 use App\Http\Controllers\SonodnamelistController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -105,3 +107,20 @@ Route::post('contact',[UniouninfoController::class, 'contact']);
 Route::get('count/sonod/{status}',[SonodController::class, 'counting']);
 Route::post('visitorcreate',[VisitorController::class, 'visitorcreate']);
 Route::get('visitorcount',[VisitorController::class, 'visitorCount']);
+
+
+
+//Category
+
+Route::get('get/category/list',[BlogCategoryController::class,'index']);
+Route::get('get/category/delete/{id}',[BlogCategoryController::class,'deletecategory']);
+Route::get('update/category/{id}',[BlogCategoryController::class,'getcategory']);
+Route::post('update/category',[BlogCategoryController::class,'updatecategory']);
+
+
+//blogs
+
+Route::get('get/blog/list',[blogController::class,'index']);
+Route::get('get/blog/delete/{id}',[blogController::class,'deleteblog']);
+Route::get('update/blog/{id}',[blogController::class,'getblog']);
+Route::post('update/blog',[blogController::class,'updateblog']);

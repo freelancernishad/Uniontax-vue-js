@@ -251,6 +251,7 @@ export default {
                 this.TotalRows = `${this.items.length}`;
 
                 this.actionAccess();
+                if (!auto) window.scrollTo(0,0);
                 if (!auto) this.preLooding = false
             }
         }

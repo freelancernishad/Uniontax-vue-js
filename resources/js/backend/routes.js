@@ -33,6 +33,13 @@ let role = require('./components/assignRole.vue').default;
 
 let index = require('./components/vuex/index.vue').default;
 
+//blogs
+let blogs = require('./components/blogs/list.vue').default;
+let blogform = require('./components/blogs/form.vue').default;
+//category
+let category = require('./components/blogs/category/list.vue').default;
+let categoryform = require('./components/blogs/category/form.vue').default;
+
 let PageNotFound = require('./components/404.vue').default;
 
 
@@ -72,6 +79,17 @@ export const routes = [
   { path:  `${prefix}/role`, component: role, name:'role',meta: { layout: adminlayout } },
 
   { path:  `${prefix}/index`, component: index, name:'index',meta: { layout: adminlayout } },
+
+//blogs
+  { path:  `${prefix}/blogs`, component: blogs, name:'blogs',meta: { layout: adminlayout } },
+  { path:  `${prefix}/blogs/add`, component: blogform, name:'blogform',meta: { layout: adminlayout } },
+  { path:  `${prefix}/blogs/edit/:id`, component: blogform, name:'blogedit',meta: { layout: adminlayout } },
+
+//category
+  { path:  `${prefix}/category`, component: category, name:'category',meta: { layout: adminlayout } },
+  { path:  `${prefix}/category/add`, component: categoryform, name:'categoryform',meta: { layout: adminlayout } },
+  { path:  `${prefix}/category/edit/:id`, component: categoryform, name:'categoryedit',meta: { layout: adminlayout } },
+
 
   { path: "*", component: PageNotFound }
 
