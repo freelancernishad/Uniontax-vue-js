@@ -266,7 +266,7 @@ export default {
         async onSubmit() {
 
 
-            var res = await this.callApi('post', '/api/profile/submit', this.form);
+            var res = await this.callApi('post', '/api/unionprofile/submit', this.form);
 
     // conseole.log(res)
     this.getunionInfo();

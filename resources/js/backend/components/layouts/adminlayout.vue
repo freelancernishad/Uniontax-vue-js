@@ -113,6 +113,15 @@
                                     class="flaticon-dashboard"></i><span>Dashboard</span></router-link>
                         </li>
 
+
+            <li  class="nav-item" @click="submenu(0)" v-if="Users.position=='Chairman' || Users.position=='Secretary'">
+                            <router-link :to="{name:'unionprofile'}" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Union Profile</span></router-link>
+                        </li>
+
+
+
+
             <li  class="nav-item" @click="submenu(0)"  v-if="Users.position=='Thana_admin' || Users.position=='District_admin'">
                             <router-link :to="{name:'unionlist'}" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Union List</span></router-link>
@@ -129,6 +138,8 @@
                             <router-link :to="{name:'userlist'}" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Users List</span></router-link>
                         </li>
+
+
 
 
 

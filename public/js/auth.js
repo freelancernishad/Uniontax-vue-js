@@ -2617,6 +2617,9 @@ var User = /*#__PURE__*/function () {
         hrs = '0' + hrs;
       }
 
+      hrs = hrs % 12;
+      hrs = hrs ? hrs : 12; // the hour '0' should be '12'
+
       if (mins < 10) {
         mins = '0' + mins;
       }
@@ -2640,6 +2643,8 @@ var User = /*#__PURE__*/function () {
       today = yyyy + '-' + mm + '-' + dd + ' ' + hrs + ':' + mins + ' ' + ampm;
       dates.push(today);
       today = yyyy + '-' + mm + '-' + dd + ' ' + hrs + ':' + mins + ':' + secs;
+      dates.push(today);
+      today = hrs + ':' + mins + ':' + secs;
       dates.push(today);
       return dates;
     }

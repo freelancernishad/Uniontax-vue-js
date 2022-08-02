@@ -7,17 +7,19 @@
                         <div class="topheaderItem col-md-6 col-6"><span>ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে
                                 স্বাগতম</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right"><span
-                                style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">
-                            </span><span style=""></span></div>
+                                style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curentdate }}
+                            </span><span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span><span style="">visit</span></div>
                     </div>
                 </div>
                 <div class="middleHeader ">
                     <div class="row">
-                        <div class="middleHeaderItem col-md-6 mt-3 mb-3"><router-link :to="{ name: 'home' }">
-                            <img width="50%" v-if="getType=='main'" :src="$asseturl+'assets/img/mail_logo-01.png'" alt="">
-                            <img width="50%" v-else-if="getType=='Union'" :src="getunionInfos.web_logo" alt="">
-
-                            </router-link> </div>
+                        <div class="middleHeaderItem col-md-6 mt-3 mb-3">
+                            <router-link :to="{ name: 'home' }">
+                                <img width="50%" v-if="getType == 'main'" :src="$asseturl + 'assets/img/mail_logo-01.png'"
+                                    alt="">
+                                <img width="50%" v-else-if="getType == 'Union'" :src="getunionInfos.web_logo" alt="">
+                            </router-link>
+                        </div>
                         <div class="middleHeaderItem col-md-6 mb-3">
                             <h3 class="searchHeader defaltColor">ইউনিয়ন নির্বাচন করুন </h3>
                             <union-select />
@@ -29,11 +31,12 @@
                         <div class="col-md-12 pcnav" id="mainMenu">
                             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                                 <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-                                <button class="navbar-toggler  text-white" style="color:white !important" type="button" data-toggle="collapse"
-                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <button class="navbar-toggler  text-white" style="color:white !important" type="button"
+                                    data-toggle="collapse" data-target="#navbarSupportedContent"
+                                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                                    aria-label="Toggle navigation">
                                     <!-- <span class="navbar-toggler-icon"></span> -->
-                                  <i class="fas fa-bars"></i>
+                                    <i class="fas fa-bars"></i>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav mr-auto">
@@ -85,14 +88,16 @@
                                             </div>
                                         </li>
                                         <li class="nav-item">
-                                            <router-link class="nav-link" :to="{ name: 'sonodsearch' }">ইস্যুকৃত সনদ যাচাই
+                                            <router-link class="nav-link" :to="{ name: 'sonodsearch' }">ইস্যুকৃত সনদ
+                                                যাচাই
                                             </router-link>
                                         </li>
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'home' }">নোটিশ</router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <router-link class="nav-link" :to="{ name: 'contact' }">যোগাযোগ</router-link>
+                                            <router-link class="nav-link" :to="{ name: 'contact' }">যোগাযোগ
+                                            </router-link>
                                         </li>
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'home' }">হোল্ডিং ট্যাক্স
@@ -113,6 +118,12 @@
                 </nav>
             </header>
             <div class="middeleContent">
+                <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="100" style="background: var(--defaultColor); 
+color: white;
+font-size: 18px;
+padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas delectus provident iste,
+                    eligendi ipsum pariatur soluta officia tenetur velit odio quo hic, numquam minus ratione, quae
+                    dolore ad molestiae suscipit! </marquee>
                 <slot></slot>
                 <div class="row">
                     <div class="col-md-12 mt-3 mb-3">
@@ -191,27 +202,25 @@
                     <div class="row">
                         <div class="col-4">
                             <ul class="footerList">
-                                <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার (Jashim Uddin Haider) জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
+                                <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার (Jashim
+                                    Uddin Haider) জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
                                 <li style="font-size:font-size:15px"><img style="width:40px !important"
-                                        :src="$asseturl+'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: জেলা প্রশাসন,
+                                        :src="$asseturl + 'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: জেলা
+                                    প্রশাসন,
                                     বরিশাল</li>
-
-      </ul>
-
-
+                            </ul>
                         </div>
-
                         <div class="col-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> </li>
                                 <li style="font-size:font-size:15px;    display: flex;
     justify-content: center;
     align-items: center;">
-                                <img style="width:40px !important":src="$asseturl+'assets/img/DoICT.svg.png'" alt=""> <span style="padding: 0 15px;">পরিকল্পনা, বাস্তবায়ন এবং কারিগরি তত্বাবধায়নে: তথ্য ও যোগাযোগ প্রযুক্তি অধিদপ্তর, জেলা কার্যালয়, বরিশাল</span> </li>
-
-                             </ul>
-
-
+                                    <img style="width:40px !important" :src="$asseturl + 'assets/img/DoICT.svg.png'"
+                                        alt=""> <span style="padding: 0 15px;">পরিকল্পনা, বাস্তবায়ন এবং কারিগরি
+                                        তত্বাবধায়নে: তথ্য ও যোগাযোগ প্রযুক্তি অধিদপ্তর, জেলা কার্যালয়, বরিশাল</span>
+                                </li>
+                            </ul>
                         </div>
                         <div class="col-4">
                             <p class="footerText" style="font-size: 14px; !important">ইউনিয়ন পরিষদের ডিজিটাল সেবা
@@ -220,9 +229,10 @@
                 justify-content: end;
                 align-items: center;
                 width: 100%;"> <img style="    width: 106px !important;" class="footerImg"
-                                    :src="$asseturl+'assets/img/ownlogo.png'" alt="" /> <span style="font-size: 14px;"> <span
-                                        style="border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
-                                        target="_blank" style="color: #4e4e4e;" href="https://www.facebook.com/SYED.SHAHAREAR.ARAFAT">
+                                    :src="$asseturl + 'assets/img/ownlogo.png'" alt="" /> <span style="font-size: 14px;">
+                                    <span style="border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
+                                        target="_blank" style="color: #4e4e4e;"
+                                        href="https://www.facebook.com/SYED.SHAHAREAR.ARAFAT">
                                         এস এস আরাফাত </a></span> </p>
                         </div>
                     </div>
@@ -264,30 +274,33 @@ export default {
     },
     data() {
         return {
-            selectedUser: ''
+            selectedUser: '',
+            curentdate: '',
+            curenttime: '',
         }
     },
-
-  watch: {
-        '$route':  {
+    watch: {
+        '$route': {
             handler(newValue, oldValue) {
-
                 document.getElementById('navbarSupportedContent').classList.remove("show");
-      },
-      deep: true
-
-
-
+            },
+            deep: true
         }
     },
-
     methods: {
         sendInfo(item) {
             // console.log(item)
-            this.selectedUser = item;
+           this.selectedUser = item;
         }
     },
     mounted() {
+        var date = new Date();
+        this.curentdate =  User.dateformat(new Date())[0]
+       setInterval(()=> {
+
+           this.curenttime =  User.dateformat(new Date())[8]
+       }, 1000);
+
     }
 }
 </script>
@@ -326,16 +339,14 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
 /* .dropdown:hover>.dropdown-menu{
 		display: block;
 	} */
-
-
 .serviceBox {
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
 }
-.defaltColor{
+.defaltColor {
     background: var(--defaultColor) !important;
 }
-.defaltTextColor{
+.defaltTextColor {
     color: var(--defaultColor) !important;
 }
 </style>

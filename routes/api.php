@@ -69,7 +69,7 @@ Route::get('get/union/delete/{id}',[UniouninfoController::class,'deleteunion']);
 Route::get('update/union/{id}',[UniouninfoController::class,'getunion']);
 // Route::post('update/union',[UniouninfoController::class,'updateunion']);
 Route::post('union/info',[UniouninfoController::class, 'unionInfo']);
-Route::post('profile/submit',[UniouninfoController::class, 'unionInfoUpdate']);
+Route::post('unionprofile/submit',[UniouninfoController::class, 'unionInfoUpdate']);
 Route::post('payment/update',[UniouninfoController::class, 'paymentUpdate']);
 
 

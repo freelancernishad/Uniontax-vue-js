@@ -32,13 +32,44 @@ class RoleController extends Controller
 
           $data = $request->except(['password']);
 
-        $data['password'] = hash::make($request->password);
+       
 
           if($id){
-            $sonodNameList = User::find($id);
-              return $sonodNameList->update($data);
-            }else{
+            $users = User::find($id);
+$changepass =   $request->changepass;
+            if($changepass){
+                
+                $oldpassword =   $request->oldpassword;
+               $oldpasscheck =  Hash::check($oldpassword, $users->password);
+               if($oldpasscheck){
 
+                $newpassword =   $request->newpassword;
+                // if($newpassword===$oldpasscheck){
+                    $data['password'] = hash::make($request->newpassword);
+                    return $users->update($data);
+                // }
+                // else{
+                // //naew and old password does not match
+
+                //     return 2;
+                // }
+
+               }else{
+                //old password does not match
+
+                return 0;
+               }
+                
+
+            }else{
+                return $users->update($data);
+            }
+
+
+       
+        
+            }else{
+                $data['password'] = hash::make($request->password);
                 return User::create($data);
           }
 

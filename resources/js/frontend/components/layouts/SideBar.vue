@@ -92,9 +92,9 @@
 
                 <div id="fb-root"></div>
 
-                <iframe
+                <!-- <iframe
                     :src="getunionInfos.google_map"
-                    allowfullscreen="" loading="lazy"></iframe>
+                    allowfullscreen="" loading="lazy"></iframe> -->
             </div>
 </template>
 <script>
