@@ -1162,7 +1162,7 @@ export default {
                                     if (result.isConfirmed) {
                                     // this.$root.$emit('bv::hide::modal', this.infoModal.id)
                                     this.$root.$emit('bv::hide::modal', 'info-modal')
-                                redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+                                redirect = '/document/d/' + res.data.id;
                                 window.open(redirect, '_blank');
 
             this.$router.push({ name: 'home' })

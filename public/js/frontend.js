@@ -3027,7 +3027,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                               // this.$root.$emit('bv::hide::modal', this.infoModal.id)
                               _this7.$root.$emit('bv::hide::modal', 'info-modal');
 
-                              redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+                              redirect = '/document/d/' + res.data.id;
                               window.open(redirect, '_blank');
 
                               _this7.$router.push({
@@ -43205,7 +43205,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #159513;\n}\n.form-pannel {\r\n    border: 1px solid #159513;\r\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\r\n    padding: 11px 0px;\r\n    border-top-right-radius: 6px;\r\n    border-top-left-radius: 6px;\r\n    margin-top: 20px;\n}\n.form-pannel {\r\n    border-bottom-left-radius: 6px;\r\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\r\n    z-index: 99999;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #159513;\n}\n.form-pannel {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\n    z-index: 99999;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

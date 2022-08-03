@@ -122,25 +122,27 @@ class SonodController extends Controller
         $payment_type = $uniouninfo->payment_type;
 
         if ($payment_type == 'Prepaid') {
-
-
+           $sonod_fee =  $sonodnamelists->sonod_fee;
+           if ($sonod_fee == null || $sonod_fee == '' || $sonod_fee < 10) {
+            $sonod_fee = 10;
+           }
             $arraydata = [
-                'total_amount' => $sonodnamelists->sonod_fee,
+                'total_amount' => $sonod_fee,
                 'pesaKor' => $request->pesaKor,
                 'tredeLisenceFee' => $request->tredeLisenceFee,
                 'vatAykor' => $request->vatAykor,
                 'khat' => $request->khat,
                 'last_years_money' => 0,
-                'currently_paid_money' => $sonodnamelists->sonod_fee,
+                'currently_paid_money' => $sonod_fee,
             ];
             $amount_deails = json_encode($arraydata);
             $numto = new NumberToBangla();
-            $the_amount_of_money_in_words = $numto->bnMoney($sonodnamelists->sonod_fee) . ' মাত্র';
+            $the_amount_of_money_in_words = $numto->bnMoney($sonod_fee) . ' মাত্র';
             $updateData = [
                 'khat' => $request->khat,
                 'last_years_money' => 0,
-                'currently_paid_money' => $sonodnamelists->sonod_fee,
-                'total_amount' => $sonodnamelists->sonod_fee,
+                'currently_paid_money' => $sonod_fee,
+                'total_amount' => $sonod_fee,
                 'amount_deails' => $amount_deails,
                 'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
             ];
@@ -149,7 +151,7 @@ class SonodController extends Controller
 
             $total_amount = $sonod->total_amount;
             $amount = 0;
-            if ($total_amount == null || $total_amount < 10) {
+            if ($total_amount == null || $total_amount == '' || $total_amount < 10) {
                 $amount = 10;
             } else {
                 $amount = $total_amount;
