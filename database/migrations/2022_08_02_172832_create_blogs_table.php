@@ -22,7 +22,7 @@ return new class extends Migration
             $table->longText('Images')->nullable();
             $table->longText('Tags')->nullable();
             $table->longText('Category')->nullable();
-            $table->longText('status')->default('Draft');
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
