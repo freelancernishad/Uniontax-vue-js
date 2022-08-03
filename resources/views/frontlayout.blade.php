@@ -9,9 +9,9 @@
     <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet" onload="if(media!=='all')media='all'"> -->
     <!-- CSS only -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> -->
-    <!-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pro.min.css') }}">
 
 
@@ -105,21 +105,17 @@ div#exampleModal {
     <script src="{{ asset('js/frontend.js') }}" async ></script>
 
 <script>
-    function linkrun(linkdata){
+    // function linkrun(linkdata){
 
-        var link = document.createElement('link');
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("type", "text/css");
-        // link.onload = function(){ console.log('loaded'); }
-        link.setAttribute("href", linkdata);
-        document.getElementsByTagName("head")[0].appendChild(link);
-        console.log('load')
-    }
+    //     var link = document.createElement('link');
+    //     link.setAttribute("rel", "stylesheet");
+    //     link.setAttribute("type", "text/css");
+    //     // link.onload = function(){ console.log('loaded'); }
+    //     link.setAttribute("href", linkdata);
+    //     document.getElementsByTagName("head")[0].appendChild(link);
+    //     console.log('load')
+    // }
 
-    linkrun("<?php echo  asset('assets/css/bootstrap.min.css') ?>");
-
-
-        linkrun("<?php echo  asset('assets/css/style.css') ?>");
 
     // linkrun('assets/css/pro.min.css');
     // linkrun('assets/css/style.css');
