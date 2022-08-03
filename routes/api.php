@@ -11,6 +11,7 @@ use App\Http\Controllers\ActionLogController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\SonodnamelistController;
+use App\Http\Controllers\CharageController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -131,3 +132,6 @@ Route::post('update/blog',[blogController::class,'updateblog']);
 
 
 Route::get('reject/{id}',[ActionLogController::class,'rejectreason']);
+
+Route::post('vattax/get',[CharageController::class,'index']);
+Route::post('vattax/submit',[CharageController::class,'store']);

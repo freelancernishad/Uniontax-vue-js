@@ -56,6 +56,7 @@ export default {
             'getType' : 'getType',
             'getUnion' : 'getUnion',
             'getunionInfos' : 'getunionInfos',
+            'getvatTax' : 'getvatTax',
         }),
 
         getUsers(){

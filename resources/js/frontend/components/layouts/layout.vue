@@ -283,12 +283,31 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
 export default {
     props: ['user'],
     async created() {
+
+
+
+
         var res = await this.callApi('get', '/api/get/sonodname/list', []);
-        // console.log(res);
         this.$store.commit('setUpdateSonodNames', res.data)
+
         var url = this.$appUrl.split("//");
         var subdomain = url[1].split(".");
         this.$store.commit('setWebsiteStatus', subdomain)
+    if(subdomain.length>1){
+
+        var unioninfo = await this.callApi('post',`/api/union/info?union=${subdomain[0]}`,[]);
+                this.ff['district'] = unioninfo.data.district
+                this.ff['thana'] = unioninfo.data.thana
+
+            var charge = await this.callApi('post',`/api/vattax/get`,this.ff);
+                this.$store.commit('setvatTax', charge.data)
+    }
+
+
+
+
+
+
     },
     data() {
         return {
@@ -297,6 +316,7 @@ export default {
             curenttime: '',
             visitors: '',
             categorys: {},
+            ff: {},
         }
     },
     watch: {

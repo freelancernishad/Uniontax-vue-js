@@ -12,9 +12,17 @@ class CharageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // return $request->all();
+        $district = $request->district;
+        $thana = $request->thana;
+        $CharageCount = Charage::where(['district'=>$district,'thana'=>$thana])->count();
+        if($CharageCount>0){
+           return  Charage::where(['district'=>$district,'thana'=>$thana])->first();
+        }
+
+        return 0;
     }
 
     /**
@@ -35,7 +43,14 @@ class CharageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = $request->id;
+        $data = $request->all();
+        if($id){
+            $charage = Charage::find($id);
+
+            return $charage->update($data);
+        }
+        return Charage::create($data);
     }
 
     /**

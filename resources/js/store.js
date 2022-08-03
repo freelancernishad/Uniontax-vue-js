@@ -63,6 +63,7 @@ const store = new Vuex.Store({
         unioun_name:'',
         sonodNameList:{},
         unionInfo:{},
+        vatTax:{},
 
     },// as like data(){return:{}}
     mutations:{
@@ -84,6 +85,7 @@ const store = new Vuex.Store({
         },
        async setUpdateUser(state,data){
             state.Users = data
+
         },
 
 
@@ -94,6 +96,10 @@ const store = new Vuex.Store({
 
         setUserRoles(state,data){
             state.userRoles = data
+        },
+
+        setvatTax(state,data){
+            state.vatTax = data
         },
 
 
@@ -155,6 +161,10 @@ const store = new Vuex.Store({
         },
         getunionInfos(state){
             return state.unionInfo
+        },
+
+      getvatTax(state){
+            return state.vatTax
         }
 
 

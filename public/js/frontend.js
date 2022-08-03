@@ -3265,7 +3265,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var res, url, subdomain;
+      var res, url, subdomain, unioninfo, charge;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -3276,7 +3276,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 2:
               res = _context.sent;
 
-              // console.log(res);
               _this.$store.commit('setUpdateSonodNames', res.data);
 
               url = _this.$appUrl.split("//");
@@ -3284,7 +3283,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               _this.$store.commit('setWebsiteStatus', subdomain);
 
-            case 7:
+              if (!(subdomain.length > 1)) {
+                _context.next = 17;
+                break;
+              }
+
+              _context.next = 10;
+              return _this.callApi('post', "/api/union/info?union=".concat(subdomain[0]), []);
+
+            case 10:
+              unioninfo = _context.sent;
+              _this.ff['district'] = unioninfo.data.district;
+              _this.ff['thana'] = unioninfo.data.thana;
+              _context.next = 15;
+              return _this.callApi('post', "/api/vattax/get", _this.ff);
+
+            case 15:
+              charge = _context.sent;
+
+              _this.$store.commit('setvatTax', charge.data);
+
+            case 17:
             case "end":
               return _context.stop();
           }
@@ -3298,7 +3317,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       curentdate: '',
       curenttime: '',
       visitors: '',
-      categorys: {}
+      categorys: {},
+      ff: {}
     };
   },
   watch: {
@@ -6227,7 +6247,7 @@ var render = function render() {
       width: "50%",
       margin: "0 auto"
     }
-  }, [_c("h3", [_vm._v("আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । " + _vm._s(_vm.sonodnamedata.bnname) + " এর ফি " + _vm._s(_vm.sonodnamedata.sonod_fee) + " টাকা ।")]), _vm._v(" "), !_vm.submitLoad ? _c("button", {
+  }, [_c("h3", [_vm._v("আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । " + _vm._s(_vm.sonodnamedata.bnname) + " এর ফি " + _vm._s(_vm.sonodnamedata.sonod_fee + _vm.getvatTax.tax) + " টাকা ।")]), _vm._v(" "), !_vm.submitLoad ? _c("button", {
     staticClass: "btn btn-info",
     attrs: {
       type: "submit"
@@ -8182,7 +8202,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     'getUnions': 'getUnions',
     'getType': 'getType',
     'getUnion': 'getUnion',
-    'getunionInfos': 'getunionInfos'
+    'getunionInfos': 'getunionInfos',
+    'getvatTax': 'getvatTax'
   })), {}, {
     getUsers: function getUsers() {
       return this.$store.getters.getUpdateUser;
@@ -8886,7 +8907,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     siteType: '',
     unioun_name: '',
     sonodNameList: {},
-    unionInfo: {}
+    unionInfo: {},
+    vatTax: {}
   },
   // as like data(){return:{}}
   mutations: {
@@ -8924,6 +8946,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setUserRoles: function setUserRoles(state, data) {
       state.userRoles = data;
+    },
+    setvatTax: function setvatTax(state, data) {
+      state.vatTax = data;
     },
     setWebsiteStatus: function setWebsiteStatus(state, data) {
       console.log(data);
@@ -8968,6 +8993,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     getunionInfos: function getunionInfos(state) {
       return state.unionInfo;
+    },
+    getvatTax: function getvatTax(state) {
+      return state.vatTax;
     } // totalBook(state){
     //     return state.bookList.length;
     // }
@@ -43109,7 +43137,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\r\n    line-height: 1;\r\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\r\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\r\n    text-decoration: none;\n}\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\r\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\r\n        font-size: 3rem;\n}\n}\n.nav-scroller {\r\n    position: relative;\r\n    z-index: 2;\r\n    height: 2.75rem;\r\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\r\n    display: flex;\r\n    flex-wrap: nowrap;\r\n    padding-bottom: 1rem;\r\n    margin-top: -1px;\r\n    overflow-x: auto;\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\r\n    padding-top: .75rem;\r\n    padding-bottom: .75rem;\r\n    font-size: .875rem;\n}\n.card-img-right {\r\n    height: 100%;\r\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\r\n    flex: 0 0 auto;\n}\n.h-250 {\r\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\r\n        height: 250px;\n}\n}\r\n/* Pagination */\n.blog-pagination {\r\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\r\n    border-radius: 2rem;\n}\r\n/*\r\n * Blog posts\r\n */\n.blog-post {\r\n    margin-bottom: 4rem;\n}\n.blog-post-title {\r\n    margin-bottom: .25rem;\r\n    font-size: 2.5rem;\n}\n.blog-post-meta {\r\n    margin-bottom: 1.25rem;\r\n    color: #999;\n}\r\n/*\r\n * Footer\r\n */\n.blog-footer {\r\n    padding: 2.5rem 0;\r\n    color: #999;\r\n    text-align: center;\r\n    background-color: #f9f9f9;\r\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\r\n    margin-bottom: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\n    line-height: 1;\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\n    text-decoration: none;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\n        font-size: 3rem;\n}\n}\n.nav-scroller {\n    position: relative;\n    z-index: 2;\n    height: 2.75rem;\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\n    display: flex;\n    flex-wrap: nowrap;\n    padding-bottom: 1rem;\n    margin-top: -1px;\n    overflow-x: auto;\n    text-align: center;\n    white-space: nowrap;\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    font-size: .875rem;\n}\n.card-img-right {\n    height: 100%;\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\n    flex: 0 0 auto;\n}\n.h-250 {\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\n        height: 250px;\n}\n}\n/* Pagination */\n.blog-pagination {\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\n    border-radius: 2rem;\n}\n/*\n * Blog posts\n */\n.blog-post {\n    margin-bottom: 4rem;\n}\n.blog-post-title {\n    margin-bottom: .25rem;\n    font-size: 2.5rem;\n}\n.blog-post-meta {\n    margin-bottom: 1.25rem;\n    color: #999;\n}\n/*\n * Footer\n */\n.blog-footer {\n    padding: 2.5rem 0;\n    color: #999;\n    text-align: center;\n    background-color: #f9f9f9;\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\n    margin-bottom: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43133,7 +43161,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\n    line-height: 1;\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\n    text-decoration: none;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\n        font-size: 3rem;\n}\n}\n.nav-scroller {\n    position: relative;\n    z-index: 2;\n    height: 2.75rem;\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\n    display: flex;\n    flex-wrap: nowrap;\n    padding-bottom: 1rem;\n    margin-top: -1px;\n    overflow-x: auto;\n    text-align: center;\n    white-space: nowrap;\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    font-size: .875rem;\n}\n.card-img-right {\n    height: 100%;\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\n    flex: 0 0 auto;\n}\n.h-250 {\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\n        height: 250px;\n}\n}\n/* Pagination */\n.blog-pagination {\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\n    border-radius: 2rem;\n}\n/*\n * Blog posts\n */\n.blog-post {\n    margin-bottom: 4rem;\n}\n.blog-post-title {\n    margin-bottom: .25rem;\n    font-size: 2.5rem;\n}\n.blog-post-meta {\n    margin-bottom: 1.25rem;\n    color: #999;\n}\n/*\n * Footer\n */\n.blog-footer {\n    padding: 2.5rem 0;\n    color: #999;\n    text-align: center;\n    background-color: #f9f9f9;\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\n    margin-bottom: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\r\n    line-height: 1;\r\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\r\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\r\n    text-decoration: none;\n}\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\r\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\r\n        font-size: 3rem;\n}\n}\n.nav-scroller {\r\n    position: relative;\r\n    z-index: 2;\r\n    height: 2.75rem;\r\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\r\n    display: flex;\r\n    flex-wrap: nowrap;\r\n    padding-bottom: 1rem;\r\n    margin-top: -1px;\r\n    overflow-x: auto;\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\r\n    padding-top: .75rem;\r\n    padding-bottom: .75rem;\r\n    font-size: .875rem;\n}\n.card-img-right {\r\n    height: 100%;\r\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\r\n    flex: 0 0 auto;\n}\n.h-250 {\r\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\r\n        height: 250px;\n}\n}\r\n/* Pagination */\n.blog-pagination {\r\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\r\n    border-radius: 2rem;\n}\r\n/*\r\n * Blog posts\r\n */\n.blog-post {\r\n    margin-bottom: 4rem;\n}\n.blog-post-title {\r\n    margin-bottom: .25rem;\r\n    font-size: 2.5rem;\n}\n.blog-post-meta {\r\n    margin-bottom: 1.25rem;\r\n    color: #999;\n}\r\n/*\r\n * Footer\r\n */\n.blog-footer {\r\n    padding: 2.5rem 0;\r\n    color: #999;\r\n    text-align: center;\r\n    background-color: #f9f9f9;\r\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\r\n    margin-bottom: 0;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43205,7 +43233,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #159513;\n}\n.form-pannel {\r\n    border: 1px solid #159513;\r\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\r\n    padding: 11px 0px;\r\n    border-top-right-radius: 6px;\r\n    border-top-left-radius: 6px;\r\n    margin-top: 20px;\n}\n.form-pannel {\r\n    border-bottom-left-radius: 6px;\r\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\r\n    z-index: 99999;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #159513;\n}\n.form-pannel {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\n    z-index: 99999;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43229,7 +43257,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-a8b6818e] {\n    display: none !important;\n}\na.next[data-v-a8b6818e] {\n    display: none !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-a8b6818e] {\r\n    display: none !important;\n}\na.next[data-v-a8b6818e] {\r\n    display: none !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43301,7 +43329,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-38351579] {\n    display: none !important;\n}\na.next[data-v-38351579] {\n    display: none !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-38351579] {\r\n    display: none !important;\n}\na.next[data-v-38351579] {\r\n    display: none !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

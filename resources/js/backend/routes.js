@@ -54,7 +54,7 @@ export const routes = [
   { path:  `${prefix}`, component: home, name:'Dashboard',meta: { layout: adminlayout } },
   { path:  `${prefix}/profile`, component: profile, name:'profile',meta: { layout: adminlayout } },
   { path:  `${prefix}/union/profile`, component: unionprofile, name:'unionprofile',meta: { layout: adminlayout } },
-  { path:  `${prefix}/union/charages`, component: charages, name:'charages',meta: { layout: adminlayout } },
+  { path:  `${prefix}/union/charges`, component: charages, name:'charages',meta: { layout: adminlayout } },
 
   { path:  `${prefix}/user/list`, component: userlist, name:'userlist',meta: { layout: adminlayout } },
   { path:  `${prefix}/user/list/add`, component: userlistedit, name:'userlistadd',meta: { layout: adminlayout } },

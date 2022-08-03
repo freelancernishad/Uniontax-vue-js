@@ -2209,7 +2209,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     'getUnions': 'getUnions',
     'getType': 'getType',
     'getUnion': 'getUnion',
-    'getunionInfos': 'getunionInfos'
+    'getunionInfos': 'getunionInfos',
+    'getvatTax': 'getvatTax'
   })), {}, {
     getUsers: function getUsers() {
       return this.$store.getters.getUpdateUser;

@@ -702,7 +702,7 @@
             <b-form @submit.stop.prevent="finalSubmit" style="margin-top: 50px;">
 
                 <div class="text-center" style="width:50%;margin:0 auto" v-if="getunionInfos.payment_type=='Prepaid'">
-                    <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{ sonodnamedata.sonod_fee }} টাকা ।</h3>
+                    <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{ sonodnamedata.sonod_fee+getvatTax.tax }} টাকা ।</h3>
                     <button type="submit" class="btn btn-info" v-if="!submitLoad">Pay And Submit</button>
                     <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
                 </div>
