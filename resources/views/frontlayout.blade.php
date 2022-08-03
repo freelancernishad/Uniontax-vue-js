@@ -109,7 +109,7 @@ div#exampleModal {
 
 
 
-    <script src="{{ asset('js/frontend.js') }}"></script>
+    <script src="{{ asset('js/frontend.js') }}" async ></script>
 
 <script>
 
