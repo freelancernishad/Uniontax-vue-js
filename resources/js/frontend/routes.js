@@ -2,30 +2,22 @@ let layout = require('./components/layouts/layout.vue').default;
 let blank = require('./components/layouts/blank.vue').default;
 
 
-// let login = require('./components/auth/login.vue').default;
-let login = () => import('./components/auth/login.vue')
-// let register = require('./components/auth/register.vue').default;
-let register = () => import('./components/auth/register.vue')
-// let forget = require('./components/auth/forget.vue').default;
-let forget = () => import('./components/auth/forget.vue')
+let login = require('./components/auth/login.vue').default;
+let register = require('./components/auth/register.vue').default;
+let forget = require('./components/auth/forget.vue').default;
 
-// let certificate = require('./components/form/aftersubmit.vue').default;
-let certificate = () => import('./components/form/aftersubmit.vue')
-// let application = require('./components/form/index.vue').default;
-let application = () => import('./components/form/index.vue')
-// let blogs = require('./components/blogs/index.vue').default;
-let blogs = () => import('./components/blogs/index.vue')
-// let blogread = require('./components/blogs/read.vue').default;
-let blogread = () => import('./components/blogs/read.vue')
-// let sonodVerify = require('./components/sonodVerify.vue').default;
-let sonodVerify = () => import('./components/sonodVerify.vue')
-// let sonodsearch = require('./components/sonodsearch.vue').default;
-let sonodsearch = () => import('./components/sonodsearch.vue')
-// let contact = require('./components/contact.vue').default;
-let contact = () => import('./components/contact.vue')
 
-// let home = require('./components/home.vue').default;
-let home = () => import('./components/home.vue')
+let certificate = require('./components/form/aftersubmit.vue').default;
+let application = require('./components/form/index.vue').default;
+
+let blogs = require('./components/blogs/index.vue').default;
+let blogread = require('./components/blogs/read.vue').default;
+
+let sonodVerify = require('./components/sonodVerify.vue').default;
+let sonodsearch = require('./components/sonodsearch.vue').default;
+let contact = require('./components/contact.vue').default;
+
+let home = require('./components/home.vue').default;
 let reject = require('./components/reject.vue').default;
 let PageNotFound = require('./components/404.vue').default;
 
