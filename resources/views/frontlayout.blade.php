@@ -5,21 +5,14 @@
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>:: Welcome to Upsheba ::</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/bangladesh-govt.png') }}" />
     <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet" onload="if(media!=='all')media='all'"> -->
     <!-- CSS only -->
-
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/bangladesh-govt.png') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('assets/css/pro.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
-    {{-- <script src="{{ asset('assets/js/jquery-3.2.1.slim.min.js') }}"></script> --}}
-    {{-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css"> --}}
-    {{-- <link href="css/style.css" rel="stylesheet" type="text/css" /> --}}
-    {{-- <script type="text/javascript" src="{{ asset('assets/js/jquery.rcbrand.js') }}"></script> --}}
-
 
 
     <script type="text/javascript" src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
@@ -43,12 +36,12 @@ div#exampleModal {
 .serviceBox {
     box-shadow: 0px 0px 0px 1px var(--defaultColor) !important;
     padding: 13px 4px;
-    height: 120px;
+    height: 120px !important;
     transition: all 0.4s;
 }
 </style>
 
-<link type="text/css" href="{{ asset('slider/css/jquery.bbslider.css') }}" rel="stylesheet" media="screen"/>
+<!-- <link type="text/css" href="{{ asset('slider/css/jquery.bbslider.css') }}" rel="stylesheet" media="screen"/> -->
 
 <style type="text/css">
 
@@ -112,6 +105,24 @@ div#exampleModal {
     <script src="{{ asset('js/frontend.js') }}" async ></script>
 
 <script>
+    function linkrun(linkdata){
+
+        var link = document.createElement('link');
+        link.setAttribute("rel", "stylesheet");
+        link.setAttribute("type", "text/css");
+        // link.onload = function(){ console.log('loaded'); }
+        link.setAttribute("href", linkdata);
+        document.getElementsByTagName("head")[0].appendChild(link);
+        console.log('load')
+    }
+
+    linkrun("<?php echo  asset('assets/css/bootstrap.min.css') ?>");
+
+
+        linkrun("<?php echo  asset('assets/css/style.css') ?>");
+
+    // linkrun('assets/css/pro.min.css');
+    // linkrun('assets/css/style.css');
 
 
 if ("{{ Auth::user() }}") {
