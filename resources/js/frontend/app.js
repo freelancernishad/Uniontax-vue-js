@@ -22,6 +22,7 @@ import {BFormDatepicker} from 'bootstrap-vue/src/components/form-datepicker'
 import {BFormFile} from 'bootstrap-vue/src/components/form-file'
 import {BButton,BButtonClose} from 'bootstrap-vue/src/components/button'
 import {BModal} from 'bootstrap-vue/src/components/modal'
+import {BImg} from 'bootstrap-vue/src/components/image'
 
 Vue.component('BForm', BForm);
 Vue.component('BFormInvalidFeedback', BFormInvalidFeedback);
@@ -42,6 +43,7 @@ Vue.component('BFormFile', BFormFile);
 Vue.component('BButton', BButton);
 Vue.component('BButtonClose', BButtonClose);
 Vue.component('BModal', BModal);
+Vue.component('BImg', BImg);
 
 
 
