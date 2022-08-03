@@ -47,10 +47,17 @@ export default {
                         return User.dateformat(value)[7]
                     }
                 },
-                { key: 'actions', label: 'Actions' },
-                { key: 'status', label: 'Status' },
+
 
             ]
+            if (this.$route.params.type == 'cancel') {
+
+                this.fields.push({ key: 'cancedby', label: 'বাতিল করেছে',sortable: true  },);
+            }
+
+
+            this.fields.push( { key: 'actions', label: 'Actions' },
+                { key: 'status', label: 'Status' },);
     },
     data() {
         return {
@@ -114,10 +121,7 @@ export default {
         }
     },
     methods: {
-        teacherEmailTCellFormat(value) {
-            console.log(value)
-            return 'hello'
-        },
+
 
     async uniondata(){
                     if(this.$route.params.name){

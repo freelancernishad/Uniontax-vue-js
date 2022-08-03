@@ -74,6 +74,10 @@ class CreateSonodsTable extends Migration
             $table->string('chaireman_name')->nullable();
             $table->longText('chaireman_sign')->nullable();
 
+
+            $table->string('cancedby')->nullable();
+            $table->string('cancedbyUserid')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

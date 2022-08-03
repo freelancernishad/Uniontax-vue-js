@@ -367,6 +367,9 @@ class SonodController extends Controller
         $sonod = Sonod::find($id);
         $data = $request->all();
         ActionLog::create($data);
+
+        $sonod->update(['cancedby'=>$request->names,'cancedbyUserid'=>$request->user_id]);
+
         $InvoiceUrl =  url("/reject/$id");
         $deccription = "Opps! Your application has been Not Approve. Details : " . $InvoiceUrl;
         $messages = array();

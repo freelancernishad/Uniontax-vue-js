@@ -67,5 +67,7 @@ class Sonod extends Model
         'payment_status',
         'chaireman_name',
         'chaireman_sign',
+        'cancedby',
+        'cancedbyUserid',
     ];
 }
