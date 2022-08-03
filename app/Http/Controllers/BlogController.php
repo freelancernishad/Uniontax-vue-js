@@ -9,8 +9,15 @@ use App\Models\blog_category;
 
 class blogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $cat = $request->cat;
+        if($cat){
+            $category = blog_category::where('slug',$cat)->first();
+            $carName = $category->name;
+            return blog::where('Category',$carName)->get();
+        }
+
         return blog::all();
     }
     public function updateblog(Request $request)

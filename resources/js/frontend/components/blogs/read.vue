@@ -1,20 +1,8 @@
 <template>
     <div>
         <div class="row mb-2">
-            <div class="col-md-6" v-for="(blog, index) in blogs" :key="'blog' + index">
-                <div
-                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">{{ blog.Category }}</strong>
-                        <h3 class="mb-0">{{ blog.title.substring(0, 50) }}</h3>
-                        <div class="mb-1 text-muted">Nov 12</div>
-                        <p class="card-text mb-auto">{{ blog.short_description.substring(0, 100) }}</p>
-                        <router-link :to="{name:'blogread',params:{id:blog.id}}" class="stretched-link">Continue reading</router-link>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <img width="100%" height="100%" :src="$asseturl + blog.Images" alt="">
-                    </div>
-                </div>
+            <div class="col-md-12" >
+             <img width="100%" height="100%" :src="$asseturl + blog.Images" alt="">
             </div>
         </div>
     </div>
@@ -23,31 +11,31 @@
 export default {
     data() {
         return {
-            blogs: {},
+            blog: {},
         }
     },
-            watch: {
+        watch: {
         '$route': {
             handler(newValue, oldValue) {
-                if (this.$route.params.name) {
-                    this.blogList(this.$route.params.name)
+                if (this.$route.params.id) {
+                     this.blogList(this.$route.params.id)
                 }
             },
             deep: true
         }
     },
     methods: {
-        blogList(cat = '') {
-            axios.get(`/api/get/blog/list?cat=${cat}`)
+        blogList(id = '') {
+            axios.get(`/api/update/blog/${id}`)
                 .then(({ data }) => {
-                    this.blogs = data
+                    this.blog = data
                 })
                 .catch()
         },
     },
     mounted() {
-        if (this.$route.params.name) {
-            this.blogList(this.$route.params.name)
+        if (this.$route.params.id) {
+            this.blogList(this.$route.params.id)
         }
     }
 };
