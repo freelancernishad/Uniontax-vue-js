@@ -9,6 +9,7 @@ let logout = require('./components/auth/logout.vue').default;
 
 let home = require('./components/home.vue').default;
 let unionprofile = require('./components/unionprofile.vue').default;
+let charages = require('./components/charages.vue').default;
 let profile = require('./components/profile.vue').default;
 
 let userlist = require('./components/users/list.vue').default;
@@ -53,6 +54,7 @@ export const routes = [
   { path:  `${prefix}`, component: home, name:'Dashboard',meta: { layout: adminlayout } },
   { path:  `${prefix}/profile`, component: profile, name:'profile',meta: { layout: adminlayout } },
   { path:  `${prefix}/union/profile`, component: unionprofile, name:'unionprofile',meta: { layout: adminlayout } },
+  { path:  `${prefix}/union/charages`, component: charages, name:'charages',meta: { layout: adminlayout } },
 
   { path:  `${prefix}/user/list`, component: userlist, name:'userlist',meta: { layout: adminlayout } },
   { path:  `${prefix}/user/list/add`, component: userlistedit, name:'userlistadd',meta: { layout: adminlayout } },

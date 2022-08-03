@@ -154,6 +154,12 @@
 
 
 
+            <li  class="nav-item" @click="submenu(0)"  v-if="Users.position=='District_admin'">
+                            <router-link :to="{name:'charages'}" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Charages</span></router-link>
+                        </li>
+
+
             <li  class="nav-item" @click="submenu(0)"  v-if="Users.position=='Thana_admin' || Users.position=='District_admin'">
                             <router-link :to="{name:'unionlist'}" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Union List</span></router-link>
