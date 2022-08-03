@@ -72,17 +72,40 @@
 
 
 <div class="nagorik_sonod" style="margin-bottom:10px;">
+    <?php
+    $string = "টিপ বোঝে না, টোপ বোঝে না টিপ বোঝে না, কেমন বাপু লোক";
+     strlen('ভোটার এলাকা স্থানান্তর');
+     $namelength =  strlen($row->sonod_name);
+    $width = '300px';
+    $fontsize = '30px';
+    if($namelength>=100){
+        $width = '400px';
+        $fontsize = '20px';
+
+    }elseif($namelength>=85){
+        $width = '500px';
+        $fontsize = '22px';
+    }elseif($namelength>=75){
+        $width = '450px';
+        $fontsize = '25px';
+    }elseif($namelength>=65){
+        $width = '400px';
+        $fontsize = '27px';
+    }
+           ?>
     <div
         style="
         background-color: #159513;
         color: #fff;
-        font-size: 30px;
+        font-size: {{ $fontsize }};
         border-radius: 30em;
-        width:300px;
+        width:{{ $width }};
         margin:20px auto;
-        text-align:center
+        text-align:center;
+        padding:5px 0;
         ">
-        {{ $row->sonod_name }}</div>
+
+{{ $row->sonod_name }} </div>
 
                         </div>
 
