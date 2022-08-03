@@ -163,10 +163,24 @@
             prev-text="Prev" next-text="Next" last-text="Last" align="right"></b-pagination>
         <!-- Info modal -->
         <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only @hide="resetInfoModal">
+
+            <div v-if="infoModal.title=='Cancel'">
+                   <form v-on:submit.prevent="formcancel">
+                   <div class="form-group">
+                    <label for="">বাতিল এর কারন উল্লেখ করুন</label>
+                    <textarea class="form-control" v-model="b.reson" cols="30" rows="10" style="height:100px;resize:none"></textarea>
+                   </div>
+<button type="submit" class="btn btn-info">Not Approve</button>
+                   </form>
+
+            </div>
+            <div v-else>
             <approvetrade :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"
                 v-if="SonodType == 'Trade_license'"></approvetrade>
             <approvesonod :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList" v-else>
             </approvesonod>
+</div>
+
             <!-- <pre>{{ infoModal.content_id }}</pre> -->
         </b-modal>
         <!-- Info modal -->
@@ -370,6 +384,9 @@ export default {
                 paymentType:'',
                 district:'',
             },
+            b:{
+                reson:'',
+            },
             infoModal: {
                 id: 'info-modal',
                 title: '',
@@ -472,25 +489,32 @@ export default {
             }
         },
         async cancel(route, id, status, button) {
+
+            this.infoModal.content_id = `${id}`;
+            this.infoModal.title = `Cancel`;
+            this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+
+
+
             //             if(this.ApproveType=='vueAction'){
             //  this.infoModal.content_id = `${id}`;
             //                 this.$root.$emit('bv::show::modal', this.infoModal.id, button)
             //             }else if(this.ApproveType=='apiAction'){
-            Swal.fire({
-                title: 'Are you sure?',
-                text: `${status} this data!`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: `Yes, Not Approve it!`
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    var res = await this.callApi('get', `${route}/${status}/${id}`, []);
-                    Notification.customSuccess(`Your data has been Not Approve Success`);
-                    this.$emit('event-name')
-                }
-            })
+            // Swal.fire({
+            //     title: 'Are you sure?',
+            //     text: `${status} this data!`,
+            //     icon: 'warning',
+            //     showCancelButton: true,
+            //     confirmButtonColor: '#3085d6',
+            //     cancelButtonColor: '#d33',
+            //     confirmButtonText: `Yes, Not Approve it!`
+            // }).then(async (result) => {
+            //     if (result.isConfirmed) {
+            //         var res = await this.callApi('get', `${route}/${status}/${id}`, []);
+            //         Notification.customSuccess(`Your data has been Not Approve Success`);
+            //         this.$emit('event-name')
+            //     }
+            // })
             // }
         },
         async paynow(route, id, button) {
@@ -539,7 +563,22 @@ this.f.district = this.Users.district;
     Notification.customSuccess('Payment Info Update Successfuly Done');
 
 
-        }
+        },
+
+         async formcancel(){
+                this.b['names'] = this.Users.names;
+                this.b['position'] = this.Users.position;
+                this.b['unioun'] = this.Users.unioun;
+                var id = this.infoModal.content_id;
+
+                var res = await this.callApi('post',`${this.CancelRoute}/cancel/${id}`,this.b);
+                console.log(res)
+           this.$root.$emit('bv::hide::modal', 'info-modal')
+                // this.$emit('event-name')
+                //  Notification.customSuccess(`Your data has been Approved`);
+
+            }
+
     }
 }
 </script>

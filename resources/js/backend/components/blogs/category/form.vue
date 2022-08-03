@@ -24,6 +24,15 @@
                                     </div>
 
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Slug (English)</label>
+                                        <input type="text" class="form-control" v-model="form.slug" id="name"
+                                            value="">
+                                        <span id="errorMessage"></span>
+                                    </div>
+
+                                </div>
 
                             </div>
                      <button type="submit" id="cbtn" class="btn btn-success">Submit</button>
@@ -42,6 +51,7 @@ export default {
         return {
            form: {
                 name:null,
+                slug:null,
              },
         }
     },

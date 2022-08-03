@@ -47,9 +47,9 @@ class SonodController extends Controller
             $payment->update(['status' => 'Paid']);
             $sonod->update(['stutus' => 'Pending','payment_status' => 'Paid']);
             // $sonod_name = sonodEnName($sonod->sonod_name);
-
+            $InvoiceUrl =  url("/invoice/c/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
-            $deccription = "Congratulation! Your application has been Paid.Wait for Approval.";
+            $deccription = "Congratulation! Your application has been Paid.Wait for Approval.. Invoice: $InvoiceUrl";
             $messages = array();
             array_push(
                 $messages,
@@ -358,13 +358,19 @@ class SonodController extends Controller
         }
         return $sonod->update(['payment_status' => 'Paid']);
     }
+
+    public function cancelsonod(Request $request, $id)
+    {
+
+        return $request->all();
+    }
+
     public function sonod_action(Request $request, $action, $id)
     {
 
 
 
 
-        //    return $action;
         $sonod = Sonod::find($id);
         $unioun_name = $sonod->unioun_name;
         $uniouninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
@@ -502,8 +508,14 @@ class SonodController extends Controller
          $row->unioun_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
          $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
-        $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
+         if($name=='c'){
+            $pdf = LaravelMpdf::loadView('cinvoice', compact('row', 'sonod', 'uniouninfo'));
+            $pdf->stream("pdf.pdf");
+         }else{
+            $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
          $pdf->stream("pdf.pdf");
+         }
+
     }
     public function userDocument(Request $request, $name, $id)
     {

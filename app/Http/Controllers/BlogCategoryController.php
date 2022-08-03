@@ -23,10 +23,11 @@ class BlogCategoryController extends Controller
         if($id){
             $name = $request->name;
             $Blog_category = Blog_category::find($id);
-            return $Blog_category->update(['name'=>$name]);
+            $slug = strtolower(str_replace(" ","_",$request->slug));
+            return $Blog_category->update(['name'=>$name,'slug'=>$slug]);
         }
         $name = $request->name;
-        $slug = strtolower(str_replace(" ","_",$request->name));
+        $slug = strtolower(str_replace(" ","_",$request->slug));
         $random  = sprintf("%06d", mt_rand(1, 999999));
         return Blog_category::create(['name'=>$name,'slug'=>$slug,'category_id'=>$random]);
 

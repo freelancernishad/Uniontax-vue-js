@@ -113,7 +113,7 @@
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">খবর</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                 <router-link class="nav-link" v-for="(cat,indexs) in categorys" :to="{ name: 'blogs',params:{name:cat.slug} }" :key="'cat'+indexs">{{ cat.name }}
+                                                 <router-link  class="dropdown-item" v-for="(cat,indexs) in categorys" :to="{ name: 'blogs',params:{name:cat.slug} }" :key="'cat'+indexs">{{ cat.name }}
                                             </router-link>
 
                                             </div>

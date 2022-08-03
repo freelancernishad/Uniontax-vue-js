@@ -2,7 +2,7 @@
     <div>
         <div class="row mb-2">
             <div class="col-md-12" >
-             <img width="100%" height="100%" :src="$asseturl + blog.Images" alt="">
+             <img width="100%" height="100%" :src="blog.Images" alt="">
             </div>
         </div>
     </div>

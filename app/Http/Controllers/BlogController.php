@@ -30,7 +30,7 @@ class blogController extends Controller
 
 
             if($ImagesCount>1){
-                $data['Images'] =  fileupload($request->Images,"blogs/");
+                $data['Images'] =  fileupload($request->Images,"blogs/",200,250);
             }
 
         if($id){

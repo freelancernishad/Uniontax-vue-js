@@ -88,7 +88,10 @@ Route::post('sonod/submit',[SonodController::class, 'sonod_submit']);
 Route::get('sonod/delete/{id}',[SonodController::class, 'sonod_delete']);
 Route::post('sonod/sec/approve/{id}',[SonodController::class, 'sec_sonod_action']);
 Route::get('sonod/pay/{id}',[SonodController::class, 'sonod_pay']);
+Route::post('sonod/cancel/{id}',[SonodController::class, 'cancelsonod']);
 Route::get('sonod/{action}/{id}',[SonodController::class, 'sonod_action']);
+
+
 Route::get('sonod/sonod_Id',[SonodController::class, 'sonod_id']);
 Route::post('sonod/search',[SonodController::class, 'sonod_search']);
 
