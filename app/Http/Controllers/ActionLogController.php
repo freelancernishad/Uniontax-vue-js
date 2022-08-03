@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ActionLogController extends Controller
 {
+
+    public function rejectreason(Request $request,$id)
+    {
+      return ActionLog::where(['sonod_id'=>$id,'status'=>'cancel'])->orderBy('id','DESC')->first();
+    }
+
     /**
      * Display a listing of the resource.
      *

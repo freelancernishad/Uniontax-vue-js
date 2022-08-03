@@ -94,52 +94,52 @@
                 </div>
             </template>
             <template #cell(status)="row">
-                <span size="sm" class="btn btn-success mr-1  mt-1" v-if="row.item.payment_status == 'Paid'">
+                <span size="sm" class="btn btn-success mr-1 mt-1" v-if="row.item.payment_status == 'Paid'">
                     {{ row.item.payment_status }}
                 </span>
-                <span size="sm" class="btn btn-danger mr-1  mt-1" v-else-if="row.item.payment_status == 'Unpaid'">
+                <span size="sm" class="btn btn-danger mr-1 mt-1" v-else-if="row.item.payment_status == 'Unpaid'">
                     {{ row.item.payment_status }}
                 </span>
             </template>
             <template #cell(actions)="row">
                 <span size="sm" @click="deletefun(row.item, row.index, $event.target)" v-if="DeleteRoute != ''"
-                    class="btn btn-danger mr-1">
+                    class="btn btn-danger mr-1 mt-1">
                     Delete
                 </span>
                 <a size="sm" target="_blank" :href="ApplicationRoute + '/' + row.item.sonod_name + '/' + row.item.id"
-                    v-if="ApplicationRoute != ''" class="btn btn-success mr-1">
+                    v-if="ApplicationRoute != ''" class="btn btn-success mr-1 mt-1">
                     আবেদন পত্র
                 </a>
                 <router-link size="sm" :to="{ name: EditRoute, params: { id: row.item.id } }" v-if="EditRoute != ''"
-                    class="btn btn-info mr-1">
+                    class="btn btn-info mr-1 mt-1">
                     Edit
                 </router-link>
                 <span size="sm" @click="info(row.item, row.index, $event.target)" v-if="ViewRoute != ''"
-                    class="btn btn-info mr-1">
+                    class="btn btn-info mr-1 mt-1">
                     View
                 </span>
                 <!-- <router-link size="sm" :to="{name:ViewRoute,params:{id:row.item.id}}" @click="info(ApproveRoute,row.item.id,ApproveData, $event.target)"  v-if="ViewRoute!=''" class="btn btn-success mr-1">
                     View
                 </router-link> -->
                 <span size="sm" @click="approve(ApproveRoute, row.item.id, ApproveData, $event.target, ApproveType)"
-                    v-if="ApproveRoute != '' && row.item.payment_status == 'Unpaid'" class="btn btn-success mr-1">
+                    v-if="ApproveRoute != '' && row.item.payment_status == 'Unpaid'" class="btn btn-success mr-1 mt-1">
                     Approve
                 </span>
                 <span size="sm" @click="approve('/api/sonod', row.item.id, ApproveData, $event.target, 'apiAction')"
-                    v-else-if="ApproveRoute != '' && row.item.payment_status == 'Paid'" class="btn btn-success mr-1">
+                    v-else-if="ApproveRoute != '' && row.item.payment_status == 'Paid'" class="btn btn-success mr-1 mt-1">
                     Approve
                 </span>
                 <span size="sm" @click="paynow(PayRoute, row.item.id, $event.target)"
                     v-if="row.item.payment_status == 'Unpaid' && row.item.stutus == 'approved' && PayRoute != ''"
-                    class="btn btn-info mr-1">
+                    class="btn btn-info mr-1 mt-1">
                     Pay Now
                 </span>
                 <a :href="'/invoice/d/' + row.item.id" target="_blank" size="sm" v-if="row.item.stutus == 'approved'"
-                    class="btn btn-info mr-1">
+                    class="btn btn-info mr-1 mt-1">
                     রশিদ
                 </a>
                 <a :href="'/sonod/d/' + row.item.id" target="_blank" size="sm"
-                    v-if="row.item.stutus == 'approved' && row.item.payment_status == 'Paid'" class="btn btn-info mr-1">
+                    v-if="row.item.stutus == 'approved' && row.item.payment_status == 'Paid'" class="btn btn-info mr-1 mt-1">
                     সনদ
                 </a>
                 <!--
@@ -147,7 +147,7 @@
                     Approve
                 </router-link> -->
                 <span size="sm" @click="cancel(CancelRoute, row.item.id, 'cancel', $event.target)" v-if="CancelRoute != ''"
-                    class="btn btn-danger mr-1">
+                    class="btn btn-danger mr-1 mt-1">
                     Not-Approve
                 </span>
             </template>
@@ -566,16 +566,26 @@ this.f.district = this.Users.district;
         },
 
          async formcancel(){
+             var id = this.infoModal.content_id;
                 this.b['names'] = this.Users.names;
+                this.b['user_id'] = this.Users.id;
                 this.b['position'] = this.Users.position;
                 this.b['unioun'] = this.Users.unioun;
-                var id = this.infoModal.content_id;
+                this.b['status'] = 'cancel';
+                this.b['sonod_id'] = id;
 
                 var res = await this.callApi('post',`${this.CancelRoute}/cancel/${id}`,this.b);
-                console.log(res)
+                // console.log(res)
            this.$root.$emit('bv::hide::modal', 'info-modal')
-                // this.$emit('event-name')
-                //  Notification.customSuccess(`Your data has been Approved`);
+                this.$emit('event-name')
+
+
+                this.infoModal.title = ''
+                this.infoModal.content = ''
+                this.b ={
+                    reson:'',
+                }
+                 Notification.customError(`Your data has been Canceled`);
 
             }
 

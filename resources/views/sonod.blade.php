@@ -33,7 +33,7 @@
                     </td>
                     <td style="text-align: center;" width="20%">
 
-                    {{-- <img width="100px" src="{{ base64($row->image) }}"> --}}
+                    <img width="100px" src="{{ base64($row->image) }}">
 
 
 

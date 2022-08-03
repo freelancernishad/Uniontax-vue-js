@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Sonod;
 use App\Models\Payment;
+use App\Models\ActionLog;
 use App\Models\Uniouninfo;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
@@ -361,8 +362,33 @@ class SonodController extends Controller
 
     public function cancelsonod(Request $request, $id)
     {
+        $sonod = Sonod::find($id);
+        $data = $request->all();
+        ActionLog::create($data);
+        $InvoiceUrl =  url("/reject/$id");
+        $deccription = "Opps! Your application has been Not Approve. Details : " . $InvoiceUrl;
+        $messages = array();
+        array_push(
+            $messages,
+            [
+                "number" => '88' . int_bn_to_en($sonod->applicant_mobile),
+                "message" => "$deccription"
+            ]
+        );
+        ///sms functions
+        try {
+            $msgs = sendMessages($messages);
+        } catch (Exception $e) {
+            array_push($responsemessege, $e->getMessage());
+        }
 
-        return $request->all();
+        $updatedata = [
+            'stutus' => $request->status,
+        ];
+
+    return $sonod->update($updatedata);
+
+
     }
 
     public function sonod_action(Request $request, $action, $id)

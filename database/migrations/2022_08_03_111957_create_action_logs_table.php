@@ -15,10 +15,13 @@ class CreateActionLogsTable extends Migration
     {
         Schema::create('action_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('sonod_id')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('names')->nullable();
             $table->string('position')->nullable();
-            $table->string('reson')->nullable();
+            $table->longText('reson')->nullable();
             $table->string('unioun')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

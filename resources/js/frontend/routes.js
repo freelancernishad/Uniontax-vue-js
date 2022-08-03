@@ -18,6 +18,7 @@ let sonodsearch = require('./components/sonodsearch.vue').default;
 let contact = require('./components/contact.vue').default;
 
 let home = require('./components/home.vue').default;
+let reject = require('./components/reject.vue').default;
 let PageNotFound = require('./components/404.vue').default;
 
 
@@ -34,6 +35,7 @@ export const routes = [
     { path:  `${prefix}application/:name`, component: application, name:'application',meta: { layout: layout } },
     { path:  `${prefix}blogs/:name`, component: blogs, name:'blogs',meta: { layout: layout } },
     { path:  `${prefix}blogs/read/:id`, component: blogread, name:'blogread',meta: { layout: layout } },
+    { path:  `${prefix}reject/:id`, component: reject, name:'reject',meta: { layout: layout } },
 
   { path: "*", component: PageNotFound }
 

@@ -2,13 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\blogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SonodController;
 use App\Http\Controllers\VisitorController;
 use  App\Http\Controllers\api\authController;
+use App\Http\Controllers\ActionLogController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\BlogCategoryController;
-use App\Http\Controllers\blogController;
 use App\Http\Controllers\SonodnamelistController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -127,3 +128,6 @@ Route::get('get/blog/list',[blogController::class,'index']);
 Route::get('get/blog/delete/{id}',[blogController::class,'deleteblog']);
 Route::get('update/blog/{id}',[blogController::class,'getblog']);
 Route::post('update/blog',[blogController::class,'updateblog']);
+
+
+Route::get('reject/{id}',[ActionLogController::class,'rejectreason']);

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class ActionLog extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'sonod_id',
+        'user_id',
+        'names',
+        'position',
+        'reson',
+        'unioun',
+        'status',
+    ];
 }
