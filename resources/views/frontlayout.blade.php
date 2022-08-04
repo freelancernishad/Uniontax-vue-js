@@ -122,8 +122,10 @@ div#exampleModal {
 
 
 if ("{{ Auth::user() }}") {
+    const storeToken = localStorage.getItem('token');
 
-    if(!User.loggedIn()){
+
+    if(!storeToken){
         axios.post('/logout').then(()=>{
             // window.location.href = '/'
         })
