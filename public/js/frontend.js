@@ -2504,6 +2504,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         content: '',
         content_id: ''
       },
+      charages: {
+        sonod_fee: 0,
+        vatAmount: 0,
+        taxAmount: 0,
+        service: 0,
+        totalamount: 0
+      },
       waitForPayment: false,
       submitLoad: false,
       sameStatus: '',
@@ -2886,6 +2893,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var sonod_fee, vat, tax, service, vatAmount, taxAmount, totalamount;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2900,9 +2908,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return");
 
               case 3:
-                _this5.$root.$emit('bv::show::modal', _this5.infoModal.id);
+                sonod_fee = Number(_this5.sonodnamedata.sonod_fee);
+                vat = Number(_this5.getvatTax.vat);
+                tax = Number(_this5.getvatTax.tax);
+                service = Number(_this5.getvatTax.service);
+                vatAmount = sonod_fee * vat / 100;
+                taxAmount = sonod_fee * tax / 100;
+                totalamount = sonod_fee + vatAmount + taxAmount + service;
+                _this5.charages = {
+                  sonod_fee: sonod_fee,
+                  vatAmount: vatAmount,
+                  taxAmount: taxAmount,
+                  service: service,
+                  totalamount: totalamount
+                }, _this5.$root.$emit('bv::show::modal', _this5.infoModal.id);
 
-              case 4:
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -2941,14 +2962,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this6.checkPayment(datas.id);
 
+                  _this6.form['id'] = datas.id;
                   window.open(redirect, '_blank');
                 } else if (payment_type == 'Postpaid') {
                   _this6.waitForPayment = true;
 
-                  _this6.checkPayment(datas.id); //  console.log(this.waitForPayment)
+                  _this6.checkPayment(datas.id);
+
+                  _this6.form['id'] = datas.id; //  console.log(this.waitForPayment)
                   // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
                   // window.open(redirect, '_blank');
-
                 }
 
               case 8:
@@ -3072,14 +3095,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this8.form.sonod_Id = "".concat(response.data);
       });
     }, 3000);
-    setTimeout(function () {
-      var sonod_fee = Number(_this8.sonodnamedata.sonod_fee);
-      var vat = Number(_this8.getvatTax.vat);
-      var tax = Number(_this8.getvatTax.tax);
-      var service = Number(_this8.getvatTax.service);
-      var perc = sonod_fee + vat;
-      console.log(perc);
-    }, 10000);
   }
 });
 
@@ -6255,14 +6270,19 @@ var render = function render() {
       width: "50%",
       margin: "0 auto"
     }
-  }, [_c("h3", [_vm._v("আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । " + _vm._s(_vm.sonodnamedata.bnname) + " এর ফি " + _vm._s(_vm.sonodnamedata.sonod_fee + _vm.getvatTax.tax) + " টাকা ।")]), _vm._v(" "), !_vm.submitLoad ? _c("button", {
+  }, [_c("h3", [_vm._v("আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । " + _vm._s(_vm.sonodnamedata.bnname) + " এর ফি " + _vm._s(_vm.charages.sonod_fee) + " টাকা, ভ্যাট " + _vm._s(_vm.charages.vatAmount) + " টাকা, ট্যাক্স " + _vm._s(_vm.charages.taxAmount) + " টাকা, সার্ভিস " + _vm._s(_vm.charages.service) + " টাকা, মোট  " + _vm._s(_vm.charages.totalamount) + " টাকা ।")]), _vm._v(" "), !_vm.submitLoad ? _c("button", {
     staticClass: "btn btn-info",
     attrs: {
       type: "submit"
     }
   }, [_vm._v("Pay And Submit")]) : _vm.submitLoad ? _c("span", {
     staticClass: "btn btn-info"
-  }, [_vm._v("Please Wait...")]) : _vm._e()]) : _vm.getunionInfos.payment_type == "Postpaid" ? _c("div", {
+  }, [_vm._v("Please Wait...")]) : _vm._e(), _vm._v(" "), _vm.submitLoad ? _c("button", {
+    staticClass: "btn btn-info",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Try Again")]) : _vm._e()]) : _vm.getunionInfos.payment_type == "Postpaid" ? _c("div", {
     staticClass: "text-center",
     staticStyle: {
       width: "50%",
@@ -43145,7 +43165,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\n    line-height: 1;\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\n    text-decoration: none;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\n        font-size: 3rem;\n}\n}\n.nav-scroller {\n    position: relative;\n    z-index: 2;\n    height: 2.75rem;\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\n    display: flex;\n    flex-wrap: nowrap;\n    padding-bottom: 1rem;\n    margin-top: -1px;\n    overflow-x: auto;\n    text-align: center;\n    white-space: nowrap;\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    font-size: .875rem;\n}\n.card-img-right {\n    height: 100%;\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\n    flex: 0 0 auto;\n}\n.h-250 {\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\n        height: 250px;\n}\n}\n/* Pagination */\n.blog-pagination {\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\n    border-radius: 2rem;\n}\n/*\n * Blog posts\n */\n.blog-post {\n    margin-bottom: 4rem;\n}\n.blog-post-title {\n    margin-bottom: .25rem;\n    font-size: 2.5rem;\n}\n.blog-post-meta {\n    margin-bottom: 1.25rem;\n    color: #999;\n}\n/*\n * Footer\n */\n.blog-footer {\n    padding: 2.5rem 0;\n    color: #999;\n    text-align: center;\n    background-color: #f9f9f9;\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\n    margin-bottom: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\r\n    line-height: 1;\r\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\r\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\r\n    text-decoration: none;\n}\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\r\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\r\n        font-size: 3rem;\n}\n}\n.nav-scroller {\r\n    position: relative;\r\n    z-index: 2;\r\n    height: 2.75rem;\r\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\r\n    display: flex;\r\n    flex-wrap: nowrap;\r\n    padding-bottom: 1rem;\r\n    margin-top: -1px;\r\n    overflow-x: auto;\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\r\n    padding-top: .75rem;\r\n    padding-bottom: .75rem;\r\n    font-size: .875rem;\n}\n.card-img-right {\r\n    height: 100%;\r\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\r\n    flex: 0 0 auto;\n}\n.h-250 {\r\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\r\n        height: 250px;\n}\n}\r\n/* Pagination */\n.blog-pagination {\r\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\r\n    border-radius: 2rem;\n}\r\n/*\r\n * Blog posts\r\n */\n.blog-post {\r\n    margin-bottom: 4rem;\n}\n.blog-post-title {\r\n    margin-bottom: .25rem;\r\n    font-size: 2.5rem;\n}\n.blog-post-meta {\r\n    margin-bottom: 1.25rem;\r\n    color: #999;\n}\r\n/*\r\n * Footer\r\n */\n.blog-footer {\r\n    padding: 2.5rem 0;\r\n    color: #999;\r\n    text-align: center;\r\n    background-color: #f9f9f9;\r\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\r\n    margin-bottom: 0;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43169,7 +43189,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\r\n    line-height: 1;\r\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\r\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\r\n    text-decoration: none;\n}\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\r\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\r\n        font-size: 3rem;\n}\n}\n.nav-scroller {\r\n    position: relative;\r\n    z-index: 2;\r\n    height: 2.75rem;\r\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\r\n    display: flex;\r\n    flex-wrap: nowrap;\r\n    padding-bottom: 1rem;\r\n    margin-top: -1px;\r\n    overflow-x: auto;\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\r\n    padding-top: .75rem;\r\n    padding-bottom: .75rem;\r\n    font-size: .875rem;\n}\n.card-img-right {\r\n    height: 100%;\r\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\r\n    flex: 0 0 auto;\n}\n.h-250 {\r\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\r\n        height: 250px;\n}\n}\r\n/* Pagination */\n.blog-pagination {\r\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\r\n    border-radius: 2rem;\n}\r\n/*\r\n * Blog posts\r\n */\n.blog-post {\r\n    margin-bottom: 4rem;\n}\n.blog-post-title {\r\n    margin-bottom: .25rem;\r\n    font-size: 2.5rem;\n}\n.blog-post-meta {\r\n    margin-bottom: 1.25rem;\r\n    color: #999;\n}\r\n/*\r\n * Footer\r\n */\n.blog-footer {\r\n    padding: 2.5rem 0;\r\n    color: #999;\r\n    text-align: center;\r\n    background-color: #f9f9f9;\r\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\r\n    margin-bottom: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\n    line-height: 1;\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\n    text-decoration: none;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\n        font-size: 3rem;\n}\n}\n.nav-scroller {\n    position: relative;\n    z-index: 2;\n    height: 2.75rem;\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\n    display: flex;\n    flex-wrap: nowrap;\n    padding-bottom: 1rem;\n    margin-top: -1px;\n    overflow-x: auto;\n    text-align: center;\n    white-space: nowrap;\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    font-size: .875rem;\n}\n.card-img-right {\n    height: 100%;\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\n    flex: 0 0 auto;\n}\n.h-250 {\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\n        height: 250px;\n}\n}\n/* Pagination */\n.blog-pagination {\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\n    border-radius: 2rem;\n}\n/*\n * Blog posts\n */\n.blog-post {\n    margin-bottom: 4rem;\n}\n.blog-post-title {\n    margin-bottom: .25rem;\n    font-size: 2.5rem;\n}\n.blog-post-meta {\n    margin-bottom: 1.25rem;\n    color: #999;\n}\n/*\n * Footer\n */\n.blog-footer {\n    padding: 2.5rem 0;\n    color: #999;\n    text-align: center;\n    background-color: #f9f9f9;\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\n    margin-bottom: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43265,7 +43285,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-a8b6818e] {\r\n    display: none !important;\n}\na.next[data-v-a8b6818e] {\r\n    display: none !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-a8b6818e] {\n    display: none !important;\n}\na.next[data-v-a8b6818e] {\n    display: none !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43313,7 +43333,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\n    background: #023076 !important;\n}\nli.nav-item a {\n    color: white !important;\n}\n.dropdown-menu {\n    background: #9e5bba;\n}\n.dropdown-item.active,\n.dropdown-item:active {\n    background-color: #159513ed;\n}\n.dropdown-item:focus,\n.dropdown-item:hover {\n    background-color: #159513ed;\n}\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\n    padding: 0 6px;\n}\n@media (min-width:992px) {\nli.nav-item {\n        border-right: 1px solid white;\n}\na.dropdown-item {\n        border-bottom: 1px solid #89209b;\n}\na.dropdown-item:first-child {\n        border-top: 1px solid #89209b;\n}\n}\n/* .dropdown:hover>.dropdown-menu{\n\t\tdisplay: block;\n\t} */\n.serviceBox {\n    border-top-right-radius: 30px;\n    border-bottom-left-radius: 30px;\n}\n.defaltColor {\n    background: var(--defaultColor) !important;\n}\n.defaltTextColor {\n    color: var(--defaultColor) !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\r\n    background: #023076 !important;\n}\nli.nav-item a {\r\n    color: white !important;\n}\n.dropdown-menu {\r\n    background: #9e5bba;\n}\n.dropdown-item.active,\r\n.dropdown-item:active {\r\n    background-color: #159513ed;\n}\n.dropdown-item:focus,\r\n.dropdown-item:hover {\r\n    background-color: #159513ed;\n}\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\r\n    padding: 0 6px;\n}\n@media (min-width:992px) {\nli.nav-item {\r\n        border-right: 1px solid white;\n}\na.dropdown-item {\r\n        border-bottom: 1px solid #89209b;\n}\na.dropdown-item:first-child {\r\n        border-top: 1px solid #89209b;\n}\n}\r\n/* .dropdown:hover>.dropdown-menu{\r\n\t\tdisplay: block;\r\n\t} */\n.serviceBox {\r\n    border-top-right-radius: 30px;\r\n    border-bottom-left-radius: 30px;\n}\n.defaltColor {\r\n    background: var(--defaultColor) !important;\n}\n.defaltTextColor {\r\n    color: var(--defaultColor) !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -43337,7 +43357,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-38351579] {\r\n    display: none !important;\n}\na.next[data-v-38351579] {\r\n    display: none !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-38351579] {\n    display: none !important;\n}\na.next[data-v-38351579] {\n    display: none !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

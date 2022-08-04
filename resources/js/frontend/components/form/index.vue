@@ -652,11 +652,11 @@
             <br>
             <b-form @submit.stop.prevent="finalSubmit" style="margin-top: 50px;">
                 <div class="text-center" style="width:50%;margin:0 auto" v-if="getunionInfos.payment_type == 'Prepaid'">
-                    <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{
-                            sonodnamedata.sonod_fee + getvatTax.tax
-                    }} টাকা ।</h3>
+                    <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{ charages.sonod_fee }} টাকা, ভ্যাট {{ charages.vatAmount }} টাকা, ট্যাক্স {{ charages.taxAmount }} টাকা, সার্ভিস {{ charages.service }} টাকা, মোট  {{ charages.totalamount }} টাকা ।</h3>
                     <button type="submit" class="btn btn-info" v-if="!submitLoad">Pay And Submit</button>
                     <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
+                    <button type="submit" class="btn btn-info" v-if="submitLoad">Try Again</button>
+
                 </div>
                 <div class="text-center" style="width:50%;margin:0 auto"
                     v-else-if="getunionInfos.payment_type == 'Postpaid'">
@@ -686,6 +686,14 @@ export default {
                 title: '',
                 content: '',
                 content_id: '',
+            },
+
+            charages: {
+                sonod_fee: 0,
+                vatAmount: 0,
+                taxAmount: 0,
+                service: 0,
+                totalamount: 0,
             },
             waitForPayment: false,
             submitLoad: false,
@@ -1019,8 +1027,21 @@ export default {
                 return;
             }
 
+            var sonod_fee = Number(this.sonodnamedata.sonod_fee)
+            var vat = Number(this.getvatTax.vat)
+            var tax = Number(this.getvatTax.tax)
+            var service = Number(this.getvatTax.service)
+             var vatAmount = ((sonod_fee*vat)/100);
+             var taxAmount = ((sonod_fee*tax)/100);
+            var totalamount = sonod_fee+vatAmount+taxAmount+service
 
-
+            this.charages = {
+                sonod_fee: sonod_fee,
+                vatAmount: vatAmount,
+                taxAmount: taxAmount,
+                service: service,
+                totalamount: totalamount,
+            },
             this.$root.$emit('bv::show::modal', this.infoModal.id)
         },
         async finalSubmit() {
@@ -1039,10 +1060,12 @@ export default {
                 redirect = `/sonod/payment/${datas.id}`
                 this.waitForPayment = true;
                 this.checkPayment(datas.id);
+                this.form['id']=datas.id;
                 window.open(redirect, '_blank');
             } else if (payment_type == 'Postpaid') {
                 this.waitForPayment = true;
                 this.checkPayment(datas.id);
+                this.form['id']=datas.id;
                 //  console.log(this.waitForPayment)
                 // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
                 // window.open(redirect, '_blank');
@@ -1116,15 +1139,7 @@ export default {
                 })
 
         }, 3000);
-        setTimeout(() => {
 
-            var sonod_fee = Number(this.sonodnamedata.sonod_fee)
-            var vat = Number(this.getvatTax.vat)
-            var tax = Number(this.getvatTax.tax)
-            var service = Number(this.getvatTax.service)
-             var perc = sonod_fee+vat
-            console.log(perc)
-        }, 10000);
 
     }
 };

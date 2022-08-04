@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Sonod;
+use App\Models\Charage;
 use App\Models\Payment;
 use App\Models\ActionLog;
 use App\Models\Uniouninfo;
@@ -123,26 +124,47 @@ class SonodController extends Controller
 
         if ($payment_type == 'Prepaid') {
            $sonod_fee =  $sonodnamelists->sonod_fee;
-           if ($sonod_fee == null || $sonod_fee == '' || $sonod_fee < 10) {
-            $sonod_fee = 10;
+
+           $unioninfos = Uniouninfo::where(['short_name_e'=>$unioun_name])->first();
+           $district = $unioninfos->district;
+           $thana = $unioninfos->thana;
+           $CharageCount = Charage::where(['district'=>$district,'thana'=>$thana])->count();
+           $vat = 0;
+           $tax = 0;
+           $service = 0;
+           if($CharageCount>0){
+           $charge =   Charage::where(['district'=>$district,'thana'=>$thana])->first();
+            $vat = $charge->vat;
+            $tax = $charge->tax;
+            $service = $charge->service;
+           }
+
+           $vatAmount = (($sonod_fee*$vat)/100);
+           $taxAmount = (($sonod_fee*$tax)/100);
+           $totalamount = $sonod_fee+$vatAmount+$taxAmount+$service;
+
+
+
+           if ($totalamount == null || $totalamount == '' || $totalamount < 10) {
+            $totalamount = 10;
            }
             $arraydata = [
-                'total_amount' => $sonod_fee,
+                'total_amount' => $totalamount,
                 'pesaKor' => $request->pesaKor,
                 'tredeLisenceFee' => $request->tredeLisenceFee,
                 'vatAykor' => $request->vatAykor,
                 'khat' => $request->khat,
                 'last_years_money' => 0,
-                'currently_paid_money' => $sonod_fee,
+                'currently_paid_money' => $totalamount,
             ];
             $amount_deails = json_encode($arraydata);
             $numto = new NumberToBangla();
-            $the_amount_of_money_in_words = $numto->bnMoney($sonod_fee) . ' মাত্র';
+            $the_amount_of_money_in_words = $numto->bnMoney($totalamount) . ' মাত্র';
             $updateData = [
                 'khat' => $request->khat,
                 'last_years_money' => 0,
-                'currently_paid_money' => $sonod_fee,
-                'total_amount' => $sonod_fee,
+                'currently_paid_money' => $totalamount,
+                'total_amount' => $totalamount,
                 'amount_deails' => $amount_deails,
                 'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
             ];
@@ -263,12 +285,25 @@ class SonodController extends Controller
     }
     public function sonod_submit(Request $r)
     {
+
+            $id = $r->id;
+            if($id){
+                return Sonod::find($id);
+            }
+
+
+
+
+
         //  $unioun_name =  $r->unioun_name;
         // $uniouninfo = Uniouninfo::where(['short_name_e'=>$unioun_name])->first();
 
         // $payment_type = $uniouninfo->payment_type;
         $successors = json_encode($r->successors);
         $sonodEnName =  Sonodnamelist::where('bnname', $r->sonod_name)->first();
+
+
+
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
         $Insertdata = $r->except(['image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
