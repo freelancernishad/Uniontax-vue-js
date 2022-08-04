@@ -3072,6 +3072,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this8.form.sonod_Id = "".concat(response.data);
       });
     }, 3000);
+    setTimeout(function () {
+      var sonod_fee = Number(_this8.sonodnamedata.sonod_fee);
+      var vat = Number(_this8.getvatTax.vat);
+      var tax = Number(_this8.getvatTax.tax);
+      var service = Number(_this8.getvatTax.service);
+      var perc = sonod_fee + vat;
+      console.log(perc);
+    }, 10000);
   }
 });
 
@@ -6136,7 +6144,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("লিঙ্গ : ")]), _vm._v(_vm._s(_vm.form.applicant_gender))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_father_name))]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_father_name) + "\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("আবেদনকারীর পিতা জীবিত কিনা : ")]), _vm._v(_vm._s(_vm.form.successor_father_alive_status))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -6146,7 +6154,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("ন্যাশনাল আইডি : ")]), _vm._v(_vm._s(_vm.form.applicant_national_id_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("জন্ম নিবন্ধন নং : ")]), _vm._v(_vm._s(_vm.form.applicant_birth_certificate_number))]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("জন্ম নিবন্ধন নং : ")]), _vm._v(_vm._s(_vm.form.applicant_birth_certificate_number) + "\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("হোল্ডিং নং : ")]), _vm._v(_vm._s(_vm.form.applicant_holding_tax_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -6170,7 +6178,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("গ্রাম/মহল্লা: ")]), _vm._v(_vm._s(_vm.form.applicant_present_village))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("রোড/ব্লক/সেক্টর: ")]), _vm._v(_vm._s(_vm.form.applicant_present_road_block_sector))]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("রোড/ব্লক/সেক্টর: ")]), _vm._v(_vm._s(_vm.form.applicant_present_road_block_sector) + "\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("ওয়ার্ড নং: ")]), _vm._v(_vm._s(_vm.form.applicant_present_word_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -8069,9 +8077,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/User */ "./resources/js/helpers/User.js");
 /* harmony import */ var _helpers_Notification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/Notification */ "./resources/js/helpers/Notification.js");
 /* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common */ "./resources/js/common.js");
+ // Vue.prototype.$asseturl = '/public/'
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl = '/public/'; // Vue.prototype.$asseturl = '/'
-
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl = '/';
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$localStorage = localStorage;
 window.ASSETURL = vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl; // Vue.prototype.$appName = process.env.MIX_FILE_PATH
 // console.log(process.env.MIX_FILE_PATH)
