@@ -51,7 +51,7 @@ class SonodController extends Controller
             // $sonod_name = sonodEnName($sonod->sonod_name);
             $InvoiceUrl =  url("/invoice/c/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
-            $deccription = "Congratulation! Your application has been Paid.Wait for Approval.. Invoice: $InvoiceUrl";
+            $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.. Invoice: $InvoiceUrl";
             $messages = array();
             array_push(
                 $messages,
@@ -79,7 +79,7 @@ class SonodController extends Controller
             $sonodUrl =  url("/sonod/d/$id");
             $InvoiceUrl =  url("/invoice/d/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
-            $deccription = "Congratulation! Your application has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
+            $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
             $messages = array();
             array_push(
                 $messages,
@@ -378,7 +378,7 @@ class SonodController extends Controller
         $sonod = Sonod::find($id);
         $sonodUrl =  url("/sonod/d/$id");
         $InvoiceUrl =  url("/invoice/d/$id");
-        $deccription = "Congratulation! Your application has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
+        $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
         // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
         $messages = array();
         array_push(
@@ -406,7 +406,7 @@ class SonodController extends Controller
         $sonod->update(['cancedby'=>$request->names,'cancedbyUserid'=>$request->user_id]);
 
         $InvoiceUrl =  url("/reject/$id");
-        $deccription = "Opps! Your application has been Not Approve. Details : " . $InvoiceUrl;
+        $deccription = "Opps! Your application $sonod->sonod_Id  has been Not Approve. Details : " . $InvoiceUrl;
         $messages = array();
         array_push(
             $messages,
@@ -452,13 +452,13 @@ class SonodController extends Controller
             if ($payment_type == 'Prepaid') {
                 $sonodUrl =  url("/sonod/d/$id");
                 $InvoiceUrl =  url("/invoice/d/$id");
-                $deccription = "Congratulation! Your application has been Approved. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
+                $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
             }elseif($payment_type == 'Postpaid'){
                 $paymentUrl =  url("/sonod/payment/$id");
 
 
-            $deccription = "Congratulation! Your application has been Approved. Pay: " . $paymentUrl;
+            $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Pay: " . $paymentUrl;
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
             }
 
@@ -598,9 +598,18 @@ class SonodController extends Controller
             $Sonodnamelist =  Sonodnamelist::where(['bnname' => $request->sonod_name])->first();
             $sonod =  Sonod::where(['sonod_name' => $request->sonod_name, 'sonod_Id' => $request->sonod_Id, 'stutus' => 'approved'])->first();
             $sonod['sonodUrl'] = "/sonod/$Sonodnamelist->enname/$sonod->id";
+            $sonod['searchstatus'] = "approved";
             return  $sonod;
+        }else{
+                  $sonodcountall =  Sonod::where(['sonod_name' => $request->sonod_name, 'sonod_Id' => $request->sonod_Id])->count();
+                  if($sonodcountall > 0){
+                   $sonod =   Sonod::where(['sonod_name' => $request->sonod_name, 'sonod_Id' => $request->sonod_Id])->first();
+                   $sonod['searchstatus'] = "all";
+                   return $sonod;
+                  }
+
         }
-        return '';
+        return 0;
     }
 
 
