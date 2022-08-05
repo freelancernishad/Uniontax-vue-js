@@ -8,7 +8,10 @@
                                 স্বাগতম</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right"><span
                                 style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curentdate }}
-                            </span><span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span><span style="">Visitors : {{ visitors }}</span></div>
+                            </span>
+                            <!-- <span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span> -->
+
+                            <span style="">Visitors : {{ visitors }}</span></div>
                     </div>
                 </div>
                 <div class="middleHeader ">
