@@ -3,6 +3,23 @@
         <div class="container">
             <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
                 <div class="col-md-12 p-sm-0">
+
+
+                    <form id="msform">
+                        <!-- progressbar -->
+                        <ul id="progressbar">
+                            <li :class="{ active: aplication }" id="account"><strong>আবেদন জমা হয়েছে</strong></li>
+                            <li :class="{ active: payment }" id="personal"><strong>পেমেন্ট</strong></li>
+                            <li :class="{ active: sec }" id="payment"><strong>সেক্রেটারি</strong></li>
+                            <li :class="{ active: chair }" id="confirm"><strong>চেয়ারম্যান</strong></li>
+                            <li :class="{ active: complate }" id="confirm"><strong>কমপ্লিট</strong></li>
+
+                        </ul>
+                    </form>
+
+
+
+
                     <div class="d-flex justify-content-between">
                         <div class="col-md-12 p-sm-0">
                             <div class="text-right mb-2 no-print">
@@ -237,6 +254,12 @@
 export default {
     data(){
         return{
+            aplication: false,
+            payment: false,
+            sec: false,
+            chair: false,
+            complate: false,
+            cancel: false,
             row:{}
         }
     },
@@ -244,9 +267,46 @@ export default {
         async sonodVerifiy(){
              var id =  this.$route.params.id;
             var res = await this.callApi('get',`/api/sonod/single/${id}`,[])
-console.log(res)
+
 
             this.row = res.data
+
+
+
+                if (res.data.stutus == 'Pending' && res.data.payment_status == 'Unpaid') {
+                    console.log('Unpaid');
+                    this.aplication = true
+                    this.payment = false
+                    this.sec = false
+                    this.chair = false
+                    this.complate = false
+                } else if (res.data.stutus == 'Pending' && res.data.payment_status == 'Paid') {
+                    console.log('Paid');
+                    this.aplication = true
+                    this.payment = true
+                    this.sec = false
+                    this.chair = false
+                    this.complate = false
+                } else if (res.data.stutus == 'Secretary_approved' && res.data.payment_status == 'Paid') {
+                    this.aplication = true
+                    this.payment = true
+                    this.sec = true
+                    this.chair = false
+                    this.complate = false
+                } else if (res.data.stutus == 'approved' && res.data.payment_status == 'Paid') {
+                    this.aplication = true
+                    this.payment = true
+                    this.sec = true
+                    this.chair = true
+                    this.complate = true
+                }else {
+                    console.log('nothing')
+                }
+
+
+
+
+
         }
     },
     mounted() {

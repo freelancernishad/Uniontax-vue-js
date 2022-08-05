@@ -90,7 +90,7 @@
                                         </li>
 
                                         <li class="nav-item">
-                                            <router-link class="nav-link" :to="{ name: 'sonodsearch' }">ইস্যুকৃত সনদ
+                                            <router-link class="nav-link" :to="{ name: 'sonodsearch' }">সনদ
                                                 যাচাই
                                             </router-link>
                                         </li>
@@ -401,10 +401,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
 /* .dropdown:hover>.dropdown-menu{
 		display: block;
 	} */
-.serviceBox {
+/* .serviceBox {
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-}
+} */
 .defaltColor {
     background: var(--defaultColor) !important;
 }

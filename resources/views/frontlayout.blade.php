@@ -32,12 +32,21 @@ div#exampleModal {
     cursor: pointer;
 
 }
+.serviceBox:hover {
+  transform: scale(1.1);
+  background: none !important;
+  text-decoration: none !important;
+  box-shadow: 0px 0px 17px -4px #000 !important;
+}
+a:hover {
+  text-decoration: none !important;
+}
 
 .serviceBox {
-    box-shadow: 0px 0px 0px 1px var(--defaultColor) !important;
-    padding: 13px 4px;
-    height: 120px !important;
-    transition: all 0.4s;
+  box-shadow: 0px 0px 15px -4px #000 !important;
+  padding: 13px 4px;
+  height: 120px !important;
+  transition: all 0.4s;
 }
 </style>
 

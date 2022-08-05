@@ -453,10 +453,14 @@ export default {
         };
     },
     mounted() {
-        this.sonodCountDashbord('all','allSonodCount')
-        this.sonodCountDashbord('Pending','pendingSonodCount')
-        this.sonodCountDashbord('approved','approvedSonodCount')
-        this.sonodCountDashbord('cancel','cancelSonodCount')
+
+        setInterval(() => {
+                this.sonodCountDashbord('all','allSonodCount')
+                this.sonodCountDashbord('Pending','pendingSonodCount')
+                this.sonodCountDashbord('approved','approvedSonodCount')
+                this.sonodCountDashbord('cancel','cancelSonodCount')
+        },5000)
+
 
     },
     methods: {

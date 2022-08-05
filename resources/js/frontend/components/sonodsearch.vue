@@ -35,9 +35,16 @@
                 </div>
             </div>
             <table class="table" v-if="search && notfound == false">
-                <!-- <tr><td colspan="2">
-                <span v-if="sonoddata.payment_status=='Paid'">সনদ অনুমোদিত হয়েছে Download বাটন এ ক্লিক করে সনদ ডাউনলোড করুন <a :href="sonoddata.sonodUrl" class="btn btn-info">Download</a></span>
-                <span v-else-if="sonoddata.payment_status=='Unpaid'">সনদ অনুমোদিত হয়েছে কিন্ত এখনও ফি জমা হয় নি। Pay বাটন এ ক্লিক করে ফি প্রদান করুন এবং সনদ ডাউনলোড করুন <a :href="sonoddata.paymentUrl" class="btn btn-info">Pay</a></span></td></tr> -->
+                <tr><td colspan="2" style="text-align: center;font-size: 20px;">
+
+                <span v-if="aplication && payment">আপনার সনদ টি এখন সেক্রেটারির কাছে পক্রিয়াধীন আছে। দয়া করে অপেক্ষা করুন।</span>
+                <span v-if="aplication && payment && sec">আপনার সনদ টি এখন চেয়ারম্যান এর কাছে পক্রিয়াধীন আছে। দয়া করে অপেক্ষা করুন। </span>
+
+
+                </td></tr>
+
+
+
                 <tr>
                     <td>সেবার ধরণ</td>
                     <td>{{ sonoddata.sonod_name }}</td>
@@ -162,7 +169,7 @@ export default {
                 this.sonoddata = res.data
                 this.search = true;
                 this.notfound = false;
-                console.log(res.data.stutus)
+
                 if (res.data.stutus == 'Pending' && res.data.payment_status == 'Unpaid') {
                     console.log('Unpaid');
                     this.aplication = true
@@ -238,19 +245,19 @@ export default {
 /*Icons in the ProgressBar*/
 #progressbar #account:before {
     font-family: FontAwesome;
-    content: "\f023";
+    content: "";
 }
 #progressbar #personal:before {
     font-family: FontAwesome;
-    content: "\f007";
+    content: "";
 }
 #progressbar #payment:before {
     font-family: FontAwesome;
-    content: "\f09d";
+    content: "";
 }
 #progressbar #confirm:before {
     font-family: FontAwesome;
-    content: "\f00c";
+    content: "";
 }
 /*ProgressBar before any progress*/
 #progressbar li:before {
