@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\blogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SonodController;
+use App\Http\Controllers\CharageController;
+use App\Http\Controllers\CitizenController;
 use App\Http\Controllers\VisitorController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\ActionLogController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\SonodnamelistController;
-use App\Http\Controllers\CharageController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -135,3 +136,12 @@ Route::get('reject/{id}',[ActionLogController::class,'rejectreason']);
 
 Route::post('vattax/get',[CharageController::class,'index']);
 Route::post('vattax/submit',[CharageController::class,'store']);
+
+
+
+/// Citizen
+
+Route::get('citizen/list',[CitizenController::class,'index']);
+Route::get('citizen/show/{id}',[CitizenController::class,'show']);
+Route::get('citizen/delete/{id}',[CitizenController::class,'destroy']);
+Route::post('citizen/submit',[CitizenController::class,'store']);

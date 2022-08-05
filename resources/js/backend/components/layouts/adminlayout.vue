@@ -6,10 +6,10 @@
             <div class="nav-bar-header-one">
                 <div class="header-logo">
                     <h3 style="    margin-bottom: 0;">
-                    <router-link :to="{name:'Dashboard'}" class="text-white">
-                    {{ user.position }} Panel
-                        <!-- <img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"> -->
-                    </router-link>
+                        <router-link :to="{ name: 'Dashboard' }" class="text-white">
+                            {{ user.position }} Panel
+                            <!-- <img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"> -->
+                        </router-link>
                     </h3>
                 </div>
                 <div class="toggle-button sidebar-toggle">
@@ -64,13 +64,14 @@
                             <div class="item-content">
                                 <ul class="settings-list">
                                     <li>
-                                        <router-link class="dropdown-item" :to="{name:'profile'}">
-                                             <img :src="$asseturl + 'dashboard_asset/img/figure/admin.jpg'" alt="Admin"> Profile
+                                        <router-link class="dropdown-item" :to="{ name: 'profile' }">
+                                            <img :src="$asseturl + 'dashboard_asset/img/figure/admin.jpg'" alt="Admin">
+                                            Profile
                                         </router-link>
                                     </li>
 
                                     <li>
-                                        <router-link class="dropdown-item" :to="{name:'logout'}">
+                                        <router-link class="dropdown-item" :to="{ name: 'logout' }">
                                             <i class="flaticon-turn-off"></i> Logout
                                         </router-link>
                                     </li>
@@ -89,8 +90,8 @@
                 <div class="mobile-sidebar-header d-md-none">
                     <div class="header-logo">
                         <a href="/" style="    padding: 10px !important;">
-                         {{ user.position }} Panel
-                        <!-- <img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"> -->
+                            {{ user.position }} Panel
+                            <!-- <img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"> -->
 
                         </a>
                     </div>
@@ -108,28 +109,30 @@
                         </li> -->
 
 
-            <li  class="nav-item" @click="submenu(0)">
-                            <router-link :to="{name:'Dashboard'}" class="nav-link"><i
+                        <li class="nav-item" @click="submenu(0)">
+                            <router-link :to="{ name: 'Dashboard' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Dashboard</span></router-link>
                         </li>
 
 
 
 
-                        <li class="nav-item sidebar-nav-item"  :class="{ active: selected == 101 }" >
-                            <a href="javascript:void(0)" class="nav-link" @click="submenu(101)" ><i
+                        <li class="nav-item sidebar-nav-item" :class="{ active: selected == 101 }">
+                            <a href="javascript:void(0)" class="nav-link" @click="submenu(101)"><i
                                     class="flaticon-technological"></i><span>Blogs</span>
-                                   </a>
+                            </a>
                             <transition name="slide">
                                 <ul class="nav sub-group-menu menu-open child" v-if="selected == 101"
                                     style="display:block">
 
                                     <li class="nav-item">
-                                        <router-link :to="{ name:'category'}" class="nav-link"><i class="fas fa-angle-right"></i> Category </router-link>
+                                        <router-link :to="{ name: 'category' }" class="nav-link"><i
+                                                class="fas fa-angle-right"></i> Category </router-link>
                                     </li>
 
                                     <li class="nav-item">
-                                        <router-link :to="{ name:'blogs'}" class="nav-link"><i class="fas fa-angle-right"></i> Blogs </router-link>
+                                        <router-link :to="{ name: 'blogs' }" class="nav-link"><i
+                                                class="fas fa-angle-right"></i> Blogs </router-link>
                                     </li>
 
 
@@ -146,77 +149,105 @@
 
 
 
-            <li  class="nav-item" @click="submenu(0)" v-if="Users.position=='Chairman' || Users.position=='Secretary'">
-                            <router-link :to="{name:'unionprofile'}" class="nav-link"><i
+                        <li class="nav-item" @click="submenu(0)"
+                            v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
+                            <router-link :to="{ name: 'unionprofile' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Union Profile</span></router-link>
                         </li>
 
 
 
 
-            <li  class="nav-item" @click="submenu(0)"  v-if="Users.position=='District_admin'">
-                            <router-link :to="{name:'charages'}" class="nav-link"><i
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'District_admin'">
+                            <router-link :to="{ name: 'charages' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Charages</span></router-link>
                         </li>
 
 
-            <li  class="nav-item" @click="submenu(0)"  v-if="Users.position=='Thana_admin' || Users.position=='District_admin'">
-                            <router-link :to="{name:'unionlist'}" class="nav-link"><i
+                        <li class="nav-item" @click="submenu(0)"
+                            v-if="Users.position == 'Thana_admin' || Users.position == 'District_admin'">
+                            <router-link :to="{ name: 'unionlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Union List</span></router-link>
                         </li>
 
 
-            <li  class="nav-item" @click="submenu(0)"  v-if="Users.position=='Thana_admin' || Users.position=='District_admin'">
-                            <router-link :to="{name:'sonodlist'}" class="nav-link"><i
+                        <li class="nav-item" @click="submenu(0)"
+                            v-if="Users.position == 'Thana_admin' || Users.position == 'District_admin'">
+                            <router-link :to="{ name: 'sonodlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Sonod List</span></router-link>
                         </li>
 
 
-            <li  class="nav-item" @click="submenu(0)" v-if="Users.position!='Secretary'">
-                            <router-link :to="{name:'userlist'}" class="nav-link"><i
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position != 'Secretary'">
+                            <router-link :to="{ name: 'userlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Users List</span></router-link>
+                        </li>
+
+
+                        <li class="nav-item" @click="submenu(0)"
+                            v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
+                            <router-link :to="{ name: 'citizenlist' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Citizen List</span></router-link>
                         </li>
 
 
 
 
 
-                        <li class="nav-item sidebar-nav-item" v-for="(sonod,index) in SonodNames" :class="{ active: selected == index+1 }" :key="'add'+index">
-                            <a href="javascript:void(0)" class="nav-link" @click="submenu(index+1)" ><i
+                        <li class="nav-item sidebar-nav-item" v-for="(sonod, index) in SonodNames"
+                            :class="{ active: selected == index + 1 }" :key="'add' + index">
+                            <a href="javascript:void(0)" class="nav-link" @click="submenu(index + 1)"><i
                                     class="flaticon-technological"></i><span>{{ sonod.bnname }}</span>
-                                    <label  v-if="(allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] + allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')])>0"  style="
+                                <label
+                                    v-if="(allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] + allSonodCount.approved[sonod.enname.replaceAll(' ', '_')]) > 0"
+                                    style="
                                         width: 24px;
                                         height: 24px;
                                         background: rgb(223 12 12);
                                         padding: 0px 7px;
                                         color: wheat;
                                         border-radius: 50%;
-                                    " >{{ allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] + allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')] }}</label></a>
+                                    ">{{ allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] +
+                                            allSonodCount.approved[sonod.enname.replaceAll(' ', '_')]
+                                    }}</label></a>
                             <transition name="slide">
-                                <ul class="nav sub-group-menu menu-open child" v-if="selected == index+1"
+                                <ul class="nav sub-group-menu menu-open child" v-if="selected == index + 1"
                                     style="display:block">
                                     <li class="nav-item">
-                                        <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'new'} }" class="nav-link"><i class="fas fa-angle-right"></i> নতুন আবেদন <label  v-if="allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')]>0" style="
+                                        <router-link
+                                            :to="{ name: 'sonod', params: { name: sonod.enname.replaceAll(' ', '_'), type: 'new' } }"
+                                            class="nav-link"><i class="fas fa-angle-right"></i> নতুন আবেদন <label
+                                                v-if="allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] > 0"
+                                                style="
                                         width: 24px;
                                         height: 24px;
                                         background: rgb(223 12 12);
                                         padding: 0px 7px;
                                         color: wheat;
                                         border-radius: 50%;
-                                    " >{{ allSonodCount.Pending[sonod.enname.replaceAll(' ' , '_')] }}</label></router-link>
+                                    ">{{ allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] }}</label>
+                                        </router-link>
                                     </li>
                                     <li class="nav-item">
-                                        <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'approved'} }" class="nav-link"><i class="fas fa-angle-right"></i> অনুমোদিত আবেদন <label  v-if="allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')]>0" style="
+                                        <router-link
+                                            :to="{ name: 'sonod', params: { name: sonod.enname.replaceAll(' ', '_'), type: 'approved' } }"
+                                            class="nav-link"><i class="fas fa-angle-right"></i> অনুমোদিত আবেদন <label
+                                                v-if="allSonodCount.approved[sonod.enname.replaceAll(' ', '_')] > 0"
+                                                style="
                                         width: 24px;
                                         height: 24px;
                                         background: rgb(223 12 12);
                                         padding: 0px 7px;
                                         color: wheat;
                                         border-radius: 50%;
-                                    " >{{ allSonodCount.approved[sonod.enname.replaceAll(' ' , '_')] }}</label></router-link>
+                                    ">{{ allSonodCount.approved[sonod.enname.replaceAll(' ', '_')] }}</label>
+                                        </router-link>
                                     </li>
                                     <li class="nav-item">
-                                        <router-link :to="{ name:'sonod', params:{name:sonod.enname.replaceAll(' ' , '_'),type:'cancel'} }" class="nav-link"><i class="fas fa-angle-right"></i> বাতিল আবেদন</router-link>
+                                        <router-link
+                                            :to="{ name: 'sonod', params: { name: sonod.enname.replaceAll(' ', '_'), type: 'cancel' } }"
+                                            class="nav-link"><i class="fas fa-angle-right"></i> বাতিল আবেদন
+                                        </router-link>
                                     </li>
                                 </ul>
                             </transition>
@@ -233,8 +264,10 @@
                 <slot></slot>
                 <!-- Footer Area Start Here -->
                 <footer class="footer-wrap-layout1">
-                    <div class="copyright">© Copyrights <a href="#">Company name</a> 2019. All rights reserved. Developed by <a target="_blank"
-                            href="https://api.whatsapp.com/send?phone=8801909756552&text=I%27m%20interested%20in%20your%20services">Freelancer Nishad</a></div>
+                    <div class="copyright">© Copyrights <a href="#">Company name</a> 2019. All rights reserved.
+                        Developed by <a target="_blank"
+                            href="https://api.whatsapp.com/send?phone=8801909756552&text=I%27m%20interested%20in%20your%20services">Freelancer
+                            Nishad</a></div>
                 </footer>
                 <!-- Footer Area End Here -->
             </div>
@@ -244,40 +277,40 @@
 </template>
 <script>
 export default {
-     props: ['user','permission','roles'],
+    props: ['user', 'permission', 'roles'],
     async created() {
 
         // var url = this.$appUrl.split("//");
         // var subdomain = url[1].split(".");
         var subdomain = [];
 
-     this.$store.commit('setWebsiteStatus', subdomain)
+        this.$store.commit('setWebsiteStatus', subdomain)
 
-		if (!User.loggedIn()) {
-			window.location.href = '/'
-		}
+        if (!User.loggedIn()) {
+            window.location.href = '/'
+        }
 
-//             if(this.$route.params.name){
-//  var ress =  await this.callApi('get',`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`,[]);
-//        this.$store.commit('setUpdateSonodName', ress.data)
-//             }
-            if(this.$route.params.name){
-       var result =  await this.callApi('get',`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`,[]);
-        this.$store.commit('setUpdateSonodName', result.data)
-            }
-
-
-        var res =  await this.callApi('get','/api/get/sonodname/list?admin=1',[]);
+        //             if(this.$route.params.name){
+        //  var ress =  await this.callApi('get',`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`,[]);
+        //        this.$store.commit('setUpdateSonodName', ress.data)
+        //             }
+        if (this.$route.params.name) {
+            var result = await this.callApi('get', `/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`, []);
+            this.$store.commit('setUpdateSonodName', result.data)
+        }
 
 
-       this.$store.commit('setUpdateSonodNames', res.data)
-       this.$store.commit('setUpdateUser', this.user)
-       this.$store.commit('setUserPermission', JSON.parse(this.permission.permission))
-       this.$store.commit('setUserRoles', this.roles)
+        var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);
+
+
+        this.$store.commit('setUpdateSonodNames', res.data)
+        this.$store.commit('setUpdateUser', this.user)
+        this.$store.commit('setUserPermission', JSON.parse(this.permission.permission))
+        this.$store.commit('setUserRoles', this.roles)
 
 
 
-//  this.$store.dispatch("getUser",this.user);
+        //  this.$store.dispatch("getUser",this.user);
 
 
         if (localStorage.getItem('selectedMenu')) {
@@ -288,7 +321,7 @@ export default {
 
     },
     watch: {
-        '$route': async function(to, from) {
+        '$route': async function (to, from) {
 
 
         }
@@ -303,21 +336,21 @@ export default {
             sidebarstatus: false,
             mobileSidebar: false,
             allSonodCount: {
-                Pending:{},
-                Secretary_approved:{},
-                approved:{},
+                Pending: {},
+                Secretary_approved: {},
+                approved: {},
             },
         }
     },
-      watch: {
-        '$route':  {
+    watch: {
+        '$route': {
             handler(newValue, oldValue) {
-            this.sidebarstatus = false
-            this.mobileSidebar = false
+                this.sidebarstatus = false
+                this.mobileSidebar = false
 
 
-      },
-      deep: true
+            },
+            deep: true
 
 
 
@@ -326,33 +359,33 @@ export default {
     methods: {
 
 
-       async sonodlistCount(){
-var unionname = this.user.unioun;
-        if(this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin'){
+        async sonodlistCount() {
+            var unionname = this.user.unioun;
+            if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
 
-            var unionname = '';
-        }
+                var unionname = '';
+            }
 
-            var allSonodc =  await this.callApi('get',`/api/get/sonod/count?union=${unionname}&postion=${this.user.position}`,[]);
+            var allSonodc = await this.callApi('get', `/api/get/sonod/count?union=${unionname}&postion=${this.user.position}`, []);
             this.allSonodCount = allSonodc.data
             // console.log(allSonodc)
         },
 
-        myscroll(){
+        myscroll() {
 
 
 
-// Get the header
-var header = document.getElementById("topnavbar");
+            // Get the header
+            var header = document.getElementById("topnavbar");
 
-var sticky = header.offsetTop;
+            var sticky = header.offsetTop;
 
 
-  if (window.pageYOffset > sticky) {
-    header.classList.add("fixednav");
-  } else {
-    header.classList.remove("fixednav");
-  }
+            if (window.pageYOffset > sticky) {
+                header.classList.add("fixednav");
+            } else {
+                header.classList.remove("fixednav");
+            }
 
 
 
@@ -420,9 +453,11 @@ var sticky = header.offsetTop;
 ul.nav.sub-group-menu.menu-open.child {
     padding: 0 !important;
 }
+
 ul.nav.sub-group-menu.menu-open.child li {
     padding: 10px 0;
 }
+
 .slide-enter-active {
     -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
@@ -433,6 +468,7 @@ ul.nav.sub-group-menu.menu-open.child li {
     -o-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
 }
+
 .slide-leave-active {
     -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
@@ -443,11 +479,13 @@ ul.nav.sub-group-menu.menu-open.child li {
     -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
     transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
+
 .slide-enter-to,
 .slide-leave {
     max-height: 100px;
     overflow: hidden;
 }
+
 .slide-enter,
 .slide-leave-to {
     overflow: hidden;
@@ -457,5 +495,4 @@ ul.nav.sub-group-menu.menu-open.child li {
 a.nav-link span {
     font-size: 12px !important;
 }
-
 </style>
