@@ -263,7 +263,7 @@ class SonodController extends Controller
         return $sonodFinalId;
     }
 
-    public function allsonodId($union,$sonodname)
+     function allsonodId($union,$sonodname)
     {
         $sonodFinalId = '';
         $sortYear =  date('y');
@@ -343,7 +343,7 @@ class SonodController extends Controller
             $unioun_name = $r->unioun_name;
               $sonod_name = $r->sonod_name;
             // return  $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
-            $Insertdata['sonod_Id'] =  $this->allsonodId($unioun_name,$sonod_name);
+            return $Insertdata['sonod_Id'] =  $this->allsonodId($unioun_name,$sonod_name);
             $sonod =   sonod::create($Insertdata);
 
             if($stutus=='Pending'){
