@@ -295,9 +295,9 @@ class SonodController extends Controller
 
             $id = $r->id;
             $stutus = $r->stutus;
-            if($id){
-                return Sonod::find($id);
-            }
+            // if($id){
+            //     return Sonod::find($id);
+            // }
 
 
 
