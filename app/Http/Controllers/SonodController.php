@@ -273,7 +273,10 @@ class SonodController extends Controller
             $Uniouninfo =   Uniouninfo::where('short_name_e', $union)->latest()->first();
             if ($SonodCount > 0) {
                 $Sonod =  Sonod::where(['unioun_name' => $union,'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->first();
-                $sonodFinalId = 'fgdfgdfg';
+
+
+                // $sonodFinalId = 'fgdfgdfg';
+                $sonodFinalId = $Sonod->sonod_Id + 1;
 
                 // if ($Sonod->sonod_Id == '') {
                 //     $sonod_Id = str_pad(00001, 5, '0', STR_PAD_LEFT);
