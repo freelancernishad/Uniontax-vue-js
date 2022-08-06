@@ -1,6 +1,29 @@
 <template>
         <form v-on:submit.prevent="formsubmit">
-    <div class="row">
+           <div class="row" v-if="prottoyon">
+           <div class="col-md-12">
+            <h5>আবেদনকৃত প্রত্যয়নের বিবরণ</h5>
+            <p>{{ sonodlist.prottoyon }}</p>
+           </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="amountab">প্রত্যয়ন প্রদানের বিবরণ </label>
+
+                        <textarea v-model="form.sec_prottoyon" class="form-control" style="height:100px;resize:none"></textarea>
+
+
+                    </div>
+                </div>
+
+
+<div class="col-md-12">
+
+        <input id="submit" class="btn btn-info" type="submit"  value="Approve">
+
+</div>
+
+           </div>
+    <div class="row" v-else>
 
 
 <div class="col-md-6">
@@ -91,7 +114,10 @@ props: {
 },
     data() {
         return {
+            prottoyon:true,
+            sonodlist:{},
             form:{
+            sec_prottoyon:'',
             khat:'',
             last_years_money:'0',
             currently_paid_money:'0',
@@ -112,16 +138,27 @@ props: {
             async formsubmit(){
                 this.form.approveData = this.ApproveData;
                 var res = await this.callApi('post',`/api/sonod/sec/approve/${this.SonodId}`,this.form);
-           this.$root.$emit('bv::hide::modal', 'info-modal')
+                this.$root.$emit('bv::hide::modal', 'info-modal')
                 this.$emit('event-name')
                  Notification.customSuccess(`Your data has been Approved`);
+
+            },
+            async Getsonod(){
+                var res = await this.callApi('get',`/api/sonod/single/${this.SonodId}`,[])
+                    this.sonodlist = res.data;
+                if(res.data.sonod_name=='প্রত্যয়নপত্র' || res.data.sonod_name=='বিবিধ প্রত্যয়নপত্র'){
+                    this.prottoyon = true
+                }else{
+                    this.prottoyon = false
+
+                }
 
             }
 
     },
     mounted() {
 
-
+        this.Getsonod();
 
     }
 

@@ -342,6 +342,22 @@
                         </b-form-group>
                     </div>
                     <!-- col-md-4 -->
+
+                    <!-- col-md-4 -->
+                    <div class="col-md-12" v-if="sonodnamedata.enname == 'Certificate' || sonodnamedata.enname.replaceAll(' ','_') == 'Miscellaneous_certificates'">
+                        <b-form-group id="prottoyon-group-1" label="আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন"
+                            label-for="prottoyon">
+                            <b-form-textarea id="prottoyon" name="prottoyon"
+                                v-model="$v.form.prottoyon.$model"
+                                :state="validateState('prottoyon')"
+                                rows="3"
+                                max-rows="6"
+                                aria-describedby="prottoyon-feedback"></b-form-textarea>
+                            <b-form-invalid-feedback id="prottoyon-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -652,7 +668,9 @@
             <br>
             <b-form @submit.stop.prevent="finalSubmit" style="margin-top: 50px;">
                 <div class="text-center" style="width:50%;margin:0 auto" v-if="getunionInfos.payment_type == 'Prepaid'">
-                    <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{ charages.totalamount }} টাকা ।</h3>
+                    <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{
+                            charages.totalamount
+                    }} টাকা ।</h3>
                     <button type="submit" class="btn btn-info" v-if="!submitLoad">Pay And Submit</button>
                     <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
                     <button type="submit" class="btn btn-info" v-if="submitLoad">Try Again</button>
@@ -795,6 +813,7 @@ export default {
                 applicant_national_id_front_attachment: null,
                 applicant_national_id_back_attachment: null,
                 applicant_birth_certificate_attachment: null,
+                prottoyon: null,
                 stutus: 'Pending',
                 payment_status: 'Unpaid',
                 successors: [
@@ -889,6 +908,7 @@ export default {
             applicant_national_id_front_attachment: {},
             applicant_national_id_back_attachment: {},
             applicant_birth_certificate_attachment: {},
+            prottoyon: {},
         }
     },
     watch: {
@@ -986,6 +1006,7 @@ export default {
             this.form.applicant_national_id_front_attachment = null;
             this.form.applicant_national_id_back_attachment = null;
             this.form.applicant_birth_certificate_attachment = null;
+            this.form.prottoyon = null;
             this.$nextTick(() => {
                 this.$v.$reset();
             });
@@ -1013,6 +1034,7 @@ export default {
                 axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`)
                     .then(({ data }) => {
                         this.sonodnamedata = data
+                        window.scrollTo(0,0);
                     })
                     .catch()
             }
@@ -1031,9 +1053,9 @@ export default {
             var vat = Number(this.getvatTax.vat)
             var tax = Number(this.getvatTax.tax)
             var service = Number(this.getvatTax.service)
-             var vatAmount = ((sonod_fee*vat)/100);
-             var taxAmount = ((sonod_fee*tax)/100);
-            var totalamount = sonod_fee+vatAmount+taxAmount+service
+            var vatAmount = ((sonod_fee * vat) / 100);
+            var taxAmount = ((sonod_fee * tax) / 100);
+            var totalamount = sonod_fee + vatAmount + taxAmount + service
 
             this.charages = {
                 sonod_fee: sonod_fee,
@@ -1042,7 +1064,7 @@ export default {
                 service: service,
                 totalamount: totalamount,
             },
-            this.$root.$emit('bv::show::modal', this.infoModal.id)
+                this.$root.$emit('bv::show::modal', this.infoModal.id)
         },
         async finalSubmit() {
             this.submitLoad = true;
@@ -1060,12 +1082,12 @@ export default {
                 redirect = `/sonod/payment/${datas.id}`
                 this.waitForPayment = true;
                 this.checkPayment(datas.id);
-                this.form['id']=datas.id;
+                this.form['id'] = datas.id;
                 window.open(redirect, '_blank');
             } else if (payment_type == 'Postpaid') {
                 this.waitForPayment = true;
                 this.checkPayment(datas.id);
-                this.form['id']=datas.id;
+                this.form['id'] = datas.id;
                 //  console.log(this.waitForPayment)
                 // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
                 // window.open(redirect, '_blank');
@@ -1152,20 +1174,24 @@ export default {
     border-bottom: 1px solid #159513;
     color: #159513;
 }
+
 .form-pannel {
     border: 1px solid #159513;
     padding: 25px 25px 25px 25px;
 }
+
 .panel-heading {
     padding: 11px 0px;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     margin-top: 20px;
 }
+
 .form-pannel {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
 }
+
 .dropdown-menu {
     z-index: 99999;
 }

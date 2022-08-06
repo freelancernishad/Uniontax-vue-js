@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Sonod;
 use App\Models\Charage;
+use App\Models\Citizen;
 use App\Models\Payment;
 use App\Models\ActionLog;
 use App\Models\Uniouninfo;
@@ -347,8 +348,12 @@ class SonodController extends Controller
     }
     public function sec_sonod_action(Request $request, $id)
     {
-        //    return $request->all();
         $sonod = Sonod::find($id);
+
+        $sec_prottoyon = $request->sec_prottoyon;
+
+
+        //    return $request->all();
         $arraydata = [
             'total_amount' => $request->amounta,
             'pesaKor' => $request->pesaKor,
@@ -361,6 +366,16 @@ class SonodController extends Controller
         $amount_deails = json_encode($arraydata);
         $numto = new NumberToBangla();
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
+
+        if($sec_prottoyon){
+            $updateData = [
+                'amount_deails' => $amount_deails,
+                'sec_prottoyon' => $sec_prottoyon,
+                'stutus' => $request->approveData,
+            ];
+            return $sonod->update($updateData);
+        }
+
         $updateData = [
             'khat' => $request->khat,
             'last_years_money' => $request->last_years_money,
@@ -621,12 +636,33 @@ class SonodController extends Controller
     public function counting(Request $request,$status)
     {
 
-if($status=='all'){
+        if($status=='all'){
 
-    return  Sonod::where('stutus','!=','Prepaid')->count();
-}
+            return  Sonod::where('stutus','!=','Prepaid')->count();
+        }
         return  Sonod::where(['stutus'=>$status])->count();
     }
+
+public function niddob(Request $request)
+{
+    $applicant_national_id_number = $request->applicant_national_id_number;
+    $applicant_birth_certificate_number = $request->applicant_birth_certificate_number;
+
+    if($applicant_national_id_number){
+      return   $citizen = Citizen::where(['nidno'=>$applicant_national_id_number])->count();
+    }
+
+    if($applicant_birth_certificate_number){
+        return   $citizen = Citizen::where(['dobno'=>$applicant_birth_certificate_number])->count();
+
+    }
+
+
+
+
+
+}
+
 
     /**
      * Show the form for creating a new resource.

@@ -69,6 +69,8 @@ class CreateSonodsTable extends Migration
             $table->string('applicant_national_id_front_attachment')->nullable();
             $table->string('applicant_national_id_back_attachment')->nullable();
             $table->string('applicant_birth_certificate_attachment')->nullable();
+            $table->text('prottoyon')->nullable();
+            $table->text('sec_prottoyon')->nullable();
             $table->string('stutus')->nullable();
             $table->string('payment_status')->nullable();
             $table->string('chaireman_name')->nullable();

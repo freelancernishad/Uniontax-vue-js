@@ -85,6 +85,10 @@ Vue.component('Approvesonod', approvesonod);
 
 import approvetrade from './components/sonod/approvetrade.vue'
 Vue.component('Approvetrade', approvetrade);
+
+import approveprottoyon from './components/sonod/approveprottoyon.vue'
+Vue.component('Approveprottoyon', approveprottoyon);
+
 Vue.prototype.$localStorage = localStorage;
 
 import loader from "vue-ui-preloader";

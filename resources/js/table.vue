@@ -40,17 +40,17 @@
                 </b-form-group>
             </b-col>
             <b-col lg="6" class="my-1" v-if="AllUpdate != ''">
-<form class="d-flex" style="justify-content: space-evenly;" @submit.stop.prevent="onSubmit">
-            <div class="form-group m-0" style="width:48%">
-                <select class="form-control" v-model="f.paymentType" required>
-                    <option value="">Select</option>
-                    <option value="Postpaid">Postpaid</option>
-                    <option value="Prepaid">Prepaid</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-info"  style="width:48%" >Update all</button>
+                <form class="d-flex" style="justify-content: space-evenly;" @submit.stop.prevent="onSubmit">
+                    <div class="form-group m-0" style="width:48%">
+                        <select class="form-control" v-model="f.paymentType" required>
+                            <option value="">Select</option>
+                            <option value="Postpaid">Postpaid</option>
+                            <option value="Prepaid">Prepaid</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-info" style="width:48%">Update all</button>
 
-            </form>
+                </form>
             </b-col>
             <b-col lg="6" class="my-1 text-right" v-if="AddNew != ''">
 
@@ -121,12 +121,13 @@
                 <!-- <router-link size="sm" :to="{name:ViewRoute,params:{id:row.item.id}}" @click="info(ApproveRoute,row.item.id,ApproveData, $event.target)"  v-if="ViewRoute!=''" class="btn btn-success mr-1">
                     View
                 </router-link> -->
-                <span size="sm" @click="approve(ApproveRoute, row.item.id, ApproveData, $event.target, ApproveType)"
+                <span size="sm" @click="approve(ApproveRoute, row.item.id, ApproveData, $event.target, ApproveType,row.item)"
                     v-if="ApproveRoute != '' && row.item.payment_status == 'Unpaid'" class="btn btn-success mr-1 mt-1">
                     Approve
                 </span>
-                <span size="sm" @click="approve('/api/sonod', row.item.id, ApproveData, $event.target, 'apiAction')"
-                    v-else-if="ApproveRoute != '' && row.item.payment_status == 'Paid'" class="btn btn-success mr-1 mt-1">
+                <span size="sm" @click="approve('/api/sonod', row.item.id, ApproveData, $event.target, 'apiAction',row.item)"
+                    v-else-if="ApproveRoute != '' && row.item.payment_status == 'Paid'"
+                    class="btn btn-success mr-1 mt-1">
                     Approve
                 </span>
                 <span size="sm" @click="paynow(PayRoute, row.item.id, $event.target)"
@@ -139,15 +140,16 @@
                     রশিদ
                 </a>
                 <a :href="'/sonod/d/' + row.item.id" target="_blank" size="sm"
-                    v-if="row.item.stutus == 'approved' && row.item.payment_status == 'Paid'" class="btn btn-info mr-1 mt-1">
+                    v-if="row.item.stutus == 'approved' && row.item.payment_status == 'Paid'"
+                    class="btn btn-info mr-1 mt-1">
                     সনদ
                 </a>
                 <!--
                 <router-link size="sm" :to="{name:ApproveRoute,params:{id:row.item.id}}"  v-if="ApproveRoute!='' && ApproveType=='vueAction'" class="btn btn-success mr-1">
                     Approve
                 </router-link> -->
-                <span size="sm" @click="cancel(CancelRoute, row.item.id, 'cancel', $event.target)" v-if="CancelRoute != ''"
-                    class="btn btn-danger mr-1 mt-1">
+                <span size="sm" @click="cancel(CancelRoute, row.item.id, 'cancel', $event.target)"
+                    v-if="CancelRoute != ''" class="btn btn-danger mr-1 mt-1">
                     Not-Approve
                 </span>
             </template>
@@ -164,22 +166,46 @@
         <!-- Info modal -->
         <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only @hide="resetInfoModal">
 
-            <div v-if="infoModal.title=='Cancel'">
-                   <form v-on:submit.prevent="formcancel">
-                   <div class="form-group">
-                    <label for="">বাতিল এর কারন উল্লেখ করুন</label>
-                    <textarea class="form-control" v-model="b.reson" cols="30" rows="10" style="height:100px;resize:none"></textarea>
-                   </div>
-<button type="submit" class="btn btn-info">Not Approve</button>
-                   </form>
+            <div v-if="infoModal.title == 'Cancel'">
+                <form v-on:submit.prevent="formcancel">
+                    <div class="form-group">
+                        <label for="">বাতিল এর কারন উল্লেখ করুন</label>
+                        <textarea class="form-control" v-model="b.reson" cols="30" rows="10"
+                            style="height:100px;resize:none"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info">Not Approve</button>
+                </form>
 
             </div>
             <div v-else>
-            <approvetrade :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"
-                v-if="SonodType == 'Trade_license'"></approvetrade>
-            <approvesonod :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList" v-else>
-            </approvesonod>
-</div>
+                <approvetrade :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"
+                    v-if="SonodType == 'Trade_license'"></approvetrade>
+                <approvesonod :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"
+                    v-else>
+                </approvesonod>
+            </div>
+
+            <!-- <pre>{{ infoModal.content_id }}</pre> -->
+        </b-modal>
+
+        <!-- Info modal -->
+        <b-modal :id="prottoyonModal.id" size="xl" :title="prottoyonModal.title" ok-only @hide="resetInfoModal">
+
+            <div v-if="prottoyonModal.title == 'Cancel'">
+                <form v-on:submit.prevent="formcancel">
+                    <div class="form-group">
+                        <label for="">বাতিল এর কারন উল্লেখ করুন</label>
+                        <textarea class="form-control" v-model="b.reson" cols="30" rows="10"
+                            style="height:100px;resize:none"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info">Not Approve</button>
+                </form>
+
+            </div>
+            <div v-else>
+                <approveprottoyon :approve-data="ApproveData" :sonod-id="prottoyonModal.content_id" @event-name="sonodList"></approveprottoyon>
+
+            </div>
 
             <!-- <pre>{{ infoModal.content_id }}</pre> -->
         </b-modal>
@@ -208,10 +234,20 @@
                 }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{
                         viewModal.content.applicant_national_id_number
-                }}</div>
+                }}
+
+                    <span v-if="nidverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
+                    <span v-else="" class="badge badge-pill badge-danger mg-t-8">Unverified</span>
+
+                </div>
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{
                         viewModal.content.applicant_birth_certificate_number
-                }}</div>
+                }}
+
+                    <span v-if="dobverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
+                    <span v-else="" class="badge badge-pill badge-danger mg-t-8">Unverified</span>
+
+                </div>
                 <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ viewModal.content.applicant_holding_tax_number
                 }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ viewModal.content.applicant_date_of_birth }}
@@ -380,15 +416,23 @@ export default {
             filterOn: [],
             select: [],
             selectall: false,
-            f:{
-                paymentType:'',
-                district:'',
+            nidverify: false,
+            dobverify: false,
+            f: {
+                paymentType: '',
+                district: '',
             },
-            b:{
-                reson:'',
+            b: {
+                reson: '',
             },
             infoModal: {
                 id: 'info-modal',
+                title: '',
+                content: '',
+                content_id: '',
+            },
+            prottoyonModal: {
+                id: 'prottoyon-modal',
                 title: '',
                 content: '',
                 content_id: '',
@@ -449,9 +493,29 @@ export default {
             var y = y2 - y1;
             return y + ' Years ' + m + ' Months ' + d + ' Days ';
         },
-        info(item, index, button) {
+        async info(item, index, button) {
             this.viewModal.title = `${item.applicant_name}`
             this.viewModal.content = item
+
+            var applicant_national_id_number = item.applicant_national_id_number;
+            var applicant_birth_certificate_number = item.applicant_birth_certificate_number;
+
+            var nidVerify = await this.callApi('get', `/api/niddob/verify?applicant_national_id_number=${applicant_national_id_number}`, []);
+            var dobVerify = await this.callApi('get', `/api/niddob/verify?applicant_birth_certificate_number=${applicant_birth_certificate_number}`, []);
+            if (nidVerify.data == 1) {
+                this.nidverify = true
+            } else {
+                this.nidverify = false
+
+            }
+            if (dobVerify.data == 1) {
+                this.dobverify = true;
+            } else {
+                this.dobverify = false;
+
+            }
+            // console.log(nidVerify);
+            // console.log(dobVerify);
             this.$root.$emit('bv::show::modal', this.viewModal.id, button)
         },
         resetInfoModal() {
@@ -466,26 +530,63 @@ export default {
         sonodList() {
             return this.$emit('event-name')
         },
-        async approve(route, id, status, button, ApproveType) {
+        async approve(route, id, status, button, ApproveType,item) {
+
+
+
             if (ApproveType == 'vueAction') {
                 this.infoModal.content_id = `${id}`;
                 this.$root.$emit('bv::show::modal', this.infoModal.id, button)
             } else if (ApproveType == 'apiAction') {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: `${status} this data!`,
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: `Yes, ${status} it!`
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        var res = await this.callApi('get', `${route}/${status}/${id}`, []);
-                        Notification.customSuccess(`Your data has been ${status}`);
-                        this.$emit('event-name')
+
+
+                if(this.Users.position=='Secretary'){
+                    if(item.sonod_name=='প্রত্যয়নপত্র' || item.sonod_name=='বিবিধ প্রত্যয়নপত্র'){
+                            this.infoModal.content_id = `${id}`;
+                            this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+                    }else{
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: `${status} this data!`,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: `Yes, ${status} it!`
+                            }).then(async (result) => {
+                                if (result.isConfirmed) {
+                                    var res = await this.callApi('get', `${route}/${status}/${id}`, []);
+                                    Notification.customSuccess(`Your data has been ${status}`);
+                                    this.$emit('event-name')
+                                }
+                            })
                     }
-                })
+                }else{
+                     Swal.fire({
+                                title: 'Are you sure?',
+                                text: `${status} this data!`,
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: `Yes, ${status} it!`
+                            }).then(async (result) => {
+                                if (result.isConfirmed) {
+                                    var res = await this.callApi('get', `${route}/${status}/${id}`, []);
+                                    Notification.customSuccess(`Your data has been ${status}`);
+                                    this.$emit('event-name')
+                                }
+                            })
+                }
+
+
+
+
+
+
+
+
+
             }
         },
         async cancel(route, id, status, button) {
@@ -552,42 +653,42 @@ export default {
                 }
             })
         },
-           async onSubmit() {
+        async onSubmit() {
 
-this.f.district = this.Users.district;
+            this.f.district = this.Users.district;
             var res = await this.callApi('post', this.AllUpdate, this.f);
- this.$emit('event-name')
-    // console.log(res)
-    // this.getunionInfo();
-    //     this.$router.push({ name: 'unionlist'})
-    Notification.customSuccess('Payment Info Update Successfuly Done');
+            this.$emit('event-name')
+            // console.log(res)
+            // this.getunionInfo();
+            //     this.$router.push({ name: 'unionlist'})
+            Notification.customSuccess('Payment Info Update Successfuly Done');
 
 
         },
 
-         async formcancel(){
-             var id = this.infoModal.content_id;
-                this.b['names'] = this.Users.names;
-                this.b['user_id'] = this.Users.id;
-                this.b['position'] = this.Users.position;
-                this.b['unioun'] = this.Users.unioun;
-                this.b['status'] = 'cancel';
-                this.b['sonod_id'] = id;
+        async formcancel() {
+            var id = this.infoModal.content_id;
+            this.b['names'] = this.Users.names;
+            this.b['user_id'] = this.Users.id;
+            this.b['position'] = this.Users.position;
+            this.b['unioun'] = this.Users.unioun;
+            this.b['status'] = 'cancel';
+            this.b['sonod_id'] = id;
 
-                var res = await this.callApi('post',`${this.CancelRoute}/cancel/${id}`,this.b);
-                // console.log(res)
-           this.$root.$emit('bv::hide::modal', 'info-modal')
-                this.$emit('event-name')
+            var res = await this.callApi('post', `${this.CancelRoute}/cancel/${id}`, this.b);
+            // console.log(res)
+            this.$root.$emit('bv::hide::modal', 'info-modal')
+            this.$emit('event-name')
 
 
-                this.infoModal.title = ''
-                this.infoModal.content = ''
-                this.b ={
-                    reson:'',
-                }
-                 Notification.customError(`Your data has been Canceled`);
-
+            this.infoModal.title = ''
+            this.infoModal.content = ''
+            this.b = {
+                reson: '',
             }
+            Notification.customError(`Your data has been Canceled`);
+
+        }
 
     }
 }
@@ -596,6 +697,7 @@ this.f.district = this.Users.district;
 .modal-dialog.modal-xl {
     max-width: 1200px;
 }
+
 .app-heading {
     text-align: center;
     margin: 32px 0;
@@ -603,6 +705,7 @@ this.f.district = this.Users.district;
     border-bottom: 1px solid #159513;
     color: #159513;
 }
+
 .customcheckbox {
     padding: 0 !important;
     width: 22px;

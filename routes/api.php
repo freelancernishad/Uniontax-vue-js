@@ -145,3 +145,6 @@ Route::get('citizen/list',[CitizenController::class,'index']);
 Route::get('citizen/show/{id}',[CitizenController::class,'show']);
 Route::get('citizen/delete/{id}',[CitizenController::class,'destroy']);
 Route::post('citizen/submit',[CitizenController::class,'store']);
+
+
+Route::get('niddob/verify',[SonodController::class,'niddob']);
