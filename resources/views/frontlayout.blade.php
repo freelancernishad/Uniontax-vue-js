@@ -4,6 +4,21 @@
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="content-language" content="en">
+  <meta name="keywords" content="website, blog, foo, bar">
+  <meta name="author" content="John Doe">
+  <meta name="publisher" content="John Doe">
+  <meta name="copyright" content="John Doe">
+  <meta name="description" content="This short description describes my website.">
+  <meta name="page-topic" content="Media">
+  <meta name="page-type" content="Blogging">
+  <meta name="audience" content="Everyone">
+  <meta name="robots" content="index, follow">
+
+
+
+
     <title>:: Welcome to Upsheba ::</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/bangladesh-govt.png') }}" />
     <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet" onload="if(media!=='all')media='all'"> -->
