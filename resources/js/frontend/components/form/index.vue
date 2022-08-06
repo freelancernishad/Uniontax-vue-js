@@ -923,12 +923,12 @@ export default {
                 setTimeout(() => {
                     this.form.sonod_name = this.sonodnamedata.bnname;
                     // console.log(this.getUnion)
-                    //    var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
-                    // axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
-                    //     .then((response) => {
-                    //         //   console.log(response.data)
-                    //         this.form.sonod_Id = `${response.data}`;
-                    //     })
+                       var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
+                    axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
+                        .then((response) => {
+                            //   console.log(response.data)
+                            this.form.sonod_Id = `${response.data}`;
+                        })
                 }, 3000);
             },
             deep: true
@@ -1177,13 +1177,13 @@ export default {
         this.sonodname();
         setTimeout(() => {
             this.form.sonod_name = this.sonodnamedata.bnname;
-            // console.log(this.getUnion)
-            //    var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
-            // axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
-            //     .then((response) => {
-            //         //   console.log(response.data)
-            //         this.form.sonod_Id = `${response.data}`;
-            //     })
+            console.log(this.getUnion)
+               var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
+            axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
+                .then((response) => {
+                    //   console.log(response.data)
+                    this.form.sonod_Id = `${response.data}`;
+                })
 
         }, 3000);
 

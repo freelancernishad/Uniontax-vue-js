@@ -355,10 +355,10 @@ class SonodController extends Controller
 
 
 
-               $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
+            //    $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
 
-            $oldsonodNo = (int)$oldsonod->sonod_Id;
-             $Insertdata['sonod_Id'] =  $oldsonodNo+1;
+            // $oldsonodNo = (int)$oldsonod->sonod_Id;
+            //  $Insertdata['sonod_Id'] =  $oldsonodNo+1;
 
             return $sonod =   sonod::create($Insertdata);
 
