@@ -1087,7 +1087,7 @@ export default {
                 this.waitForPayment = true;
                 this.checkPayment(datas.id);
                 this.form['id'] = datas.id;
-                // window.open(redirect, '_blank');
+                window.open(redirect, '_blank');
             } else if (payment_type == 'Postpaid') {
                 this.waitForPayment = true;
                 // this.checkPayment(datas.id);
