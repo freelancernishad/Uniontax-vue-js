@@ -340,7 +340,7 @@ class SonodController extends Controller
 
         $unioun_name = $r->unioun_name;
         $sonod_name = $r->sonod_name;
-       return $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
+        $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
 
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
