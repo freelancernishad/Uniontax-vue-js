@@ -284,10 +284,39 @@ class SonodController extends Controller
         };
         return $sonodFinalId;
     }
+
+    public function allsonodId($union,$sonodname)
+    {
+        $sonodFinalId = '';
+        $sortYear =  date('y');
+        $UniouninfoCount =   Uniouninfo::where('short_name_e', $union)->latest()->count();
+        $SonodCount =   Sonod::where(['unioun_name' => $union,'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->count();
+        if ($UniouninfoCount > 0) {
+            $Uniouninfo =   Uniouninfo::where('short_name_e', $union)->latest()->first();
+            if ($SonodCount > 0) {
+                $Sonod =  Sonod::where(['unioun_name' => $union,'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->first();
+                if ($Sonod->sonod_Id == '') {
+                    $sonod_Id = str_pad(00001, 5, '0', STR_PAD_LEFT);
+                    $sonodFinalId =  $Uniouninfo->u_code . $sortYear . $sonod_Id;
+                } else {
+                    // $sonod_Id = $Sonod->Sonod+1;
+                    $sonod_Id = str_pad($Sonod->sonod_Id, 5, '0', STR_PAD_LEFT);
+                    // $sonodFinalId =  $Uniouninfo->u_code.$sortYear.$sonod_Id;
+                    $sonodFinalId = $Sonod->sonod_Id + 1;
+                }
+            } else {
+                $sonod_Id = str_pad(00001, 5, '0', STR_PAD_LEFT);
+                $sonodFinalId =  $Uniouninfo->u_code . $sortYear . $sonod_Id;
+            }
+        };
+        return $sonodFinalId;
+    }
     public function sonod_submit(Request $r)
     {
 
+
             $id = $r->id;
+            $stutus = $r->stutus;
             if($id){
                 return Sonod::find($id);
             }
@@ -307,7 +336,12 @@ class SonodController extends Controller
 
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
-        $Insertdata = $r->except(['image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
+        $Insertdata = $r->except(['sonod_Id','image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
+
+        $unioun_name = $r->unioun_name;
+        $sonod_name = $r->sonod_name;
+        $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
+
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
@@ -333,7 +367,11 @@ class SonodController extends Controller
 
             $sonod =   sonod::create($Insertdata);
 
+            if($stutus=='Pending'){
 
+                $deccription = "Congratulation! Your application $sonod->sonod_Id has been Submited.Wait for Approval";
+                smsSend($deccription,$sonod->applicant_mobile);
+            }
 
             return  $sonod;
         } catch (Exception $e) {

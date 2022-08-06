@@ -1315,6 +1315,25 @@ try {
 // }
 
 
+    function smsSend($deccription='',$applicant_mobile='01909756552'){
+
+        $messages = array();
+        array_push(
+            $messages,
+            [
+                "number" => '88' . int_bn_to_en($applicant_mobile),
+                "message" => "$deccription"
+            ]
+        );
+        ///sms functions
+        try {
+            $msgs = sendMessages($messages);
+        } catch (Exception $e) {
+            array_push($responsemessege, $e->getMessage());
+        }
+    }
+
+
 function characterCount($string){
     // replace array below with proper Bengali stopwords
     $stopWords = array('i','a','about','an','and','are','as','at','be','by','com','de','en','for','from','how','in','is','it','la','of','on','or','that','the','this','to','was','what','when','where','who','will','with','und','the','www');

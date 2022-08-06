@@ -344,7 +344,7 @@
                     <!-- col-md-4 -->
 
                     <!-- col-md-4 -->
-                    <div class="col-md-12" v-if="sonodnamedata.enname == 'Certificate' || sonodnamedata.enname.replaceAll(' ','_') == 'Miscellaneous_certificates'">
+                    <div class="col-md-12" v-if="sonodnamedata.enname == 'Certificate' || sonodnamedata.enname == 'Miscellaneous certificates'">
                         <b-form-group id="prottoyon-group-1" label="আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন"
                             label-for="prottoyon">
                             <b-form-textarea id="prottoyon" name="prottoyon"
@@ -920,11 +920,11 @@ export default {
                     this.form.sonod_name = this.sonodnamedata.bnname;
                     // console.log(this.getUnion)
                     //    var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
-                    axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
-                        .then((response) => {
-                            //   console.log(response.data)
-                            this.form.sonod_Id = `${response.data}`;
-                        })
+                    // axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
+                    //     .then((response) => {
+                    //         //   console.log(response.data)
+                    //         this.form.sonod_Id = `${response.data}`;
+                    //     })
                 }, 3000);
             },
             deep: true
@@ -1154,11 +1154,11 @@ export default {
             this.form.sonod_name = this.sonodnamedata.bnname;
             // console.log(this.getUnion)
             //    var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
-            axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
-                .then((response) => {
-                    //   console.log(response.data)
-                    this.form.sonod_Id = `${response.data}`;
-                })
+            // axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
+            //     .then((response) => {
+            //         //   console.log(response.data)
+            //         this.form.sonod_Id = `${response.data}`;
+            //     })
 
         }, 3000);
 

@@ -135,9 +135,19 @@ if ("{{ Auth::user() }}") {
 
 
     if(!storeToken){
-        axios.post('/logout').then(()=>{
-            // window.location.href = '/'
-        })
+
+        let data = {'_token': "{{ csrf_token() }}"};
+        fetch("/logout", {
+  method: "POST",
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify(data)
+}).then(res => {
+
+});
+
+        // axios.post('/logout').then(()=>{
+        //     // window.location.href = '/'
+        // })
     }
 
 
