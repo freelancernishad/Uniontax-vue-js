@@ -314,7 +314,7 @@ class SonodController extends Controller
 
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
-        $Insertdata = $r->except(['sonod_Id','image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
+        $Insertdata = $r->except(['image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
 
 
 
