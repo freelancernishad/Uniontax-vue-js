@@ -263,6 +263,9 @@
                 <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ viewModal.content.applicant_religion }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ viewModal.content.applicant_resident_status }}
                 </div>
+                <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.sonod_name=='প্রত্যয়নপত্র' || viewModal.content.sonod_name=='বিবিধ প্রত্যয়নপত্র'" ><b>আবেদনকৃত প্রত্যয়নের বিবরণ: <br> </b>{{ viewModal.content.prottoyon }}</div>
+
+
                 <div class="col-md-12">
                     <div class="app-heading">বর্তমান ঠিকানা</div>
                 </div>

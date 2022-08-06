@@ -629,6 +629,10 @@
                 <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ form.applicant_education }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ form.applicant_religion }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ form.applicant_resident_status }}</div>
+
+                <div class="col-md-12 col-12 mt-3" v-if="form.sonod_name=='প্রত্যয়নপত্র' || form.sonod_name=='বিবিধ প্রত্যয়নপত্র'" ><b>আবেদনকৃত প্রত্যয়নের বিবরণ : <br> </b>{{ form.prottoyon }}</div>
+
+
                 <div class="col-md-12">
                     <div class="app-heading">বর্তমান ঠিকানা</div>
                 </div>
@@ -1086,8 +1090,29 @@ export default {
                 window.open(redirect, '_blank');
             } else if (payment_type == 'Postpaid') {
                 this.waitForPayment = true;
-                this.checkPayment(datas.id);
-                this.form['id'] = datas.id;
+                // this.checkPayment(datas.id);
+
+
+                // this.form['id'] = datas.id;
+
+                Swal.fire({
+                    title: 'Success',
+                    text: `আপনার সনদটি সফলভাবে সাবমিট হয়েছে`,
+                    icon: 'success',
+                    confirmButtonColor: 'green',
+                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        // this.$root.$emit('bv::hide::modal', this.infoModal.id)
+                        this.$root.$emit('bv::hide::modal', 'info-modal')
+                        redirect = '/document/d/' + res.data.id;
+                        window.open(redirect, '_blank');
+                        this.$router.push({ name: 'home' })
+                    }
+                })
+
+
+
                 //  console.log(this.waitForPayment)
                 // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
                 // window.open(redirect, '_blank');
