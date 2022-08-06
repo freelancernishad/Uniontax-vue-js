@@ -52,21 +52,11 @@ class SonodController extends Controller
             // $sonod_name = sonodEnName($sonod->sonod_name);
             $InvoiceUrl =  url("/invoice/c/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
+
             $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.. Invoice: $InvoiceUrl";
-            $messages = array();
-            array_push(
-                $messages,
-                [
-                    "number" => '88' . int_bn_to_en($sonod->applicant_mobile),
-                    "message" => "$deccription"
-                ]
-            );
-            ///sms functions
-            try {
-                $msgs = sendMessages($messages);
-            } catch (Exception $e) {
-                array_push($responsemessege, $e->getMessage());
-            }
+            smsSend($deccription,$sonod->applicant_mobile);
+
+
             // return redirect("/document/$sonod->sonod_name/$id");
             echo "<script>window.close();</script>";
 
@@ -81,20 +71,8 @@ class SonodController extends Controller
             $InvoiceUrl =  url("/invoice/d/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
             $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
-            $messages = array();
-            array_push(
-                $messages,
-                [
-                    "number" => '88' . int_bn_to_en($sonod->applicant_mobile),
-                    "message" => "$deccription"
-                ]
-            );
-            ///sms functions
-            try {
-                $msgs = sendMessages($messages);
-            } catch (Exception $e) {
-                array_push($responsemessege, $e->getMessage());
-            }
+            smsSend($deccription,$sonod->applicant_mobile);
+
             // return redirect("/sonod/$sonod->sonod_name/$id");
             echo "<script>window.close();</script>";
 
@@ -433,20 +411,8 @@ class SonodController extends Controller
         $InvoiceUrl =  url("/invoice/d/$id");
         $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
         // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
-        $messages = array();
-        array_push(
-            $messages,
-            [
-                "number" => '88' . int_bn_to_en($sonod->applicant_mobile),
-                "message" => "$deccription"
-            ]
-        );
-        ///sms functions
-        try {
-            $msgs = sendMessages($messages);
-        } catch (Exception $e) {
-            array_push($responsemessege, $e->getMessage());
-        }
+        smsSend($deccription,$sonod->applicant_mobile);
+
         return $sonod->update(['payment_status' => 'Paid']);
     }
 
@@ -460,20 +426,8 @@ class SonodController extends Controller
 
         $InvoiceUrl =  url("/reject/$id");
         $deccription = "Opps! Your application $sonod->sonod_Id  has been Not Approve. Details : " . $InvoiceUrl;
-        $messages = array();
-        array_push(
-            $messages,
-            [
-                "number" => '88' . int_bn_to_en($sonod->applicant_mobile),
-                "message" => "$deccription"
-            ]
-        );
-        ///sms functions
-        try {
-            $msgs = sendMessages($messages);
-        } catch (Exception $e) {
-            array_push($responsemessege, $e->getMessage());
-        }
+        smsSend($deccription,$sonod->applicant_mobile);
+
 
         $updatedata = [
             'stutus' => $request->status,
@@ -507,6 +461,7 @@ class SonodController extends Controller
                 $InvoiceUrl =  url("/invoice/d/$id");
                 $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
+
             }elseif($payment_type == 'Postpaid'){
                 $paymentUrl =  url("/sonod/payment/$id");
 
@@ -515,20 +470,7 @@ class SonodController extends Controller
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
             }
 
-            $messages = array();
-            array_push(
-                $messages,
-                [
-                    "number" => '88' . int_bn_to_en($sonod->applicant_mobile),
-                    "message" => "$deccription"
-                ]
-            );
-            ///sms functions
-            try {
-                $msgs = sendMessages($messages);
-            } catch (Exception $e) {
-                array_push($responsemessege, $e->getMessage());
-            }
+            smsSend($deccription,$sonod->applicant_mobile);
         } else {
             $updatedata = [
                 'stutus' => $action,
