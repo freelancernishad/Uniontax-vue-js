@@ -343,8 +343,8 @@ class SonodController extends Controller
             $unioun_name = $r->unioun_name;
               $sonod_name = $r->sonod_name;
             // return  $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
-            return $Insertdata['sonod_Id'] =  $this->allsonodId($unioun_name,$sonod_name);
-            $sonod =   sonod::create($Insertdata);
+             $Insertdata['sonod_Id'] =  $this->allsonodId($unioun_name,$sonod_name);
+            return $sonod =   sonod::create($Insertdata);
 
             if($stutus=='Pending'){
 
