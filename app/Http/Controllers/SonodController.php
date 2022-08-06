@@ -622,7 +622,7 @@ class SonodController extends Controller
         $EnsonodName = str_replace(" ", "_", $uniouninfo->enname);
 
         $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo'));
-        return $pdf->stream("$EnsonodName.pdf");
+        return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
     }
     public function invoice(Request $request, $name, $id)
     {
@@ -630,12 +630,13 @@ class SonodController extends Controller
          $row->unioun_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
          $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+         $EnsonodName = str_replace(" ", "_", $uniouninfo->enname);
          if($name=='c'){
             $pdf = LaravelMpdf::loadView('cinvoice', compact('row', 'sonod', 'uniouninfo'));
-            $pdf->stream("pdf.pdf");
+            $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
          }else{
             $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
-         $pdf->stream("pdf.pdf");
+         $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
          }
 
     }
@@ -644,8 +645,9 @@ class SonodController extends Controller
         $row = Sonod::find($id);
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $EnsonodName = str_replace(" ", "_", $uniouninfo->enname);
         $pdf = LaravelMpdf::loadView('userdocument', compact('row', 'sonod', 'uniouninfo'));
-        return $pdf->stream("pdf.pdf");
+        return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
     }
     public function sonod_search(Request $request)
     {
