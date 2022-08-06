@@ -616,10 +616,12 @@ class SonodController extends Controller
     {
         $row = Sonod::find($id);
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
-        $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+
+         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $sonodnames = Sonodnamelist::where(['bnname'=>$row->sonod_name])->first();
         // return view('sonod',compact('row','sonod','uniouninfo'));
 
-        $EnsonodName = str_replace(" ", "_", $uniouninfo->enname);
+        $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
 
         $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo'));
         return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
@@ -630,7 +632,8 @@ class SonodController extends Controller
          $row->unioun_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
          $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
-         $EnsonodName = str_replace(" ", "_", $uniouninfo->enname);
+         $sonodnames = Sonodnamelist::where(['bnname'=>$row->sonod_name])->first();
+         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
          if($name=='c'){
             $pdf = LaravelMpdf::loadView('cinvoice', compact('row', 'sonod', 'uniouninfo'));
             $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
@@ -645,7 +648,8 @@ class SonodController extends Controller
         $row = Sonod::find($id);
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
-        $EnsonodName = str_replace(" ", "_", $uniouninfo->enname);
+        $sonodnames = Sonodnamelist::where(['bnname'=>$row->sonod_name])->first();
+        $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
         $pdf = LaravelMpdf::loadView('userdocument', compact('row', 'sonod', 'uniouninfo'));
         return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
     }
