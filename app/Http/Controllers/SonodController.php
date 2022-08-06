@@ -316,9 +316,7 @@ class SonodController extends Controller
         $Insertdata = [];
         $Insertdata = $r->except(['sonod_Id','image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
 
-        $unioun_name = $r->unioun_name;
-        $sonod_name = $r->sonod_name;
-        return  $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
+
 
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
@@ -342,7 +340,9 @@ class SonodController extends Controller
         $Insertdata['chaireman_sign'] = $Uniouninfo->c_signture;
         try {
 
-
+            $unioun_name = $r->unioun_name;
+            $sonod_name = $r->sonod_name;
+            return  $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
             $sonod =   sonod::create($Insertdata);
 
             if($stutus=='Pending'){
