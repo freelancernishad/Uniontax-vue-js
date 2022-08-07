@@ -344,7 +344,7 @@
                     <!-- col-md-4 -->
 
                     <!-- col-md-4 -->
-                    <div class="col-md-12" v-if="sonodnamedata.enname == 'Certificate' || sonodnamedata.enname == 'Miscellaneous certificates'">
+                    <div class="col-md-12" v-if="sonodnamedata.enname != 'Trade license'">
                         <b-form-group id="prottoyon-group-1" label="আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন"
                             label-for="prottoyon">
                             <b-form-textarea id="prottoyon" name="prottoyon"

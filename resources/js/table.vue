@@ -263,7 +263,7 @@
                 <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ viewModal.content.applicant_religion }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ viewModal.content.applicant_resident_status }}
                 </div>
-                <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.sonod_name=='প্রত্যয়নপত্র' || viewModal.content.sonod_name=='বিবিধ প্রত্যয়নপত্র'" ><b>আবেদনকৃত প্রত্যয়নের বিবরণ: <br> </b>{{ viewModal.content.prottoyon }}</div>
+                <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.sonod_name!='ট্রেড লাইসেন্স'"><b>আবেদনকৃত প্রত্যয়নের বিবরণ: <br> </b>{{ viewModal.content.prottoyon }}</div>
 
 
                 <div class="col-md-12">
@@ -535,8 +535,6 @@ export default {
         },
         async approve(route, id, status, button, ApproveType,item) {
 
-
-
             if (ApproveType == 'vueAction') {
                 this.infoModal.content_id = `${id}`;
                 this.$root.$emit('bv::show::modal', this.infoModal.id, button)
@@ -544,26 +542,27 @@ export default {
 
 
                 if(this.Users.position=='Secretary'){
-                    if(item.sonod_name=='প্রত্যয়নপত্র' || item.sonod_name=='বিবিধ প্রত্যয়নপত্র'){
+
+                    // if(item.sonod_name=='প্রত্যয়নপত্র' || item.sonod_name=='বিবিধ প্রত্যয়নপত্র'){
                             this.infoModal.content_id = `${id}`;
                             this.$root.$emit('bv::show::modal', this.infoModal.id, button)
-                    }else{
-                            Swal.fire({
-                                title: 'Are you sure?',
-                                text: `${status} this data!`,
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: `Yes, ${status} it!`
-                            }).then(async (result) => {
-                                if (result.isConfirmed) {
-                                    var res = await this.callApi('get', `${route}/${status}/${id}`, []);
-                                    Notification.customSuccess(`Your data has been ${status}`);
-                                    this.$emit('event-name')
-                                }
-                            })
-                    }
+                    // }else{
+                            // Swal.fire({
+                            //     title: 'Are you sure?',
+                            //     text: `${status} this data!`,
+                            //     icon: 'warning',
+                            //     showCancelButton: true,
+                            //     confirmButtonColor: '#3085d6',
+                            //     cancelButtonColor: '#d33',
+                            //     confirmButtonText: `Yes, ${status} it!`
+                            // }).then(async (result) => {
+                            //     if (result.isConfirmed) {
+                            //         var res = await this.callApi('get', `${route}/${status}/${id}`, []);
+                            //         Notification.customSuccess(`Your data has been ${status}`);
+                            //         this.$emit('event-name')
+                            //     }
+                            // })
+                    // }
                 }else{
                      Swal.fire({
                                 title: 'Are you sure?',
