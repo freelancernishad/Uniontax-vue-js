@@ -16,9 +16,14 @@ use App\Http\Controllers\Auth\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/smstest', function () {
+
+    for ($i=0; $i <6 ; $i++) {
+        smsSend('hello test');
+    }
+
+
+});
 // Auth::routes();
 Route::post('login',[LoginController::class,'login']);
 Route::post('logout',[LoginController::class,'logout']);

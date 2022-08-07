@@ -1327,7 +1327,7 @@ try {
         );
         ///sms functions
         try {
-            $msgs = sendMessages($messages);
+            $msgs = sendMessages($messages,1);
         } catch (Exception $e) {
             array_push($responsemessege, $e->getMessage());
         }
