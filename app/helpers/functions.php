@@ -912,7 +912,7 @@ function sendSingleMessage($number, $message, $device = 0, $schedule = null, $is
  *                   ]
  * @throws Exception If there is an error while sending messages.
  */
-function sendMessages($messages, $option = USE_SPECIFIED, $devices = [], $schedule = null, $useRandomDevice = false)
+function sendMessages($messages, $option = USE_SPECIFIED, $devices = [], $schedule = null, $useRandomDevice = true)
 {
     $url = SERVER . "/services/send.php";
     $postData = [
