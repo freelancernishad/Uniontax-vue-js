@@ -630,7 +630,7 @@
                 <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ form.applicant_religion }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ form.applicant_resident_status }}</div>
 
-                <div class="col-md-12 col-12 mt-3" v-if="form.sonod_name=='প্রত্যয়নপত্র' || form.sonod_name=='বিবিধ প্রত্যয়নপত্র'" ><b>আবেদনকৃত প্রত্যয়নের বিবরণ : <br> </b>{{ form.prottoyon }}</div>
+                <div class="col-md-12 col-12 mt-3" v-if="form.sonod_name!='ট্রেড লাইসেন্স'" ><b>আবেদনকৃত প্রত্যয়নের বিবরণ : <br> </b>{{ form.prottoyon }}</div>
 
 
                 <div class="col-md-12">
