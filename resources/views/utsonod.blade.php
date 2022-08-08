@@ -17,10 +17,6 @@
     <div style="width:800px; padding:20px; border: 10px solid #787878">
         <div style="width:750px;  padding:20px; border: 5px solid #11083a;position:relative;overflow: hidden; ">
 
-
-
-
-
             <table width="100%" style="border-collapse: collapse;" border="0">
                 <tr>
                     <td style="text-align: center;" width="20%">

@@ -667,6 +667,30 @@
                         :src="form.applicant_national_id_back_attachment" alt=""></div>
                 <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%"
                         :src="form.applicant_birth_certificate_attachment" alt=""></div>
+
+
+
+         <div class="col-md-12" v-if="form.sonod_name=='ওয়ারিশ সনদ' || form.sonod_name=='উত্তরাধিকারী সনদ'">
+                    <div class="app-heading">ওয়ারিশগনের তালিকা </div>
+                </div>
+
+                <table class="table" v-if="form.sonod_name=='ওয়ারিশ সনদ' || form.sonod_name=='উত্তরাধিকারী সনদ'">
+                    <tr>
+                        <th>ক্রমিক</th>
+                        <th>নাম</th>
+                        <th>সম্পর্ক</th>
+                        <th>জন্ম তারিখ</th>
+                        <th>জাতীয় পরিচয়পত্র নাম্বার</th>
+                    </tr>
+                    <tr v-for="ut in successors">
+                        <td>{{ ut.w_id }}</td>
+                        <td>{{ ut.w_name }}</td>
+                        <td>{{ ut.w_relation }}</td>
+                        <td>{{ ut.w_age }}</td>
+                        <td>{{ ut.w_nid }}</td>
+                    </tr>
+                </table>
+
             </div>
             <br>
             <br>

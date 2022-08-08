@@ -469,8 +469,7 @@ class SonodController extends Controller
     public function sonodDownload(Request $request, $name, $id)
     {
         $row = Sonod::find($id);
-
-        $sonod_name = $row->sonod_name;
+         $sonod_name = $row->sonod_name;
 
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
@@ -485,36 +484,36 @@ class SonodController extends Controller
 
             $filename = "$EnsonodName-$row->sonod_Id.pdf";
 
+// return $this->pdfHeader($id,$filename);
 
+            // $pdf = LaravelMpdf::loadView('utsonod', compact('row', 'sonod', 'uniouninfo'));
+            // return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
 
-            $pdf = LaravelMpdf::loadView('utsonod', compact('row', 'sonod', 'uniouninfo'));
-            return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
-
-        //     $mpdf = new \Mpdf\Mpdf([
-        //         'default_font_size' => 12,
-        //         'default_font' => 'nikosh',
-        //         'mode' => 'utf-8',
-        //         'format' => 'A4',
-        //         'setAutoTopMargin' => 'stretch',
-        //         'setAutoBottomMargin' => 'stretch'
-        //     ]);
-        //     $mpdf->SetDisplayMode('fullpage');
-        //     $mpdf->SetHTMLHeader($this->pdfHeader($id,$filename));
-        //     $mpdf->SetHTMLFooter($this->pdfFooter($id,$filename));
-        //     // $mpdf->SetHTMLHeader('Document Title|Center Text|{PAGENO}');
-        //     $mpdf->defaultheaderfontsize=10;
-        //     $mpdf->defaultheaderfontstyle='B';
-        //     $mpdf->defaultheaderline=0;
-        //     $mpdf->defaultfooterfontsize=10;
-        //     $mpdf->defaultfooterfontstyle='BI';
-        //     $mpdf->defaultfooterline=0;
-        //     $mpdf->showWatermarkImage = true;
-        //     // $mpdf->WriteHTML('<watermarkimage src="'.$watermark.'" alpha="0.1" size="80,80" />');
-        //     $mpdf->SetDisplayMode('fullpage');
-        //     $mpdf->WriteHTML($this->pdfHTMLut($id,$filename));
-        //     $mpdf->useSubstitutions = false;
-        //     $mpdf->simpleTables = true;
-        //    $mpdf->Output($filename,'I');
+            $mpdf = new \Mpdf\Mpdf([
+                'default_font_size' => 12,
+                'default_font' => 'nikosh',
+                'mode' => 'utf-8',
+                'format' => 'A4',
+                'setAutoTopMargin' => 'stretch',
+                'setAutoBottomMargin' => 'stretch'
+            ]);
+            $mpdf->SetDisplayMode('fullpage');
+            $mpdf->SetHTMLHeader($this->pdfHeader($id,$filename));
+            $mpdf->SetHTMLFooter($this->pdfFooter($id,$filename));
+            // $mpdf->SetHTMLHeader('Document Title|Center Text|{PAGENO}');
+            $mpdf->defaultheaderfontsize=10;
+            $mpdf->defaultheaderfontstyle='B';
+            $mpdf->defaultheaderline=0;
+            $mpdf->defaultfooterfontsize=10;
+            $mpdf->defaultfooterfontstyle='BI';
+            $mpdf->defaultfooterline=0;
+            $mpdf->showWatermarkImage = true;
+            // $mpdf->WriteHTML('<watermarkimage src="'.$watermark.'" alpha="0.1" size="80,80" />');
+            $mpdf->SetDisplayMode('fullpage');
+            $mpdf->WriteHTML($this->pdfHTMLut($id,$filename));
+            $mpdf->useSubstitutions = false;
+            $mpdf->simpleTables = true;
+           $mpdf->Output($filename,'I');
 
 
         }else{
@@ -705,7 +704,7 @@ class SonodController extends Controller
 					  </span>
                       </td>
                       <td style="text-align: center;" width="20%">
-                          <img width="70px" src="' . base64($row->image) . '">
+                          <img width="70px" src="' . base64('backend/bd-logo.png') . '">
                       </td>
                       <td style="text-align: center;" width="20%">';
 					//   if ($Sname == 'successor_apps' || $Sname == 'ut') {}else{
@@ -801,12 +800,11 @@ if(session('unioun')=='tetulia'){
 
 
 
-
-$sonodurl= 'https://'.$_SERVER['HTTP_HOST'].'/pdf/download'.'/'.$id;
+$qrurl = url("/verification/sonod/$row->id");
 //in Controller
 $qrcode = \QrCode::size(70)
     ->format('svg')
-    ->generate($sonodurl);
+    ->generate($qrurl);
 
         $output = '
 
@@ -833,7 +831,7 @@ $qrcode = \QrCode::size(70)
             color: white;
             text-align: center;
             padding: 2px 2px;font-size: 16px;     margin-top: 0px;" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
-                            <p class="m-0" style="font-size:14px;text-align:center">ইস্যুকৃত সনদটি যাচাই করতে QR কোড স্ক্যান করুন অথবা ভিজিট করুন www.uniontax.gov.bd</p>
+                            <p class="m-0" style="font-size:14px;text-align:center">ইস্যুকৃত সনদটি যাচাই করতে QR কোড স্ক্যান করুন অথবা ভিজিট করুন '.$uniouninfo->domain.'</p>
                       </div>
                   </div>
               </div>';
