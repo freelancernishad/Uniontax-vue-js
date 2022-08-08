@@ -682,7 +682,7 @@
                         <th>জন্ম তারিখ</th>
                         <th>জাতীয় পরিচয়পত্র নাম্বার</th>
                     </tr>
-                    <tr v-for="ut in successors">
+                    <tr v-for="ut in form.successors">
                         <td>{{ ut.w_id }}</td>
                         <td>{{ ut.w_name }}</td>
                         <td>{{ ut.w_relation }}</td>

@@ -56,7 +56,7 @@ class CreateSonodsTable extends Migration
             $table->string('applicant_permanent_district')->nullable();
             $table->string('applicant_permanent_Upazila')->nullable();
             $table->string('applicant_permanent_post_office')->nullable();
-            $table->string('successor_list')->nullable();
+            $table->longText('successor_list')->nullable();
             $table->string('khat')->nullable();
             $table->string('last_years_money')->nullable();
             $table->string('currently_paid_money')->nullable();
