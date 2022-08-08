@@ -27,6 +27,10 @@
     <p style="margin-bottom: 10px;"
     > {!! $row->sec_prottoyon !!}<br>
     </p>
+<br>
+    <p style="margin-bottom: 10px;"
+    > {!! $sonod->template  !!}<br>
+    </p>
 
 
 
