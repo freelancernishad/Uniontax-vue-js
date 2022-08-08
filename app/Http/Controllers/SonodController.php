@@ -481,33 +481,40 @@ class SonodController extends Controller
 
         if($sonod_name=='ওয়ারিশ সনদ' || $sonod_name=='উত্তরাধিকারী সনদ'){
 
+
+
             $filename = "$EnsonodName-$row->sonod_Id.pdf";
 
-            $mpdf = new \Mpdf\Mpdf([
-                'default_font_size' => 12,
-                'default_font' => 'nikosh',
-                'mode' => 'utf-8',
-                'format' => 'A4',
-                'setAutoTopMargin' => 'stretch',
-                'setAutoBottomMargin' => 'stretch'
-            ]);
-            $mpdf->SetDisplayMode('fullpage');
-            $mpdf->SetHTMLHeader($this->pdfHeader($id,$filename));
-            $mpdf->SetHTMLFooter($this->pdfFooter($id,$filename));
-            // $mpdf->SetHTMLHeader('Document Title|Center Text|{PAGENO}');
-            $mpdf->defaultheaderfontsize=10;
-            $mpdf->defaultheaderfontstyle='B';
-            $mpdf->defaultheaderline=0;
-            $mpdf->defaultfooterfontsize=10;
-            $mpdf->defaultfooterfontstyle='BI';
-            $mpdf->defaultfooterline=0;
-            $mpdf->showWatermarkImage = true;
-            // $mpdf->WriteHTML('<watermarkimage src="'.$watermark.'" alpha="0.1" size="80,80" />');
-            $mpdf->SetDisplayMode('fullpage');
-            $mpdf->WriteHTML($this->pdfHTMLut($id,$filename));
-            $mpdf->useSubstitutions = false;
-            $mpdf->simpleTables = true;
-           $mpdf->Output($filename,'I');
+
+
+            $pdf = LaravelMpdf::loadView('utsonod', compact('row', 'sonod', 'uniouninfo'));
+            return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+
+        //     $mpdf = new \Mpdf\Mpdf([
+        //         'default_font_size' => 12,
+        //         'default_font' => 'nikosh',
+        //         'mode' => 'utf-8',
+        //         'format' => 'A4',
+        //         'setAutoTopMargin' => 'stretch',
+        //         'setAutoBottomMargin' => 'stretch'
+        //     ]);
+        //     $mpdf->SetDisplayMode('fullpage');
+        //     $mpdf->SetHTMLHeader($this->pdfHeader($id,$filename));
+        //     $mpdf->SetHTMLFooter($this->pdfFooter($id,$filename));
+        //     // $mpdf->SetHTMLHeader('Document Title|Center Text|{PAGENO}');
+        //     $mpdf->defaultheaderfontsize=10;
+        //     $mpdf->defaultheaderfontstyle='B';
+        //     $mpdf->defaultheaderline=0;
+        //     $mpdf->defaultfooterfontsize=10;
+        //     $mpdf->defaultfooterfontstyle='BI';
+        //     $mpdf->defaultfooterline=0;
+        //     $mpdf->showWatermarkImage = true;
+        //     // $mpdf->WriteHTML('<watermarkimage src="'.$watermark.'" alpha="0.1" size="80,80" />');
+        //     $mpdf->SetDisplayMode('fullpage');
+        //     $mpdf->WriteHTML($this->pdfHTMLut($id,$filename));
+        //     $mpdf->useSubstitutions = false;
+        //     $mpdf->simpleTables = true;
+        //    $mpdf->Output($filename,'I');
 
 
         }else{
@@ -870,13 +877,9 @@ $qrcode = \QrCode::size(70)
         $qrcode = \QrCode::size(70)
             ->format('svg')
             ->generate($sonodurl);
-        /*
-================================================================================================================
-                                                citizen_apps1
-================================================================================================================
-*/
 
-            $w_list = $uniouninfo->successor_list;
+
+            $w_list = $row->successor_list;
             $w_list = json_decode($w_list);
             $pdfHead = '';
             $ssName = '  <div class="nagorik_sonod" style="margin-bottom:10px;">
