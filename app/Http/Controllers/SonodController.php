@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Exception;
 use App\Models\Sonod;
 use App\Models\Charage;
@@ -18,52 +16,30 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Facades\Validator;
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
-
 class SonodController extends Controller
 {
     public function sonodpaymentSuccess(Request $request)
     {
-
         $transId =  $request->transId;
         $payment = Payment::where(['trxId' => $transId])->first();
         $id = $payment->sonodId;
         $sonod = Sonod::find($id);
-
-
         $unioun_name =  $sonod->unioun_name;
         $sonod_name =  $sonod->sonod_name;
         $uniouninfo = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
         // $sonodnamelists = Sonodnamelist::where(['bnname' => $sonod_name])->first();
-
         $payment_type = $uniouninfo->payment_type;
-
-
-
-
-
-
-
-
         if ($payment_type == 'Prepaid') {
-
-
             $payment->update(['status' => 'Paid']);
-            $sonod->update(['stutus' => 'Pending','payment_status' => 'Paid']);
+            $sonod->update(['stutus' => 'Pending', 'payment_status' => 'Paid']);
             // $sonod_name = sonodEnName($sonod->sonod_name);
             $InvoiceUrl =  url("/invoice/c/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
-
             $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.. Invoice: $InvoiceUrl";
-            smsSend($deccription,$sonod->applicant_mobile);
-
-
+            smsSend($deccription, $sonod->applicant_mobile);
             // return redirect("/document/$sonod->sonod_name/$id");
             echo "<script>window.close();</script>";
-
-
-
         } elseif ($payment_type == 'Postpaid') {
-
             $payment->update(['status' => 'Paid']);
             $sonod->update(['payment_status' => 'Paid']);
             // $sonod_name = sonodEnName($sonod->sonod_name);
@@ -71,62 +47,41 @@ class SonodController extends Controller
             $InvoiceUrl =  url("/invoice/d/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
             $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
-            smsSend($deccription,$sonod->applicant_mobile);
-
+            smsSend($deccription, $sonod->applicant_mobile);
             // return redirect("/sonod/$sonod->sonod_name/$id");
             echo "<script>window.close();</script>";
-
         }
-
-
-
-
-
-
-
-
     }
     public function sonodpayment(Request $request, $id)
     {
         //  $unioun_name =  $r->unioun_name;
-
-
-
-
         $sonod = Sonod::find($id);
         $unioun_name =  $sonod->unioun_name;
         $sonod_name =  $sonod->sonod_name;
         $uniouninfo = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
         $sonodnamelists = Sonodnamelist::where(['bnname' => $sonod_name])->first();
-
         $payment_type = $uniouninfo->payment_type;
-
         if ($payment_type == 'Prepaid') {
-           $sonod_fee =  $sonodnamelists->sonod_fee;
-
-           $unioninfos = Uniouninfo::where(['short_name_e'=>$unioun_name])->first();
-           $district = $unioninfos->district;
-           $thana = $unioninfos->thana;
-           $CharageCount = Charage::where(['district'=>$district,'thana'=>$thana])->count();
-           $vat = 0;
-           $tax = 0;
-           $service = 0;
-           if($CharageCount>0){
-           $charge =   Charage::where(['district'=>$district,'thana'=>$thana])->first();
-            $vat = $charge->vat;
-            $tax = $charge->tax;
-            $service = $charge->service;
-           }
-
-           $vatAmount = (($sonod_fee*$vat)/100);
-           $taxAmount = (($sonod_fee*$tax)/100);
-           $totalamount = $sonod_fee+$vatAmount+$taxAmount+$service;
-
-
-
-           if ($totalamount == null || $totalamount == '' || $totalamount < 10) {
-            $totalamount = 10;
-           }
+            $sonod_fee =  $sonodnamelists->sonod_fee;
+            $unioninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
+            $district = $unioninfos->district;
+            $thana = $unioninfos->thana;
+            $CharageCount = Charage::where(['district' => $district, 'thana' => $thana])->count();
+            $vat = 0;
+            $tax = 0;
+            $service = 0;
+            if ($CharageCount > 0) {
+                $charge =   Charage::where(['district' => $district, 'thana' => $thana])->first();
+                $vat = $charge->vat;
+                $tax = $charge->tax;
+                $service = $charge->service;
+            }
+            $vatAmount = (($sonod_fee * $vat) / 100);
+            $taxAmount = (($sonod_fee * $tax) / 100);
+            $totalamount = $sonod_fee + $vatAmount + $taxAmount + $service;
+            if ($totalamount == null || $totalamount == '' || $totalamount < 10) {
+                $totalamount = 10;
+            }
             $arraydata = [
                 'total_amount' => $totalamount,
                 'pesaKor' => $request->pesaKor,
@@ -147,9 +102,7 @@ class SonodController extends Controller
                 'amount_deails' => $amount_deails,
                 'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
             ];
-
-             $sonod->update($updateData);
-
+            $sonod->update($updateData);
             $total_amount = $sonod->total_amount;
             $amount = 0;
             if ($total_amount == null || $total_amount == '' || $total_amount < 10) {
@@ -180,9 +133,6 @@ class SonodController extends Controller
             $redirectutl =  ekpayToken($trnx_id, $amount, $cust_info);
             return redirect($redirectutl);
         } elseif ($payment_type == 'Postpaid') {
-
-
-
             $stutus = $sonod->stutus;
             $payment_status = $sonod->payment_status;
             if ($stutus != 'approved') {
@@ -262,22 +212,18 @@ class SonodController extends Controller
         };
         return $sonodFinalId;
     }
-
-     function allsonodId($union,$sonodname)
+    function allsonodId($union, $sonodname)
     {
         $sonodFinalId = '';
         $sortYear =  date('y');
         $UniouninfoCount =   Uniouninfo::where('short_name_e', $union)->latest()->count();
-        $SonodCount =   Sonod::where(['unioun_name' => $union,'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->count();
+        $SonodCount =   Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->count();
         if ($UniouninfoCount > 0) {
             $Uniouninfo =   Uniouninfo::where('short_name_e', $union)->latest()->first();
             if ($SonodCount > 0) {
-                $Sonod =  Sonod::where(['unioun_name' => $union,'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->first();
-
-
+                $Sonod =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->first();
                 // $sonodFinalId = 'fgdfgdfg';
                 $sonodFinalId = $Sonod->sonod_Id + 1;
-
                 // if ($Sonod->sonod_Id == '') {
                 //     $sonod_Id = str_pad(00001, 5, '0', STR_PAD_LEFT);
                 //     $sonodFinalId =  $Uniouninfo->u_code . $sortYear . $sonod_Id;
@@ -296,33 +242,19 @@ class SonodController extends Controller
     }
     public function sonod_submit(Request $r)
     {
-
-
-            $id = $r->id;
-            $stutus = $r->stutus;
-            // if($id){
-            //     return Sonod::find($id);
-            // }
-
-
-
-
-
+        $id = $r->id;
+        $stutus = $r->stutus;
+        // if($id){
+        //     return Sonod::find($id);
+        // }
         //  $unioun_name =  $r->unioun_name;
         // $uniouninfo = Uniouninfo::where(['short_name_e'=>$unioun_name])->first();
-
         // $payment_type = $uniouninfo->payment_type;
         $successors = json_encode($r->successors);
         $sonodEnName =  Sonodnamelist::where('bnname', $r->sonod_name)->first();
-
-
-
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
         $Insertdata = $r->except(['image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
-
-
-
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
@@ -344,30 +276,17 @@ class SonodController extends Controller
         $Insertdata['chaireman_name'] = $Uniouninfo->c_name;
         $Insertdata['chaireman_sign'] = $Uniouninfo->c_signture;
         try {
-
             $unioun_name = $r->unioun_name;
-              $sonod_name = $r->sonod_name;
-
-
-
-              // return  $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
-
-
-
-
+            $sonod_name = $r->sonod_name;
+            // return  $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name,$sonod_name);
             //    $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
-
             // $oldsonodNo = (int)$oldsonod->sonod_Id;
             //  $Insertdata['sonod_Id'] =  $oldsonodNo+1;
-
             return $sonod =   sonod::create($Insertdata);
-
-            if($stutus=='Pending'){
-
+            if ($stutus == 'Pending') {
                 $deccription = "Congratulation! Your application $sonod->sonod_Id has been Submited.Wait for Approval";
-                smsSend($deccription,$sonod->applicant_mobile);
+                smsSend($deccription, $sonod->applicant_mobile);
             }
-
             return  $sonod;
         } catch (Exception $e) {
             return sent_error($e->getMessage(), $e->getCode());
@@ -382,10 +301,7 @@ class SonodController extends Controller
     public function sec_sonod_action(Request $request, $id)
     {
         $sonod = Sonod::find($id);
-
         $sec_prottoyon = $request->sec_prottoyon;
-
-
         //    return $request->all();
         $arraydata = [
             'total_amount' => $request->amounta,
@@ -399,8 +315,7 @@ class SonodController extends Controller
         $amount_deails = json_encode($arraydata);
         $numto = new NumberToBangla();
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
-
-        if($sec_prottoyon){
+        if ($sec_prottoyon) {
             $updateData = [
                 'amount_deails' => $amount_deails,
                 'sec_prottoyon' => $sec_prottoyon,
@@ -408,7 +323,6 @@ class SonodController extends Controller
             ];
             return $sonod->update($updateData);
         }
-
         $updateData = [
             'khat' => $request->khat,
             'last_years_money' => $request->last_years_money,
@@ -428,39 +342,25 @@ class SonodController extends Controller
         $InvoiceUrl =  url("/invoice/d/$id");
         $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
         // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
-        smsSend($deccription,$sonod->applicant_mobile);
-
+        smsSend($deccription, $sonod->applicant_mobile);
         return $sonod->update(['payment_status' => 'Paid']);
     }
-
     public function cancelsonod(Request $request, $id)
     {
         $sonod = Sonod::find($id);
         $data = $request->all();
         ActionLog::create($data);
-
-        $sonod->update(['cancedby'=>$request->names,'cancedbyUserid'=>$request->user_id]);
-
+        $sonod->update(['cancedby' => $request->names, 'cancedbyUserid' => $request->user_id]);
         $InvoiceUrl =  url("/reject/$id");
         $deccription = "Opps! Your application $sonod->sonod_Id  has been Not Approve. Details : " . $InvoiceUrl;
-        smsSend($deccription,$sonod->applicant_mobile);
-
-
+        smsSend($deccription, $sonod->applicant_mobile);
         $updatedata = [
             'stutus' => $request->status,
         ];
-
-    return $sonod->update($updatedata);
-
-
+        return $sonod->update($updatedata);
     }
-
     public function sonod_action(Request $request, $action, $id)
     {
-
-
-
-
         $sonod = Sonod::find($id);
         $unioun_name = $sonod->unioun_name;
         $uniouninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
@@ -471,23 +371,18 @@ class SonodController extends Controller
                 'stutus' => $action,
             ];
             $sonod_name =  sonodEnName($sonod->sonod_name);
-
             $payment_type = $uniouninfos->payment_type;
             if ($payment_type == 'Prepaid') {
                 $sonodUrl =  url("/sonod/d/$id");
                 $InvoiceUrl =  url("/invoice/d/$id");
                 $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
-
-            }elseif($payment_type == 'Postpaid'){
+            } elseif ($payment_type == 'Postpaid') {
                 $paymentUrl =  url("/sonod/payment/$id");
-
-
-            $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Pay: " . $paymentUrl;
-            // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
+                $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Pay: " . $paymentUrl;
+                // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
             }
-
-            smsSend($deccription,$sonod->applicant_mobile);
+            smsSend($deccription, $sonod->applicant_mobile);
         } else {
             $updatedata = [
                 'stutus' => $action,
@@ -574,40 +469,84 @@ class SonodController extends Controller
     public function sonodDownload(Request $request, $name, $id)
     {
         $row = Sonod::find($id);
+
+        $sonod_name = $row->sonod_name;
+
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
-
-         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
-        $sonodnames = Sonodnamelist::where(['bnname'=>$row->sonod_name])->first();
+        $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
         // return view('sonod',compact('row','sonod','uniouninfo'));
-
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
 
-        $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo'));
-        return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+
+        if($sonod_name=='ওয়ারিশ সনদ' || $sonod_name=='উত্তরাধিকারী সনদ'){
+
+            $filename = "$EnsonodName-$row->sonod_Id.pdf";
+
+            $mpdf = new \Mpdf\Mpdf([
+                'default_font_size' => 12,
+                'default_font' => 'nikosh',
+                'mode' => 'utf-8',
+                'format' => 'A4',
+                'setAutoTopMargin' => 'stretch',
+                'setAutoBottomMargin' => 'stretch'
+            ]);
+            $mpdf->SetDisplayMode('fullpage');
+            $mpdf->SetHTMLHeader($this->pdfHeader($id,$filename));
+            $mpdf->SetHTMLFooter($this->pdfFooter($id,$filename));
+            // $mpdf->SetHTMLHeader('Document Title|Center Text|{PAGENO}');
+            $mpdf->defaultheaderfontsize=10;
+            $mpdf->defaultheaderfontstyle='B';
+            $mpdf->defaultheaderline=0;
+            $mpdf->defaultfooterfontsize=10;
+            $mpdf->defaultfooterfontstyle='BI';
+            $mpdf->defaultfooterline=0;
+            $mpdf->showWatermarkImage = true;
+            // $mpdf->WriteHTML('<watermarkimage src="'.$watermark.'" alpha="0.1" size="80,80" />');
+            $mpdf->SetDisplayMode('fullpage');
+            $mpdf->WriteHTML($this->pdfHTMLut($id,$filename));
+            $mpdf->useSubstitutions = false;
+            $mpdf->simpleTables = true;
+           $mpdf->Output($filename,'I');
+
+
+        }else{
+
+            $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo'));
+            return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+        }
+
+
+
+
+
+
+
+
+
     }
     public function invoice(Request $request, $name, $id)
     {
         $row = Sonod::find($id);
-         $row->unioun_name;
+        $row->unioun_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
-         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
-         $sonodnames = Sonodnamelist::where(['bnname'=>$row->sonod_name])->first();
-         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
-         if($name=='c'){
+        $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
+        $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
+        if ($name == 'c') {
             $pdf = LaravelMpdf::loadView('cinvoice', compact('row', 'sonod', 'uniouninfo'));
             $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
-         }else{
+        } else {
             $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
-         $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
-         }
-
+            $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+        }
     }
     public function userDocument(Request $request, $name, $id)
     {
         $row = Sonod::find($id);
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
-        $sonodnames = Sonodnamelist::where(['bnname'=>$row->sonod_name])->first();
+        $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
         $pdf = LaravelMpdf::loadView('userdocument', compact('row', 'sonod', 'uniouninfo'));
         return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
@@ -621,55 +560,38 @@ class SonodController extends Controller
             $sonod['sonodUrl'] = "/sonod/$Sonodnamelist->enname/$sonod->id";
             $sonod['searchstatus'] = "approved";
             return  $sonod;
-        }else{
-                  $sonodcountall =  Sonod::where(['sonod_name' => $request->sonod_name, 'sonod_Id' => $request->sonod_Id])->count();
-                  if($sonodcountall > 0){
-                   $sonod =   Sonod::where(['sonod_name' => $request->sonod_name, 'sonod_Id' => $request->sonod_Id])->first();
-                   $sonod['searchstatus'] = "all";
-                   return $sonod;
-                  }
-
+        } else {
+            $sonodcountall =  Sonod::where(['sonod_name' => $request->sonod_name, 'sonod_Id' => $request->sonod_Id])->count();
+            if ($sonodcountall > 0) {
+                $sonod =   Sonod::where(['sonod_name' => $request->sonod_name, 'sonod_Id' => $request->sonod_Id])->first();
+                $sonod['searchstatus'] = "all";
+                return $sonod;
+            }
         }
         return 0;
     }
-
-
-    public function singlesonod(Request $request,$id)
+    public function singlesonod(Request $request, $id)
     {
         return Sonod::find($id);
     }
-
-    public function counting(Request $request,$status)
+    public function counting(Request $request, $status)
     {
-
-        if($status=='all'){
-
-            return  Sonod::where('stutus','!=','Prepaid')->count();
+        if ($status == 'all') {
+            return  Sonod::where('stutus', '!=', 'Prepaid')->count();
         }
-        return  Sonod::where(['stutus'=>$status])->count();
+        return  Sonod::where(['stutus' => $status])->count();
     }
-
-public function niddob(Request $request)
-{
-    $applicant_national_id_number = $request->applicant_national_id_number;
-    $applicant_birth_certificate_number = $request->applicant_birth_certificate_number;
-
-    if($applicant_national_id_number){
-      return   $citizen = Citizen::where(['nidno'=>$applicant_national_id_number])->count();
+    public function niddob(Request $request)
+    {
+        $applicant_national_id_number = $request->applicant_national_id_number;
+        $applicant_birth_certificate_number = $request->applicant_birth_certificate_number;
+        if ($applicant_national_id_number) {
+            return   $citizen = Citizen::where(['nidno' => $applicant_national_id_number])->count();
+        }
+        if ($applicant_birth_certificate_number) {
+            return   $citizen = Citizen::where(['dobno' => $applicant_birth_certificate_number])->count();
+        }
     }
-
-    if($applicant_birth_certificate_number){
-        return   $citizen = Citizen::where(['dobno'=>$applicant_birth_certificate_number])->count();
-
-    }
-
-
-
-
-
-}
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -730,4 +652,336 @@ public function niddob(Request $request)
     {
         //
     }
+
+
+
+
+
+
+
+
+    public function pdfHeader($id,$filename){
+
+        $row = Sonod::find($id);
+        $sonod_name = $row->sonod_name;
+
+        $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
+        $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
+        // return view('sonod',compact('row','sonod','uniouninfo'));
+        $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
+
+            $w_list = $row->successor_list;
+            $w_list = json_decode($w_list);
+            $pdfHead = '';
+            $ssName = '  <div class="nagorik_sonod" style="margin-bottom:10px;">
+                <div style="
+                background-color: #159513;
+                color: #fff;
+                font-size: 30px;
+                border-radius: 30em;
+                width:320px;
+                margin:10px auto;
+                margin-bottom:0px;
+                text-align:center
+                ">ওয়ারিশান/উত্তরাধিকারী সনদপত্র</div> <br>
+                ';
+            $lNO = '';
+
+        $output = '
+          ' . $pdfHead . '
+              <table width="100%" style="border-collapse: collapse;" border="0">
+                  <tr>
+                      <td style="text-align: center;" width="20%">
+					  <span style="color:#b400ff;"><b>
+					  উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+					  </span>
+                      </td>
+                      <td style="text-align: center;" width="20%">
+                          <img width="70px" src="' . base64($row->image) . '">
+                      </td>
+                      <td style="text-align: center;" width="20%">';
+					//   if ($Sname == 'successor_apps' || $Sname == 'ut') {}else{
+					// 	     $output .= '<img width="100px" src="' . $logoPofile . '">';
+					//   }
+                      $output .= '</td>
+                  </tr>
+                  <tr style="margin-top:2px;margin-bottom:2px;">
+                      <td>
+                      </td>
+                      <td style="text-align: center;" width="50%">
+                          <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ</p>
+                      </td>
+                      <td>
+                      </td>
+                  </tr>
+                  <tr style="margin-top:0px;margin-bottom:0px;">
+                      <td>
+                      </td>
+                      <td style="margin-top:0px; margin-bottom:0px; text-align: center;" width=50%>
+                          <h1 style="color: #7230A0; margin: 0px; font-size: 28px">' . $uniouninfo->full_name . '</h3>
+                      </td>
+                      <td>
+                      </td>
+                  </tr>
+                  <tr style="margin-top:2px;margin-bottom:2px;">
+                      <td>
+                      </td>
+                      <td style="text-align: center; " width="50%">
+                          <p style="font-size:20px">উপজেলা: ' . $uniouninfo->thana . ', জেলা: ' . $uniouninfo->district . ' ।</p>
+                      </td>
+                      <td>
+                      </td>
+                  </tr>
+  </table>
+                ' . $ssName .'
+
+                <div class="nagorik_sonod" style="margin-bottom:10px;">
+                <div style="
+                background-color: red;
+                color: #fff;
+                font-size: 16px;
+                border-radius: 30em;
+                width:200px;
+                margin:10px auto;
+                text-align:center
+                "> Page No: {PAGENO} </div>
+
+
+
+
+                ' . $lNO . '
+                          </div>';
+
+        return $output;
+
+
+
+    }
+
+
+
+
+
+    public function pdfFooter($id,$filename){
+
+        $row = Sonod::find($id);
+        $sonod_name = $row->sonod_name;
+
+        $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
+        $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
+        // return view('sonod',compact('row','sonod','uniouninfo'));
+        $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
+
+
+
+
+
+$sonodNO = ' <div class="signature text-center position-relative">
+সনদ নং: ' .  int_en_to_bn($uniouninfo->u_code . '11-' . $uniouninfo->sonod_no) . ' <br /> ইস্যুর তারিখ: </div>';
+
+if(session('unioun')=='tetulia'){
+	$ccc = '<img width="170px"  src="' . base64($row->chaireman_sign) . '"><br/>
+                              <b><span style="color:#7230A0;font-size:18px;">'.$uniouninfo->chaireman_name.'</span> <br />
+                                      </b><span style="font-size:16px;">চেয়ারম্যান</span><br />';
+
+}else{
+	$ccc = '<img width="170px"  src="' . base64($row->chaireman_sign) . '"><br/>
+                              <b><span style="color:#7230A0;font-size:18px;">'.$uniouninfo->chaireman_name.'</span> <br />
+                                      </b><span style="font-size:16px;">চেয়ারম্যান</span><br />';
+}
+
+
+
+
+$sonodurl= 'https://'.$_SERVER['HTTP_HOST'].'/pdf/download'.'/'.$id;
+//in Controller
+$qrcode = \QrCode::size(70)
+    ->format('svg')
+    ->generate($sonodurl);
+
+        $output = '
+
+        <table width="100%" style="border-collapse: collapse;" border="0">
+
+                              <tr>
+                                  <td  style="text-align: center;" width="40%">
+                             <div class="signature text-center position-relative">
+                                      ' . $qrcode . '<br/>
+                                       ' . $sonodNO . '
+                                    </div>
+                                  </td>
+                                  <td style="text-align: center; width: 200px;" width="30%">
+                                      <img width="100px" src="' . base64($uniouninfo->sonod_logo) . '">
+                                  </td>
+                                  <td style="text-align: center;" width="40%">
+                                      <div class="signature text-center position-relative">
+                                      '.$ccc .$uniouninfo->full_name . ' <br> '. $uniouninfo->thana . ', ' . $uniouninfo->district . ' ।</div>
+                                  </td>
+                              </tr>
+
+                          </table>
+                            <p style="background: #787878;
+            color: white;
+            text-align: center;
+            padding: 2px 2px;font-size: 16px;     margin-top: 0px;" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
+                            <p class="m-0" style="font-size:14px;text-align:center">ইস্যুকৃত সনদটি যাচাই করতে QR কোড স্ক্যান করুন অথবা ভিজিট করুন www.uniontax.gov.bd</p>
+                      </div>
+                  </div>
+              </div>';
+
+
+
+
+          $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $output);
+
+
+
+
+        return $output;
+
+
+
+    }
+
+
+
+
+    public function pdfHTMLut($id,$filename)
+    {
+
+
+
+        $row = Sonod::find($id);
+        $sonod_name = $row->sonod_name;
+
+        $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
+        $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
+        $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
+        // return view('sonod',compact('row','sonod','uniouninfo'));
+        $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
+
+
+
+
+			$sonodurl= 'https://'.$_SERVER['HTTP_HOST'].'/pdf/download'.'/'.$id;
+        //in Controller
+        $qrcode = \QrCode::size(70)
+            ->format('svg')
+            ->generate($sonodurl);
+        /*
+================================================================================================================
+                                                citizen_apps1
+================================================================================================================
+*/
+
+            $w_list = $uniouninfo->successor_list;
+            $w_list = json_decode($w_list);
+            $pdfHead = '';
+            $ssName = '  <div class="nagorik_sonod" style="margin-bottom:10px;">
+                <div style="
+                background-color: #159513;
+                color: #fff;
+                font-size: 30px;
+                border-radius: 30em;
+                width:320px;
+                margin:10px auto;
+                margin-bottom:0px;
+                text-align:center
+                ">ওয়ারিশান/উত্তরাধিকারী সনদপত্র</div> <br>
+                ';
+            $nagoriinfo = '
+            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, ' . $row->applicant_name . ', পিতা- ' . $row->applicant_father_name . ', মাতা- ' . $row->applicant_mother_name . ', গ্রাম- ' . $row->applicant_present_village . ', ডাকঘর- ' . $row->applicant_present_post_office . ', উপজেলা: '. $row->applicant_present_Upazila .', জেলা- '. $row->applicant_present_district .'। তিনি অত্র ইউনিয়নের একজন স্থায়ী বাসিন্দা এবং জন্ম সূত্রে বাংলাদেশের নাগরিক ।<br>
+                </p>
+<p style="text-align:center;margin-bottom:0px">বর্তমানে তার নিম্নোক্ত ওয়ারিশ/উত্তরাধিকারীগণ রয়েছেন।</p>
+
+
+<table class="table " style="width:100%;border-collapse: collapse;" cellspacing="0" cellpadding="0"  >
+<tr>
+  <th style="        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;" width="10%">ক্রমিক নং</th>
+  <th style="        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;" width="30%">ওয়ারিশ গনের নাম</th>
+  <th style="        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;" width="10%">সম্পর্ক</th>
+  <th style="        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;" width="10%">বয়স</th>
+  <th style="        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;" width="20%">জাতীয় পরিচয়পত্র নম্বর</th>
+
+</tr>';
+            $i = 1;
+            foreach ($w_list as $rowList) {
+
+                $nagoriinfo .= '
+    <tr>
+      <td style="text-align:center;        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;">' .int_en_to_bn($i). '</td>
+      <td style="text-align:center;        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;">' . $rowList->w_name . '</td>
+      <td style="text-align:center;        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;">' . $rowList->w_relation . '</td>
+      <td style="text-align:center;        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;">' . int_en_to_bn($rowList->w_age) . '</td>
+      <td style="text-align:center;        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;">' . int_en_to_bn($rowList->w_nid) . '</td>
+
+    </tr>';
+                $i++;
+            }
+            $nagoriinfo .= '
+</table>
+<br>
+<p style="margin-top:-10px;margin-bottom:5px">
+আমার জানামতে উল্লেখিত  উত্তরাধিকারী ছাড়া আর কোন উত্তরাধিকারী নাই। আমি নিম্নস্বাক্ষরকারী ও সংশ্লিষ্ট ওয়ার্ডের ইউপি সদস্যদের দ্বারা সত্যায়নপূর্বক অত্র ওয়ারিশান সনদপত্র প্রদান করা হলো।
+</p>
+<p style="margin-top:-10px; margin-bottom:0px">
+আমি তাদের সর্বাঙ্গীন উন্নতি ও মঙ্গল কামনা করছি।
+</p>
+';
+            $sonodNO = '<div class="signature text-center position-relative">
+            সনদ নং: ' . int_en_to_bn($uniouninfo->u_code . '3-' . $row->sonod_no) . ' <br />  ইস্যুর তারিখ: </div>';
+            $lNO = '';
+
+
+
+
+        $output = ' ';
+
+
+
+
+
+
+
+
+                      $output .= '' . $nagoriinfo . '';
+
+        return $output;
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 }
