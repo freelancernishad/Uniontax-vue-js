@@ -326,6 +326,7 @@ export default {
         '$route': {
             handler(newValue, oldValue) {
                 document.getElementById('navbarSupportedContent').classList.remove("show");
+                window.scrollTo(0,0);
             },
             deep: true
         }

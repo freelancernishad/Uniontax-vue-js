@@ -20,7 +20,7 @@
         <td width="30%">ঠিকানা</td><td>: {{ $row->applicant_present_village }}, {{ $row->applicant_present_post_office }}, {{ $row->applicant_present_Upazila }}, {{ $row->applicant_present_district }}</td>
         </tr>
         <tr>
-        <td width="30%">পেশা</td><td>: {{ $row->applicant_owner_type }}</td>
+        <td width="30%">পেশা</td><td>: {{ $row->applicant_occupation }}</td>
         </tr>
     </table>
 
