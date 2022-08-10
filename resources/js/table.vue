@@ -237,7 +237,7 @@
                 }}
 
                     <span v-if="nidverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
-                    <span v-else="" class="badge badge-pill badge-danger mg-t-8">Unverified</span>
+                    <span v-else class="badge badge-pill badge-danger mg-t-8">Unverified</span>
 
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{
@@ -245,7 +245,7 @@
                 }}
 
                     <span v-if="dobverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
-                    <span v-else="" class="badge badge-pill badge-danger mg-t-8">Unverified</span>
+                    <span v-else class="badge badge-pill badge-danger mg-t-8">Unverified</span>
 
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ viewModal.content.applicant_holding_tax_number
@@ -266,7 +266,13 @@
 
                 <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.sonod_name!='ট্রেড লাইসেন্স'"><b>আবেদনকৃত প্রত্যয়নের বিবরণ: <br> </b>{{ viewModal.content.prottoyon }}</div>
 
-                <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.stutus=='Secretary_approved'"><b>প্রত্যয়ন প্রদানের বিবরণ: <br> </b>{{ viewModal.content.sec_prottoyon }}</div>
+                <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.stutus=='Secretary_approved'"><b>প্রত্যয়ন প্রদানের বিবরণ: <br> </b>
+    <div class="form-group">
+              <textarea v-model="prottoyon.sec_prottoyon=viewModal.content.sec_prottoyon" class="form-control" style="height:100px;resize:none"></textarea>
+</div>
+                <!-- {{ viewModal.content.sec_prottoyon }} -->
+                <button class="btn btn-success" @click="sec_prottoyonUpdate(viewModal.content.id)">Update</button>
+                </div>
 
 
                 <div class="col-md-12">
@@ -327,7 +333,7 @@
                         <th>জন্ম তারিখ</th>
                         <th>জাতীয় পরিচয়পত্র নাম্বার</th>
                     </tr>
-                    <tr v-for="ut in viewModal.content.successors">
+                    <tr v-for="(ut,index) in viewModal.content.successors" :key="'ut'+index">
                         <td>{{ ut.w_id }}</td>
                         <td>{{ ut.w_name }}</td>
                         <td>{{ ut.w_relation }}</td>
@@ -437,6 +443,10 @@ export default {
     data() {
         return {
             // totalRows: 1,
+            prottoyon:{
+
+                sec_prottoyon: null,
+            },
             currentPage: 1,
             perPage: 5,
             // pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
@@ -491,6 +501,17 @@ export default {
         // this.totalRows = this.Items.length
     },
     methods: {
+
+       async sec_prottoyonUpdate(id){
+
+
+            var res = await this.callApi('post', `/api/prottoyon/update/${id}`, this.prottoyon)
+             Notification.customSuccess(`প্রত্যয়ন প্রদানের বিবরণ Updated`);
+        },
+
+
+
+
         selectAllFun() {
             this.select = [];
             if (this.selectall) {

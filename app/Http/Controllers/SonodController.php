@@ -18,6 +18,14 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 class SonodController extends Controller
 {
+
+    public function prottonupdate(Request $request,$id)
+    {
+        $sonod = Sonod::find($id);
+        $sonod->update(['sec_prottoyon'=>$request->sec_prottoyon]);
+    }
+
+
     public function sonodpaymentSuccess(Request $request)
     {
         $transId =  $request->transId;
