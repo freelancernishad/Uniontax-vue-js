@@ -125,6 +125,31 @@ export default {
         //     },
         sonodText(name) {
         },
+
+        age(dateOf = '2001-08-25') {
+            var dateofbirth = dateOf.split("-");
+            var y1 = dateofbirth[0];
+            var m1 = dateofbirth[1];
+            var d1 = dateofbirth[2];
+            var date = new Date();
+            var d2 = date.getDate();
+            var m2 = 1 + date.getMonth();
+            var y2 = date.getFullYear();
+            var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            if (d1 > d2) {
+                d2 = d2 + month[m2 - 1];
+                m2 = m2 - 1;
+            }
+            if (m1 > m2) {
+                m2 = m2 + 12;
+                y2 = y2 - 1;
+            }
+            var d = d2 - d1;
+            var m = m2 - m1;
+            var y = y2 - y1;
+            return y;
+        },
+
     },
     mounted() {
         this.Getsonod();
@@ -162,7 +187,8 @@ export default {
         } else if (this.Details.sonod_name == 'অভিভাবকের আয়ের সনদপত্র') {
             this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। তার বাবার বাৎসরিক আয় ${this.Details.Annual_income}/= হাজার টাকা । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
         } else if (this.Details.sonod_name == 'আনুমানিক বয়স প্রত্যয়ন পত্র') {
-            this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। তার আনুমানিক বয়স ২৪ বছর । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
+
+            this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। তার আনুমানিক বয়স ${age(this.Details.applicant_date_of_birth)} বছর । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
         } else if (this.Details.sonod_name == 'প্রত্যয়নপত্র') {
             this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তাকে ${this.Details.The_subject_of_the_certificate} অনুমতি দেওয়া হল ।`;
         } else if (this.Details.sonod_name == 'ভোটার এলাকা স্থানান্তর অনাপত্তি পত্র') {

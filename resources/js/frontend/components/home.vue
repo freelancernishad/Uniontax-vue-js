@@ -80,6 +80,7 @@
                                 </div>
                             </div>
                         </div>
+<!--
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
@@ -89,7 +90,9 @@
                                     <a href="#">হোল্ডিং ট্যাক্স</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+
+
                         <div class="col-md-12">
                             <h6 class="serviceTitle position-relative defaltColor">
                                 ইউনিয়ন পরিষদ ডিজিটাল সেবা
