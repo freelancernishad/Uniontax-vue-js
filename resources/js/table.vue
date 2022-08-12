@@ -180,7 +180,7 @@
             <div v-else>
                 <approvetrade :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"
                     v-if="SonodType == 'Trade_license'"></approvetrade>
-                <approvesonod :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"
+                <approvesonod :approve-data="ApproveData" :sonod-id="infoModal.content_id" :Details="infoModal.content" @event-name="sonodList"
                     v-else>
                 </approvesonod>
             </div>
@@ -469,19 +469,19 @@ export default {
             infoModal: {
                 id: 'info-modal',
                 title: '',
-                content: '',
+                content: {},
                 content_id: '',
             },
             prottoyonModal: {
                 id: 'prottoyon-modal',
                 title: '',
-                content: '',
+                content: {},
                 content_id: '',
             },
             viewModal: {
                 id: 'view-modal',
                 title: '',
-                content: '',
+                content: {},
                 content_id: '',
             }
         }
@@ -572,7 +572,7 @@ export default {
         },
         resetInfoModal() {
             this.infoModal.title = ''
-            this.infoModal.content = ''
+            this.infoModal.content = {}
         },
         onFiltered(filteredItems) {
             // Trigger pagination to update the number of buttons/pages due to filtering
@@ -584,8 +584,10 @@ export default {
         },
         async approve(route, id, status, button, ApproveType,item) {
 
+
             if (ApproveType == 'vueAction') {
                 this.infoModal.content_id = `${id}`;
+                this.infoModal.content = item;
                 this.$root.$emit('bv::show::modal', this.infoModal.id, button)
             } else if (ApproveType == 'apiAction') {
 
@@ -594,6 +596,7 @@ export default {
 
                     // if(item.sonod_name=='প্রত্যয়নপত্র' || item.sonod_name=='বিবিধ প্রত্যয়নপত্র'){
                             this.infoModal.content_id = `${id}`;
+                            this.infoModal.content = item;
                             this.$root.$emit('bv::show::modal', this.infoModal.id, button)
                     // }else{
                             // Swal.fire({

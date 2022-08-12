@@ -29,6 +29,15 @@ class CreateSonodsTable extends Migration
             $table->string('applicant_birth_certificate_number')->nullable();
             $table->string('applicant_passport_number')->nullable();
             $table->string('applicant_date_of_birth')->nullable();
+
+            $table->string('family_name')->nullable();
+            $table->string('Annual_income')->nullable();
+            $table->string('Subject_to_permission')->nullable();
+            $table->string('disabled')->nullable();
+            $table->string('The_subject_of_the_certificate')->nullable();
+            $table->string('Name_of_the_transferred_area')->nullable();
+            $table->string('applicant_second_name')->nullable();
+
             $table->string('applicant_owner_type')->nullable();
             $table->string('applicant_name_of_the_organization')->nullable();
             $table->string('applicant_name')->nullable();

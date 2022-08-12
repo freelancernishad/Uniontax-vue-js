@@ -1,0 +1,9 @@
+
+
+family_name
+Annual_income
+Subject_to_permission
+disabled
+The_subject_of_the_certificate
+Name_of_the_transferred_area
+applicant_second_name

@@ -25,6 +25,17 @@
                     </div>
                     <!-- col-md-4 -->
                     <!-- col-md-4 -->
+                    <div class="col-md-4"  v-if="sonodnamedata.enname == 'Certification of the same name'">
+                        <b-form-group id="applicant_second_name-group-1" label="আবেদনকারীর দ্বিতীয় নাম" label-for="applicant_second_name">
+                            <b-form-input id="applicant_second_name" name="applicant_second_name"
+                                v-model="$v.form.applicant_second_name.$model" :state="validateState('applicant_second_name')"
+                                aria-describedby="applicant_second_name-feedback"></b-form-input>
+                            <b-form-invalid-feedback id="applicant_second_name-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
+                    <!-- col-md-4 -->
                     <div class="col-md-4">
                         <b-form-group id="applicant_gender-group-1" label="লিঙ্গ" label-for="applicant_gender">
                             <b-form-select id="applicant_gender" name="applicant_gender" :options="applicant_genders"
@@ -147,6 +158,107 @@
                                 </b-input-group-append>
                             </b-input-group>
                             <b-form-invalid-feedback id="applicant_date_of_birth-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
+
+                    <!-- col-md-4 -->
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Family certificate'">
+                        <b-form-group id="family_name-group-1" label="বংশের নাম"
+                            label-for="family_name">
+                            <b-input-group>
+                                <b-form-input id="family_name"
+                                    v-model="$v.form.family_name.$model"
+                                    :state="validateState('family_name')" type="text"
+                                     autocomplete="off"></b-form-input>
+
+                            </b-input-group>
+                            <b-form-invalid-feedback id="family_name-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
+
+                    <!-- col-md-4 -->
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'">
+                        <b-form-group id="Annual_income-group-1" label="বার্ষিক আয়"
+                            label-for="Annual_income">
+                            <b-input-group>
+                                <b-form-input id="Annual_income"
+                                    v-model="$v.form.Annual_income.$model"
+                                    :state="validateState('Annual_income')" type="text"
+                                     autocomplete="off"></b-form-input>
+
+                            </b-input-group>
+                            <b-form-invalid-feedback id="Annual_income-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
+
+                    <!-- col-md-4 -->
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'permit'">
+                        <b-form-group id="Subject_to_permission-group-1" label="অনুমতি এর বিষয়"
+                            label-for="Subject_to_permission">
+                            <b-input-group>
+                                <b-form-input id="Subject_to_permission"
+                                    v-model="$v.form.Subject_to_permission.$model"
+                                    :state="validateState('Subject_to_permission')" type="text"
+                                    autocomplete="off"></b-form-input>
+
+                            </b-input-group>
+                            <b-form-invalid-feedback id="Subject_to_permission-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
+
+                    <!-- col-md-4 -->
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Disability Certificate'">
+                        <b-form-group id="disabled-group-1" label="প্রতিবন্ধী"
+                            label-for="disabled">
+                            <b-input-group>
+                                <b-form-input id="disabled"
+                                    v-model="$v.form.disabled.$model"
+                                    :state="validateState('disabled')" type="text"
+                                     autocomplete="off"></b-form-input>
+
+                            </b-input-group>
+                            <b-form-invalid-feedback id="disabled-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
+
+                    <!-- col-md-4 -->
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'No Objection Letter to Transfer of Constituency'">
+                        <b-form-group id="Name_of_the_transferred_area-group-1" label="স্থানান্তরিত এলাকার নাম"
+                            label-for="Name_of_the_transferred_area">
+                            <b-input-group>
+                                <b-form-input id="Name_of_the_transferred_area"
+                                    v-model="$v.form.Name_of_the_transferred_area.$model"
+                                    :state="validateState('Name_of_the_transferred_area')" type="text"
+                                    autocomplete="off"></b-form-input>
+
+                            </b-input-group>
+                            <b-form-invalid-feedback id="Name_of_the_transferred_area-feedback">This is a required field
+                            </b-form-invalid-feedback>
+                        </b-form-group>
+                    </div>
+                    <!-- col-md-4 -->
+                    <!-- col-md-4 -->
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Certificate'">
+                        <b-form-group id="The_subject_of_the_certificate-group-1" label="প্রত্যয়নপত্র এর বিষয়"
+                            label-for="The_subject_of_the_certificate">
+                            <b-input-group>
+                                <b-form-input id="The_subject_of_the_certificate"
+                                    v-model="$v.form.The_subject_of_the_certificate.$model"
+                                    :state="validateState('The_subject_of_the_certificate')" type="text"
+                                     autocomplete="off"></b-form-input>
+
+                            </b-input-group>
+                            <b-form-invalid-feedback id="The_subject_of_the_certificate-feedback">This is a required field
                             </b-form-invalid-feedback>
                         </b-form-group>
                     </div>
@@ -342,16 +454,12 @@
                         </b-form-group>
                     </div>
                     <!-- col-md-4 -->
-
                     <!-- col-md-4 -->
                     <div class="col-md-12" v-if="sonodnamedata.enname != 'Trade license'">
                         <b-form-group id="prottoyon-group-1" label="আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন"
                             label-for="prottoyon">
-                            <b-form-textarea id="prottoyon" name="prottoyon"
-                                v-model="$v.form.prottoyon.$model"
-                                :state="validateState('prottoyon')"
-                                rows="3"
-                                max-rows="6"
+                            <b-form-textarea id="prottoyon" name="prottoyon" v-model="$v.form.prottoyon.$model"
+                                :state="validateState('prottoyon')" rows="3" max-rows="6"
                                 aria-describedby="prottoyon-feedback"></b-form-textarea>
                             <b-form-invalid-feedback id="prottoyon-feedback">This is a required field
                             </b-form-invalid-feedback>
@@ -629,10 +737,8 @@
                 <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ form.applicant_education }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ form.applicant_religion }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ form.applicant_resident_status }}</div>
-
-                <div class="col-md-12 col-12 mt-3" v-if="form.sonod_name!='ট্রেড লাইসেন্স'" ><b>আবেদনকৃত প্রত্যয়নের বিবরণ : <br> </b>{{ form.prottoyon }}</div>
-
-
+                <div class="col-md-12 col-12 mt-3" v-if="form.sonod_name != 'ট্রেড লাইসেন্স'"><b>আবেদনকৃত প্রত্যয়নের বিবরণ
+                        : <br> </b>{{ form.prottoyon }}</div>
                 <div class="col-md-12">
                     <div class="app-heading">বর্তমান ঠিকানা</div>
                 </div>
@@ -667,14 +773,10 @@
                         :src="form.applicant_national_id_back_attachment" alt=""></div>
                 <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%"
                         :src="form.applicant_birth_certificate_attachment" alt=""></div>
-
-
-
-         <div class="col-md-12" v-if="form.sonod_name=='ওয়ারিশ সনদ' || form.sonod_name=='উত্তরাধিকারী সনদ'">
+                <div class="col-md-12" v-if="form.sonod_name == 'ওয়ারিশ সনদ' || form.sonod_name == 'উত্তরাধিকারী সনদ'">
                     <div class="app-heading">ওয়ারিশগনের তালিকা </div>
                 </div>
-
-                <table class="table" v-if="form.sonod_name=='ওয়ারিশ সনদ' || form.sonod_name=='উত্তরাধিকারী সনদ'">
+                <table class="table" v-if="form.sonod_name == 'ওয়ারিশ সনদ' || form.sonod_name == 'উত্তরাধিকারী সনদ'">
                     <tr>
                         <th>ক্রমিক</th>
                         <th>নাম</th>
@@ -690,7 +792,6 @@
                         <td>{{ ut.w_nid }}</td>
                     </tr>
                 </table>
-
             </div>
             <br>
             <br>
@@ -702,7 +803,6 @@
                     <button type="submit" class="btn btn-info" v-if="!submitLoad">Pay And Submit</button>
                     <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
                     <button type="submit" class="btn btn-info" v-if="submitLoad">Try Again</button>
-
                 </div>
                 <div class="text-center" style="width:50%;margin:0 auto"
                     v-else-if="getunionInfos.payment_type == 'Postpaid'">
@@ -733,7 +833,6 @@ export default {
                 content: '',
                 content_id: '',
             },
-
             charages: {
                 sonod_fee: 0,
                 vatAmount: 0,
@@ -799,7 +898,14 @@ export default {
                 applicant_birth_certificate_number: null,
                 applicant_passport_number: null,
                 applicant_date_of_birth: null,
+                family_name: null,
+                Annual_income: null,
+                Subject_to_permission: null,
+                disabled: null,
+                The_subject_of_the_certificate: null,
+                Name_of_the_transferred_area: null,
                 applicant_name: null,
+                applicant_second_name: null,
                 applicant_name_of_the_organization: null,
                 applicant_gender: null,
                 applicant_marriage_status: null,
@@ -872,8 +978,29 @@ export default {
             applicant_date_of_birth: {
                 required
             },
+            family_name: {
+                // required
+            },
+            Annual_income: {
+                // required
+            },
+            Subject_to_permission: {
+                // required
+            },
+            disabled: {
+                // required
+            },
+            The_subject_of_the_certificate: {
+                // required
+            },
+            Name_of_the_transferred_area: {
+                // required
+            },
             applicant_name: {
                 required
+            },
+            applicant_second_name: {
+                // required
             },
             applicant_name_of_the_organization: {
                 // required
@@ -947,7 +1074,7 @@ export default {
                 setTimeout(() => {
                     this.form.sonod_name = this.sonodnamedata.bnname;
                     // console.log(this.getUnion)
-                       var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
+                    var res = axios({ method: 'get', url: `/api/sonod/sonod_Id?union=${this.getUnion}`, data: [] })
                     axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
                         .then((response) => {
                             //   console.log(response.data)
@@ -1004,7 +1131,14 @@ export default {
             this.form.applicant_birth_certificate_number = null;
             this.form.applicant_passport_number = null;
             this.form.applicant_date_of_birth = null;
+            this.form.family_name = null;
+            this.form.Annual_income = null;
+            this.form.Subject_to_permission = null;
+            this.form.disabled = null;
+            this.form.The_subject_of_the_certificate = null;
+            this.form.Name_of_the_transferred_area = null;
             this.form.applicant_name = null;
+            this.form.applicant_second_name = null;
             this.form.applicant_gender = null;
             this.form.applicant_marriage_status = null;
             this.form.applicant_father_name = null;
@@ -1062,7 +1196,7 @@ export default {
                 axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`)
                     .then(({ data }) => {
                         this.sonodnamedata = data
-                        window.scrollTo(0,0);
+                        window.scrollTo(0, 0);
                     })
                     .catch()
             }
@@ -1076,7 +1210,6 @@ export default {
             if (this.$v.form.$anyError) {
                 return;
             }
-
             var sonod_fee = Number(this.sonodnamedata.sonod_fee)
             var vat = Number(this.getvatTax.vat)
             var tax = Number(this.getvatTax.tax)
@@ -1084,7 +1217,6 @@ export default {
             var vatAmount = ((sonod_fee * vat) / 100);
             var taxAmount = ((sonod_fee * tax) / 100);
             var totalamount = sonod_fee + vatAmount + taxAmount + service
-
             this.charages = {
                 sonod_fee: sonod_fee,
                 vatAmount: vatAmount,
@@ -1115,10 +1247,7 @@ export default {
             } else if (payment_type == 'Postpaid') {
                 this.waitForPayment = true;
                 // this.checkPayment(datas.id);
-
-
                 // this.form['id'] = datas.id;
-
                 Swal.fire({
                     title: 'Success',
                     text: `আপনার সনদটি সফলভাবে সাবমিট হয়েছে`,
@@ -1134,9 +1263,6 @@ export default {
                         this.$router.push({ name: 'home' })
                     }
                 })
-
-
-
                 //  console.log(this.waitForPayment)
                 // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
                 // window.open(redirect, '_blank');
@@ -1202,16 +1328,13 @@ export default {
         setTimeout(() => {
             this.form.sonod_name = this.sonodnamedata.bnname;
             console.log(this.getUnion)
-               var res =  axios({method: 'get',url: `/api/sonod/sonod_Id?union=${this.getUnion}`,data: []})
+            var res = axios({ method: 'get', url: `/api/sonod/sonod_Id?union=${this.getUnion}`, data: [] })
             axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
                 .then((response) => {
                     //   console.log(response.data)
                     this.form.sonod_Id = `${response.data}`;
                 })
-
         }, 3000);
-
-
     }
 };
 </script>
@@ -1223,24 +1346,20 @@ export default {
     border-bottom: 1px solid #159513;
     color: #159513;
 }
-
 .form-pannel {
     border: 1px solid #159513;
     padding: 25px 25px 25px 25px;
 }
-
 .panel-heading {
     padding: 11px 0px;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     margin-top: 20px;
 }
-
 .form-pannel {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
 }
-
 .dropdown-menu {
     z-index: 99999;
 }
