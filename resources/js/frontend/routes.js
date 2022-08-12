@@ -8,7 +8,8 @@ let forget = require('./components/auth/forget.vue').default;
 
 
 let certificate = require('./components/form/aftersubmit.vue').default;
-let application = require('./components/form/index.vue').default;
+
+let application = require('./components/form/form.vue').default;
 
 let blogs = require('./components/blogs/index.vue').default;
 let blogread = require('./components/blogs/read.vue').default;
