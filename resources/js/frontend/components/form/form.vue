@@ -208,8 +208,8 @@
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Disability Certificate'">
                         <b-form-group id="disabled-group-1" label="প্রতিবন্ধী" label-for="disabled">
                             <b-input-group>
-                                <b-form-input id="disabled" v-model="$v.form.disabled.$model"
-                                    :state="validateState('disabled')" type="text" autocomplete="off"></b-form-input>
+                                <b-form-select :options="disableds" id="disabled" v-model="$v.form.disabled.$model"
+                                    :state="validateState('disabled')" type="text" autocomplete="off"></b-form-select>
                             </b-input-group>
                             <b-form-invalid-feedback id="disabled-feedback">This is a required field
                             </b-form-invalid-feedback>
@@ -850,6 +850,16 @@ export default {
                 { value: 'বৌদ্ধ', text: 'বৌদ্ধ' },
                 { value: 'খ্রিস্টান', text: 'খ্রিস্টান' },
                 { value: 'অন্যান্য', text: 'অন্যান্য' },
+            ],
+            disableds: [
+
+                { value: null, text: 'নির্বাচন করুন' },
+                { value: 'শারীরিক', text: 'শারীরিক' },
+                { value: 'দৃষ্টি', text: 'দৃষ্টি' },
+                { value: 'শ্রবন', text: 'শ্রবন' },
+                { value: 'বাক', text: 'বাক' },
+                { value: 'বুদ্ধি', text: 'বুদ্ধি' },
+                { value: 'বহুবিধ', text: 'বহুবিধ' },
             ],
             applicant_genders: [
                 { value: null, text: 'লিঙ্গ নির্বাচন করুন' },
