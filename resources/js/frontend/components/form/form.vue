@@ -696,7 +696,7 @@
                         <th><input v-model="successor.w_age" type="date" placeholder="জন্ম তারিখ"
                                 class="form-control" /></th>
                         <th><input v-model="successor.w_nid" type="number" @keydown="portKeydown($event)"
-                                placeholder="জাতীয় পরিচয়পত্র নাম্বার" class="form-control" /></th>
+                                placeholder="জাতীয় পরিচয়পত্র নাম্বার/জন্মনিবন্ধন নাম্বার" class="form-control" /></th>
                         <th><button type="button" class="ml-2 btn btn-danger" @click="remove(index)"
                                 v-show="index != 0">Remove</button></th>
                     </tr>
