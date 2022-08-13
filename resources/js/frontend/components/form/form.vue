@@ -182,7 +182,7 @@
                         <b-form-group id="Annual_income-group-1" label="বার্ষিক আয়" label-for="Annual_income">
                             <b-input-group>
                                 <b-form-input id="Annual_income" v-model="$v.form.Annual_income.$model"
-                                    :state="validateState('Annual_income')" type="text" autocomplete="off">
+                                    :state="validateState('Annual_income')" type="number" autocomplete="off">
                                 </b-form-input>
                             </b-input-group>
                             <b-form-invalid-feedback id="Annual_income-feedback">This is a required field
