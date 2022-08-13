@@ -723,6 +723,9 @@
                 <div class="col-md-4 mt-3"><img width="100%" :src="form.image" alt=""></div>
                 <div class="col-md-4 mt-3"></div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ form.applicant_name }}</div>
+
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certification of the same name'"><b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}</div>
+
                 <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}
                 </div>
@@ -737,7 +740,21 @@
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ form.applicant_birth_certificate_number }}
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ form.applicant_holding_tax_number }}</div>
+
                 <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ form.applicant_date_of_birth }}</div>
+
+
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Family certificate'"><b>বংশের নাম : </b>{{ form.family_name }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'"><b>বার্ষিক আয় : </b>{{ form.Annual_income }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'permit'"><b>অনুমতি এর বিষয় : </b>{{ form.Subject_to_permission }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.bnname=='প্রতিবন্ধী সনদপত্র'"><b>প্রতিবন্ধী : </b>{{ form.disabled }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'No Objection Letter to Transfer of Constituency'"><b>স্থানান্তরিত এলাকার নাম : </b>{{ form.Name_of_the_transferred_area }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certificate'"><b>প্রত্যয়নপত্র এর বিষয় : </b>{{ form.The_subject_of_the_certificate }}</div>
+
+
+
+
+
                 <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ form.applicant_passport_number }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ form.applicant_marriage_status }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>পেশা: </b>{{ form.applicant_occupation }}</div>

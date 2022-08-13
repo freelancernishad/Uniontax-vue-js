@@ -219,6 +219,9 @@
                 <div class="col-md-4 mt-3"><img width="100%" :src="$asseturl + viewModal.content.image" alt=""></div>
                 <div class="col-md-4 mt-3"></div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ viewModal.content.applicant_name }}</div>
+
+                <div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'Certification of the same name'"><b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}</div>
+
                 <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ viewModal.content.applicant_gender }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{
                         viewModal.content.applicant_father_name
@@ -252,6 +255,20 @@
                 }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ viewModal.content.applicant_date_of_birth }}
                 </div>
+
+
+
+
+                <div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'Family certificate'"><b>বংশের নাম : </b>{{ form.family_name }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'Certificate of annual income' || SonodName.enname == 'Parents Income Certificate'"><b>বার্ষিক আয় : </b>{{ form.Annual_income }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'permit'"><b>অনুমতি এর বিষয় : </b>{{ form.Subject_to_permission }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="SonodName.bnname=='প্রতিবন্ধী সনদপত্র'"><b>প্রতিবন্ধী : </b>{{ form.disabled }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'No Objection Letter to Transfer of Constituency'"><b>স্থানান্তরিত এলাকার নাম : </b>{{ form.Name_of_the_transferred_area }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'Certificate'"><b>প্রত্যয়নপত্র এর বিষয় : </b>{{ form.The_subject_of_the_certificate }}</div>
+
+
+
+
                 <div class="col-md-4 col-6 mt-3"><b>বয়স: </b>{{ age(viewModal.content.applicant_date_of_birth) }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ viewModal.content.applicant_passport_number }}
                 </div>
