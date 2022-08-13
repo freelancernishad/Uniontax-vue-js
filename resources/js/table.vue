@@ -267,13 +267,14 @@
                 <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.sonod_name!='ট্রেড লাইসেন্স'"><b>আবেদনকৃত প্রত্যয়নের বিবরণ: <br> </b>{{ viewModal.content.prottoyon }}</div>
 
                 <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.stutus=='Secretary_approved'"><b>প্রত্যয়ন প্রদানের বিবরণ: <br> </b>
-    <div class="form-group">
+ {{ viewModal.content.sec_prottoyon }}
+    <!-- <div class="form-group">
               <textarea v-model="prottoyon.sec_prottoyon=viewModal.content.sec_prottoyon" class="form-control" style="height:100px;resize:none"></textarea>
 </div>
-                <!-- {{ viewModal.content.sec_prottoyon }} -->
-                <button class="btn btn-success" @click="sec_prottoyonUpdate(viewModal.content.id)">Update</button>
-                </div>
 
+                <button class="btn btn-success" @click="sec_prottoyonUpdate(viewModal.content.id)">Update</button>
+                 -->
+</div>
 
                 <div class="col-md-12">
                     <div class="app-heading">বর্তমান ঠিকানা</div>

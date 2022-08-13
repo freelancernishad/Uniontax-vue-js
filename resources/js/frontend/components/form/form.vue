@@ -682,7 +682,6 @@
                                 <option>নানা</option>
                                 <option>নানি</option>
                                 <option>চাচা</option>
-                                <option>চাচা</option>
                                 <option>চাচি</option>
                                 <option>ফুপা</option>
                                 <option>ফুপি</option>
