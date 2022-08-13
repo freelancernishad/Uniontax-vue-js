@@ -663,14 +663,37 @@
                         <th>নাম</th>
                         <th>সম্পর্ক</th>
                         <th>জন্ম তারিখ</th>
-                        <th>জাতীয় পরিচয়পত্র নাম্বার</th>
+                        <th>জাতীয় পরিচয়পত্র নাম্বার/জন্মনিবন্ধন নাম্বার</th>
                         <th><button type="button" class="flex justify-start btn btn-info" @click="addMore()">Add
                                 More</button></th>
                     </tr>
                     <tr v-for="(successor, index) in form.successors" :key="index">
                         <input type="hidden" v-model="successor.w_id = index">
                         <th><input v-model="successor.w_name" placeholder="নাম" class="form-control" /></th>
-                        <th><input v-model="successor.w_relation" placeholder="সম্পর্ক" class="form-control" /></th>
+                        <th>
+                            <select v-model="successor.w_relation" class="form-control">
+                                <option value="">সম্পর্ক</option>
+                                <option>বাবা</option>
+                                <option>মা</option>
+                                <option>ভাই</option>
+                                <option>বোন</option>
+                                <option>দাদা</option>
+                                <option>দাদি</option>
+                                <option>নানা</option>
+                                <option>নানি</option>
+                                <option>চাচা</option>
+                                <option>চাচা</option>
+                                <option>চাচি</option>
+                                <option>ফুপা</option>
+                                <option>ফুপি</option>
+                                <option>মামা</option>
+                                <option>মামি</option>
+                                <option>খালা</option>
+                                <option>খালু</option>
+                            </select>
+
+                            <!-- <input v-model="successor.w_relation" placeholder="সম্পর্ক" class="form-control" /> -->
+                        </th>
                         <th><input v-model="successor.w_age" type="date" placeholder="জন্ম তারিখ"
                                 class="form-control" /></th>
                         <th><input v-model="successor.w_nid" type="number" @keydown="portKeydown($event)"
