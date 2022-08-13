@@ -33,6 +33,33 @@
                                 সেবাসমূহ
                             </h6>
                         </div>
+
+
+    <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
+                            <div class="serviceBox">
+                                <div class="serviceLogo">
+                                    <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
+                                </div>
+                                <div class="serviceTitle">
+                                    <a href="https://bdris.gov.bd/br/application" class="defaltTextColor">জন্ম নিবন্ধন
+                                        সনদের আবেদন</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
+                            onclick="item('citizen_apps/2')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                                <div class="serviceLogo">
+                                    <img :src="$asseturl + 'assets/img/pic-10.png'" width="33%" alt="" />
+                                </div>
+                                <div class="serviceTitle">
+                                    <a href="https://bdris.gov.bd/dr/application" class="defaltTextColor">মৃত্যু নিবন্ধন
+                                        সনদের আবেদন</a>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-if="getType == 'main'"
                             v-for="(sonod, r) in SonodNames" :key="'main' + r" v-b-modal="'myModal'"
                             @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'))">
@@ -57,29 +84,7 @@
                                 </div>
                             </div>
                         </router-link>
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
-                            <div class="serviceBox">
-                                <div class="serviceLogo">
-                                    <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
-                                </div>
-                                <div class="serviceTitle">
-                                    <a href="https://bdris.gov.bd/br/application" class="defaltTextColor">জন্ম নিবন্ধন
-                                        সনদের আবেদন</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
-                            onclick="item('citizen_apps/2')" data-toggle="modal" data-target="#exampleModal">
-                            <div class="serviceBox">
-                                <div class="serviceLogo">
-                                    <img :src="$asseturl + 'assets/img/pic-10.png'" width="33%" alt="" />
-                                </div>
-                                <div class="serviceTitle">
-                                    <a href="https://bdris.gov.bd/dr/application" class="defaltTextColor">মৃত্যু নিবন্ধন
-                                        সনদের আবেদন</a>
-                                </div>
-                            </div>
-                        </div>
+
 <!--
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
