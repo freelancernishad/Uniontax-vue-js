@@ -205,7 +205,7 @@
                     </div>
                     <!-- col-md-4 -->
                     <!-- col-md-4 -->
-                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Disability Certificate'">
+                    <div class="col-md-4"  v-if="sonodnamedata.bnname=='প্রতিবন্ধী সনদপত্র'">
                         <b-form-group id="disabled-group-1" label="প্রতিবন্ধী" label-for="disabled">
                             <b-input-group>
                                 <b-form-select :options="disableds" id="disabled" v-model="$v.form.disabled.$model"
