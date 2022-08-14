@@ -1295,21 +1295,54 @@ export default {
                 this.waitForPayment = true;
                 // this.checkPayment(datas.id);
                 // this.form['id'] = datas.id;
-                Swal.fire({
-                    title: 'Success',
-                    text: `আপনার সনদটি সফলভাবে সাবমিট হয়েছে`,
-                    icon: 'success',
-                    confirmButtonColor: 'green',
-                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        // this.$root.$emit('bv::hide::modal', this.infoModal.id)
-                        this.$root.$emit('bv::hide::modal', 'info-modal')
-                        redirect = '/document/d/' + res.data.id;
-                        window.open(redirect, '_blank');
-                        this.$router.push({ name: 'home' })
-                    }
-                })
+                             Swal.fire({
+                                    title: 'Success',
+                                    text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
+                                    icon: 'success',
+                                    confirmButtonColor: 'green',
+                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
+                                    showDenyButton: true,
+                                    showCancelButton: true,
+                                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                    cancelButtonText:'Back to home',
+                                    customClass: {
+                                        actions: 'my-actions',
+                                        cancelButton: 'order-1 right-gap',
+                                        confirmButton: 'order-2',
+                                        denyButton: 'order-3',
+                                    },
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    preConfirm: () => {
+                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+                                    return false; // Prevent confirmed
+                                    },
+                                    preDeny: () => {
+                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+                                        return false; // Prevent denied
+                                    },
+                                }).then(async (result) => {
+                                    console.log(result)
+
+
+                                    if (result.isConfirmed) {
+
+                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+
+
+                                    } else if (result.isDenied) {
+
+                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+
+
+                                    } else if (result.isDismissed) {
+                                        //cancel
+                                        this.$router.push({ name: 'home' })
+
+                                    }
+                                })
                 //  console.log(this.waitForPayment)
                 // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
                 // window.open(redirect, '_blank');
@@ -1325,50 +1358,108 @@ export default {
                             if (res.data.stutus == 'Pending' && res.data.payment_status == 'Paid') {
                                 this.waitForPayment = false;
                                 // console.log(this.waitForPayment)
-                                Swal.fire({
+                             Swal.fire({
                                     title: 'Success',
                                     text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
                                     icon: 'success',
                                     confirmButtonColor: 'green',
                                     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                                    // showDenyButton: true,
-                                    // showCancelButton: true,
-                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                    // CancelButtonText:'Home',
-                                    // customClass: {
-                                    //     actions: 'my-actions',
-                                    //     cancelButton: 'order-1 right-gap',
-                                    //     confirmButton: 'order-2',
-                                    //     denyButton: 'order-3',
-                                    // }
-                                }).then(async (result) => {
-                                    if (result.isConfirmed) {
-                                        this.$root.$emit('bv::hide::modal', 'info-modal')
+                                    showDenyButton: true,
+                                    showCancelButton: true,
+                                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                    cancelButtonText:'Back to home',
+                                    customClass: {
+                                        actions: 'my-actions',
+                                        cancelButton: 'order-1 right-gap',
+                                        confirmButton: 'order-2',
+                                        denyButton: 'order-3',
+                                    },
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    preConfirm: () => {
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
+                                    return false; // Prevent confirmed
+                                    },
+                                    preDeny: () => {
+                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+                                        return false; // Prevent denied
+                                    },
+                                }).then(async (result) => {
+                                    console.log(result)
+
+
+                                    if (result.isConfirmed) {
+
+                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+
+                                    } else if (result.isDenied) {
+
+                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+
+                                    } else if (result.isDismissed) {
+                                        //cancel
                                         this.$router.push({ name: 'home' })
+
                                     }
-                                    //  else if (result.isDenied) {
-                                    //     Swal.fire('Changes are not saved', '', 'info')
-                                    // }
                                 })
                             }
                         } else if (payment_type == 'Postpaid') {
                             if (res.data.stutus == 'Pending') {
                                 this.waitForPayment = false;
-                                Swal.fire({
+                                                             Swal.fire({
                                     title: 'Success',
-                                    text: `আপনার সনদটি সফলভাবে সাবমিট হয়েছে`,
+                                    text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
                                     icon: 'success',
                                     confirmButtonColor: 'green',
-                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`
-                                }).then(async (result) => {
-                                    if (result.isConfirmed) {
-                                        // this.$root.$emit('bv::hide::modal', this.infoModal.id)
-                                        this.$root.$emit('bv::hide::modal', 'info-modal')
-                                        redirect = '/document/d/' + res.data.id;
+                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
+                                    showDenyButton: true,
+                                    showCancelButton: true,
+                                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                    cancelButtonText:'Back to home',
+                                    customClass: {
+                                        actions: 'my-actions',
+                                        cancelButton: 'order-1 right-gap',
+                                        confirmButton: 'order-2',
+                                        denyButton: 'order-3',
+                                    },
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    preConfirm: () => {
+                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
+                                    return false; // Prevent confirmed
+                                    },
+                                    preDeny: () => {
+                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+                                        return false; // Prevent denied
+                                    },
+                                }).then(async (result) => {
+                                    console.log(result)
+
+
+                                    if (result.isConfirmed) {
+
+                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+
+                                    } else if (result.isDenied) {
+
+                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                        window.open(redirect, '_blank');
+
+                                    } else if (result.isDismissed) {
+                                        //cancel
                                         this.$router.push({ name: 'home' })
+
                                     }
                                 })
                             }
@@ -1401,38 +1492,52 @@ export default {
 
 
 
-                                // Swal.fire({
-                                //     title: 'Success',
-                                //     text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
-                                //     icon: 'success',
-                                //     confirmButtonColor: 'green',
-                                //     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                                //     showDenyButton: true,
-                                //     showCancelButton: true,
-                                //     denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                //     CancelButtonText:'Home',
-                                //     customClass: {
-                                //         actions: 'my-actions',
-                                //         cancelButton: 'order-1 right-gap',
-                                //         confirmButton: 'order-2',
-                                //         denyButton: 'order-3',
-                                //     }
-                                // }).then(async (result) => {
+        //   Swal.fire({
+        //                             title: 'Success',
+        //                             text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
+        //                             icon: 'success',
+        //                             confirmButtonColor: 'green',
+        //                             confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
+        //                             showDenyButton: true,
+        //                             showCancelButton: true,
+        //                             denyButtonText: 'রশিদ ডাউনলোড করুন',
+        //                             cancelButtonText:'Back to home',
+        //                             customClass: {
+        //                                 actions: 'my-actions',
+        //                                 cancelButton: 'order-1 right-gap',
+        //                                 confirmButton: 'order-2',
+        //                                 denyButton: 'order-3',
+        //                             },
+        //                             allowOutsideClick: false,
+        //                             allowEscapeKey: false,
+        //                             preConfirm: () => {
+        //                             return false; // Prevent confirmed
+        //                             },
+        //                             preDeny: () => {
+        //                                 return false; // Prevent denied
+        //                             },
+        //                         }).then(async (result) => {
+        //                             console.log(result)
 
 
+        //                             if (result.isConfirmed) {
 
-                                //     if (result.isConfirmed) {
-                                //         this.$root.$emit('bv::hide::modal', 'info-modal')
-                                //         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-                                //         window.open(redirect, '_blank');
-                                //         this.$router.push({ name: 'home' })
-                                //     } else if (result.isDenied) {
-                                //         Swal.fire('Changes are not saved', '', 'info')
-                                //     } else if (result.isDismissed) {
-                                //         //cancel
-                                //         Swal.fire('Changes are not saved', '', 'info')
-                                //     }
-                                // })
+        //                                 // this.$root.$emit('bv::hide::modal', 'info-modal')
+        //                                 redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+        //                                 window.open(redirect, '_blank');
+
+        //                             } else if (result.isDenied) {
+
+        //                                 // this.$root.$emit('bv::hide::modal', 'info-modal')
+        //                                 redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+        //                                 window.open(redirect, '_blank');
+
+        //                             } else if (result.isDismissed) {
+        //                                 //cancel
+        //                                 this.$router.push({ name: 'home' })
+
+        //                             }
+        //                         })
 
 
 
