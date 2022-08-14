@@ -1330,7 +1330,17 @@ export default {
                                     text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
                                     icon: 'success',
                                     confirmButtonColor: 'green',
-                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`
+                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
+                                    // showDenyButton: true,
+                                    // showCancelButton: true,
+                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                    // CancelButtonText:'Home',
+                                    // customClass: {
+                                    //     actions: 'my-actions',
+                                    //     cancelButton: 'order-1 right-gap',
+                                    //     confirmButton: 'order-2',
+                                    //     denyButton: 'order-3',
+                                    // }
                                 }).then(async (result) => {
                                     if (result.isConfirmed) {
                                         this.$root.$emit('bv::hide::modal', 'info-modal')
@@ -1338,6 +1348,9 @@ export default {
                                         window.open(redirect, '_blank');
                                         this.$router.push({ name: 'home' })
                                     }
+                                    //  else if (result.isDenied) {
+                                    //     Swal.fire('Changes are not saved', '', 'info')
+                                    // }
                                 })
                             }
                         } else if (payment_type == 'Postpaid') {
@@ -1382,6 +1395,48 @@ export default {
                     this.form.sonod_Id = `${response.data}`;
                 })
         }, 3000);
+
+
+
+
+
+
+                                // Swal.fire({
+                                //     title: 'Success',
+                                //     text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
+                                //     icon: 'success',
+                                //     confirmButtonColor: 'green',
+                                //     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
+                                //     showDenyButton: true,
+                                //     showCancelButton: true,
+                                //     denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                //     CancelButtonText:'Home',
+                                //     customClass: {
+                                //         actions: 'my-actions',
+                                //         cancelButton: 'order-1 right-gap',
+                                //         confirmButton: 'order-2',
+                                //         denyButton: 'order-3',
+                                //     }
+                                // }).then(async (result) => {
+
+
+
+                                //     if (result.isConfirmed) {
+                                //         this.$root.$emit('bv::hide::modal', 'info-modal')
+                                //         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+                                //         window.open(redirect, '_blank');
+                                //         this.$router.push({ name: 'home' })
+                                //     } else if (result.isDenied) {
+                                //         Swal.fire('Changes are not saved', '', 'info')
+                                //     } else if (result.isDismissed) {
+                                //         //cancel
+                                //         Swal.fire('Changes are not saved', '', 'info')
+                                //     }
+                                // })
+
+
+
+
     }
 };
 </script>
