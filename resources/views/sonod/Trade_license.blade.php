@@ -24,6 +24,14 @@
         <td width="30%">পেশার ধরন</td><td>: {{ $row->applicant_owner_type }}</td>
         </tr>
     </table>
-    <p style="margin-bottom: 10px;"
-    >৩০ জুন, ২০২৩ তারিখ পর্যন্ত বৈধ ফি প্রদানের পরিমাণ  {{ int_en_to_bn($row->total_amount) }} টাকা  কথায়: {{ $row->the_amount_of_money_in_words }}  প্রাপ্ত হয়ে তার ব্যবসা/বৃত্তি/পেশা চালিয়ে যাওয়ার জন্য এই লাইসেন্স প্রদান করা হলো।<br>
+
+    <p style="margin-bottom: 10px;"> {!! $row->sec_prottoyon !!}<br>
     </p>
+
+    {{-- <p style="margin-bottom: 10px;"
+    > {!! $sonod->template  !!}<br>
+    </p> --}}
+
+    {{-- <p style="margin-bottom: 10px;"
+    >৩০ জুন, ২০২৩ তারিখ পর্যন্ত বৈধ ফি প্রদানের পরিমাণ  {{ int_en_to_bn($row->total_amount) }} টাকা  কথায়: {{ $row->the_amount_of_money_in_words }}  প্রাপ্ত হয়ে তার ব্যবসা/বৃত্তি/পেশা চালিয়ে যাওয়ার জন্য এই লাইসেন্স প্রদান করা হলো।<br>
+    </p> --}}

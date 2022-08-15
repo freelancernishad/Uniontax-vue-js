@@ -180,7 +180,7 @@
 
             </div>
             <div v-else>
-                <approvetrade :approve-data="ApproveData" :sonod-id="infoModal.content_id" @event-name="sonodList"
+                <approvetrade :approve-data="ApproveData" :sonod-id="infoModal.content_id" :Details="infoModal.content" @event-name="sonodList"
                     v-if="SonodType == 'Trade_license'"></approvetrade>
                 <approvesonod :approve-data="ApproveData" :sonod-id="infoModal.content_id" :Details="infoModal.content" @event-name="sonodList"
                     v-else>
@@ -285,8 +285,8 @@
 
                 <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.sonod_name!='ট্রেড লাইসেন্স'"><b>আবেদনকৃত প্রত্যয়নের বিবরণ: <br> </b>{{ viewModal.content.prottoyon }}</div>
 
-                <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.stutus=='Secretary_approved'"><b>প্রত্যয়ন প্রদানের বিবরণ: <br> </b>
- {{ viewModal.content.sec_prottoyon }}
+                <div class="col-md-12 col-12 mt-3" v-if="viewModal.content.stutus=='Secretary_approved' || viewModal.content.stutus=='approved'"><b>প্রত্যয়ন প্রদানের বিবরণ: <br> </b>
+ <span v-html="viewModal.content.sec_prottoyon"></span>
     <!-- <div class="form-group">
               <textarea v-model="prottoyon.sec_prottoyon=viewModal.content.sec_prottoyon" class="form-control" style="height:100px;resize:none"></textarea>
 </div>
@@ -605,6 +605,7 @@ export default {
         },
         async approve(route, id, status, button, ApproveType,item) {
 
+console.log(ApproveType)
 
             if (ApproveType == 'vueAction') {
                 this.infoModal.content_id = `${id}`;

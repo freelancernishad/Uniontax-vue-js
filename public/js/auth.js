@@ -2138,7 +2138,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      numbers: {
+        0: "০",
+        1: "১",
+        2: "২",
+        3: "৩",
+        4: "৪",
+        5: "৫",
+        6: "৬",
+        7: "৭",
+        8: "৮",
+        9: "৯"
+      }
+    };
   },
   methods: {
     callApi: function callApi(method, url, dataObj) {
@@ -2170,6 +2183,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[0, 6]]);
       }))();
+    },
+    dateformatGlobal: function dateformatGlobal() {
+      var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      return User.dateformat(date);
+    },
+    // int_en_to_bn(input=0){
+    //     var output = [];
+    //     for (var i = 0; i < input.length; ++i) {
+    //       if (numbers.hasOwnProperty(input[i])) {
+    //         output.push(numbers[input[i]]);
+    //       } else {
+    //         output.push(input[i]);
+    //       }
+    //     }
+    //     return output.join('');
+    // },
+    int_en_to_bn: function int_en_to_bn() {
+      var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var result;
+
+      if (text == '0') {
+        result = '০';
+      } else if (text == '1') {
+        result = '১';
+      } else if (text == '2') {
+        result = '২';
+      } else if (text == '3') {
+        result = '৩';
+      } else if (text == '4') {
+        result = '৪';
+      } else if (text == '5') {
+        result = '৫';
+      } else if (text == '6') {
+        result = '৬';
+      } else if (text == '7') {
+        result = '৭';
+      } else if (text == '8') {
+        result = '৮';
+      } else if (text == '9') {
+        result = '৯';
+      }
+
+      return result;
     },
     checkUserPermission: function checkUserPermission(key) {
       if (!this.userPermission) return true;
@@ -2646,6 +2702,10 @@ var User = /*#__PURE__*/function () {
       today = yyyy + '-' + mm + '-' + dd + ' ' + hrs + ':' + mins + ':' + secs;
       dates.push(today);
       today = hrs + ':' + mins + ':' + secs;
+      dates.push(today);
+      today = yyyy;
+      dates.push(today);
+      today = yyyy + 1;
       dates.push(today);
       return dates;
     }

@@ -2,7 +2,18 @@ import { mapGetters } from 'vuex'
 export default {
     data(){
         return {
-
+            numbers: {
+                0: "০",
+                1: "১",
+                2: "২",
+                3: "৩",
+                4: "৪",
+                5: "৫",
+                6: "৬",
+                7: "৭",
+                8: "৮",
+                9: "৯",
+              }
         }
     },
 
@@ -20,7 +31,54 @@ export default {
         },
 
 
-  
+
+        dateformatGlobal(date=''){
+           return  User.dateformat(date);
+        },
+
+
+        // int_en_to_bn(input=0){
+        //     var output = [];
+        //     for (var i = 0; i < input.length; ++i) {
+        //       if (numbers.hasOwnProperty(input[i])) {
+        //         output.push(numbers[input[i]]);
+        //       } else {
+        //         output.push(input[i]);
+        //       }
+        //     }
+        //     return output.join('');
+
+        // },
+
+
+        int_en_to_bn(text=0) {
+            var result;
+            if (text == '0') {
+                result = '০';
+            } else if (text == '1') {
+                result = '১';
+            } else if (text == '2') {
+                result = '২';
+            } else if (text == '3') {
+                result = '৩';
+            } else if (text == '4') {
+                result = '৪';
+            } else if (text == '5') {
+                result = '৫';
+            } else if (text == '6') {
+                result = '৬';
+            } else if (text == '7') {
+                result = '৭';
+            } else if (text == '8') {
+                result = '৮';
+            } else if (text == '9') {
+                result = '৯';
+            }
+            return result;
+        },
+
+
+
 
 
         checkUserPermission(key){
