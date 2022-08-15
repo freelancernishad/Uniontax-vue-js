@@ -87,7 +87,7 @@ class LoginController extends Controller
             //  return sent_response('Login Success', $data);
             return $this->respondWithToken($user['access_token']);
         } else {
-            return sent_error('Unauthorised', '', 401);
+            return 0;
         }
 
 
@@ -98,6 +98,10 @@ class LoginController extends Controller
 
     protected function respondWithToken($token)
     {
+
+
+
+
      $users = auth()->user();
 $users['token_type'] ='bearer';
 $users['expires_in'] =60;

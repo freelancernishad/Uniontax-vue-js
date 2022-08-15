@@ -50,8 +50,14 @@
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="submit" class="btn btn-primary btn-lg"
+
+
+            <button type="submit" class="btn btn-primary btn-lg" v-if="!loadLogin"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+
+            <span class="btn btn-primary btn-lg" v-else
+              style="padding-left: 2.5rem; padding-right: 2.5rem;">Looding.....</span>
+
 
           </div>
 
@@ -88,6 +94,7 @@ export default {
 	data () {
 		return {
 
+            loadLogin:false,
             emailLogin: "",
             passwordLogin: "",
             emailReg: "",
@@ -103,7 +110,8 @@ export default {
 		}
 	},
 	methods:{
-		login(){
+		async login(){
+            this.loadLogin = true
 
          if (this.form.email == "" || this.form.password == "") {
             this.emptyFields = true;
@@ -115,14 +123,43 @@ export default {
                 localStorage.removeItem('login')
             }
 
+    // var res = await this.callApi('post','/login',this.form);
+    //    console.log(res)
+
+    //     if(res.status==200){
+    //         	User.responseAfterLogin(res)
+    //             Notification.customSuccess('Signed in successfully Complete');
+    //             this.loadLogin = false
+    //           	window.location.href = '/dashboard'
+    //     }else{
+    //           Notification.customError('Please Enter Valid Email and Password');
+    //                this.loadLogin = false
+    //     }
 
        		axios.post('/login', this.form)
 			.then(res => {
-                // console.log(res)
-				User.responseAfterLogin(res)
+                console.log(res)
+
+
+     if(res.data==0){
+              Notification.customError('Please Enter Valid Email and Password');
+                   this.loadLogin = false
+        }else{
+
+
+            	User.responseAfterLogin(res)
                 Notification.customSuccess('Signed in successfully Complete');
-				this.$router.push({name: 'home'})
+                this.loadLogin = false
               	window.location.href = '/dashboard'
+
+        }
+
+				// User.responseAfterLogin(res)
+                // Notification.customSuccess('Signed in successfully Complete');
+				// // this.$router.push({name: 'home'})
+                // this.loadLogin = false
+
+              	// window.location.href = '/dashboard'
 			})
 			.catch(error => this.errors = error.response.data.errors)
 

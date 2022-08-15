@@ -106,7 +106,7 @@
                     <div class="col-md-4">
                         <b-form-group id="applicant_national_id_number-group-1" label="ন্যাশনাল আইডি (ইংরেজিতে)"
                             label-for="applicant_national_id_number">
-                            <b-form-input id="applicant_national_id_number" type="number" @keydown="portKeydown($event)"
+                            <b-form-input id="applicant_national_id_number" type="text" @keydown="portKeydown($event)"
                                 name="applicant_national_id_number"
                                 v-model="$v.form.applicant_national_id_number.$model"
                                 :state="validateState('applicant_national_id_number')"
@@ -120,7 +120,7 @@
                     <div class="col-md-4">
                         <b-form-group id="applicant_birth_certificate_number-group-1"
                             label="জন্ম নিবন্ধন নং ( ইংরেজিতে )" label-for="applicant_birth_certificate_number">
-                            <b-form-input id="applicant_birth_certificate_number" type="number"
+                            <b-form-input id="applicant_birth_certificate_number" type="text"
                                 @keydown="portKeydown($event)" name="applicant_birth_certificate_number"
                                 v-model="$v.form.applicant_birth_certificate_number.$model"
                                 :state="validateState('applicant_birth_certificate_number')"
@@ -135,7 +135,7 @@
                         <b-form-group id="applicant_holding_tax_number-group-1" label="হোল্ডিং নং (ইংরেজিতে)"
                             label-for="applicant_holding_tax_number">
                             <b-form-input id="applicant_holding_tax_number" name="applicant_holding_tax_number"
-                                type="number" @keydown="portKeydown($event)"
+                                type="text" @keydown="portKeydown($event)"
                                 v-model="$v.form.applicant_holding_tax_number.$model"
                                 :state="validateState('applicant_holding_tax_number')"
                                 aria-describedby="applicant_holding_tax_number-feedback"></b-form-input>
@@ -182,7 +182,7 @@
                         <b-form-group id="Annual_income-group-1" label="বার্ষিক আয়" label-for="Annual_income">
                             <b-input-group>
                                 <b-form-input id="Annual_income" v-model="$v.form.Annual_income.$model"
-                                    :state="validateState('Annual_income')" type="number" autocomplete="off">
+                                    :state="validateState('Annual_income')" type="text" autocomplete="off">
                                 </b-form-input>
                             </b-input-group>
                             <b-form-invalid-feedback id="Annual_income-feedback">This is a required field
@@ -205,7 +205,7 @@
                     </div>
                     <!-- col-md-4 -->
                     <!-- col-md-4 -->
-                    <div class="col-md-4"  v-if="sonodnamedata.bnname=='প্রতিবন্ধী সনদপত্র'">
+                    <div class="col-md-4" v-if="sonodnamedata.bnname == 'প্রতিবন্ধী সনদপত্র'">
                         <b-form-group id="disabled-group-1" label="প্রতিবন্ধী" label-for="disabled">
                             <b-input-group>
                                 <b-form-select :options="disableds" id="disabled" v-model="$v.form.disabled.$model"
@@ -656,9 +656,12 @@
                     </div>
                     <!-- col-md-4 -->
                 </div>
-                <div class="app-heading" v-if="sonodnamedata.bnname=='ওয়ারিশ সনদ' || sonodnamedata.bnname=='উত্তরাধিকারী সনদ'">ওয়ারিশগনের তালিকা
+                <div class="app-heading"
+                    v-if="sonodnamedata.bnname == 'ওয়ারিশ সনদ' || sonodnamedata.bnname == 'উত্তরাধিকারী সনদ'">ওয়ারিশগনের
+                    তালিকা
                 </div>
-                <table class="table" v-if="sonodnamedata.bnname=='ওয়ারিশ সনদ' || sonodnamedata.bnname=='উত্তরাধিকারী সনদ'">
+                <table class="table"
+                    v-if="sonodnamedata.bnname == 'ওয়ারিশ সনদ' || sonodnamedata.bnname == 'উত্তরাধিকারী সনদ'">
                     <tr>
                         <th>নাম</th>
                         <th>সম্পর্ক</th>
@@ -690,12 +693,11 @@
                                 <option>খালা</option>
                                 <option>খালু</option>
                             </select>
-
                             <!-- <input v-model="successor.w_relation" placeholder="সম্পর্ক" class="form-control" /> -->
                         </th>
                         <th><input v-model="successor.w_age" type="date" placeholder="জন্ম তারিখ"
                                 class="form-control" /></th>
-                        <th><input v-model="successor.w_nid" type="number" @keydown="portKeydown($event)"
+                        <th><input v-model="successor.w_nid" type="text" @keydown="portKeydown($event)"
                                 placeholder="জাতীয় পরিচয়পত্র নাম্বার/জন্মনিবন্ধন নাম্বার" class="form-control" /></th>
                         <th><button type="button" class="ml-2 btn btn-danger" @click="remove(index)"
                                 v-show="index != 0">Remove</button></th>
@@ -723,9 +725,8 @@
                 <div class="col-md-4 mt-3"><img width="100%" :src="form.image" alt=""></div>
                 <div class="col-md-4 mt-3"></div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ form.applicant_name }}</div>
-
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certification of the same name'"><b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}</div>
-
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certification of the same name'">
+                    <b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}
                 </div>
@@ -740,21 +741,22 @@
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ form.applicant_birth_certificate_number }}
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ form.applicant_holding_tax_number }}</div>
-
                 <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ form.applicant_date_of_birth }}</div>
-
-
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Family certificate'"><b>বংশের নাম : </b>{{ form.family_name }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'"><b>বার্ষিক আয় : </b>{{ form.Annual_income }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'permit'"><b>অনুমতি এর বিষয় : </b>{{ form.Subject_to_permission }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.bnname=='প্রতিবন্ধী সনদপত্র'"><b>প্রতিবন্ধী : </b>{{ form.disabled }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'No Objection Letter to Transfer of Constituency'"><b>স্থানান্তরিত এলাকার নাম : </b>{{ form.Name_of_the_transferred_area }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certificate'"><b>প্রত্যয়নপত্র এর বিষয় : </b>{{ form.The_subject_of_the_certificate }}</div>
-
-
-
-
-
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Family certificate'"><b>বংশের নাম :
+                    </b>{{ form.family_name }}</div>
+                <div class="col-md-4 col-6 mt-3"
+                    v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'">
+                    <b>বার্ষিক আয় : </b>{{ form.Annual_income }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'permit'"><b>অনুমতি এর বিষয় : </b>{{
+                        form.Subject_to_permission
+                }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.bnname == 'প্রতিবন্ধী সনদপত্র'"><b>প্রতিবন্ধী :
+                    </b>{{ form.disabled }}</div>
+                <div class="col-md-4 col-6 mt-3"
+                    v-if="sonodnamedata.enname == 'No Objection Letter to Transfer of Constituency'"><b>স্থানান্তরিত
+                        এলাকার নাম : </b>{{ form.Name_of_the_transferred_area }}</div>
+                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certificate'"><b>প্রত্যয়নপত্র এর বিষয় :
+                    </b>{{ form.The_subject_of_the_certificate }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ form.applicant_passport_number }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ form.applicant_marriage_status }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>পেশা: </b>{{ form.applicant_occupation }}</div>
@@ -762,11 +764,7 @@
                 <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ form.applicant_religion }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ form.applicant_resident_status }}</div>
                 <div class="col-md-12 col-12 mt-3" v-if="form.sonod_name != 'ট্রেড লাইসেন্স'"><b>আবেদনকৃত প্রত্যয়নের
-
                         : <br> </b>{{ form.prottoyon }}</div>
-
-
-
                 <div class="col-md-12">
                     <div class="app-heading">বর্তমান ঠিকানা</div>
                 </div>
@@ -801,12 +799,10 @@
                         :src="form.applicant_national_id_back_attachment" alt=""></div>
                 <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%"
                         :src="form.applicant_birth_certificate_attachment" alt=""></div>
-
-
-            <div class="col-md-12" v-if="form.sonod_name=='ওয়ারিশ সনদ' || form.sonod_name=='উত্তরাধিকারী সনদ'">
+                <div class="col-md-12" v-if="form.sonod_name == 'ওয়ারিশ সনদ' || form.sonod_name == 'উত্তরাধিকারী সনদ'">
                     <div class="app-heading">ওয়ারিশগনের তালিকা </div>
                 </div>
-                <table class="table" v-if="form.sonod_name=='ওয়ারিশ সনদ' || form.sonod_name=='উত্তরাধিকারী সনদ'">
+                <table class="table" v-if="form.sonod_name == 'ওয়ারিশ সনদ' || form.sonod_name == 'উত্তরাধিকারী সনদ'">
                     <tr>
                         <th>ক্রমিক</th>
                         <th>নাম</th>
@@ -814,7 +810,7 @@
                         <th>জন্ম তারিখ</th>
                         <th>জাতীয় পরিচয়পত্র নাম্বার</th>
                     </tr>
-                    <tr v-for="(ut,indexs) in form.successors" :key="'ut'+indexs">
+                    <tr v-for="(ut, indexs) in form.successors" :key="'ut' + indexs">
                         <td>{{ ut.w_id }}</td>
                         <td>{{ ut.w_name }}</td>
                         <td>{{ ut.w_relation }}</td>
@@ -822,14 +818,7 @@
                         <td>{{ ut.w_nid }}</td>
                     </tr>
                 </table>
-
-
-
             </div>
-
-
-
-
             <br>
             <br>
             <b-form @submit.stop.prevent="finalSubmit" style="margin-top: 50px;">
@@ -891,7 +880,6 @@ export default {
                 { value: 'অন্যান্য', text: 'অন্যান্য' },
             ],
             disableds: [
-
                 { value: null, text: 'নির্বাচন করুন' },
                 { value: 'শারীরিক', text: 'শারীরিক' },
                 { value: 'দৃষ্টি', text: 'দৃষ্টি' },
@@ -1295,54 +1283,45 @@ export default {
                 this.waitForPayment = true;
                 // this.checkPayment(datas.id);
                 // this.form['id'] = datas.id;
-                             Swal.fire({
-                                    title: 'Success',
-                                    text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
-                                    icon: 'success',
-                                    confirmButtonColor: 'green',
-                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                                    showDenyButton: true,
-                                    showCancelButton: true,
-                                    denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                    cancelButtonText:'Back to home',
-                                    customClass: {
-                                        actions: 'my-actions',
-                                        cancelButton: 'order-1 right-gap',
-                                        confirmButton: 'order-2',
-                                        denyButton: 'order-3',
-                                    },
-                                    allowOutsideClick: false,
-                                    allowEscapeKey: false,
-                                    preConfirm: () => {
-                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                    return false; // Prevent confirmed
-                                    },
-                                    preDeny: () => {
-                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                        return false; // Prevent denied
-                                    },
-                                }).then(async (result) => {
-                                    console.log(result)
-
-
-                                    if (result.isConfirmed) {
-
-                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
-
-
-                                    } else if (result.isDenied) {
-
-                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
-
-
-                                    } else if (result.isDismissed) {
-                                        //cancel
-                                        this.$router.push({ name: 'home' })
-
-                                    }
-                                })
+                Swal.fire({
+                    title: 'Success',
+                    text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
+                    icon: 'success',
+                    confirmButtonColor: 'green',
+                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                    cancelButtonText: 'Back to home',
+                    customClass: {
+                        actions: 'my-actions',
+                        cancelButton: 'order-1 right-gap',
+                        confirmButton: 'order-2',
+                        denyButton: 'order-3',
+                    },
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    preConfirm: () => {
+                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
+                        window.open(redirect, '_blank');
+                        return false; // Prevent confirmed
+                    },
+                    preDeny: () => {
+                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                        window.open(redirect, '_blank');
+                        return false; // Prevent denied
+                    },
+                }).then(async (result) => {
+                    console.log(result)
+                    if (result.isConfirmed) {
+                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+                    } else if (result.isDenied) {
+                        // this.$root.$emit('bv::hide::modal', 'info-modal')
+                    } else if (result.isDismissed) {
+                        //cancel
+                        this.$router.push({ name: 'home' })
+                    }
+                })
                 //  console.log(this.waitForPayment)
                 // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
                 // window.open(redirect, '_blank');
@@ -1358,7 +1337,7 @@ export default {
                             if (res.data.stutus == 'Pending' && res.data.payment_status == 'Paid') {
                                 this.waitForPayment = false;
                                 // console.log(this.waitForPayment)
-                             Swal.fire({
+                                Swal.fire({
                                     title: 'Success',
                                     text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
                                     icon: 'success',
@@ -1367,7 +1346,7 @@ export default {
                                     showDenyButton: true,
                                     showCancelButton: true,
                                     denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                    cancelButtonText:'Back to home',
+                                    cancelButtonText: 'Back to home',
                                     customClass: {
                                         actions: 'my-actions',
                                         cancelButton: 'order-1 right-gap',
@@ -1379,40 +1358,33 @@ export default {
                                     preConfirm: () => {
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-                                    return false; // Prevent confirmed
+                                        return false; // Prevent confirmed
                                     },
                                     preDeny: () => {
-                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
                                         return false; // Prevent denied
                                     },
                                 }).then(async (result) => {
                                     console.log(result)
-
-
                                     if (result.isConfirmed) {
-
                                         // this.$root.$emit('bv::hide::modal', 'info-modal')
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-
                                     } else if (result.isDenied) {
-
                                         // this.$root.$emit('bv::hide::modal', 'info-modal')
                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-
                                     } else if (result.isDismissed) {
                                         //cancel
                                         this.$router.push({ name: 'home' })
-
                                     }
                                 })
                             }
                         } else if (payment_type == 'Postpaid') {
                             if (res.data.stutus == 'Pending') {
                                 this.waitForPayment = false;
-                                                             Swal.fire({
+                                Swal.fire({
                                     title: 'Success',
                                     text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
                                     icon: 'success',
@@ -1421,7 +1393,7 @@ export default {
                                     showDenyButton: true,
                                     showCancelButton: true,
                                     denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                    cancelButtonText:'Back to home',
+                                    cancelButtonText: 'Back to home',
                                     customClass: {
                                         actions: 'my-actions',
                                         cancelButton: 'order-1 right-gap',
@@ -1433,33 +1405,26 @@ export default {
                                     preConfirm: () => {
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-                                    return false; // Prevent confirmed
+                                        return false; // Prevent confirmed
                                     },
                                     preDeny: () => {
-                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
                                         return false; // Prevent denied
                                     },
                                 }).then(async (result) => {
                                     console.log(result)
-
-
                                     if (result.isConfirmed) {
-
                                         // this.$root.$emit('bv::hide::modal', 'info-modal')
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-
                                     } else if (result.isDenied) {
-
                                         // this.$root.$emit('bv::hide::modal', 'info-modal')
                                         redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-
                                     } else if (result.isDismissed) {
                                         //cancel
                                         this.$router.push({ name: 'home' })
-
                                     }
                                 })
                             }
@@ -1486,12 +1451,6 @@ export default {
                     this.form.sonod_Id = `${response.data}`;
                 })
         }, 3000);
-
-
-
-
-
-
         //   Swal.fire({
         //                             title: 'Success',
         //                             text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
@@ -1518,30 +1477,19 @@ export default {
         //                             },
         //                         }).then(async (result) => {
         //                             console.log(result)
-
-
         //                             if (result.isConfirmed) {
-
         //                                 // this.$root.$emit('bv::hide::modal', 'info-modal')
         //                                 redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
         //                                 window.open(redirect, '_blank');
-
         //                             } else if (result.isDenied) {
-
         //                                 // this.$root.$emit('bv::hide::modal', 'info-modal')
         //                                 redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
         //                                 window.open(redirect, '_blank');
-
         //                             } else if (result.isDismissed) {
         //                                 //cancel
         //                                 this.$router.push({ name: 'home' })
-
         //                             }
         //                         })
-
-
-
-
     }
 };
 </script>

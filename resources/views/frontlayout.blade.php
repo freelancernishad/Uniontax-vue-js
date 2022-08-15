@@ -28,6 +28,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pro.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 
     <script type="text/javascript" src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>

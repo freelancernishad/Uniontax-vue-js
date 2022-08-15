@@ -1,6 +1,8 @@
 <template>
     <div>
         <!-- User Interface controls -->
+          <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"
+            objectbg="#999793" opacity="80" name="circular"></loader>
         <b-row>
             <b-col lg="6" class="my-1" v-if="SortOptionsStaus">
                 <b-form-group label="Sort" label-for="sort-by-select" label-cols-sm="3" label-align-sm="right"
@@ -470,6 +472,7 @@ export default {
             // pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
             sortBy: '',
             sortDesc: false,
+            preLooding: false,
             sortDirection: 'asc',
             filter: null,
             filterOn: [],
@@ -634,6 +637,7 @@ export default {
                             // })
                     // }
                 }else{
+                    this.preLooding = true
                      Swal.fire({
                                 title: 'Are you sure?',
                                 text: `${status} this data!`,
@@ -646,6 +650,7 @@ export default {
                                 if (result.isConfirmed) {
                                     var res = await this.callApi('get', `${route}/${status}/${id}`, []);
                                     Notification.customSuccess(`Your data has been ${status}`);
+                                    this.preLooding = false
                                     this.$emit('event-name')
                                 }
                             })
