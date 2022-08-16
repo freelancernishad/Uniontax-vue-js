@@ -85,10 +85,10 @@
     }elseif($namelength>=85){
         $width = '500px';
         $fontsize = '22px';
-    }elseif($namelength>=75){
+    }elseif($namelength>=72){
         $width = '450px';
         $fontsize = '25px';
-    }elseif($namelength>=65){
+    }elseif($namelength>=62){
         $width = '400px';
         $fontsize = '27px';
     }
