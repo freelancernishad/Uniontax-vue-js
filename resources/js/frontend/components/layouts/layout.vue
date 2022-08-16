@@ -7,19 +7,21 @@
                         <div class="topheaderItem col-md-6 col-6"><span>ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে
                                 স্বাগতম</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right"><span
-                                style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curentdate }}
+                                style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{
+                                        curentdate
+                                }}
                             </span>
                             <!-- <span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span> -->
-
-                            <span style="">Visitors : {{ visitors }}</span></div>
+                            <span style="">Visitors : {{ visitors }}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="middleHeader ">
                     <div class="row">
                         <div class="middleHeaderItem col-md-6 mt-3 mb-3">
                             <router-link :to="{ name: 'home' }">
-                                <img width="50%" v-if="getType == 'main'" :src="$asseturl + 'assets/img/mail_logo-01.png'"
-                                    alt="">
+                                <img width="50%" v-if="getType == 'main'"
+                                    :src="$asseturl + 'assets/img/mail_logo-01.png'" alt="">
                                 <img width="50%" v-else-if="getType == 'Union'" :src="getunionInfos.web_logo" alt="">
                             </router-link>
                         </div>
@@ -77,7 +79,6 @@
                                                     {{ sonod.bnname }}</router-link>
                                             </div>
                                         </li>
-
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -91,7 +92,6 @@
                                                     আবেদন</a>
                                             </div>
                                         </li>
-
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'sonodsearch' }">সনদ
                                                 যাচাই
@@ -108,22 +108,17 @@
                                             <router-link class="nav-link" :to="{ name: 'home' }">হোল্ডিং ট্যাক্স
                                             </router-link>
                                         </li>
-
-
-
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">খবর</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                 <router-link  class="dropdown-item" v-for="(cat,indexs) in categorys" :to="{ name: 'blogs',params:{name:cat.slug} }" :key="'cat'+indexs">{{ cat.name }}
-                                            </router-link>
-
+                                                <router-link class="dropdown-item" v-for="(cat, indexs) in categorys"
+                                                    :to="{ name: 'blogs', params: { name: cat.slug } }" :key="'cat' + indexs">
+                                                    {{ cat.name }}
+                                                </router-link>
                                             </div>
                                         </li>
-
-
-
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'login' }">লগইন</router-link>
                                         </li>
@@ -221,7 +216,7 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
                 </div>
                 <div class="footerBottom">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার (Jashim
                                     Uddin Haider) জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
@@ -231,26 +226,24 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
                                     বরিশাল</li>
                             </ul>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> </li>
-                                <li style="font-size:font-size:15px;    display: flex;
-    justify-content: center;
-    align-items: center;">
+                                <li style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
                                     <img style="width:40px !important" :src="$asseturl + 'assets/img/DoICT.svg.png'"
                                         alt=""> <span style="padding: 0 15px;">পরিকল্পনা, বাস্তবায়ন এবং কারিগরি
                                         তত্বাবধায়নে: তথ্য ও যোগাযোগ প্রযুক্তি অধিদপ্তর, জেলা কার্যালয়, বরিশাল</span>
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <p class="footerText" style="font-size: 14px; !important">ইউনিয়ন পরিষদের ডিজিটাল সেবা
                                 গ্রহণের জন্য ধন্যবাদ</p>
                             <p class="help text-right" style="display: flex;
                 justify-content: end;
                 align-items: center;
                 width: 100%;"> <img style="    width: 106px !important;" class="footerImg"
-                                    :src="$asseturl + 'assets/img/ownlogo.png'" alt="" /> <span style="font-size: 14px;">
+                                    :src="$asseturl + 'assets/img/logo.gif'" alt="" /> <span style="font-size: 14px;">
                                     <span style="border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
                                         target="_blank" style="color: #4e4e4e;"
                                         href="https://www.facebook.com/SYED.SHAHAREAR.ARAFAT">
@@ -286,31 +279,18 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
 export default {
     props: ['user'],
     async created() {
-
-
-
-
         var res = await this.callApi('get', '/api/get/sonodname/list', []);
         this.$store.commit('setUpdateSonodNames', res.data)
-
         var url = this.$appUrl.split("//");
         var subdomain = url[1].split(".");
         this.$store.commit('setWebsiteStatus', subdomain)
-    if(subdomain.length>1){
-
-        var unioninfo = await this.callApi('post',`/api/union/info?union=${subdomain[0]}`,[]);
-                this.ff['district'] = unioninfo.data.district
-                this.ff['thana'] = unioninfo.data.thana
-
-            var charge = await this.callApi('post',`/api/vattax/get`,this.ff);
-                this.$store.commit('setvatTax', charge.data)
-    }
-
-
-
-
-
-
+        if (subdomain.length > 1) {
+            var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomain[0]}`, []);
+            this.ff['district'] = unioninfo.data.district
+            this.ff['thana'] = unioninfo.data.thana
+            var charge = await this.callApi('post', `/api/vattax/get`, this.ff);
+            this.$store.commit('setvatTax', charge.data)
+        }
     },
     data() {
         return {
@@ -326,7 +306,7 @@ export default {
         '$route': {
             handler(newValue, oldValue) {
                 document.getElementById('navbarSupportedContent').classList.remove("show");
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
             },
             deep: true
         }
@@ -334,39 +314,34 @@ export default {
     methods: {
         sendInfo(item) {
             // console.log(item)
-           this.selectedUser = item;
+            this.selectedUser = item;
         },
-        async visitorfun(){
+        async visitorfun() {
             var unionname = 'all';
-            if(this.getType=='Union'){
-             unionname = this.getUnion;
+            if (this.getType == 'Union') {
+                unionname = this.getUnion;
             }
-            var visitcreate = await this.callApi('post',`/api/visitorcreate`,[])
-            var res = await this.callApi('get',`/api/visitorcount?union=${unionname}`,[])
+            var visitcreate = await this.callApi('post', `/api/visitorcreate`, [])
+            var res = await this.callApi('get', `/api/visitorcount?union=${unionname}`, [])
             this.visitors = res.data;
         },
-       getCategory(){
-                axios.get(`/api/get/category/list`)
-                .then((res)=>{
-
+        getCategory() {
+            axios.get(`/api/get/category/list`)
+                .then((res) => {
                     this.categorys = res.data
                 })
-
         }
-
     },
     mounted() {
         this.getCategory();
- setTimeout(()=> {
-       this.visitorfun();
-  }, 2000);
+        setTimeout(() => {
+            this.visitorfun();
+        }, 2000);
         var date = new Date();
-        this.curentdate =  User.dateformat(new Date())[0]
-       setInterval(()=> {
-
-           this.curenttime =  User.dateformat(new Date())[8]
-       }, 1000);
-
+        this.curentdate = User.dateformat(new Date())[0]
+        setInterval(() => {
+            this.curenttime = User.dateformat(new Date())[8]
+        }, 1000);
     }
 }
 </script>

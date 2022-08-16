@@ -211,7 +211,7 @@ export default {
 
             this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। তার আনুমানিক বয়স ${this.age(this.Details.applicant_date_of_birth)} । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
         } else if (this.Details.sonod_name == 'প্রত্যয়নপত্র') {
-             this.readonly = true
+             this.readonly = false
             this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তাকে ${this.Details.The_subject_of_the_certificate} অনুমতি দেওয়া হল ।`;
         } else if (this.Details.sonod_name == 'ভোটার এলাকা স্থানান্তর অনাপত্তি পত্র') {
              this.readonly = true
