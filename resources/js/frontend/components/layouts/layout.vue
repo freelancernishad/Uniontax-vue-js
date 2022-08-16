@@ -242,7 +242,7 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
                             <p class="help text-right" style="display: flex;
                 justify-content: end;
                 align-items: center;
-                width: 100%;"> <img style="    width: 106px !important;" class="footerImg"
+                width: 100%;"> <img style="    width: 170px !important;" class="footerImg"
                                     :src="$asseturl + 'assets/img/logo.gif'" alt="" /> <span style="font-size: 14px;">
                                     <span style="border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
                                         target="_blank" style="color: #4e4e4e;"

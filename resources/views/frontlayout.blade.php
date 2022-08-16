@@ -82,6 +82,26 @@ a:hover {
 .next-control-wrapper.control-wrapper {
     display: none;
 }
+@media only screen and (max-width: 768px) {
+    p.footerText {
+    float: left !important;
+    padding: 0px 0px 0 40px;
+    margin-top: 18px;
+    font-size: 13px !important;
+}
+
+p.help.text-right {
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
+    width: 100%;
+    padding: 0 0 0 40px;
+}
+
+
+}
+
+
 </style>
 
 
