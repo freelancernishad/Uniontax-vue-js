@@ -201,12 +201,11 @@
                                 <label
                                     v-if="(allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] + allSonodCount.approved[sonod.enname.replaceAll(' ', '_')]) > 0"
                                     style="
-                                        width: 24px;
-                                        height: 24px;
+
                                         background: rgb(223 12 12);
                                         padding: 0px 7px;
                                         color: wheat;
-                                        border-radius: 50%;
+                                        font-size: 12px;
                                     ">{{ allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] +
                                             allSonodCount.approved[sonod.enname.replaceAll(' ', '_')]
                                     }}</label></a>
@@ -219,12 +218,10 @@
                                             class="nav-link"><i class="fas fa-angle-right"></i> নতুন আবেদন <label
                                                 v-if="allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] > 0"
                                                 style="
-                                        width: 24px;
-                                        height: 24px;
                                         background: rgb(223 12 12);
                                         padding: 0px 7px;
                                         color: wheat;
-                                        border-radius: 50%;
+                                        font-size: 12px;
                                     ">{{ allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] }}</label>
                                         </router-link>
                                     </li>
@@ -234,12 +231,10 @@
                                             class="nav-link"><i class="fas fa-angle-right"></i> অনুমোদিত আবেদন <label
                                                 v-if="allSonodCount.approved[sonod.enname.replaceAll(' ', '_')] > 0"
                                                 style="
-                                        width: 24px;
-                                        height: 24px;
                                         background: rgb(223 12 12);
                                         padding: 0px 7px;
                                         color: wheat;
-                                        border-radius: 50%;
+                                        font-size: 12px;
                                     ">{{ allSonodCount.approved[sonod.enname.replaceAll(' ', '_')] }}</label>
                                         </router-link>
                                     </li>
