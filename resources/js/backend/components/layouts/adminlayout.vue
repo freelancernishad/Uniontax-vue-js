@@ -206,6 +206,7 @@
                                         padding: 0px 7px;
                                         color: wheat;
                                         font-size: 12px;
+                                            border-radius: 5px;
                                     ">{{ allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] +
                                             allSonodCount.approved[sonod.enname.replaceAll(' ', '_')]
                                     }}</label></a>
@@ -222,6 +223,7 @@
                                         padding: 0px 7px;
                                         color: wheat;
                                         font-size: 12px;
+                                            border-radius: 5px;
                                     ">{{ allSonodCount.Pending[sonod.enname.replaceAll(' ', '_')] }}</label>
                                         </router-link>
                                     </li>
@@ -235,6 +237,7 @@
                                         padding: 0px 7px;
                                         color: wheat;
                                         font-size: 12px;
+                                            border-radius: 5px;
                                     ">{{ allSonodCount.approved[sonod.enname.replaceAll(' ', '_')] }}</label>
                                         </router-link>
                                     </li>
