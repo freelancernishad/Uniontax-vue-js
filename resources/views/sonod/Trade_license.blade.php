@@ -15,7 +15,7 @@
         <td width="30%">মাতার নাম</td><td>: {{ $row->applicant_mother_name }}</td>
         </tr>
         <tr>
-        <td width="30%">জাতীয় পরিচয়পত্র নং</td><td>: {{ $row->applicant_national_id_number }}</td>
+        <td width="30%">জাতীয় পরিচয়পত্র নং</td><td>: {{ int_en_to_bn($row->applicant_national_id_number) }}</td>
         </tr>
         <tr>
         <td width="30%">ঠিকানা</td><td>: {{ $row->applicant_present_village }}, {{ $row->applicant_present_post_office }}, {{ $row->applicant_present_Upazila }}, {{ $row->applicant_present_district }}</td>
@@ -25,7 +25,7 @@
         </tr>
     </table>
 
-    <p style="margin-bottom: 10px;"> {!! $row->sec_prottoyon !!}<br>
+    <p style="margin-bottom: 10px;"> {!! int_en_to_bn($row->sec_prottoyon) !!}<br>
     </p>
 
     {{-- <p style="margin-bottom: 10px;"
