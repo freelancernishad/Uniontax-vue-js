@@ -605,7 +605,7 @@ export default {
         },
         async approve(route, id, status, button, ApproveType,item) {
 
-console.log(ApproveType)
+// console.log(ApproveType)
 
             if (ApproveType == 'vueAction') {
                 this.infoModal.content_id = `${id}`;
@@ -653,6 +653,8 @@ console.log(ApproveType)
                                     Notification.customSuccess(`Your data has been ${status}`);
                                     this.preLooding = false
                                     this.$emit('event-name')
+                                }else{
+                                   this.preLooding = false
                                 }
                             })
                 }
