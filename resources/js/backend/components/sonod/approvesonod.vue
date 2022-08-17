@@ -167,6 +167,9 @@ export default {
              this.readonly = false
         } else if (this.Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র') {
              this.readonly = false
+            this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে কোন রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তাই তাকে ${this.Details.sonod_name} প্রদান করা হলো ।`;
+
+
         } else if (this.Details.sonod_name == 'চারিত্রিক সনদ') {
              this.readonly = true
             this.form.sec_prottoyon = `${this.Details.applicant_name} তাকে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তার স্বভাব চরিত্র ভালো এবং উন্নত চরিত্রের অধিকারী।ইহা আমার জানামতে সত্য ।`;

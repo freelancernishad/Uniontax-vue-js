@@ -218,8 +218,7 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
                     <div class="row">
                         <div class="col-md-4">
                             <ul class="footerList">
-                                <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার (Jashim
-                                    Uddin Haider) জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
+                                <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার <br/>জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
                                 <li style="font-size:font-size:15px"><img style="width:40px !important"
                                         :src="$asseturl + 'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: জেলা
                                     প্রশাসন,

@@ -922,7 +922,7 @@ $qrcode = \QrCode::size(70)
         font-size: 12px;" width="10%">বয়স</th>
   <th style="        border: 1px dotted black;
         padding:4px 10px;
-        font-size: 12px;" width="20%">জাতীয় পরিচয়পত্র নম্বর</th>
+        font-size: 12px;" width="20%">জাতীয় পরিচয়পত্র নাম্বার/জন্মনিবন্ধন নাম্বার</th>
 
 </tr>';
             $i = 1;

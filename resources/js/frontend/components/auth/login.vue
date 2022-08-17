@@ -23,7 +23,7 @@
       <div class="form">
   <h1 class="text-center mb-5">Login</h1>
   <div class="form-item" id="inputEmail">
-    <input type="text" id="email" v-model="form.email" @blur="blur('email')" @input="blur('email')" autocomplete="off" required >
+    <input type="text" id="email" v-model="form.email" @blur="blur('email')" @input="blur('email')" autocomplete="on" required >
     <label for="Email">Email</label>
   </div>
 
