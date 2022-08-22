@@ -12,6 +12,20 @@
                 </div>
 
         <div class="sidebarTitle mb-3 defaltColor"  >
+                    <h4>পরিকল্পনা ও তত্ত্বাবধানে</h4>
+                </div>
+
+
+                <p class="sidebaruser text-center"  >
+                    <img width="60%" alt="" :src="$asseturl+'assets/img/b52035f3e538466036dd73c0bf891a42.png'" />
+                </p>
+                <div class="contactInfo text-center"  >
+                    <span><b> মোঃ সোহেল মারুফ</b></span> <br />
+                    <span><b>অতিরিক্ত জেলা প্রশাসক (শিক্ষা ও আইসিটি)</b></span> <br />
+                </div>
+
+
+        <div class="sidebarTitle mb-3 defaltColor"  >
                     <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
                 </div>
 
