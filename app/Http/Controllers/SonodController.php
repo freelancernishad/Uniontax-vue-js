@@ -698,7 +698,7 @@ class SonodController extends Controller
                 margin:10px auto;
                 margin-bottom:0px;
                 text-align:center
-                ">ওয়ারিশান/উত্তরাধিকারী সনদপত্র</div> <br>
+                ">'.$sonod_name.'</div> <br>
                 ';
             $lNO = '';
 
