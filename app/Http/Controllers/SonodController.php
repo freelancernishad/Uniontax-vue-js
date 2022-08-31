@@ -869,6 +869,14 @@ $qrcode = \QrCode::size(70)
         $row = Sonod::find($id);
         $sonod_name = $row->sonod_name;
 
+
+        if($sonod_name=='ওয়ারিশ সনদ'){
+            $text = 'ওয়ারিশ';
+        }else{
+            $text = 'উত্তরাধিকারী';
+
+        }
+
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
         $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
@@ -903,7 +911,7 @@ $qrcode = \QrCode::size(70)
             $nagoriinfo = '
             <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, ' . $row->applicant_name . ', পিতা- ' . $row->applicant_father_name . ', মাতা- ' . $row->applicant_mother_name . ', গ্রাম- ' . $row->applicant_present_village . ', ডাকঘর- ' . $row->applicant_present_post_office . ', উপজেলা: '. $row->applicant_present_Upazila .', জেলা- '. $row->applicant_present_district .'। তিনি অত্র ইউনিয়নের একজন স্থায়ী বাসিন্দা এবং জন্ম সূত্রে বাংলাদেশের নাগরিক ।<br>
                 </p>
-<p style="text-align:center;margin-bottom:0px">বর্তমানে তার নিম্নোক্ত ওয়ারিশ/উত্তরাধিকারীগণ রয়েছেন।</p>
+<p style="text-align:center;margin-bottom:0px">বর্তমানে তার নিম্নোক্ত '.$text.'গণ রয়েছেন।</p>
 
 
 <table class="table " style="width:100%;border-collapse: collapse;" cellspacing="0" cellpadding="0"  >
@@ -953,7 +961,7 @@ $qrcode = \QrCode::size(70)
 </table>
 <br>
 <p style="margin-top:-10px;margin-bottom:5px">
-আমার জানামতে উল্লেখিত  উত্তরাধিকারী ছাড়া আর কোন উত্তরাধিকারী নাই। আমি নিম্নস্বাক্ষরকারী ও সংশ্লিষ্ট ওয়ার্ডের ইউপি সদস্যদের দ্বারা সত্যায়নপূর্বক অত্র ওয়ারিশান সনদপত্র প্রদান করা হলো।
+আমার জানামতে উল্লেখিত  '.$text.' ছাড়া আর কোন '.$text.' নাই। আমি নিম্নস্বাক্ষরকারী ও সংশ্লিষ্ট ওয়ার্ডের ইউপি সদস্যদের দ্বারা সত্যায়নপূর্বক অত্র '.$text.' সনদপত্র প্রদান করা হলো।
 </p>
 <p style="margin-top:-10px; margin-bottom:0px">
 আমি তাদের সর্বাঙ্গীন উন্নতি ও মঙ্গল কামনা করছি।
