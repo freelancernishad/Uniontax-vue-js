@@ -342,7 +342,10 @@
 
 
   <div class="col-md-12" v-if="viewModal.content.sonod_name=='ওয়ারিশ সনদ' || viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
-                    <div class="app-heading">ওয়ারিশগনের তালিকা </div>
+
+                    <div class="app-heading" v-if="viewModal.content.sonod_name=='ওয়ারিশ সনদ'">ওয়ারিশগনের তালিকা </div>
+                    <div class="app-heading" v-else-if="viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">উত্তরাধিকারীগনের তালিকা </div>
+
                 </div>
 
                 <table class="table" v-if="viewModal.content.sonod_name=='ওয়ারিশ সনদ' || viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
@@ -353,7 +356,7 @@
                         <th>জন্ম তারিখ</th>
                         <th>জাতীয় পরিচয়পত্র নাম্বার</th>
                     </tr>
-                    <tr v-for="(ut,index) in viewModal.content.successors" :key="'ut'+index">
+                    <tr v-for="(ut,index) in JSON.parse(viewModal.content.successor_list)" :key="'ut'+index">
                         <td>{{ ut.w_id }}</td>
                         <td>{{ ut.w_name }}</td>
                         <td>{{ ut.w_relation }}</td>
@@ -569,6 +572,7 @@ export default {
         async info(item, index, button) {
             this.viewModal.title = `${item.applicant_name}`
             this.viewModal.content = item
+            console.log(JSON.parse(item.successor_list))
 
             var applicant_national_id_number = item.applicant_national_id_number;
             var applicant_birth_certificate_number = item.applicant_birth_certificate_number;
