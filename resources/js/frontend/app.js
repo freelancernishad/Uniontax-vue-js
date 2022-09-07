@@ -1,55 +1,14 @@
 require('../bootstrap');
 import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-// Import Bootstrap and BootstrapVue CSS files (order is important)
-// import 'bootstrap/dist/css/bootstrap.css'
+
+import { BButton, BModal,VBModal  } from 'bootstrap-vue'
+Vue.component('b-modal', BModal)
+Vue.component('b-button', BButton)
+
+
+
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
-
-
-
-// import {BForm,BFormInvalidFeedback} from 'bootstrap-vue/src/components/form'
-// import {BFormGroup} from 'bootstrap-vue/src/components/form-group'
-// import {BFormInput} from 'bootstrap-vue/src/components/form-input'
-// import {BFormSelect,BFormSelectOption,BFormSelectOptionGroup} from 'bootstrap-vue/src/components/form-select'
-// import {BInputGroup,BInputGroupAppend,BInputGroupPrepend,BInputGroupText,BInputGroupAddon} from 'bootstrap-vue/src/components/input-group'
-// import {BFormDatepicker} from 'bootstrap-vue/src/components/form-datepicker'
-// import {BFormFile} from 'bootstrap-vue/src/components/form-file'
-// import {BButton,BButtonClose} from 'bootstrap-vue/src/components/button'
-// import {BModal} from 'bootstrap-vue/src/components/modal'
-// import {BImg} from 'bootstrap-vue/src/components/image'
-
-// Vue.component('BForm', BForm);
-// Vue.component('BFormInvalidFeedback', BFormInvalidFeedback);
-// Vue.component('BFormGroup', BFormGroup);
-// Vue.component('BFormInput', BFormInput);
-// Vue.component('BFormSelect', BFormSelect);
-// Vue.component('BFormSelectOption', BFormSelectOption);
-// Vue.component('BFormSelectOptionGroup', BFormSelectOptionGroup);
-
-// Vue.component('BInputGroup', BInputGroup);
-// Vue.component('BInputGroupAppend', BInputGroupAppend);
-// Vue.component('BInputGroupPrepend', BInputGroupPrepend);
-// Vue.component('BInputGroupText', BInputGroupText);
-// Vue.component('BInputGroupAddon', BInputGroupAddon);
-
-// Vue.component('BFormDatepicker', BFormDatepicker);
-// Vue.component('BFormFile', BFormFile);
-// Vue.component('BButton', BButton);
-// Vue.component('BButtonClose', BButtonClose);
-// Vue.component('BModal', BModal);
-// Vue.component('BImg', BImg);
-
-
-
-
-
-
 
 
 

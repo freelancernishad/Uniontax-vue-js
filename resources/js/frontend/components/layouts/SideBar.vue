@@ -1,59 +1,15 @@
 <template>
   <div class="RightSidebar mt-3" :class="ClassName">
-                <div class="sidebarTitle mb-3 defaltColor" >
+                <div class="sidebarTitle mb-3 defaltColor" v-if="getType=='main'" >
                     <h4>উপদেষ্টা ও তত্ত্বাবধানে</h4>
                 </div>
-                <p class="sidebaruser text-center">
-                    <img width="70%" alt="" :src="$asseturl+'assets/img/fb71ff2546046a9a64178679c70a6521.png'" />
+                <p class="sidebaruser text-center" v-if="getType=='main'">
+                    <img width="70%" alt="" :src="$asseturl+'assets/img/DC-Panchagarh.png'" />
                 </p>
-                <div class="contactInfo text-center" >
+                <div class="contactInfo text-center" v-if="getType=='main'" >
                     <span><b>জসীম উদ্দীন হায়দার</b></span> <br />
                     <span><b>জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট</b></span> <br />
                 </div>
-
-        <div class="sidebarTitle mb-3 defaltColor"  >
-                    <h4>পরিকল্পনা ও তত্ত্বাবধানে</h4>
-                </div>
-
-
-                <p class="sidebaruser text-center"  >
-                    <img width="60%" alt="" :src="$asseturl+'assets/img/b52035f3e538466036dd73c0bf891a42.png'" />
-                </p>
-                <div class="contactInfo text-center"  >
-                    <span><b> মোঃ সোহেল মারুফ</b></span> <br />
-                    <span><b>অতিরিক্ত জেলা প্রশাসক (শিক্ষা ও আইসিটি)</b></span> <br />
-                </div>
-
-
-        <div class="sidebarTitle mb-3 defaltColor"  >
-                    <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
-                </div>
-
-
-                <p class="sidebaruser text-center"  >
-                    <img width="60%" alt="" :src="$asseturl+'assets/img/0f0a882a453a4d2b22037af67bbecb27.png'" />
-                </p>
-                <div class="contactInfo text-center"  >
-                    <span><b> মোঃ আতিকুর রহমান</b></span> <br />
-                    <span><b>প্রোগ্রামার</b></span> <br />
-                </div>
-
-
-
-                <div class="sidebarTitle mb-3 defaltColor"  >
-                    <h4>পরিকল্পনা, বাস্তবায়ন এবং কারিগরী পরামর্শক</h4>
-                </div>
-
-
-                <p class="sidebaruser text-center"  >
-                    <img width="60%" alt="" :src="$asseturl+'assets/img/61fa48285f305025824869.jpg'" />
-                </p>
-                <div class="contactInfo text-center"  >
-                    <span><b> মিথুন কুমার রায়</b></span> <br />
-                    <span><b>সহকারী নেটওয়ার্ক ইঞ্জিনিয়ার</b></span> <br />
-                </div>
-
-
 
 
                 <div class="sidebarTitle mb-3 defaltColor"  v-if="getType=='main'">

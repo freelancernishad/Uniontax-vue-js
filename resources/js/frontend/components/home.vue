@@ -23,9 +23,11 @@
                     </vue-flux>
                     <!--        <img width="100%" src="assets/img/National-Portal-Card-PM.jpeg" alt=""> --->
                 </div>
-                <b-modal id="myModal">
-                    <union-select :custom-url="selectedUser" />
-                </b-modal>
+
+
+
+
+
                 <div class="services mt-3">
                     <div class="row">
                         <div class="col-md-12">
@@ -61,8 +63,8 @@
 
 
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-if="getType == 'main'"
-                            v-for="(sonod, r) in SonodNames" :key="'main' + r" v-b-modal="'myModal'"
-                            @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'))">
+                            v-for="(sonod, r) in SonodNames" :key="'main' + r"
+                            @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'),$event.target)">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
                                     <img :src="sonod.icon" width="50%" alt="" />
@@ -72,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <router-link class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
+                        <router-link class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-else
                             v-for="(sonod, rk) in SonodNames" :key="'union' + rk"
                             :to="{ name: 'application', params: { name: sonod.enname.replaceAll(' ', '_') } }">
                             <div class="serviceBox">
@@ -105,7 +107,7 @@
                         </div>
                         <div class="col-md-12">
                             <p>
-                                <!-- ইউনিয়ন পরিষদ হল বাংলাদেশে পল্লী অঞ্চলের
+                                ইউনিয়ন পরিষদ হল বাংলাদেশে পল্লী অঞ্চলের
                                 সর্বনিম্ন প্রশাসনিক একক। গ্রাম চৌকিদারি আইনের
                                 ১৮৭০ এর অধীনে ইউনিয়ন পরিষদের সৃষ্টি হয়। প্রাথমিক
                                 পর্যায়ে এর ভূমিকা নিরাপত্তামূলক কর্মকাণ্ডে
@@ -137,7 +139,7 @@
                                 পাওয়া যায় এবং গত ০৫/১০/২০২১ তারিখে রংপুর বিভাগের
                                 মাননীয় বিভাগীয় কমিশনার জনাব মো: আব্দুল ওয়াহাব
                                 ভূঞা মহোদয় www.uniontax.gov.bd অনলাইন সিস্টেমটির
-                                শুভ উদ্বোধন করেন। -->
+                                শুভ উদ্বোধন করেন।
                             </p>
                         </div>
                     </div>
@@ -180,10 +182,11 @@ export default {
                 autoplay: true,
             },
             vfImages: [
-                this.$asseturl + "assets/img/National-Portal-Card-PM.jpeg",
-                this.$asseturl + "assets/img/61ed07bbaac6b597183901.jpg",
-                this.$asseturl + "assets/img/slide1.jpeg",
-                this.$asseturl + "assets/img/slide2.jpeg",
+                this.$asseturl + "assets/img/padmabanner.jpeg",
+                this.$asseturl + "assets/img/slider2.jpg",
+                // this.$asseturl + "assets/img/61ed07bbaac6b597183901.jpg",
+                // this.$asseturl + "assets/img/slide1.jpeg",
+                // this.$asseturl + "assets/img/slide2.jpeg",
                 // this.$asseturl+"assets/img/padmabanner.jpeg",
                 // this.$asseturl+"assets/img/slide12.jpg",
                 // this.$asseturl+"assets/img/slide11.jpg",
@@ -211,16 +214,14 @@ export default {
                 "wave",
                 "zip",
             ],
+
             //   vfCaptions: [],
         };
     },
     mounted() {
     },
     methods: {
-        sendInfo(item) {
-            // console.log(item)
-            this.selectedUser = item;
-        }
+
     },
 };
 </script>

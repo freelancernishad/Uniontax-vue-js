@@ -411,7 +411,28 @@ class SonodController extends Controller
     public function index(Request $request)
     {
         $sonod_name = $request->sonod_name;
+        $stutus = $request->stutus;
+        $payment_status = $request->payment_status;
+        $unioun_name = $request->unioun_name;
+        $sondId = $request->sondId;
         $sonod_name =  $this->enBnName($sonod_name)->bnname;
+
+            if($sondId){
+                // return 'sss';
+                return Sonod::where(['sonod_name' => $sonod_name,'stutus'=>$stutus,'unioun_name'=>$unioun_name,'payment_status'=>$payment_status])->where('sonod_Id','LIKE',"%{$sondId}%")->orderBy('id', 'DESC')->paginate(20);
+            }
+
+        if($unioun_name){
+            if($payment_status){
+                return Sonod::where(['sonod_name' => $sonod_name,'stutus'=>$stutus,'unioun_name'=>$unioun_name,'payment_status'=>$payment_status])->orderBy('id', 'DESC')->paginate(20);
+            }
+            return Sonod::where(['sonod_name' => $sonod_name,'stutus'=>$stutus,'unioun_name'=>$unioun_name])->orderBy('id', 'DESC')->paginate(20);
+        }
+        return Sonod::where(['sonod_name' => $sonod_name,'stutus'=>$stutus])->orderBy('id', 'DESC')->paginate(20);
+
+
+
+
         $datas = QueryBuilder::for(Sonod::class)
             ->allowedFilters([
                 AllowedFilter::exact('unioun_name'),
@@ -472,7 +493,7 @@ class SonodController extends Controller
                 'chaireman_sign', AllowedFilter::exact('id')
             ])
             ->orderBy('id', 'DESC');
-        return $datas->where(['sonod_name' => $sonod_name])->get();
+        return $datas->where(['sonod_name' => $sonod_name])->paginate(20);
     }
     public function sonodDownload(Request $request, $name, $id)
     {

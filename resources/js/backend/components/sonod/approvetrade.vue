@@ -116,7 +116,7 @@ props: {
                 this.form.approveData = this.ApproveData;
                 var res = await this.callApi('post',`/api/sonod/sec/approve/${this.SonodId}`,this.form);
         //    this.$root.$emit('bv::hide::modal', this.infoModal.id, button)
-          this.$root.$emit('bv::hide::modal', 'info-modal')
+          this.$root.$emit('bv::hide::modal', 'action-modal')
                 this.$emit('event-name')
                  Notification.customSuccess(`Your data has been Approved`);
 

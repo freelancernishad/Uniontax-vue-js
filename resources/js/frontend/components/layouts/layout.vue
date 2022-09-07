@@ -70,10 +70,9 @@
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <div class="dropdown-item" v-if="getType == 'main'"
                                                     v-for="(sonod, r) in SonodNames" :key="'mainMenu' + r"
-                                                    v-b-modal="'myModal'"
-                                                    @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'))"
+                                                    @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'),$event.target)"
                                                     role="button">{{ sonod.bnname }}</div>
-                                                <router-link class="dropdown-item" v-for="(sonod, rk) in SonodNames"
+                                                <router-link class="dropdown-item" v-else v-for="(sonod, rk) in SonodNames"
                                                     :key="'unionMenu' + rk"
                                                     :to="{ name: 'application', params: { name: sonod.enname.replaceAll(' ', '_') } }">
                                                     {{ sonod.bnname }}</router-link>
@@ -214,46 +213,58 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
                 <div class="footer_top_bg"
                     style="background: url('/public/assets/img/footer_top_bg.png'); height: 93px; background-repeat: no-repeat; background-size: cover;">
                 </div>
+
+
+
+
+
                 <div class="footerBottom">
                     <div class="row">
                         <div class="col-md-4">
                             <ul class="footerList">
-                                <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: জসীম উদ্দীন হায়দার <br/>জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট,বরিশাল </li>
-                                <li style="font-size:font-size:15px"><img style="width:40px !important"
-                                        :src="$asseturl + 'assets/img/bd-logo.png'" alt=""> সার্বিক তত্ত্বাবধানে: জেলা
-                                    প্রশাসন,
-                                    বরিশাল</li>
+                                <li style="font-size:font-size:15px"> <b> পরিকল্পনা ও বাস্তবায়নে:</b> <br />
+                                    সোহাগ চন্দ্র সাহা
+                                    <br />উপজেলা নির্বাহী অফিসার,তেঁতুলিয়া,পঞ্চগড়
+                                </li>
+
                             </ul>
                         </div>
+
+
                         <div class="col-md-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> </li>
-                                <li style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
-                                    <img style="width:40px !important" :src="$asseturl + 'assets/img/DoICT.svg.png'"
-                                        alt=""> <span style="padding: 0 15px;">পরিকল্পনা, বাস্তবায়ন এবং কারিগরি
-                                        তত্বাবধায়নে: তথ্য ও যোগাযোগ প্রযুক্তি অধিদপ্তর, জেলা কার্যালয়, বরিশাল</span>
+                                <li
+                                    style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
+                                    <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt="">
+                                    <span style="padding: 0 15px;"> <b> সার্বিক ব্যবস্থাপনায়:</b> <br> © ২০২২ উপজেলা প্রশাসন, তেঁতুলিয়া,পঞ্চগড়</span>
                                 </li>
                             </ul>
                         </div>
+
+
+
                         <div class="col-md-4">
-                            <p class="footerText" style="font-size: 14px; !important">ইউনিয়ন পরিষদের ডিজিটাল সেবা
-                                গ্রহণের জন্য ধন্যবাদ</p>
-                            <p class="help text-right" style="display: flex;
-                justify-content: end;
-                align-items: center;
-                width: 100%;"> <img style="    width: 170px !important;" class="footerImg"
-                                    :src="$asseturl + 'assets/img/logo.gif'" alt="" /> <span style="font-size: 14px;">
-                                    <span style="border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a
-                                        target="_blank" style="color: #4e4e4e;"
-                                        href="https://www.facebook.com/SYED.SHAHAREAR.ARAFAT">
-                                        এস এস আরাফাত </a></span> </p>
+                            <ul class="footerList">
+                                <li style="font-size:font-size:15px"> </li>
+                                <li
+                                    style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
+                                    <!-- <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt=""> -->
+                                    <span style="padding: 0 15px;"> <b> কারিগরি সহায়তায়:</b> <br>Softweb</span>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
+                        </div>
+                        </div>
+
+
+
+
+
             </footer>
         </div>
         <div class="modal fade  bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -272,6 +283,13 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
                 </div>
             </div>
         </div>
+
+
+        <b-modal :id="actionModal.id" size="xl" :title="actionModal.title" ok-only>
+                    <union-select :custom-url="selectedUser" />
+        </b-modal>
+
+
     </div>
 </template>
 <script>
@@ -299,6 +317,13 @@ export default {
             visitors: '',
             categorys: {},
             ff: {},
+            actionModal: {
+                id: 'action-modal',
+                title: '',
+                status: '',
+                content: {},
+                content_id: '',
+            }
         }
     },
     watch: {
@@ -311,10 +336,16 @@ export default {
         }
     },
     methods: {
-        sendInfo(item) {
-            // console.log(item)
+
+        sendInfo(item,button) {
+
+
+            this.actionModal.content = item;
             this.selectedUser = item;
-        },
+            this.$root.$emit('bv::show::modal', this.actionModal.id, button)
+
+            // console.log(item)
+            },
         async visitorfun() {
             var unionname = 'all';
             if (this.getType == 'Union') {
