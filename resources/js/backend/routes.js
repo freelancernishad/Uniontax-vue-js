@@ -37,6 +37,13 @@ let role = require('./components/assignRole.vue').default;
 
 let index = require('./components/vuex/index.vue').default;
 
+
+
+let holdingTaxWord = require('./components/holdingTax/word.vue').default;
+let holdingTaxList = require('./components/holdingTax/list.vue').default;
+let holdingTaxedit = require('./components/holdingTax/form.vue').default;
+let holdingTaxView = require('./components/holdingTax/view.vue').default;
+
 //blogs
 let blogs = require('./components/blogs/list.vue').default;
 let blogform = require('./components/blogs/form.vue').default;
@@ -62,6 +69,14 @@ export const routes = [
   { path:  `${prefix}/user/list`, component: userlist, name:'userlist',meta: { layout: adminlayout } },
   { path:  `${prefix}/user/list/add`, component: userlistedit, name:'userlistadd',meta: { layout: adminlayout } },
   { path:  `${prefix}/user/list/edit/:id`, component: userlistedit, name:'userlistedit',meta: { layout: adminlayout } },
+
+
+
+  { path:  `${prefix}/holding/tax/words`, component: holdingTaxWord, name:'holdingTaxWord',meta: { layout: adminlayout } },
+  { path:  `${prefix}/holding/tax/list/:word`, component: holdingTaxList, name:'holdingTaxList',meta: { layout: adminlayout } },
+  { path:  `${prefix}/holding/list/view/:id`, component: holdingTaxView, name:'holdingTaxView',meta: { layout: adminlayout } },
+  { path:  `${prefix}/holding/list/add/:wordNo`, component: holdingTaxedit, name:'holdingTaxadd',meta: { layout: adminlayout } },
+  { path:  `${prefix}/holding/list/edit/:id`, component: holdingTaxedit, name:'holdingTaxedit',meta: { layout: adminlayout } },
 
 
   { path:  `${prefix}/citizen/list`, component: citizenlist, name:'citizenlist',meta: { layout: adminlayout } },

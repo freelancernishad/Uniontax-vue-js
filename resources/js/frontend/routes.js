@@ -16,6 +16,8 @@ let blogread = require('./components/blogs/read.vue').default;
 
 let sonodVerify = require('./components/sonodVerify.vue').default;
 let sonodsearch = require('./components/sonodsearch.vue').default;
+let holdingTax = require('./components/holdingTax.vue').default;
+let holdingTaxSingle = require('./components/holdingTaxSingle.vue').default;
 let contact = require('./components/contact.vue').default;
 
 let home = require('./components/home.vue').default;
@@ -30,6 +32,8 @@ export const routes = [
     { path:  `${prefix}register`, component: register, name:'register',meta: { layout: layout } },
     { path:  `${prefix}forget`, component: forget, name:'forget',meta: { layout: layout } },
     { path:  `${prefix}contact`, component: contact, name:'contact',meta: { layout: layout } },
+    { path:  `${prefix}holding/tax`, component: holdingTax, name:'holdingTax',meta: { layout: layout } },
+    { path:  `${prefix}holding/tax/:id`, component: holdingTaxSingle, name:'holdingTaxSingle',meta: { layout: layout } },
     { path:  `${prefix}preview`, component: certificate, name:'certificate',meta: { layout: layout } },
     { path:  `${prefix}verification/sonod/:id`, component: sonodVerify, name:'sonodVerify',meta: { layout: layout } },
     { path:  `${prefix}sonod/search`, component: sonodsearch, name:'sonodsearch',meta: { layout: layout } },

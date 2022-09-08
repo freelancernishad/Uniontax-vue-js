@@ -63,21 +63,39 @@
                                                     বার্তা</router-link>
                                             </div>
                                         </li>
-                                        <li class="nav-item dropdown">
+
+
+
+                                        <li class="nav-item dropdown" v-if="getType == 'main'">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">নাগরিক সেবা</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <div class="dropdown-item" v-if="getType == 'main'"
+                                                <div class="dropdown-item"
                                                     v-for="(sonod, r) in SonodNames" :key="'mainMenu' + r"
                                                     @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'),$event.target)"
                                                     role="button">{{ sonod.bnname }}</div>
-                                                <router-link class="dropdown-item" v-else v-for="(sonod, rk) in SonodNames"
+                                            </div>
+                                        </li>
+
+
+
+                                        <li class="nav-item dropdown" v-if="getType=='Union'">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">নাগরিক সেবা</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                                <router-link class="dropdown-item" v-for="(sonod, rk) in SonodNames"
                                                     :key="'unionMenu' + rk"
                                                     :to="{ name: 'application', params: { name: sonod.enname.replaceAll(' ', '_') } }">
                                                     {{ sonod.bnname }}</router-link>
                                             </div>
                                         </li>
+
+
+
+
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -104,7 +122,7 @@
                                             </router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <router-link class="nav-link" :to="{ name: 'home' }">হোল্ডিং ট্যাক্স
+                                            <router-link class="nav-link" :to="{ name: 'holdingTax' }">হোল্ডিং ট্যাক্স
                                             </router-link>
                                         </li>
                                         <li class="nav-item dropdown">
@@ -285,8 +303,8 @@ padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vo
         </div>
 
 
-        <b-modal :id="actionModal.id" size="xl" :title="actionModal.title" ok-only>
-                    <union-select :custom-url="selectedUser" />
+        <b-modal :id="actionModal.id" size="xl" title="ইউনিয়ন নির্বাচন করুন" ok-only>
+                    <union-select :custom-url="actionModal.title" />
         </b-modal>
 
 
@@ -340,7 +358,7 @@ export default {
         sendInfo(item,button) {
 
 
-            this.actionModal.content = item;
+            this.actionModal.title = item;
             this.selectedUser = item;
             this.$root.$emit('bv::show::modal', this.actionModal.id, button)
 

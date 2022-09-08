@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SonodController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HoldingtaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,8 @@ Route::get('/sonod/payment/{id}', [SonodController::class,'sonodpayment']);
 Route::get('/sonod/{name}/{id}', [SonodController::class,'sonodDownload']);
 Route::get('/invoice/{name}/{id}', [SonodController::class,'invoice']);
 Route::get('/document/{name}/{id}', [SonodController::class,'userDocument']);
+Route::get('/pay/holding/tax/{id}', [HoldingtaxController::class,'holding_tax_pay_Online']);
+Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSuccess']);
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
     Route::get('/{vue_capture?}', function () {
         // return   Auth::user()->roles->permission;

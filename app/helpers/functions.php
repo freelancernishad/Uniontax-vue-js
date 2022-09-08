@@ -36,7 +36,7 @@ use Intervention\Image\Facades\Image;
         return  str_replace(" ", "_", $sonodList->enname);
     }
 
-    function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[]){
+    function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[],$path='payment'){
 
          $url = "http://" . $_SERVER['HTTP_HOST'];
         $req_timestamp = date('Y-m-d H:i:s');
@@ -51,9 +51,9 @@ use Intervention\Image\Facades\Image;
            ],
            "req_timestamp" => "$req_timestamp GMT+6",
            "feed_uri" => [
-              "c_uri" => "$url/payment/cancel",
-              "f_uri" => "$url/payment/fail",
-              "s_uri" => "$url/payment/success"
+              "c_uri" => "$url/$path/cancel",
+              "f_uri" => "$url/$path/fail",
+              "s_uri" => "$url/$path/success"
            ],
            "cust_info" => $cust_info,
            "trns_info" => [

@@ -1,19 +1,23 @@
 <template>
 <div class="d-flex justify-content-between align-items-center">
-                        <select class='searchFrom form-control' name="division" id="division" readonly>
+                        <select class='searchFrom form-control' name="division" id="division" v-model="division" @change="getdistrictFun" >
+                            <option value="">বিভাগ নির্বাচন করুন</option>
+                                <option v-for="div in getdivisions" :key="div.id" :value="div.id">{{ div.bn_name }}</option>
+                        </select>
+                        <select   class='searchFrom form-control' name="district" id="district" v-model="district" @change="getthanaFun" >
+                            <option value="">জেলা নির্বাচন করুন</option>
+                            <option v-for="dist in getdistricts" :key="dist.id" :value="dist.id">{{ dist.bn_name }}</option>
+                        </select>
+                        <select  class='searchFrom form-control' name="thana" id="thana" v-model="thana" @change="getuniounFun" >
+                            <option value="">উপজেলা নির্বাচন করুন</option>
+                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.id">{{ thana.bn_name }}</option>
+                        </select>
 
-                                <option value="বরিশাল">বরিশাল</option>
-                        </select>
-                        <select   class='searchFrom form-control' name="district" id="district" readonly>
-                            <option value="বরিশাল">বরিশাল</option>
-                        </select>
-                        <select  class='searchFrom form-control' name="thana" id="thana" readonly>
-                            <option value="বরিশাল সদর">বরিশাল সদর</option>
-                        </select>
+                        <select  @change="changeunioun"  class='searchFrom form-control' v-model="unioun" id="unioun">
+                            <option value="">ইউনিয়ন নির্বাচন করুন</option>
 
-                        <select  @change="changeunioun()"  class='searchFrom form-control' v-model="unioun" id="unioun">
                            <!-- <option value="">ইউনিয়ন</option> -->
-                           <option value="Tungibaria">টুঙ্গীবাড়িয়া</option>
+                           <option v-for="union in getuniouns" :key="union.id" :value="union.url">{{ union.bn_name }}</option>
                         </select>
 <!--
                         <select  @change="changeunioun()"  class='searchFrom form-control' v-model="unioun" id="unioun">
@@ -33,16 +37,66 @@ export default {
     },
     data(){
         return {
-            unioun:'Tungibaria'
+
+            division:'',
+            district:'',
+            thana:'',
+            unioun:'',
+
+            getdivisions:{},
+            getdistricts:{},
+            getthanas:{},
+            getuniouns:{},
+
+
+
+
         }
     },
     methods: {
-        changeunioun(){
-            var url =  this.$appUrl.split("//");
 
-           var redirect = url[0]+'//'+this.unioun.replaceAll(' ', '_').toLowerCase()+'.'+url[1]+''+this.CustomUrl;
-           window.location.href= redirect;
+
+       async getdivisionFun(){
+         var res = await this.callApi('get',`/api/getdivisions`,[]);
+         this.getdivisions = res.data;
+        },
+
+       async getdistrictFun(){
+
+         var res = await this.callApi('get',`/api/getdistrict?id=${this.division}`,[]);
+         this.getdistricts = res.data;
+        },
+
+       async getthanaFun(){
+         var res = await this.callApi('get',`/api/getthana?id=${this.district}`,[]);
+         this.getthanas = res.data;
+        },
+
+       async getuniounFun(){
+         var res = await this.callApi('get',`/api/getunioun?id=${this.thana}`,[]);
+         this.getuniouns = res.data;
+        },
+
+
+        changeunioun(){
+
+
+
+
+
+                window.location.href = this.unioun+this.CustomUrl
+                console.log(this.unioun+this.CustomUrl)
+
+
+
+        //     var url =  this.$appUrl.split("//");
+
+        //    var redirect = url[0]+'//'+this.unioun.replaceAll(' ', '_').toLowerCase()+'.'+url[1]+''+this.CustomUrl;
+        //    window.location.href= redirect;
         }
+    },
+    mounted() {
+        this.getdivisionFun();
     },
 }
 </script>

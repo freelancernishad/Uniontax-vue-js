@@ -29,7 +29,7 @@
 
 
                 <div class="services mt-3">
-                    <div class="row">
+                    <div class="row" v-if="getType == 'main'">
                         <div class="col-md-12">
                             <h6 class="serviceTitle position-relative defaltColor">
                                 সেবাসমূহ
@@ -37,7 +37,7 @@
                         </div>
 
 
-    <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
                                     <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
@@ -62,7 +62,7 @@
                         </div>
 
 
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-if="getType == 'main'"
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
                             v-for="(sonod, r) in SonodNames" :key="'main' + r"
                             @click="sendInfo('/application/' + sonod.enname.replaceAll(' ', '_'),$event.target)">
                             <div class="serviceBox">
@@ -74,8 +74,45 @@
                                 </div>
                             </div>
                         </div>
-                        <router-link class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center" v-else
-                            v-for="(sonod, rk) in SonodNames" :key="'union' + rk"
+
+                    </div>
+
+                    <div class="row" v-else>
+                        <div class="col-md-12">
+                            <h6 class="serviceTitle position-relative defaltColor">
+                                সেবাসমূহ
+                            </h6>
+                        </div>
+
+
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
+                            <div class="serviceBox">
+                                <div class="serviceLogo">
+                                    <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
+                                </div>
+                                <div class="serviceTitle">
+                                    <a href="https://bdris.gov.bd/br/application" class="defaltTextColor">জন্ম নিবন্ধন
+                                        সনদের আবেদন</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
+                            onclick="item('citizen_apps/2')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                                <div class="serviceLogo">
+                                    <img :src="$asseturl + 'assets/img/pic-10.png'" width="33%" alt="" />
+                                </div>
+                                <div class="serviceTitle">
+                                    <a href="https://bdris.gov.bd/dr/application" class="defaltTextColor">মৃত্যু নিবন্ধন
+                                        সনদের আবেদন</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <router-link class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center"
+                            v-for="(sonod, rk) in SonodNames" :key="'uniondd' + rk"
                             :to="{ name: 'application', params: { name: sonod.enname.replaceAll(' ', '_') } }">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
@@ -87,18 +124,15 @@
                             </div>
                         </router-link>
 
-<!--
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
-                            <div class="serviceBox">
-                                <div class="serviceLogo">
-                                    <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
-                                </div>
-                                <div class="serviceTitle">
-                                    <a href="#">হোল্ডিং ট্যাক্স</a>
-                                </div>
-                            </div>
-                        </div> -->
+                    </div>
 
+
+
+
+
+
+
+<div class="row">
 
                         <div class="col-md-12">
                             <h6 class="serviceTitle position-relative defaltColor">
@@ -147,6 +181,11 @@
             </div>
             <side-bar class-name="col-md-3"></side-bar>
         </div>
+
+        <b-modal :id="actionModalhome.id" size="xl" title="ইউনিয়ন নির্বাচন করুন" ok-only>
+                    <union-select :custom-url="actionModalhome.title" />
+        </b-modal>
+
     </div>
 </template>
 <script>
@@ -214,7 +253,13 @@ export default {
                 "wave",
                 "zip",
             ],
-
+            actionModalhome: {
+                id: 'action-modal-home',
+                title: '',
+                status: '',
+                content: {},
+                content_id: '',
+            }
             //   vfCaptions: [],
         };
     },
@@ -222,6 +267,15 @@ export default {
     },
     methods: {
 
+        sendInfo(item, button) {
+
+
+            this.actionModalhome.title = item;
+            this.selectedUser = item;
+            this.$root.$emit('bv::show::modal', this.actionModalhome.id, button)
+
+            console.log(item)
+        },
     },
 };
 </script>
@@ -229,6 +283,7 @@ export default {
 a.prev {
     display: none !important;
 }
+
 a.next {
     display: none !important;
 }

@@ -10,8 +10,11 @@ use App\Http\Controllers\CitizenController;
 use App\Http\Controllers\VisitorController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\ActionLogController;
+use App\Http\Controllers\countryApiController;
+use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\HoldingBokeyaController;
 use App\Http\Controllers\SonodnamelistController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -46,6 +49,19 @@ Route::group([
     Route::post('me', [authController::class,'login']);
 
 });
+
+
+
+// country api
+Route::get('/getdivisions', [countryApiController::class,'getdivisions']);
+Route::get('/getdistrict', [countryApiController::class,'getdistrict']);
+Route::get('/getthana', [countryApiController::class,'getthana']);
+Route::get('/getunioun', [countryApiController::class,'getunioun']);
+Route::get('/gotoUnion', [countryApiController::class,'gotoUnion']);
+
+
+
+
 Route::post('register', [authController::class,'register']);
 Route::get('get/roles',[authController::class,'getRoles']);
 
@@ -146,6 +162,18 @@ Route::get('citizen/list',[CitizenController::class,'index']);
 Route::get('citizen/show/{id}',[CitizenController::class,'show']);
 Route::get('citizen/delete/{id}',[CitizenController::class,'destroy']);
 Route::post('citizen/submit',[CitizenController::class,'store']);
+
+
+/// Holding Tax
+
+Route::get('holding/bokeya/list',[HoldingBokeyaController::class,'index']);
+
+Route::post('holding/bokeya/action',[HoldingtaxController::class,'holding_tax_pay']);
+
+Route::get('holding/tax/list',[HoldingtaxController::class,'index']);
+Route::get('holding/tax/show/{id}',[HoldingtaxController::class,'show']);
+Route::get('holding/tax/delete/{id}',[HoldingtaxController::class,'destroy']);
+Route::post('holding/tax/submit',[HoldingtaxController::class,'store']);
 
 
 Route::get('niddob/verify',[SonodController::class,'niddob']);
