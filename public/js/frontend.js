@@ -3534,18 +3534,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 subdomainget = subdomain[0];
               }
 
-              console.log(sub);
-
               if (!sub) {
                 _context.next = 21;
                 break;
               }
 
-              _context.next = 14;
+              _context.next = 13;
               return _this.callApi('post', "/api/union/info?union=".concat(subdomainget), []);
 
-            case 14:
+            case 13:
               unioninfo = _context.sent;
+              console.log(unioninfo);
               _this.ff['district'] = unioninfo.data.district;
               _this.ff['thana'] = unioninfo.data.thana;
               _context.next = 19;

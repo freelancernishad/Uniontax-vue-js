@@ -358,9 +358,10 @@ export default {
 
             }
 
-console.log(sub)
+
         if (sub) {
             var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomainget}`, []);
+            console.log(unioninfo)
             this.ff['district'] = unioninfo.data.district
             this.ff['thana'] = unioninfo.data.thana
             var charge = await this.callApi('post', `/api/vattax/get`, this.ff);
