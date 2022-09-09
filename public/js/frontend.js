@@ -10053,12 +10053,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setWebsiteStatus: function setWebsiteStatus(state, data) {
       if (data != 'main') {
-        axios.post("/api/union/info?union=".concat(subdomainget)).then(function (res) {
+        axios.post("/api/union/info?union=".concat(data)).then(function (res) {
           // console.log(unionname);
           // console.log(res);
           state.unionInfo = res.data;
         });
-        state.unioun_name = subdomainget;
+        state.unioun_name = data;
         state.siteType = 'Union';
       } else {
         state.siteType = 'main';

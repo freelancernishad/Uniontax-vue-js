@@ -109,13 +109,13 @@ const store = new Vuex.Store({
 
             if(data!='main'){
 
-                axios.post(`/api/union/info?union=${subdomainget}`)
+                axios.post(`/api/union/info?union=${data}`)
                 .then((res)=>{
                     // console.log(unionname);
                     // console.log(res);
                     state.unionInfo = res.data
                 })
-                state.unioun_name = subdomainget
+                state.unioun_name = data
                 state.siteType = 'Union'
             }else{
                 state.siteType = 'main'
