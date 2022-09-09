@@ -17,7 +17,7 @@
                             <option value="">ইউনিয়ন নির্বাচন করুন</option>
 
                            <!-- <option value="">ইউনিয়ন</option> -->
-                           <option v-for="union in getuniouns" :key="union.id" :value="union.id">{{ union.bn_name }}</option>
+                           <option v-for="union in getuniouns" :key="union.id" :value="union.id">{{ union.id }} = {{ union.bn_name }}</option>
                         </select>
 <!--
                         <select  @change="changeunioun()"  class='searchFrom form-control' v-model="unioun" id="unioun">
