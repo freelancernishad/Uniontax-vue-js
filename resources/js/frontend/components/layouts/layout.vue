@@ -335,7 +335,7 @@ export default {
 
 
        var subdomainCount =  subdomain.length;
-       console.log(subdomainCount);
+    //    console.log(subdomainCount);
         if(subdomainCount>this.$withWWW){
             sub = true;
         }else{
