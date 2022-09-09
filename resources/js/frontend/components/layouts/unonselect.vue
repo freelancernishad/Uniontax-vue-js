@@ -17,7 +17,7 @@
                             <option value="">ইউনিয়ন নির্বাচন করুন</option>
 
                            <!-- <option value="">ইউনিয়ন</option> -->
-                           <option v-for="union in getuniouns" :key="union.id" :value="union.id">{{ union.id }} = {{ union.bn_name }}</option>
+                           <option v-for="union in getuniouns" :key="union.id" :value="union.url">{{ union.bn_name }}</option>
                         </select>
 <!--
                         <select  @change="changeunioun()"  class='searchFrom form-control' v-model="unioun" id="unioun">
@@ -84,7 +84,7 @@ export default {
 
 
 
-                // window.location.href = this.unioun+this.CustomUrl
+                window.location.href = this.unioun+this.CustomUrl
                 // console.log(this.unioun+this.CustomUrl)
 
 
@@ -120,6 +120,7 @@ UPDATE `unions` SET `url`='https://www.tepriganj.uniontax.gov.bd' WHERE `id`='36
 UPDATE `unions` SET `url`='https://www.dandopal.uniontax.gov.bd' WHERE `id`='3665';
 UPDATE `unions` SET `url`='https://www.debiduba.uniontax.gov.bd' WHERE `id`='3666';
 UPDATE `unions` SET `url`='https://www.chengthihazradanga.uniontax.gov.bd' WHERE `id`='3667';
+
 UPDATE `unions` SET `url`='https://www.jholaishalshiri.uniontax.gov.bd' WHERE `id`='3668';
 UPDATE `unions` SET `url`='https://www.moidandighi.uniontax.gov.bd' WHERE `id`='3669';
 UPDATE `unions` SET `url`='https://www.banghari.uniontax.gov.bd' WHERE `id`='3670';
@@ -132,10 +133,13 @@ UPDATE `unions` SET `url`='https://www.sakoa.uniontax.gov.bd' WHERE `id`='3676';
 UPDATE `unions` SET `url`='https://www.pachpir.uniontax.gov.bd' WHERE `id`='3677';
 UPDATE `unions` SET `url`='https://www.mirgapur.uniontax.gov.bd' WHERE `id`='3678';
 UPDATE `unions` SET `url`='https://www.radhanagar.uniontax.gov.bd' WHERE `id`='3679';
-UPDATE `unions` SET `url`='https://www.balarampur.uniontax.gov.bd' WHERE `id`='3680';
-UPDATE `unions` SET `url`='https://www.alowakhowa.uniontax.gov.bd' WHERE `id`='3681';
-UPDATE `unions` SET `url`='https://www.dhamor.uniontax.gov.bd' WHERE `id`='3682';
-UPDATE `unions` SET `url`='https://www.haribhasa.uniontax.gov.bd' WHERE `id`='3683';
+
+UPDATE `unions` SET `url`='https://www.toria.uniontax.gov.bd' WHERE `id`='3680';
+
+UPDATE `unions` SET `url`='https://www.balarampur.uniontax.gov.bd' WHERE `id`='3681';
+UPDATE `unions` SET `url`='https://www.alowakhowa.uniontax.gov.bd' WHERE `id`='3682';
+UPDATE `unions` SET `url`='https://www.dhamor.uniontax.gov.bd' WHERE `id`='3683';
+
 
 
 UPDATE `unions` SET `url`='https://www.banglabandha.uniontax.gov.bd' WHERE `id`='3684';

@@ -3789,8 +3789,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    changeunioun: function changeunioun() {// window.location.href = this.unioun+this.CustomUrl
-      // console.log(this.unioun+this.CustomUrl)
+    changeunioun: function changeunioun() {
+      window.location.href = this.unioun + this.CustomUrl; // console.log(this.unioun+this.CustomUrl)
       //     var url =  this.$appUrl.split("//");
       //    var redirect = url[0]+'//'+this.unioun.replaceAll(' ', '_').toLowerCase()+'.'+url[1]+''+this.CustomUrl;
       //    window.location.href= redirect;
@@ -8457,9 +8457,9 @@ var render = function render() {
     return _c("option", {
       key: union.id,
       domProps: {
-        value: union.id
+        value: union.url
       }
-    }, [_vm._v(_vm._s(union.id) + " = " + _vm._s(union.bn_name))]);
+    }, [_vm._v(_vm._s(union.bn_name))]);
   })], 2)]);
 };
 
