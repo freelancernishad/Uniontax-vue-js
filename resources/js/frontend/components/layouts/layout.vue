@@ -358,7 +358,7 @@ export default {
 
             }
 
-
+console.log(sub)
         if (sub) {
             var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomainget}`, []);
             this.ff['district'] = unioninfo.data.district

@@ -3534,27 +3534,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 subdomainget = subdomain[0];
               }
 
+              console.log(sub);
+
               if (!sub) {
-                _context.next = 20;
+                _context.next = 21;
                 break;
               }
 
-              _context.next = 13;
+              _context.next = 14;
               return _this.callApi('post', "/api/union/info?union=".concat(subdomainget), []);
 
-            case 13:
+            case 14:
               unioninfo = _context.sent;
               _this.ff['district'] = unioninfo.data.district;
               _this.ff['thana'] = unioninfo.data.thana;
-              _context.next = 18;
+              _context.next = 19;
               return _this.callApi('post', "/api/vattax/get", _this.ff);
 
-            case 18:
+            case 19:
               charge = _context.sent;
 
               _this.$store.commit('setvatTax', charge.data);
 
-            case 20:
+            case 21:
             case "end":
               return _context.stop();
           }
