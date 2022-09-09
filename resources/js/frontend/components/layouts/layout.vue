@@ -318,40 +318,48 @@ export default {
         this.$store.commit('setUpdateSonodNames', res.data)
 
         var url = this.$appUrl.split("//");
+
         var subdomain = url[1].split(".");
 
-        var sub = '';
-        var subdomainget = '';
 
+
+
+
+
+        this.$store.commit('setWebsiteStatus', subdomain)
+
+        var sub=false;
+        var subdomainget='';
         if(subdomain[0]=='www'){
-            subdomainget = subdomain[1];
-        $subdomainCount =  count(subdomain);
-        if($subdomainCount>4){
+                subdomainget = subdomain[1];
+
+
+       var subdomainCount =  subdomain.length;
+        if(subdomainCount>4){
             sub = true;
         }else{
             sub = false;
 
         }
-    }else{
-        subdomainget = subdomain[0];
 
-        $subdomainCount =  count(subdomain);
-        if($subdomainCount>3){
+
+            }else{
+
+      var subdomainCount =  subdomain.length;
+        if(subdomainCount>3){
             sub = true;
         }else{
             sub = false;
 
         }
-    }
+
+                subdomainget = subdomain[0];
+
+            }
 
 
-
-
-        this.$store.commit('setWebsiteStatus', subdomainget)
-
-
-        if (subdomain.length > 1) {
-            var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomain[0]}`, []);
+        if (sub) {
+            var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomainget}`, []);
             this.ff['district'] = unioninfo.data.district
             this.ff['thana'] = unioninfo.data.thana
             var charge = await this.callApi('post', `/api/vattax/get`, this.ff);

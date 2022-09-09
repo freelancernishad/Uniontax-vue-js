@@ -3491,7 +3491,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var res, url, subdomain, sub, subdomainget, unioninfo, charge;
+      var res, url, subdomain, sub, subdomainget, subdomainCount, unioninfo, charge;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -3506,38 +3506,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               url = _this.$appUrl.split("//");
               subdomain = url[1].split(".");
-              sub = '';
+
+              _this.$store.commit('setWebsiteStatus', subdomain);
+
+              sub = false;
               subdomainget = '';
 
               if (subdomain[0] == 'www') {
                 subdomainget = subdomain[1];
-                $subdomainCount = count(subdomain);
+                subdomainCount = subdomain.length;
 
-                if ($subdomainCount > 4) {
+                if (subdomainCount > 4) {
                   sub = true;
                 } else {
                   sub = false;
                 }
               } else {
-                subdomainget = subdomain[0];
-                $subdomainCount = count(subdomain);
+                subdomainCount = subdomain.length;
 
-                if ($subdomainCount > 3) {
+                if (subdomainCount > 3) {
                   sub = true;
                 } else {
                   sub = false;
                 }
+
+                subdomainget = subdomain[0];
               }
 
-              _this.$store.commit('setWebsiteStatus', subdomainget);
-
-              if (!(subdomain.length > 1)) {
+              if (!sub) {
                 _context.next = 20;
                 break;
               }
 
               _context.next = 13;
-              return _this.callApi('post', "/api/union/info?union=".concat(subdomain[0]), []);
+              return _this.callApi('post', "/api/union/info?union=".concat(subdomainget), []);
 
             case 13:
               unioninfo = _context.sent;
@@ -10040,10 +10042,16 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       state.vatTax = data;
     },
     setWebsiteStatus: function setWebsiteStatus(state, data) {
-      console.log(data);
+      var subdomainget = '';
+
+      if (data[0] == 'www') {
+        subdomainget = data[1];
+      } else {
+        subdomainget = data[0];
+      }
 
       if (data.length > 1) {
-        axios.post("/api/union/info?union=".concat(data[0])).then(function (res) {
+        axios.post("/api/union/info?union=".concat(subdomainget)).then(function (res) {
           // console.log(unionname);
           // console.log(res);
           state.unionInfo = res.data;

@@ -107,12 +107,23 @@ const store = new Vuex.Store({
 
 
 
-            console.log(data)
+
+            var subdomainget = '';
+
+            if(data[0]=='www'){
+                subdomainget = data[1];
+
+            }else{
+                subdomainget = data[0];
+
+            }
+
+
 
 
             if(data.length>1){
 
-                axios.post(`/api/union/info?union=${data[0]}`)
+                axios.post(`/api/union/info?union=${subdomainget}`)
                 .then((res)=>{
                     // console.log(unionname);
                     // console.log(res);
