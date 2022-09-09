@@ -63,7 +63,7 @@ Route::get('/{vue_capture?}', function () {
 
     $url = url()->current();
 $domain =  explode('//',$url);
- $subdomain =  explode('.', $domain[1]);
+ return $subdomain =  explode('.', $domain[1]);
  $subdomainCount =  count($subdomain);
  if($subdomainCount>1){
     $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomain[0]])->first();
