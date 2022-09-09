@@ -67,7 +67,7 @@ Route::get('/{vue_capture?}', function () {
   $subdomain =  explode('.', $domain[1]);
 
     if($subdomain[0]=='www'){
-      return   $subdomainCount =  count($subdomain);
+         $subdomainCount =  count($subdomain);
         if($subdomainCount>4){
             $sub = true;
         }else{
@@ -87,6 +87,7 @@ Route::get('/{vue_capture?}', function () {
 
 
  if($sub){
+    return 'sss';
     $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomain[0]])->first();
      return view('frontlayout',compact('uniounDetials'));
     }else{
