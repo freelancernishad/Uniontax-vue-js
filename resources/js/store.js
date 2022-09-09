@@ -107,49 +107,7 @@ const store = new Vuex.Store({
 
 
 
-
-            var subdomainget = '';
-
-            if(data[0]=='www'){
-                subdomainget = data[1];
-
-            }else{
-                subdomainget = data[0];
-
-            }
-
-            var sub=false;
-            var subdomainget='';
-            if(data[0]=='www'){
-                    subdomainget = data[1];
-
-
-           var subdomainCount =  data.length;
-        //    console.log(subdomainCount);
-            if(subdomainCount>this.$withWWW){
-                sub = true;
-            }else{
-                sub = false;
-
-            }
-
-
-                }else{
-
-          var subdomainCount =  data.length;
-            if(subdomainCount>this.$withOutWWW){
-                sub = true;
-            }else{
-                sub = false;
-
-            }
-
-                    subdomainget = data[0];
-
-                }
-
-
-            if(sub){
+            if(data!='main'){
 
                 axios.post(`/api/union/info?union=${subdomainget}`)
                 .then((res)=>{

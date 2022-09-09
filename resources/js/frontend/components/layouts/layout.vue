@@ -326,7 +326,6 @@ export default {
 
 
 
-        this.$store.commit('setWebsiteStatus', subdomain)
 
         var sub=false;
         var subdomainget='';
@@ -358,14 +357,21 @@ export default {
 
             }
 
+console.log(sub,subdomainget)
 
         if (sub) {
+
+        this.$store.commit('setWebsiteStatus', subdomainget)
+
             var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomainget}`, []);
             console.log(unioninfo)
             this.ff['district'] = unioninfo.data.district
             this.ff['thana'] = unioninfo.data.thana
             var charge = await this.callApi('post', `/api/vattax/get`, this.ff);
             this.$store.commit('setvatTax', charge.data)
+        }else{
+        this.$store.commit('setWebsiteStatus', 'main')
+
         }
     },
     data() {

@@ -3506,9 +3506,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               url = _this.$appUrl.split("//");
               subdomain = url[1].split(".");
-
-              _this.$store.commit('setWebsiteStatus', subdomain);
-
               sub = false;
               subdomainget = '';
 
@@ -3533,28 +3530,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 subdomainget = subdomain[0];
               }
 
+              console.log(sub, subdomainget);
+
               if (!sub) {
-                _context.next = 21;
+                _context.next = 24;
                 break;
               }
 
-              _context.next = 13;
+              _this.$store.commit('setWebsiteStatus', subdomainget);
+
+              _context.next = 14;
               return _this.callApi('post', "/api/union/info?union=".concat(subdomainget), []);
 
-            case 13:
+            case 14:
               unioninfo = _context.sent;
               console.log(unioninfo);
               _this.ff['district'] = unioninfo.data.district;
               _this.ff['thana'] = unioninfo.data.thana;
-              _context.next = 19;
+              _context.next = 20;
               return _this.callApi('post', "/api/vattax/get", _this.ff);
 
-            case 19:
+            case 20:
               charge = _context.sent;
 
               _this.$store.commit('setvatTax', charge.data);
 
-            case 21:
+              _context.next = 25;
+              break;
+
+            case 24:
+              _this.$store.commit('setWebsiteStatus', 'main');
+
+            case 25:
             case "end":
               return _context.stop();
           }
@@ -10045,39 +10052,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       state.vatTax = data;
     },
     setWebsiteStatus: function setWebsiteStatus(state, data) {
-      var subdomainget = '';
-
-      if (data[0] == 'www') {
-        subdomainget = data[1];
-      } else {
-        subdomainget = data[0];
-      }
-
-      var sub = false;
-      var subdomainget = '';
-
-      if (data[0] == 'www') {
-        subdomainget = data[1];
-        var subdomainCount = data.length; //    console.log(subdomainCount);
-
-        if (subdomainCount > this.$withWWW) {
-          sub = true;
-        } else {
-          sub = false;
-        }
-      } else {
-        var subdomainCount = data.length;
-
-        if (subdomainCount > this.$withOutWWW) {
-          sub = true;
-        } else {
-          sub = false;
-        }
-
-        subdomainget = data[0];
-      }
-
-      if (sub) {
+      if (data != 'main') {
         axios.post("/api/union/info?union=".concat(subdomainget)).then(function (res) {
           // console.log(unionname);
           // console.log(res);
