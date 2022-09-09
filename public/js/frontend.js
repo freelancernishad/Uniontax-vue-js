@@ -3789,9 +3789,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    changeunioun: function changeunioun() {
-      window.location.href = this.unioun + this.CustomUrl;
-      console.log(this.unioun + this.CustomUrl); //     var url =  this.$appUrl.split("//");
+    changeunioun: function changeunioun() {// window.location.href = this.unioun+this.CustomUrl
+      // console.log(this.unioun+this.CustomUrl)
+      //     var url =  this.$appUrl.split("//");
       //    var redirect = url[0]+'//'+this.unioun.replaceAll(' ', '_').toLowerCase()+'.'+url[1]+''+this.CustomUrl;
       //    window.location.href= redirect;
     }
@@ -8457,7 +8457,7 @@ var render = function render() {
     return _c("option", {
       key: union.id,
       domProps: {
-        value: union.url
+        value: union.id
       }
     }, [_vm._v(_vm._s(union.bn_name))]);
   })], 2)]);
