@@ -3,6 +3,10 @@ import Vue from 'vue'
 Vue.prototype.$asseturl = '/public/'
 // Vue.prototype.$asseturl = '/'
 
+
+Vue.prototype.$withWWW = 4
+Vue.prototype.$withOutWWW = 3
+
 Vue.prototype.$localStorage = localStorage
 window.ASSETURL = Vue.prototype.$asseturl
 // Vue.prototype.$appName = process.env.MIX_FILE_PATH

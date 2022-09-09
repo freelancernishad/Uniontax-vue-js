@@ -335,7 +335,8 @@ export default {
 
 
        var subdomainCount =  subdomain.length;
-        if(subdomainCount>4){
+       console.log(subdomainCount);
+        if(subdomainCount>this.$withWWW){
             sub = true;
         }else{
             sub = false;
@@ -346,7 +347,7 @@ export default {
             }else{
 
       var subdomainCount =  subdomain.length;
-        if(subdomainCount>3){
+        if(subdomainCount>this.$withOutWWW){
             sub = true;
         }else{
             sub = false;

@@ -3515,8 +3515,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               if (subdomain[0] == 'www') {
                 subdomainget = subdomain[1];
                 subdomainCount = subdomain.length;
+                console.log(subdomainCount);
 
-                if (subdomainCount > 4) {
+                if (subdomainCount > _this.$withWWW) {
                   sub = true;
                 } else {
                   sub = false;
@@ -3524,7 +3525,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               } else {
                 subdomainCount = subdomain.length;
 
-                if (subdomainCount > 3) {
+                if (subdomainCount > _this.$withOutWWW) {
                   sub = true;
                 } else {
                   sub = false;
@@ -9085,6 +9086,8 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl = '/public/'; // Vue.prototype.$asseturl = '/'
 
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withWWW = 4;
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withOutWWW = 3;
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$localStorage = localStorage;
 window.ASSETURL = vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl; // Vue.prototype.$appName = process.env.MIX_FILE_PATH
 // console.log(process.env.MIX_FILE_PATH)
