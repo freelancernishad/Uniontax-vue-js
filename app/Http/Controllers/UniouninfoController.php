@@ -73,7 +73,7 @@ if($method==false){
         $security_token = $login->security_token;
 
 
-        $url = "https://premium36.web-hosting.com:2083/cpsess0351997767/frontend/paper_lantern/subdomain/doadddomain.html?domain=demo2&rootdomain=uniontax.gov.bd&dir=demo2.uniontax.gov.bd&go=Create";
+        $url = "https://premium36.web-hosting.com:2083$security_token/frontend/paper_lantern/subdomain/doadddomain.html?domain=$short_name_e&rootdomain=uniontax.gov.bd&dir=public_html&go=Create";
        $curl = curl_init($url);
        curl_setopt($curl, CURLOPT_URL, $url);
        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -84,14 +84,14 @@ if($method==false){
 
        $resp = curl_exec($curl);
        curl_close($curl);
-       var_dump($resp);
+
 
         //  return $subdomain =  $this->apicall("https://premium36.web-hosting.com:2083/cpsess0351997767/frontend/paper_lantern/subdomain/doadddomain.html?domain=demo2&rootdomain=uniontax.gov.bd&dir=demo2.uniontax.gov.bd&go=Create",'',false);
 
         // return $security_token = $login->security_token;
 
         $data['domain'] = "www.$short_name_e.uniontax.gov.bd";
-         //return Uniouninfo::create($data);
+         return Uniouninfo::create($data);
 
     }
 
