@@ -316,9 +316,40 @@ export default {
     async created() {
         var res = await this.callApi('get', '/api/get/sonodname/list', []);
         this.$store.commit('setUpdateSonodNames', res.data)
+
         var url = this.$appUrl.split("//");
         var subdomain = url[1].split(".");
-        this.$store.commit('setWebsiteStatus', subdomain)
+
+        var sub = '';
+        var subdomainget = '';
+
+        if(subdomain[0]=='www'){
+            subdomainget = subdomain[1];
+        $subdomainCount =  count(subdomain);
+        if($subdomainCount>4){
+            sub = true;
+        }else{
+            sub = false;
+
+        }
+    }else{
+        subdomainget = subdomain[0];
+
+        $subdomainCount =  count(subdomain);
+        if($subdomainCount>3){
+            sub = true;
+        }else{
+            sub = false;
+
+        }
+    }
+
+
+
+
+        this.$store.commit('setWebsiteStatus', subdomainget)
+
+
         if (subdomain.length > 1) {
             var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomain[0]}`, []);
             this.ff['district'] = unioninfo.data.district

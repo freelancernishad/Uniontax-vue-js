@@ -3491,7 +3491,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var res, url, subdomain, unioninfo, charge;
+      var res, url, subdomain, sub, subdomainget, unioninfo, charge;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -3506,30 +3506,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               url = _this.$appUrl.split("//");
               subdomain = url[1].split(".");
+              sub = '';
+              subdomainget = '';
 
-              _this.$store.commit('setWebsiteStatus', subdomain);
+              if (subdomain[0] == 'www') {
+                subdomainget = subdomain[1];
+                $subdomainCount = count(subdomain);
+
+                if ($subdomainCount > 4) {
+                  sub = true;
+                } else {
+                  sub = false;
+                }
+              } else {
+                subdomainget = subdomain[0];
+                $subdomainCount = count(subdomain);
+
+                if ($subdomainCount > 3) {
+                  sub = true;
+                } else {
+                  sub = false;
+                }
+              }
+
+              _this.$store.commit('setWebsiteStatus', subdomainget);
 
               if (!(subdomain.length > 1)) {
-                _context.next = 17;
+                _context.next = 20;
                 break;
               }
 
-              _context.next = 10;
+              _context.next = 13;
               return _this.callApi('post', "/api/union/info?union=".concat(subdomain[0]), []);
 
-            case 10:
+            case 13:
               unioninfo = _context.sent;
               _this.ff['district'] = unioninfo.data.district;
               _this.ff['thana'] = unioninfo.data.thana;
-              _context.next = 15;
+              _context.next = 18;
               return _this.callApi('post', "/api/vattax/get", _this.ff);
 
-            case 15:
+            case 18:
               charge = _context.sent;
 
               _this.$store.commit('setvatTax', charge.data);
 
-            case 17:
+            case 20:
             case "end":
               return _context.stop();
           }
