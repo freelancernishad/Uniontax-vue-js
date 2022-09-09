@@ -62,7 +62,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 Route::get('/{vue_capture?}', function () {
 
     $url = url()->current();
-return $domain =  explode('//',$url);
+ $domain =  explode('//',$url);
 
   $subdomain =  explode('.', $domain[1]);
 
