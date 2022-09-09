@@ -68,6 +68,7 @@ Route::get('/{vue_capture?}', function () {
 
     if($subdomain[0]=='www'){
          $subdomainCount =  count($subdomain);
+         $subdomainget = $subdomain[1];
         if($subdomainCount>4){
             $sub = true;
         }else{
@@ -77,6 +78,8 @@ Route::get('/{vue_capture?}', function () {
     }else{
 
         $subdomainCount =  count($subdomain);
+        $subdomainget = $subdomain[0];
+
         if($subdomainCount>3){
             $sub = true;
         }else{
@@ -87,8 +90,8 @@ Route::get('/{vue_capture?}', function () {
 
 
  if($sub){
-    return 'sss';
-    $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomain[0]])->first();
+
+    $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomainget])->first();
      return view('frontlayout',compact('uniounDetials'));
     }else{
 
