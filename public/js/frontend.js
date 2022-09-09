@@ -8459,7 +8459,7 @@ var render = function render() {
       domProps: {
         value: union.id
       }
-    }, [_vm._v(_vm._s(union.bn_name))]);
+    }, [_vm._v(_vm._s(union.id) + " = " + _vm._s(union.bn_name))]);
   })], 2)]);
 };
 
