@@ -92,11 +92,12 @@ Route::get('/{vue_capture?}', function () {
 
 
  if($sub){
-
+echo 'subdomian';
     $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomainget])->first();
      return view('frontlayout',compact('uniounDetials'));
     }else{
 
+        echo 'main';
 
 
         // return  Uniouninfo::find(1);
