@@ -63,9 +63,30 @@ Route::get('/{vue_capture?}', function () {
 
     $url = url()->current();
 return $domain =  explode('//',$url);
- return $subdomain =  explode('.', $domain[1]);
- $subdomainCount =  count($subdomain);
- if($subdomainCount>1){
+
+  $subdomain =  explode('.', $domain[1]);
+
+    if($subdomain[0]=='www'){
+        $subdomainCount =  count($subdomain);
+        if($subdomainCount>4){
+            $sub = true;
+        }else{
+            $sub = false;
+
+        }
+    }else{
+
+        $subdomainCount =  count($subdomain);
+        if($subdomainCount>3){
+            $sub = true;
+        }else{
+            $sub = false;
+
+        }
+    }
+
+
+ if($sub){
     $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomain[0]])->first();
      return view('frontlayout',compact('uniounDetials'));
     }else{
