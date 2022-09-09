@@ -67,7 +67,8 @@ Route::get('/{vue_capture?}', function () {
   $subdomain =  explode('.', $domain[1]);
 
     if($subdomain[0]=='www'){
-         $subdomainCount =  count($subdomain);
+        echo 'www';
+       echo  $subdomainCount =  count($subdomain);
          $subdomainget = $subdomain[1];
         if($subdomainCount>4){
             $sub = true;
@@ -76,8 +77,9 @@ Route::get('/{vue_capture?}', function () {
 
         }
     }else{
+        echo 'https';
 
-        $subdomainCount =  count($subdomain);
+      echo  $subdomainCount =  count($subdomain);
         $subdomainget = $subdomain[0];
 
         if($subdomainCount>3){
