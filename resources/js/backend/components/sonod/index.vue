@@ -12,8 +12,11 @@
             </ul>
         </div>
         <div class="card">
-            <div class="card-head">
-                <input type="text" class="form-control" v-model="sonod_id" @input="searchSondId">
+            <div class="card-header">
+                <h3>Filter By Sonod Id</h3>
+                <div class="form-group" style="width:250px">
+                    <input type="text" class="form-control" v-model="sonod_id" @input="searchSondId">
+                </div>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -27,6 +30,7 @@
                             <th>ন্যাশনাল আইডি</th>
                             <th>আবেদনের তারিখ</th>
                             <th>Action</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +41,7 @@
                             <td>{{ item.applicant_father_name }}</td>
                             <td>{{ item.applicant_present_village }}</td>
                             <td>{{ item.applicant_national_id_number }}</td>
-                            <td>{{ item.created_at }}</td>
+                            <td>{{ dateformatGlobal(item.created_at)[6] }}</td>
                             <td>
                                 <!-- <span size="sm" @click="deletefun(item, index, $event.target)" class="btn btn-danger mr-1 mt-1">Delete</span> -->
                                 <a size="sm" target="_blank"
@@ -68,41 +72,28 @@
                                 <span size="sm" @click="cancel(cancelRoute, item.id, 'cancel', $event.target)"
                                     v-if="cancelRoute != ''" class="btn btn-danger mr-1 mt-1">Not-Approve</span>
                             </td>
-                            <td>
+                            <td style="background: red;color: white;" v-if="item.payment_status=='Unpaid'">
+                                {{ item.payment_status }}
+                            </td>
+                            <td style="background: green;color: white;" v-else>
+                                {{ item.payment_status }}
                             </td>
                         </tr>
                     </tbody>
                     <tfoot>
-
-
-
                     </tfoot>
                 </table>
-
-
-
-
-
-
-
                 <!-- <approve-component></approve-component> -->
             </div>
         </div>
-
-
-
         <nav aria-label="Page navigation example" v-if="TotalRows>20">
             <ul class="pagination  justify-content-end">
                 <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
-
                 <li class="page-item" v-for="(pag,index) in Totalpage" :key="'p'+index" v-if="index==0 && pag.url">
                     <router-link class="page-link"
                         :to="{name:'sonod',params:{name:$route.params.name,type:$route.params.type},query:{page:pag.url.split('?')[1].split('=')[1]}}"
                         v-html="pag.label"></router-link>
                 </li>
-
-
-
                 <li class="page-item" v-for="(pag,index) in Totalpage" :key="'i'+index"
                     :class="{active:pag.active,'disabled':pag.label=='...'}"
                     v-if="index!=0 && pag.label!='Next &raquo;'">
@@ -110,20 +101,15 @@
                         :to="{name:'sonod',params:{name:$route.params.name,type:$route.params.type},query:{page:pag.label}}"
                         v-html="pag.label"></router-link>
                 </li>
-
-
-
                 <li class="page-item" v-for="(pag,index) in Totalpage" :key="'l'+index"
                     v-if="pag.label=='Next &raquo;'  && pag.url">
                     <router-link class="page-link"
                         :to="{name:'sonod',params:{name:$route.params.name,type:$route.params.type},query:{page:pag.url.split('?')[1].split('=')[1]}}"
                         v-html="pag.label"></router-link>
                 </li>
-
                 <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
             </ul>
         </nav>
-
         <!-- Info modal -->
         <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only>
             <div class="row">
@@ -343,7 +329,6 @@ export default {
             PerPageData: '20',
             TotalRows: '1',
             Totalpage: {},
-
         }
     },
     watch: {
@@ -356,13 +341,26 @@ export default {
         }
     },
     methods: {
-
-        searchSondId(){
-            this.sonodList(true,this.sonod_id)
+        searchSondId() {
+            this.sonodList(true, this.sonod_id)
         },
-
-
-
+        async paynow(route, id, button) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `Pay this data!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: `Yes, Pay it!`
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    var res = await this.callApi('get', `${route}/${id}`, []);
+                    Notification.customSuccess(`Your data has been Paid`);
+                    this.sonodList()
+                }
+            })
+        },
         actionAccess() {
             if (this.$route.params.type == 'new') {
                 // this.deleteRoute='/api/sonod/delete';
@@ -519,13 +517,10 @@ export default {
                     .catch()
             }
         },
-        async sonodList(auto = false,sondId='') {
+        async sonodList(auto = false, sondId = '') {
             if (!auto) this.preLooding = true
-
             var page = 1;
             if (this.$route.query.page) page = this.$route.query.page;
-
-
             if (this.$route.params.name) {
                 var stutus = '';
                 var payment_status = '';
@@ -554,23 +549,12 @@ export default {
                 if (this.$localStorage.getItem('position') == 'Thana_admin') {
                     var unioun = ``
                 }
-
-
-                if(sondId){
-
+                if (sondId) {
                     var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}&sondId=${sondId}`, []);
-                }else{
+                } else {
                     var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}`, []);
-
                 }
-
-
-
-
                 // var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
-
-
-
                 this.items = res.data.data
                 this.TotalRows = `${this.items.length}`;
                 // console.log(this.TotalRows)
@@ -610,7 +594,7 @@ export default {
             this.sonodList();
         }, 2000);
         setInterval(() => {
-            this.sonodList(true)
+            this.sonodList(true,this.sonod_id)
         }, 5000);
     }
 }
@@ -619,11 +603,12 @@ export default {
 th.position-relative {
     font-size: 13px;
 }
-
-td {
-    font-size: 14px;
+th {
+    font-size: 11px;
 }
-
+td {
+    font-size: 12px !important;
+}
 li.page-item.active a {
     color: white !important;
 }

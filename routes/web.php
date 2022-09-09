@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SonodController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HoldingtaxController;
+use App\Http\Controllers\UniouninfoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,15 @@ Route::get('/smstest', function () {
 
 
 });
+
+Route::get('/unioncreate', function () {
+
+return view('unioncreate');
+
+
+});
+
+Route::post('unionCreate', [UniouninfoController::class,'unionCreate']);
 // Auth::routes();
 Route::post('login',[LoginController::class,'login']);
 Route::post('logout',[LoginController::class,'logout']);

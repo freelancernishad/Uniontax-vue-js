@@ -62,6 +62,10 @@ Route::get('/gotoUnion', [countryApiController::class,'gotoUnion']);
 
 
 
+Route::post('unionCreate', [UniouninfoController::class,'unionCreate']);
+
+
+
 Route::post('register', [authController::class,'register']);
 Route::get('get/roles',[authController::class,'getRoles']);
 

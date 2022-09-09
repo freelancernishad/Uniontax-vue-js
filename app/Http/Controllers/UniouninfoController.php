@@ -8,6 +8,96 @@ use Illuminate\Http\Request;
 class UniouninfoController extends Controller
 {
 
+    public function apicall($url,$data,$method=true)
+    {
+
+
+if($method==false){
+
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    //for debug only!
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    $resp = curl_exec($curl);
+    curl_close($curl);
+    return   $response = json_decode($resp);
+}else{
+        // $url = "https://premium36.web-hosting.com:2083/login/?login_only=1";
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+        "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+
+
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+        $resp = curl_exec($curl);
+        curl_close($curl);
+     return   $response = json_decode($resp);
+}
+
+
+
+
+
+    }
+
+    public function unionCreate(Request $request)
+    {
+
+           $data = $request->except('_token');
+
+         $short_name_e = $request->short_name_e;
+         $unionCount = Uniouninfo::where(['short_name_e'=>$short_name_e])->count();
+        if($unionCount>0){
+            return 'Already Created';
+        }
+
+       $login =  $this->apicall('https://premium36.web-hosting.com:2083/login/?login_only=1','{"user":"uniothcm","pass":"uybFmeUrZwHk"}',true);
+        $security_token = $login->security_token;
+
+
+        $url = "https://premium36.web-hosting.com:2083/cpsess0351997767/frontend/paper_lantern/subdomain/doadddomain.html?domain=demo2&rootdomain=uniontax.gov.bd&dir=demo2.uniontax.gov.bd&go=Create";
+       $curl = curl_init($url);
+       curl_setopt($curl, CURLOPT_URL, $url);
+       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+       //for debug only!
+       curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+       curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+       $resp = curl_exec($curl);
+       curl_close($curl);
+       var_dump($resp);
+
+        //  return $subdomain =  $this->apicall("https://premium36.web-hosting.com:2083/cpsess0351997767/frontend/paper_lantern/subdomain/doadddomain.html?domain=demo2&rootdomain=uniontax.gov.bd&dir=demo2.uniontax.gov.bd&go=Create",'',false);
+
+        // return $security_token = $login->security_token;
+
+        $data['domain'] = "www.$short_name_e.uniontax.gov.bd";
+         //return Uniouninfo::create($data);
+
+    }
+
+
+
+
 
         public function contact(Request $request)
         {

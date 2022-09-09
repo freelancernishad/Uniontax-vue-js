@@ -310,7 +310,7 @@ class SonodController extends Controller
     {
         $sonod = Sonod::find($id);
         $sec_prottoyon = $request->sec_prottoyon;
-        //    return $request->all();
+            // return $request->all();
         $arraydata = [
             'total_amount' => $request->amounta,
             'pesaKor' => $request->pesaKor,
@@ -325,10 +325,17 @@ class SonodController extends Controller
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
         if ($sec_prottoyon) {
             $updateData = [
+                'khat' => $request->khat,
+                'last_years_money' => $request->last_years_money,
+                'currently_paid_money' => $request->currently_paid_money,
+                'total_amount' => $request->amounta,
+                'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
+                'khat' => $request->khat,
                 'amount_deails' => $amount_deails,
                 'sec_prottoyon' => $sec_prottoyon,
                 'stutus' => $request->approveData,
             ];
+            // return $updateData;
             return $sonod->update($updateData);
         }
         $updateData = [
@@ -340,6 +347,8 @@ class SonodController extends Controller
             'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
             'stutus' => $request->approveData,
         ];
+
+
         return $sonod->update($updateData);
     }
     public function sonod_pay(Request $request, $id)
@@ -415,11 +424,12 @@ class SonodController extends Controller
         $payment_status = $request->payment_status;
         $unioun_name = $request->unioun_name;
         $sondId = $request->sondId;
-        $sonod_name =  $this->enBnName($sonod_name)->bnname;
+         $sonod_name =  $this->enBnName($sonod_name)->bnname;
 
             if($sondId){
+                // return $sondId;
                 // return 'sss';
-                return Sonod::where(['sonod_name' => $sonod_name,'stutus'=>$stutus,'unioun_name'=>$unioun_name,'payment_status'=>$payment_status])->where('sonod_Id','LIKE',"%{$sondId}%")->orderBy('id', 'DESC')->paginate(20);
+                return Sonod::where("sonod_Id","LIKE","%{$sondId}%")->where(['sonod_name' => $sonod_name,'stutus'=>$stutus,'unioun_name'=>$unioun_name])->orderBy('id', 'DESC')->paginate(20);
             }
 
         if($unioun_name){
