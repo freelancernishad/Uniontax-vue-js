@@ -7344,7 +7344,7 @@ var render = function render() {
     staticClass: "serviceLogo"
   }, [_c("img", {
     attrs: {
-      src: _vm.$asseturl + "assets/img/pic-06.png",
+      src: _vm.sonod.icon,
       width: "33%",
       alt: ""
     }

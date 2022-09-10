@@ -33,12 +33,24 @@
 
         </div>
 
+        <div class="form-group col-md-6">
+          <label for="">তালিকার ইউনিয়ন</label>
+
+          <select v-model="form.unioun" class="form-control" required>
+            <option value="">নির্বাচন করুন</option>
+
+            <option v-for="un in unions" :key="un.id" :value="un.short_name_e">{{ un.full_name }}</option>
+
+          </select>
+
+        </div>
+
 
         <div class="form-group col-md-6">
           <label for="">জেলা</label>
 
           <select v-model="form.district" class="form-control">
-            <option selected value="বরিশাল">বরিশাল</option>
+            <option selected value="পঞ্চগড়">পঞ্চগড়</option>
           </select>
 
         </div>
@@ -48,19 +60,57 @@
           <label for="">উপজেলা</label>
 
           <select v-model="form.thana" class="form-control">
-            <option selected value="বরিশাল সদর">বরিশাল সদর</option>
+
+            <option value="">উপজেলা নির্বাচন করুন</option>
+            <option value="পঞ্চগড় সদর">পঞ্চগড় সদর</option>
+            <option value="দেবীগঞ্জ">দেবীগঞ্জ</option>
+            <option value="বোদা">বোদা</option>
+            <option value="আটোয়ারী">আটোয়ারী</option>
+            <option value="তেঁতুলিয়া">তেঁতুলিয়া</option>
+
+
           </select>
 
         </div>
 
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6" v-if="form.thana=='পঞ্চগড় সদর'">
           <label for="">ইউনিয়ন</label>
           <select v-model="form.unioun" class="form-control">
-            <option value="">নির্বাচন করুন</option>
-            <option value="tungibaria">টুঙ্গীবাড়িয়া</option>
+            <option value="">ইউনিয়ন নির্বাচন করুন</option> <option>পঞ্চগড় সদর</option><option>সাতমেরা</option><option>অমরখানা</option><option>হাড়িভাসা</option><option>চাকলাহাট</option><option>হাফিজাবাদ</option><option>কামাত কাজল দীঘি</option><option>ধাক্কামারা</option><option>মাগুরা</option><option>গরিনাবাড়ী</option>
           </select>
+        </div>
 
+
+        <div class="form-group col-md-6" v-else-if="form.thana=='দেবীগঞ্জ'">
+          <label for="">ইউনিয়ন</label>
+          <select v-model="form.unioun" class="form-control">
+            <option value="">ইউনিয়ন নির্বাচন করুন</option> <option>চিলাহাটি</option><option>শালডাঙ্গা</option><option>দেবীগঞ্জ সদর</option><option>পামুলী</option><option>সুন্দরদিঘী</option><option>সোনাহার মল্লিকাদহ</option><option>টেপ্রীগঞ্জ</option><option>দন্ডপাল</option><option>দেবীডুবা</option><option>চেংঠী হাজরা ডাঙ্গা</option>
+          </select>
+        </div>
+
+
+        <div class="form-group col-md-6" v-else-if="form.thana=='বোদা'">
+          <label for="">ইউনিয়ন</label>
+          <select v-model="form.unioun" class="form-control">
+            <option value="">ইউনিয়ন নির্বাচন করুন</option> <option >ঝলইশাল শিরি</option><option >ময়দান দীঘি</option><option >বেংহারী</option><option >কাজলদীঘি কালিগঞ্জ</option><option >বড়শশী</option><option >চন্দনবাড়ী</option><option >মাড়েয়া বামনহাট</option><option >বোদা</option><option >সাকোয়া</option><option >পাচপীর</option>
+          </select>
+        </div>
+
+
+        <div class="form-group col-md-6" v-else-if="form.thana=='আটোয়ারী'">
+          <label for="">ইউনিয়ন</label>
+          <select v-model="form.unioun" class="form-control">
+            <option value="">ইউনিয়ন নির্বাচন করুন</option> <option>মির্জাপুর</option><option>রাধানগর</option><option>তোড়িয়া</option><option>বলরামপুর</option><option>আলোয়াখোয়া</option><option>ধামোর</option>
+          </select>
+        </div>
+
+
+        <div class="form-group col-md-6" v-else-if="form.thana=='তেঁতুলিয়া'">
+          <label for="">ইউনিয়ন</label>
+          <select v-model="form.unioun" class="form-control">
+            <option value="">ইউনিয়ন নির্বাচন করুন</option> <option>বাংলাবান্ধা</option><option>ভজনপুর</option><option>ভজনপুর</option><option>বুড়াবুড়ী</option><option>দেবনগর</option><option>শালবাহান</option><option>তেঁতুলিয়া</option><option>তিমাইহাট</option>
+          </select>
         </div>
 
 
@@ -107,8 +157,8 @@ export default {
                 password:null,
                 position:null,
                 full_unioun_name:null,
-                district:'বরিশাল',
-                thana:'বরিশাল সদর',
+                district:'পঞ্চগড়',
+                thana:'',
                 gram:null,
                 word:null,
                 description:null,
@@ -118,7 +168,8 @@ export default {
                 remember_token:null,
                 created_at:null,
                 updated_at:null,
-            }
+            },
+            unions:{},
         }
     },
     methods:{
@@ -136,13 +187,35 @@ export default {
              this.$router.push({ name: 'userlist'})
             Notification.customSuccess('User Update Success');
 
-        }
+        },
+
+
+        unionlist(){
+
+            var position = this.Users.position
+            var thana = this.Users.thana
+            var district = this.Users.district
+            axios.get(`/api/get/union/list?position=${position}&thana=${thana}&district=${district}`)
+                .then(({ data }) => {
+                    // console.log(data)
+                this.unions = data
+
+                })
+                .catch()
+            },
+
     },
     mounted(){
         if(this.$route.params.id){
 
             this.getsonodById();
         }
-        }
+
+        setTimeout(()=>{
+            this.unionlist();
+
+        }, 3000);
+
+    }
 }
 </script>

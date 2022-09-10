@@ -88,7 +88,7 @@
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 mt-3 mb-3 text-center">
                             <div class="serviceBox">
                                 <div class="serviceLogo">
-                                    <img :src="$asseturl + 'assets/img/pic-06.png'" width="33%" alt="" />
+                                    <img :src="sonod.icon" width="33%" alt="" />
                                 </div>
                                 <div class="serviceTitle">
                                     <a href="https://bdris.gov.bd/br/application" class="defaltTextColor">জন্ম নিবন্ধন
