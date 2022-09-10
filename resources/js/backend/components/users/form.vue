@@ -33,17 +33,7 @@
 
         </div>
 
-        <div class="form-group col-md-6">
-          <label for="">তালিকার ইউনিয়ন</label>
 
-          <select v-model="form.unioun" class="form-control" required>
-            <option value="">নির্বাচন করুন</option>
-
-            <option v-for="un in unions" :key="un.id" :value="un.short_name_e">{{ un.full_name }}</option>
-
-          </select>
-
-        </div>
 
 
         <div class="form-group col-md-6">
@@ -74,7 +64,19 @@
         </div>
 
 
-        <div class="form-group col-md-6" v-if="form.thana=='পঞ্চগড় সদর'">
+        <div class="form-group col-md-6">
+          <label for="">ইউনিয়ন</label>
+
+          <select v-model="form.unioun" class="form-control" required>
+            <option value="">নির্বাচন করুন</option>
+
+            <option v-for="un in unions" :key="un.id" :value="un.short_name_e">{{ un.full_name }}</option>
+
+          </select>
+
+        </div>
+
+        <!-- <div class="form-group col-md-6" v-if="form.thana=='পঞ্চগড় সদর'">
           <label for="">ইউনিয়ন</label>
           <select v-model="form.unioun" class="form-control">
             <option value="">ইউনিয়ন নির্বাচন করুন</option> <option>পঞ্চগড় সদর</option><option>সাতমেরা</option><option>অমরখানা</option><option>হাড়িভাসা</option><option>চাকলাহাট</option><option>হাফিজাবাদ</option><option>কামাত কাজল দীঘি</option><option>ধাক্কামারা</option><option>মাগুরা</option><option>গরিনাবাড়ী</option>
@@ -111,7 +113,7 @@
           <select v-model="form.unioun" class="form-control">
             <option value="">ইউনিয়ন নির্বাচন করুন</option> <option>বাংলাবান্ধা</option><option>ভজনপুর</option><option>ভজনপুর</option><option>বুড়াবুড়ী</option><option>দেবনগর</option><option>শালবাহান</option><option>তেঁতুলিয়া</option><option>তিমাইহাট</option>
           </select>
-        </div>
+        </div> -->
 
 
 
@@ -219,3 +221,6 @@ export default {
     }
 }
 </script>
+
+
+
