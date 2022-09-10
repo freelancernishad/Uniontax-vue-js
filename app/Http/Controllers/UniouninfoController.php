@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Uniouninfo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UniouninfoController extends Controller
 {
@@ -536,7 +537,7 @@ if($method==false){
             [
                 "unioun"=>"tetulia",
                 "names"=>"Chairman",
-                "email"=>"upctetulia@gmail.com",
+                "email"=>"upstetulia@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -549,7 +550,7 @@ if($method==false){
             [
                 "unioun"=>"salbahan",
                 "names"=>"Chairman",
-                "email"=>"upcsalbahan@gmail.com",
+                "email"=>"upssalbahan@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -560,7 +561,7 @@ if($method==false){
             [
                 "unioun"=>"buraburi",
                 "names"=>"Chairman",
-                "email"=>"upcburaburi@gmail.com",
+                "email"=>"upsburaburi@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -571,7 +572,7 @@ if($method==false){
             [
                 "unioun"=>"bhojoanpur",
                 "names"=>"Chairman",
-                "email"=>"upcbhojoanpur@gmail.com",
+                "email"=>"upsbhojoanpur@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -582,7 +583,7 @@ if($method==false){
             [
                 "unioun"=>"debnagar",
                 "names"=>"Chairman",
-                "email"=>"upcdebnagar@gmail.com",
+                "email"=>"upsdebnagar@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -594,7 +595,7 @@ if($method==false){
             [
                 "unioun"=>"panchagarhsadar",
                 "names"=>"Chairman",
-                "email"=>"upcpanchagarhsadar@gmail.com",
+                "email"=>"upspanchagarhsadar@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -605,7 +606,7 @@ if($method==false){
             [
                 "unioun"=>"satmara",
                 "names"=>"Chairman",
-                "email"=>"upcsatmara@gmail.com",
+                "email"=>"upssatmara@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -616,7 +617,7 @@ if($method==false){
             [
                 "unioun"=>"amarkhana",
                 "names"=>"Chairman",
-                "email"=>"upcamarkhana@gmail.com",
+                "email"=>"upsamarkhana@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -627,7 +628,7 @@ if($method==false){
             [
                 "unioun"=>"haribhasa",
                 "names"=>"Chairman",
-                "email"=>"upcharibhasa@gmail.com",
+                "email"=>"upsharibhasa@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -638,7 +639,7 @@ if($method==false){
             [
                 "unioun"=>"chaklahat",
                 "names"=>"Chairman",
-                "email"=>"upcchaklahat@gmail.com",
+                "email"=>"upschaklahat@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -649,7 +650,7 @@ if($method==false){
             [
                 "unioun"=>"hafizabad",
                 "names"=>"Chairman",
-                "email"=>"upchafizabad@gmail.com",
+                "email"=>"upshafizabad@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -660,7 +661,7 @@ if($method==false){
             [
                 "unioun"=>"kamatkajoldighi",
                 "names"=>"Chairman",
-                "email"=>"upckamatkajoldighi@gmail.com",
+                "email"=>"upskamatkajoldighi@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -671,7 +672,7 @@ if($method==false){
             [
                 "unioun"=>"dhakkamara",
                 "names"=>"Chairman",
-                "email"=>"upcdhakkamara@gmail.com",
+                "email"=>"upsdhakkamara@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -682,7 +683,7 @@ if($method==false){
             [
                 "unioun"=>"magura",
                 "names"=>"Chairman",
-                "email"=>"upcmagura@gmail.com",
+                "email"=>"upsmagura@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -693,7 +694,7 @@ if($method==false){
             [
                 "unioun"=>"garinabari",
                 "names"=>"Chairman",
-                "email"=>"upcgarinabari@gmail.com",
+                "email"=>"upsgarinabari@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -707,7 +708,7 @@ if($method==false){
             [
                 "unioun"=>"mirgapur",
                 "names"=>"Chairman",
-                "email"=>"upcmirgapur@gmail.com",
+                "email"=>"upsmirgapur@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -717,7 +718,7 @@ if($method==false){
             ],      [
                 "unioun"=>"radhanagar",
                 "names"=>"Chairman",
-                "email"=>"upcradhanagar@gmail.com",
+                "email"=>"upsradhanagar@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -727,7 +728,7 @@ if($method==false){
             ],      [
                 "unioun"=>"toria",
                 "names"=>"Chairman",
-                "email"=>"upctoria@gmail.com",
+                "email"=>"upstoria@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -737,7 +738,7 @@ if($method==false){
             ],      [
                 "unioun"=>"balarampur",
                 "names"=>"Chairman",
-                "email"=>"upcbalarampur@gmail.com",
+                "email"=>"upsbalarampur@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -747,7 +748,7 @@ if($method==false){
             ],      [
                 "unioun"=>"alowakhowa",
                 "names"=>"Chairman",
-                "email"=>"upcalowakhowa@gmail.com",
+                "email"=>"upsalowakhowa@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -757,7 +758,7 @@ if($method==false){
             ],      [
                 "unioun"=>"dhamor",
                 "names"=>"Chairman",
-                "email"=>"upcdhamor@gmail.com",
+                "email"=>"upsdhamor@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -772,7 +773,7 @@ if($method==false){
             [
                 "unioun"=>"jholaishalshiri",
                 "names"=>"Chairman",
-                "email"=>"upcjholaishalshiri@gmail.com",
+                "email"=>"upsjholaishalshiri@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -783,7 +784,7 @@ if($method==false){
             [
                 "unioun"=>"moidandighi",
                 "names"=>"Chairman",
-                "email"=>"upcmoidandighi@gmail.com",
+                "email"=>"upsmoidandighi@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -794,7 +795,7 @@ if($method==false){
             [
                 "unioun"=>"banghari",
                 "names"=>"Chairman",
-                "email"=>"upcbanghari@gmail.com",
+                "email"=>"upsbanghari@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -805,7 +806,7 @@ if($method==false){
             [
                 "unioun"=>"kajoldighikaligonj",
                 "names"=>"Chairman",
-                "email"=>"upckajoldighikaligonj@gmail.com",
+                "email"=>"upskajoldighikaligonj@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -816,7 +817,7 @@ if($method==false){
             [
                 "unioun"=>"boroshoshi",
                 "names"=>"Chairman",
-                "email"=>"upcboroshoshi@gmail.com",
+                "email"=>"upsboroshoshi@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -827,7 +828,7 @@ if($method==false){
             [
                 "unioun"=>"chandanbari",
                 "names"=>"Chairman",
-                "email"=>"upcchandanbari@gmail.com",
+                "email"=>"upschandanbari@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -838,7 +839,7 @@ if($method==false){
             [
                 "unioun"=>"mareabamonhat",
                 "names"=>"Chairman",
-                "email"=>"upcmareabamonhat@gmail.com",
+                "email"=>"upsmareabamonhat@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -849,7 +850,7 @@ if($method==false){
             [
                 "unioun"=>"boda",
                 "names"=>"Chairman",
-                "email"=>"upcboda@gmail.com",
+                "email"=>"upsboda@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -860,7 +861,7 @@ if($method==false){
             [
                 "unioun"=>"sakoa",
                 "names"=>"Chairman",
-                "email"=>"upcsakoa@gmail.com",
+                "email"=>"upssakoa@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -871,7 +872,7 @@ if($method==false){
             [
                 "unioun"=>"pachpir",
                 "names"=>"Chairman",
-                "email"=>"upcpachpir@gmail.com",
+                "email"=>"upspachpir@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -886,7 +887,7 @@ if($method==false){
             [
                 "unioun"=>"chilahati",
                 "names"=>"Chairman",
-                "email"=>"upcchilahati@gmail.com",
+                "email"=>"upschilahati@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -897,7 +898,7 @@ if($method==false){
             [
                 "unioun"=>"shaldanga",
                 "names"=>"Chairman",
-                "email"=>"upcshaldanga@gmail.com",
+                "email"=>"upsshaldanga@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -908,7 +909,7 @@ if($method==false){
             [
                 "unioun"=>"debiganjsadar",
                 "names"=>"Chairman",
-                "email"=>"upcdebiganjsadar@gmail.com",
+                "email"=>"upsdebiganjsadar@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -919,7 +920,7 @@ if($method==false){
             [
                 "unioun"=>"pamuli",
                 "names"=>"Chairman",
-                "email"=>"upcpamuli@gmail.com",
+                "email"=>"upspamuli@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -930,7 +931,7 @@ if($method==false){
             [
                 "unioun"=>"sundardighi",
                 "names"=>"Chairman",
-                "email"=>"upcsundardighi@gmail.com",
+                "email"=>"upssundardighi@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -941,7 +942,7 @@ if($method==false){
             [
                 "unioun"=>"sonaharmollikadaha",
                 "names"=>"Chairman",
-                "email"=>"upcsonaharmollikadaha@gmail.com",
+                "email"=>"upssonaharmollikadaha@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -952,7 +953,7 @@ if($method==false){
             [
                 "unioun"=>"tepriganj",
                 "names"=>"Chairman",
-                "email"=>"upctepriganj@gmail.com",
+                "email"=>"upstepriganj@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -963,7 +964,7 @@ if($method==false){
             [
                 "unioun"=>"dandopal",
                 "names"=>"Chairman",
-                "email"=>"upcdandopal@gmail.com",
+                "email"=>"upsdandopal@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -974,7 +975,7 @@ if($method==false){
             [
                 "unioun"=>"debiduba",
                 "names"=>"Chairman",
-                "email"=>"upcdebiduba@gmail.com",
+                "email"=>"upsdebiduba@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -985,7 +986,7 @@ if($method==false){
             [
                 "unioun"=>"chengthihazradanga",
                 "names"=>"Chairman",
-                "email"=>"upcchengthihazradanga@gmail.com",
+                "email"=>"upschengthihazradanga@gmail.com",
                 "phone"=>"01909756552",
                 "password"=>"uheba21",
                 "position"=>"Secretary",
@@ -1003,12 +1004,13 @@ if($method==false){
                 "names"=>$value["names"],
                 "email"=>$value["email"],
                 "phone"=>$value["phone"],
-                "password"=>$value["password"],
+                "password"=> hash::make($value["password"]),
                 "position"=>$value["position"],
                 "district"=>$value["district"],
                 "thana"=>$value["thana"],
                 "role"=>$value["role"]
             ];
+
            User::create($data);
         }
 
