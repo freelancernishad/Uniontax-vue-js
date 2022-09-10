@@ -789,7 +789,7 @@ if($width=='' && $height==''){
 
 
  $img->save(env('FILE_PATH').$image_url);
- return url($image_url);
+ return asset($image_url);
 
     // separate file server
 // $url = env('FILE_SERVER');
