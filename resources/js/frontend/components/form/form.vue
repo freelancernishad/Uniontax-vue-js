@@ -3,7 +3,7 @@
         <form @submit.stop.prevent="onSubmit">
             <div class="panel-heading"
                 style="font-weight: bold; font-size: 15px;background:#159513;text-align:center;color:white">{{
-                        sonodnamedata.bnname
+                sonodnamedata.bnname
                 }}
             </div>
             <div class="form-pannel">
@@ -13,161 +13,107 @@
                     <div class="col-md-12">
                         <div class="app-heading">আবেদনকারীর তথ্য</div>
                     </div>
-
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">আবেদনকারীর নাম*</label>
+                            <label for="" class="labelColor">আবেদনকারীর নাম <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" v-model="form.applicant_name" required>
                         </div>
-
                     </div>
-
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Certification of the same name'">
                         <div class="form-group">
-                            <label for="">আবেদনকারীর দ্বিতীয় নাম</label>
+                            <label for="" class="labelColor">আবেদনকারীর দ্বিতীয় নাম</label>
                             <input type="text" class="form-control" v-model="form.applicant_second_name">
                         </div>
-
                     </div>
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">লিঙ্গ</label>
-                            <select  class="form-control" v-model="form.applicant_gender">
+                            <label for="" class="labelColor">লিঙ্গ</label>
+                            <select class="form-control" v-model="form.applicant_gender">
                                 <option value="">লিঙ্গ নির্বাচন করুন</option>
                                 <option>পুরুষ</option>
                                 <option>মহিলা</option>
                             </select>
                         </div>
                     </div>
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">আবেদনকারীর পিতা/স্বামীর নাম (বাংলায়)</label>
+                            <label for="" class="labelColor">আবেদনকারীর পিতা/স্বামীর নাম</label>
                             <input type="text" class="form-control" v-model="form.applicant_father_name">
                         </div>
                     </div>
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">আবেদনকারীর পিতা জীবিত কিনা</label>
-                            <select  class="form-control" v-model="form.successor_father_alive_status">
+                            <label for="" class="labelColor">আবেদনকারীর পিতা জীবিত কিনা</label>
+                            <select class="form-control" v-model="form.successor_father_alive_status">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>হ্যাঁ</option>
                                 <option>না</option>
                             </select>
                         </div>
                     </div>
-
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">আবেদনকারীর মাতার নাম (বাংলায়)</label>
+                            <label for="" class="labelColor">আবেদনকারীর মাতার নাম</label>
                             <input type="text" class="form-control" v-model="form.applicant_mother_name">
                         </div>
                     </div>
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">আবেদনকারীর মাতা জীবিত কিনা</label>
-                            <select  class="form-control" v-model="form.successor_mother_alive_status">
+                            <label for="" class="labelColor">আবেদনকারীর মাতা জীবিত কিনা</label>
+                            <select class="form-control" v-model="form.successor_mother_alive_status">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>হ্যাঁ</option>
                                 <option>না</option>
                             </select>
                         </div>
                     </div>
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">ন্যাশনাল আইডি (ইংরেজিতে)</label>
+                            <label for="" class="labelColor">ন্যাশনাল আইডি</label>
                             <input type="text" class="form-control" v-model="form.applicant_national_id_number">
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">জন্ম নিবন্ধন নং ( ইংরেজিতে )</label>
+                            <label for="" class="labelColor">জন্ম নিবন্ধন নং</label>
                             <input type="text" class="form-control" v-model="form.applicant_birth_certificate_number">
                         </div>
                     </div>
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">হোল্ডিং নং (ইংরেজিতে)</label>
+                            <label for="" class="labelColor">হোল্ডিং নং</label>
                             <input type="text" class="form-control" v-model="form.applicant_holding_tax_number">
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">জম্ম তারিখ</label>
+                            <label for="" class="labelColor">জম্ম তারিখ</label>
                             <input type="date" class="form-control" v-model="form.applicant_date_of_birth">
                         </div>
                     </div>
-
-
-                    <div class="col-md-4"  v-if="sonodnamedata.enname == 'Family certificate'">
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Family certificate'">
                         <div class="form-group">
-                            <label for="">বংশের নাম</label>
+                            <label for="" class="labelColor">বংশের নাম</label>
                             <input type="text" class="form-control" v-model="form.family_name">
                         </div>
                     </div>
-
-
-                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'">
+                    <div class="col-md-4"
+                        v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'">
                         <div class="form-group">
-                            <label for="">বার্ষিক আয়</label>
+                            <label for="" class="labelColor">বার্ষিক আয়</label>
                             <input type="text" class="form-control" v-model="form.Annual_income">
                         </div>
                     </div>
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'permit'">
                         <div class="form-group">
-                            <label for="">অনুমতি এর বিষয়</label>
+                            <label for="" class="labelColor">অনুমতি এর বিষয়</label>
                             <input type="text" class="form-control" v-model="form.Subject_to_permission">
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.bnname == 'প্রতিবন্ধী সনদপত্র'">
                         <div class="form-group">
-                            <label for="">প্রতিবন্ধী</label>
-                            <select  class="form-control" v-model="form.disabled">
+                            <label for="" class="labelColor">প্রতিবন্ধী</label>
+                            <select class="form-control" v-model="form.disabled">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>শারীরিক</option>
                                 <option>দৃষ্টি</option>
@@ -178,46 +124,32 @@
                             </select>
                         </div>
                     </div>
-
-
-
-                    <div class="col-md-4" v-if="sonodnamedata.enname == 'No Objection Letter to Transfer of Constituency'">
+                    <div class="col-md-4"
+                        v-if="sonodnamedata.enname == 'No Objection Letter to Transfer of Constituency'">
                         <div class="form-group">
-                            <label for="">স্থানান্তরিত এলাকার নাম</label>
+                            <label for="" class="labelColor">স্থানান্তরিত এলাকার নাম</label>
                             <input type="text" class="form-control" v-model="form.Name_of_the_transferred_area">
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Certificate'">
                         <div class="form-group">
-                            <label for="">প্রত্যয়নপত্র এর বিষয়</label>
+                            <label for="" class="labelColor">প্রত্যয়নপত্র এর বিষয়</label>
                             <input type="text" class="form-control" v-model="form.The_subject_of_the_certificate">
                         </div>
                     </div>
-
-
-
                 </div>
                 <div class="row">
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname != 'Certificate of Inheritance'">
                         <div class="form-group">
-                            <label for="">ছবি</label>
+                            <label for="" class="labelColor">ছবি</label>
                             <input type="file" class="form-control" @change="FileSelected($event, 'image')">
-                            <img thumbnail fluid v-if="form.image != null" :src="form.image" alt="Image 3"/>
+                            <img thumbnail fluid v-if="form.image != null" :src="form.image" alt="Image 3" />
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
-                            <label for="">প্রতিষ্ঠানের মালিকানার ধরণ *</label>
-                            <select  class="form-control" v-model="form.applicant_owner_type">
+                            <label for="" class="labelColor">প্রতিষ্ঠানের মালিকানার ধরণ *</label>
+                            <select class="form-control" v-model="form.applicant_owner_type">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>ব্যক্তি মালিকানাধীন</option>
                                 <option>যৌথ মালিকানা</option>
@@ -225,53 +157,38 @@
                             </select>
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">সেবার ধরণ</label>
-                            <select  class="form-control" v-model="form.sonod_name">
+                            <label for="" class="labelColor">সেবার ধরণ</label>
+                            <select class="form-control" v-model="form.sonod_name">
                                 <option value="">নির্বাচন করুন</option>
-                                <option v-for="(sName, index) in SonodNames" :value="sName.bnname" :key="index">{{ sName.bnname }}</option>
+                                <option v-for="(sName, index) in SonodNames" :value="sName.bnname" :key="index">{{
+                                sName.bnname }}</option>
                             </select>
                         </div>
                     </div>
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">পাসপোর্ট নং ( ইংরেজিতে )</label>
+                            <label for="" class="labelColor">পাসপোর্ট নং ( ইংরেজিতে )</label>
                             <input type="text" class="form-control" v-model="form.applicant_passport_number">
                         </div>
                     </div>
-
-
-
-                    <div class="col-md-4"  v-if="sonodnamedata.enname == 'Certificate of Inheritance'">
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Certificate of Inheritance'">
                         <div class="form-group">
-                            <label for="">মৃত ব্যাক্তির নাম *</label>
+                            <label for="" class="labelColor">মৃত ব্যাক্তির নাম *</label>
                             <input type="text" class="form-control" v-model="form.utname">
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
-                            <label for="">প্রতিষ্ঠানের নাম (বাংলায়) *</label>
+                            <label for="" class="labelColor">প্রতিষ্ঠানের নাম (বাংলায়) *</label>
                             <input type="text" class="form-control" v-model="form.applicant_name_of_the_organization">
                         </div>
                     </div>
-
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">বৈবাহিক সম্পর্ক</label>
-                            <select  class="form-control" v-model="form.applicant_marriage_status">
+                            <label for="" class="labelColor">বৈবাহিক সম্পর্ক</label>
+                            <select class="form-control" v-model="form.applicant_marriage_status">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>বিবাহিত</option>
                                 <option>অবিবাহিত</option>
@@ -281,33 +198,22 @@
                             </select>
                         </div>
                     </div>
-
-
-
-                    <div class="col-md-4" >
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">পেশা</label>
+                            <label for="" class="labelColor">পেশা</label>
                             <input type="text" class="form-control" v-model="form.applicant_occupation">
                         </div>
                     </div>
-
-
-
-                    <div class="col-md-4" >
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">শিক্ষাগত যোগ্যতা</label>
+                            <label for="" class="labelColor">শিক্ষাগত যোগ্যতা</label>
                             <input type="text" class="form-control" v-model="form.applicant_education">
                         </div>
                     </div>
-
-
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">ধর্ম</label>
-                            <select  class="form-control" v-model="form.applicant_religion">
+                            <label for="" class="labelColor">ধর্ম</label>
+                            <select class="form-control" v-model="form.applicant_religion">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>ইসলাম</option>
                                 <option>হিন্দু</option>
@@ -317,104 +223,70 @@
                             </select>
                         </div>
                     </div>
-
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
-                            <label for="">ভ্যাট আইডি (যদি থাকে)</label>
+                            <label for="" class="labelColor">ভ্যাট আইডি (যদি থাকে)</label>
                             <input type="text" class="form-control" v-model="form.applicant_vat_id_number">
                         </div>
                     </div>
-
-
-
-
-                    <div class="col-md-4"  v-if="sonodnamedata.enname == 'Trade license'">
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
-                            <label for="">ট্যাক্স আইডি (যদি থাকে)</label>
+                            <label for="" class="labelColor">ট্যাক্স আইডি (যদি থাকে)</label>
                             <input type="text" class="form-control" v-model="form.applicant_tax_id_number">
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
-                            <label for="">ব্যবসার ধরন (বাংলায়) *</label>
+                            <label for="" class="labelColor">ব্যবসার ধরন (বাংলায়) *</label>
                             <input type="text" class="form-control" v-model="form.applicant_type_of_business">
                         </div>
                     </div>
-
-
-
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">বাসিন্দা</label>
-                            <select  class="form-control" v-model="form.applicant_resident_status">
+                            <label for="" class="labelColor">বাসিন্দা</label>
+                            <select class="form-control" v-model="form.applicant_resident_status">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>স্থায়ী</option>
                                 <option>অস্থায়ী</option>
                             </select>
                         </div>
                     </div>
-
-
-
                     <div class="col-md-12" v-if="sonodnamedata.enname != 'Trade license'">
                         <div class="form-group">
-                            <label for="">আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন</label>
+                            <label for="" class="labelColor">আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন</label>
                             <textarea class="form-control" v-model="form.prottoyon" cols="30" rows="4"></textarea>
                         </div>
                     </div>
-
-
-
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="app-heading">বর্তমান ঠিকানা</div>
                         <div class="col-md-12">
                         </div>
-
-
                         <div class="form-group">
-                            <label for="">গ্রাম/মহল্লা</label>
+                            <label for="" class="labelColor">গ্রাম/মহল্লা</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_village">
                         </div>
-
                         <div class="form-group">
-                            <label for="">রোড/ব্লক/সেক্টর</label>
+                            <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_road_block_sector">
                         </div>
-
                         <div class="form-group">
-                            <label for="">ওয়ার্ড নং</label>
+                            <label for="" class="labelColor">ওয়ার্ড নং</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_word_number">
                         </div>
-
-
                         <div class="form-group">
-                            <label for="">জেলা</label>
+                            <label for="" class="labelColor">জেলা</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_district">
                         </div>
-
-
                         <div class="form-group">
-                            <label for="">উপজেলা/থানা</label>
+                            <label for="" class="labelColor">উপজেলা/থানা</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_Upazila">
                         </div>
-
-
                         <div class="form-group">
-                            <label for="">পোষ্ট অফিস</label>
+                            <label for="" class="labelColor">পোষ্ট অফিস</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_post_office">
                         </div>
-
-
-
-
                     </div>
                     <div class="col-md-6">
                         <div class="app-heading">স্থায়ী ঠিকানা</div>
@@ -422,44 +294,31 @@
                             <input type="checkbox" id="checkbox" v-model="sameStatus" @change="sameAddress"> <label
                                 for="checkbox"> বর্তমান ঠিকানা ও স্থায়ী ঠিকানা একই হলে</label>
                         </div>
-
-
-
                         <div class="form-group">
-                            <label for="">গ্রাম/মহল্লা</label>
+                            <label for="" class="labelColor">গ্রাম/মহল্লা</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_village">
                         </div>
-
                         <div class="form-group">
-                            <label for="">রোড/ব্লক/সেক্টর</label>
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_road_block_sector">
+                            <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
+                            <input type="text" class="form-control"
+                                v-model="form.applicant_permanent_road_block_sector">
                         </div>
-
                         <div class="form-group">
-                            <label for="">ওয়ার্ড নং</label>
+                            <label for="" class="labelColor">ওয়ার্ড নং</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_word_number">
                         </div>
-
-
                         <div class="form-group">
-                            <label for="">জেলা</label>
+                            <label for="" class="labelColor">জেলা</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_district">
                         </div>
-
-
                         <div class="form-group">
-                            <label for="">উপজেলা/থানা</label>
+                            <label for="" class="labelColor">উপজেলা/থানা</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila">
                         </div>
-
-
                         <div class="form-group">
-                            <label for="">পোষ্ট অফিস</label>
+                            <label for="" class="labelColor">পোষ্ট অফিস</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_post_office">
                         </div>
-
-
-
                     </div>
                 </div>
                 <div class="row">
@@ -467,65 +326,57 @@
                         <div class="app-heading"> যোগাযোগের ঠিকানা</div>
                     </div>
                     <div class="col-md-6">
-
                         <div class="form-group">
-                            <label for="">মোবাইল</label>
+                            <label for="" class="labelColor">মোবাইল</label>
                             <input type="text" class="form-control" v-model="form.applicant_mobile" required>
                         </div>
-
-
-
                     </div>
                     <div class="col-md-6">
-
                         <div class="form-group">
-                            <label for="">ইমেল</label>
+                            <label for="" class="labelColor">ইমেল</label>
                             <input type="text" class="form-control" v-model="form.applicant_email">
                         </div>
-
                     </div>
                     <div class="col-md-12">
                         <div class="app-heading"> Attachment</div>
                     </div>
                     <!-- col-md-4 -->
                     <div class="col-md-4">
-
-
                         <div class="form-group">
-                            <label for="">জাতীয় পরিচয়পত্র (Front page)</label>
-                            <input type="file" class="form-control" @change="FileSelected($event, 'applicant_national_id_front_attachment')">
-                            <img thumbnail fluid v-if="form.applicant_national_id_front_attachment != null" :src="form.applicant_national_id_front_attachment" alt="Image 3"/>
+                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page)</label>
+                            <input type="file" class="form-control"
+                                @change="FileSelected($event, 'applicant_national_id_front_attachment')">
+                            <img thumbnail fluid v-if="form.applicant_national_id_front_attachment != null"
+                                :src="form.applicant_national_id_front_attachment" alt="Image 3" />
                         </div>
-
                     </div>
                     <!-- col-md-4 -->
                     <!-- col-md-4 -->
                     <div class="col-md-4">
-
-
                         <div class="form-group">
-                            <label for="">জাতীয় পরিচয়পত্র (Back page)</label>
-                            <input type="file" class="form-control" @change="FileSelected($event, 'applicant_national_id_back_attachment')">
-                            <img thumbnail fluid v-if="form.applicant_national_id_back_attachment != null" :src="form.applicant_national_id_back_attachment" alt="Image 3"/>
+                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page)</label>
+                            <input type="file" class="form-control"
+                                @change="FileSelected($event, 'applicant_national_id_back_attachment')">
+                            <img thumbnail fluid v-if="form.applicant_national_id_back_attachment != null"
+                                :src="form.applicant_national_id_back_attachment" alt="Image 3" />
                         </div>
-
                     </div>
                     <!-- col-md-4 -->
                     <!-- col-md-4 -->
                     <div class="col-md-4">
-
                         <div class="form-group">
-                            <label for="">জন্ম নিবন্ধন</label>
-                            <input type="file" class="form-control" @change="FileSelected($event, 'applicant_birth_certificate_attachment')">
-                            <img thumbnail fluid v-if="form.applicant_birth_certificate_attachment != null" :src="form.applicant_birth_certificate_attachment" alt="Image 3"/>
+                            <label for="" class="labelColor">জন্ম নিবন্ধন</label>
+                            <input type="file" class="form-control"
+                                @change="FileSelected($event, 'applicant_birth_certificate_attachment')">
+                            <img thumbnail fluid v-if="form.applicant_birth_certificate_attachment != null"
+                                :src="form.applicant_birth_certificate_attachment" alt="Image 3" />
                         </div>
-
-
                     </div>
                     <!-- col-md-4 -->
                 </div>
                 <div class="app-heading"
-                    v-if="sonodnamedata.bnname == 'ওয়ারিশ সনদ' || sonodnamedata.bnname == 'উত্তরাধিকারী সনদ'">ওয়ারিশগনের
+                    v-if="sonodnamedata.bnname == 'ওয়ারিশ সনদ' || sonodnamedata.bnname == 'উত্তরাধিকারী সনদ'">
+                    ওয়ারিশগনের
                     তালিকা
                 </div>
                 <table class="table"
@@ -571,7 +422,6 @@
                                 v-show="index != 0">Remove</button></th>
                     </tr>
                 </table>
-
                 <b-button type="submit" variant="primary">Submit</b-button>
                 <b-button class="ml-2" @click="resetForm()">Reset</b-button>
             </div>
@@ -588,16 +438,17 @@
                 <div class="col-md-4 mt-3"></div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ form.applicant_name }}</div>
                 <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certification of the same name'">
-                    <b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}</div>
+                    <b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}
+                </div>
                 <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা জীবিত কিনা : </b>{{
-                        form.successor_father_alive_status
+                form.successor_father_alive_status
                 }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতার নাম : </b>{{ form.applicant_mother_name }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতা জীবিত কিনা : </b>{{
-                        form.successor_mother_alive_status
+                form.successor_mother_alive_status
                 }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ form.applicant_national_id_number }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ form.applicant_birth_certificate_number }}
@@ -608,9 +459,10 @@
                     </b>{{ form.family_name }}</div>
                 <div class="col-md-4 col-6 mt-3"
                     v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'">
-                    <b>বার্ষিক আয় : </b>{{ form.Annual_income }}</div>
+                    <b>বার্ষিক আয় : </b>{{ form.Annual_income }}
+                </div>
                 <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'permit'"><b>অনুমতি এর বিষয় : </b>{{
-                        form.Subject_to_permission
+                form.Subject_to_permission
                 }}</div>
                 <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.bnname == 'প্রতিবন্ধী সনদপত্র'"><b>প্রতিবন্ধী :
                     </b>{{ form.disabled }}</div>
@@ -686,7 +538,7 @@
             <form @submit.stop.prevent="finalSubmit" style="margin-top: 50px;">
                 <div class="text-center" style="width:50%;margin:0 auto" v-if="getunionInfos.payment_type == 'Prepaid'">
                     <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{
-                            charages.totalamount
+                    charages.totalamount
                     }} টাকা ।</h3>
                     <button type="submit" class="btn btn-info" v-if="!submitLoad">Pay And Submit</button>
                     <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
@@ -703,11 +555,7 @@
     </div>
 </template>
 <script>
-
-
-
 export default {
-
     data() {
         return {
             infoModal: {
@@ -728,7 +576,6 @@ export default {
             sameStatus: '',
             sonodnamedata: {},
             SonodNamesOptions: {},
-
             form: {
                 image: null,
                 sonod_Id: '',
@@ -804,7 +651,6 @@ export default {
             }
         };
     },
-
     watch: {
         '$route': {
             handler(newValue, oldValue) {
@@ -945,7 +791,6 @@ export default {
             this.infoModal.content = ''
         },
         async onSubmit() {
-
             var sonod_fee = Number(this.sonodnamedata.sonod_fee)
             var vat = Number(this.getvatTax.vat)
             var tax = Number(this.getvatTax.tax)
@@ -1194,13 +1039,14 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped >
 .app-heading {
     text-align: center;
     margin: 32px 0;
     font-size: 23px;
     border-bottom: 1px solid #159513;
-    color: #159513;
+    color: #ffffff;
+    background: #255f95;
 }
 .form-pannel {
     border: 1px solid #159513;
@@ -1218,5 +1064,9 @@ export default {
 }
 .dropdown-menu {
     z-index: 99999;
+}
+.labelColor {
+    color: #493eff;
+    font-weight: 600;
 }
 </style>

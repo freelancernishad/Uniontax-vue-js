@@ -67,7 +67,7 @@ Route::get('/{vue_capture?}', function () {
   $subdomain =  explode('.', $domain[1]);
 
     if($subdomain[0]=='www'){
-       
+
          $subdomainCount =  count($subdomain);
          $subdomainget = $subdomain[1];
         if($subdomainCount>4){

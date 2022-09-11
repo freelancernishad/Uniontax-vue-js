@@ -5169,10 +5169,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5230,11 +5230,7 @@ var render = function render() {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("আবেদনকারীর নাম*")]), _vm._v(" "), _c("input", {
+  }, [_vm._m(1), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5261,6 +5257,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5290,6 +5287,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5322,10 +5320,11 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
-  }, [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম (বাংলায়)")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5351,6 +5350,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5383,10 +5383,11 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
-  }, [_vm._v("আবেদনকারীর মাতার নাম (বাংলায়)")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("আবেদনকারীর মাতার নাম")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5412,6 +5413,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5444,10 +5446,11 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
-  }, [_vm._v("ন্যাশনাল আইডি (ইংরেজিতে)")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("ন্যাশনাল আইডি")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5473,10 +5476,11 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
-  }, [_vm._v("জন্ম নিবন্ধন নং ( ইংরেজিতে )")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("জন্ম নিবন্ধন নং")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5502,10 +5506,11 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
-  }, [_vm._v("হোল্ডিং নং (ইংরেজিতে)")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("হোল্ডিং নং")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5531,6 +5536,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5560,6 +5566,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5589,6 +5596,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5618,6 +5626,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5647,6 +5656,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5679,6 +5689,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5708,6 +5719,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5739,6 +5751,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5764,6 +5777,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5796,6 +5810,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5835,6 +5850,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5864,6 +5880,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5893,6 +5910,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5922,6 +5940,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5954,6 +5973,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -5983,6 +6003,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6012,6 +6033,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6044,6 +6066,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6073,6 +6096,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6102,6 +6126,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6131,6 +6156,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6163,6 +6189,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6199,6 +6226,7 @@ var render = function render() {
   }), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6226,6 +6254,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6253,6 +6282,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6280,6 +6310,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6307,6 +6338,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6334,6 +6366,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6405,6 +6438,7 @@ var render = function render() {
   }, [_vm._v(" বর্তমান ঠিকানা ও স্থায়ী ঠিকানা একই হলে")])]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6432,6 +6466,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6459,6 +6494,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6486,6 +6522,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6513,6 +6550,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6540,6 +6578,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6566,11 +6605,12 @@ var render = function render() {
     }
   })])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(1), _vm._v(" "), _c("div", {
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6601,6 +6641,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6625,11 +6666,12 @@ var render = function render() {
         _vm.$set(_vm.form, "applicant_email", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6655,6 +6697,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6680,6 +6723,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
+    staticClass: "labelColor",
     attrs: {
       "for": ""
     }
@@ -6702,7 +6746,7 @@ var render = function render() {
     }
   }) : _vm._e()])])]), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("div", {
     staticClass: "app-heading"
-  }, [_vm._v("ওয়ারিশগনের\n                তালিকা\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("table", {
+  }, [_vm._v("\n                ওয়ারিশগনের\n                তালিকা\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("table", {
     staticClass: "table"
   }, [_c("tr", [_c("th", [_vm._v("নাম")]), _vm._v(" "), _c("th", [_vm._v("সম্পর্ক")]), _vm._v(" "), _c("th", [_vm._v("জন্ম তারিখ")]), _vm._v(" "), _c("th", [_vm._v("জাতীয় পরিচয়পত্র নাম্বার/জন্মনিবন্ধন নাম্বার")]), _vm._v(" "), _c("th", [_c("button", {
     staticClass: "flex justify-start btn btn-info",
@@ -6890,7 +6934,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("আবেদনকারীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_name))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certification of the same name" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকারীর দ্বিতীয় নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_second_name))]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকারীর দ্বিতীয় নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_second_name) + "\n            ")]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("লিঙ্গ : ")]), _vm._v(_vm._s(_vm.form.applicant_gender))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -6912,7 +6956,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("বংশের নাম :\n                ")]), _vm._v(_vm._s(_vm.form.family_name))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of annual income" || _vm.sonodnamedata.enname == "Parents Income Certificate" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("বার্ষিক আয় : ")]), _vm._v(_vm._s(_vm.form.Annual_income))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "permit" ? _c("div", {
+  }, [_c("b", [_vm._v("বার্ষিক আয় : ")]), _vm._v(_vm._s(_vm.form.Annual_income) + "\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "permit" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("অনুমতি এর বিষয় : ")]), _vm._v(_vm._s(_vm.form.Subject_to_permission))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "প্রতিবন্ধী সনদপত্র" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -7066,6 +7110,18 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "app-heading"
   }, [_vm._v("আবেদনকারীর তথ্য")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("আবেদনকারীর নাম "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -26819,10 +26875,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.border-dash {\r\n  border: 1px dash
 
 /***/ }),
 
-/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -26836,7 +26892,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #159513;\n}\n.form-pannel {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu {\n    z-index: 99999;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading[data-v-26e46f76] {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #ffffff;\n    background: #255f95;\n}\n.form-pannel[data-v-26e46f76] {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading[data-v-26e46f76] {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel[data-v-26e46f76] {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu[data-v-26e46f76] {\n    z-index: 99999;\n}\n.labelColor[data-v-26e46f76] {\n    color: #493eff;\n    font-weight: 600;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30612,10 +30668,10 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -30625,7 +30681,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./form.vue?vue&type=style&index=0&id=26e46f76&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css&");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css&");
 
             
 
@@ -30634,11 +30690,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -46283,9 +46339,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _form_vue_vue_type_template_id_26e46f76___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=26e46f76& */ "./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&");
+/* harmony import */ var _form_vue_vue_type_template_id_26e46f76_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=26e46f76&scoped=true& */ "./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&scoped=true&");
 /* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/js/frontend/components/form/form.vue?vue&type=script&lang=js&");
-/* harmony import */ var _form_vue_vue_type_style_index_0_id_26e46f76_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form.vue?vue&type=style&index=0&id=26e46f76&lang=css& */ "./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css&");
+/* harmony import */ var _form_vue_vue_type_style_index_0_id_26e46f76_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css& */ "./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -46297,11 +46353,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _form_vue_vue_type_template_id_26e46f76___WEBPACK_IMPORTED_MODULE_0__.render,
-  _form_vue_vue_type_template_id_26e46f76___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _form_vue_vue_type_template_id_26e46f76_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _form_vue_vue_type_template_id_26e46f76_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  null,
+  "26e46f76",
   null
   
 )
@@ -47198,19 +47254,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76& ***!
-  \***************************************************************************************/
+/***/ "./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&scoped=true&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&scoped=true& ***!
+  \***************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_26e46f76___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_26e46f76___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_26e46f76_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_26e46f76_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_26e46f76___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./form.vue?vue&type=template&id=26e46f76& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_26e46f76_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./form.vue?vue&type=template&id=26e46f76&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=template&id=26e46f76&scoped=true&");
 
 
 /***/ }),
@@ -47467,15 +47523,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css&":
-/*!*****************************************************************************************************!*\
-  !*** ./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css& ***!
-  \*****************************************************************************************************/
+/***/ "./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./form.vue?vue&type=style&index=0&id=26e46f76&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&lang=css&");
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_style_index_0_id_26e46f76_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/form/form.vue?vue&type=style&index=0&id=26e46f76&scoped=true&lang=css&");
 
 
 /***/ }),
