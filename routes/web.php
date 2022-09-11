@@ -74,7 +74,7 @@ Route::get('/{vue_capture?}', function () {
 
          $subdomainCount =  count($subdomain);
          $subdomainget = $subdomain[1];
-        if($subdomainCount>2){
+        if($subdomainCount>4){
             $sub = true;
         }else{
             $sub = false;
@@ -86,7 +86,7 @@ Route::get('/{vue_capture?}', function () {
         $subdomainCount =  count($subdomain);
         $subdomainget = $subdomain[0];
 
-        if($subdomainCount>1){
+        if($subdomainCount>3){
             $sub = true;
         }else{
             $sub = false;
