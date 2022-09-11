@@ -5756,16 +5756,27 @@ var render = function render() {
       "for": ""
     }
   }, [_vm._v("ছবি")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
+    staticClass: "custom-file-input",
     attrs: {
-      type: "file"
+      type: "file",
+      id: "image"
     },
     on: {
       change: function change($event) {
         return _vm.FileSelected($event, "image");
       }
     }
-  }), _vm._v(" "), _vm.form.image != null ? _c("img", {
+  }), _vm._v(" "), _c("label", {
+    staticClass: "custom-file-label",
+    staticStyle: {
+      margin: "0px auto",
+      "margin-top": "32px",
+      width: "93%"
+    },
+    attrs: {
+      "for": "image"
+    }
+  }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.image != null ? _c("img", {
     attrs: {
       thumbnail: "",
       fluid: "",
@@ -6676,16 +6687,27 @@ var render = function render() {
       "for": ""
     }
   }, [_vm._v("জাতীয় পরিচয়পত্র (Front page)")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
+    staticClass: "form-control custom-file-input",
     attrs: {
-      type: "file"
+      type: "file",
+      id: "applicant_national_id_front_attachment"
     },
     on: {
       change: function change($event) {
         return _vm.FileSelected($event, "applicant_national_id_front_attachment");
       }
     }
-  }), _vm._v(" "), _vm.form.applicant_national_id_front_attachment != null ? _c("img", {
+  }), _vm._v(" "), _c("label", {
+    staticClass: "custom-file-label",
+    staticStyle: {
+      margin: "0px auto",
+      "margin-top": "32px",
+      width: "93%"
+    },
+    attrs: {
+      "for": "applicant_national_id_front_attachment"
+    }
+  }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.applicant_national_id_front_attachment != null ? _c("img", {
     attrs: {
       thumbnail: "",
       fluid: "",
@@ -6702,16 +6724,27 @@ var render = function render() {
       "for": ""
     }
   }, [_vm._v("জাতীয় পরিচয়পত্র (Back page)")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
+    staticClass: "form-control custom-file-input",
     attrs: {
-      type: "file"
+      type: "file",
+      id: "applicant_national_id_back_attachment"
     },
     on: {
       change: function change($event) {
         return _vm.FileSelected($event, "applicant_national_id_back_attachment");
       }
     }
-  }), _vm._v(" "), _vm.form.applicant_national_id_back_attachment != null ? _c("img", {
+  }), _vm._v(" "), _c("label", {
+    staticClass: "custom-file-label",
+    staticStyle: {
+      margin: "0px auto",
+      "margin-top": "32px",
+      width: "93%"
+    },
+    attrs: {
+      "for": "applicant_national_id_back_attachment"
+    }
+  }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.applicant_national_id_back_attachment != null ? _c("img", {
     attrs: {
       thumbnail: "",
       fluid: "",
@@ -6728,16 +6761,27 @@ var render = function render() {
       "for": ""
     }
   }, [_vm._v("জন্ম নিবন্ধন")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
+    staticClass: "form-control custom-file-input",
     attrs: {
-      type: "file"
+      type: "file",
+      id: "applicant_birth_certificate_attachment"
     },
     on: {
       change: function change($event) {
         return _vm.FileSelected($event, "applicant_birth_certificate_attachment");
       }
     }
-  }), _vm._v(" "), _vm.form.applicant_birth_certificate_attachment != null ? _c("img", {
+  }), _vm._v(" "), _c("label", {
+    staticClass: "custom-file-label",
+    staticStyle: {
+      margin: "0px auto",
+      "margin-top": "32px",
+      width: "93%"
+    },
+    attrs: {
+      "for": "applicant_birth_certificate_attachment"
+    }
+  }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.applicant_birth_certificate_attachment != null ? _c("img", {
     attrs: {
       thumbnail: "",
       fluid: "",
