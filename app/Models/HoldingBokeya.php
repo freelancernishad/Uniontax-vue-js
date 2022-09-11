@@ -14,6 +14,7 @@ class HoldingBokeya extends Model
         'holdingTax_id',
         'year',
         'price',
+        'payYear',
         'status',
     ];
 }

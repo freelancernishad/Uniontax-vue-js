@@ -41,6 +41,7 @@
                             <input type="text" class="form-control" v-model="form.applicant_father_name">
                         </div>
                     </div>
+<!--
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">আবেদনকারীর পিতা জীবিত কিনা</label>
@@ -51,12 +52,14 @@
                             </select>
                         </div>
                     </div>
+                     -->
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">আবেদনকারীর মাতার নাম</label>
                             <input type="text" class="form-control" v-model="form.applicant_mother_name">
                         </div>
                     </div>
+<!--
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">আবেদনকারীর মাতা জীবিত কিনা</label>
@@ -66,7 +69,8 @@
                                 <option>না</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">ন্যাশনাল আইডি</label>
@@ -398,22 +402,14 @@
                         <th>
                             <select v-model="successor.w_relation" class="form-control">
                                 <option value="">সম্পর্ক</option>
-                                <option>বাবা</option>
-                                <option>মা</option>
+                                <option>পিতা</option>
+                                <option>মাতা</option>
+                                <option>স্বামী</option>
+                                <option>স্ত্রী</option>
                                 <option>ভাই</option>
                                 <option>বোন</option>
-                                <option>দাদা</option>
-                                <option>দাদি</option>
-                                <option>নানা</option>
-                                <option>নানি</option>
-                                <option>চাচা</option>
-                                <option>চাচি</option>
-                                <option>ফুপা</option>
-                                <option>ফুপি</option>
-                                <option>মামা</option>
-                                <option>মামি</option>
-                                <option>খালা</option>
-                                <option>খালু</option>
+                                <option>নাতি</option>
+                                <option>নাতনি</option>
                             </select>
                             <!-- <input v-model="successor.w_relation" placeholder="সম্পর্ক" class="form-control" /> -->
                         </th>

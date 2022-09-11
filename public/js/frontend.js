@@ -5202,7 +5202,7 @@ var render = function render() {
       "text-align": "center",
       color: "white"
     }
-  }, [_vm._v(_vm._s(_vm.sonodnamedata.bnname) + "\n        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.sonodnamedata.bnname) + "\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "form-pannel"
   }, [_c("input", {
     directives: [{
@@ -5354,39 +5354,6 @@ var render = function render() {
     attrs: {
       "for": ""
     }
-  }, [_vm._v("আবেদনকারীর পিতা জীবিত কিনা")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.successor_father_alive_status,
-      expression: "form.successor_father_alive_status"
-    }],
-    staticClass: "form-control",
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.form, "successor_father_alive_status", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("হ্যাঁ")]), _vm._v(" "), _c("option", [_vm._v("না")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
   }, [_vm._v("আবেদনকারীর মাতার নাম")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -5409,39 +5376,6 @@ var render = function render() {
       }
     }
   })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("আবেদনকারীর মাতা জীবিত কিনা")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.successor_mother_alive_status,
-      expression: "form.successor_mother_alive_status"
-    }],
-    staticClass: "form-control",
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.form, "successor_mother_alive_status", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("হ্যাঁ")]), _vm._v(" "), _c("option", [_vm._v("না")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6790,7 +6724,7 @@ var render = function render() {
     }
   }) : _vm._e()])])]), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("div", {
     staticClass: "app-heading"
-  }, [_vm._v("\n                ওয়ারিশগনের\n                তালিকা\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("table", {
+  }, [_vm._v("\n                    ওয়ারিশগনের\n                    তালিকা\n                ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("table", {
     staticClass: "table"
   }, [_c("tr", [_c("th", [_vm._v("নাম")]), _vm._v(" "), _c("th", [_vm._v("সম্পর্ক")]), _vm._v(" "), _c("th", [_vm._v("জন্ম তারিখ")]), _vm._v(" "), _c("th", [_vm._v("জাতীয় পরিচয়পত্র নাম্বার/জন্মনিবন্ধন নাম্বার")]), _vm._v(" "), _c("th", [_c("button", {
     staticClass: "flex justify-start btn btn-info",
@@ -6802,7 +6736,7 @@ var render = function render() {
         return _vm.addMore();
       }
     }
-  }, [_vm._v("Add\n                            More")])])]), _vm._v(" "), _vm._l(_vm.form.successors, function (successor, index) {
+  }, [_vm._v("Add\n                                More")])])]), _vm._v(" "), _vm._l(_vm.form.successors, function (successor, index) {
     return _c("tr", {
       key: index
     }, [_c("input", {
@@ -6870,7 +6804,7 @@ var render = function render() {
       attrs: {
         value: ""
       }
-    }, [_vm._v("সম্পর্ক")]), _vm._v(" "), _c("option", [_vm._v("বাবা")]), _vm._v(" "), _c("option", [_vm._v("মা")]), _vm._v(" "), _c("option", [_vm._v("ভাই")]), _vm._v(" "), _c("option", [_vm._v("বোন")]), _vm._v(" "), _c("option", [_vm._v("দাদা")]), _vm._v(" "), _c("option", [_vm._v("দাদি")]), _vm._v(" "), _c("option", [_vm._v("নানা")]), _vm._v(" "), _c("option", [_vm._v("নানি")]), _vm._v(" "), _c("option", [_vm._v("চাচা")]), _vm._v(" "), _c("option", [_vm._v("চাচি")]), _vm._v(" "), _c("option", [_vm._v("ফুপা")]), _vm._v(" "), _c("option", [_vm._v("ফুপি")]), _vm._v(" "), _c("option", [_vm._v("মামা")]), _vm._v(" "), _c("option", [_vm._v("মামি")]), _vm._v(" "), _c("option", [_vm._v("খালা")]), _vm._v(" "), _c("option", [_vm._v("খালু")])])]), _vm._v(" "), _c("th", [_c("input", {
+    }, [_vm._v("সম্পর্ক")]), _vm._v(" "), _c("option", [_vm._v("পিতা")]), _vm._v(" "), _c("option", [_vm._v("মাতা")]), _vm._v(" "), _c("option", [_vm._v("স্বামী")]), _vm._v(" "), _c("option", [_vm._v("স্ত্রী")]), _vm._v(" "), _c("option", [_vm._v("ভাই")]), _vm._v(" "), _c("option", [_vm._v("বোন")]), _vm._v(" "), _c("option", [_vm._v("নাতি")]), _vm._v(" "), _c("option", [_vm._v("নাতনি")])])]), _vm._v(" "), _c("th", [_c("input", {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -6978,11 +6912,11 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("আবেদনকারীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_name))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certification of the same name" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকারীর দ্বিতীয় নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_second_name) + "\n            ")]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকারীর দ্বিতীয় নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_second_name) + "\n                ")]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("লিঙ্গ : ")]), _vm._v(_vm._s(_vm.form.applicant_gender))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_father_name) + "\n            ")]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_father_name) + "\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("আবেদনকারীর পিতা জীবিত কিনা : ")]), _vm._v(_vm._s(_vm.form.successor_father_alive_status))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -6992,23 +6926,23 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("ন্যাশনাল আইডি : ")]), _vm._v(_vm._s(_vm.form.applicant_national_id_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("জন্ম নিবন্ধন নং : ")]), _vm._v(_vm._s(_vm.form.applicant_birth_certificate_number) + "\n            ")]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("জন্ম নিবন্ধন নং : ")]), _vm._v(_vm._s(_vm.form.applicant_birth_certificate_number) + "\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("হোল্ডিং নং : ")]), _vm._v(_vm._s(_vm.form.applicant_holding_tax_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("জম্ম তারিখ : ")]), _vm._v(_vm._s(_vm.form.applicant_date_of_birth))]), _vm._v(" "), _vm.sonodnamedata.enname == "Family certificate" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("বংশের নাম :\n                ")]), _vm._v(_vm._s(_vm.form.family_name))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of annual income" || _vm.sonodnamedata.enname == "Parents Income Certificate" ? _c("div", {
+  }, [_c("b", [_vm._v("বংশের নাম :\n                    ")]), _vm._v(_vm._s(_vm.form.family_name))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of annual income" || _vm.sonodnamedata.enname == "Parents Income Certificate" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("বার্ষিক আয় : ")]), _vm._v(_vm._s(_vm.form.Annual_income) + "\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "permit" ? _c("div", {
+  }, [_c("b", [_vm._v("বার্ষিক আয় : ")]), _vm._v(_vm._s(_vm.form.Annual_income) + "\n                ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "permit" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("অনুমতি এর বিষয় : ")]), _vm._v(_vm._s(_vm.form.Subject_to_permission))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "প্রতিবন্ধী সনদপত্র" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("প্রতিবন্ধী :\n                ")]), _vm._v(_vm._s(_vm.form.disabled))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "No Objection Letter to Transfer of Constituency" ? _c("div", {
+  }, [_c("b", [_vm._v("প্রতিবন্ধী :\n                    ")]), _vm._v(_vm._s(_vm.form.disabled))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "No Objection Letter to Transfer of Constituency" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("স্থানান্তরিত\n                    এলাকার নাম : ")]), _vm._v(_vm._s(_vm.form.Name_of_the_transferred_area))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate" ? _c("div", {
+  }, [_c("b", [_vm._v("স্থানান্তরিত\n                        এলাকার নাম : ")]), _vm._v(_vm._s(_vm.form.Name_of_the_transferred_area))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("প্রত্যয়নপত্র এর বিষয় :\n                ")]), _vm._v(_vm._s(_vm.form.The_subject_of_the_certificate))]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("প্রত্যয়নপত্র এর বিষয় :\n                    ")]), _vm._v(_vm._s(_vm.form.The_subject_of_the_certificate))]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("পাসপোর্ট নং : ")]), _vm._v(_vm._s(_vm.form.applicant_passport_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -7022,7 +6956,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("বাসিন্দা: ")]), _vm._v(_vm._s(_vm.form.applicant_resident_status))]), _vm._v(" "), _vm.form.sonod_name != "ট্রেড লাইসেন্স" ? _c("div", {
     staticClass: "col-md-12 col-12 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকৃত প্রত্যয়নের\n                    : "), _c("br")]), _vm._v(_vm._s(_vm.form.prottoyon))]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকৃত প্রত্যয়নের\n                        : "), _c("br")]), _vm._v(_vm._s(_vm.form.prottoyon))]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "app-heading"
@@ -7030,7 +6964,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("গ্রাম/মহল্লা: ")]), _vm._v(_vm._s(_vm.form.applicant_present_village))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("রোড/ব্লক/সেক্টর: ")]), _vm._v(_vm._s(_vm.form.applicant_present_road_block_sector) + "\n            ")]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("রোড/ব্লক/সেক্টর: ")]), _vm._v(_vm._s(_vm.form.applicant_present_road_block_sector) + "\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("ওয়ার্ড নং: ")]), _vm._v(_vm._s(_vm.form.applicant_present_word_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -9193,8 +9127,8 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl = '/public/'; // Vue.prototype.$asseturl = '/'
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withWWW = 4;
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withOutWWW = 3;
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withWWW = 2;
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withOutWWW = 1;
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$localStorage = localStorage;
 window.ASSETURL = vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl; // Vue.prototype.$appName = process.env.MIX_FILE_PATH
 // console.log(process.env.MIX_FILE_PATH)

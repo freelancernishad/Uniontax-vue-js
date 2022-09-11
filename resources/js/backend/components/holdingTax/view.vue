@@ -78,7 +78,8 @@
     <tr>
         <th>সাল</th>
         <th>বকেয়া</th>
-        <th></th>
+        <th>Status</th>
+        <th>রশিদ</th>
     </tr>
 </thead>
 
@@ -92,6 +93,8 @@
         <td v-if="bok.status=='Paid'"><span class="btn btn-success" >Paid</span></td>
 
          <td v-else><button @click="paynow(bok.id)" class="btn btn-info" >Pay Now</button></td>
+
+         <td><a :href="'/holding/tax/invoice/'+bok.id" class="btn btn-info" >রশিদ</a></td>
 
 
     </tr>

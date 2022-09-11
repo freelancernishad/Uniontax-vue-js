@@ -51,7 +51,11 @@ Route::get('/sonod/{name}/{id}', [SonodController::class,'sonodDownload']);
 Route::get('/invoice/{name}/{id}', [SonodController::class,'invoice']);
 Route::get('/document/{name}/{id}', [SonodController::class,'userDocument']);
 Route::get('/pay/holding/tax/{id}', [HoldingtaxController::class,'holding_tax_pay_Online']);
+
 Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSuccess']);
+
+Route::get('/holding/tax/invoice/{id}', [HoldingtaxController::class,'holdingPaymentInvoice']);
+
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
     Route::get('/{vue_capture?}', function () {
         // return   Auth::user()->roles->permission;
@@ -70,7 +74,7 @@ Route::get('/{vue_capture?}', function () {
 
          $subdomainCount =  count($subdomain);
          $subdomainget = $subdomain[1];
-        if($subdomainCount>4){
+        if($subdomainCount>2){
             $sub = true;
         }else{
             $sub = false;
@@ -82,7 +86,7 @@ Route::get('/{vue_capture?}', function () {
         $subdomainCount =  count($subdomain);
         $subdomainget = $subdomain[0];
 
-        if($subdomainCount>3){
+        if($subdomainCount>1){
             $sub = true;
         }else{
             $sub = false;

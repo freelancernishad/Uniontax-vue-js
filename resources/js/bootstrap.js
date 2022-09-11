@@ -4,8 +4,8 @@ Vue.prototype.$asseturl = '/public/'
 // Vue.prototype.$asseturl = '/'
 
 
-Vue.prototype.$withWWW = 4
-Vue.prototype.$withOutWWW = 3
+Vue.prototype.$withWWW = 2
+Vue.prototype.$withOutWWW = 1
 
 Vue.prototype.$localStorage = localStorage
 window.ASSETURL = Vue.prototype.$asseturl
