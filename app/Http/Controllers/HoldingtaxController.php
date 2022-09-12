@@ -45,7 +45,7 @@ class HoldingtaxController extends Controller
             }else{
 
                 $invoice=[
-                    'invoiceId'=>'sdfsdf',
+                    'invoiceId'=>time(),
                     'holdingTax_id'=>$holdingTax_id,
                     'PayYear'=>date('Y'),
                     'totalAmount'=>$holdingBokeyasAmount,
@@ -75,7 +75,7 @@ class HoldingtaxController extends Controller
          }else{
 
              $invoice=[
-                 'invoiceId'=>'sdfsdf',
+                 'invoiceId'=>time(),
                  'holdingTax_id'=>$holdingTax_id,
                  'PayYear'=>$payYear,
                  'totalAmount'=>$holdingBokeyasAmount,
