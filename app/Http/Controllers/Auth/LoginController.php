@@ -66,13 +66,13 @@ class LoginController extends Controller
 
 
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return sent_error('validation error', $validator->errors(), 422);
-        }
+        // $validator = Validator::make($request->all(), [
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+        // if ($validator->fails()) {
+        //     return sent_error('validation error', $validator->errors(), 422);
+        // }
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {

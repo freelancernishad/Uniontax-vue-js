@@ -1199,4 +1199,43 @@ $total_bokeya = 0;
 
 
     }
+
+
+    public function holdingSearch(Request $r)
+    {
+
+
+
+
+
+
+
+		 $data['userdata']='';
+
+     		$uniounName = $r->session()->get('unioun');
+		$data['uniounInfo'] =  DB::table('unioun_infos')->where('short_name_e',$uniounName)->get();
+
+       $data['unioun_infos'] = DB::table('unioun_infos')->get();
+		 if($r->session()->has('unioun')){
+			$unionName = $r->session()->get('unioun');
+		$wheredata = [
+		   'unioun'=>'none',
+
+		];
+			$data['result'] = DB::table('holdingtaxs')->where($wheredata)->get();
+			return view('holdingtax', $data);
+		 }else{
+
+			 	$wheredata = [
+		   'unioun'=>'none',
+
+		];
+
+			$data['result'] = DB::table('holdingtaxs')->where($wheredata)->get();
+			return view('holdingtaxM', $data);
+		 }
+
+    }
+
+
 }

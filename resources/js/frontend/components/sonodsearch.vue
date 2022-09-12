@@ -3,7 +3,7 @@
         <div class="mainBody col-md-9 mt-3">
             <form method="POST" @submit.stop.prevent="onSubmit">
                 <div class="form-group">
-                    <label for="">সনদ</label>
+                    <label for="">সনদের ধরন নির্বাচন করুন</label>
                     <select v-model="form.sonod_name" id="sonod" class="form-control" required>
                         <option value="">চিহ্নিত করুন</option>
                         <option v-for="(sonod, r) in SonodNames" :key="'dropdown' + r" :value="sonod.bnname">{{
@@ -12,7 +12,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">সনদ নাম্বার</label>
+                    <label for="">ইস্যুকৃত সনদ নম্বর লিখুন</label>
                     <input type="text" v-model="form.sonod_Id" id="sonodNo" class="form-control" required />
                 </div>
                 <div class="form-group text-center">

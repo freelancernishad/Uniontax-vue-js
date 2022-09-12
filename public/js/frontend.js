@@ -2096,11 +2096,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     if (User.loggedIn()) {
-      window.location.href = '/dashboard';
+      window.location.href = "/dashboard";
     }
 
-    if (localStorage.getItem('login')) {
-      this.form = JSON.parse(localStorage.getItem('login'));
+    if (localStorage.getItem("login")) {
+      this.form = JSON.parse(localStorage.getItem("login"));
       this.rememberme = true;
     }
   },
@@ -2115,8 +2115,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       rememberme: false,
       emptyFields: false,
       form: {
-        email: '',
-        password: ''
+        email: "",
+        password: ""
       },
       errors: {}
     };
@@ -2136,9 +2136,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.emptyFields = true;
                 } else {
                   if (_this.rememberme) {
-                    localStorage.setItem('login', JSON.stringify(_this.form));
+                    localStorage.setItem("login", JSON.stringify(_this.form));
                   } else {
-                    localStorage.removeItem('login');
+                    localStorage.removeItem("login");
                   } // var res = await this.callApi('post','/login',this.form);
                   //    console.log(res)
                   //     if(res.status==200){
@@ -2152,17 +2152,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   //     }
 
 
-                  axios.post('/login', _this.form).then(function (res) {
+                  axios.post("/login", _this.form).then(function (res) {
                     console.log(res);
 
                     if (res.data == 0) {
-                      Notification.customError('Please Enter Valid Email and Password');
+                      Notification.customError("Please Enter Valid Email and Password");
                       _this.loadLogin = false;
                     } else {
                       User.responseAfterLogin(res);
-                      Notification.customSuccess('Signed in successfully Complete');
+                      Notification.customSuccess("Signed in successfully Complete");
                       _this.loadLogin = false;
-                      window.location.href = '/dashboard';
+                      window.location.href = "/dashboard";
                     } // User.responseAfterLogin(res)
                     // Notification.customSuccess('Signed in successfully Complete');
                     // // this.$router.push({name: 'home'})
@@ -2185,7 +2185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     blur: function blur(id) {
       var child = document.getElementById(id);
 
-      if (this.form[id] == '') {
+      if (this.form[id] == "") {
         child.parentNode.classList.remove("blursuccess");
         child.parentNode.classList.add("blurerror");
       } else {
@@ -3151,20 +3151,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: '',
         message: ''
       },
+      form: {
+        userdata: ''
+      },
       rows: {},
       isSending: false
     };
   },
   created: function created() {
-    var _this = this;
-
-    setTimeout(function () {
-      _this.list();
+    setTimeout(function () {// this.list();
     }, 3000);
   },
   methods: {
     list: function list() {
-      var _this2 = this;
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var res;
@@ -3173,11 +3173,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this2.callApi('get', "/api/holding/tax/list?union=".concat(_this2.getUnion), []);
+                return _this.callApi('get', "/api/holding/tax/list?union=".concat(_this.getUnion), []);
 
               case 2:
                 res = _context.sent;
-                _this2.rows = res.data;
+                _this.rows = res.data;
 
               case 4:
               case "end":
@@ -3186,7 +3186,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    }
+    } // async formSubmit(){
+    //     var res =
+    // }
+
   }
 });
 
@@ -4332,9 +4335,10 @@ var render = function render() {
     staticClass: "container-fluid h-custom"
   }, [_c("div", {
     staticClass: "row d-flex justify-content-center align-items-center h-100"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "col-md-8 col-lg-6 col-xl-4 offset-xl-1"
+  }, [_c("div", {
+    staticClass: "col-md-12 col-lg-12 col-xl-12 offset-xl-1"
   }, [_c("form", {
+    staticClass: "loginForm",
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -4345,7 +4349,7 @@ var render = function render() {
     staticClass: "form"
   }, [_c("h1", {
     staticClass: "text-center mb-5"
-  }, [_vm._v("Login")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("লগইন")]), _vm._v(" "), _c("div", {
     staticClass: "form-item",
     attrs: {
       id: "inputEmail"
@@ -4460,7 +4464,7 @@ var render = function render() {
     attrs: {
       "for": "form2Example3"
     }
-  }, [_vm._v("\r\n                Remember me\r\n              ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    Remember me\n                                ")])])]), _vm._v(" "), _c("div", {
     staticClass: "text-center text-lg-start mt-4 pt-2"
   }, [!_vm.loadLogin ? _c("button", {
     staticClass: "btn btn-primary btn-lg",
@@ -4471,29 +4475,29 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Login")]) : _c("span", {
+  }, [_vm._v("\n                                লগইন\n                            ")]) : _c("span", {
     staticClass: "btn btn-primary btn-lg",
     staticStyle: {
       "padding-left": "2.5rem",
       "padding-right": "2.5rem"
     }
-  }, [_vm._v("Looding.....")])])])])])])]);
+  }, [_vm._v("Looding.....")])]), _vm._v(" "), _c("div", {
+    staticClass: "text-center mt-3"
+  }, [_c("img", {
+    attrs: {
+      width: "50px",
+      src: _vm.$asseturl + "assets/img/bangladesh-govt.png",
+      alt: ""
+    }
+  }), _vm._v(" "), _c("h4", {
+    staticStyle: {
+      margin: "0",
+      "margin-top": "10px"
+    }
+  }, [_vm._v("উপজেলা প্রশাসন")]), _vm._v("\n                                    তেঁতুলিয়া, পঞ্চগড়।\n\t\t\t\t\t\t\t\t")])])])])])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "col-md-9 col-lg-6 col-xl-5"
-  }, [_c("img", {
-    staticClass: "img-fluid",
-    attrs: {
-      src: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp",
-      alt: "Sample image"
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -7144,9 +7148,48 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "mainBody col-md-9 mt-3"
-  }, [_c("table", {
+  }, [_c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.formSubmit.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "d-flex"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.userdata,
+      expression: "form.userdata"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "userdata",
+      placeholder: "এখানে আপনার হোল্ডিং নং/নাম/জাতীয় পরিচয় পত্র নম্বর/মোবাইল নম্বর (যে কোন একটি তথ্য) এন্ট্রি করুন",
+      required: ""
+    },
+    domProps: {
+      value: _vm.form.userdata
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "userdata", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("table", {
     staticClass: "table"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.rows, function (row, index) {
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.rows, function (row, index) {
     return _c("tr", [_c("td", [_vm._v(_vm._s(row.holding_no))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(row.maliker_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(row.nid_no))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(row.mobile_no))]), _vm._v(" "), _c("td", [_vm.buttonLoader ? _c("span", {
       staticClass: "btn btn-info mr-1 mt-1",
       attrs: {
@@ -7173,6 +7216,18 @@ var render = function render() {
 };
 
 var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "form-group text-center"
+  }, [_c("button", {
+    staticClass: "btn btn-info text-center",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("খুঁজুন")])]);
+}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -7658,7 +7713,7 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("span", [_c("b", [_vm._v("জসীম উদ্দীন হায়দার")])]);
+  return _c("span", [_c("b", [_vm._v("জনাব মো: জহুরুল ইসলাম")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -7804,34 +7859,7 @@ var render = function render() {
         name: "home"
       }
     }
-  }, [_vm._v("ইউপি সেবা পরিচিতি\n                                            ")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item dropdown"
-  }, [_c("a", {
-    staticClass: "nav-link dropdown-toggle",
-    attrs: {
-      href: "#",
-      id: "navbarDropdown",
-      role: "button",
-      "data-toggle": "dropdown",
-      "aria-haspopup": "true",
-      "aria-expanded": "false"
-    }
-  }, [_vm._v("বার্তা")]), _vm._v(" "), _c("div", {
-    staticClass: "dropdown-menu",
-    attrs: {
-      "aria-labelledby": "navbarDropdown"
-    }
-  }, [_c("router-link", {
-    staticClass: "dropdown-item",
-    attrs: {
-      to: "/hello"
-    }
-  }, [_vm._v("জেলা প্রশাসকের বার্তা\n                                                ")]), _vm._v(" "), _c("router-link", {
-    staticClass: "dropdown-item",
-    attrs: {
-      to: "/hello2"
-    }
-  }, [_vm._v("উপজেলা নির্বাহী অফিসারের\n                                                    বার্তা")])], 1)]), _vm._v(" "), _vm.getType == "main" ? _c("li", {
+  }, [_vm._v("ইউপি সেবা পরিচিতি\n                                            ")])], 1), _vm._v(" "), _vm.getType == "main" ? _c("li", {
     staticClass: "nav-item dropdown"
   }, [_c("a", {
     staticClass: "nav-link dropdown-toggle",
@@ -7981,7 +8009,7 @@ var render = function render() {
       onmouseout: "this.start();",
       scrolldelay: "100"
     }
-  }, [_vm._v(" Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas delectus provident iste,\n                    eligendi ipsum pariatur soluta officia tenetur velit odio quo hic, numquam minus ratione, quae\n                    dolore ad molestiae suscipit! ")]), _vm._v(" "), _vm._t("default"), _vm._v(" "), _vm._m(3)], 2), _vm._v(" "), _c("footer", [_c("div", {
+  }, [_vm._v(" ইউনিয়ন পরিষদের ডিজিটাল অনলাইন সেবা সিস্টেম uniontax.gov.bd –তে আপনাকে স্বাগতম। ")]), _vm._v(" "), _vm._t("default"), _vm._v(" "), _vm._m(3)], 2), _vm._v(" "), _c("footer", [_c("div", {
     staticClass: "footer_top_bg",
     staticStyle: {
       background: "url('/public/assets/img/footer_top_bg.png')",
@@ -8956,7 +8984,7 @@ var render = function render() {
     attrs: {
       "for": ""
     }
-  }, [_vm._v("সনদ")]), _vm._v(" "), _c("select", {
+  }, [_vm._v("সনদের ধরন নির্বাচন করুন")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -8997,7 +9025,7 @@ var render = function render() {
     attrs: {
       "for": ""
     }
-  }, [_vm._v("সনদ নাম্বার")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("ইস্যুকৃত সনদ নম্বর লিখুন")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -26750,7 +26778,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nsection.vh-100[data-v-2a1c1b9c] {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%,-50%);\r\n    width: 100%;\n}\n.blurerror input[data-v-2a1c1b9c] {\r\n    border: 1px solid red !important;\n}\n.blurerror label[data-v-2a1c1b9c] {\r\n    color:red !important;\n}\n.blursuccess input[data-v-2a1c1b9c] {\r\n    border: 1px solid green !important;\n}\n.blursuccess label[data-v-2a1c1b9c] {\r\n    color:green !important;\n}\n.divider[data-v-2a1c1b9c]:after,\r\n.divider[data-v-2a1c1b9c]:before {\r\ncontent: \"\";\r\nflex: 1;\r\nheight: 1px;\r\nbackground: #eee;\n}\n*[data-v-2a1c1b9c],\r\n*[data-v-2a1c1b9c]:focus{outline: none}\r\n\r\n/* .form{\r\n  width: 500px;\r\n  margin: 0 auto;\r\n  margin-top: 150px;\r\n  font-family: sans-serif;\r\n  background: #fff\r\n} */\n.form-item[data-v-2a1c1b9c]{\r\n  position: relative;\r\n  margin-bottom: 15px\n}\n.form-item input[data-v-2a1c1b9c]{\r\n  display: block;\r\n  width: 100%;\r\n  height: 40px;\r\n  background: transparent;\r\n  border: solid 1px #ccc;\r\n  transition: all .3s ease;\r\n  padding: 0 15px\n}\n.form-item input[data-v-2a1c1b9c]:focus{\r\n  border-color: blue\n}\n.form-item label[data-v-2a1c1b9c]{\r\n  position: absolute;\r\n  cursor: text;\r\n  z-index: 2;\r\n  top: 13px;\r\n  left: 10px;\r\n  font-size: 12px;\r\n  font-weight: bold;\r\n  background: #fff;\r\n  padding: 0 10px;\r\n  color: #999;\r\n  transition: all .3s ease\n}\n.form-item input:focus + label[data-v-2a1c1b9c],\r\n.form-item input:valid + label[data-v-2a1c1b9c]{\r\n  font-size: 11px;\r\n  top: -5px\n}\n.form-item input:focus + label[data-v-2a1c1b9c]{\r\n  color: blue\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nsection.vh-100[data-v-2a1c1b9c] {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    width: 100%;\n}\n.blurerror input[data-v-2a1c1b9c] {\n    border: 1px solid red !important;\n}\n.blurerror label[data-v-2a1c1b9c] {\n    color: red !important;\n}\n.blursuccess input[data-v-2a1c1b9c] {\n    border: 1px solid green !important;\n}\n.blursuccess label[data-v-2a1c1b9c] {\n    color: green !important;\n}\n.divider[data-v-2a1c1b9c]:after,\n.divider[data-v-2a1c1b9c]:before {\n    content: \"\";\n    flex: 1;\n    height: 1px;\n    background: #eee;\n}\n*[data-v-2a1c1b9c],\n*[data-v-2a1c1b9c]:focus {\n    outline: none;\n}\n\n/* .form{\n  width: 500px;\n  margin: 0 auto;\n  margin-top: 150px;\n  font-family: sans-serif;\n  background: #fff\n} */\n.form-item[data-v-2a1c1b9c] {\n    position: relative;\n    margin-bottom: 15px;\n}\n.form-item input[data-v-2a1c1b9c] {\n    display: block;\n    width: 100%;\n    height: 40px;\n    background: transparent;\n    border: solid 1px #ccc;\n    transition: all 0.3s ease;\n    padding: 0 15px;\n}\n.form-item input[data-v-2a1c1b9c]:focus {\n    border-color: blue;\n}\n.form-item label[data-v-2a1c1b9c] {\n    position: absolute;\n    cursor: text;\n    z-index: 2;\n    top: 13px;\n    left: 10px;\n    font-size: 12px;\n    font-weight: bold;\n    background: #fff;\n    padding: 0 10px;\n    color: #999;\n    transition: all 0.3s ease;\n}\n.form-item input:focus+label[data-v-2a1c1b9c],\n.form-item input:valid+label[data-v-2a1c1b9c] {\n    font-size: 11px;\n    top: -5px;\n}\n.form-item input:focus+label[data-v-2a1c1b9c] {\n    color: blue;\n}\n.loginForm[data-v-2a1c1b9c][data-v-2a1c1b9c] {\n    width: 352px !important;\n    margin: 0 auto;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%,-50%);\n}\n.col-md-12.col-lg-12.col-xl-12.offset-xl-1[data-v-2a1c1b9c] {\n    height: 100vh;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26894,7 +26922,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.contact-form {\n\tfont-family: 16px;\n\tmargin: 0 auto;\n\tmax-width: 600px;\n\twidth: 100%;\n}\n.contact-form .separator {\n\tborder-bottom: solid 1px #ccc;\n\tmargin-bottom: 15px;\n}\n.contact-form .form {\n\tdisplay: flex;\n\tflex-direction: column;\n\tfont-size: 16px;\n}\n.contact-form_title {\n\tcolor: #333;\n\ttext-align: left;\n\tfont-size: 28px;\n}\n.contact-form textarea {\n\tresize: none;\n}\n.contact-form .button {\n\tbackground: #da552f;\n\tborder: solid 1px #da552f;\n\tcolor: white;\n\tcursor: pointer;\n\tpadding: 10px 50px;\n\ttext-align: center;\n\ttext-transform: uppercase;\n}\n.contact-form .button:hover {\n\tbackground: #ea532a;\n\tborder: solid 1px #ea532a;\n}\n.contact-form input[type=\"email\"],\n.contact-form input[type=\"text\"],\n.contact-form textarea,\n.contact-form .button {\n\tfont-size: 15px;\n\tborder-radius: 3px\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.contact-form {\n    font-family: 16px;\n    margin: 0 auto;\n    max-width: 600px;\n    width: 100%;\n}\n.contact-form .separator {\n    border-bottom: solid 1px #ccc;\n    margin-bottom: 15px;\n}\n.contact-form .form {\n    display: flex;\n    flex-direction: column;\n    font-size: 16px;\n}\n.contact-form_title {\n    color: #333;\n    text-align: left;\n    font-size: 28px;\n}\n.contact-form textarea {\n    resize: none;\n}\n.contact-form .button {\n    background: #da552f;\n    border: solid 1px #da552f;\n    color: white;\n    cursor: pointer;\n    padding: 10px 50px;\n    text-align: center;\n    text-transform: uppercase;\n}\n.contact-form .button:hover {\n    background: #ea532a;\n    border: solid 1px #ea532a;\n}\n.contact-form input[type=\"email\"],\n.contact-form input[type=\"text\"],\n.contact-form textarea,\n.contact-form .button {\n    font-size: 15px;\n    border-radius: 3px\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27062,7 +27090,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/*form styles*/\n#msform {\r\n    text-align: center;\r\n    position: relative;\r\n    margin-top: 20px;\n}\r\n/*progressbar*/\n#progressbar {\r\n    margin-bottom: 30px;\r\n    overflow: hidden;\r\n    color: lightgrey;\n}\n#progressbar .active {\r\n    color: #000000;\n}\n#progressbar li {\r\n    list-style-type: none;\r\n    font-size: 12px;\r\n    width: 20%;\r\n    float: left;\r\n    position: relative;\n}\r\n/*Icons in the ProgressBar*/\n#progressbar #account:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\n#progressbar #personal:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\n#progressbar #payment:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\n#progressbar #confirm:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\r\n/*ProgressBar before any progress*/\n#progressbar li:before {\r\n    width: 50px;\r\n    height: 50px;\r\n    line-height: 45px;\r\n    display: block;\r\n    font-size: 18px;\r\n    color: #ffffff;\r\n    background: lightgray;\r\n    border-radius: 50%;\r\n    margin: 0 auto 10px auto;\r\n    padding: 2px;\n}\r\n/*ProgressBar connectors*/\n#progressbar li:after {\r\n    content: '';\r\n    width: 100%;\r\n    height: 2px;\r\n    background: lightgray;\r\n    position: absolute;\r\n    left: 0;\r\n    top: 25px;\r\n    z-index: -1;\n}\r\n/*Color number of the step and the connector before it*/\n#progressbar li.active:before,\r\n#progressbar li.active:after {\r\n    background: skyblue;\n}\r\n/*Imaged Radio Buttons*/\n.radio-group {\r\n    position: relative;\r\n    margin-bottom: 25px;\n}\n.radio {\r\n    display: inline-block;\r\n    width: 204;\r\n    height: 104;\r\n    border-radius: 0;\r\n    background: lightblue;\r\n    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);\r\n    box-sizing: border-box;\r\n    cursor: pointer;\r\n    margin: 8px 2px;\n}\n.radio:hover {\r\n    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);\n}\n.radio.selected {\r\n    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);\n}\r\n/*Fit image in bootstrap div*/\n.fit-image {\r\n    width: 100%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/*form styles*/\n#msform {\n    text-align: center;\n    position: relative;\n    margin-top: 20px;\n}\n/*progressbar*/\n#progressbar {\n    margin-bottom: 30px;\n    overflow: hidden;\n    color: lightgrey;\n}\n#progressbar .active {\n    color: #000000;\n}\n#progressbar li {\n    list-style-type: none;\n    font-size: 12px;\n    width: 20%;\n    float: left;\n    position: relative;\n}\n/*Icons in the ProgressBar*/\n#progressbar #account:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n#progressbar #personal:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n#progressbar #payment:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n#progressbar #confirm:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n/*ProgressBar before any progress*/\n#progressbar li:before {\n    width: 50px;\n    height: 50px;\n    line-height: 45px;\n    display: block;\n    font-size: 18px;\n    color: #ffffff;\n    background: lightgray;\n    border-radius: 50%;\n    margin: 0 auto 10px auto;\n    padding: 2px;\n}\n/*ProgressBar connectors*/\n#progressbar li:after {\n    content: '';\n    width: 100%;\n    height: 2px;\n    background: lightgray;\n    position: absolute;\n    left: 0;\n    top: 25px;\n    z-index: -1;\n}\n/*Color number of the step and the connector before it*/\n#progressbar li.active:before,\n#progressbar li.active:after {\n    background: skyblue;\n}\n/*Imaged Radio Buttons*/\n.radio-group {\n    position: relative;\n    margin-bottom: 25px;\n}\n.radio {\n    display: inline-block;\n    width: 204;\n    height: 104;\n    border-radius: 0;\n    background: lightblue;\n    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);\n    box-sizing: border-box;\n    cursor: pointer;\n    margin: 8px 2px;\n}\n.radio:hover {\n    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);\n}\n.radio.selected {\n    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);\n}\n/*Fit image in bootstrap div*/\n.fit-image {\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -101,6 +101,10 @@ p.help.text-right {
 
 }
 
+.middleHeaderItem.col-md-6.mb-3 {
+    z-index: 1;
+}
+
 
 </style>
 
@@ -147,7 +151,7 @@ p.help.text-right {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.0.2') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.0.3') }}" async ></script>
 
 <script>
     // function linkrun(linkdata){

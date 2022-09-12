@@ -52,6 +52,9 @@
                                             <router-link class="nav-link" :to="{ name: 'home' }">ইউপি সেবা পরিচিতি
                                             </router-link>
                                         </li>
+
+<!--
+
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -62,7 +65,7 @@
                                                 <router-link class="dropdown-item" to="/hello2">উপজেলা নির্বাহী অফিসারের
                                                     বার্তা</router-link>
                                             </div>
-                                        </li>
+                                        </li> -->
 
 
 
@@ -154,9 +157,7 @@
                 <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="100" style="background: var(--defaultColor);
 color: white;
 font-size: 18px;
-padding: 3px 11px;"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas delectus provident iste,
-                    eligendi ipsum pariatur soluta officia tenetur velit odio quo hic, numquam minus ratione, quae
-                    dolore ad molestiae suscipit! </marquee>
+padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটাল অনলাইন সেবা সিস্টেম uniontax.gov.bd –তে আপনাকে স্বাগতম। </marquee>
                 <slot></slot>
                 <div class="row">
                     <div class="col-md-12 mt-3 mb-3">

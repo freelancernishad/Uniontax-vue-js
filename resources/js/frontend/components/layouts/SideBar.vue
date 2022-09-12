@@ -7,7 +7,7 @@
                     <img width="70%" alt="" :src="$asseturl+'assets/img/DC-Panchagarh.png'" />
                 </p>
                 <div class="contactInfo text-center" v-if="getType=='main'" >
-                    <span><b>জসীম উদ্দীন হায়দার</b></span> <br />
+                    <span><b>জনাব মো: জহুরুল ইসলাম</b></span> <br />
                     <span><b>জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট</b></span> <br />
                 </div>
 
