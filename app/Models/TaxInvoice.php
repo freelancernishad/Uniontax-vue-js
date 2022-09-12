@@ -14,5 +14,6 @@ class TaxInvoice extends Model
        'holdingTax_id',
        'PayYear',
        'totalAmount',
+       'status',
     ];
 }

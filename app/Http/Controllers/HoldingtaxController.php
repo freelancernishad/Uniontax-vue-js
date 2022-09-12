@@ -15,41 +15,107 @@ class HoldingtaxController extends Controller
     public function holdingPaymentInvoice(Request $request,$id)
     {
 
-        $holdingBokeya = HoldingBokeya::find($id);
+         $holdingBokeya = HoldingBokeya::find($id);
+
+
         $payYear = $holdingBokeya->payYear;
         $holdingTax_id = $holdingBokeya->holdingTax_id;
         $holdingTax = Holdingtax::find($holdingTax_id);
         $union = $holdingTax->unioun;
         $unions = Uniouninfo::where(['short_name_e'=>$union])->first();
-        $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->get();
 
-        $holdingBokeyasAmount = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->sum('price');
 
-        $TaxInvoicecount =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->count();
 
-        if($TaxInvoicecount>0){
-               $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->first();
-               $invoice=[
-                'totalAmount'=>$holdingBokeyasAmount,
-                ];
-               $TaxInvoice->update($invoice);
+
+       if($holdingBokeya->status=='Unpaid'){
+
+            $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->get();
+           $holdingBokeyasAmount = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->sum('price');
+            $TaxInvoicecount =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->count();
+
+           if($TaxInvoicecount>0){
+            $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->first();
+            $invoice=[
+             'totalAmount'=>$holdingBokeyasAmount,
+             ];
+            $TaxInvoice->update($invoice);
+     }else{
+
+         $invoice=[
+             'invoiceId'=>'sdfsdf',
+             'holdingTax_id'=>$holdingTax_id,
+             'PayYear'=>date('Y'),
+             'totalAmount'=>$holdingBokeyasAmount,
+             'status'=>'Unpaid',
+         ];
+         TaxInvoice::create($invoice);
+     }
+
+     $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear,'status'=>'Unpaid'])->first();
+
+
+
         }else{
 
-            $invoice=[
-                'invoiceId'=>'sdfsdf',
-                'holdingTax_id'=>$holdingTax_id,
-                'PayYear'=>$payYear,
-                'totalAmount'=>$holdingBokeyasAmount,
-            ];
-            TaxInvoice::create($invoice);
+            $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->get();
+            $holdingBokeyasAmount = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->sum('price');
+            $TaxInvoicecount =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->count();
+
+
+            if($TaxInvoicecount>0){
+                $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->first();
+                $invoice=[
+                 'totalAmount'=>$holdingBokeyasAmount,
+                 ];
+                $TaxInvoice->update($invoice);
+         }else{
+
+             $invoice=[
+                 'invoiceId'=>'sdfsdf',
+                 'holdingTax_id'=>$holdingTax_id,
+                 'PayYear'=>$payYear,
+                 'totalAmount'=>$holdingBokeyasAmount,
+                 'status'=>'Paid',
+             ];
+             TaxInvoice::create($invoice);
+         }
+
+         $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear,'status'=>'Paid'])->first();
+
+
         }
 
-        $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->first();
+
+
+
+
+
+
+
+
+
+
+
 
         $holdingTax = Holdingtax::find($TaxInvoice->holdingTax_id);
         $union = $holdingTax->unioun;
         $unions = Uniouninfo::where(['short_name_e'=>$union])->first();
-        $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->get();
+
+        if($holdingBokeya->status=='Unpaid'){
+            $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->get();
+            $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid','year'=>'2022-2023'])->sum('price');
+            $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->where('year','!=','2022-2023')->sum('price');
+        }else{
+
+
+            $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->get();
+            $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear,'year'=>'2022-2023'])->sum('price');
+            $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->where('year','!=','2022-2023')->sum('price');
+        }
+
+
+// return $previousamount;
+
 
         // die();
         $amounts = number_format($TaxInvoice->totalAmount,2);
@@ -57,10 +123,13 @@ class HoldingtaxController extends Controller
         $numto = new NumberToBangla();
         $amount = $numto->bnMoney((float)$amounts);
 
+
+
+// return $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount);
         $fileName = 'Invoice-'.date('Y-m-d H:m:s');
         $data['fileName'] = $fileName;
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
-        $mpdf->WriteHTML( $this->invoice1($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice));
+        $mpdf->WriteHTML( $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount));
         $mpdf->Output($fileName,'I');
 
     }
@@ -72,7 +141,483 @@ class HoldingtaxController extends Controller
 
 
 
-    public function invoice1($customers,$unions,$amount,$bokeyas,$float,$TaxInvoice){
+    public function invoice($customers,$unions,$amount,$bokeyas,$float,$TaxInvoice,$currentamount=0,$previousamount=0){
+
+        $full_name = $unions->full_name;
+        $short_name_b = $unions->short_name_b;
+        $thana = $unions->thana;
+        $district = $unions->district;
+
+
+        $holding_no = $customers->holding_no;
+        $maliker_name = $customers->maliker_name;
+        $father_or_samir_name = $customers->father_or_samir_name;
+        $gramer_name = $customers->gramer_name;
+        $word_no = $customers->word_no;
+        $mobile_no = $customers->mobile_no;
+
+        $invoiceId = $TaxInvoice->invoiceId;
+        $status = $TaxInvoice->status;
+        $created_at = date("d/m/Y", strtotime($TaxInvoice->created_at));
+        $subtotal = number_format($TaxInvoice->totalAmount,2);
+
+        // <div style='text-align:right'>(ডিলারের কপি)</div>
+        $html = "
+
+        <style>
+        @page {
+            margin: 10px;
+           }
+
+        .memoborder{
+            width: 48%;
+        }
+
+        .memo {
+        //    width: 500px;
+        //    margin:0 auto;
+        //    padding:20px;
+            background: white;
+
+        }
+
+
+
+        .memoHead {
+            text-align: center;
+            color:black
+        }
+        .companiname {
+            margin:0;
+        }
+        p {
+
+            color:black;
+            margin:0;
+
+        }div {
+
+            color:black;
+            margin:0;
+
+        }
+        p.defalttext.address {
+            background:black;
+            width: 269px;
+            margin: 0 auto;
+            color: white;
+            border-radius: 50px;
+            padding: 2px 0px;
+        }
+        p.defalttext {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0;
+            /* transform: scaleX(1.2); */
+
+        }
+
+
+        .thead .tr {
+            color: black;
+        }
+        .thead .tr .th {
+            color: black;
+        }
+
+        .tr {
+            border: 1px solid black;
+        }
+
+        .th {
+            border: 1px solid black;
+            border-right: 1px solid white;
+        }
+
+        .td {
+            border: 1px solid black;
+        }
+        .table,  .td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          text-align: center;
+          color:black;
+        }.th, {
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+
+        .td {
+            height: 18.5px;
+
+        }
+        .slNo{
+            float: right;
+            width: 300px;
+        }
+
+
+
+.tdlist{
+    height: 200px;
+    vertical-align: top;
+}
+
+        </style>
+
+
+    <div id='body'>
+
+    <div class='memoborder' style='float:left' >
+    <div class='memobg memobg1'>
+            <div class='memo'>
+            <div class='memoHead'>
+
+
+
+            <p class='defalttext'>ইউপি ফরম-১০</p>
+            <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
+            <p class='defalttext'>উপজেলা: $thana, জেলা: $district  </p>
+            <h2 class='companiname'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
+
+            if($status=='Paid'){
+                $html .="            <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: green;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>পরিশোধিত </h2>";
+            }else{
+
+                $html .="           <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: red;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>অপরিশোধিত </h2>";
+            }
+
+
+
+            $html .="
+
+
+
+
+        </div>
+
+        <table style='width:100%'>
+        <tr>
+            <td colspan='2'>অর্থ বছর- ".int_en_to_bn('2022-2023')."</td>
+            <td style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
+        <tr>
+
+        <tr>
+            <td colspan='3'>এসেসমেন্ট/হোল্ডিং নং- ".int_en_to_bn($holding_no)."</td>
+
+        <tr>
+
+        <tr>
+            <td >নাম: $maliker_name </td>
+            <td colspan='2'>পিতার নাম- $father_or_samir_name</td>
+
+        <tr>
+        <tr>
+            <td >ঠিকানা: গ্রাম- $gramer_name,</td>
+            <td >ওয়ার্ড- ".int_en_to_bn($word_no)."</td>
+            <td >ডাকঘর- $short_name_b</td>
+
+        <tr>
+        <tr>
+            <td >উপজেলা: $thana </td>
+            <td >জেলা: $district</td>
+            <td >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
+
+        <tr>
+        </table>
+    <p></p>
+
+
+
+
+                <div class='memobody' style='position: relative;'>
+
+                    <div class='productDetails'>
+                        <table class='table' style='border:1px solid #444B8F;width:100%' cellspacing='0'>
+                            <thead class='thead'>
+                                <tr class='tr'>
+                                    <td class='th defaltfont' colspan='5' width='10%'>আদায়ের বিবরণ</td>
+                                </tr>
+
+                                <tr class='tr'>
+                                    <td class='td defaltfont' width='5%'>ক্র. নং</td>
+                                    <td class='td defaltfont' width='25%'>খাত</td>
+                                    <td class='td defaltfont' width='15%'>বিগত বছরের বকেয়া (যদি থাকে) টাকা</td>
+                                    <td class='td defaltfont' width='15%'>চলতি অর্থ বছরে টাকার পরিমাণ</td>
+                                    <td class='td defaltfont' width='15%'>মোট টাকার পরিমাণ</td>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody class='tbody'>";
+
+
+
+                                    // $totalpay = $orders->pay;
+                                    // $totaldue = $orders->due;
+                                    $index = 1;
+
+                                // $orderDetails = json_decode($orders->Invoices);
+
+
+                                  $html .="  <tr class='tr items'>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>
+                                        <td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($previousamount)."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($currentamount)."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($subtotal)."</td>
+
+                                    </tr>";
+
+                                        $index++;
+
+
+
+
+
+
+
+
+
+                                $html .=" </tbody>
+                            <tfoot class='tfoot'>";
+
+
+
+
+
+                            $html .="
+                            <tr class='tr'>
+                            <td colspan='4' class='defalttext td defaltfont'style='text-align:right;    padding: 0 13px;'><p> মোট </p></td>
+                            <td class='td defaltfont'>".int_en_to_bn($subtotal)."</td>
+                    </tr>
+
+
+                            ";
+
+
+
+
+
+
+
+
+                                $html .=" </tfoot>
+                        </table>
+                        <p style='margin-top:15px;padding:0 15px;' class='defaltfont'>কথায় : $amount</p>
+
+                    </div>
+                </div>
+                <div class='memofooter' style='margin-top:25px'>
+                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>ইউপি সচিব/আদায়কারীর স্বাক্ষর
+                    </br>
+                    তারিখ: ".int_en_to_bn($created_at)."
+                    </p>
+
+                    <p style='float:right;width:30%;text-align:right;padding:10px 15px' class='defaltfont'>ইউপি চেয়ারম্যানের স্বাক্ষর</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+    <div class='memoborder' style='float:right' >
+    <div class='memobg memobg1'>
+            <div class='memo'>
+            <div class='memoHead'>
+
+
+
+            <p class='defalttext'>ইউপি ফরম-১০</p>
+            <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
+            <p class='defalttext'>উপজেলা: $thana, জেলা: $district  </p>
+            <h2 class='companiname'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
+
+            if($status=='Paid'){
+                $html .="            <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: green;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>পরিশোধিত </h2>";
+            }else{
+
+                $html .="           <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: red;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>অপরিশোধিত </h2>";
+            }
+
+
+
+            $html .="
+
+
+
+
+        </div>
+
+        <table style='width:100%'>
+        <tr>
+            <td colspan='2'>অর্থ বছর- ".int_en_to_bn('2022-2023')."</td>
+            <td style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
+        <tr>
+
+        <tr>
+            <td colspan='3'>এসেসমেন্ট/হোল্ডিং নং- ".int_en_to_bn($holding_no)."</td>
+
+        <tr>
+
+        <tr>
+            <td >নাম: $maliker_name </td>
+            <td colspan='2'>পিতার নাম- $father_or_samir_name</td>
+
+        <tr>
+        <tr>
+            <td >ঠিকানা: গ্রাম- $gramer_name,</td>
+            <td >ওয়ার্ড- ".int_en_to_bn($word_no)."</td>
+            <td >ডাকঘর- $short_name_b</td>
+
+        <tr>
+        <tr>
+            <td >উপজেলা: $thana </td>
+            <td >জেলা: $district</td>
+            <td >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
+
+        <tr>
+        </table>
+    <p></p>
+
+
+
+
+                <div class='memobody' style='position: relative;'>
+
+                    <div class='productDetails'>
+                        <table class='table' style='border:1px solid #444B8F;width:100%' cellspacing='0'>
+                            <thead class='thead'>
+                                <tr class='tr'>
+                                    <td class='th defaltfont' colspan='5' width='10%'>আদায়ের বিবরণ</td>
+                                </tr>
+
+                                <tr class='tr'>
+                                    <td class='td defaltfont' width='5%'>ক্র. নং</td>
+                                    <td class='td defaltfont' width='25%'>খাত</td>
+                                    <td class='td defaltfont' width='15%'>বিগত বছরের বকেয়া (যদি থাকে) টাকা</td>
+                                    <td class='td defaltfont' width='15%'>চলতি অর্থ বছরে টাকার পরিমাণ</td>
+                                    <td class='td defaltfont' width='15%'>মোট টাকার পরিমাণ</td>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody class='tbody'>";
+
+
+
+                                    // $totalpay = $orders->pay;
+                                    // $totaldue = $orders->due;
+                                    $index = 1;
+
+                                // $orderDetails = json_decode($orders->Invoices);
+
+
+                                  $html .="  <tr class='tr items'>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>
+                                        <td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($previousamount)."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($currentamount)."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($subtotal)."</td>
+
+                                    </tr>";
+
+                                        $index++;
+
+
+
+
+
+
+
+
+
+                                $html .=" </tbody>
+                            <tfoot class='tfoot'>";
+
+
+
+
+
+                            $html .="
+                            <tr class='tr'>
+                            <td colspan='4' class='defalttext td defaltfont'style='text-align:right;    padding: 0 13px;'><p> মোট </p></td>
+                            <td class='td defaltfont'>".int_en_to_bn($subtotal)."</td>
+                    </tr>
+
+
+                            ";
+
+
+
+
+
+
+
+
+                                $html .=" </tfoot>
+                        </table>
+                        <p style='margin-top:15px;padding:0 15px;' class='defaltfont'>কথায় : $amount</p>
+
+                    </div>
+                </div>
+                <div class='memofooter' style='margin-top:25px'>
+                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>ইউপি সচিব/আদায়কারীর স্বাক্ষর
+                    </br>
+                    তারিখ: ".int_en_to_bn($created_at)."
+                    </p>
+
+                    <p style='float:right;width:30%;text-align:right;padding:10px 15px' class='defaltfont'>ইউপি চেয়ারম্যানের স্বাক্ষর</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+
+        </div>
+
+
+
+        ";
+
+
+        return $html;
+    }
+
+
+
+
+
+    public function invoice1($customers,$unions,$amount,$bokeyas,$float,$TaxInvoice,$currentamount=0,$previousamount=0){
 
         $full_name = $unions->full_name;
         $thana = $unions->thana;
@@ -83,6 +628,7 @@ class HoldingtaxController extends Controller
         $gramer_name = $customers->gramer_name;
 
         $invoiceId = $TaxInvoice->invoiceId;
+        $status = $TaxInvoice->status;
         $created_at = date("d/m/Y", strtotime($TaxInvoice->created_at));
         $subtotal = number_format($TaxInvoice->totalAmount,2);
 
@@ -202,7 +748,7 @@ class HoldingtaxController extends Controller
             <img width='50px' style='margin-top:10px' src='".base64('assets/img/bangladesh-govt.png')."' />
 
             <p class='defalttext'>গণপ্রজাতন্ত্রী বাংলাদেশ</p>
-            <h1 class='companiname'>$full_name</h1>
+            <h1 class='companiname'>$full_name $status</h1>
             <p class='defalttext'>উপজেলা: $thana, জেলা: $district  ।</p>
             <p class='defalttext address'>হোল্ডিং ট্যাক্স </p>
 
@@ -553,7 +1099,7 @@ $total_bokeya = 0;
         $holding =  Holdingtax::create($data);
         $curentdata = [
             'holdingTax_id'=>$holding->id,
-            'year'=>"2022 2023",
+            'year'=>"2022-2023",
             'price'=>$current_year_kor,
             'status'=>'Unpaid'
         ];
