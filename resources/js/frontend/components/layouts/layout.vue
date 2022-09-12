@@ -128,6 +128,8 @@
                                             <router-link class="nav-link" :to="{ name: 'holdingTax' }">হোল্ডিং ট্যাক্স
                                             </router-link>
                                         </li>
+
+<!--
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                 role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -138,7 +140,10 @@
                                                     {{ cat.name }}
                                                 </router-link>
                                             </div>
-                                        </li>
+                                        </li> -->
+
+
+
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'login' }">লগইন</router-link>
                                         </li>

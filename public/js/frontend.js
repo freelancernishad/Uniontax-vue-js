@@ -7956,36 +7956,6 @@ var render = function render() {
       }
     }
   }, [_vm._v("হোল্ডিং ট্যাক্স\n                                            ")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item dropdown"
-  }, [_c("a", {
-    staticClass: "nav-link dropdown-toggle",
-    attrs: {
-      href: "#",
-      id: "navbarDropdown",
-      role: "button",
-      "data-toggle": "dropdown",
-      "aria-haspopup": "true",
-      "aria-expanded": "false"
-    }
-  }, [_vm._v("খবর")]), _vm._v(" "), _c("div", {
-    staticClass: "dropdown-menu",
-    attrs: {
-      "aria-labelledby": "navbarDropdown"
-    }
-  }, _vm._l(_vm.categorys, function (cat, indexs) {
-    return _c("router-link", {
-      key: "cat" + indexs,
-      staticClass: "dropdown-item",
-      attrs: {
-        to: {
-          name: "blogs",
-          params: {
-            name: cat.slug
-          }
-        }
-      }
-    }, [_vm._v("\n                                                    " + _vm._s(cat.name) + "\n                                                ")]);
-  }), 1)]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "nav-link",

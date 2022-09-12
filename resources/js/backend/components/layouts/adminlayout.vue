@@ -116,7 +116,7 @@
 
 
 
-
+<!--
                         <li class="nav-item sidebar-nav-item" :class="{ active: selected == 101 }">
                             <a href="javascript:void(0)" class="nav-link" @click="submenu(101)"><i
                                     class="flaticon-technological"></i><span>Blogs</span>
@@ -139,7 +139,7 @@
                                 </ul>
                             </transition>
                         </li>
-
+ -->
 
 
 
@@ -188,7 +188,7 @@
                         </li>
 
 
-                        <li class="nav-item" @click="submenu(0)" v-if="Users.position != 'Secretary'">
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position != 'Chairman' || Users.position != 'Secretary'">
                             <router-link :to="{ name: 'userlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Users List</span></router-link>
                         </li>
