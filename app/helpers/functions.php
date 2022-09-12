@@ -757,7 +757,7 @@ function base64($Image)
 {
 //  return $Image;
 
-    if(File::exists($Image)){
+    if(File::exists(env('FILE_PATH').$Image)){
 
         $Image= env('FILE_PATH').$Image;
     }else{
