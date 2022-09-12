@@ -111,7 +111,7 @@
 
                         <li class="nav-item" @click="submenu(0)">
                             <router-link :to="{ name: 'Dashboard' }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>Dashboard</span></router-link>
+                                    class="flaticon-dashboard"></i><span>ড্যাশবোর্ড</span></router-link>
                         </li>
 
 
@@ -149,10 +149,19 @@
 
 
 
+                        <li class="nav-item" @click="submenu(0)">
+                            <router-link :to="{ name: 'unionprofile' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>প্রতিবেদন</span></router-link>
+                        </li>
+
+
+
+
+
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
                             <router-link :to="{ name: 'unionprofile' }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>Union Profile</span></router-link>
+                                    class="flaticon-dashboard"></i><span>ইউনিয়ন প্রোফাইল</span></router-link>
                         </li>
 
 
@@ -162,7 +171,8 @@
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
                             <router-link :to="{ name: 'holdingTaxWord' }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>Holding Tax</span></router-link>
+                                    class="flaticon-dashboard"></i><span>হোল্ডিং ট্যাক্স
+                                    </span></router-link>
                         </li>
 
 
@@ -170,7 +180,7 @@
 
                         <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'District_admin'">
                             <router-link :to="{ name: 'charages' }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>Charages</span></router-link>
+                                    class="flaticon-dashboard"></i><span>ফি</span></router-link>
                         </li>
 
 
@@ -186,7 +196,7 @@
                             <router-link :to="{ name: 'sonodlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Sonod List</span></router-link>
                         </li>
-
+<!--
 
                         <li class="nav-item" @click="submenu(0)" v-if="Users.position != 'Chairman' || Users.position != 'Secretary'">
                             <router-link :to="{ name: 'userlist' }" class="nav-link"><i
@@ -198,7 +208,7 @@
                             v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
                             <router-link :to="{ name: 'citizenlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Citizen List</span></router-link>
-                        </li>
+                        </li> -->
 
 
 
@@ -271,12 +281,12 @@
             <div class="dashboard-content-one">
                 <slot></slot>
                 <!-- Footer Area Start Here -->
-                <footer class="footer-wrap-layout1">
+                <!-- <footer class="footer-wrap-layout1">
                     <div class="copyright">© Copyrights <a href="#">Company name</a> 2019. All rights reserved.
                         Developed by <a target="_blank"
                             href="https://api.whatsapp.com/send?phone=8801909756552&text=I%27m%20interested%20in%20your%20services">Freelancer
                             Nishad</a></div>
-                </footer>
+                </footer> -->
                 <!-- Footer Area End Here -->
             </div>
         </div>

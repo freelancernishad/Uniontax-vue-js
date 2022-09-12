@@ -49,7 +49,7 @@
                                             <router-link class="nav-link" :to="{ name: 'home' }">হোম</router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <router-link class="nav-link" :to="{ name: 'home' }">ইউপি সেবা পরিচিতি
+                                            <router-link class="nav-link" :to="{ name: 'upProfile' }">ইউপি সেবা পরিচিতি
                                             </router-link>
                                         </li>
 
@@ -118,7 +118,7 @@
                                             </router-link>
                                         </li>
                                         <li class="nav-item">
-                                            <router-link class="nav-link" :to="{ name: 'home' }">নোটিশ</router-link>
+                                            <router-link class="nav-link" :to="{ name: 'notice' }">নোটিশ</router-link>
                                         </li>
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'contact' }">যোগাযোগ

@@ -10,13 +10,13 @@
                             <div class="form-item" id="inputEmail">
                                 <input type="text" id="email" v-model="form.email" @blur="blur('email')"
                                     @input="blur('email')" autocomplete="on" required />
-                                <label for="Email">Email</label>
+                                <label for="Email">ইমেইল</label>
                             </div>
 
                             <div class="form-item">
                                 <input type="password" id="password" v-model="form.password" @blur="blur('password')"
                                     @input="blur('password')" autocomplete="off" required />
-                                <label for="password">Password</label>
+                                <label for="password">পাসওয়ার্ড</label>
                             </div>
                         </div>
 
@@ -26,7 +26,7 @@
                                 <input class="form-check-input me-2" type="checkbox" v-model="rememberme"
                                     id="form2Example3" />
                                 <label class="form-check-label" for="form2Example3">
-                                    Remember me
+                                    মনে রাখুন
                                 </label>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg" v-if="!loadLogin"
                                 style="padding-left: 2.5rem; padding-right: 2.5rem">
-                                লগইন
+                                লগইন করুন
                             </button>
 
                             <span class="btn btn-primary btn-lg" v-else
@@ -242,7 +242,7 @@ section.vh-100 {
 }
 
 .loginForm[data-v-2a1c1b9c] {
-    width: 352px !important;
+    width: 370px !important;
     margin: 0 auto;
     position: absolute;
     top: 50%;

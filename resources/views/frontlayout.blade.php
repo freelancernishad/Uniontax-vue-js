@@ -19,7 +19,7 @@
 
 
 
-    <title>:: Welcome to Upsheba ::</title>
+    <title>:: ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেম ::</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/bangladesh-govt.png') }}" />
     <!-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet" onload="if(media!=='all')media='all'"> -->
     <!-- CSS only -->
@@ -151,7 +151,7 @@ p.help.text-right {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.0.4') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.0.5') }}" async ></script>
 
 <script>
     // function linkrun(linkdata){

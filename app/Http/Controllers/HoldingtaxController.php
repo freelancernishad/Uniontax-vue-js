@@ -3,10 +3,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Holdingtax;
-use Illuminate\Http\Request;
-use App\Models\HoldingBokeya;
 use App\Models\TaxInvoice;
 use App\Models\Uniouninfo;
+use Illuminate\Http\Request;
+use App\Models\HoldingBokeya;
+use Illuminate\Support\Facades\DB;
 use Rakibhstu\Banglanumber\NumberToBangla;
 
 class HoldingtaxController extends Controller
@@ -1206,34 +1207,25 @@ $total_bokeya = 0;
 
 
 
+        $userdata = $r->userdata;
+
+        $data['userdata']=$userdata;
+
+        $wheredala = [['holding_no', 'like', "%$userdata%"]];
 
 
 
+        return DB::table('holdingtaxes')
 
-		 $data['userdata']='';
+        ->orWhere('holding_no', 'like', "%$userdata%")
+        ->orWhere('maliker_name', 'like', "%$userdata%")
+        ->orWhere('nid_no', 'like', "%$userdata%")
+        ->orWhere('mobile_no', 'like', "%$userdata%")
 
-     		$uniounName = $r->session()->get('unioun');
-		$data['uniounInfo'] =  DB::table('unioun_infos')->where('short_name_e',$uniounName)->get();
+        ->get();
 
-       $data['unioun_infos'] = DB::table('unioun_infos')->get();
-		 if($r->session()->has('unioun')){
-			$unionName = $r->session()->get('unioun');
-		$wheredata = [
-		   'unioun'=>'none',
 
-		];
-			$data['result'] = DB::table('holdingtaxs')->where($wheredata)->get();
-			return view('holdingtax', $data);
-		 }else{
 
-			 	$wheredata = [
-		   'unioun'=>'none',
-
-		];
-
-			$data['result'] = DB::table('holdingtaxs')->where($wheredata)->get();
-			return view('holdingtaxM', $data);
-		 }
 
     }
 

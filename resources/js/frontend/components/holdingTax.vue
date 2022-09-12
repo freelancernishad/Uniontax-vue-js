@@ -19,7 +19,8 @@
                 </div>
 
                 <div class="form-group text-center">
-                    <button type="submit" class="btn btn-info text-center">খুঁজুন</button>
+                    <button type="button" disabled class="btn btn-info text-center" v-if="isSending">Wait...</button>
+                    <button type="submit" class="btn btn-info text-center" v-else>খুঁজুন</button>
 
                 </div>
 
@@ -122,9 +123,12 @@ export default {
 
 
 
-        // async formSubmit(){
-        //     var res =
-        // }
+        async formSubmit(){
+            this.isSending = true
+            var res = await this.callApi('post',`/api/holding/tax/search`,this.form);
+            this.rows = res.data;
+            this.isSending = false
+        }
 
 
 
