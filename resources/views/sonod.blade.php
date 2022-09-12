@@ -144,11 +144,11 @@
                           </div>
                         </td>
                         <td style="text-align: center; width: 200px;" width="30%">
-                            <img width="100px" src="{{ base64($uniouninfo->sonod_logo) }}">
+                            <img width="100px" src="">
                         </td>
                         <td style="text-align: center;" width="40%">
                             <div class="signature text-center position-relative">
-                                <img width="170px"  src="{{ base64($row->chaireman_sign) }}"><br/>
+                                <img width="170px"  src=""><br/>
                                 <b><span style="color:#7230A0;font-size:18px;">{{ $row->chaireman_name }}</span> <br />
                                         </b><span style="font-size:16px;">চেয়ারম্যান</span><br />
 
