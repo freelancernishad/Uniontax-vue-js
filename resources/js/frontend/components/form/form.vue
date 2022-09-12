@@ -829,14 +829,14 @@ export default {
                 // this.checkPayment(datas.id);
                 // this.form['id'] = datas.id;
                 Swal.fire({
-                    title: 'Success',
-                    text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
+                    title: 'অভিনন্দন',
+                    text: `আপনার আবেদনটি সফলভাবে দাখিল হয়েছে`,
                     icon: 'success',
                     confirmButtonColor: 'green',
                     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                    showDenyButton: true,
+                    // showDenyButton: true,
                     showCancelButton: true,
-                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
                     cancelButtonText: 'Back to home',
                     customClass: {
                         actions: 'my-actions',
@@ -888,15 +888,15 @@ export default {
                                     icon: 'success',
                                     confirmButtonColor: 'green',
                                     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                                    showDenyButton: true,
+                                    // showDenyButton: true,
                                     showCancelButton: true,
-                                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
                                     cancelButtonText: 'Back to home',
                                     customClass: {
                                         actions: 'my-actions',
                                         cancelButton: 'order-1 right-gap',
                                         confirmButton: 'order-2',
-                                        denyButton: 'order-3',
+                                        // denyButton: 'order-3',
                                     },
                                     allowOutsideClick: false,
                                     allowEscapeKey: false,
@@ -905,22 +905,25 @@ export default {
                                         window.open(redirect, '_blank');
                                         return false; // Prevent confirmed
                                     },
-                                    preDeny: () => {
-                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                        return false; // Prevent denied
-                                    },
+                                    // preDeny: () => {
+                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                    //     window.open(redirect, '_blank');
+                                    //     return false; // Prevent denied
+                                    // },
                                 }).then(async (result) => {
                                     console.log(result)
                                     if (result.isConfirmed) {
                                         // this.$root.$emit('bv::hide::modal', 'info-modal')
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-                                    } else if (result.isDenied) {
-                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
-                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                    } else if (result.isDismissed) {
+                                    }
+                                    // else if (result.isDenied) {
+                                    //     // this.$root.$emit('bv::hide::modal', 'info-modal')
+                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                    //     window.open(redirect, '_blank');
+                                    // }
+
+                                    else if (result.isDismissed) {
                                         //cancel
                                         this.$router.push({ name: 'home' })
                                     }
@@ -935,15 +938,15 @@ export default {
                                     icon: 'success',
                                     confirmButtonColor: 'green',
                                     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                                    showDenyButton: true,
+                                    // showDenyButton: true,
                                     showCancelButton: true,
-                                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
                                     cancelButtonText: 'Back to home',
                                     customClass: {
                                         actions: 'my-actions',
                                         cancelButton: 'order-1 right-gap',
                                         confirmButton: 'order-2',
-                                        denyButton: 'order-3',
+                                        // denyButton: 'order-3',
                                     },
                                     allowOutsideClick: false,
                                     allowEscapeKey: false,
@@ -952,22 +955,24 @@ export default {
                                         window.open(redirect, '_blank');
                                         return false; // Prevent confirmed
                                     },
-                                    preDeny: () => {
-                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                        return false; // Prevent denied
-                                    },
+                                    // preDeny: () => {
+                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                    //     window.open(redirect, '_blank');
+                                    //     return false; // Prevent denied
+                                    // },
                                 }).then(async (result) => {
                                     console.log(result)
                                     if (result.isConfirmed) {
                                         // this.$root.$emit('bv::hide::modal', 'info-modal')
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
-                                    } else if (result.isDenied) {
-                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
-                                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                    } else if (result.isDismissed) {
+                                    }
+                                    //  else if (result.isDenied) {
+                                    //     // this.$root.$emit('bv::hide::modal', 'info-modal')
+                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                                    //     window.open(redirect, '_blank');
+                                    // }
+                                     else if (result.isDismissed) {
                                         //cancel
                                         this.$router.push({ name: 'home' })
                                     }

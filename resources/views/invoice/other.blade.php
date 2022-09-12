@@ -8,7 +8,12 @@ $khatlist = $row->amount_deails;
         $totalAmount = $khatlist->pesaKor+$total+$amount;
 
     $html = "
-
+    <style>
+        .tdlist{
+    height: 200px;
+    vertical-align: top;
+}
+    </style>
     <table class='table ' style='width:100%;' cellspacing='0' cellpadding='0' border='1' >
   <thead>
     <tr>
@@ -17,21 +22,24 @@ $khatlist = $row->amount_deails;
       <th scope='col'>বিগত বছরের বকেয়া (যদিথাকে) টাকা </th>
       <th scope='col'>বর্তমানে পরিশোধকৃত টাকা </th>
       <th scope='col'>মোট টাকার পরিমাণ</th>
-      <th scope='col'>কর নির্ধারণী তালিকার ক্রমিক নং</th>
+
     </tr>
   </thead>
   <tbody>
 
     <tr>
 
-      <td>".int_en_to_bn($row->khat)."</td>
-      <td>".int_en_to_bn($row->last_years_money)."</td>
-      <td>".int_en_to_bn($row->currently_paid_money)."</td>
+      <td class='tdlist'>".int_en_to_bn($row->khat)."</td>
+      <td class='tdlist'>".int_en_to_bn($row->last_years_money)."</td>
+      <td class='tdlist'>".int_en_to_bn($row->currently_paid_money)."</td>
 
-      <td>".int_en_to_bn($row->total_amount)."</td>
-      <td>".int_en_to_bn($row->applicant_holding_tax_number)."</td>
+      <td class='tdlist'>".int_en_to_bn($row->total_amount)."</td>
+
     </tr>
-
+    <tr class='tr'>
+            <td colspan='3' class='defalttext td defaltfont'style='text-align:right;    padding: 0 13px;'><p> মোট </p></td>
+            <td class='td defaltfont'>".int_en_to_bn($row->total_amount)."</td>
+    </tr>
 
   </tbody>
 </table>
@@ -39,5 +47,8 @@ $khatlist = $row->amount_deails;
 
 
     ";
+
+
+
     echo $html;
 @endphp

@@ -2840,14 +2840,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // this.form['id'] = datas.id;
 
                   Swal.fire({
-                    title: 'Success',
-                    text: "\u09B8\u09A8\u09A6\u09C7\u09B0 \u09AB\u09BF \u09B8\u09AB\u09B2\u09AD\u09BE\u09AC\u09C7 \u09AA\u09CD\u09B0\u09A6\u09BE\u09A8 \u09B9\u09DF\u09C7\u099B\u09C7",
+                    title: 'অভিনন্দন',
+                    text: "\u0986\u09AA\u09A8\u09BE\u09B0 \u0986\u09AC\u09C7\u09A6\u09A8\u099F\u09BF \u09B8\u09AB\u09B2\u09AD\u09BE\u09AC\u09C7 \u09A6\u09BE\u0996\u09BF\u09B2 \u09B9\u09DF\u09C7\u099B\u09C7",
                     icon: 'success',
                     confirmButtonColor: 'green',
                     confirmButtonText: "\u0986\u09AC\u09C7\u09A6\u09A8 \u09AA\u09A4\u09CD\u09B0 \u09A1\u09BE\u0989\u09A8\u09B2\u09CB\u09A1 \u0995\u09B0\u09C1\u09A8",
-                    showDenyButton: true,
+                    // showDenyButton: true,
                     showCancelButton: true,
-                    denyButtonText: 'রশিদ ডাউনলোড করুন',
+                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
                     cancelButtonText: 'Back to home',
                     customClass: {
                       actions: 'my-actions',
@@ -2927,15 +2927,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   icon: 'success',
                   confirmButtonColor: 'green',
                   confirmButtonText: "\u0986\u09AC\u09C7\u09A6\u09A8 \u09AA\u09A4\u09CD\u09B0 \u09A1\u09BE\u0989\u09A8\u09B2\u09CB\u09A1 \u0995\u09B0\u09C1\u09A8",
-                  showDenyButton: true,
+                  // showDenyButton: true,
                   showCancelButton: true,
-                  denyButtonText: 'রশিদ ডাউনলোড করুন',
+                  // denyButtonText: 'রশিদ ডাউনলোড করুন',
                   cancelButtonText: 'Back to home',
                   customClass: {
                     actions: 'my-actions',
                     cancelButton: 'order-1 right-gap',
-                    confirmButton: 'order-2',
-                    denyButton: 'order-3'
+                    confirmButton: 'order-2' // denyButton: 'order-3',
+
                   },
                   allowOutsideClick: false,
                   allowEscapeKey: false,
@@ -2943,12 +2943,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                     window.open(redirect, '_blank');
                     return false; // Prevent confirmed
-                  },
-                  preDeny: function preDeny() {
-                    redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                    window.open(redirect, '_blank');
-                    return false; // Prevent denied
-                  }
+                  } // preDeny: () => {
+                  //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                  //     window.open(redirect, '_blank');
+                  //     return false; // Prevent denied
+                  // },
+
                 }).then( /*#__PURE__*/function () {
                   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(result) {
                     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -2961,11 +2961,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                               // this.$root.$emit('bv::hide::modal', 'info-modal')
                               redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                               window.open(redirect, '_blank');
-                            } else if (result.isDenied) {
-                              // this.$root.$emit('bv::hide::modal', 'info-modal')
-                              redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                              window.open(redirect, '_blank');
-                            } else if (result.isDismissed) {
+                            } // else if (result.isDenied) {
+                            //     // this.$root.$emit('bv::hide::modal', 'info-modal')
+                            //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                            //     window.open(redirect, '_blank');
+                            // }
+                            else if (result.isDismissed) {
                               //cancel
                               _this7.$router.push({
                                 name: 'home'
@@ -2994,15 +2995,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   icon: 'success',
                   confirmButtonColor: 'green',
                   confirmButtonText: "\u0986\u09AC\u09C7\u09A6\u09A8 \u09AA\u09A4\u09CD\u09B0 \u09A1\u09BE\u0989\u09A8\u09B2\u09CB\u09A1 \u0995\u09B0\u09C1\u09A8",
-                  showDenyButton: true,
+                  // showDenyButton: true,
                   showCancelButton: true,
-                  denyButtonText: 'রশিদ ডাউনলোড করুন',
+                  // denyButtonText: 'রশিদ ডাউনলোড করুন',
                   cancelButtonText: 'Back to home',
                   customClass: {
                     actions: 'my-actions',
                     cancelButton: 'order-1 right-gap',
-                    confirmButton: 'order-2',
-                    denyButton: 'order-3'
+                    confirmButton: 'order-2' // denyButton: 'order-3',
+
                   },
                   allowOutsideClick: false,
                   allowEscapeKey: false,
@@ -3010,12 +3011,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                     window.open(redirect, '_blank');
                     return false; // Prevent confirmed
-                  },
-                  preDeny: function preDeny() {
-                    redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                    window.open(redirect, '_blank');
-                    return false; // Prevent denied
-                  }
+                  } // preDeny: () => {
+                  //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                  //     window.open(redirect, '_blank');
+                  //     return false; // Prevent denied
+                  // },
+
                 }).then( /*#__PURE__*/function () {
                   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(result) {
                     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
@@ -3028,11 +3029,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                               // this.$root.$emit('bv::hide::modal', 'info-modal')
                               redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                               window.open(redirect, '_blank');
-                            } else if (result.isDenied) {
-                              // this.$root.$emit('bv::hide::modal', 'info-modal')
-                              redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                              window.open(redirect, '_blank');
-                            } else if (result.isDismissed) {
+                            } //  else if (result.isDenied) {
+                            //     // this.$root.$emit('bv::hide::modal', 'info-modal')
+                            //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
+                            //     window.open(redirect, '_blank');
+                            // }
+                            else if (result.isDismissed) {
                               //cancel
                               _this7.$router.push({
                                 name: 'home'

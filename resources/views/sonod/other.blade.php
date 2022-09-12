@@ -17,7 +17,7 @@
         <td width="30%">জাতীয় পরিচয়পত্র নং</td><td>: {{ int_en_to_bn($row->applicant_national_id_number) }}</td>
         </tr>
         <tr>
-        <td width="30%">ঠিকানা</td><td>: {{ $row->applicant_present_village }}, {{ $row->applicant_present_post_office }}, {{ $row->applicant_present_Upazila }}, {{ $row->applicant_present_district }}</td>
+        <td width="30%">ঠিকানা</td><td>:  গ্রাম: {{ $row->applicant_present_village }}, ডাকঘর: {{ $row->applicant_present_post_office }}, উপজেলা: {{ $row->applicant_present_Upazila }}, জেলা: {{ $row->applicant_present_district }}</td>
         </tr>
         <tr>
         <td width="30%">পেশা</td><td>: {{ $row->applicant_occupation }}</td>
