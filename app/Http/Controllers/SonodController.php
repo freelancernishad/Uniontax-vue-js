@@ -531,7 +531,7 @@ class SonodController extends Controller
 
             $mpdf = new \Mpdf\Mpdf([
                 'default_font_size' => 12,
-                'default_font' => 'nikosh',
+                'default_font' => 'bangla',
                 'mode' => 'utf-8',
                 'format' => 'A4',
                 'setAutoTopMargin' => 'stretch',

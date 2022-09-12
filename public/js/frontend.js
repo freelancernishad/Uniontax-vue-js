@@ -5782,6 +5782,9 @@ var render = function render() {
       "for": "image"
     }
   }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.image != null ? _c("img", {
+    staticStyle: {
+      width: "100%"
+    },
     attrs: {
       thumbnail: "",
       fluid: "",
@@ -6657,6 +6660,9 @@ var render = function render() {
       "for": "applicant_national_id_front_attachment"
     }
   }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.applicant_national_id_front_attachment != null ? _c("img", {
+    staticStyle: {
+      width: "100%"
+    },
     attrs: {
       thumbnail: "",
       fluid: "",
@@ -6694,6 +6700,9 @@ var render = function render() {
       "for": "applicant_national_id_back_attachment"
     }
   }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.applicant_national_id_back_attachment != null ? _c("img", {
+    staticStyle: {
+      width: "100%"
+    },
     attrs: {
       thumbnail: "",
       fluid: "",
@@ -6731,6 +6740,9 @@ var render = function render() {
       "for": "applicant_birth_certificate_attachment"
     }
   }, [_vm._v("Choose file")]), _vm._v(" "), _vm.form.applicant_birth_certificate_attachment != null ? _c("img", {
+    staticStyle: {
+      width: "100%"
+    },
     attrs: {
       thumbnail: "",
       fluid: "",

@@ -148,7 +148,7 @@
                             <label for="" class="labelColor">ছবি</label>
                             <input type="file" class="custom-file-input" @change="FileSelected($event, 'image')" id="image">
                             <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;" for="image">Choose file</label>
-                            <img thumbnail fluid v-if="form.image != null" :src="form.image" alt="Image 3" />
+                            <img style="    width: 100%;" thumbnail fluid v-if="form.image != null" :src="form.image" alt="Image 3" />
                         </div>
                     </div>
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
@@ -351,7 +351,7 @@
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page)</label>
                             <input type="file" class="form-control custom-file-input" @change="FileSelected($event, 'applicant_national_id_front_attachment')" id="applicant_national_id_front_attachment">
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_national_id_front_attachment">Choose file</label>
-                            <img thumbnail fluid v-if="form.applicant_national_id_front_attachment != null"
+                            <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_front_attachment != null"
                                 :src="form.applicant_national_id_front_attachment" alt="Image 3" />
                         </div>
                     </div>
@@ -363,7 +363,7 @@
                             <input type="file" class="form-control custom-file-input"
                                 @change="FileSelected($event, 'applicant_national_id_back_attachment')" id="applicant_national_id_back_attachment">
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_national_id_back_attachment">Choose file</label>
-                            <img thumbnail fluid v-if="form.applicant_national_id_back_attachment != null"
+                            <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_back_attachment != null"
                                 :src="form.applicant_national_id_back_attachment" alt="Image 3" />
                         </div>
                     </div>
@@ -375,7 +375,7 @@
                             <input type="file" class="form-control custom-file-input"
                                 @change="FileSelected($event, 'applicant_birth_certificate_attachment')" id="applicant_birth_certificate_attachment">
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_birth_certificate_attachment">Choose file</label>
-                            <img thumbnail fluid v-if="form.applicant_birth_certificate_attachment != null"
+                            <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_birth_certificate_attachment != null"
                                 :src="form.applicant_birth_certificate_attachment" alt="Image 3" />
                         </div>
                     </div>
