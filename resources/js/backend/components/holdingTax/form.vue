@@ -265,6 +265,9 @@
                 async finalSubmit(){
                     this.form['unioun']= this.Users.unioun
                     var res = await this.callApi('post',`/api/holding/tax/submit`,this.form)
+
+                    this.$router.push({ name: 'holdingTaxWord'})
+            Notification.customSuccess('Holding tax Update Success');
                 },
 
 

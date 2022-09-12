@@ -135,6 +135,7 @@ class SonodController extends Controller
                 'amount' => $amount,
                 'mob' => $sonod->applicant_mobile,
                 'status' => "Pending",
+                'date' => date('Y-m-d'),
                 'created_at' => $req_timestamp,
             ];
             Payment::create($customerData);

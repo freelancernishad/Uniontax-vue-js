@@ -16,5 +16,6 @@ class Payment extends Model
         'amount',
         'applicant_mobile',
         'status',
+        'date',
     ];
 }

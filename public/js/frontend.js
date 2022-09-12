@@ -2989,8 +2989,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               if (res.data.stutus == 'Pending') {
                 _this7.waitForPayment = false;
                 Swal.fire({
-                  title: 'Success',
-                  text: "\u09B8\u09A8\u09A6\u09C7\u09B0 \u09AB\u09BF \u09B8\u09AB\u09B2\u09AD\u09BE\u09AC\u09C7 \u09AA\u09CD\u09B0\u09A6\u09BE\u09A8 \u09B9\u09DF\u09C7\u099B\u09C7",
+                  title: 'অভিনন্দন',
+                  text: "\u0986\u09AA\u09A8\u09BE\u09B0 \u0986\u09AC\u09C7\u09A6\u09A8\u099F\u09BF \u09B8\u09AB\u09B2\u09AD\u09BE\u09AC\u09C7 \u09A6\u09BE\u0996\u09BF\u09B2 \u09B9\u09DF\u09C7\u099B\u09C7",
                   icon: 'success',
                   confirmButtonColor: 'green',
                   confirmButtonText: "\u0986\u09AC\u09C7\u09A6\u09A8 \u09AA\u09A4\u09CD\u09B0 \u09A1\u09BE\u0989\u09A8\u09B2\u09CB\u09A1 \u0995\u09B0\u09C1\u09A8",
@@ -6198,7 +6198,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("স্থায়ী")]), _vm._v(" "), _c("option", [_vm._v("অস্থায়ী")])])])]), _vm._v(" "), _vm.sonodnamedata.enname != "Trade license" ? _c("div", {
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("স্থায়ী")]), _vm._v(" "), _c("option", [_vm._v("অস্থায়ী")])])])]), _vm._v(" "), _vm.sonodnamedata.enname != "Citizenship certificate" ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6263,34 +6263,6 @@ var render = function render() {
         if ($event.target.composing) return;
 
         _vm.$set(_vm.form, "applicant_present_village", $event.target.value);
-      }
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("রোড/ব্লক/সেক্টর")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.applicant_present_road_block_sector,
-      expression: "form.applicant_present_road_block_sector"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form.applicant_present_road_block_sector
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "applicant_present_road_block_sector", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -6475,34 +6447,6 @@ var render = function render() {
         if ($event.target.composing) return;
 
         _vm.$set(_vm.form, "applicant_permanent_village", $event.target.value);
-      }
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("রোড/ব্লক/সেক্টর")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.applicant_permanent_road_block_sector,
-      expression: "form.applicant_permanent_road_block_sector"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form.applicant_permanent_road_block_sector
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "applicant_permanent_road_block_sector", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -9298,9 +9242,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/User */ "./resources/js/helpers/User.js");
 /* harmony import */ var _helpers_Notification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/Notification */ "./resources/js/helpers/Notification.js");
 /* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common */ "./resources/js/common.js");
+ // Vue.prototype.$asseturl = '/public/'
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl = '/public/'; // Vue.prototype.$asseturl = '/'
-
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl = '/';
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withWWW = 4;
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withOutWWW = 3;
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$localStorage = localStorage;

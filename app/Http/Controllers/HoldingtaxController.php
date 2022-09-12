@@ -1146,6 +1146,7 @@ $total_bokeya = 0;
             'amount' => $holdingBokeya->price,
             'mob' => "01909756552",
             'status' => "Pending",
+            'date' => date('Y-m-d'),
             'created_at' => $req_timestamp,
         ];
         Payment::create($customerData);

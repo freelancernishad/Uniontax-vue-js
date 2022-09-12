@@ -12,6 +12,8 @@ let unionprofile = require('./components/unionprofile.vue').default;
 let charages = require('./components/charages.vue').default;
 let profile = require('./components/profile.vue').default;
 
+let report = require('./components/report.vue').default;
+
 let userlist = require('./components/users/list.vue').default;
 let userlistedit = require('./components/users/form.vue').default;
 
@@ -65,6 +67,9 @@ export const routes = [
   { path:  `${prefix}/profile`, component: profile, name:'profile',meta: { layout: adminlayout } },
   { path:  `${prefix}/union/profile`, component: unionprofile, name:'unionprofile',meta: { layout: adminlayout } },
   { path:  `${prefix}/union/charges`, component: charages, name:'charages',meta: { layout: adminlayout } },
+
+  { path:  `${prefix}/report`, component: report, name:'report',meta: { layout: adminlayout } },
+
 
   { path:  `${prefix}/user/list`, component: userlist, name:'userlist',meta: { layout: adminlayout } },
   { path:  `${prefix}/user/list/add`, component: userlistedit, name:'userlistadd',meta: { layout: adminlayout } },

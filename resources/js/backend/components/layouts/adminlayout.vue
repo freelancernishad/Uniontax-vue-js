@@ -150,7 +150,7 @@
 
 
                         <li class="nav-item" @click="submenu(0)">
-                            <router-link :to="{ name: 'unionprofile' }" class="nav-link"><i
+                            <router-link :to="{ name: 'report' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>প্রতিবেদন</span></router-link>
                         </li>
 

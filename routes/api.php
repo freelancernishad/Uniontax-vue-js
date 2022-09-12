@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SonodController;
 use App\Http\Controllers\CharageController;
 use App\Http\Controllers\CitizenController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\VisitorController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\ActionLogController;
@@ -178,7 +179,10 @@ Route::get('holding/tax/list',[HoldingtaxController::class,'index']);
 Route::get('holding/tax/show/{id}',[HoldingtaxController::class,'show']);
 Route::get('holding/tax/delete/{id}',[HoldingtaxController::class,'destroy']);
 Route::post('holding/tax/submit',[HoldingtaxController::class,'store']);
+
 Route::post('holding/tax/search',[HoldingtaxController::class,'holdingSearch']);
+
+Route::post('report/search',[PaymentController::class,'Search']);
 
 
 Route::get('niddob/verify',[SonodController::class,'niddob']);

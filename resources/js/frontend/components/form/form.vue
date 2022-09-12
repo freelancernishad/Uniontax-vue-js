@@ -256,7 +256,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-12" v-if="sonodnamedata.enname != 'Trade license'">
+                    <div class="col-md-12" v-if="sonodnamedata.enname != 'Citizenship certificate'">
                         <div class="form-group">
                             <label for="" class="labelColor">আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন</label>
                             <textarea class="form-control" v-model="form.prottoyon" cols="30" rows="4"></textarea>
@@ -272,10 +272,10 @@
                             <label for="" class="labelColor">গ্রাম/মহল্লা</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_village">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_road_block_sector">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="" class="labelColor">ওয়ার্ড নং</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_word_number">
@@ -303,11 +303,11 @@
                             <label for="" class="labelColor">গ্রাম/মহল্লা</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_village">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
                             <input type="text" class="form-control"
                                 v-model="form.applicant_permanent_road_block_sector">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="" class="labelColor">ওয়ার্ড নং</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_word_number">
@@ -930,8 +930,8 @@ export default {
                             if (res.data.stutus == 'Pending') {
                                 this.waitForPayment = false;
                                 Swal.fire({
-                                    title: 'Success',
-                                    text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
+                                    title: 'অভিনন্দন',
+                                    text: `আপনার আবেদনটি সফলভাবে দাখিল হয়েছে`,
                                     icon: 'success',
                                     confirmButtonColor: 'green',
                                     confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,

@@ -7,6 +7,41 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
+
+    public function Search(Request $request)
+    {
+        // return $request->all();
+        $sonod_type = $request->sonod_type;
+        $from = $request->from;
+        $to = $request->to;
+        $union = $request->union;
+
+        if($union){
+
+
+            if($from && $to){
+                return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+            }elseif($from){
+                return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->where('date',$from)->orderBy('id','desc')->get();
+            }else{
+                return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
+            }
+        }else{
+
+            if($from && $to){
+                return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+            }elseif($from){
+                return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where('date',$from)->orderBy('id','desc')->get();
+            }else{
+                return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
+            }
+        }
+
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
