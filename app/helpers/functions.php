@@ -743,13 +743,23 @@ function allList($type='',$class='',$group='')
 
 
 
+function base642($Image)
+{
+    $url = $Image;
+    $image = file_get_contents($url);
+    if ($image !== false){
+        return 'data:image/jpg;base64,'.base64_encode($image);
+
+    }
+}
+
 function base64($Image)
 {
 //  return $Image;
 
     if(File::exists($Image)){
 
-        $Image= $Image;
+        $Image= env('FILE_PATH').$Image;
     }else{
         $Image= env('FILE_PATH').'backend/image.png';
 
