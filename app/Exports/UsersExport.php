@@ -2,34 +2,25 @@
 
 namespace App\Exports;
 
+use App\Models\Payment;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 // use Illuminate\Contracts\View\View;
 // use Maatwebsite\Excel\Concerns\FromView;
 // class ExCommitteesExport implements FromView
-class UsersExport implements FromCollection
+class UsersExport implements FromView
 {
 
 
 
-    // public function view(): View
-    // {
-    //     return view('admin/committee.activeexcel', [
-    //         'activecommittee' => committee::where('status','ex')->get()
-    //     ]);
-    // }
-
-
-
-class UsersExport implements FromCollection
-{
-
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        return User::all();
+        return view('Export', ['Products' =>  Payment::where(['status'=>'Paid'])->orderBy('id','desc')->get()
+        ]);
     }
+
 }

@@ -73,6 +73,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="dashboard-summery-one mg-b-20">
                         <div class="row align-items-center">
@@ -83,9 +85,30 @@
                             </div>
                             <div class="col-6">
                                 <div class="item-content">
-                                    <div class="item-title">বাতিল আবেদন</div>
+                                    <div class="item-title">বাতিলকৃত আবেদন</div>
                                     <div class="item-number"><span class="counter"
                                             :data-num="sonodCount.cancelSonodCount">{{ sonodCount.cancelSonodCount }}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Dashboard summery End Here -->
+
+                <div class="col-xl-6 col-sm-6 col-12">
+                    <div class="dashboard-summery-one mg-b-20">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <div class="item-icon bg-light-red">
+                                    <i class="flaticon-money text-red"></i>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="item-content">
+                                    <div class="item-title">মোট আদায়কৃত ফি'র পরিমাণ</div>
+                                    <div class="item-number"><span class="counter"
+                                            :data-num="amount">{{ amount }}</span></div>
                                 </div>
                             </div>
                         </div>
@@ -120,10 +143,12 @@ export default {
             approvedSonodCount:0,
             cancelSonodCount:0,
 
-            }
+        },
+        amount:0,
         };
     },
     mounted() {
+        this.totalamount();
 
         setInterval(() => {
                 this.sonodCountDashbord('all','allSonodCount')
@@ -139,6 +164,10 @@ export default {
        async sonodCountDashbord(status = '',data=''){
         var res = await this.callApi('get',`/api/count/sonod/${status}`,[]);
             this.sonodCount[data] = res.data;
+        },
+       async totalamount(){
+        var res = await this.callApi('get',`/api/sum/amount`,[]);
+            this.amount = res.data
         }
 
     },

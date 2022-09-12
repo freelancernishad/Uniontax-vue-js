@@ -1,6 +1,8 @@
 <template>
     <div>
 
+        <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
+
         <div class="breadcrumbs-area">
             <h3>Holding Tax</h3>
             <ul>
@@ -69,6 +71,7 @@
     export default {
         data(){
             return {
+                preLooding:true,
                 rows:{},
                 buttonLoader:false,
                 infoModal: {
@@ -88,6 +91,7 @@
 
                 var res = await this.callApi('get',`/api/holding/tax/list?word=${this.$route.params.word}&union=${this.Users.unioun}`,[]);
                 this.rows = res.data;
+                this.preLooding = false
             },
 
 

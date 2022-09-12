@@ -132,6 +132,7 @@ Route::post('contact',[UniouninfoController::class, 'contact']);
 
 
 
+Route::get('sum/amount',[SonodController::class, 'totlaAmount']);
 Route::get('count/sonod/{status}',[SonodController::class, 'counting']);
 Route::post('visitorcreate',[VisitorController::class, 'visitorcreate']);
 Route::get('visitorcount',[VisitorController::class, 'visitorCount']);

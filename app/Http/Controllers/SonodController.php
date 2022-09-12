@@ -620,6 +620,12 @@ class SonodController extends Controller
     {
         return Sonod::find($id);
     }
+
+    public function totlaAmount(Request $request)
+    {
+        return Payment::where('status','Paid')->sum('amount');
+    }
+
     public function counting(Request $request, $status)
     {
         if ($status == 'all') {

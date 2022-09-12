@@ -5,6 +5,7 @@ use App\Models\Uniouninfo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SonodController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
@@ -55,6 +56,8 @@ Route::get('/pay/holding/tax/{id}', [HoldingtaxController::class,'holding_tax_pa
 Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSuccess']);
 
 Route::get('/holding/tax/invoice/{id}', [HoldingtaxController::class,'holdingPaymentInvoice']);
+
+Route::get('/report/export', [PaymentController::class,'export']);
 
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
     Route::get('/{vue_capture?}', function () {

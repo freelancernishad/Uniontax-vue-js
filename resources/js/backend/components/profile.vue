@@ -39,7 +39,7 @@
           <label for="">জেলা</label>
 
           <select v-model="form.district" class="form-control">
-            <option selected value="বরিশাল">বরিশাল</option>
+            <option selected value="পঞ্চগড়">পঞ্চগড়</option>
           </select>
 
         </div>
@@ -48,20 +48,15 @@
         <div class="form-group col-md-6">
           <label for="">উপজেলা</label>
 
-          <select v-model="form.thana" class="form-control">
-            <option selected value="বরিশাল সদর">বরিশাল সদর</option>
-          </select>
+          <input type="text" class="form-control" v-model="form.thana">
+
 
         </div>
 
 
         <div class="form-group col-md-6">
           <label for="">ইউনিয়ন</label>
-          <select v-model="form.unioun" class="form-control">
-            <option value="">নির্বাচন করুন</option>
-            <option value="tungibaria">টুঙ্গীবাড়িয়া</option>
-          </select>
-
+          <input type="text" class="form-control" v-model="form.unioun">
         </div>
 
         <div class="form-group col-md-6">
@@ -86,13 +81,13 @@
 
 
         <div class="form-group col-md-6" v-if="changepass">
-          <label for="">পুরাতন পাসওয়ার্ড</label> 
+          <label for="">পুরাতন পাসওয়ার্ড</label>
           <input type="text" v-model="oldpassword" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
 
         <div class="form-group col-md-6" v-if="changepass">
-          <label for=""> নতুন পাসওয়ার্ড</label> 
+          <label for=""> নতুন পাসওয়ার্ড</label>
           <input type="text" v-model="newpassword" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
@@ -132,8 +127,8 @@ export default {
                 password:null,
                 position:null,
                 full_unioun_name:null,
-                district:'বরিশাল',
-                thana:'বরিশাল সদর',
+                district:'পঞ্চগড়',
+                thana:'',
                 gram:null,
                 word:null,
                 description:null,
@@ -178,7 +173,7 @@ export default {
                   this.newpassword = '';
             }
             //  this.$router.push({ name: 'userlist'})
-          
+
 
         }
     },

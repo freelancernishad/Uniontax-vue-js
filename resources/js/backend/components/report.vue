@@ -44,6 +44,10 @@
 
                     </form>
 
+                    <a href="/report/export" class="btn btn-info">ডাউনলোড</a>
+
+
+
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -59,7 +63,8 @@
                             <tr v-for="(row,index) in rows">
                             <!-- <td>ক্রমিক নং</td> -->
                             <td>{{ row.date }}</td>
-                            <td>{{ row.sonod_type }}</td>
+                            <td v-if="row.sonod_type=='holdingtax'">হোল্ডিং ট্যাক্স</td>
+                            <td v-else>{{ row.sonod_type }}</td>
                             <td>{{ row.amount }}</td>
                         </tr>
                         </tbody>

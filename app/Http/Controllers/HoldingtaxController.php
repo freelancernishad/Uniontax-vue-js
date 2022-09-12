@@ -16,7 +16,7 @@ class HoldingtaxController extends Controller
     public function holdingPaymentInvoice(Request $request,$id)
     {
 
-         $holdingBokeya = HoldingBokeya::find($id);
+          $holdingBokeya = HoldingBokeya::find($id);
 
 
         $payYear = $holdingBokeya->payYear;
@@ -30,29 +30,31 @@ class HoldingtaxController extends Controller
 
        if($holdingBokeya->status=='Unpaid'){
 
+
             $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->get();
            $holdingBokeyasAmount = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->sum('price');
             $TaxInvoicecount =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->count();
 
            if($TaxInvoicecount>0){
+
             $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->first();
             $invoice=[
              'totalAmount'=>$holdingBokeyasAmount,
              ];
             $TaxInvoice->update($invoice);
-     }else{
+            }else{
 
-         $invoice=[
-             'invoiceId'=>'sdfsdf',
-             'holdingTax_id'=>$holdingTax_id,
-             'PayYear'=>date('Y'),
-             'totalAmount'=>$holdingBokeyasAmount,
-             'status'=>'Unpaid',
-         ];
-         TaxInvoice::create($invoice);
-     }
+                $invoice=[
+                    'invoiceId'=>'sdfsdf',
+                    'holdingTax_id'=>$holdingTax_id,
+                    'PayYear'=>date('Y'),
+                    'totalAmount'=>$holdingBokeyasAmount,
+                    'status'=>'Unpaid',
+                ];
+                TaxInvoice::create($invoice);
+            }
 
-     $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear,'status'=>'Unpaid'])->first();
+          $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->first();
 
 
 
@@ -67,6 +69,7 @@ class HoldingtaxController extends Controller
                 $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->first();
                 $invoice=[
                  'totalAmount'=>$holdingBokeyasAmount,
+                 'status'=>'Paid',
                  ];
                 $TaxInvoice->update($invoice);
          }else{
@@ -98,7 +101,7 @@ class HoldingtaxController extends Controller
 
 
 
-        $holdingTax = Holdingtax::find($TaxInvoice->holdingTax_id);
+        $holdingTax = Holdingtax::find($holdingTax_id);
         $union = $holdingTax->unioun;
         $unions = Uniouninfo::where(['short_name_e'=>$union])->first();
 
@@ -1196,8 +1199,23 @@ $total_bokeya = 0;
     }
     public function holding_tax_pay(Request $r)
     {
+         $hosdingBokeya = HoldingBokeya::find($r->id);
+         $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
+         $req_timestamp = date('Y-m-d H:i:s');
+        $customerData = [
+            'union' => $hosdingtax->unioun,
+            'trxId' => time(),
+            'sonodId' => $r->id,
+            'sonod_type' => 'holdingtax',
+            'amount' => $hosdingBokeya->price,
+            'mob' => "01909756552",
+            'status' => "Paid",
+            'date' => date('Y-m-d'),
+            'created_at' => $req_timestamp,
+        ];
+        Payment::create($customerData);
+        return $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
 
-        return HoldingBokeya::find($r->id)->update(['status'=>'Paid','payYear'=>date('Y')]);
 
 
     }

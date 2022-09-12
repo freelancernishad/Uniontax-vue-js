@@ -272,6 +272,9 @@
                         </li>
 
 
+                        <li class="nav-item" @click="submenu(0)">
+                            <a href="#" class="nav-link"><i class="flaticon-dashboard"></i><span>ক্যাশ বহি</span></a>
+                        </li>
 
 
                     </ul>
