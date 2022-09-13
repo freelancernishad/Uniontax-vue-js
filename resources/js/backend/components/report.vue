@@ -105,6 +105,7 @@ export default {
     methods: {
 
         async onSubmit(){
+            this.isload = true
 
             if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
                 this.form['union'] = this.getUsers.unioun
@@ -114,6 +115,7 @@ export default {
 
             var res = await this.callApi('post',`/api/report/search`,this.form);
             this.rows = res.data
+            this.isload = false
         }
 
 

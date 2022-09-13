@@ -180,7 +180,7 @@
                             <div class="form-group">
                                                            <select v-model="bok.year" class="form-control">
 
-                                                           <option>2020-2021</option><option>2019-2020</option><option>2018-2019</option><option>2017-2018</option><option>2016-2017</option><option>2015-2016</option><option>2014-2015</option><option>2013-2014</option><option>2012-2013</option><option>2011-2012</option><option>2010-2011</option><option>2009-2010</option><option>2008-2009</option><option>2007-2008</option><option>2006-2007</option><option>2005-2006</option><option>2004-2005</option><option>2003-2004</option><option>2002-2003</option><option>2001-2002</option>                                                        </select>
+                                                           <option>2021-2022</option><option>2020-2021</option><option>2019-2020</option><option>2018-2019</option><option>2017-2018</option><option>2016-2017</option><option>2015-2016</option><option>2014-2015</option><option>2013-2014</option><option>2012-2013</option><option>2011-2012</option><option>2010-2011</option><option>2009-2010</option><option>2008-2009</option><option>2007-2008</option><option>2006-2007</option><option>2005-2006</option><option>2004-2005</option><option>2003-2004</option><option>2002-2003</option><option>2001-2002</option>                                                        </select>
                             </div>
 
                         </td>

@@ -282,7 +282,7 @@ class HoldingtaxController extends Controller
             <p class='defalttext'>ইউপি ফরম-১০</p>
             <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
             <p class='defalttext'>উপজেলা: $thana, জেলা: $district  </p>
-            <h2 class='companiname'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
+            <h2 class='companiname' style='  color: #410fcc;'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
 
             if($status=='Paid'){
                 $html .="            <h2 class='companiname' style='width: 160px;
@@ -449,7 +449,7 @@ class HoldingtaxController extends Controller
             <p class='defalttext'>ইউপি ফরম-১০</p>
             <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
             <p class='defalttext'>উপজেলা: $thana, জেলা: $district  </p>
-            <h2 class='companiname'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
+            <h2 class='companiname'  style='  color: #410fcc;'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
 
             if($status=='Paid'){
                 $html .="            <h2 class='companiname' style='width: 160px;

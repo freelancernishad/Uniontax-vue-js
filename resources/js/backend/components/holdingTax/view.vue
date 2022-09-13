@@ -94,7 +94,7 @@
 
          <td v-else><button @click="paynow(bok.id)" class="btn btn-info" >Pay Now</button></td>
 
-         <td><a :href="'/holding/tax/invoice/'+bok.id" class="btn btn-info" >রশিদ</a></td>
+         <td><a target="_blank" :href="'/holding/tax/invoice/'+bok.id" class="btn btn-info" >রশিদ</a></td>
 
 
     </tr>
