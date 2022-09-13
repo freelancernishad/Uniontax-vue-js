@@ -232,7 +232,7 @@
                                 </div>
                             </div>
 
-                            <div class="p-2 text-center border">
+                            <!-- <div class="p-2 text-center border">
                                 For any further assistance, please visit www.dghs.gov.bd or
                                 e-mail: info@dghs.gov.bd <br />(প্রয়োজনে www.dghs.gov.bd ওয়েব
                                 সাইটে ভিজিট করুন অথবা ইমেইল করুনঃ info@dghs.gov.bd)
@@ -242,7 +242,7 @@
                             </div>
                             <div class="credit-Logo text-center p-2 mb-3 footer-cert-verify-img border">
                                 <img :src="$asseturl+'assets/img/bnict.jpeg'" alt="ict logo" />
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
