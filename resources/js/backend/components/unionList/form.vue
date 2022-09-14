@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
 <div class="breadcrumbs-area">
     <h3>Union form</h3>
     <ul>
@@ -207,6 +207,7 @@
 export default {
     data(){
         return {
+            preLooding:false,
            form: {
                 full_name:null,
                 short_name_e:null,
@@ -264,6 +265,7 @@ export default {
 
 
         async onSubmit() {
+            this.preLooding = true
 
 
             var res = await this.callApi('post', '/api/unionprofile/submit', this.form);
@@ -273,7 +275,7 @@ export default {
         this.$router.push({ name: 'unionlist'})
     Notification.customSuccess('Union Info Update Successfuly Done');
 
-
+    this.preLooding = false
         }
     },
     mounted(){
