@@ -241,7 +241,7 @@ section.vh-100 {
     color: blue;
 }
 
-.loginForm[data-v-2a1c1b9c] {
+.loginForm {
     width: 370px !important;
     margin: 0 auto;
     position: absolute;
