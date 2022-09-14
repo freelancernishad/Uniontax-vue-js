@@ -57,16 +57,24 @@ require('../bootstrap');
 // require( 'datatables.net-staterestore-dt' );
 
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-// Import Bootstrap and BootstrapVue CSS files (order is important)
-// import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// // Import Bootstrap and BootstrapVue CSS files (order is important)
+// // import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
+// // Make BootstrapVue available throughout your project
+// Vue.use(BootstrapVue)
+// // Optionally install the BootstrapVue icon components plugin
+// Vue.use(IconsPlugin)
+
+
+import { BButton, BImg, BModal,VBModal  } from 'bootstrap-vue'
+Vue.component('b-modal', BModal)
+Vue.component('b-button', BButton)
+Vue.component('b-img', BImg)
+
+
 
 import Swal from 'sweetalert2'
 window.Swal = Swal;
