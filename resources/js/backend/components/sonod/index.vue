@@ -46,7 +46,7 @@
                                 <!-- <span size="sm" @click="deletefun(item, index, $event.target)" class="btn btn-danger mr-1 mt-1">Delete</span> -->
                                 <a size="sm" target="_blank"
                                     :href="applicationRoute+'/' + item.sonod_name + '/' + item.id"
-                                    v-if="applicationRoute != ''" class="btn btn-success mr-1 mt-1">আবেদন পত্র</a>
+                                    v-if="applicationRoute != ''" class="btn btn-success mr-1 mt-1">আবেদনপত্র দেখুন</a>
                                 <!-- <router-link size="sm" :to="{ name: EditRoute, params: { id: item.id } }" class="btn btn-info mr-1 mt-1">Edit</router-link> -->
                                 <span size="sm" v-if="buttonLoader" class="btn btn-info mr-1 mt-1"><img width="20px"
                                         src="https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif"
@@ -63,9 +63,9 @@
                                     class="btn btn-success mr-1 mt-1">Approve</span>
                                 <span size="sm" @click="paynow(payRoute, item.id, $event.target)"
                                     v-if="item.payment_status == 'Unpaid' && item.stutus == 'approved' && payRoute != ''"
-                                    class="btn btn-info mr-1 mt-1">Pay Now</span>
+                                    class="btn btn-info mr-1 mt-1">ফি পরিশোধ করুন</span>
                                 <a :href="'/invoice/d/' + item.id" target="_blank" size="sm"
-                                    v-if="item.stutus == 'approved'" class="btn btn-info mr-1 mt-1">রশিদ</a>
+                                    v-if="item.stutus == 'approved'" class="btn btn-info mr-1 mt-1">রশিদ প্রিন্ট</a>
                                 <a :href="'/sonod/d/' + item.id" target="_blank" size="sm"
                                     v-if="item.stutus == 'approved' && item.payment_status == 'Paid'"
                                     class="btn btn-info mr-1 mt-1">সনদ</a>
@@ -73,10 +73,10 @@
                                     v-if="cancelRoute != ''" class="btn btn-danger mr-1 mt-1">Not-Approve</span>
                             </td>
                             <td style="background: red;color: white;" v-if="item.payment_status=='Unpaid'">
-                                {{ item.payment_status }}
+                                অপরিশোধিত
                             </td>
                             <td style="background: green;color: white;" v-else>
-                                {{ item.payment_status }}
+                                পরিশোধিত
                             </td>
                         </tr>
                     </tbody>

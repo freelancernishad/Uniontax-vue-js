@@ -16,12 +16,54 @@
 
 
         <div class="card">
+            <div class="card-header">
+                <form class="d-flex" style="justify-content: space-evenly;" @submit.stop.prevent="onSubmit">
+                    <div class="form-group m-0" style="width:48%">
+                        <select class="form-control" v-model="f.paymentType" required>
+                            <option value="">Select</option>
+                            <option value="Postpaid">Postpaid</option>
+                            <option value="Prepaid">Prepaid</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-info" style="width:48%">Update all</button>
+
+                </form>
+            </div>
         <div class="card-body">
-<table-component :sonod-type="$route.params.name" :sort-options-staus="sortstatus" :Filter="Filter" :filter-on="FilterOn"  :per-page="PerPage" :select-option="SelectOption" :all-update="AllUpdate" :Items="items" :Fields="fields" :per-page-data="PerPageData" :total-rows="TotalRows"  :delete-route="deleteRoute" :edit-route="editRoute" :application-route="applicationRoute"  :view-route="viewRoute"    :approve-route="approveRoute" :pay-route="payRoute" :cancel-route="cancelRoute"   :approve-type="approveType" :approve-data="approveData" :add-new="addNew"  @event-name="sonodname" >
 
-</table-component>
 
-<!-- <approve-component></approve-component> -->
+         <table class="table">
+            <thead>
+
+                <tr>
+                    <th>নাম</th>
+                    <th>ইউনিয়ন</th>
+                    <th>উপজেলা</th>
+                    <th>জেলা</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr v-for="(item,index) in items" :key="''+item.id">
+                    <td>{{ item.full_name }}</td>
+                    <td>{{ item.short_name_b }}</td>
+                    <td>{{ item.thana }}</td>
+                    <td>{{ item.district }}</td>
+                    <td><router-link size="sm" :to="{ name: 'unionlistedit', params: { id: item.id } }"
+                    class="btn btn-info mr-1 mt-1">
+                    Edit
+                </router-link></td>
+
+                </tr>
+            </tbody>
+
+         </table>
+
+
+
+
 
     </div>
 
@@ -44,6 +86,12 @@ export default {
     },
     data() {
         return {
+
+            f: {
+                paymentType: '',
+                district: '',
+            },
+
 
             preLooding:true,
 
@@ -123,6 +171,20 @@ export default {
                 })
                 .catch()
         },
+
+        async onSubmit() {
+
+            this.f.district = this.Users.district;
+            var res = await this.callApi('post', this.AllUpdate, this.f);
+            this.$emit('event-name')
+            // console.log(res)
+            // this.getunionInfo();
+            //     this.$router.push({ name: 'unionlist'})
+            Notification.customSuccess('Payment Info Update Successfuly Done');
+
+
+            },
+
 
     },
     mounted() {
