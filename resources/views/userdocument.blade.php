@@ -31,7 +31,18 @@
             সেবার ধরণ :  {{ $row->sonod_name }} <br>
         আবেদনের ক্রমিক নং	: {{ int_en_to_bn($row->sonod_Id) }} <br>
         আবেদনের তারিখ	: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }} <br>
+
         আবেদনকারীর নাম	: {{ $row->applicant_name }} <br>
+
+        @if ($row->sonod_name=='ওয়ারিশ সনদ')
+
+        মৃত ব্যাক্তির নাম	: {{ $row->utname }} <br>
+        @elseif ($row->sonod_name=='উত্তরাধিকারী সনদ')
+        জীবিত ব্যক্তির নাম	: {{ $row->utname }} <br>
+
+        @endif
+
+
         এনআইডি নং	: {{ int_en_to_bn($row->applicant_national_id_number) }} <br>
         পিতা/স্বামীর নাম	: {{ $row->applicant_father_name }} <br>
 
@@ -43,7 +54,7 @@
 
 
     <p style="text-align:center" >শীগ্রই আপনার আবেদনটি কর্তৃপক্ষ কর্তৃক যথাযথ প্রক্রিয়ায় অনুমোদন করা হবে। <br>
-    ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমের সাথে জন্য ধনব্যাদ।
+    ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমের সাথে থাকার জন্য ধনব্যাদ।
     </p>
 
 

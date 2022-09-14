@@ -112,6 +112,30 @@
         </nav>
         <!-- Info modal -->
         <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only>
+
+
+            <div class="row" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'" >
+
+
+<div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'Certificate of Inheritance'"><b>মৃত ব্যাক্তির নাম : </b>{{ infoModal.content.utname }}</div>
+<div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'Inheritance certificate'"><b>জীবিত ব্যক্তির নাম : </b>{{ infoModal.content.utname }}</div>
+<div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ infoModal.content.applicant_gender }}</div>
+<div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ infoModal.content.applicant_marriage_status }}</div>
+<div class="col-md-4 col-6 mt-3"><b>পিতা/স্বামীর নাম : </b>{{ infoModal.content.applicant_father_name }}</div>
+<div class="col-md-4 col-6 mt-3"><b>মাতার নাম : </b>{{ infoModal.content.applicant_mother_name }}</div>
+<div class="col-md-4 col-6 mt-3"><b>পিতা জীবিত কিনা : </b>{{ infoModal.content.successor_father_alive_status }}</div>
+<div class="col-md-4 col-6 mt-3"><b>মাতা জীবিত কিনা : </b>{{ infoModal.content.successor_mother_alive_status }}</div>
+<div class="col-md-4 col-6 mt-3"><b>পেশা : </b>{{ infoModal.content.applicant_occupation }}</div>
+<div class="col-md-4 col-6 mt-3"><b>বাসিন্দা : </b>{{ infoModal.content.applicant_resident_status }}</div>
+
+
+    </div>
+
+
+
+
+
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="app-heading">আবেদনকারীর তথ্য</div>
@@ -123,30 +147,35 @@
                 <div class="col-md-4 col-6 mt-3" v-if="SonodName.enname == 'Certification of the same name'">
                     <b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ infoModal.content.applicant_second_name }}
                 </div>
-                <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ infoModal.content.applicant_gender }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{
+                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>লিঙ্গ : </b>{{ infoModal.content.applicant_gender }}</div>
+                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{
                 infoModal.content.applicant_father_name
                 }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর পিতা জীবিত কিনা : </b>{{
+                                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>আবেদনকারীর পিতা জীবিত কিনা : </b>{{
                 infoModal.content.successor_father_alive_status
                 }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতার নাম : </b>{{
+                                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>আবেদনকারীর মাতার নাম : </b>{{
                 infoModal.content.applicant_mother_name
                 }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতা জীবিত কিনা : </b>{{
+                                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>আবেদনকারীর মাতা জীবিত কিনা : </b>{{
                 infoModal.content.successor_mother_alive_status
                 }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{
                 infoModal.content.applicant_national_id_number
                 }}
-                    <span v-if="nidverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
-                    <span v-else class="badge badge-pill badge-danger mg-t-8">Unverified</span>
+                    <!-- <span v-if="nidverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
+                    <span v-else class="badge badge-pill badge-danger mg-t-8">Unverified</span> -->
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{
                 infoModal.content.applicant_birth_certificate_number
                 }}
-                    <span v-if="dobverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
-                    <span v-else class="badge badge-pill badge-danger mg-t-8">Unverified</span>
+                    <!-- <span v-if="dobverify" class="badge badge-pill badge-success mg-t-8">Verified</span>
+                    <span v-else class="badge badge-pill badge-danger mg-t-8">Unverified</span> -->
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ infoModal.content.applicant_holding_tax_number
                 }}</div>
@@ -170,13 +199,16 @@
                 <div class="col-md-4 col-6 mt-3"><b>বয়স: </b>{{ infoModal.content.applicant_date_of_birth }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ infoModal.content.applicant_passport_number }}
                 </div>
-                <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ infoModal.content.applicant_marriage_status
+                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>বৈবাহিক সম্পর্ক : </b>{{ infoModal.content.applicant_marriage_status
                 }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>পেশা: </b>{{ infoModal.content.applicant_occupation }}</div>
+                                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>পেশা: </b>{{ infoModal.content.applicant_occupation }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ infoModal.content.applicant_education }}
                 </div>
                 <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ infoModal.content.applicant_religion }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা: </b>{{ infoModal.content.applicant_resident_status }}
+                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'"></div>
+                <div class="col-md-4 col-6 mt-3" v-else><b>বাসিন্দা: </b>{{ infoModal.content.applicant_resident_status }}
                 </div>
                 <div class="col-md-12 col-12 mt-3" v-if="infoModal.content.sonod_name!='ট্রেড লাইসেন্স'"><b>আবেদনকৃত
                         প্রত্যয়নের বিবরণ: <br> </b>{{ infoModal.content.prottoyon }}</div>
@@ -425,18 +457,18 @@ export default {
             console.log(JSON.parse(item.successor_list))
             var applicant_national_id_number = item.applicant_national_id_number;
             var applicant_birth_certificate_number = item.applicant_birth_certificate_number;
-            var nidVerify = await this.callApi('get', `/api/niddob/verify?applicant_national_id_number=${applicant_national_id_number}`, []);
-            var dobVerify = await this.callApi('get', `/api/niddob/verify?applicant_birth_certificate_number=${applicant_birth_certificate_number}`, []);
-            if (nidVerify.data == 1) {
-                this.nidverify = true
-            } else {
-                this.nidverify = false
-            }
-            if (dobVerify.data == 1) {
-                this.dobverify = true;
-            } else {
-                this.dobverify = false;
-            }
+            // var nidVerify = await this.callApi('get', `/api/niddob/verify?applicant_national_id_number=${applicant_national_id_number}`, []);
+            // var dobVerify = await this.callApi('get', `/api/niddob/verify?applicant_birth_certificate_number=${applicant_birth_certificate_number}`, []);
+            // if (nidVerify.data == 1) {
+            //     this.nidverify = true
+            // } else {
+            //     this.nidverify = false
+            // }
+            // if (dobVerify.data == 1) {
+            //     this.dobverify = true;
+            // } else {
+            //     this.dobverify = false;
+            // }
             this.buttonLoader = false;
             this.$root.$emit('bv::show::modal', this.infoModal.id, button)
         },

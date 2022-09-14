@@ -72,6 +72,7 @@ class Sonod extends Model
         'applicant_birth_certificate_attachment',
         'prottoyon',
         'sec_prottoyon',
+        'utname',
         'stutus',
         'payment_status',
         'chaireman_name',

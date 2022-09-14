@@ -2549,6 +2549,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sonod_Id: '',
         unioun_name: null,
         year: null,
+        ut_name: null,
         sonod_name: null,
         applicant_holding_tax_number: null,
         applicant_national_id_number: null,
@@ -5273,7 +5274,7 @@ var render = function render() {
       "text-align": "center",
       color: "white"
     }
-  }, [_vm._v(_vm._s(_vm.sonodnamedata.bnname) + "\n            ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.sonodnamedata.bnname) + "\n        ")]), _vm._v(" "), _c("div", {
     staticClass: "form-pannel"
   }, [_c("input", {
     directives: [{
@@ -5295,7 +5296,299 @@ var render = function render() {
         _vm.$set(_vm.form, "unioun_name = getUnion", $event.target.value);
       }
     }
-  }), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_vm.sonodnamedata.enname == "Certificate of Inheritance" ? _c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("মৃত ব্যাক্তির নাম *")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("জীবিত ব্যক্তির নাম *")]) : _vm._e(), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.utname,
+      expression: "form.utname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.utname
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "utname", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("লিঙ্গ")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.applicant_gender,
+      expression: "form.applicant_gender"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "applicant_gender", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("লিঙ্গ নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("পুরুষ")]), _vm._v(" "), _c("option", [_vm._v("মহিলা")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("বৈবাহিক সম্পর্ক")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.applicant_marriage_status,
+      expression: "form.applicant_marriage_status"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "applicant_marriage_status", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("বিবাহিত")]), _vm._v(" "), _c("option", [_vm._v("অবিবাহিত")]), _vm._v(" "), _c("option", [_vm._v("তালাক প্রাপ্ত")]), _vm._v(" "), _c("option", [_vm._v("বিধবা")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("পিতা/স্বামীর নাম")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.applicant_father_name,
+      expression: "form.applicant_father_name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.applicant_father_name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "applicant_father_name", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("মাতার নাম")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.applicant_mother_name,
+      expression: "form.applicant_mother_name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.applicant_mother_name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "applicant_mother_name", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("পিতা জীবিত কিনা")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.successor_father_alive_status,
+      expression: "form.successor_father_alive_status"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "successor_father_alive_status", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("হ্যাঁ")]), _vm._v(" "), _c("option", [_vm._v("না")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("মাতা জীবিত কিনা")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.successor_mother_alive_status,
+      expression: "form.successor_mother_alive_status"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "successor_mother_alive_status", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("হ্যাঁ")]), _vm._v(" "), _c("option", [_vm._v("না")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("পেশা")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.applicant_occupation,
+      expression: "form.applicant_occupation"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.applicant_occupation
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "applicant_occupation", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "labelColor",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("বাসিন্দা")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.applicant_resident_status,
+      expression: "form.applicant_resident_status"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "applicant_resident_status", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("স্থায়ী")]), _vm._v(" "), _c("option", [_vm._v("অস্থায়ী")])])])])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -5353,7 +5646,12 @@ var render = function render() {
         _vm.$set(_vm.form, "applicant_second_name", $event.target.value);
       }
     }
-  })])]) : _vm._e(), _vm._v(" "), _c("div", {
+  })])]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5386,7 +5684,12 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("লিঙ্গ নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("পুরুষ")]), _vm._v(" "), _c("option", [_vm._v("মহিলা")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("লিঙ্গ নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("পুরুষ")]), _vm._v(" "), _c("option", [_vm._v("মহিলা")])])])]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5416,7 +5719,12 @@ var render = function render() {
         _vm.$set(_vm.form, "applicant_father_name", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5842,6 +6150,9 @@ var render = function render() {
       expression: "form.sonod_name"
     }],
     staticClass: "form-control",
+    attrs: {
+      disabled: ""
+    },
     on: {
       change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
@@ -5895,37 +6206,7 @@ var render = function render() {
         _vm.$set(_vm.form, "applicant_passport_number", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" ? _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "labelColor",
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("মৃত ব্যাক্তির নাম *")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.utname,
-      expression: "form.utname"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form.utname
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "utname", $event.target.value);
-      }
-    }
-  })])]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Trade license" ? _c("div", {
+  })])]), _vm._v(" "), _vm.sonodnamedata.enname == "Trade license" ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5955,7 +6236,12 @@ var render = function render() {
         _vm.$set(_vm.form, "applicant_name_of_the_organization", $event.target.value);
       }
     }
-  })])]) : _vm._e(), _vm._v(" "), _c("div", {
+  })])]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -5988,7 +6274,12 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("বিবাহিত")]), _vm._v(" "), _c("option", [_vm._v("অবিবাহিত")]), _vm._v(" "), _c("option", [_vm._v("তালাক প্রাপ্ত")]), _vm._v(" "), _c("option", [_vm._v("বিধবা")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("বিবাহিত")]), _vm._v(" "), _c("option", [_vm._v("অবিবাহিত")]), _vm._v(" "), _c("option", [_vm._v("তালাক প্রাপ্ত")]), _vm._v(" "), _c("option", [_vm._v("বিধবা")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])])])]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6171,7 +6462,12 @@ var render = function render() {
         _vm.$set(_vm.form, "applicant_type_of_business", $event.target.value);
       }
     }
-  })])]) : _vm._e(), _vm._v(" "), _c("div", {
+  })])]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6204,7 +6500,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("স্থায়ী")]), _vm._v(" "), _c("option", [_vm._v("অস্থায়ী")])])])]), _vm._v(" "), _vm.sonodnamedata.enname != "Citizenship certificate" ? _c("div", {
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("স্থায়ী")]), _vm._v(" "), _c("option", [_vm._v("অস্থায়ী")])])])]), _vm._v(" "), _vm.sonodnamedata.enname == "Miscellaneous certificates" ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6755,7 +7051,7 @@ var render = function render() {
     }
   }) : _vm._e()])])]), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("div", {
     staticClass: "app-heading"
-  }, [_vm._v("\n                    ওয়ারিশগনের\n                    তালিকা\n                ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("table", {
+  }, [_vm._v("\n                ওয়ারিশগনের\n                তালিকা\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "ওয়ারিশ সনদ" || _vm.sonodnamedata.bnname == "উত্তরাধিকারী সনদ" ? _c("table", {
     staticClass: "table"
   }, [_c("tr", [_c("th", [_vm._v("নাম")]), _vm._v(" "), _c("th", [_vm._v("সম্পর্ক")]), _vm._v(" "), _c("th", [_vm._v("জন্ম তারিখ")]), _vm._v(" "), _c("th", [_vm._v("জাতীয় পরিচয়পত্র নাম্বার/জন্মনিবন্ধন নাম্বার")]), _vm._v(" "), _c("th", [_c("button", {
     staticClass: "flex justify-start btn btn-info",
@@ -6767,7 +7063,7 @@ var render = function render() {
         return _vm.addMore();
       }
     }
-  }, [_vm._v("Add\n                                More")])])]), _vm._v(" "), _vm._l(_vm.form.successors, function (successor, index) {
+  }, [_vm._v("Add\n                            More")])])]), _vm._v(" "), _vm._l(_vm.form.successors, function (successor, index) {
     return _c("tr", {
       key: index
     }, [_c("input", {
@@ -6921,7 +7217,29 @@ var render = function render() {
       "no-close-on-esc": "",
       "no-close-on-backdrop": ""
     }
-  }, [_c("div", {
+  }, [_vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "row"
+  }, [_vm.sonodnamedata.enname == "Certificate of Inheritance" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("মৃত ব্যাক্তির নাম : ")]), _vm._v(_vm._s(_vm.form.utname))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("জীবিত ব্যক্তির নাম : ")]), _vm._v(_vm._s(_vm.form.utname))]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("লিঙ্গ : ")]), _vm._v(_vm._s(_vm.form.applicant_gender))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("বৈবাহিক সম্পর্ক : ")]), _vm._v(_vm._s(_vm.form.applicant_marriage_status))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("পিতা/স্বামীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_father_name))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("মাতার নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_mother_name))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("পিতা জীবিত কিনা : ")]), _vm._v(_vm._s(_vm.form.successor_father_alive_status))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("মাতা জীবিত কিনা : ")]), _vm._v(_vm._s(_vm.form.successor_mother_alive_status))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("পেশা : ")]), _vm._v(_vm._s(_vm.form.applicant_occupation))]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 col-6 mt-3"
+  }, [_c("b", [_vm._v("বাসিন্দা : ")]), _vm._v(_vm._s(_vm.form.applicant_resident_status))])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12"
@@ -6943,11 +7261,26 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("আবেদনকারীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_name))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certification of the same name" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকারীর দ্বিতীয় নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_second_name) + "\n                ")]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকারীর দ্বিতীয় নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_second_name) + "\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("লিঙ্গ : ")]), _vm._v(_vm._s(_vm.form.applicant_gender))]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("লিঙ্গ : ")]), _vm._v(_vm._s(_vm.form.applicant_gender))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_father_name) + "\n                ")]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকারীর পিতা/স্বামীর নাম : ")]), _vm._v(_vm._s(_vm.form.applicant_father_name) + "\n            ")]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("আবেদনকারীর পিতা জীবিত কিনা : ")]), _vm._v(_vm._s(_vm.form.successor_father_alive_status))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -6957,37 +7290,52 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("ন্যাশনাল আইডি : ")]), _vm._v(_vm._s(_vm.form.applicant_national_id_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("জন্ম নিবন্ধন নং : ")]), _vm._v(_vm._s(_vm.form.applicant_birth_certificate_number) + "\n                ")]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("জন্ম নিবন্ধন নং : ")]), _vm._v(_vm._s(_vm.form.applicant_birth_certificate_number) + "\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("হোল্ডিং নং : ")]), _vm._v(_vm._s(_vm.form.applicant_holding_tax_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("জম্ম তারিখ : ")]), _vm._v(_vm._s(_vm.form.applicant_date_of_birth))]), _vm._v(" "), _vm.sonodnamedata.enname == "Family certificate" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("বংশের নাম :\n                    ")]), _vm._v(_vm._s(_vm.form.family_name))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of annual income" || _vm.sonodnamedata.enname == "Parents Income Certificate" ? _c("div", {
+  }, [_c("b", [_vm._v("বংশের নাম :\n                ")]), _vm._v(_vm._s(_vm.form.family_name))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of annual income" || _vm.sonodnamedata.enname == "Parents Income Certificate" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("বার্ষিক আয় : ")]), _vm._v(_vm._s(_vm.form.Annual_income) + "\n                ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "permit" ? _c("div", {
+  }, [_c("b", [_vm._v("বার্ষিক আয় : ")]), _vm._v(_vm._s(_vm.form.Annual_income) + "\n            ")]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "permit" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("অনুমতি এর বিষয় : ")]), _vm._v(_vm._s(_vm.form.Subject_to_permission))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.bnname == "প্রতিবন্ধী সনদপত্র" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("প্রতিবন্ধী :\n                    ")]), _vm._v(_vm._s(_vm.form.disabled))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "No Objection Letter to Transfer of Constituency" ? _c("div", {
+  }, [_c("b", [_vm._v("প্রতিবন্ধী :\n                ")]), _vm._v(_vm._s(_vm.form.disabled))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "No Objection Letter to Transfer of Constituency" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("স্থানান্তরিত\n                        এলাকার নাম : ")]), _vm._v(_vm._s(_vm.form.Name_of_the_transferred_area))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate" ? _c("div", {
+  }, [_c("b", [_vm._v("স্থানান্তরিত\n                    এলাকার নাম : ")]), _vm._v(_vm._s(_vm.form.Name_of_the_transferred_area))]) : _vm._e(), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate" ? _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("প্রত্যয়নপত্র এর বিষয় :\n                    ")]), _vm._v(_vm._s(_vm.form.The_subject_of_the_certificate))]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("প্রত্যয়নপত্র এর বিষয় :\n                ")]), _vm._v(_vm._s(_vm.form.The_subject_of_the_certificate))]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("পাসপোর্ট নং : ")]), _vm._v(_vm._s(_vm.form.applicant_passport_number))]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("পাসপোর্ট নং : ")]), _vm._v(_vm._s(_vm.form.applicant_passport_number))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("বৈবাহিক সম্পর্ক : ")]), _vm._v(_vm._s(_vm.form.applicant_marriage_status))]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("বৈবাহিক সম্পর্ক : ")]), _vm._v(_vm._s(_vm.form.applicant_marriage_status))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("পেশা: ")]), _vm._v(_vm._s(_vm.form.applicant_occupation))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("শিক্ষাগত যোগ্যতা: ")]), _vm._v(_vm._s(_vm.form.applicant_education))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("ধর্ম: ")]), _vm._v(_vm._s(_vm.form.applicant_religion))]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("ধর্ম: ")]), _vm._v(_vm._s(_vm.form.applicant_religion))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.enname == "Inheritance certificate" ? _c("div", {
+    staticClass: "col-md-4 col-6 mt-3",
+    staticStyle: {
+      display: "none"
+    }
+  }) : _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("বাসিন্দা: ")]), _vm._v(_vm._s(_vm.form.applicant_resident_status))]), _vm._v(" "), _vm.form.sonod_name != "ট্রেড লাইসেন্স" ? _c("div", {
     staticClass: "col-md-12 col-12 mt-3"
-  }, [_c("b", [_vm._v("আবেদনকৃত প্রত্যয়নের\n                        : "), _c("br")]), _vm._v(_vm._s(_vm.form.prottoyon))]) : _vm._e(), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("আবেদনকৃত প্রত্যয়নের\n                    : "), _c("br")]), _vm._v(_vm._s(_vm.form.prottoyon))]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "app-heading"
@@ -6995,7 +7343,7 @@ var render = function render() {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("গ্রাম/মহল্লা: ")]), _vm._v(_vm._s(_vm.form.applicant_present_village))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("b", [_vm._v("রোড/ব্লক/সেক্টর: ")]), _vm._v(_vm._s(_vm.form.applicant_present_road_block_sector) + "\n                ")]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("রোড/ব্লক/সেক্টর: ")]), _vm._v(_vm._s(_vm.form.applicant_present_road_block_sector) + "\n            ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
   }, [_c("b", [_vm._v("ওয়ার্ড নং: ")]), _vm._v(_vm._s(_vm.form.applicant_present_word_number))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 col-6 mt-3"
@@ -26883,7 +27231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nsection.vh-100[data-v-2a1c1b9c] {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%, -50%);\r\n    width: 100%;\n}\n.blurerror input[data-v-2a1c1b9c] {\r\n    border: 1px solid red !important;\n}\n.blurerror label[data-v-2a1c1b9c] {\r\n    color: red !important;\n}\n.blursuccess input[data-v-2a1c1b9c] {\r\n    border: 1px solid green !important;\n}\n.blursuccess label[data-v-2a1c1b9c] {\r\n    color: green !important;\n}\n.divider[data-v-2a1c1b9c]:after,\r\n.divider[data-v-2a1c1b9c]:before {\r\n    content: \"\";\r\n    flex: 1;\r\n    height: 1px;\r\n    background: #eee;\n}\n*[data-v-2a1c1b9c],\r\n*[data-v-2a1c1b9c]:focus {\r\n    outline: none;\n}\r\n\r\n/* .form{\r\n  width: 500px;\r\n  margin: 0 auto;\r\n  margin-top: 150px;\r\n  font-family: sans-serif;\r\n  background: #fff\r\n} */\n.form-item[data-v-2a1c1b9c] {\r\n    position: relative;\r\n    margin-bottom: 15px;\n}\n.form-item input[data-v-2a1c1b9c] {\r\n    display: block;\r\n    width: 100%;\r\n    height: 40px;\r\n    background: transparent;\r\n    border: solid 1px #ccc;\r\n    transition: all 0.3s ease;\r\n    padding: 0 15px;\n}\n.form-item input[data-v-2a1c1b9c]:focus {\r\n    border-color: blue;\n}\n.form-item label[data-v-2a1c1b9c] {\r\n    position: absolute;\r\n    cursor: text;\r\n    z-index: 2;\r\n    top: 13px;\r\n    left: 10px;\r\n    font-size: 12px;\r\n    font-weight: bold;\r\n    background: #fff;\r\n    padding: 0 10px;\r\n    color: #999;\r\n    transition: all 0.3s ease;\n}\n.form-item input:focus+label[data-v-2a1c1b9c],\r\n.form-item input:valid+label[data-v-2a1c1b9c] {\r\n    font-size: 11px;\r\n    top: -5px;\n}\n.form-item input:focus+label[data-v-2a1c1b9c] {\r\n    color: blue;\n}\n.loginForm[data-v-2a1c1b9c][data-v-2a1c1b9c] {\r\n    width: 370px !important;\r\n    margin: 0 auto;\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%,-50%);\n}\n.col-md-12.col-lg-12.col-xl-12.offset-xl-1[data-v-2a1c1b9c] {\r\n    height: 100vh;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nsection.vh-100[data-v-2a1c1b9c] {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    width: 100%;\n}\n.blurerror input[data-v-2a1c1b9c] {\n    border: 1px solid red !important;\n}\n.blurerror label[data-v-2a1c1b9c] {\n    color: red !important;\n}\n.blursuccess input[data-v-2a1c1b9c] {\n    border: 1px solid green !important;\n}\n.blursuccess label[data-v-2a1c1b9c] {\n    color: green !important;\n}\n.divider[data-v-2a1c1b9c]:after,\n.divider[data-v-2a1c1b9c]:before {\n    content: \"\";\n    flex: 1;\n    height: 1px;\n    background: #eee;\n}\n*[data-v-2a1c1b9c],\n*[data-v-2a1c1b9c]:focus {\n    outline: none;\n}\n\n/* .form{\n  width: 500px;\n  margin: 0 auto;\n  margin-top: 150px;\n  font-family: sans-serif;\n  background: #fff\n} */\n.form-item[data-v-2a1c1b9c] {\n    position: relative;\n    margin-bottom: 15px;\n}\n.form-item input[data-v-2a1c1b9c] {\n    display: block;\n    width: 100%;\n    height: 40px;\n    background: transparent;\n    border: solid 1px #ccc;\n    transition: all 0.3s ease;\n    padding: 0 15px;\n}\n.form-item input[data-v-2a1c1b9c]:focus {\n    border-color: blue;\n}\n.form-item label[data-v-2a1c1b9c] {\n    position: absolute;\n    cursor: text;\n    z-index: 2;\n    top: 13px;\n    left: 10px;\n    font-size: 12px;\n    font-weight: bold;\n    background: #fff;\n    padding: 0 10px;\n    color: #999;\n    transition: all 0.3s ease;\n}\n.form-item input:focus+label[data-v-2a1c1b9c],\n.form-item input:valid+label[data-v-2a1c1b9c] {\n    font-size: 11px;\n    top: -5px;\n}\n.form-item input:focus+label[data-v-2a1c1b9c] {\n    color: blue;\n}\n.loginForm[data-v-2a1c1b9c][data-v-2a1c1b9c] {\n    width: 370px !important;\n    margin: 0 auto;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%,-50%);\n}\n.col-md-12.col-lg-12.col-xl-12.offset-xl-1[data-v-2a1c1b9c] {\n    height: 100vh;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26931,7 +27279,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\r\n    line-height: 1;\r\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\r\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\r\n    text-decoration: none;\n}\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6 {\r\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\r\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\r\n        font-size: 3rem;\n}\n}\n.nav-scroller {\r\n    position: relative;\r\n    z-index: 2;\r\n    height: 2.75rem;\r\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\r\n    display: flex;\r\n    flex-wrap: nowrap;\r\n    padding-bottom: 1rem;\r\n    margin-top: -1px;\r\n    overflow-x: auto;\r\n    text-align: center;\r\n    white-space: nowrap;\r\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\r\n    padding-top: .75rem;\r\n    padding-bottom: .75rem;\r\n    font-size: .875rem;\n}\n.card-img-right {\r\n    height: 100%;\r\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\r\n    flex: 0 0 auto;\n}\n.h-250 {\r\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\r\n        height: 250px;\n}\n}\r\n/* Pagination */\n.blog-pagination {\r\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\r\n    border-radius: 2rem;\n}\r\n/*\r\n * Blog posts\r\n */\n.blog-post {\r\n    margin-bottom: 4rem;\n}\n.blog-post-title {\r\n    margin-bottom: .25rem;\r\n    font-size: 2.5rem;\n}\n.blog-post-meta {\r\n    margin-bottom: 1.25rem;\r\n    color: #999;\n}\r\n/*\r\n * Footer\r\n */\n.blog-footer {\r\n    padding: 2.5rem 0;\r\n    color: #999;\r\n    text-align: center;\r\n    background-color: #f9f9f9;\r\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\r\n    margin-bottom: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* stylelint-disable selector-list-comma-newline-after */\n.blog-header {\n    line-height: 1;\n    border-bottom: 1px solid #e5e5e5;\n}\n.blog-header-logo {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n    font-size: 2.25rem;\n}\n.blog-header-logo:hover {\n    text-decoration: none;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n    font-family: \"Playfair Display\", Georgia, \"Times New Roman\", serif;\n}\n.display-4 {\n    font-size: 2.5rem;\n}\n@media (min-width: 768px) {\n.display-4 {\n        font-size: 3rem;\n}\n}\n.nav-scroller {\n    position: relative;\n    z-index: 2;\n    height: 2.75rem;\n    overflow-y: hidden;\n}\n.nav-scroller .nav {\n    display: flex;\n    flex-wrap: nowrap;\n    padding-bottom: 1rem;\n    margin-top: -1px;\n    overflow-x: auto;\n    text-align: center;\n    white-space: nowrap;\n    -webkit-overflow-scrolling: touch;\n}\n.nav-scroller .nav-link {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    font-size: .875rem;\n}\n.card-img-right {\n    height: 100%;\n    border-radius: 0 3px 3px 0;\n}\n.flex-auto {\n    flex: 0 0 auto;\n}\n.h-250 {\n    height: 250px;\n}\n@media (min-width: 768px) {\n.h-md-250 {\n        height: 250px;\n}\n}\n/* Pagination */\n.blog-pagination {\n    margin-bottom: 4rem;\n}\n.blog-pagination>.btn {\n    border-radius: 2rem;\n}\n/*\n * Blog posts\n */\n.blog-post {\n    margin-bottom: 4rem;\n}\n.blog-post-title {\n    margin-bottom: .25rem;\n    font-size: 2.5rem;\n}\n.blog-post-meta {\n    margin-bottom: 1.25rem;\n    color: #999;\n}\n/*\n * Footer\n */\n.blog-footer {\n    padding: 2.5rem 0;\n    color: #999;\n    text-align: center;\n    background-color: #f9f9f9;\n    border-top: .05rem solid #e5e5e5;\n}\n.blog-footer p:last-child {\n    margin-bottom: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27027,7 +27375,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.contact-form {\r\n    font-family: 16px;\r\n    margin: 0 auto;\r\n    max-width: 600px;\r\n    width: 100%;\n}\n.contact-form .separator {\r\n    border-bottom: solid 1px #ccc;\r\n    margin-bottom: 15px;\n}\n.contact-form .form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    font-size: 16px;\n}\n.contact-form_title {\r\n    color: #333;\r\n    text-align: left;\r\n    font-size: 28px;\n}\n.contact-form textarea {\r\n    resize: none;\n}\n.contact-form .button {\r\n    background: #da552f;\r\n    border: solid 1px #da552f;\r\n    color: white;\r\n    cursor: pointer;\r\n    padding: 10px 50px;\r\n    text-align: center;\r\n    text-transform: uppercase;\n}\n.contact-form .button:hover {\r\n    background: #ea532a;\r\n    border: solid 1px #ea532a;\n}\n.contact-form input[type=\"email\"],\r\n.contact-form input[type=\"text\"],\r\n.contact-form textarea,\r\n.contact-form .button {\r\n    font-size: 15px;\r\n    border-radius: 3px\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.contact-form {\n    font-family: 16px;\n    margin: 0 auto;\n    max-width: 600px;\n    width: 100%;\n}\n.contact-form .separator {\n    border-bottom: solid 1px #ccc;\n    margin-bottom: 15px;\n}\n.contact-form .form {\n    display: flex;\n    flex-direction: column;\n    font-size: 16px;\n}\n.contact-form_title {\n    color: #333;\n    text-align: left;\n    font-size: 28px;\n}\n.contact-form textarea {\n    resize: none;\n}\n.contact-form .button {\n    background: #da552f;\n    border: solid 1px #da552f;\n    color: white;\n    cursor: pointer;\n    padding: 10px 50px;\n    text-align: center;\n    text-transform: uppercase;\n}\n.contact-form .button:hover {\n    background: #ea532a;\n    border: solid 1px #ea532a;\n}\n.contact-form input[type=\"email\"],\n.contact-form input[type=\"text\"],\n.contact-form textarea,\n.contact-form .button {\n    font-size: 15px;\n    border-radius: 3px\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27075,7 +27423,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-a8b6818e] {\r\n    display: none !important;\n}\na.next[data-v-a8b6818e] {\r\n    display: none !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-a8b6818e] {\n    display: none !important;\n}\na.next[data-v-a8b6818e] {\n    display: none !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27123,7 +27471,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\r\n    background: #023076 !important;\n}\nli.nav-item a {\r\n    color: white !important;\n}\n.dropdown-menu {\r\n    background: #9e5bba;\n}\n.dropdown-item.active,\r\n.dropdown-item:active {\r\n    background-color: #159513ed;\n}\n.dropdown-item:focus,\r\n.dropdown-item:hover {\r\n    background-color: #159513ed;\n}\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\r\n    padding: 0 6px;\n}\n@media (min-width:992px) {\nli.nav-item {\r\n        border-right: 1px solid white;\n}\na.dropdown-item {\r\n        border-bottom: 1px solid #89209b;\n}\na.dropdown-item:first-child {\r\n        border-top: 1px solid #89209b;\n}\n}\r\n/* .dropdown:hover>.dropdown-menu{\r\n\t\tdisplay: block;\r\n\t} */\r\n/* .serviceBox {\r\n    border-top-right-radius: 30px;\r\n    border-bottom-left-radius: 30px;\r\n} */\n.defaltColor {\r\n    background: var(--defaultColor) !important;\n}\n.defaltTextColor {\r\n    color: var(--defaultColor) !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\n    background: #023076 !important;\n}\nli.nav-item a {\n    color: white !important;\n}\n.dropdown-menu {\n    background: #9e5bba;\n}\n.dropdown-item.active,\n.dropdown-item:active {\n    background-color: #159513ed;\n}\n.dropdown-item:focus,\n.dropdown-item:hover {\n    background-color: #159513ed;\n}\nnav.navbar.navbar-expand-lg.navbar-light.bg-light {\n    padding: 0 6px;\n}\n@media (min-width:992px) {\nli.nav-item {\n        border-right: 1px solid white;\n}\na.dropdown-item {\n        border-bottom: 1px solid #89209b;\n}\na.dropdown-item:first-child {\n        border-top: 1px solid #89209b;\n}\n}\n/* .dropdown:hover>.dropdown-menu{\n\t\tdisplay: block;\n\t} */\n/* .serviceBox {\n    border-top-right-radius: 30px;\n    border-bottom-left-radius: 30px;\n} */\n.defaltColor {\n    background: var(--defaultColor) !important;\n}\n.defaltTextColor {\n    color: var(--defaultColor) !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27147,7 +27495,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-38351579] {\r\n    display: none !important;\n}\na.next[data-v-38351579] {\r\n    display: none !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na.prev[data-v-38351579] {\n    display: none !important;\n}\na.next[data-v-38351579] {\n    display: none !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27171,7 +27519,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.border-dash {\n  border: 1px dashed #dee2e6;\n}\n.logo-img img {\n  width: 70px;\n}\n.header-right-logo img {\n  width: 100px;\n}\n.header-text {\n  font-size: 16px;\n  line-height: 70px;\n}\n.header-text p:first-child {\n  font-weight: 500;\n  line-height: 18px;\n  margin-bottom: 0px;\n  margin-top: 18px;\n}\n.header-text p:last-child {\n  line-height: 18px;\n}\n.verification-sec h2:first-child {\n  font-size: 30px;\n  color: green;\n  font-weight: bold;\n}\n.verification-sec h2:last-child {\n  font-size: 22px;\n  color: green;\n  font-weight: 350;\n}\n.beneficiary {\n  background-color: #eeeeee;\n  border: 1px solid #dee2e6;\n}\n.beneficiary h3 {\n  text-align: center;\n  font-size: 14px;\n  font-weight: bold;\n}\n.beneficiary-details-right {\n  font-size: 13px;\n  text-align: right;\n  padding: 5px;\n  overflow-wrap: break-word;\n}\n.beneficiary-details-left {\n  font-size: 13px;\n  text-align: left;\n  padding: 5px;\n  overflow-wrap: break-word;\n}\n.lower-does-1 h3 {\n  font-size: 13px;\n  text-align: right;\n  padding: 5px;\n  font-weight: bold;\n}\n.lower-does-2 h3 {\n  font-size: 13px;\n  text-align: center;\n  padding: 5px;\n  font-weight: bold;\n}\n.lower-does-3 h3 {\n  font-size: 13px;\n  text-align: left;\n  padding: 5px;\n  font-weight: bold;\n}\n.lower-does-part-1 h3 {\n  font-size: 13px;\n  text-align: right;\n  padding: 5px;\n  overflow-wrap: break-word;\n  text-transform: capitalize;\n}\n.lower-does-part-2 h3 {\n  font-size: 13px;\n  text-align: center;\n  padding: 5px;\n  overflow-wrap: break-word;\n}\n.lower-does-part-3 h3 {\n  font-size: 13px;\n  text-align: left;\n  padding: 5px;\n  overflow-wrap: break-word;\n}\n.credit-Logo img {\n  max-width: 80%;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.border-dash {\r\n  border: 1px dashed #dee2e6;\n}\n.logo-img img {\r\n  width: 70px;\n}\n.header-right-logo img {\r\n  width: 100px;\n}\n.header-text {\r\n  font-size: 16px;\r\n  line-height: 70px;\n}\n.header-text p:first-child {\r\n  font-weight: 500;\r\n  line-height: 18px;\r\n  margin-bottom: 0px;\r\n  margin-top: 18px;\n}\n.header-text p:last-child {\r\n  line-height: 18px;\n}\n.verification-sec h2:first-child {\r\n  font-size: 30px;\r\n  color: green;\r\n  font-weight: bold;\n}\n.verification-sec h2:last-child {\r\n  font-size: 22px;\r\n  color: green;\r\n  font-weight: 350;\n}\n.beneficiary {\r\n  background-color: #eeeeee;\r\n  border: 1px solid #dee2e6;\n}\n.beneficiary h3 {\r\n  text-align: center;\r\n  font-size: 14px;\r\n  font-weight: bold;\n}\n.beneficiary-details-right {\r\n  font-size: 13px;\r\n  text-align: right;\r\n  padding: 5px;\r\n  overflow-wrap: break-word;\n}\n.beneficiary-details-left {\r\n  font-size: 13px;\r\n  text-align: left;\r\n  padding: 5px;\r\n  overflow-wrap: break-word;\n}\n.lower-does-1 h3 {\r\n  font-size: 13px;\r\n  text-align: right;\r\n  padding: 5px;\r\n  font-weight: bold;\n}\n.lower-does-2 h3 {\r\n  font-size: 13px;\r\n  text-align: center;\r\n  padding: 5px;\r\n  font-weight: bold;\n}\n.lower-does-3 h3 {\r\n  font-size: 13px;\r\n  text-align: left;\r\n  padding: 5px;\r\n  font-weight: bold;\n}\n.lower-does-part-1 h3 {\r\n  font-size: 13px;\r\n  text-align: right;\r\n  padding: 5px;\r\n  overflow-wrap: break-word;\r\n  text-transform: capitalize;\n}\n.lower-does-part-2 h3 {\r\n  font-size: 13px;\r\n  text-align: center;\r\n  padding: 5px;\r\n  overflow-wrap: break-word;\n}\n.lower-does-part-3 h3 {\r\n  font-size: 13px;\r\n  text-align: left;\r\n  padding: 5px;\r\n  overflow-wrap: break-word;\n}\n.credit-Logo img {\r\n  max-width: 80%;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -27195,7 +27543,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/*form styles*/\n#msform {\r\n    text-align: center;\r\n    position: relative;\r\n    margin-top: 20px;\n}\r\n/*progressbar*/\n#progressbar {\r\n    margin-bottom: 30px;\r\n    overflow: hidden;\r\n    color: lightgrey;\n}\n#progressbar .active {\r\n    color: #000000;\n}\n#progressbar li {\r\n    list-style-type: none;\r\n    font-size: 12px;\r\n    width: 20%;\r\n    float: left;\r\n    position: relative;\n}\r\n/*Icons in the ProgressBar*/\n#progressbar #account:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\n#progressbar #personal:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\n#progressbar #payment:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\n#progressbar #confirm:before {\r\n    font-family: FontAwesome;\r\n    content: \"\";\n}\r\n/*ProgressBar before any progress*/\n#progressbar li:before {\r\n    width: 50px;\r\n    height: 50px;\r\n    line-height: 45px;\r\n    display: block;\r\n    font-size: 18px;\r\n    color: #ffffff;\r\n    background: lightgray;\r\n    border-radius: 50%;\r\n    margin: 0 auto 10px auto;\r\n    padding: 2px;\n}\r\n/*ProgressBar connectors*/\n#progressbar li:after {\r\n    content: '';\r\n    width: 100%;\r\n    height: 2px;\r\n    background: lightgray;\r\n    position: absolute;\r\n    left: 0;\r\n    top: 25px;\r\n    z-index: -1;\n}\r\n/*Color number of the step and the connector before it*/\n#progressbar li.active:before,\r\n#progressbar li.active:after {\r\n    background: skyblue;\n}\r\n/*Imaged Radio Buttons*/\n.radio-group {\r\n    position: relative;\r\n    margin-bottom: 25px;\n}\n.radio {\r\n    display: inline-block;\r\n    width: 204;\r\n    height: 104;\r\n    border-radius: 0;\r\n    background: lightblue;\r\n    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);\r\n    box-sizing: border-box;\r\n    cursor: pointer;\r\n    margin: 8px 2px;\n}\n.radio:hover {\r\n    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);\n}\n.radio.selected {\r\n    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);\n}\r\n/*Fit image in bootstrap div*/\n.fit-image {\r\n    width: 100%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/*form styles*/\n#msform {\n    text-align: center;\n    position: relative;\n    margin-top: 20px;\n}\n/*progressbar*/\n#progressbar {\n    margin-bottom: 30px;\n    overflow: hidden;\n    color: lightgrey;\n}\n#progressbar .active {\n    color: #000000;\n}\n#progressbar li {\n    list-style-type: none;\n    font-size: 12px;\n    width: 20%;\n    float: left;\n    position: relative;\n}\n/*Icons in the ProgressBar*/\n#progressbar #account:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n#progressbar #personal:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n#progressbar #payment:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n#progressbar #confirm:before {\n    font-family: FontAwesome;\n    content: \"\";\n}\n/*ProgressBar before any progress*/\n#progressbar li:before {\n    width: 50px;\n    height: 50px;\n    line-height: 45px;\n    display: block;\n    font-size: 18px;\n    color: #ffffff;\n    background: lightgray;\n    border-radius: 50%;\n    margin: 0 auto 10px auto;\n    padding: 2px;\n}\n/*ProgressBar connectors*/\n#progressbar li:after {\n    content: '';\n    width: 100%;\n    height: 2px;\n    background: lightgray;\n    position: absolute;\n    left: 0;\n    top: 25px;\n    z-index: -1;\n}\n/*Color number of the step and the connector before it*/\n#progressbar li.active:before,\n#progressbar li.active:after {\n    background: skyblue;\n}\n/*Imaged Radio Buttons*/\n.radio-group {\n    position: relative;\n    margin-bottom: 25px;\n}\n.radio {\n    display: inline-block;\n    width: 204;\n    height: 104;\n    border-radius: 0;\n    background: lightblue;\n    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);\n    box-sizing: border-box;\n    cursor: pointer;\n    margin: 8px 2px;\n}\n.radio:hover {\n    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);\n}\n.radio.selected {\n    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);\n}\n/*Fit image in bootstrap div*/\n.fit-image {\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
