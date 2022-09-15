@@ -6,7 +6,7 @@
                 <h3>প্রতিবেদন</h3>
                 <ul>
                     <li>
-                        <router-link :to="{ name: 'Dashboard' }">Home</router-link>
+                        <router-link :to="{ name: 'Dashboard' }">ড্যাশবোর্ড</router-link>
                     </li>
                     <li>প্রতিবেদন </li>
                 </ul>

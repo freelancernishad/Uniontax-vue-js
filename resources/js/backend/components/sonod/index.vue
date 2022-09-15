@@ -13,7 +13,7 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h3>Filter By Sonod Id</h3>
+                <h3>সনদ নাম্বার দিয়ে খুঁজুন</h3>
                 <div class="form-group" style="width:250px">
                     <input type="text" class="form-control" v-model="sonod_id" @input="searchSondId">
                 </div>
@@ -111,7 +111,7 @@
             </ul>
         </nav>
         <!-- Info modal -->
-        <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only>
+        <b-modal :id="infoModal.id" size="xl" :title="infoModal.title">
 
 
             <div class="row" v-if="SonodName.enname == 'Certificate of Inheritance' || SonodName.enname == 'Inheritance certificate'" >
@@ -262,13 +262,13 @@
                 <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%"
                         :src="$asseturl + infoModal.content.applicant_birth_certificate_attachment" alt=""></div>
                 <div class="col-md-12"
-                    v-if="infoModal.content.sonod_name=='ওয়ারিশ সনদ' || infoModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
-                    <div class="app-heading" v-if="infoModal.content.sonod_name=='ওয়ারিশ সনদ'">ওয়ারিশগনের তালিকা </div>
+                    v-if="infoModal.content.sonod_name=='ওয়ারিশান সনদ' || infoModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
+                    <div class="app-heading" v-if="infoModal.content.sonod_name=='ওয়ারিশান সনদ'">ওয়ারিশগনের তালিকা </div>
                     <div class="app-heading" v-else-if="infoModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
                         উত্তরাধিকারীগনের তালিকা </div>
                 </div>
                 <table class="table"
-                    v-if="infoModal.content.sonod_name=='ওয়ারিশ সনদ' || infoModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
+                    v-if="infoModal.content.sonod_name=='ওয়ারিশান সনদ' || infoModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
                     <tr>
                         <th>ক্রমিক</th>
                         <th>নাম</th>
@@ -285,9 +285,14 @@
                     </tr>
                 </table>
             </div>
+
+            <template #modal-footer>
+<div></div>
+      </template>
+
         </b-modal>
         <!-- Info modal -->
-        <b-modal :id="actionModal.id" size="xl" :title="actionModal.title" ok-only>
+        <b-modal :id="actionModal.id" size="xl" :title="actionModal.title" >
             <div v-if="actionModal.title == 'Cancel'">
                 <form v-on:submit.prevent="formcancel">
                     <div class="form-group">
@@ -306,6 +311,12 @@
                     :Details="actionModal.content" @event-name="sonodList" v-else>
                 </approvesonod>
             </div>
+
+
+
+            <template #modal-footer>
+<div></div>
+      </template>
         </b-modal>
     </div>
 </template>

@@ -2,12 +2,12 @@
     <div>
 
         <div class="breadcrumbs-area">
-            <h3>Holding Tax</h3>
+            <h3>হোল্ডিং ট্যাক্স</h3>
             <ul>
                 <li>
-                    <router-link :to="{name:'Dashboard'}">Holding Tax</router-link>
+                    <router-link :to="{name:'Dashboard'}">ড্যাশবোর্ড</router-link>
                 </li>
-                <li>Profile</li>
+                <li>হোল্ডিং ট্যাক্স</li>
             </ul>
         </div>
         <div class="row">

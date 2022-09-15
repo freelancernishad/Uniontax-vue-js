@@ -171,7 +171,7 @@ export default {
             this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তারবিরুদ্ধে কোন রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তাই তাকে ${this.Details.sonod_name} প্রদান করা হলো ।`;
         } else if (this.Details.sonod_name == 'ট্রেড লাইসেন্স') {
              this.readonly = false
-        } else if (this.Details.sonod_name == 'ওয়ারিশ সনদ') {
+        } else if (this.Details.sonod_name == 'ওয়ারিশান সনদ') {
              this.readonly = true
         } else if (this.Details.sonod_name == 'উত্তরাধিকারী সনদ') {
              this.readonly = true

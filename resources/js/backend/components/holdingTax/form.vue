@@ -2,7 +2,7 @@
     <div>
 
         <div class="breadcrumbs-area">
-            <h3>Holding Form</h3>
+            <h3>হোল্ডিং ট্যাক্স</h3>
             <ul>
                 <li>
                     <router-link :to="{name:'Dashboard'}">Holding Form</router-link>

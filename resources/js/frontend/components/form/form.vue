@@ -105,6 +105,12 @@
                     </div>
 
 
+
+
+
+
+
+
                 </div>
 
 
@@ -359,6 +365,61 @@
                         <div class="app-heading">বর্তমান ঠিকানা</div>
                         <div class="col-md-12">
                         </div>
+
+
+
+                        <div class="form-group">
+                            <label for="" class="labelColor">বিভাগ</label>
+
+                            <select class='form-control' name="division" id="division" v-model="Pdivision" @change="getdistrictFun" >
+                            <option value="">বিভাগ নির্বাচন করুন</option>
+                                <option v-for="div in getdivisions" :key="div.id" :value="div.id">{{ div.bn_name }}</option>
+                        </select>
+
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_district"> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="labelColor">জেলা</label>
+
+                        <select   class='form-control' name="district" id="district" v-model="applicant_present_district" @change="getthanaFun" >
+                            <option value="">জেলা নির্বাচন করুন</option>
+                            <option v-for="dist in getdistricts" :key="dist.id" :value="dist.id">{{ dist.bn_name }}</option>
+                        </select>
+
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_district"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="labelColor">উপজেলা/থানা</label>
+
+                        <select  class='form-control' name="thana" id="thana" v-model="form.applicant_present_Upazila" @change="getuniounFun" >
+                            <option value="">উপজেলা নির্বাচন করুন</option>
+                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
+                        </select>
+
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_Upazila"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="labelColor">পোষ্ট অফিস</label>
+                            <input type="text" class="form-control" v-model="form.applicant_present_post_office">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="labelColor">ওয়ার্ড নং</label>
+                            <select v-model="form.applicant_present_word_number" id="word_no" class="form-control" required>
+                                                <option value="">ওয়াড নং</option>
+                                                <option value="1">১</option>
+                                                <option value="2">২</option>
+                                                <option value="3">৩</option>
+                                                <option value="4">৪</option>
+                                                <option value="5">৫</option>
+                                                <option value="6">৬</option>
+                                                <option value="7">৭</option>
+                                                <option value="8">৮</option>
+                                                <option value="9">৯</option>
+
+                                            </select>
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_word_number"> -->
+                        </div>
                         <div class="form-group">
                             <label for="" class="labelColor">গ্রাম/মহল্লা</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_village">
@@ -367,22 +428,8 @@
                             <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
                             <input type="text" class="form-control" v-model="form.applicant_present_road_block_sector">
                         </div> -->
-                        <div class="form-group">
-                            <label for="" class="labelColor">ওয়ার্ড নং</label>
-                            <input type="text" class="form-control" v-model="form.applicant_present_word_number">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="labelColor">জেলা</label>
-                            <input type="text" class="form-control" v-model="form.applicant_present_district">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="labelColor">উপজেলা/থানা</label>
-                            <input type="text" class="form-control" v-model="form.applicant_present_Upazila">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="labelColor">পোষ্ট অফিস</label>
-                            <input type="text" class="form-control" v-model="form.applicant_present_post_office">
-                        </div>
+
+
                     </div>
                     <div class="col-md-6">
                         <div class="app-heading">স্থায়ী ঠিকানা</div>
@@ -390,6 +437,62 @@
                             <input type="checkbox" id="checkbox" v-model="sameStatus" @change="sameAddress"> <label
                                 for="checkbox"> বর্তমান ঠিকানা ও স্থায়ী ঠিকানা একই হলে</label>
                         </div>
+
+
+                        <div class="form-group">
+                            <label for="" class="labelColor">বিভাগ</label>
+
+                            <select class='form-control' name="division" id="division" v-model="Perdivision" @change="getdistrictFunPer" >
+                            <option value="">বিভাগ নির্বাচন করুন</option>
+                                <option v-for="div in getdivisionsPer" :key="div.id" :value="div.id">{{ div.bn_name }}</option>
+                        </select>
+
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_district"> -->
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="" class="labelColor">জেলা</label>
+
+                            <select   class='form-control' name="district" id="district" v-model="applicant_permanent_district" @change="getthanaFunPer" >
+                            <option value="">জেলা নির্বাচন করুন</option>
+                            <option v-for="dist in getdistrictsPer" :key="dist.id" :value="dist.id">{{ dist.bn_name }}</option>
+                        </select>
+
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_district"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="labelColor">উপজেলা/থানা</label>
+                            <select  class='form-control' name="thana" id="thana" v-model="form.applicant_permanent_Upazila" @change="getuniounFunPer" >
+                                <option value="">উপজেলা নির্বাচন করুন</option>
+                                <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
+                            </select>
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila"> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="labelColor">পোষ্ট অফিস</label>
+                            <input type="text" class="form-control" v-model="form.applicant_permanent_post_office">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="labelColor">ওয়ার্ড নং</label>
+                            <select v-model="form.applicant_permanent_word_number" id="word_no" class="form-control" required>
+                                                <option value="">ওয়াড নং</option>
+                                                <option value="1">১</option>
+                                                <option value="2">২</option>
+                                                <option value="3">৩</option>
+                                                <option value="4">৪</option>
+                                                <option value="5">৫</option>
+                                                <option value="6">৬</option>
+                                                <option value="7">৭</option>
+                                                <option value="8">৮</option>
+                                                <option value="9">৯</option>
+
+                                            </select>
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_word_number"> -->
+                        </div>
+
                         <div class="form-group">
                             <label for="" class="labelColor">গ্রাম/মহল্লা</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_village">
@@ -399,22 +502,7 @@
                             <input type="text" class="form-control"
                                 v-model="form.applicant_permanent_road_block_sector">
                         </div> -->
-                        <div class="form-group">
-                            <label for="" class="labelColor">ওয়ার্ড নং</label>
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_word_number">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="labelColor">জেলা</label>
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_district">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="labelColor">উপজেলা/থানা</label>
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="labelColor">পোষ্ট অফিস</label>
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_post_office">
-                        </div>
+
                     </div>
                 </div>
                 <div class="row">
@@ -434,7 +522,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="app-heading"> Attachment</div>
+                        <div class="app-heading"> সংযুক্ত</div>
                     </div>
                     <!-- col-md-4 -->
                     <div class="col-md-4">
@@ -473,12 +561,12 @@
                     <!-- col-md-4 -->
                 </div>
                 <div class="app-heading"
-                    v-if="sonodnamedata.bnname == 'ওয়ারিশ সনদ' || sonodnamedata.bnname == 'উত্তরাধিকারী সনদ'">
+                    v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'">
                     ওয়ারিশগনের
                     তালিকা
                 </div>
                 <table class="table"
-                    v-if="sonodnamedata.bnname == 'ওয়ারিশ সনদ' || sonodnamedata.bnname == 'উত্তরাধিকারী সনদ'">
+                    v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.bnname == 'Inheritance certificate'">
                     <tr>
                         <th>নাম</th>
                         <th>সম্পর্ক</th>
@@ -628,7 +716,7 @@
                 <div class="col-md-6 col-6 mt-3"><b>মোবাইল: </b>{{ form.applicant_mobile }}</div>
                 <div class="col-md-6 col-6 mt-3"><b>ইমেল: </b>{{ form.applicant_email }}</div>
                 <div class="col-md-12">
-                    <div class="app-heading">Attachment</div>
+                    <div class="app-heading">সংযুক্ত</div>
                 </div>
                 <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Front page)</span> <br> <img width="100%"
                         :src="form.applicant_national_id_front_attachment" alt=""></div>
@@ -636,10 +724,10 @@
                         :src="form.applicant_national_id_back_attachment" alt=""></div>
                 <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%"
                         :src="form.applicant_birth_certificate_attachment" alt=""></div>
-                <div class="col-md-12" v-if="form.sonod_name == 'ওয়ারিশ সনদ' || form.sonod_name == 'উত্তরাধিকারী সনদ'">
+                <div class="col-md-12" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.bnname == 'Inheritance certificate'">
                     <div class="app-heading">ওয়ারিশগনের তালিকা </div>
                 </div>
-                <table class="table" v-if="form.sonod_name == 'ওয়ারিশ সনদ' || form.sonod_name == 'উত্তরাধিকারী সনদ'">
+                <table class="table" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.bnname == 'Inheritance certificate'">
                     <tr>
                         <th>ক্রমিক</th>
                         <th>নাম</th>
@@ -674,6 +762,11 @@
                     <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
                 </div>
             </form>
+
+            <template #modal-footer>
+<div></div>
+      </template>
+
         </b-modal>
     </div>
 </template>
@@ -772,7 +865,20 @@ export default {
                         w_nid: "",
                     },
                 ],
-            }
+            },
+            getdivisions:{},
+            getdistricts:{},
+            getthanas:{},
+            getuniouns:{},
+
+            getdivisionsPer:{},
+            getdistrictsPer:{},
+            getthanasPer:{},
+            getuniounsPer:{},
+            Pdivision:'',
+            Perdivision:'',
+            applicant_present_district:'',
+            applicant_permanent_district:'',
         };
     },
     watch: {
@@ -798,6 +904,78 @@ export default {
     //       console.log('ss');
     //     },
     methods: {
+
+
+        async getdivisionFun(){
+         var res = await this.callApi('get',`/api/getdivisions`,[]);
+         this.getdivisions = res.data;
+        },
+
+        async getdistrictFun(){
+
+        var res = await this.callApi('get',`/api/getdistrict?id=${this.Pdivision}`,[]);
+        this.getdistricts = res.data;
+
+
+
+
+        },
+
+        async getthanaFun(){
+        var res = await this.callApi('get',`/api/getthana?id=${this.applicant_present_district}`,[]);
+        this.getthanas = res.data;
+        var resOwn = await this.callApi('get',`/api/getdistrict?ownid=${this.applicant_present_district}`,[]);
+        this.form.applicant_present_district = resOwn.data.bn_name
+
+        },
+
+        async getuniounFun(){
+        var res = await this.callApi('get',`/api/getunioun?id=${this.thana}`,[]);
+        this.getuniouns = res.data;
+        },
+
+
+
+
+        //////////////////////////////////
+
+        async getdivisionFunPer(){
+         var res = await this.callApi('get',`/api/getdivisions`,[]);
+         this.getdivisionsPer = res.data;
+        },
+
+        async getdistrictFunPer(){
+
+        var res = await this.callApi('get',`/api/getdistrict?id=${this.Perdivision}`,[]);
+        this.getdistrictsPer = res.data;
+
+
+
+        },
+
+        async getthanaFunPer(){
+            // console.log(this.applicant_permanent_district)
+        var res = await this.callApi('get',`/api/getthana?id=${this.applicant_permanent_district}`,[]);
+        this.getthanasPer = res.data;
+        var resOwn = await this.callApi('get',`/api/getdistrict?ownid=${this.applicant_permanent_district}`,[]);
+        this.form.applicant_permanent_district = resOwn.data.bn_name
+
+        },
+
+        async getuniounFunPer(){
+        var res = await this.callApi('get',`/api/getunioun?id=${this.thana}`,[]);
+        this.getuniounsPer = res.data;
+        },
+
+
+
+
+
+
+
+
+
+
         FileSelected($event, parent_index) {
             let file = $event.target.files[0];
             if (file.size > 5048576) {
@@ -885,12 +1063,24 @@ export default {
         sameAddress() {
             // console.log(value)
             if (this.sameStatus) {
+
+                this.getdivisionFunPer();
+                this.Perdivision = this.Pdivision
+                this.getdistrictFunPer();
+                this.applicant_permanent_district = this.applicant_present_district
+                this.getthanaFunPer();
+                this.form.applicant_permanent_Upazila = this.form.applicant_present_Upazila
+
+
                 this.form.applicant_permanent_village = this.form.applicant_present_village
                 this.form.applicant_permanent_road_block_sector = this.form.applicant_present_road_block_sector
                 this.form.applicant_permanent_word_number = this.form.applicant_present_word_number
-                this.form.applicant_permanent_district = this.form.applicant_present_district
-                this.form.applicant_permanent_Upazila = this.form.applicant_present_Upazila
+
                 this.form.applicant_permanent_post_office = this.form.applicant_present_post_office
+
+
+
+
             } else {
                 this.form.applicant_permanent_village = null
                 this.form.applicant_permanent_road_block_sector = null
@@ -1111,6 +1301,11 @@ export default {
         }
     },
     mounted() {
+
+
+        this.getdivisionFun();
+        this.getdivisionFunPer();
+
         // if(localStorage.getItem('form')){
         //     this.form = JSON.parse(localStorage.getItem('form'))
         // }

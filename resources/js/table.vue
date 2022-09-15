@@ -341,14 +341,14 @@
                         :src="$asseturl + viewModal.content.applicant_birth_certificate_attachment" alt=""></div>
 
 
-  <div class="col-md-12" v-if="viewModal.content.sonod_name=='ওয়ারিশ সনদ' || viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
+  <div class="col-md-12" v-if="viewModal.content.sonod_name=='ওয়ারিশান সনদ' || viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
 
-                    <div class="app-heading" v-if="viewModal.content.sonod_name=='ওয়ারিশ সনদ'">ওয়ারিশগনের তালিকা </div>
+                    <div class="app-heading" v-if="viewModal.content.sonod_name=='ওয়ারিশান সনদ'">ওয়ারিশগনের তালিকা </div>
                     <div class="app-heading" v-else-if="viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">উত্তরাধিকারীগনের তালিকা </div>
 
                 </div>
 
-                <table class="table" v-if="viewModal.content.sonod_name=='ওয়ারিশ সনদ' || viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
+                <table class="table" v-if="viewModal.content.sonod_name=='ওয়ারিশান সনদ' || viewModal.content.sonod_name=='উত্তরাধিকারী সনদ'">
                     <tr>
                         <th>ক্রমিক</th>
                         <th>নাম</th>
@@ -622,7 +622,7 @@ export default {
 
                 if(this.Users.position=='Secretary'){
 
-                    // if(item.sonod_name=='উত্তরাধিকারী সনদ' || item.sonod_name=='ওয়ারিশ সনদ'){
+                    // if(item.sonod_name=='উত্তরাধিকারী সনদ' || item.sonod_name=='ওয়ারিশান সনদ'){
                     //     this.preLooding = true
                     //  Swal.fire({
                     //             title: 'Are you sure?',

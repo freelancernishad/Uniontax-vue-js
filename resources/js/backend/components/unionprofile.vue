@@ -3,12 +3,12 @@
  <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
 
 <div class="breadcrumbs-area">
-    <h3>Union Profile</h3>
+    <h3>ইউনিয়ন প্রোফাইল</h3>
     <ul>
         <li>
-            <router-link :to="{name:'Dashboard'}">Home</router-link>
+            <router-link :to="{name:'Dashboard'}">ড্যাশবোর্ড</router-link>
         </li>
-        <li>Union Profile</li>
+        <li>ইউনিয়ন প্রোফাইল</li>
     </ul>
 </div>
 

@@ -13,32 +13,44 @@ class countryApiController extends Controller
     public function getdivisions(Request $r)
     {
         $id =  $r->id;
-
+        if($id){
+            return Division::find($id);
+        }
         return Division::all();
-
     }
 
     public function getdistrict(Request $r)
     {
+         $ownid =  $r->ownid;
         $id =  $r->id;
-
-        return District::where(['division_id'=>$id])->get();
+        if($ownid){
+            return District::find($ownid);
+        }
+        if($id){
+            return District::where(['division_id'=>$id])->get();
+        }
+        return District::all();
 
     }
 
     public function getthana(Request $r)
     {
         $id =  $r->id;
- echo Thana::where('district_id',$id)->get();
 
+        if($id){
+            return  Thana::where('district_id',$id)->get();
+        }
+        return  Thana::all();
     }
 
 
     public function getunioun(Request $r)
     {
         $id =  $r->id;
- echo Union::where('thana_id',$id)->get();
-
+        if($id){
+            return Union::where('thana_id',$id)->get();
+        }
+        return Union::all();
     }
 
     public function gotoUnion(Request $r)

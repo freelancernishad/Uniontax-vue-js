@@ -4,12 +4,23 @@
         <div class="dashboard-content-one">
             <!-- Breadcubs Area Start Here -->
             <div class="breadcrumbs-area">
-                <h3>{{ Users.position }} Dashboard</h3>
+
+
+                <h3 v-if="Users.position=='District_admin'">জেলা প্রশাসকের ড্যাশবোর্ড</h3>
+                <h3 v-else-if="Users.position=='Chairman'">চেয়ারম্যানের ড্যাশবোর্ড</h3>
+                <h3 v-else-if="Users.position=='Secretary'">সচিপের ড্যাশবোর্ড</h3>
+                <h3 v-else>উপজেলা ড্যাশবোর্ড</h3>
+
+
+
                 <ul>
                     <li>
-                        <router-link :to="{ name: 'Dashboard' }">Home</router-link>
+                        <router-link :to="{ name: 'Dashboard' }">ড্যাশবোর্ড</router-link>
                     </li>
-                    <li>{{ Users.position }} </li>
+                    <li v-if="Users.position=='District_admin'">জেলা প্রশাসক </li>
+                    <li v-else-if="Users.position=='Chairman'">চেয়ারম্যান </li>
+                    <li v-else-if="Users.position=='Secretary'">সচিপ </li>
+                    <li v-else>উপজেলা </li>
                 </ul>
             </div>
             <!-- Breadcubs Area End Here -->
@@ -150,16 +161,23 @@ export default {
     mounted() {
         this.totalamount();
 
-        // setInterval(() => {
-                this.sonodCountDashbord('all','allSonodCount')
-                this.sonodCountDashbord('Pending','pendingSonodCount')
-                this.sonodCountDashbord('approved','approvedSonodCount')
-                this.sonodCountDashbord('cancel','cancelSonodCount')
-        // },5000)
+        this.callCount()
+        setInterval(() => {
+            this.callCount()
+        },5000)
 
 
     },
     methods: {
+
+        callCount(){
+            this.sonodCountDashbord('all','allSonodCount')
+                this.sonodCountDashbord('Pending','pendingSonodCount')
+                this.sonodCountDashbord('approved','approvedSonodCount')
+                this.sonodCountDashbord('cancel','cancelSonodCount')
+        },
+
+
 
        async sonodCountDashbord(status = '',data=''){
 

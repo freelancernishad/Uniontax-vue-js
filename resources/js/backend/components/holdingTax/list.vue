@@ -4,20 +4,20 @@
         <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
 
         <div class="breadcrumbs-area">
-            <h3>Holding Tax</h3>
+            <h3>হোল্ডিং ট্যাক্স</h3>
             <ul>
                 <li>
-                    <router-link :to="{name:'Dashboard'}">Holding Tax</router-link>
+                    <router-link :to="{name:'Dashboard'}">ড্যাশবোর্ড</router-link>
                 </li>
-                <li>Profile</li>
+                <li>হোল্ডিং ট্যাক্স</li>
             </ul>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h3>Holding Tax</h3>
-                        <router-link :to="{name:'holdingTaxadd',params:{wordNo:$route.params.word}}" class="btn btn-info">Add Holding Tax</router-link>
+                        <h3>হোল্ডিং ট্যাক্স</h3>
+                        <router-link :to="{name:'holdingTaxadd',params:{wordNo:$route.params.word}}" class="btn btn-info">হোল্ডিং ট্যাক্স যোগ করুন</router-link>
                     </div>
                     <div class="card-body">
                        <table class="table">
@@ -41,7 +41,7 @@
                                     <td>
                                         <span size="sm" v-if="buttonLoader" class="btn btn-info mr-1 mt-1"><img width="20px" src="https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif" alt=""></span>
 
-                                        <router-link :to="{name:'holdingTaxView',params:{id:row.id}}" class="btn btn-success" v-else >View</router-link>
+                                        <router-link :to="{name:'holdingTaxView',params:{id:row.id}}" class="btn btn-success" v-else >দেখুন</router-link>
 
 
 

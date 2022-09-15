@@ -58,7 +58,7 @@
                         <td>{{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }}</td>
                     </tr>
 
-                    <tr>
+                    {{-- <tr>
                         <td>আবেদনকারীর নাম</td>
                         <td>:</td>
                         <td>{{ $row->applicant_name }}</td>
@@ -99,30 +99,75 @@
                         <td>মোবাইল নম্বর</td>
                         <td>:</td>
                         <td>{{ int_en_to_bn($row->applicant_mobile) }}</td>
-                    </tr>
+                    </tr> --}}
 
+                </table>
+<style>
+    .w_table tr,.w_table th,.w_table td{
+        border: 1px solid;
+        text-align:center;
+    }
+
+</style>
+            @if($row->sonod_name=='উত্তরাধিকারী সনদ')
+            <h3 style="text-align:center">উত্তরাধিকারীগনের নাম ও সম্পর্ক</h3>
+            @else
+            <h3 style="text-align:center">ওয়ারিশগনের নাম ও সম্পর্ক</h3>
+
+            @endif
+
+                <table class="w_table" width="100%" border="1px" style="border-collapse: collapse; border: 1px solid;">
+                    <tr >
+                        <th width="20%">নাম</th>
+                        <th width="15%">সম্পর্ক</th>
+                        <th width="15%">জন্ম তারিখ</th>
+                        <th width="20%">জাতীয় পরিচয়পত্র নাম্বার</th>
+                        <th width="30%">মন্তব্য</th>
+                    </tr>
+                    @foreach(json_decode($row->successor_list) as $value)
+
+
+                    <tr>
+                        <td>{{ $value->w_name }}</td>
+                        <td>{{ $value->w_relation }}</td>
+                        <td>{{ int_en_to_bn($value->w_age) }}</td>
+                        <td>{{ int_en_to_bn($value->w_nid) }}</td>
+                        <td></td>
+                    </tr>
+                    @endforeach
                 </table>
 
 
 
 
-    <p style="text-align:center" >শীগ্রই আপনার আবেদনটি কর্তৃপক্ষ কর্তৃক যথাযথ প্রক্রিয়ায় অনুমোদন করা হবে। <br>
-    ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমের সাথে থাকার জন্য ধনব্যাদ। <br>
 
-    </p>
+
+    <p style="text-align:center" >শীগ্রই আপনার আবেদনটি কর্তৃপক্ষ কর্তৃক যথাযথ প্রক্রিয়ায় অনুমোদন করা হবে।</p>
 
     @php
         // print_r($row)
     @endphp
-        {{-- <table></table> --}}
+        <table></table>
 
 
 
+        <p style="margin: 0;">ইউপি সদস্যের মন্তব্য/সুপারিশ:</p>
+        <p style="margin: 0;">সরেজমিন তদন্ত পূর্বক বর্ণিত মরহুম ব্যক্তির উল্লিখিত ওয়ারিশ/ওয়ারিশগণ ছাড়া আর অন্য কোন ওয়ারিশ নেই।</p>
+        <p style="margin: 0;">ইহা ব্যতীত অন্য কোন ওয়ারিশ থাকলে তার বিবরণ (প্রযোজ্য ক্ষেত্রে):</p>
 
-    <table width="100%" style="border-collapse: collapse;" border="0">
+
+
+    <table width="100%" style="border-collapse: collapse;margin-top:60px" border="0">
         <tr>
             <td  style="text-align: center;" width="40%">
+                <div class="signature text-center position-relative">
+                    {{-- <img width="170px"  src="{{ base64($row->chaireman_sign) }}"><br/> --}}
+                    <b><span style="color:#7230A0;font-size:18px;">সংশ্লিষ্ট ইউপি সদস্যের স্বাক্ষর ও সীল</span> <br />
 
+
+
+
+                </div>
             </td>
             <td style="text-align: center; width: 200px;" width="30%">
 
@@ -150,7 +195,8 @@
     text-align: center;
     padding: 2px 2px;font-size: 16px;     margin-top: 20px;margin-bottom:0px" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
 
-<p class="m-0" style="font-size:14px;text-align:center">'ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেম' {{ $uniouninfo->domain }}</p>
+<p class="m-0" style="font-size:14px;text-align:center;margin: 0;">'ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেম' {{ $uniouninfo->domain }}</p>
+<p class="m-0" style="font-size:14px;text-align:center;margin: 0;">ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমের সাথে থাকার জন্য ধনব্যাদ।</p>
 
     {{-- <p style="text-align: center"> {{ $uniouninfo->domain }}</p> --}}
 

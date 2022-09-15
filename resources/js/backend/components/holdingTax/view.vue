@@ -2,12 +2,12 @@
     <div>
 
         <div class="breadcrumbs-area">
-            <h3>Holding Tax</h3>
+            <h3>হোল্ডিং ট্যাক্স</h3>
             <ul>
                 <li>
-                    <router-link :to="{name:'Dashboard'}">Holding Tax</router-link>
+                    <router-link :to="{name:'Dashboard'}">ড্যাশবোর্ড</router-link>
                 </li>
-                <li>Profile</li>
+                <li>হোল্ডিং ট্যাক্স</li>
             </ul>
         </div>
         <div class="row">
@@ -78,7 +78,7 @@
     <tr>
         <th>সাল</th>
         <th>বকেয়া</th>
-        <th>Status</th>
+        <th>অবস্থা</th>
         <th>রশিদ</th>
     </tr>
 </thead>
@@ -90,9 +90,9 @@
         <td>{{ bok.price }}</td>
 
 
-        <td v-if="bok.status=='Paid'"><span class="btn btn-success" >Paid</span></td>
+        <td v-if="bok.status=='Paid'"><span class="btn btn-success" >পরিশোধিত</span></td>
 
-         <td v-else><button @click="paynow(bok.id)" class="btn btn-info" >Pay Now</button></td>
+         <td v-else><button @click="paynow(bok.id)" class="btn btn-info" >পরিশোধ করুন</button></td>
 
          <td><a target="_blank" :href="'/holding/tax/invoice/'+bok.id" class="btn btn-info" >রশিদ</a></td>
 
