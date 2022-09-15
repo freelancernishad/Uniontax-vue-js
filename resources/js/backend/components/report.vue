@@ -14,13 +14,14 @@
             <!-- Breadcubs Area End Here -->
 
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="display: flex;justify-content: space-between;align-items: center;">
                     <form @submit.stop.prevent="onSubmit">
                         <div class="d-flex">
 
                             <div class="form-group">
                                 <select v-model="form.sonod_type" id="sonod" class="form-control" required>
                                     <option value="">চিহ্নিত করুন</option>
+                                    <option  value="all">সকল</option>
                                     <option value="holdingtax">হোল্ডিং ট্যাক্স</option>
                                     <option v-for="(sonod, r) in SonodNames" :key="'dropdown' + r" :value="sonod.bnname">{{ sonod.bnname }}</option>
                                 </select>
@@ -44,7 +45,7 @@
 
                     </form>
 
-                    <a href="/report/export" class="btn btn-info">ডাউনলোড</a>
+                    <a style="    font-size: 20px;" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
 
 
 
@@ -60,7 +61,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(row,index) in rows">
+                            <tr v-for="row in rows" :key="row.id">
                             <!-- <td>ক্রমিক নং</td> -->
                             <td>{{ row.date }}</td>
                             <td v-if="row.sonod_type=='holdingtax'">হোল্ডিং ট্যাক্স</td>
@@ -114,6 +115,7 @@ export default {
 
 
             var res = await this.callApi('post',`/api/report/search`,this.form);
+            // this.$router.push({name:'report',query: {''}})
             this.rows = res.data
             this.isload = false
         }

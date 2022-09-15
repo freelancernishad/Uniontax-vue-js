@@ -70,8 +70,9 @@ class User {
         const userid = res.data.id
         const role = res.data.role
         const position = res.data.position
+        const unioun = res.data.unioun
         if (Token.isValid(access_token)) {
-            AppStorage.store(access_token, username, userid, role,position)
+            AppStorage.store(access_token, username, userid, role,position,unioun)
         }
     }
     hasToken() {

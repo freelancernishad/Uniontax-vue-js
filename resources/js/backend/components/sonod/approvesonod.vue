@@ -1,4 +1,8 @@
 <template>
+    <div>
+        <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"
+            objectbg="#999793" opacity="80" name="circular"></loader>
+
     <form v-on:submit.prevent="formsubmit">
         <div class="row">
             <div class="col-md-12">
@@ -60,6 +64,7 @@
             </div>
         </div>
     </form>
+</div>
 </template>
 <script>
 export default {
@@ -80,6 +85,7 @@ export default {
     data() {
 
         return {
+            preLooding: false,
             readonly: true,
             prottoyon: true,
             sonodlist: {},
@@ -101,9 +107,13 @@ export default {
             this.form.amounta = amountab + amountabb;
         },
         async formsubmit() {
+            this.preLooding = true
+
             this.form.approveData = this.ApproveData;
             var res = await this.callApi('post', `/api/sonod/sec/approve/${this.SonodId}`, this.form);
             this.$root.$emit('bv::hide::modal', 'action-modal')
+            this.preLooding = false
+
             this.$emit('event-name')
             Notification.customSuccess(`Your data has been Approved`);
         },

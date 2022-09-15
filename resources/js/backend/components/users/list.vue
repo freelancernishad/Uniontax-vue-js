@@ -16,12 +16,44 @@
 
 
         <div class="card">
+            <div class="card-header">
+                <router-link :to="{ name: 'userlistadd' }" class="btn btn-info">Add New</router-link>
+            </div>
         <div class="card-body">
-<table-component :sonod-type="$route.params.name" :sort-options-staus="sortstatus" :Filter="Filter" :filter-on="FilterOn"  :per-page="PerPage" :Items="items" :Fields="fields" :per-page-data="PerPageData" :total-rows="TotalRows"  :delete-route="deleteRoute" :edit-route="editRoute" :application-route="applicationRoute"  :view-route="viewRoute"    :approve-route="approveRoute" :pay-route="payRoute" :cancel-route="cancelRoute"   :approve-type="approveType" :approve-data="approveData" :add-new="addNew"  @event-name="sonodname" >
 
-</table-component>
 
-<!-- <approve-component></approve-component> -->
+            <table class="table">
+            <thead>
+
+                <tr>
+                    <th>নাম</th>
+                    <th>ইউনিয়ন</th>
+                    <th>উপজেলা</th>
+                    <th>জেলা</th>
+                    <th>পদবি</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr v-for="(item,index) in items" :key="''+item.id">
+                    <td>{{ item.names }}</td>
+                    <td>{{ item.unioun }}</td>
+                    <td>{{ item.thana }}</td>
+                    <td>{{ item.district }}</td>
+                    <td>{{ item.position }}</td>
+                    <td><router-link size="sm" :to="{ name: 'userlistedit', params: { id: item.id } }"
+                    class="btn btn-info mr-1 mt-1">
+                    Edit
+                </router-link></td>
+
+                </tr>
+            </tbody>
+
+         </table>
+
+
 
     </div>
 

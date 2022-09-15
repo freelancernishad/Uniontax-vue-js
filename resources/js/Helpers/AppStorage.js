@@ -17,13 +17,17 @@ class AppStorage{
     positionrole(position){
 		localStorage.setItem('position',position);
 	}
+    storeunioun(unioun){
+		localStorage.setItem('unioun',unioun);
+	}
 
-	store(token,user,userid,role,position){
+	store(token,user,userid,role,position,unioun){
 		this.storeToken(token)
 		this.storeUser(user)
 		this.storeUserid(userid)
 		this.storerole(role)
 		this.positionrole(position)
+		this.storeunioun(unioun)
 	}
 
 	clear(){

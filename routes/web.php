@@ -46,6 +46,7 @@ Route::post('logout',[LoginController::class,'logout']);
 // Route::get('/sub', [App\Http\Controllers\HomeController::class, 'sub'])->name('sub');
 // });
 
+Route::get('/sonod/payment/success/{id}', [SonodController::class,'sonodpaymentSuccessView']);
 Route::get('/payment/success', [SonodController::class,'sonodpaymentSuccess']);
 Route::get('/sonod/payment/{id}', [SonodController::class,'sonodpayment']);
 Route::get('/sonod/{name}/{id}', [SonodController::class,'sonodDownload']);

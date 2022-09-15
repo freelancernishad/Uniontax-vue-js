@@ -89,7 +89,7 @@
             async list(){
 
 
-                var res = await this.callApi('get',`/api/holding/tax/list?word=${this.$route.params.word}&union=${this.Users.unioun}`,[]);
+                var res = await this.callApi('get',`/api/holding/tax/list?word=${this.$route.params.word}&union=${localStorage.getItem('unioun')}`,[]);
                 this.rows = res.data;
                 this.preLooding = false
             },
@@ -116,10 +116,10 @@
 
         },
         mounted() {
-            setTimeout(() => {
+            // setTimeout(() => {
                 this.list();
 
-            }, 3000);
+            // }, 3000);
         },
     }
     </script>

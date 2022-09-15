@@ -150,23 +150,42 @@ export default {
     mounted() {
         this.totalamount();
 
-        setInterval(() => {
+        // setInterval(() => {
                 this.sonodCountDashbord('all','allSonodCount')
                 this.sonodCountDashbord('Pending','pendingSonodCount')
                 this.sonodCountDashbord('approved','approvedSonodCount')
                 this.sonodCountDashbord('cancel','cancelSonodCount')
-        },5000)
+        // },5000)
 
 
     },
     methods: {
 
        async sonodCountDashbord(status = '',data=''){
-        var res = await this.callApi('get',`/api/count/sonod/${status}`,[]);
+
+        if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
+
+            var res = await this.callApi('get',`/api/count/sonod/${status}?union=${localStorage.getItem('unioun')}`,[]);
+        }else{
+            var res = await this.callApi('get',`/api/count/sonod/${status}`,[]);
+
+        }
+
             this.sonodCount[data] = res.data;
         },
        async totalamount(){
-        var res = await this.callApi('get',`/api/sum/amount`,[]);
+
+
+        if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
+            var res = await this.callApi('get',`/api/sum/amount?union=${localStorage.getItem('unioun')}`,[]);
+
+            }else{
+                var res = await this.callApi('get',`/api/sum/amount`,[]);
+
+
+            }
+
+
             this.amount = res.data
         }
 

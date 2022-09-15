@@ -187,23 +187,23 @@
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'Thana_admin' || Users.position == 'District_admin'">
                             <router-link :to="{ name: 'unionlist' }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>Union List</span></router-link>
+                                    class="flaticon-dashboard"></i><span>ইউনিয়ন এর তালিকা</span></router-link>
                         </li>
 
 
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'Thana_admin' || Users.position == 'District_admin'">
                             <router-link :to="{ name: 'sonodlist' }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>Sonod List</span></router-link>
+                                    class="flaticon-dashboard"></i><span>সেবার তালিকা</span></router-link>
                         </li>
-<!--
 
-                        <li class="nav-item" @click="submenu(0)" v-if="Users.position != 'Chairman' || Users.position != 'Secretary'">
+
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'District_admin' || Users.position == 'Thana_admin'">
                             <router-link :to="{ name: 'userlist' }" class="nav-link"><i
-                                    class="flaticon-dashboard"></i><span>Users List</span></router-link>
+                                    class="flaticon-dashboard"></i><span>ইউজার তালিকা</span></router-link>
                         </li>
 
-
+<!--
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
                             <router-link :to="{ name: 'citizenlist' }" class="nav-link"><i
@@ -305,7 +305,7 @@ export default {
         // var subdomain = url[1].split(".");
         var subdomain = [];
 
-        this.$store.commit('setWebsiteStatus', subdomain)
+        this.$store.commit('setWebsiteStatus', 'main')
 
         if (!User.loggedIn()) {
             window.location.href = '/'
@@ -381,13 +381,13 @@ export default {
 
 
         async sonodlistCount() {
-            var unionname = this.user.unioun;
+            var unionname = localStorage.getItem('unioun');
             if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
 
                 var unionname = '';
             }
 
-            var allSonodc = await this.callApi('get', `/api/get/sonod/count?union=${unionname}&postion=${this.user.position}`, []);
+            var allSonodc = await this.callApi('get', `/api/get/sonod/count?union=${unionname}&postion=${localStorage.getItem('position')}`, []);
             this.allSonodCount = allSonodc.data
             // console.log(allSonodc)
         },
@@ -462,8 +462,9 @@ export default {
         }
     },
     mounted() {
-        this.myEventHandler();
+        // this.myEventHandler();
 
+        this.sonodlistCount()
         setInterval(() => {
             this.sonodlistCount()
         }, 5000);

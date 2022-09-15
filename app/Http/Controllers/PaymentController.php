@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Exports\UsersExport;
 use Illuminate\Http\Request;
+use App\Exports\ReportExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PaymentController extends Controller
@@ -12,9 +13,32 @@ class PaymentController extends Controller
 
 
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new UsersExport, 'report.xlsx');
+        //  $request->all();
+        $sonod_type = $request->sonod_type;
+        $from = $request->from;
+        $to = $request->to;
+
+        if($sonod_type && $from && $to){
+            if($sonod_type=='all'){
+            // return Payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+            $export = new ReportExport(Payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get());
+        }else{
+
+            $export = new ReportExport(Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get());
+        }
+
+
+            return Excel::download($export, 'report.xlsx');
+
+        }
+
+        if($sonod_type=='all'){
+            $export = new ReportExport(Payment::where(['status'=>'Paid'])->orderBy('id','desc')->get());
+        }
+            $export = new ReportExport(Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get());
+        return Excel::download($export, 'report.xlsx');
     }
 
 
@@ -23,6 +47,7 @@ class PaymentController extends Controller
     {
         // return $request->all();
         $sonod_type = $request->sonod_type;
+
         $from = $request->from;
         $to = $request->to;
         $union = $request->union;
@@ -31,20 +56,46 @@ class PaymentController extends Controller
 
 
             if($from && $to){
+                if($sonod_type=='all'){
+
+
+                    return Payment::where(['union'=>$union,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+                }
                 return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+
             }elseif($from){
+                if($sonod_type=='all'){
+                return Payment::where(['union'=>$union,'status'=>'Paid'])->where('date',$from)->orderBy('id','desc')->get();
+                }
                 return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->where('date',$from)->orderBy('id','desc')->get();
+
             }else{
+                if($sonod_type=='all'){
+                return Payment::where(['union'=>$union,'status'=>'Paid'])->orderBy('id','desc')->get();
+                }
                 return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
+
             }
         }else{
 
             if($from && $to){
+                if($sonod_type=='all'){
+                return Payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+                }
                 return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+
             }elseif($from){
+                if($sonod_type=='all'){
+                return Payment::where(['status'=>'Paid'])->where('date',$from)->orderBy('id','desc')->get();
+                }
                 return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where('date',$from)->orderBy('id','desc')->get();
+
             }else{
+                if($sonod_type=='all'){
+                return Payment::where(['status'=>'Paid'])->orderBy('id','desc')->get();
+                }
                 return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
+
             }
         }
 

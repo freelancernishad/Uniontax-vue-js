@@ -377,6 +377,7 @@ export default {
             this.sonodList(true, this.sonod_id)
         },
         async paynow(route, id, button) {
+            this.preLooding = true
             Swal.fire({
                 title: 'Are you sure?',
                 text: `Pay this data!`,
@@ -519,7 +520,7 @@ export default {
             this.b['names'] = this.Users.names;
             this.b['user_id'] = this.Users.id;
             this.b['position'] = this.Users.position;
-            this.b['unioun'] = this.Users.unioun;
+            this.b['unioun'] = localStorage.getItem('unioun');
             this.b['status'] = 'cancel';
             this.b['sonod_id'] = id;
             var res = await this.callApi('post', `${this.cancelRoute}/cancel/${id}`, this.b);
@@ -577,7 +578,7 @@ export default {
                     stutus = this.$route.params.type;
                 }
                 var unioun = ``
-                if (this.$localStorage.getItem('position') == 'Chairman' || this.$localStorage.getItem('position') == 'Secretary') var unioun = `&unioun_name=${this.Users.unioun}`
+                if (this.$localStorage.getItem('position') == 'Chairman' || this.$localStorage.getItem('position') == 'Secretary') var unioun = `&unioun_name=${localStorage.getItem('unioun')}`
                 if (this.$localStorage.getItem('position') == 'Thana_admin') {
                     var unioun = ``
                 }
@@ -622,9 +623,9 @@ export default {
     },
     mounted() {
         this.uniondata();
-        setTimeout(() => {
+
             this.sonodList();
-        }, 2000);
+
         setInterval(() => {
             this.sonodList(true,this.sonod_id)
         }, 5000);

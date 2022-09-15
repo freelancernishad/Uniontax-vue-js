@@ -264,9 +264,8 @@ export default {
 
        getunionInfo(){
         var unionname = undefined;
-             setTimeout(() => {
 
-                unionname = this.getUsers.unioun
+                unionname = localStorage.getItem('unioun')
 
             // var res =  this.callApi('post',`/api/union/info?union=${unionname}`,[]);
 
@@ -279,9 +278,6 @@ export default {
                 })
 
 
-
-
-            }, 2000);
         },
 
 

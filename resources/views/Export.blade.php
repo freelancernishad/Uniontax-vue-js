@@ -7,6 +7,9 @@
         </tr>
     </thead>
     <tbody>
+        @php
+            $total = 0;
+        @endphp
         @foreach ($Products as $Product)
             <tr>
 
@@ -23,6 +26,22 @@
 
 
             </tr>
+            @php
+            $total += $Product->amount;
+        @endphp
         @endforeach
+
+        <tr>
+
+            <td colspan="2" style="text-align: right">মোট</td>
+
+
+            <td>{{ $total }}</td>
+
+
+
+
+        </tr>
+
     </tbody>
 </table>

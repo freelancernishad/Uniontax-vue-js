@@ -24,6 +24,11 @@ class SonodController extends Controller
         $sonod = Sonod::find($id);
         $sonod->update(['sec_prottoyon'=>$request->sec_prottoyon]);
     }
+    public function sonodpaymentSuccessView(Request $request,$id)
+    {
+        $sonod = Sonod::find($id);
+        return view('sonodsuccess',compact('sonod'));
+    }
 
 
     public function sonodpaymentSuccess(Request $request)
@@ -55,9 +60,79 @@ class SonodController extends Controller
             $InvoiceUrl =  url("/invoice/d/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
             $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
-            smsSend($deccription, $sonod->applicant_mobile);
-            // return redirect("/sonod/$sonod->sonod_name/$id");
-            echo "<script>window.close();</script>";
+            // smsSend($deccription, $sonod->applicant_mobile);
+            return redirect("/sonod/payment/success/$id");
+
+            echo '
+
+    <style>
+      body {
+        text-align: center;
+        padding: 40px 0;
+        background: #EBF0F5;
+      }
+        h1 {
+          color: #88B04B;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      i {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+
+      .buttons{
+        color: white;
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 7px;
+        margin: 20px 8px;
+      }
+      .buttons.d{
+        background: #0b4fb6;
+      }
+      .buttons.r{
+        background: #8d2407;
+      }
+      .buttons.h{
+        background: #380bb6;
+      }
+
+    </style>
+
+      <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark">✓</i>
+      </div>
+        <h1>ধন্যবাদ</h1>
+        <p>আমারা আপনার পেমেন্ট গ্রহন করেছি!</p>
+        <div style="display:flex">
+            <a class="buttons d" href="">আপনার সনদটি ডাউনলোড করুন</a>
+            <a class="buttons r" href="">আপনার রশিদটি ডাউনলোড করুন</a>
+            </div>
+            <a class="buttons h" href="">মুল পেজএ ফিরে যান</a>
+
+      </div>
+
+            ';
         }
     }
     public function sonodpayment(Request $request, $id)
@@ -174,6 +249,7 @@ class SonodController extends Controller
                 'amount' => $amount,
                 'mob' => $sonod->applicant_mobile,
                 'status' => "Pending",
+                'date' => date('Y-m-d'),
                 'created_at' => $req_timestamp,
             ];
             Payment::create($customerData);
@@ -361,6 +437,24 @@ class SonodController extends Controller
         $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
         // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
         smsSend($deccription, $sonod->applicant_mobile);
+
+        $req_timestamp = date('Y-m-d H:i:s');
+        $customerData = [
+            'union' => $sonod->unioun_name,
+            'trxId' => time(),
+            'sonodId' => $id,
+            'sonod_type' => $sonod->sonod_name,
+            'amount' => $sonod->total_amount,
+            'mob' => $sonod->applicant_mobile,
+            'status' => "Paid",
+            'date' => date('Y-m-d'),
+            'created_at' => $req_timestamp,
+        ];
+        Payment::create($customerData);
+
+
+
+
         return $sonod->update(['payment_status' => 'Paid']);
     }
     public function cancelsonod(Request $request, $id)
@@ -623,15 +717,29 @@ class SonodController extends Controller
 
     public function totlaAmount(Request $request)
     {
-        return Payment::where('status','Paid')->sum('amount');
+        $union = $request->union;
+        if($union){
+            return Payment::where(['status'=>'Paid','union'=>$union])->sum('amount');
+        }else{
+            return Payment::where('status','Paid')->sum('amount');
+        }
     }
 
     public function counting(Request $request, $status)
     {
+        $union = $request->union;
+        if($union){
+            if ($status == 'all') {
+                return  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name'=>$union])->count();
+            }
+            return  Sonod::where(['stutus' => $status,'unioun_name'=>$union])->count();
+        }
+
         if ($status == 'all') {
             return  Sonod::where('stutus', '!=', 'Prepaid')->count();
         }
         return  Sonod::where(['stutus' => $status])->count();
+
     }
     public function niddob(Request $request)
     {
