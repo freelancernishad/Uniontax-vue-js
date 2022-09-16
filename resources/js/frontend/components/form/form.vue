@@ -397,7 +397,7 @@
 
 
 
-                        <div class="form-group">
+                        <div class="form-group" style="    margin-top: 66px !important;">
                             <label for="" class="labelColor">বিভাগ</label>
 
                             <select class='form-control' name="division" id="division" v-model="Pdivision" @change="getdistrictFun" >
