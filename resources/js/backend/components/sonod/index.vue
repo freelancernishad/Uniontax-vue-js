@@ -490,11 +490,13 @@ export default {
                 this.actionModal.content_id = `${id}`;
                 this.actionModal.status = `${status}`;
                 this.actionModal.content = item;
+                this.actionModal.title  =  `${status}`;
                 this.$root.$emit('bv::show::modal', this.actionModal.id, button)
             } else if (ApproveType == 'apiAction') {
                 if (this.Users.position == 'Secretary') {
                     this.actionModal.content_id = `${id}`;
                     this.actionModal.status = `${status}`;
+                    this.actionModal.title  =  `${status}`;
                     this.actionModal.content = item;
                     this.$root.$emit('bv::show::modal', this.actionModal.id, button)
                 } else {
@@ -521,7 +523,7 @@ export default {
             }
         },
         async cancel(route, id, status, button) {
-            console.log(id)
+            // console.log(id)
             this.actionModal.content_id = `${id}`;
             this.actionModal.title = `Cancel`;
             this.$root.$emit('bv::show::modal', this.actionModal.id, button)

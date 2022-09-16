@@ -78,7 +78,7 @@ Route::get('/{vue_capture?}', function () {
 
          $subdomainCount =  count($subdomain);
          $subdomainget = $subdomain[1];
-        if($subdomainCount>4){
+        if($subdomainCount>env('WITH_WWW')){
             $sub = true;
         }else{
             $sub = false;
@@ -90,7 +90,7 @@ Route::get('/{vue_capture?}', function () {
         $subdomainCount =  count($subdomain);
         $subdomainget = $subdomain[0];
 
-        if($subdomainCount>3){
+        if($subdomainCount>env('WITHOUT_WWW')){
             $sub = true;
         }else{
             $sub = false;

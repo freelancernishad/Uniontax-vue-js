@@ -24,6 +24,7 @@
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
 <style>
 
 .page-item.active .page-link {
@@ -51,7 +52,7 @@ li.page-item.active button {
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.semanticui.min.css"> --}}
 
 </head>
-<body>
+<body style="font-family: 'Kalpurush', sans-serif;">
 
 
 
@@ -65,7 +66,7 @@ li.page-item.active button {
 
 
 
-<script src="{{ asset('js/backend.js?ver=1.1.7') }}"></script>
+<script src="{{ asset('js/backend.js?ver=1.1.8') }}"></script>
 
 
 
