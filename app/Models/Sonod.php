@@ -41,6 +41,8 @@ class Sonod extends Model
         'applicant_type_of_business',
         'applicant_father_name',
         'applicant_mother_name',
+        'ut_father_name',
+        'ut_mother_name',
         'applicant_occupation',
         'applicant_education',
         'applicant_religion',

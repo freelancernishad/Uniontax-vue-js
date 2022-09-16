@@ -51,14 +51,14 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">পিতা/স্বামীর নাম</label>
-                            <input type="text" class="form-control" v-model="form.applicant_father_name">
+                            <input type="text" class="form-control" v-model="form.ut_father_name">
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">মাতার নাম</label>
-                            <input type="text" class="form-control" v-model="form.applicant_mother_name">
+                            <input type="text" class="form-control" v-model="form.ut_mother_name">
                         </div>
                     </div>
 
@@ -154,16 +154,16 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
 
-                    <div class="col-md-4" v-else>
+
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">পিতা/স্বামীর নাম</label>
                             <input type="text" class="form-control" v-model="form.applicant_father_name">
                         </div>
                     </div>
-                    <div class="col-md-4" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-                    <div class="col-md-4" v-else>
+
+                    <div class="col-md-4" >
                         <div class="form-group">
                             <label for="" class="labelColor">মাতার নাম</label>
                             <input type="text" class="form-control" v-model="form.applicant_mother_name">
@@ -631,8 +631,8 @@
         <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Inheritance certificate'"><b>জীবিত ব্যক্তির নাম : </b>{{ form.utname }}</div>
         <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
         <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ form.applicant_marriage_status }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>মাতার নাম : </b>{{ form.applicant_mother_name }}</div>
+        <div class="col-md-4 col-6 mt-3"><b>পিতা/স্বামীর নাম : </b>{{ form.ut_father_name }}</div>
+        <div class="col-md-4 col-6 mt-3"><b>মাতার নাম : </b>{{ form.ut_mother_name }}</div>
         <div class="col-md-4 col-6 mt-3"><b>পিতা জীবিত কিনা : </b>{{ form.successor_father_alive_status }}</div>
         <div class="col-md-4 col-6 mt-3"><b>মাতা জীবিত কিনা : </b>{{ form.successor_mother_alive_status }}</div>
         <div class="col-md-4 col-6 mt-3"><b>পেশা : </b>{{ form.applicant_occupation }}</div>
@@ -656,7 +656,7 @@
                 <div class="col-md-4 mt-3"></div>
                 <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ form.applicant_name }}</div>
                 <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certification of the same name'">
-                    <b>আবেদনকারীর দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}
+                    <b>দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}
                 </div>
 
                 <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
@@ -664,16 +664,11 @@
                 <div class="col-md-4 col-6 mt-3" v-else><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
 
                 <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-                <div class="col-md-4 col-6 mt-3" v-else><b>আবেদনকারীর পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}
+                <div class="col-md-4 col-6 mt-3" v-else><b>পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}
                 </div>
-                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-                <div class="col-md-4 col-6 mt-3" v-else><b>আবেদনকারীর পিতা জীবিত কিনা : </b>{{
-                form.successor_father_alive_status
-                }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতার নাম : </b>{{ form.applicant_mother_name }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর মাতা জীবিত কিনা : </b>{{
-                form.successor_mother_alive_status
-                }}</div>
+
+                <div class="col-md-4 col-6 mt-3"><b>মাতার নাম : </b>{{ form.applicant_mother_name }}</div>
+
                 <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ form.applicant_national_id_number }}</div>
                 <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ form.applicant_birth_certificate_number }}
                 </div>
@@ -831,6 +826,8 @@ export default {
                 applicant_name_of_the_organization: null,
                 applicant_gender: null,
                 applicant_marriage_status: null,
+                ut_father_name: null,
+                ut_mother_name: null,
                 applicant_father_name: null,
                 applicant_mother_name: null,
                 applicant_occupation: null,

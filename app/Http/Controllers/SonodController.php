@@ -943,19 +943,7 @@ class SonodController extends Controller
             ->generate($sonodurl);
         $w_list = $row->successor_list;
         $w_list = json_decode($w_list);
-        $pdfHead = '';
-        $ssName = '  <div class="nagorik_sonod" style="margin-bottom:10px;">
-                <div style="
-                background-color: #159513;
-                color: #fff;
-                font-size: 30px;
-                border-radius: 30em;
-                width:320px;
-                margin:10px auto;
-                margin-bottom:0px;
-                text-align:center
-                ">ওয়ারিশান/উত্তরাধিকারী সনদপত্র</div> <br>
-                ';
+
 
 $nagoriinfo = '';
 
@@ -964,7 +952,7 @@ $nagoriinfo = '';
 
 if ($sonod_name == 'ওয়ারিশান সনদ') {
         $nagoriinfo .= '
-            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, মরহুম ' . $row->utname . ', পিতা- ' . $row->applicant_father_name . ', মাতা- ' . $row->applicant_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা ছিলেন। মৃত্যুকালে তিনি নিম্নোক্ত ওয়ারিশগণ রেখে যান। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
+            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, মরহুম ' . $row->utname . ', পিতা- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা ছিলেন। মৃত্যুকালে তিনি নিম্নোক্ত ওয়ারিশগণ রেখে যান। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
             <br>
 
             &nbsp; &nbsp; &nbsp; আমি মরহুমের বিদেহী আত্মার মাগফেরাত কামনা করি।
@@ -972,7 +960,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
             } else {
 
             $nagoriinfo .= '
-            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, জনাব ' . $row->utname . ', পিতা- ' . $row->applicant_father_name . ', মাতা- ' . $row->applicant_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
+            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, জনাব ' . $row->utname . ', পিতা- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
             <br>
 
 
@@ -1035,7 +1023,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 </table>
 <br>
 <p style="margin-top:-10px;margin-bottom:5px">
-আবেদনকারীর নামঃ '.$row->applicant_name.'।  পিতার নামঃ '.$row->applicant_name.'।  মাতার নামঃ '.$row->applicant_name.'
+আবেদনকারীর নামঃ '.$row->applicant_name.'।  পিতার নামঃ '.$row->applicant_father_name.'।  মাতার নামঃ '.$row->applicant_mother_name.'
 </p><br>
 
 <p style="margin-top:-10px;margin-bottom:5px">
@@ -1045,9 +1033,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 &nbsp; &nbsp; &nbsp; আমি তাঁর/তাঁদের সর্বাঙ্গীন উন্নতি ও মঙ্গল কামনা করছি।
 </p>
 ';
-        $sonodNO = '<div class="signature text-center position-relative">
-            সনদ নং: ' . int_en_to_bn($uniouninfo->u_code . '3-' . $row->sonod_no) . ' <br />  ইস্যুর তারিখ: </div>';
-        $lNO = '';
+
         $output = ' ';
         $output .= '' . $nagoriinfo . '';
         return $output;
