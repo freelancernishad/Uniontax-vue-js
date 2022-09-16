@@ -33,7 +33,7 @@
         background: green;
         padding: 13px 39px;
         border-radius: 14px;width: 200px;
-    margin: 0 auto;" >অভিনন্দন !</div>  <br> <p style="font:size:16px;color:blue;margin-bottom:0px !important;">ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে আপনার আবেদনটি যথাযথভাবে দাখিল হয়েছে।</p>
+    margin: 0 auto;" >অভিনন্দন !</div>  <br> <p style="font:size:16px;color:blue;margin-bottom:0px !important;">ডিজিটাল ইউনিয়ন ট্যাক্স ও সেবা সিস্টেমে আপনার আবেদনটি যথাযথভাবে দাখিল হয়েছে।</p>
 
     </div>
 
@@ -106,10 +106,7 @@
 
 
 
-    <p style="text-align:center" >শীগ্রই আপনার আবেদনটি কর্তৃপক্ষ কর্তৃক যথাযথ প্রক্রিয়ায় অনুমোদন করা হবে। <br>
-    ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমের সাথে থাকার জন্য ধনব্যাদ। <br>
-
-    </p>
+    <p style="text-align:center" >শীগ্রই আপনার আবেদনটি কর্তৃপক্ষ কর্তৃক যথাযথ প্রক্রিয়ায় অনুমোদন করা হবে। <br></p>
 
     @php
         // print_r($row)
@@ -150,7 +147,7 @@
     text-align: center;
     padding: 2px 2px;font-size: 16px;     margin-top: 20px;margin-bottom:0px" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
 
-<p class="m-0" style="font-size:14px;text-align:center">'ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেম' {{ $uniouninfo->domain }}</p>
+<p class="m-0" style="font-size:14px;text-align:center;margin: 0;">'ডিজিটাল ইউনিয়ন ট্যাক্স ও সেবা সিস্টেম' {{ $uniouninfo->domain }} এর সাথে থাকার জন্য ধন্যবাদ</p>
 
     {{-- <p style="text-align: center"> {{ $uniouninfo->domain }}</p> --}}
 

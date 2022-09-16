@@ -960,7 +960,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
             } else {
 
             $nagoriinfo .= '
-            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, জনাব ' . $row->utname . ', পিতা- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
+            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, জনাব ' . $row->utname . ', পিতা- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা। নিম্নে তাঁর উত্তরাধিকারী/উত্তরাধিকারীগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
             <br>
 
 

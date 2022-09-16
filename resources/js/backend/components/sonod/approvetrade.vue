@@ -2,12 +2,12 @@
         <form v-on:submit.prevent="formsubmit">
     <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-12"  style="display:none">
                 <h5>আবেদনকৃত প্রত্যয়নের বিবরণ</h5>
                 <p>{{ Details.prottoyon }}</p>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
+            <div class="col-md-12"  style="display:none">
+                <div class="form-group" >
                     <label for="amountab">প্রত্যয়ন প্রদানের বিবরণ </label>
                     <textarea v-model="form.sec_prottoyon" class="form-control"
                         style="height:100px;resize:none" :readonly="readonly"></textarea>
@@ -20,28 +20,28 @@
   <div class="col-md-4" v-if="Details.payment_status == 'Unpaid'">
     <div class="form-group">
         <label for="pesaKor">পেশা কর </label>
-        <input id="pesaKor" @keyup="totalAmount()" class="form-control" type="text" v-model="form.pesaKor">
+        <input id="pesaKor" @keyup="totalAmount()" class="form-control" type="number" v-model="form.pesaKor">
     </div>
 </div>
 
   <div class="col-md-4" v-if="Details.payment_status == 'Unpaid'">
     <div class="form-group">
         <label for="tredeLisenceFee">ট্রেড লাইসেন্স ফি </label>
-        <input id="tredeLisenceFee" @keyup="totalAmount()"  class="form-control" type="text" v-model="form.tredeLisenceFee">
+        <input id="tredeLisenceFee" @keyup="totalAmount()"  class="form-control" type="number" v-model="form.tredeLisenceFee">
     </div>
 </div>
 
   <div class="col-md-4" v-if="Details.payment_status == 'Unpaid'">
     <div class="form-group">
         <label for="vatAykor">ভ্যাট ও আয়কর </label>
-        <input id="vatAykor" @keyup="totalAmount()"  class="form-control" type="text" v-model="form.vatAykor">
+        <input id="vatAykor" @keyup="totalAmount()"  class="form-control" type="number" v-model="form.vatAykor">
     </div>
 </div>
 
   <div class="col-md-6" v-if="Details.payment_status == 'Unpaid'">
     <div class="form-group">
         <label for="amounta">মোট </label>
-        <input id="amounta" class="form-control" type="text" v-model="form.amounta">
+        <input id="amounta" class="form-control" type="number" v-model="form.amounta">
     </div>
 </div>
 

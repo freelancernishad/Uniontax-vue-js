@@ -597,10 +597,12 @@
                         <th>
                             <select v-model="successor.w_relation" class="form-control">
                                 <option value="">সম্পর্ক</option>
+                                <option>স্ত্রী</option>
+                                <option>পুত্র</option>
+                                <option>কন্যা</option>
                                 <option>পিতা</option>
                                 <option>মাতা</option>
                                 <option>স্বামী</option>
-                                <option>স্ত্রী</option>
                                 <option>ভাই</option>
                                 <option>বোন</option>
                                 <option>নাতি</option>
@@ -616,7 +618,9 @@
                                 v-show="index != 0">মুছন</button></th>
                     </tr>
                 </table>
-                <b-button type="submit" variant="primary">সাবমিট</b-button>
+                <div style="text-align:center">
+                    <b-button type="submit" variant="primary">সাবমিট</b-button>
+                </div>
                 <!-- <b-button class="ml-2" @click="resetForm()">রিসেট</b-button> -->
             </div>
         </form>

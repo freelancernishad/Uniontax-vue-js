@@ -5,11 +5,11 @@
 
     <form v-on:submit.prevent="formsubmit">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12"  style="display:none">
                 <h5>আবেদনকৃত প্রত্যয়নের বিবরণ</h5>
                 <p>{{ sonodlist.prottoyon }}</p>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="display:none">
                 <div class="form-group">
                     <label for="amountab">প্রত্যয়ন প্রদানের বিবরণ </label>
                     <textarea v-model="form.sec_prottoyon" class="form-control"
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-6" v-if="sonodlist.payment_status == 'Unpaid'">
                 <div class="form-group">
-                    <label for="khat">খাত </label>
+                    <label for="khat">ফি আদায়ের খাত </label>
                     <select v-model="form.khat" id="khat" class="form-control" required>
                         <option value="বসতবাড়ীর বাৎসরিক মূল্যের উপর কর ">বসতবাড়ীর বাৎসরিক মূল্যের উপর কর </option>
                         <option value="ব্যবসা/পেশা/জীবিকার উপর কর">ব্যবসা/পেশা/জীবিকার উপর কর</option>
@@ -42,25 +42,25 @@
             <div class="col-md-6" v-if="sonodlist.payment_status == 'Unpaid'">
                 <div class="form-group">
                     <label for="amountab">বিগত বছরের টাকা (অংকে) </label>
-                    <input id="amountab" class="form-control" @keyup="totalAmount" type="text" value="0"
+                    <input id="amountab" class="form-control" @keyup="totalAmount" type="number"
                         v-model="form.last_years_money" required>
                 </div>
             </div>
             <div class="col-md-6" v-if="sonodlist.payment_status == 'Unpaid'">
                 <div class="form-group">
                     <label for="amountabb">বর্তমানে পরিশোধকৃত টাকা (অংকে) </label>
-                    <input id="amountabb" class="form-control" @keyup="totalAmount" value="0" type="text"
+                    <input id="amountabb" class="form-control" @keyup="totalAmount"  type="number"
                         v-model="form.currently_paid_money" required>
                 </div>
             </div>
             <div class="col-md-6" v-if="sonodlist.payment_status == 'Unpaid'">
                 <div class="form-group">
                     <label for="amounta">মোট (অংকে) </label>
-                    <input id="amounta" class="form-control" value="0" type="text" v-model="form.amounta" required>
+                    <input id="amounta" class="form-control"  type="number" v-model="form.amounta" required>
                 </div>
             </div>
             <div class="col-md-12">
-                <input id="submit" class="btn btn-info" type="submit" value="Approve">
+                <input id="submit" class="btn btn-info" type="submit" value="অনুমোদন করুন">
             </div>
         </div>
     </form>

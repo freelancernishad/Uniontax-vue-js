@@ -8,7 +8,7 @@
 
                 <h3 v-if="Users.position=='District_admin'">জেলা প্রশাসকের ড্যাশবোর্ড</h3>
                 <h3 v-else-if="Users.position=='Chairman'">চেয়ারম্যানের ড্যাশবোর্ড</h3>
-                <h3 v-else-if="Users.position=='Secretary'">সচিপের ড্যাশবোর্ড</h3>
+                <h3 v-else-if="Users.position=='Secretary'">সচিবের ড্যাশবোর্ড</h3>
                 <h3 v-else>উপজেলা ড্যাশবোর্ড</h3>
 
 
@@ -19,7 +19,7 @@
                     </li>
                     <li v-if="Users.position=='District_admin'">জেলা প্রশাসক </li>
                     <li v-else-if="Users.position=='Chairman'">চেয়ারম্যান </li>
-                    <li v-else-if="Users.position=='Secretary'">সচিপ </li>
+                    <li v-else-if="Users.position=='Secretary'">সচিব </li>
                     <li v-else>উপজেলা </li>
                 </ul>
             </div>

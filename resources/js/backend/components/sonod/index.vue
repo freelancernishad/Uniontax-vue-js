@@ -23,44 +23,44 @@
                     <thead>
                         <tr>
                             <th>সনদ নাম্বার</th>
-                            <th>ইউনিয়ন</th>
+                            <!-- <th>ইউনিয়ন</th> -->
                             <th>নাম</th>
                             <th>পিতার/স্বামীর নাম</th>
                             <th>গ্রাম/মহল্লা</th>
-                            <th>ন্যাশনাল আইডি</th>
+                            <!-- <th>ন্যাশনাল আইডি</th> -->
                             <th>আবেদনের তারিখ</th>
-                            <th>Action</th>
-                            <th>Payment</th>
+                            <th>কার্যক্রম</th>
+                            <th>ফি</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(item,index) in items" :key="item.id">
                             <td>{{ item.sonod_Id }}</td>
-                            <td>{{ item.unioun_name }}</td>
+                            <!-- <td>{{ item.unioun_name }}</td> -->
                             <td>{{ item.applicant_name }}</td>
                             <td>{{ item.applicant_father_name }}</td>
                             <td>{{ item.applicant_present_village }}</td>
-                            <td>{{ item.applicant_national_id_number }}</td>
+                            <!-- <td>{{ item.applicant_national_id_number }}</td> -->
                             <td>{{ dateformatGlobal(item.created_at)[6] }}</td>
                             <td>
                                 <!-- <span size="sm" @click="deletefun(item, index, $event.target)" class="btn btn-danger mr-1 mt-1">Delete</span> -->
                                 <a size="sm" target="_blank"
                                     :href="applicationRoute+'/' + item.sonod_name + '/' + item.id"
-                                    v-if="applicationRoute != ''" class="btn btn-success mr-1 mt-1">আবেদনপত্র দেখুন</a>
+                                    v-if="applicationRoute != ''" class="btn btn-success mr-1 mt-1">প্রাপ্তী স্বীকারপত্র</a>
                                 <!-- <router-link size="sm" :to="{ name: EditRoute, params: { id: item.id } }" class="btn btn-info mr-1 mt-1">Edit</router-link> -->
                                 <span size="sm" v-if="buttonLoader" class="btn btn-info mr-1 mt-1"><img width="20px"
                                         src="https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif"
                                         alt=""></span>
                                 <span size="sm" @click="info(item, index, $event.target)" v-else-if="viewRoute != ''"
-                                    class="btn btn-info mr-1 mt-1">View</span>
+                                    class="btn btn-info mr-1 mt-1">আবেদনপত্র দেখুন</span>
                                 <span size="sm"
                                     @click="approve(approveRoute, item.id, approveData, $event.target, approveType,item)"
                                     v-if="approveRoute != '' && item.payment_status == 'Unpaid'"
-                                    class="btn btn-success mr-1 mt-1">Approve</span>
+                                    class="btn btn-success mr-1 mt-1">অনুমোদন</span>
                                 <span size="sm"
                                     @click="approve('/api/sonod', item.id, approveData, $event.target, 'apiAction',item)"
                                     v-else-if="approveRoute != '' && item.payment_status == 'Paid'"
-                                    class="btn btn-success mr-1 mt-1">Approve</span>
+                                    class="btn btn-success mr-1 mt-1">অনুমোদন</span>
                                 <span size="sm" @click="paynow(payRoute, item.id, $event.target)"
                                     v-if="item.payment_status == 'Unpaid' && item.stutus == 'approved' && payRoute != ''"
                                     class="btn btn-info mr-1 mt-1">ফি পরিশোধ করুন</span>
@@ -70,7 +70,7 @@
                                     v-if="item.stutus == 'approved' && item.payment_status == 'Paid'"
                                     class="btn btn-info mr-1 mt-1">সনদ</a>
                                 <span size="sm" @click="cancel(cancelRoute, item.id, 'cancel', $event.target)"
-                                    v-if="cancelRoute != ''" class="btn btn-danger mr-1 mt-1">Not-Approve</span>
+                                    v-if="cancelRoute != ''" class="btn btn-danger mr-1 mt-1">বাতিল করুন</span>
                             </td>
                             <td style="background: red;color: white;" v-if="item.payment_status=='Unpaid'">
                                 অপরিশোধিত
@@ -390,17 +390,18 @@ export default {
         async paynow(route, id, button) {
             this.preLooding = true
             Swal.fire({
-                title: 'Are you sure?',
-                text: `Pay this data!`,
+                title: 'আপনি কি নিশ্চিত?',
+                text: `আবেদনটির ফি পরিশোধ করা হয়েছে!`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: `Yes, Pay it!`
+                confirmButtonText: `হা নিশ্চিত!`,
+                cancelButtonText: `বাতিল`
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     var res = await this.callApi('get', `${route}/${id}`, []);
-                    Notification.customSuccess(`Your data has been Paid`);
+                    Notification.customSuccess(`আবেদনটির ফি পরিশোধ করা হয়েছে`);
                     this.sonodList()
                 }
             })
@@ -501,18 +502,23 @@ export default {
                     this.$root.$emit('bv::show::modal', this.actionModal.id, button)
                 } else {
                     this.preLooding = true
+
+
+
+
                     Swal.fire({
-                        title: 'Are you sure?',
-                        text: `${status} this data!`,
+                        title: 'আপনি কি নিশ্চিত?',
+                        text: `আবেদনটি অনুমোদন করতে চান!`,
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: `Yes, ${status} it!`
+                        confirmButtonText: `হা নিশ্চিত`,
+                        cancelButtonText: `বাতিল`
                     }).then(async (result) => {
                         if (result.isConfirmed) {
                             var res = await this.callApi('get', `${route}/${status}/${id}`, []);
-                            Notification.customSuccess(`Your data has been ${status}`);
+                            Notification.customSuccess(`আবেদনটি অনুমদিত হয়েছে!`);
                             this.preLooding = false
                             this.sonodList()
                         } else {

@@ -33,7 +33,7 @@
         background: green;
         padding: 13px 39px;
         border-radius: 14px;width: 200px;
-    margin: 0 auto;" >অভিনন্দন !</div>  <br> <p style="font:size:16px;color:blue;margin-bottom:0px !important;">ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে আপনার আবেদনটি যথাযথভাবে দাখিল হয়েছে।</p>
+    margin: 0 auto;" >অভিনন্দন !</div>  <br> <p style="font:size:16px;color:blue;margin-bottom:0px !important;">ডিজিটাল ইউনিয়ন ট্যাক্স ও সেবা সিস্টেমে আপনার আবেদনটি যথাযথভাবে দাখিল হয়েছে।</p>
 
     </div>
 
@@ -118,22 +118,31 @@
 
                 <table class="w_table" width="100%" border="1px" style="border-collapse: collapse; border: 1px solid;">
                     <tr >
+                        <th width="5%">ক্রমিক নং</th>
                         <th width="20%">নাম</th>
                         <th width="15%">সম্পর্ক</th>
-                        <th width="15%">জন্ম তারিখ</th>
+                        <th width="20%">জন্ম তারিখ</th>
                         <th width="20%">জাতীয় পরিচয়পত্র নাম্বার</th>
-                        <th width="30%">মন্তব্য</th>
+                        <th width="20%">মন্তব্য</th>
                     </tr>
+                    @php
+                        $i = 1;
+                    @endphp
                     @foreach(json_decode($row->successor_list) as $value)
 
 
                     <tr>
+                        <td>{{ int_en_to_bn($i) }}</td>
+
                         <td>{{ $value->w_name }}</td>
                         <td>{{ $value->w_relation }}</td>
                         <td>{{ int_en_to_bn($value->w_age) }}</td>
                         <td>{{ int_en_to_bn($value->w_nid) }}</td>
                         <td></td>
                     </tr>
+                    @php
+                        $i++;
+                    @endphp
                     @endforeach
                 </table>
 
@@ -144,16 +153,13 @@
 
     <p style="text-align:center" >শীগ্রই আপনার আবেদনটি কর্তৃপক্ষ কর্তৃক যথাযথ প্রক্রিয়ায় অনুমোদন করা হবে।</p>
 
-    @php
-        // print_r($row)
-    @endphp
+
         <table></table>
 
 
-
-        <p style="margin: 0;">ইউপি সদস্যের মন্তব্য/সুপারিশ:</p>
-        <p style="margin: 0;">সরেজমিন তদন্ত পূর্বক বর্ণিত মরহুম ব্যক্তির উল্লিখিত ওয়ারিশ/ওয়ারিশগণ ছাড়া আর অন্য কোন ওয়ারিশ নেই।</p>
-        <p style="margin: 0;">ইহা ব্যতীত অন্য কোন ওয়ারিশ থাকলে তার বিবরণ (প্রযোজ্য ক্ষেত্রে):</p>
+        <p style="margin: 0;"><b>ইউপি সদস্যের মন্তব্য/সুপারিশ:</b></p>
+        <p style="margin: 0;">সরেজমিন তদন্ত পূর্বক বর্ণিত মরহুম ব্যক্তির উল্লিখিত ওয়ারিশ/ওয়ারিশগণ ছাড়া আর অন্য কোন ওয়ারিশ নেই। ইহা আমার জানা মতে সত্য।</p>
+        <p style="margin: 0;">** অন্য কোন ওয়ারিশ থাকলে তার বিবরণ উল্লেখ করুন (প্রযোজ্য ক্ষেত্রে):</p>
 
 
 
@@ -195,8 +201,8 @@
     text-align: center;
     padding: 2px 2px;font-size: 16px;     margin-top: 20px;margin-bottom:0px" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
 
-<p class="m-0" style="font-size:14px;text-align:center;margin: 0;">'ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেম' {{ $uniouninfo->domain }}</p>
-<p class="m-0" style="font-size:14px;text-align:center;margin: 0;">ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমের সাথে থাকার জন্য ধনব্যাদ।</p>
+<p class="m-0" style="font-size:14px;text-align:center;margin: 0;">'ডিজিটাল ইউনিয়ন ট্যাক্স ও সেবা সিস্টেম' {{ $uniouninfo->domain }} এর সাথে থাকার জন্য ধন্যবাদ</p>
+
 
     {{-- <p style="text-align: center"> {{ $uniouninfo->domain }}</p> --}}
 
