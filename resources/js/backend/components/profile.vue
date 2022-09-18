@@ -53,11 +53,11 @@
 
         </div>
 
-
+<!--
         <div class="form-group col-md-6">
           <label for="">ইউনিয়ন</label>
           <input type="text" class="form-control" v-model="form.unioun">
-        </div>
+        </div> -->
 
         <div class="form-group col-md-6">
           <label for="">মোবাইল নাম্বার</label>
@@ -153,6 +153,8 @@ export default {
 
 
         async onSubmit() {
+            this.preLooding = true
+
             this.form['changepass'] = this.changepass
             this.form['oldpassword'] = this.oldpassword
             this.form['newpassword'] = this.newpassword
@@ -174,6 +176,7 @@ export default {
             }
             //  this.$router.push({ name: 'userlist'})
 
+            this.preLooding = false
 
         }
     },

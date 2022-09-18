@@ -450,7 +450,7 @@ console.log(sub,subdomainget)
 nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     background: #023076 !important;
 }
-li.nav-item a {
+li.nav-item a, .dropdown-item {
     color: white !important;
 }
 .dropdown-menu {
@@ -471,10 +471,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     li.nav-item {
         border-right: 1px solid white;
     }
-    a.dropdown-item {
+    .dropdown-item {
         border-bottom: 1px solid #89209b;
     }
-    a.dropdown-item:first-child {
+    .dropdown-item:first-child {
         border-top: 1px solid #89209b;
     }
 }

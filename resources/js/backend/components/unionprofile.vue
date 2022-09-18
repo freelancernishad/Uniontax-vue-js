@@ -194,7 +194,7 @@
       <div class="border-top">
           <div class="card-body">
               <button type="submit" class="btn btn-primary">
-                  Submit
+                  সাবমিট
               </button>
           </div>
       </div>
@@ -282,13 +282,16 @@ export default {
 
 
         async onSubmit() {
+            console.log('sdfsdf')
+            this.preLooding = true
 
 
             var res = await this.callApi('post', '/api/unionprofile/submit', this.form);
 
-    // conseole.log(res)
-    this.getunionInfo();
-    Notification.customSuccess('Union Info Update Successfuly Done');
+            // conseole.log(res)
+            this.getunionInfo();
+            Notification.customSuccess('ইউনিয়ন প্রোফাইল সফল ভাবে আপডেট হয়েছে');
+            this.preLooding = false
 
 
         }
