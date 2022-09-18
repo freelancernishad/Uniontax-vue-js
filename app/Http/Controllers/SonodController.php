@@ -317,6 +317,9 @@ class SonodController extends Controller
     }
     public function sonod_submit(Request $r)
     {
+
+
+
         $id = $r->id;
         $stutus = $r->stutus;
         // if($id){
@@ -354,7 +357,8 @@ class SonodController extends Controller
         try {
             $unioun_name = $r->unioun_name;
             $sonod_name = $r->sonod_name;
-            $Insertdata['sonod_Id'] = $this->allsonodId($unioun_name, $sonod_name);
+            // return  $this->allsonodId($unioun_name, $sonod_name);
+            $Insertdata['sonod_Id'] = (string)$this->allsonodId($unioun_name, $sonod_name);
             //    $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
             // $oldsonodNo = (int)$oldsonod->sonod_Id;
             //  $Insertdata['sonod_Id'] =  $oldsonodNo+1;
