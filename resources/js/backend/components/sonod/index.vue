@@ -19,30 +19,30 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>সনদ নাম্বার</th>
+                <table class="table table-hover table-striped sonodTable">
+                    <thead class="sonodThead">
+                        <tr class="sonodTr">
+                            <th class="sonodTh">সনদ নাম্বার</th>
                             <!-- <th>ইউনিয়ন</th> -->
-                            <th>নাম</th>
-                            <th>পিতার/স্বামীর নাম</th>
-                            <th>গ্রাম/মহল্লা</th>
+                            <th class="sonodTh">নাম</th>
+                            <th class="sonodTh">পিতার/স্বামীর নাম</th>
+                            <th class="sonodTh">গ্রাম/মহল্লা</th>
                             <!-- <th>ন্যাশনাল আইডি</th> -->
-                            <th>আবেদনের তারিখ</th>
-                            <th>কার্যক্রম</th>
-                            <th>ফি</th>
+                            <th class="sonodTh">আবেদনের তারিখ</th>
+                            <th class="sonodTh">কার্যক্রম</th>
+                            <th class="sonodTh">ফি</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr v-for="(item,index) in items" :key="item.id">
-                            <td>{{ item.sonod_Id }}</td>
+                    <tbody class="sonodTbody">
+                        <tr class="sonodTr" v-for="(item,index) in items" :key="item.id">
+                            <td class="sonodTd">{{ item.sonod_Id }}</td>
                             <!-- <td>{{ item.unioun_name }}</td> -->
-                            <td>{{ item.applicant_name }}</td>
-                            <td>{{ item.applicant_father_name }}</td>
-                            <td>{{ item.applicant_present_village }}</td>
+                            <td class="sonodTd">{{ item.applicant_name }}</td>
+                            <td class="sonodTd">{{ item.applicant_father_name }}</td>
+                            <td class="sonodTd">{{ item.applicant_present_village }}</td>
                             <!-- <td>{{ item.applicant_national_id_number }}</td> -->
-                            <td>{{ dateformatGlobal(item.created_at)[6] }}</td>
-                            <td>
+                            <td class="sonodTd">{{ dateformatGlobal(item.created_at)[6] }}</td>
+                            <td class="sonodTd">
                                 <!-- <span size="sm" @click="deletefun(item, index, $event.target)" class="btn btn-danger mr-1 mt-1">Delete</span> -->
                                 <a size="sm" target="_blank"
                                     :href="applicationRoute+'/' + item.sonod_name + '/' + item.id"
@@ -72,10 +72,10 @@
                                 <span size="sm" @click="cancel(cancelRoute, item.id, 'cancel', $event.target)"
                                     v-if="cancelRoute != ''" class="btn btn-danger mr-1 mt-1">বাতিল করুন</span>
                             </td>
-                            <td style="background: red;color: white;" v-if="item.payment_status=='Unpaid'">
+                            <td class="sonodTd" style="background: red;color: white;" v-if="item.payment_status=='Unpaid'">
                                 অপরিশোধিত
                             </td>
-                            <td style="background: green;color: white;" v-else>
+                            <td class="sonodTd" style="background: green;color: white;" v-else>
                                 পরিশোধিত
                             </td>
                         </tr>
@@ -664,4 +664,72 @@ td {
 li.page-item.active a {
     color: white !important;
 }
+
+
+
+
+
+
+
+
+
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	.sonodTable, .sonodThead, .sonodTbody, .sonodTh, .sonodTd, .sonodTr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.sonodThead .sonodTr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	.sonodTr { border: 1px solid #ccc; }
+
+    .sonodTr:nth-child(odd) {
+      background: #ccc;
+    }
+	.sonodTd {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+        padding-top: 12px;
+    padding-bottom: 12px;
+		padding-left: 50%;
+	}
+
+	.sonodTd:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	*/
+	.sonodTd:nth-of-type(1):before { content: "সনদ নাম্বার"; }
+	.sonodTd:nth-of-type(2):before { content: "নাম"; }
+	.sonodTd:nth-of-type(3):before { content: "পিতার/স্বামীর নাম"; }
+	.sonodTd:nth-of-type(4):before { content: "গ্রাম/মহল্লা"; }
+	.sonodTd:nth-of-type(5):before { content: "আবেদনের তারিখ"; }
+	.sonodTd:nth-of-type(6):before { content: "কার্যক্রম"; }
+	.sonodTd:nth-of-type(7):before { content: "ফি"; }
+
+}
+
+
+
+
 </style>

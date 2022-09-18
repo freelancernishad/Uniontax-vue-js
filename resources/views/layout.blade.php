@@ -46,6 +46,9 @@ li.page-item.active button {
     font-size: 25px;
 }
 
+
+
+
 </style>
     {{-- <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.12.1/css/dataTables.semanticui.min.css">
@@ -66,7 +69,7 @@ li.page-item.active button {
 
 
 
-<script src="{{ asset('js/backend.js?ver=1.2.1') }}"></script>
+<script src="{{ asset('js/backend.js?ver=1.2.2') }}"></script>
 
 
 

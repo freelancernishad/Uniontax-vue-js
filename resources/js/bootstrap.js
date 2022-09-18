@@ -7,6 +7,9 @@ Vue.prototype.$asseturl = '/public/'
 Vue.prototype.$withWWW = 4
 Vue.prototype.$withOutWWW = 2
 
+// Vue.prototype.$withWWW = 2
+// Vue.prototype.$withOutWWW = 1
+
 Vue.prototype.$localStorage = localStorage
 window.ASSETURL = Vue.prototype.$asseturl
 // Vue.prototype.$appName = process.env.MIX_FILE_PATH

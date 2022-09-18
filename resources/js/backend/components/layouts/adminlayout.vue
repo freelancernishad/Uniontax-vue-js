@@ -515,7 +515,7 @@ ul.nav.sub-group-menu.menu-open.child li {
 }
 
 a.nav-link span {
-    font-size: 12px !important;
+    font-size: 14px !important;
 }
 textarea.form-control {
     background: #b9b9b9 !important;
