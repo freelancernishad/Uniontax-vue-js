@@ -597,7 +597,7 @@ class SonodController extends Controller
     }
     public function sonodDownload(Request $request, $name, $id)
     {
-        $row = Sonod::find($id);
+       $row = Sonod::find($id);
         $sonod_name = $row->sonod_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
@@ -635,6 +635,7 @@ class SonodController extends Controller
             $mpdf->simpleTables = true;
             $mpdf->Output($filename, 'I');
         } else {
+            // return view('sonod', compact('row', 'sonod', 'uniouninfo'));
             $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo'));
             return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
         }
@@ -879,15 +880,28 @@ class SonodController extends Controller
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
         $sonodNO = ' <div class="signature text-center position-relative">
 সনদ নং: ' .  int_en_to_bn($uniouninfo->u_code . '11-' . $uniouninfo->sonod_no) . ' <br /> ইস্যুর তারিখ: </div>';
-        if (session('unioun') == 'tetulia') {
+
+
+
+
+$C_color = '#7230A0';
+$C_size = '18px';
+$color = 'black';
+if($row->unioun_name=='dhamor'){
+    $C_color = '#5c1caa';
+    $C_size = '20px';
+    $color = '#5c1caa';
+}
+
+
             $ccc = '<img width="170px"  src="' . base64($row->chaireman_sign) . '"><br/>
-                              <b><span style="color:#7230A0;font-size:18px;">' . $row->chaireman_name . '</span> <br />
+                              <b><span style="color:'.$C_color.';font-size:'.$C_size.';">' . $row->chaireman_name . '</span> <br />
                                       </b><span style="font-size:16px;">চেয়ারম্যান</span><br />';
-        } else {
-            $ccc = '<img width="170px"  src="' . base64($row->chaireman_sign) . '"><br/>
-                              <b><span style="color:#7230A0;font-size:18px;">' . $row->chaireman_name . '</span> <br />
-                                      </b><span style="font-size:16px;">চেয়ারম্যান</span><br />';
-        }
+
+
+
+
+
         $qrurl = url("/verification/sonod/$row->id");
         //in Controller
         $qrcode = \QrCode::size(70)
@@ -906,11 +920,11 @@ class SonodController extends Controller
                                       <img width="100px" src="' . base64($uniouninfo->sonod_logo) . '">
                                   </td>
                                   <td style="text-align: center;" width="40%">
-                                      <div class="signature text-center position-relative">
+                                      <div class="signature text-center position-relative" style="color:'.$color.'">
 
                                       ' . $ccc . $uniouninfo->full_name . ' <br> ' . $uniouninfo->thana . ', ' . $uniouninfo->district . ' ।
                                       <br/>
-                                      '. $uniouninfo->c_email.'
+                                      '. $row->c_email.'
 
                                       </div>
                                   </td>

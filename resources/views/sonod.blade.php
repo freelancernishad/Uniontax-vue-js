@@ -149,15 +149,41 @@
                             <img width="100px" src="{{ base64($uniouninfo->sonod_logo) }}">
                         </td>
                         <td style="text-align: center;" width="40%">
-                            <div class="signature text-center position-relative">
+
+
+                            @php
+                                // echo $row->unioun_name;
+
+
+                                $C_color = '#7230A0';
+                                $C_size = '18px';
+                                $color = 'black';
+                                if($row->unioun_name=='dhamor'){
+                                    $C_color = '#5c1caa';
+                                    $C_size = '20px';
+                                    $color = '#5c1caa';
+                                }
+
+
+
+                            @endphp
+
+
+
+                            <div class="signature text-center position-relative" style="color:{{ $color }}">
                                 <img width="170px"  src="{{ base64($row->chaireman_sign) }}"><br/>
-                                <b><span style="color:#7230A0;font-size:18px;">{{ $row->chaireman_name }}</span> <br />
+                                <b><span style="color:{{ $C_color }};font-size:{{ $C_size }};">{{ $row->chaireman_name }}</span> <br />
                                         </b><span style="font-size:16px;">চেয়ারম্যান</span><br />
 
                                 {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।
                             <br>
-                            {{ $uniouninfo->c_email }}
+                            {{ $row->c_email }}
                             </div>
+
+
+
+
+
                         </td>
                     </tr>
 
