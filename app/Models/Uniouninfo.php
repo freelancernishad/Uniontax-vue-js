@@ -18,6 +18,7 @@ class Uniouninfo extends Model
         'sonod_logo',
         'c_signture',
         'c_name',
+        'c_email',
         'u_image',
         'u_description',
         'u_notice',

@@ -353,6 +353,7 @@ class SonodController extends Controller
         $Insertdata['successor_list'] = $successors;
         $Uniouninfo =   Uniouninfo::where('short_name_e', $r->unioun_name)->latest()->first();
         $Insertdata['chaireman_name'] = $Uniouninfo->c_name;
+        $Insertdata['c_email'] = $Uniouninfo->c_email;
         $Insertdata['chaireman_sign'] = $Uniouninfo->c_signture;
         try {
             $unioun_name = $r->unioun_name;
@@ -410,6 +411,8 @@ class SonodController extends Controller
             // return $updateData;
             return $sonod->update($updateData);
         }
+
+
         $updateData = [
             'khat' => $request->khat,
             'last_years_money' => $request->last_years_money,
@@ -419,6 +422,12 @@ class SonodController extends Controller
             'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
             'stutus' => $request->approveData,
         ];
+
+        $Uniouninfo =   Uniouninfo::where('short_name_e', $sonod->unioun_name)->latest()->first();
+        $updateData['chaireman_name'] = $Uniouninfo->c_name;
+        $updateData['c_email'] = $Uniouninfo->c_email;
+        $updateData['chaireman_sign'] = $Uniouninfo->c_signture;
+
         return $sonod->update($updateData);
     }
     public function sonod_pay(Request $request, $id)
@@ -467,6 +476,7 @@ class SonodController extends Controller
         if ($action == 'approved') {
             $updatedata = [
                 'chaireman_name' => $uniouninfos->c_name,
+                'c_email' => $uniouninfos->c_email,
                 'chaireman_sign' => $uniouninfos->c_signture,
                 'stutus' => $action,
             ];
@@ -488,6 +498,9 @@ class SonodController extends Controller
                 'stutus' => $action,
             ];
         }
+
+
+
         return $sonod->update($updatedata);
     }
     /**
@@ -895,7 +908,11 @@ class SonodController extends Controller
                                   <td style="text-align: center;" width="40%">
                                       <div class="signature text-center position-relative">
 
-                                      ' . $ccc . $uniouninfo->full_name . ' <br> ' . $uniouninfo->thana . ', ' . $uniouninfo->district . ' ।</div>
+                                      ' . $ccc . $uniouninfo->full_name . ' <br> ' . $uniouninfo->thana . ', ' . $uniouninfo->district . ' ।
+                                      <br/>
+                                      '. $uniouninfo->c_email.'
+
+                                      </div>
                                   </td>
                               </tr>
                           </table>

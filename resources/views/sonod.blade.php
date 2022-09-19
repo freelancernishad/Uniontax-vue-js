@@ -154,7 +154,10 @@
                                 <b><span style="color:#7230A0;font-size:18px;">{{ $row->chaireman_name }}</span> <br />
                                         </b><span style="font-size:16px;">চেয়ারম্যান</span><br />
 
-                                {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।</div>
+                                {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।
+                            <br>
+                            {{ $uniouninfo->c_email }}
+                            </div>
                         </td>
                     </tr>
 

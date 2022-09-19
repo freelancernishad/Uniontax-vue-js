@@ -68,6 +68,15 @@
           </div>
           </div>
 
+          <div class="col-md-6">
+          <div class="form-group">
+              <label class="control-label col-form-label">চেয়ারম্যানের ইমেইল </label>
+
+                  <input type="email" class="form-control"  id="c_email" v-model="form.c_email"  />
+
+          </div>
+          </div>
+
 
           <div class="col-md-6">
             <div class="form-group">
@@ -227,6 +236,7 @@ export default {
                 sonod_logo:null,
                 c_signture:null,
                 c_name:null,
+                c_email:null,
                 u_image:null,
                 u_description:null,
                 u_notice:null,
