@@ -187,11 +187,11 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
                                                 href="http://www.bangladesh.gov.bd" title="জাতীয় তথ্য বাতায়ন">জাতীয় তথ্য
                                                 বাতায়ন</a></li>
                                         <li><i class="fas fa-check-circle"></i> &nbsp;<a
-                                                href="http://www.barisal.gov.bd/" title="বরিশাল জেলা">বরিশাল জেলা</a>
+                                                href="http://www.panchagarh.gov.bd/" title="পঞ্চগড় জেলা">পঞ্চগড় জেলা</a>
                                         </li>
                                         <li><i class="fas fa-check-circle"></i> &nbsp;<a
-                                                href="http://barisalsadar.barisal.gov.bd/"
-                                                title="বরিশাল সদর উপজেলা">বরিশাল সদর উপজেলা</a></li>
+                                                href="http://tetulia.panchagarh.gov.bd/"
+                                                title="তেঁতুলিয়া উপজেলা">তেঁতুলিয়া উপজেলা</a></li>
                                     </ul>
                                 </div>
                             </div>
