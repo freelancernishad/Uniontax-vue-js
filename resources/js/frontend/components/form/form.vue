@@ -583,7 +583,7 @@
                     তালিকা
                 </div>
                 <table class="table"
-                    v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.bnname == 'Inheritance certificate'">
+                    v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'">
                     <tr>
                         <th>নাম</th>
                         <th>সম্পর্ক</th>
