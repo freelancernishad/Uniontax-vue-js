@@ -63,6 +63,57 @@
                     </div>
 
 
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">গ্রাম</label>
+                            <input type="text" class="form-control" v-model="form.ut_grame" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">ওয়ার্ড নং</label>
+                            <select v-model="form.ut_word" id="word_no" class="form-control" required>
+                                <option value="">ওয়াড নং</option>
+                                <option value="1">১</option>
+                                <option value="2">২</option>
+                                <option value="3">৩</option>
+                                <option value="4">৪</option>
+                                <option value="5">৫</option>
+                                <option value="6">৬</option>
+                                <option value="7">৭</option>
+                                <option value="8">৮</option>
+                                <option value="9">৯</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">ডাকঘর</label>
+                            <input type="text" class="form-control" v-model="form.ut_post" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">উপজেলা</label>
+                            <input type="text" class="form-control" v-model="form.ut_thana" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">জেলা</label>
+                            <input type="text" class="form-control" v-model="form.ut_district" required>
+                        </div>
+                    </div>
+
+
 <!--
                     <div class="col-md-4">
                         <div class="form-group">
@@ -845,6 +896,13 @@ export default {
                 successor_father_alive_status: null,
                 successor_mother_alive_status: null,
                 utname: null,
+                //////////////////////////////////////////////
+                // বর্তমান ঠিকানা
+                ut_grame: null,
+                ut_word: null,
+                ut_post: null,
+                ut_thana: null,
+                ut_district: null,
                 //////////////////////////////////////////////
                 // বর্তমান ঠিকানা
                 applicant_present_village: null,
