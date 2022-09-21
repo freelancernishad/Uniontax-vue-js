@@ -987,7 +987,7 @@ $nagoriinfo = '';
 
 if ($sonod_name == 'ওয়ারিশান সনদ') {
         $nagoriinfo .= '
-            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, মরহুম ' . $row->utname . ', পিতা- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা ছিলেন। মৃত্যুকালে তিনি নিম্নোক্ত ওয়ারিশগণ রেখে যান। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
+            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, মরহুম ' . $row->utname . ', পিতা/স্বামী- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা ছিলেন। মৃত্যুকালে তিনি নিম্নোক্ত ওয়ারিশগণ রেখে যান। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
             <br>
 
             &nbsp; &nbsp; &nbsp; আমি মরহুমের বিদেহী আত্মার মাগফেরাত কামনা করি।
@@ -995,7 +995,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
             } else {
 
             $nagoriinfo .= '
-            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, জনাব ' . $row->utname . ', পিতা- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা। নিম্নে তাঁর উত্তরাধিকারী/উত্তরাধিকারীগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
+            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, জনাব ' . $row->utname . ', পিতা/স্বামী- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->applicant_permanent_village . ', ডাকঘর- ' . $row->applicant_permanent_post_office . ', উপজেলা: ' . $row->applicant_permanent_Upazila . ', জেলা- ' . $row->applicant_permanent_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->applicant_permanent_word_number).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা। নিম্নে তাঁর উত্তরাধিকারী/উত্তরাধিকারীগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
             <br>
 
 
@@ -1058,7 +1058,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 </table>
 <br>
 <p style="margin-top:-10px;margin-bottom:5px">
-আবেদনকারীর নামঃ '.$row->applicant_name.'।  পিতার নামঃ '.$row->applicant_father_name.'।  মাতার নামঃ '.$row->applicant_mother_name.'
+আবেদনকারীর নামঃ '.$row->applicant_name.'।  পিতা/স্বামীর নামঃ '.$row->applicant_father_name.'।  মাতার নামঃ '.$row->applicant_mother_name.'
 </p><br>
 
 <p style="margin-top:-10px;margin-bottom:5px">
