@@ -265,8 +265,25 @@ export default {
     },
     methods:{
         async sonodVerifiy(){
-             var id =  this.$route.params.id;
-            var res = await this.callApi('get',`/api/sonod/single/${id}`,[])
+
+
+
+
+
+
+
+            if(this.$route.query.sonod_name && this.$route.query.sonod_Id){
+                var sonod_name = this.$route.query.sonod_name;
+                var sonod_Id = this.$route.query.sonod_Id;
+                var res = await this.callApi('get',`/api/sonod/verify/get?sonod_name=${sonod_name}&sonod_Id=${sonod_Id}`);
+
+            }else{
+                var id =  this.$route.params.id;
+                var res = await this.callApi('get',`/api/sonod/single/${id}`,[])
+
+            }
+
+
 
 
             this.row = res.data
@@ -308,8 +325,18 @@ export default {
 
 
         }
+
+
+
     },
     mounted() {
+
+
+
+
+
+
+
         this.sonodVerifiy()
     },
 }

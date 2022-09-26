@@ -103,6 +103,9 @@ Route::post('payment/update',[UniouninfoController::class, 'paymentUpdate']);
 
 Route::get('get/sonod/count',[SonodnamelistController::class,'sonodCount']);
 Route::post('prottoyon/update/{id}',[SonodController::class,'prottonupdate']);
+
+
+Route::get('sonod/verify/get',[SonodController::class,'verifysonodId']);
 Route::get('sonod/list',[SonodController::class,'index']);
 
 Route::post('role/assign',[authController::class,'roleAssign']);

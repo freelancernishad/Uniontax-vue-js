@@ -33,7 +33,7 @@
 
   <div class="col-md-4" v-if="Details.payment_status == 'Unpaid'">
     <div class="form-group">
-        <label for="vatAykor">ভ্যাট ও আয়কর </label>
+        <label for="vatAykor">ভ্যাট ও আয়কর (%) </label>
         <input id="vatAykor" @keyup="totalAmount()"  class="form-control" type="number" v-model="form.vatAykor">
     </div>
 </div>
@@ -41,7 +41,7 @@
   <div class="col-md-6" v-if="Details.payment_status == 'Unpaid'">
     <div class="form-group">
         <label for="amounta">মোট </label>
-        <input id="amounta" class="form-control" type="number" v-model="form.amounta">
+        <input id="amounta" class="form-control" type="number" v-model="form.amounta" disabled >
     </div>
 </div>
 

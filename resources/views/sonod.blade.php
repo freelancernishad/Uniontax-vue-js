@@ -130,7 +130,18 @@
                         <td  style="text-align: center;" width="40%">
                    <div class="signature text-center position-relative">
                     @php
-                     $qrurl = url("/verification/sonod/$row->id");
+
+
+// $utf8 = $row->sonod_name; // file must be UTF-8 encoded
+// $iso88591_1 = utf8_decode($utf8);
+// $iso88591_2 = iconv('UTF-8', 'ISO-8859-1', $utf8);
+// $iso88591_2 = mb_convert_encoding($utf8, 'ISO-8859-1', 'UTF-8');
+
+
+                     $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
+
+
+                    //  $qrurl = url("/verification/sonod/$row->id");
                         $qrcode = \QrCode::size(70)
                     ->format('svg')
                     ->generate($qrurl);

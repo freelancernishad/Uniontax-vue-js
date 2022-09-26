@@ -635,8 +635,11 @@ class SonodController extends Controller
             $mpdf->simpleTables = true;
             $mpdf->Output($filename, 'I');
         } else {
+
+
+
             // return view('sonod', compact('row', 'sonod', 'uniouninfo'));
-            $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo'));
+            $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo','sonodnames'));
             return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
         }
     }
@@ -879,7 +882,7 @@ class SonodController extends Controller
         // return view('sonod',compact('row','sonod','uniouninfo'));
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
         $sonodNO = ' <div class="signature text-center position-relative">
-সনদ নং: ' .  int_en_to_bn($uniouninfo->u_code . '11-' . $uniouninfo->sonod_no) . ' <br /> ইস্যুর তারিখ: </div>';
+সনদ নং: ' .  int_en_to_bn($row->sonod_Id) . ' <br /> ইস্যুর তারিখ: </div>';
 
 
 
@@ -900,9 +903,9 @@ if($row->unioun_name=='dhamor'){
 
 
 
+         $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
 
-
-        $qrurl = url("/verification/sonod/$row->id");
+        // $qrurl = url("/verification/sonod/$row->id");
         //in Controller
         $qrcode = \QrCode::size(70)
             ->format('svg')
@@ -1073,4 +1076,22 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
         $output .= '' . $nagoriinfo . '';
         return $output;
     }
+
+
+
+
+    public function verifysonodId(Request $request)
+    {
+        $sonod_name = $request->sonod_name;
+        $sonod_name = Sonodnamelist::where(['enname'=>$sonod_name])->first()->bnname;
+        $sonod_Id = $request->sonod_Id;
+
+
+return Sonod::where(['sonod_name'=>$sonod_name,'sonod_Id'=>$sonod_Id])->first();
+
+        // return $request->all();
+    }
+
+
+
 }
