@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-
+use App\Notifications\PasswordReset;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -60,5 +60,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role', 'id');
     }
 
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordReset($token,$this->id));
+    }
 
 }
