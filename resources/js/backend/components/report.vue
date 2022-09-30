@@ -45,7 +45,7 @@
 
                     </form>
 
-                    <a style="    font-size: 20px;" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
+                    <a style="    font-size: 20px;" target="_blank" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to+'&union='+$localStorage.getItem('unioun')"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
 
 
 

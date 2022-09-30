@@ -18,4 +18,11 @@ class Payment extends Model
         'status',
         'date',
     ];
+
+
+
+    public function sonod(){
+        return $this->belongsTo(Sonod::class, 'sonodId', 'id');
+    }
+
 }

@@ -273,7 +273,7 @@
 
 
                         <li class="nav-item" @click="submenu(0)">
-                            <a href="#" class="nav-link"><i class="flaticon-dashboard"></i><span>ক্যাশ বহি</span></a>
+                            <router-link :to="{name:'cashbook'}" class="nav-link"><i class="flaticon-dashboard"></i><span>ক্যাশ বহি</span></router-link>
                         </li>
 
 

@@ -12,6 +12,9 @@ let unionprofile = require('./components/unionprofile.vue').default;
 let charages = require('./components/charages.vue').default;
 let profile = require('./components/profile.vue').default;
 
+let cashbook = require('./components/cashbook/list.vue').default;
+let cashbookForm = require('./components/cashbook/form.vue').default;
+
 let report = require('./components/report.vue').default;
 
 let userlist = require('./components/users/list.vue').default;
@@ -69,6 +72,11 @@ export const routes = [
   { path:  `${prefix}/union/charges`, component: charages, name:'charages',meta: { layout: adminlayout } },
 
   { path:  `${prefix}/report`, component: report, name:'report',meta: { layout: adminlayout } },
+
+
+  { path:  `${prefix}/cashbook/list`, component: cashbook, name:'cashbook',meta: { layout: adminlayout } },
+  { path:  `${prefix}/cashbook/fomm`, component: cashbookForm, name:'cashbookForm',meta: { layout: adminlayout } },
+  { path:  `${prefix}/cashbook/edit/:id`, component: cashbookForm, name:'cashbookFormEdit',meta: { layout: adminlayout } },
 
 
   { path:  `${prefix}/user/list`, component: userlist, name:'userlist',meta: { layout: adminlayout } },

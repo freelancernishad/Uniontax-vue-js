@@ -315,6 +315,68 @@ class SonodController extends Controller
         };
         return $sonodFinalId;
     }
+
+
+
+    public function sonod_update(Request $r)
+    {
+
+
+
+        $id = $r->id;
+        $stutus = $r->stutus;
+        // if($id){
+        //     return Sonod::find($id);
+        // }
+        //  $unioun_name =  $r->unioun_name;
+        // $uniouninfo = Uniouninfo::where(['short_name_e'=>$unioun_name])->first();
+        // $payment_type = $uniouninfo->payment_type;
+        $successors = json_encode($r->successors);
+        $sonodEnName =  Sonodnamelist::where('bnname', $r->sonod_name)->first();
+        $filepath =  str_replace(' ', '_', $sonodEnName->enname);
+        $Insertdata = [];
+        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
+        $imageCount =  count(explode(';', $r->image));
+        $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
+        $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
+        $birth_certificateCount =  count(explode(';', $r->applicant_birth_certificate_attachment));
+        if ($imageCount > 1) {
+            $Insertdata['image'] =  fileupload($r->image, "sonod/$filepath/image/", 250, 300);
+        }
+        if ($national_id_frontCount > 1) {
+            $Insertdata['applicant_national_id_front_attachment'] =  fileupload($r->applicant_national_id_front_attachment, "sonod/$filepath/applicant_national_id_front_attachment/");
+        }
+        if ($national_id_backCount > 1) {
+            $Insertdata['applicant_national_id_back_attachment'] =  fileupload($r->applicant_national_id_back_attachment, "sonod/$filepath/applicant_national_id_back_attachment/");
+        }
+        if ($birth_certificateCount > 1) {
+            $Insertdata['applicant_birth_certificate_attachment'] =  fileupload($r->applicant_birth_certificate_attachment, "sonod/$filepath/applicant_birth_certificate_attachment/");
+        }
+        // $Insertdata['sonod_Id'] = $successors;
+        $Insertdata['successor_list'] = $successors;
+        $Uniouninfo =   Uniouninfo::where('short_name_e', $r->unioun_name)->latest()->first();
+        // $Insertdata['chaireman_name'] = $Uniouninfo->c_name;
+        // $Insertdata['c_email'] = $Uniouninfo->c_email;
+        // $Insertdata['chaireman_sign'] = $Uniouninfo->c_signture;
+        try {
+            $unioun_name = $r->unioun_name;
+            $sonod_name = $r->sonod_name;
+            // return  $this->allsonodId($unioun_name, $sonod_name);
+            // $Insertdata['sonod_Id'] = (string)$this->allsonodId($unioun_name, $sonod_name);
+            //    $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
+            // $oldsonodNo = (int)$oldsonod->sonod_Id;
+            //  $Insertdata['sonod_Id'] =  $oldsonodNo+1;
+             $sonod =   Sonod::find($id);
+           return  $sonod->update($Insertdata);
+
+            // return  $sonod;
+        } catch (Exception $e) {
+            return sent_error($e->getMessage(), $e->getCode());
+        }
+    }
+
+
+
     public function sonod_submit(Request $r)
     {
 
@@ -373,6 +435,10 @@ class SonodController extends Controller
             return sent_error($e->getMessage(), $e->getCode());
         }
     }
+
+
+
+
     public function sonod_delete($id)
     {
         $sonod =  Sonod::find($id);
@@ -697,6 +763,21 @@ class SonodController extends Controller
     }
     public function singlesonod(Request $request, $id)
     {
+        $admin = $request->admin;
+        if($admin){
+            $sonod =  Sonod::find($id);
+            $sonodnamedata =  Sonodnamelist::where(['bnname'=>$sonod->sonod_name])->first();
+            $sonod['image'] = asset($sonod->image);
+            $sonod['applicant_national_id_front_attachment'] = asset($sonod->applicant_national_id_front_attachment);
+            $sonod['applicant_national_id_back_attachment'] = asset($sonod->applicant_national_id_back_attachment);
+            $sonod['applicant_birth_certificate_attachment'] = asset($sonod->applicant_birth_certificate_attachment);
+
+           return $data = [
+                'sonod'=>$sonod,
+                'sonodnamedata'=>$sonodnamedata,
+            ];
+        }
+
         return Sonod::find($id);
     }
     public function totlaAmount(Request $request)

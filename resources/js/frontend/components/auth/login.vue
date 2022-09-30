@@ -29,6 +29,10 @@
                                     মনে রাখুন
                                 </label>
                             </div>
+
+                            <a class="btn btn-link" href="/password/reset">পাসওয়ার্ড ভুলে গেছেন?</a>
+
+
                         </div>
 
                         <div class="text-center text-lg-start mt-4 pt-2">
@@ -40,6 +44,7 @@
                             <span class="btn btn-primary btn-lg" v-else
                                 style="padding-left: 2.5rem; padding-right: 2.5rem">Looding.....</span>
                         </div>
+
 
                         <div class="text-center mt-3">
                                     <img width="50px" :src="$asseturl+'assets/img/bangladesh-govt.png'" alt="">

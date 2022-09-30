@@ -43,6 +43,11 @@
                             <!-- <td>{{ item.applicant_national_id_number }}</td> -->
                             <td class="sonodTd">{{ dateformatGlobal(item.created_at)[6] }}</td>
                             <td class="sonodTd">
+
+
+                                <router-link size="sm" :to="{ name: editRoute, params: { id: item.id } }" v-if="editRoute != ''" class="btn btn-info mr-1 mt-1">এডিট করুন</router-link>
+
+
                                 <!-- <span size="sm" @click="deletefun(item, index, $event.target)" class="btn btn-danger mr-1 mt-1">Delete</span> -->
                                 <a size="sm" target="_blank"
                                     :href="applicationRoute+'/' + item.sonod_name + '/' + item.id"
@@ -409,8 +414,8 @@ export default {
         actionAccess() {
             if (this.$route.params.type == 'new') {
                 // this.deleteRoute='/api/sonod/delete';
-                // this.editRoute='sonodedit';
-                this.editRoute = '';
+                this.editRoute='sonodedit';
+                // this.editRoute = '';
                 this.viewRoute = 'sonodview';
                 this.approveRoute = '';
                 this.approveType = 'vueAction';
@@ -445,6 +450,7 @@ export default {
                     this.payRoute = '/api/sonod/pay';
                 }
                 if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                    this.editRoute='sonodedit';
                 }
             } else if (this.$route.params.type == 'cancel') {
                 this.approveType = 'vueAction';
@@ -460,6 +466,7 @@ export default {
                     this.approveRoute = '';
                 }
                 if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                    this.editRoute='sonodedit';
                 }
             }
         },
