@@ -1327,20 +1327,22 @@ try {
 
     function smsSend($deccription='',$applicant_mobile='01909756552'){
 
-        $messages = array();
-        array_push(
-            $messages,
-            [
-                "number" => '88' . int_bn_to_en($applicant_mobile),
-                "message" => "$deccription"
-            ]
-        );
-        ///sms functions
-        try {
-            $msgs = sendMessages($messages,1);
-        } catch (Exception $e) {
-            array_push($responsemessege, $e->getMessage());
-        }
+        // $messages = array();
+        // array_push(
+        //     $messages,
+        //     [
+        //         "number" => '88' . int_bn_to_en($applicant_mobile),
+        //         "message" => "$deccription"
+        //     ]
+        // );
+        // ///sms functions
+        // try {
+        //     $msgs = sendMessages($messages,1);
+        // } catch (Exception $e) {
+        //     array_push($responsemessege, $e->getMessage());
+        // }
+
+
     }
 
 
