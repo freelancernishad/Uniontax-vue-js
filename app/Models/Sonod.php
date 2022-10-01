@@ -33,6 +33,7 @@ class Sonod extends Model
         'applicant_second_name',
         'applicant_owner_type',
         'applicant_name_of_the_organization',
+        'organization_address',
         'applicant_name',
         'applicant_gender',
         'applicant_marriage_status',

@@ -340,7 +340,12 @@
                             <input type="text" class="form-control" v-model="form.applicant_name_of_the_organization">
                         </div>
                     </div>
-
+           <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
+                        <div class="form-group">
+                            <label for="" class="labelColor">প্রতিষ্ঠানের ঠিকানা</label>
+                            <input type="text" class="form-control" v-model="form.organization_address">
+                        </div>
+                    </div>
 <!--
                     <div class="col-md-4" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
                     <div class="col-md-4" v-else>
@@ -423,13 +428,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">মোবাইল</label>
-                            <input type="text" class="form-control" v-model="form.applicant_mobile" required>
+                            <input  type="tel"  maxlength="11" class="form-control" name="phone" v-model="form.applicant_mobile" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">ই-মেইল</label>
-                            <input type="text" class="form-control" v-model="form.applicant_email">
+                            <input type="email" class="form-control" v-model="form.applicant_email">
                         </div>
                     </div>
 
@@ -725,6 +730,7 @@ export default {
                 applicant_name: null,
                 applicant_second_name: null,
                 applicant_name_of_the_organization: null,
+                organization_address: null,
                 applicant_gender: null,
                 applicant_marriage_status: null,
                 ut_father_name: null,

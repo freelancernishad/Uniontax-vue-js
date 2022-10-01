@@ -40,6 +40,7 @@ class CreateSonodsTable extends Migration
 
             $table->string('applicant_owner_type')->nullable();
             $table->string('applicant_name_of_the_organization')->nullable();
+            $table->string('organization_address')->nullable();
             $table->string('applicant_name')->nullable();
             $table->string('utname')->nullable();
             $table->string('applicant_gender')->nullable();
