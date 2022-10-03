@@ -22,6 +22,7 @@ class CreatePaymentsTable extends Migration
             $table->string('amount')->nullable();
             $table->string('applicant_mobile')->nullable();
             $table->string('status')->nullable();
+            $table->string('balance')->nullable();
             $table->timestamps();
         });
     }

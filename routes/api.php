@@ -14,6 +14,7 @@ use App\Http\Controllers\ActionLogController;
 use App\Http\Controllers\countryApiController;
 use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
+use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\HoldingBokeyaController;
 use App\Http\Controllers\SonodnamelistController;
@@ -188,6 +189,12 @@ Route::post('holding/tax/submit',[HoldingtaxController::class,'store']);
 Route::post('holding/tax/search',[HoldingtaxController::class,'holdingSearch']);
 
 Route::post('report/search',[PaymentController::class,'Search']);
+
+
+
+
+Route::get('cash/expenditure',[ExpenditureController::class,'index']);
+Route::post('cash/expenditure',[ExpenditureController::class,'store']);
 
 
 Route::get('niddob/verify',[SonodController::class,'niddob']);

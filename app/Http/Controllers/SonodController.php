@@ -7,6 +7,7 @@ use App\Models\Citizen;
 use App\Models\Payment;
 use App\Models\ActionLog;
 use App\Models\Uniouninfo;
+use App\Models\Expenditure;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Facades\Validator;
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+
 class SonodController extends Controller
 {
     public function prottonupdate(Request $request, $id)
@@ -506,6 +508,14 @@ class SonodController extends Controller
         // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
         smsSend($deccription, $sonod->applicant_mobile);
         $req_timestamp = date('Y-m-d H:i:s');
+
+
+        $monthName = date('F');
+        $expenditure = Expenditure::where(['month'=>$monthName])->latest()->first();
+       $buyBalance = $expenditure->balance+$sonod->total_amount;
+        $expenditure->update(['balance'=>$buyBalance]);
+
+
         $customerData = [
             'union' => $sonod->unioun_name,
             'trxId' => time(),
@@ -515,6 +525,9 @@ class SonodController extends Controller
             'mob' => $sonod->applicant_mobile,
             'status' => "Paid",
             'date' => date('Y-m-d'),
+            'month' => date('F'),
+            'year' => date('Y'),
+            'balance' =>$buyBalance,
             'created_at' => $req_timestamp,
         ];
         Payment::create($customerData);

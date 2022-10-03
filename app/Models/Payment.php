@@ -17,6 +17,9 @@ class Payment extends Model
         'applicant_mobile',
         'status',
         'date',
+        'month',
+        'year',
+        'balance',
     ];
 
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
+use App\Http\Controllers\ExpenditureController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,6 +62,8 @@ Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSu
 Route::get('/holding/tax/invoice/{id}', [HoldingtaxController::class,'holdingPaymentInvoice']);
 
 Route::get('/report/export', [PaymentController::class,'export']);
+
+Route::get('/cashbook/download', [ExpenditureController::class,'cashbook_download']);
 
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
     Route::get('/{vue_capture?}', function () {

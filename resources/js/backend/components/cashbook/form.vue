@@ -17,20 +17,20 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form class="row" action="">
+                            <form class="row" @submit.stop.prevent="onSubmit" >
 
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">তারিখ</label>
-                                        <input type="date" class="form-control">
+                                        <input type="date" v-model="form.date" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">টাকার পরিমাণ</label>
-                                        <input type="tel" class="form-control">
+                                        <input type="tel" v-model="form.price" class="form-control">
                                     </div>
                                 </div>
 
@@ -38,12 +38,13 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="">ব্যয়ের বিবরণ</label>
-                                        <textarea class="form-control" style="height:100px;resize:none"></textarea>
+                                        <textarea class="form-control" v-model="form.description" style="height:100px;resize:none"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <button type="submit">সাবমিট</button>
+                                    <button type="button" v-if="isload" class="btn btn-success">অপেক্ষা করুন....</button>
+                                    <button type="submit" v-else class="btn btn-success">সাবমিট</button>
                                 </div>
                             </form>
 
@@ -66,9 +67,10 @@ export default {
     data() {
         return {
             form:{
-                sonod_type:'',
-                from:'',
-                to:'',
+                'unioun_name':'',
+                'date':'',
+                'price':'',
+                'description':'',
             },
             isload:false,
             rows:{},
@@ -84,15 +86,13 @@ export default {
             this.isload = true
 
             if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
-                this.form['union'] = this.getUsers.unioun
+                this.form['unioun_name'] = localStorage.getItem('unioun')
             }
-
-
-
-            var res = await this.callApi('post',`/api/report/search`,this.form);
-            // this.$router.push({name:'report',query: {''}})
+            var res = await this.callApi('post',`/api/cash/expenditure`,this.form);
             this.rows = res.data
             this.isload = false
+            this.$router.push({ name: 'cashbook'})
+    Notification.customSuccess('Successfuly Done');
         }
 
 

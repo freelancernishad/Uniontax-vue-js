@@ -36,7 +36,9 @@ export default {
            return  User.dateformat(date);
         },
 
-
+         getMonthFromString(mon){
+            return new Date(Date.parse(mon +" 10, 2022")).getMonth()+1
+         },
         // int_en_to_bn(input=0){
         //     var output = [];
         //     for (var i = 0; i < input.length; ++i) {

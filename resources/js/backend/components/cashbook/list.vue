@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header" style="display: flex;align-items: center;justify-content: space-between;">
                             <div class="form-group" style="width: 50%;">
-                                <input type="month"  class="form-control"  v-model="month">
+                                <input type="month"  class="form-control"  v-model="month" @change="monthSearch">
                             </div>
                             <router-link :to="{name:'cashbookForm'}" class="btn btn-info">ব্যয়ের হিসাব যোগ করুন</router-link>
 
@@ -38,10 +38,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>তারিখ</td>
-                                        <td>ব্যয়ের বিবরণ</td>
-                                        <td>টাকার পরিমাণ</td>
+                                    <tr v-for="(list,index) in rows" :key="'item'+index">
+                                        <td>{{ list.date }}</td>
+                                        <td>{{ list.description }}</td>
+                                        <td>{{ list.price }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -57,7 +57,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="form-group">
-                                <select name="" id="" class="form-control" v-model="year">
+                                <select name="" id="" class="form-control" v-model="year" @change="yearSearch">
 
                                     <option value="">নির্বাচন করুন</option>
                                     <option value="2022">2022</option>
@@ -98,9 +98,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>মাসের নাম</td>
-                                        <td>কার্যক্রম</td>
+                                    <tr v-for="(yearList,inde) in dataYears" :key="'yearList'+inde">
+                                        <td>{{ yearList.month }}</td>
+                                        <td>
+                                            <router-link :to="{name:'cashbook',query:{year:year,month:yearList.month}}" class="btn btn-info">দেখুন</router-link>
+
+                                            <a target="_blank" :href="'/cashbook/download?unioun_name='+$localStorage.getItem('unioun')+'&year='+year+'&month='+yearList.month" class="btn btn-info">রিপোর্ট</a>
+                                        </td>
 
                                     </tr>
                                 </tbody>
@@ -131,31 +135,82 @@ export default {
                 from:'',
                 to:'',
             },
+            month:this.dateformatGlobal()[11],
+            year:this.dateformatGlobal()[9],
             isload:false,
             rows:{},
+            dataYears:{},
 
         };
     },
+
+    watch: {
+        '$route': {
+            handler(newValue, oldValue) {
+                if(this.$route.query.year && this.$route.query.month){
+                    this.month = this.$route.query.year+'-'+this.getMonthFromString(this.$route.query.month).toString().padStart(2, '0');
+                    this.getdata();
+                }
+            },
+            deep: true
+        }
+    },
+
     mounted() {
 
     },
     methods: {
 
-        async onSubmit(){
-            this.isload = true
 
+
+        monthSearch(){
+            this.getdata();
+        },
+
+        yearSearch(){
+            this.getYearList();
+        },
+
+        async getdata(){
+            this.isload = true
+            var uinon_name = ''
             if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
-                this.form['union'] = this.getUsers.unioun
+                this.form['union'] = localStorage.getItem('unioun')
+                uinon_name = localStorage.getItem('unioun')
             }
 
-
-
-            var res = await this.callApi('post',`/api/report/search`,this.form);
+            var res = await this.callApi('get',`/api/cash/expenditure?unioun_name=${uinon_name}&month=${this.month}&type=month`,[]);
             // this.$router.push({name:'report',query: {''}})
             this.rows = res.data
             this.isload = false
+        },
+        async getYearList(){
+            this.isload = true
+            var uinon_name = ''
+            if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
+                this.form['union'] = localStorage.getItem('unioun')
+                uinon_name = localStorage.getItem('unioun')
+            }
+
+            var res = await this.callApi('get',`/api/cash/expenditure?unioun_name=${uinon_name}&year=${this.year}&type=year`,[]);
+            // this.$router.push({name:'report',query: {''}})
+            this.dataYears = res.data
+            this.isload = false
         }
 
+
+    },
+    mounted() {
+
+        if(this.$route.query.year && this.$route.query.month){
+            this.month = this.$route.query.year+'-'+this.getMonthFromString(this.$route.query.month).toString().padStart(2, '0');
+            this.getdata();
+        }else{
+
+            this.getdata();
+        }
+
+        this.getYearList();
 
     },
 };
