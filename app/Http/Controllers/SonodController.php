@@ -510,10 +510,10 @@ class SonodController extends Controller
         $req_timestamp = date('Y-m-d H:i:s');
 
 
-        $monthName = date('F');
-        $expenditure = Expenditure::where(['month'=>$monthName])->latest()->first();
-       $buyBalance = $expenditure->balance+$sonod->total_amount;
-        $expenditure->update(['balance'=>$buyBalance]);
+    //     $monthName = date('F');
+    //     $expenditure = Expenditure::where(['month'=>$monthName])->latest()->first();
+    //    $buyBalance = $expenditure->balance+$sonod->total_amount;
+    //     $expenditure->update(['balance'=>$buyBalance]);
 
 
         $customerData = [
@@ -527,7 +527,7 @@ class SonodController extends Controller
             'date' => date('Y-m-d'),
             'month' => date('F'),
             'year' => date('Y'),
-            'balance' =>$buyBalance,
+            'balance' =>0,
             'created_at' => $req_timestamp,
         ];
         Payment::create($customerData);
