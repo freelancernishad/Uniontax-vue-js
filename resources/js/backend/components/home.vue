@@ -34,7 +34,9 @@
                         <div class="row align-items-center">
                             <div class="col-6">
                                 <div class="item-icon bg-light-green ">
-                                    <i class="flaticon-classmates text-green"></i>
+                                    <img width="75px" :src="$asseturl+'assets/img/application.png'" alt="">
+
+                                    <!-- <i class="flaticon-classmates text-green"></i> -->
                                 </div>
                             </div>
                             <div class="col-6">
@@ -55,7 +57,9 @@
                         <div class="row align-items-center">
                             <div class="col-6">
                                 <div class="item-icon bg-light-blue">
-                                    <i class="flaticon-multiple-users-silhouette text-blue"></i>
+                                    <img width="75px" :src="$asseturl+'assets/img/NewApplication.png'" alt="">
+
+                                    <!-- <i class="flaticon-multiple-users-silhouette text-blue"></i> -->
                                 </div>
                             </div>
                             <div class="col-6">
@@ -72,7 +76,9 @@
                         <div class="row align-items-center">
                             <div class="col-6">
                                 <div class="item-icon bg-light-yellow">
-                                    <i class="flaticon-couple text-orange"></i>
+                                    <img width="75px" :src="$asseturl+'assets/img/approved.png'" alt="">
+
+                                    <!-- <i class="flaticon-couple text-orange"></i> -->
                                 </div>
                             </div>
                             <div class="col-6">
@@ -91,7 +97,9 @@
                         <div class="row align-items-center">
                             <div class="col-6">
                                 <div class="item-icon bg-light-red">
-                                    <i class="flaticon-money text-red"></i>
+                                    <img width="75px" :src="$asseturl+'assets/img/6427300.png'" alt="">
+
+                                    <!-- <i class="flaticon-money text-red"></i> -->
                                 </div>
                             </div>
                             <div class="col-6">
@@ -112,7 +120,9 @@
                         <div class="row align-items-center">
                             <div class="col-6">
                                 <div class="item-icon bg-light-red">
-                                    <i class="flaticon-money text-red"></i>
+                                    <img width="75px" :src="$asseturl+'assets/img/bdt_icon.png'" alt="">
+
+                                    <!-- <i class="flaticon-money text-red"></i> -->
                                 </div>
                             </div>
                             <div class="col-6">
