@@ -63,6 +63,11 @@
                         <td>:</td>
                         <td>{{ $row->utname }}</td>
                     </tr>
+                    <tr>
+                        <td>মৃত ব্যাক্তির ঠিকানা</td>
+                        <td>:</td>
+                        <td>গ্রামঃ {{ $row->ut_grame }} , ডাকঘরঃ {{ $row->ut_post }}, উপজেলাঃ {{ $row->ut_thana }}, জেলাঃ {{ $row->ut_district }} </td>
+                    </tr>
 
                     {{-- <tr>
                         <td>আবেদনকারীর নাম</td>

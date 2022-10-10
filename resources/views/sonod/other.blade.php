@@ -5,7 +5,7 @@
         </tr>
 
         <tr>
-        <td width="30%">আবেদনকারীর নাম</td><td>: {{ $row->applicant_name }}</td>
+        <td width="30%">সনদধারীর নাম</td><td>: {{ $row->applicant_name }}</td>
         </tr>
         <tr>
         <td width="30%">পিতা/স্বামীর নাম</td><td>: {{ $row->applicant_father_name }}</td>
@@ -19,9 +19,9 @@
         <tr>
         <td width="30%">ঠিকানা</td><td>:  গ্রাম: {{ $row->applicant_present_village }}, ডাকঘর: {{ $row->applicant_present_post_office }}, উপজেলা: {{ $row->applicant_present_Upazila }}, জেলা: {{ $row->applicant_present_district }}</td>
         </tr>
-        <tr>
+        {{-- <tr>
         <td width="30%">পেশা</td><td>: {{ $row->applicant_occupation }}</td>
-        </tr>
+        </tr> --}}
     </table>
 
     <p
