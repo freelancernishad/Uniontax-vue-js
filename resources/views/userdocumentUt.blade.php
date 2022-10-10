@@ -58,6 +58,12 @@
                         <td>{{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }}</td>
                     </tr>
 
+                    <tr>
+                        <td>মৃত ব্যাক্তির নাম</td>
+                        <td>:</td>
+                        <td>{{ $row->utname }}</td>
+                    </tr>
+
                     {{-- <tr>
                         <td>আবেদনকারীর নাম</td>
                         <td>:</td>
@@ -199,7 +205,7 @@
 <p style="background: #787878;
     color: white;
     text-align: center;
-    padding: 2px 2px;font-size: 16px;     margin-top: 20px;margin-bottom:0px" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
+    padding: 2px 2px;font-size: 16px;     margin-top: 20px;margin-bottom:0px" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূলক কাজে সহায়তা করুন"</p>
 
 <p class="m-0" style="font-size:14px;text-align:center;margin: 0;">'ডিজিটাল ইউনিয়ন ট্যাক্স ও সেবা সিস্টেম' {{ $uniouninfo->domain }} এর সাথে থাকার জন্য ধন্যবাদ</p>
 
