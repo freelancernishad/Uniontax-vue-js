@@ -51,6 +51,11 @@
                         <td>:</td>
                         <td>{{ int_en_to_bn($row->sonod_Id) }}</td>
                     </tr>
+                    <tr>
+                        <td>আবেদনকারীর নাম</td>
+                        <td>:</td>
+                        <td>{{ int_en_to_bn($row->applicant_name) }}</td>
+                    </tr>
 
                     <tr>
                         <td>আবেদনের তারিখ</td>
@@ -158,6 +163,13 @@
                 </table>
 
 
+<br>
+	আবেদনকারীর স্বাক্ষর :-<br>
+{{-- 
+	<br>
+	আবেদনকারীর নাম: {{ $row->applicant_name }}<br>
+	বর্তমান ঠিকানা: হোল্ডিং নং- {{ int_en_to_bn($row->applicant_holding_tax_number) }} , গ্রাম:{{ $row->applicant_present_village }} , ডাকঘর: {{ $row->applicant_present_post_office }} , উপজেলা: {{ $row->applicant_present_Upazila }} , জেলা: {{ $row->applicant_present_district }} । <br>
+		মোবাইল নম্বর	: {{ int_en_to_bn($row->applicant_mobile) }} <br> --}}
 
 
 
