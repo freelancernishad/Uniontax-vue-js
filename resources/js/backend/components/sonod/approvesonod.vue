@@ -5,11 +5,11 @@
 
     <form v-on:submit.prevent="formsubmit">
         <div class="row">
-            <div class="col-md-12"  style="display:none">
+            <div class="col-md-12" v-if="Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র'">
                 <h5>আবেদনকৃত প্রত্যয়নের বিবরণ</h5>
                 <p>{{ sonodlist.prottoyon }}</p>
             </div>
-            <div class="col-md-12" style="display:none">
+            <div class="col-md-12" v-if="Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র'">
                 <div class="form-group">
                     <label for="amountab">প্রত্যয়ন প্রদানের বিবরণ </label>
                     <textarea v-model="form.sec_prottoyon" class="form-control"
@@ -177,7 +177,7 @@ export default {
              this.readonly = true
         } else if (this.Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র') {
              this.readonly = false
-            this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তার বিরুদ্ধে কোন রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তাই তাকে ${this.Details.sonod_name} প্রদান করা হলো ।`;
+            this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। ${this.sonodlist.prottoyon}`;
 
 
         } else if (this.Details.sonod_name == 'চারিত্রিক সনদ') {
