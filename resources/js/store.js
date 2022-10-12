@@ -106,7 +106,7 @@ const store = new Vuex.Store({
         setWebsiteStatus(state,data){
 
 
-
+            if(data=='salbahan')window.location.href='https://uniontax.gov.bd/'
             if(data!='main'){
 
                 axios.post(`/api/union/info?union=${data}`)
