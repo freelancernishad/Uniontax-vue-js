@@ -38,9 +38,9 @@ class PaymentController extends Controller
         if($sonod_type && $from && $to){
             if($sonod_type=='all'){
             // return Payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
-            $row = Payment::with(['sonod'])->where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+            $row = Payment::with(['sonod'])->where(['union'=>$union,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
             }else{
-                 $row = Payment::with(['sonod'])->where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+                 $row = Payment::with(['sonod'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
             }
 
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
@@ -50,9 +50,9 @@ class PaymentController extends Controller
         }
 
         if($sonod_type=='all'){
-            $row = Payment::with(['sonod'])->where(['status'=>'Paid'])->orderBy('id','desc')->get();
+            $row = Payment::with(['sonod'])->where(['union'=>$union,'status'=>'Paid'])->orderBy('id','desc')->get();
         }
-        $row = Payment::with(['sonod'])->where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
+        $row = Payment::with(['sonod'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
         // return Excel::download($export, 'report.xlsx');
 
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
