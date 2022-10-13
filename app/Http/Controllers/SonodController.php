@@ -465,6 +465,10 @@ class SonodController extends Controller
         $numto = new NumberToBangla();
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
         if ($sec_prottoyon) {
+            $approveData = $request->approveData;
+            if($approveData =='null_approved'){
+                $approveData = 'Secretary_approved';
+            }
             $updateData = [
                 'khat' => $request->khat,
                 'last_years_money' => $request->last_years_money,
@@ -474,7 +478,7 @@ class SonodController extends Controller
                 'khat' => $request->khat,
                 'amount_deails' => $amount_deails,
                 'sec_prottoyon' => $sec_prottoyon,
-                'stutus' => $request->approveData,
+                'stutus' => $approveData,
             ];
             // return $updateData;
             return $sonod->update($updateData);
