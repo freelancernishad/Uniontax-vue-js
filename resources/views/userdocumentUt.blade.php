@@ -63,16 +63,32 @@
                         <td>{{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }}</td>
                     </tr>
 
+
                     <tr>
+                        @if($row->sonod_name=='উত্তরাধিকারী সনদ')
+                        <td>ব্যাক্তির নাম</td>
+                        @else
                         <td>মৃত ব্যাক্তির নাম</td>
+                        @endif
                         <td>:</td>
                         <td>{{ $row->utname }}</td>
                     </tr>
+
                     <tr>
+
+                        @if($row->sonod_name=='উত্তরাধিকারী সনদ')
+
+                        <td>ব্যাক্তির ঠিকানা</td>
+                        @else
                         <td>মৃত ব্যাক্তির ঠিকানা</td>
+                        @endif
+
+
                         <td>:</td>
                         <td>গ্রামঃ {{ $row->ut_grame }} , ডাকঘরঃ {{ $row->ut_post }}, উপজেলাঃ {{ $row->ut_thana }}, জেলাঃ {{ $row->ut_district }} </td>
                     </tr>
+
+
 
                     {{-- <tr>
                         <td>আবেদনকারীর নাম</td>
@@ -165,7 +181,7 @@
 
 <br>
 	আবেদনকারীর স্বাক্ষর :-<br>
-{{-- 
+{{--
 	<br>
 	আবেদনকারীর নাম: {{ $row->applicant_name }}<br>
 	বর্তমান ঠিকানা: হোল্ডিং নং- {{ int_en_to_bn($row->applicant_holding_tax_number) }} , গ্রাম:{{ $row->applicant_present_village }} , ডাকঘর: {{ $row->applicant_present_post_office }} , উপজেলা: {{ $row->applicant_present_Upazila }} , জেলা: {{ $row->applicant_present_district }} । <br>
