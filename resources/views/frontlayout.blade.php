@@ -211,7 +211,7 @@ if ("{{ Auth::user() }}") {
 
 
 
-
+{{-- 
 
 
 <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
@@ -292,7 +292,7 @@ if ("{{ Auth::user() }}") {
     })
     IntitalizeFireBaseMessaging();
 </script>
-
+ --}}
 
 
 
