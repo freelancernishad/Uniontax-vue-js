@@ -174,7 +174,7 @@ export default {
         this.callCount()
         setInterval(() => {
             this.callCount()
-        },18000)
+        },300000)
 
 
     },
