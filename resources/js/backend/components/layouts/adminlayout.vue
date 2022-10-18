@@ -214,7 +214,7 @@
 
 
 
-                        <li class="nav-item sidebar-nav-item" v-for="(sonod, index) in SonodNames"
+                        <li class="nav-item sidebar-nav-item" v-for="(sonod, index) in SonodNamesAdmin"
                             :class="{ active: selected == index + 1 }" :key="'add' + index">
                             <a href="javascript:void(0)" class="nav-link" @click="submenu(index + 1)"><i
                                     class="flaticon-technological"></i><span>{{ sonod.bnname }}</span>
@@ -322,12 +322,12 @@ export default {
 
 
         var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);
-
+        this.SonodNamesAdmin = res.data
 
         this.$store.commit('setUpdateSonodNames', res.data)
         this.$store.commit('setUpdateUser', this.user)
-        this.$store.commit('setUserPermission', JSON.parse(this.permission.permission))
-        this.$store.commit('setUserRoles', this.roles)
+        // this.$store.commit('setUserPermission', JSON.parse(this.permission.permission))
+        // this.$store.commit('setUserRoles', this.roles)
 
 
 
@@ -356,6 +356,7 @@ export default {
             selected: 0,
             sidebarstatus: false,
             mobileSidebar: false,
+            SonodNamesAdmin:{},
             allSonodCount: {
                 Pending: {},
                 Secretary_approved: {},
