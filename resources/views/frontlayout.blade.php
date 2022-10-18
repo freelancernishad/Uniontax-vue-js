@@ -151,7 +151,7 @@ p.help.text-right {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.3.81') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.3.82') }}" async ></script>
 
 <script>
     // function linkrun(linkdata){
