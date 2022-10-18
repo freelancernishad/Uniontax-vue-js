@@ -308,7 +308,7 @@ export default {
         this.$store.commit('setWebsiteStatus', 'main')
 
         if (!User.loggedIn()) {
-            window.location.href = '/'
+            window.location.href = '/login'
         }
 
         //             if(this.$route.params.name){

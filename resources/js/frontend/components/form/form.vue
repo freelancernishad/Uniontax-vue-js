@@ -1,11 +1,11 @@
 <template>
     <div>
         <form @submit.stop.prevent="onSubmit">
-            <div class="panel-heading"
-                style="font-weight: bold; font-size: 20px;background:#159513;text-align:center;color:white">{{
-                sonodnamedata.bnname
-                }}
-            </div>
+
+            <!-- <div class="panel-heading" style="font-weight: bold; font-size: 20px;background:#159513;text-align:center;color:white">{{ sonodnamedata.bnname }} </div> -->
+            <div class="panel-heading" style="font-weight: bold; font-size: 20px;background:#159513;text-align:center;color:white">{{ form.sonod_name }} </div>
+
+
             <div class="form-pannel">
                 <input type="hidden" v-model="form.unioun_name = getUnion">
 

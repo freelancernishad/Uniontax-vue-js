@@ -63,6 +63,13 @@
                         <td>:</td>
                         <td>{{ $row->applicant_name }}</td>
                     </tr>
+                           @if ($row->sonod_name=='একই নামের প্রত্যয়ন')
+                    <tr>
+                        <td>আবেদনকারীর দ্বিতীয় নাম </td>
+                        <td>:</td>
+                        <td>{{ $row->applicant_second_name }}</td>
+                    </tr>
+                    @endif
                     @if ($row->sonod_name=='ওয়ারিশ সনদ')
                     <tr>
                         <td>মৃত ব্যাক্তির নাম</td>
@@ -160,3 +167,4 @@
 </body>
 
 </html>
+

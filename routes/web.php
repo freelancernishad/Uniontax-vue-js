@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
+use App\Http\Controllers\NotificationsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,10 @@ Route::get('/smstest', function () {
 
 
 });
+
+Route::get('details',[NotificationsController::class,'details']);
+
+
 
 Route::get('/unioncreate', function () {
 
@@ -49,6 +54,11 @@ Route::post('logout',[LoginController::class,'logout']);
 // Route::get('/sub', [App\Http\Controllers\HomeController::class, 'sub'])->name('sub');
 // });
 
+
+
+
+
+
 Route::get('/sonod/payment/success/{id}', [SonodController::class,'sonodpaymentSuccessView']);
 Route::get('/payment/success', [SonodController::class,'sonodpaymentSuccess']);
 Route::get('/sonod/payment/{id}', [SonodController::class,'sonodpayment']);
@@ -65,6 +75,9 @@ Route::get('/report/export', [PaymentController::class,'export']);
 
 Route::get('/cashbook/download', [ExpenditureController::class,'cashbook_download']);
 
+Route::get('/secretary/approve/{id}', [SonodController::class,'SecretariNotificationApprove']);
+Route::get('/chairman/approve/{id}', [SonodController::class,'ChairnamNotificationApprove']);
+Route::get('/secretary/pay/{id}', [SonodController::class,'SecretariNotificationPay']);
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
     Route::get('/{vue_capture?}', function () {
         // return   Auth::user()->roles->permission;

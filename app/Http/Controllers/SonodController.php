@@ -11,12 +11,14 @@ use App\Models\Expenditure;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Facades\Validator;
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class SonodController extends Controller
 {
@@ -504,6 +506,7 @@ class SonodController extends Controller
     }
     public function sonod_pay(Request $request, $id)
     {
+        $type = $request->type;
         // return $request->all();
         $sonod = Sonod::find($id);
         $sonodUrl =  url("/sonod/d/$id");
@@ -535,7 +538,17 @@ class SonodController extends Controller
             'created_at' => $req_timestamp,
         ];
         Payment::create($customerData);
-        return $sonod->update(['payment_status' => 'Paid']);
+
+        if($type=='notify'){
+
+             $sonod->update(['payment_status' => 'Paid']);
+            return Sonod::find($id);
+        }else{
+
+            return $sonod->update(['payment_status' => 'Paid']);
+        }
+
+
     }
     public function cancelsonod(Request $request, $id)
     {
@@ -554,6 +567,7 @@ class SonodController extends Controller
     public function sonod_action(Request $request, $action, $id)
     {
         $sonod = Sonod::find($id);
+        $type = $request->type;
         $unioun_name = $sonod->unioun_name;
         $uniouninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
         if ($action == 'approved') {
@@ -581,11 +595,175 @@ class SonodController extends Controller
                 'stutus' => $action,
             ];
         }
+        // return $type;
+        if($type=='notify'){
 
-
-
-        return $sonod->update($updatedata);
+             $sonod->update($updatedata);
+             return redirect('/dashboard');
+            }
+            return $sonod->update($updatedata);
     }
+
+    public function ChairnamNotificationApprove($id)
+    {
+        $redirecturl = "?redirect=".url('/chairman/approve/'.$id);
+
+        if(!Auth::user()){
+            return redirect('/login'.$redirecturl);
+        }
+     $user = Auth::user();
+
+     $sonod= Sonod::find($id);
+     $unioun = $user->unioun;
+    if($unioun!=$sonod->unioun_name){
+        $unionname = Uniouninfo::where('short_name_e',$sonod->unioun_name)->first();
+           $unionname2 = Uniouninfo::where('short_name_e',$unioun)->first();
+        return "আপনি $unionname->full_name এর তথ্য $unionname2->full_name থেকে অনুমোদন করতে পারবেন না";
+    }
+    $position = $user->position;
+    if($position=='Secretary'){
+        return "সচিব এই এড্রেসটি অ্যাক্সেস করতে পারবে না <a href='/dashboard/logout$redirecturl'>Logout</a>";
+    }
+
+
+
+        $enname= str_replace("_", " ",sonodEnName($sonod->sonod_name));
+
+            $sonodnamedata =  Sonodnamelist::where('enname', $enname)->first();
+
+        // return Sonodnamelist::all();
+
+
+        $role = 'Chairman';
+        $Secretary_pay = '';
+        if($sonod->stutus=='Secretary_approved'){
+
+
+            return view('chairemanapprove',compact('sonod','sonodnamedata','role','Secretary_pay'));
+
+        }elseif($sonod->stutus=='approved'){
+            if($sonod->payment_status=='Paid'){
+                $Secretary_pay = 'Secretary_pay';
+                return view('chairemanapprove',compact('sonod','sonodnamedata','role','Secretary_pay'));
+            }
+            return 'সনদটি ইতিমধ্যে চেয়ারম্যান কর্তৃক অনুমোদিত হয়েছে';
+        }else{
+            return 'সনদটি এখনো সচিব এর প্যানেল এ আছে';
+
+        }
+
+    }
+
+
+    public function SecretariNotificationApprove($id)
+    {
+
+        $redirecturl = "?redirect=".url('/secretary/approve/'.$id);
+
+        if(!Auth::user()){
+            return redirect('/login'.$redirecturl);
+        }
+     $user = Auth::user();
+
+     $sonod= Sonod::find($id);
+     $unioun = $user->unioun;
+    if($unioun!=$sonod->unioun_name){
+        $unionname = Uniouninfo::where('short_name_e',$sonod->unioun_name)->first();
+           $unionname2 = Uniouninfo::where('short_name_e',$unioun)->first();
+        return "আপনি $unionname->full_name এর তথ্য $unionname2->full_name থেকে অনুমোদন করতে পারবেন না";
+    }
+    $position = $user->position;
+    if($position=='Chairman'){
+        return "চেয়ারম্যান এই এড্রেসটি অ্যাক্সেস করতে পারবে না <a href='/dashboard/logout$redirecturl'>Logout</a>";
+    }
+
+
+
+        $enname= str_replace("_", " ",sonodEnName($sonod->sonod_name));
+
+            $sonodnamedata =  Sonodnamelist::where('enname', $enname)->first();
+
+        // return Sonodnamelist::all();
+
+        $role = 'Secretary';
+        $Secretary_pay = '';
+
+        if($sonod->stutus=='pending'){
+
+
+            return view('chairemanapprove',compact('sonod','sonodnamedata','role','Secretary_pay'));
+
+
+
+        }elseif($sonod->stutus=='approved'){
+            if($sonod->payment_status=='Paid'){
+                $Secretary_pay = 'Secretary_pay';
+                return view('chairemanapprove',compact('sonod','sonodnamedata','role','Secretary_pay'));
+            }
+            return 'সনদটি ইতিমধ্যে চেয়ারম্যান কর্তৃক অনুমোদিত হয়েছে';
+        }else{
+            return 'সনদটি চেয়ারম্যান এর প্যানেল এ আছে';
+
+        }
+
+    }
+
+
+
+
+    public function SecretariNotificationPay($id)
+    {
+
+        $redirecturl = "?redirect=".url('/secretary/pay/'.$id);
+
+        if(!Auth::user()){
+            return redirect('/login'.$redirecturl);
+        }
+     $user = Auth::user();
+
+     $sonod= Sonod::find($id);
+     $unioun = $user->unioun;
+    if($unioun!=$sonod->unioun_name){
+        $unionname = Uniouninfo::where('short_name_e',$sonod->unioun_name)->first();
+           $unionname2 = Uniouninfo::where('short_name_e',$unioun)->first();
+        return "আপনি $unionname->full_name এর তথ্য $unionname2->full_name থেকে অনুমোদন করতে পারবেন না";
+    }
+    $position = $user->position;
+    if($position=='Chairman'){
+        return "চেয়ারম্যান এই এড্রেসটি অ্যাক্সেস করতে পারবে না <a href='/dashboard/logout$redirecturl'>Logout</a>";
+    }
+
+
+
+        $enname= str_replace("_", " ",sonodEnName($sonod->sonod_name));
+
+            $sonodnamedata =  Sonodnamelist::where('enname', $enname)->first();
+
+        // return Sonodnamelist::all();
+
+        $role = 'Secretary';
+        $Secretary_pay = 'Secretary_pay';
+
+        if($sonod->stutus=='approved'){
+
+
+            return view('chairemanapprove',compact('sonod','sonodnamedata','role','Secretary_pay'));
+
+
+
+        }elseif($sonod->stutus=='approved'){
+            return 'সনদটি ইতিমধ্যে চেয়ারম্যান কর্তৃক অনুমোদিত হয়েছে';
+        }else{
+            return 'সনদটি এখনো চেয়ারম্যান এর প্যানেল এ আছে';
+
+        }
+
+    }
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *

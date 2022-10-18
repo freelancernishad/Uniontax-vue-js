@@ -17,6 +17,7 @@ use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\HoldingBokeyaController;
+use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\SonodnamelistController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -71,7 +72,7 @@ Route::post('unionCreate', [UniouninfoController::class,'unionCreate']);
 Route::post('register', [authController::class,'register']);
 Route::get('get/roles',[authController::class,'getRoles']);
 
-
+Route::get('set/notification',[NotificationsController::class,'notifications']);
 
 Route::get('get/users/list',[RoleController::class,'index']);
 Route::get('get/users/delete/{id}',[RoleController::class,'deleteuser']);

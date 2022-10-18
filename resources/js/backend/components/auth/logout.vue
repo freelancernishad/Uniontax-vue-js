@@ -17,7 +17,15 @@ export default {
         User.loggedOut();
         Notification.customSuccess('Logout successfully Complete');
 axios.post('/logout').then(()=>{
-    window.location.href = '/'
+    if(this.$route.query.redirect){
+
+        window.location.href = '/login?redirect='+this.$route.query.redirect
+    }else{
+
+        window.location.href = '/login'
+    }
+
+
 })
 	}
 }

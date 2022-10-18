@@ -109,7 +109,7 @@ export default {
         async formsubmit() {
             this.preLooding = true
 
-            this.form.approveData = this.ApproveData;
+            this.form.approeDatav = this.ApproveData;
             var res = await this.callApi('post', `/api/sonod/sec/approve/${this.SonodId}`, this.form);
             this.$root.$emit('bv::hide::modal', 'action-modal')
             this.preLooding = false

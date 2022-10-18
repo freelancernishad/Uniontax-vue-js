@@ -67,7 +67,14 @@
 export default {
     created() {
         if (User.loggedIn()) {
-            window.location.href = "/dashboard";
+
+            if(this.$route.query.redirect){
+                window.location.href = this.$route.query.redirect;
+            }else{
+
+                window.location.href = "/dashboard";
+            }
+            // window.location.href = "/dashboard";
         }
         if (localStorage.getItem("login")) {
             this.form = JSON.parse(localStorage.getItem("login"));
@@ -130,7 +137,13 @@ export default {
                             User.responseAfterLogin(res);
                             Notification.customSuccess("Signed in successfully Complete");
                             this.loadLogin = false;
-                            window.location.href = "/dashboard";
+
+                            if(this.$route.query.redirect){
+                                window.location.href = this.$route.query.redirect;
+                            }else{
+
+                                window.location.href = "/dashboard";
+                            }
                         }
 
                         // User.responseAfterLogin(res)
