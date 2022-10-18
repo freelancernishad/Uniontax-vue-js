@@ -1,6 +1,10 @@
 <template>
     <div id="wrapper" class="wrapper bg-ash"
         :class="{ 'sidebar-collapsed': sidebarstatus, 'sidebar-collapsed-mobile': mobileSidebar }">
+        <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"
+            objectbg="#999793" opacity="80" name="circular"></loader>
+
+
         <!-- Header Menu Area Start Here -->
         <div class="navbar navbar-expand-md header-menu-one bg-light" id='topnavbar'>
             <div class="nav-bar-header-one">
@@ -300,6 +304,7 @@
 export default {
     props: ['user', 'permission', 'roles'],
     async created() {
+        this.getSonodNamesAdmin();
 
         // var url = this.$appUrl.split("//");
         // var subdomain = url[1].split(".");
@@ -321,7 +326,7 @@ export default {
         }
 
 
-this.getSonodNamesAdmin();
+
 
         this.$store.commit('setUpdateSonodNames', this.SonodNamesAdmin)
         this.$store.commit('setUpdateUser', this.user)
@@ -353,6 +358,7 @@ this.getSonodNamesAdmin();
     data() {
         return {
             selected: 0,
+            preLooding: false,
             sidebarstatus: false,
             mobileSidebar: false,
             SonodNamesAdmin:{},
@@ -380,9 +386,11 @@ this.getSonodNamesAdmin();
     methods: {
 
     async getSonodNamesAdmin(){
+        this.preLooding = true
 
         var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);
         this.SonodNamesAdmin = res.data
+        this.preLooding = false
 
         },
     async sonodlistCount() {
