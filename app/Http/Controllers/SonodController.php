@@ -750,7 +750,7 @@ class SonodController extends Controller
         $role = 'Secretary';
         $Secretary_pay = '';
 
-        if($sonod->stutus=='pending'){
+        if($sonod->stutus=='Pending'){
 
 
             return view('chairemanapprove',compact('sonod','sonodnamedata','role','Secretary_pay'));
