@@ -23,9 +23,15 @@ use App\Http\Controllers\NotificationsController;
 */
 Route::get('/smstest', function () {
 
-    for ($i=0; $i <6 ; $i++) {
-        smsSend('hello test');
-    }
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+    $subject = 'hello subject';
+
+    \Mail::to('freelancernishad123@gmail.com')->send(new \App\Mail\MyTestMail($details,$subject));
+
+    dd("Email is Sent.");
 
 
 });

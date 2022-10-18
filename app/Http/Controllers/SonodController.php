@@ -444,6 +444,15 @@ class SonodController extends Controller
                pushNotification($data);
             }
 
+            // $details = [
+            //     "title" => "একটি নতুন আবেদন দাখিল হয়েছে",
+            //     "body" => "$sonod->applicant_name একটি $sonod->sonod_name এর নুতুন আবেদন করেছে। সনদ নং ".int_en_to_bn($sonod->sonod_Id),
+            //     "click_action"=> url('/secretary/approve/'.$sonod->id)
+            // ];
+            // $subject = 'hello subject';
+            // \Mail::to('freelancernishad123@gmail.com')->send(new \App\Mail\MyTestMail($details,$subject));
+
+
 
 
 
