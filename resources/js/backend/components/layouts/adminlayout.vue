@@ -321,10 +321,9 @@ export default {
         }
 
 
-        var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);
-        this.SonodNamesAdmin = res.data
+this.getSonodNamesAdmin();
 
-        this.$store.commit('setUpdateSonodNames', res.data)
+        this.$store.commit('setUpdateSonodNames', this.SonodNamesAdmin)
         this.$store.commit('setUpdateUser', this.user)
         // this.$store.commit('setUserPermission', JSON.parse(this.permission.permission))
         // this.$store.commit('setUserRoles', this.roles)
@@ -380,8 +379,13 @@ export default {
     },
     methods: {
 
+    async getSonodNamesAdmin(){
 
-        async sonodlistCount() {
+        var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);
+        this.SonodNamesAdmin = res.data
+
+        },
+    async sonodlistCount() {
             var unionname = localStorage.getItem('unioun');
             if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
 
