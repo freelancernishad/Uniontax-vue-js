@@ -440,7 +440,7 @@ class SonodController extends Controller
             $notificationsCount = Notifications::where($notifiData)->count();
             if($notificationsCount>0){
                $notifications = Notifications::where($notifiData)->latest()->first();
-               $data =' {"to":"'.$notifications->key.'","notification":{"body":"'.$sonod->applicant_name.' একটি '.$sonod->sonod_name.' এর নুতুন আবেদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"https://www.tepriganj.uniontax.gov.bd/public/assets/img/bangladesh-govt.png","click_action":"'.url('/secretary/pay/'.$sonod->id).'"}}';
+               $data =' {"to":"'.$notifications->key.'","notification":{"body":"'.$sonod->applicant_name.' একটি '.$sonod->sonod_name.' এর নুতুন আবেদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"'.asset('assets/img/bangladesh-govt.png').'","click_action":"'.url('/secretary/pay/'.$sonod->id).'"}}';
                pushNotification($data);
             }
 
@@ -512,7 +512,7 @@ class SonodController extends Controller
             $notificationsCount = Notifications::where($notifiData)->count();
             if($notificationsCount>0){
                $notifications = Notifications::where($notifiData)->latest()->first();
-               $data =' {"to":"'.$notifications->key.'","notification":{"body":"সচিব '.$sonod->applicant_name.' এর '.$sonod->sonod_name.' এর আবেদনটি অনুমোদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"https://www.tepriganj.uniontax.gov.bd/public/assets/img/bangladesh-govt.png","click_action":"'.url('/chairman/approve/'.$sonod->id).'"}}';
+               $data =' {"to":"'.$notifications->key.'","notification":{"body":"সচিব '.$sonod->applicant_name.' এর '.$sonod->sonod_name.' এর আবেদনটি অনুমোদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"'.asset('assets/img/bangladesh-govt.png').'","click_action":"'.url('/chairman/approve/'.$sonod->id).'"}}';
                pushNotification($data);
             }
 
@@ -652,7 +652,7 @@ class SonodController extends Controller
         $notificationsCount = Notifications::where($notifiData)->count();
         if($notificationsCount>0){
            $notifications = Notifications::where($notifiData)->latest()->first();
-           $data =' {"to":"'.$notifications->key.'","notification":{"body":"চেয়ারম্যান '.$sonod->applicant_name.' এর '.$sonod->sonod_name.' এর আবেদনটি অনুমোদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"https://www.tepriganj.uniontax.gov.bd/public/assets/img/bangladesh-govt.png","click_action":"'.url('/secretary/pay/'.$sonod->id).'"}}';
+           $data =' {"to":"'.$notifications->key.'","notification":{"body":"চেয়ারম্যান '.$sonod->applicant_name.' এর '.$sonod->sonod_name.' এর আবেদনটি অনুমোদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"'.asset('assets/img/bangladesh-govt.png').'","click_action":"'.url('/secretary/pay/'.$sonod->id).'"}}';
            pushNotification($data);
         }
 
