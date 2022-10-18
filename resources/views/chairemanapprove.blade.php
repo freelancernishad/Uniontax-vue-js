@@ -384,7 +384,8 @@
                 <div class="col-md-12" >
                     <div class="form-group">
                         <label for="amountab">প্রত্যয়ন প্রদানের বিবরণ </label>
-                        <textarea  class="form-control" id="sec_prottoyon"
+                        {{-- <input type="hidden" id="sec_prottoyon" value="{{ $sec_prottoyon }}"> --}}
+                        <textarea  class="form-control"
                         style="height:100px;resize:none" readonly="{{ $readonly }}">{{ $sec_prottoyon }}</textarea>
                     </div>
                 </div>
@@ -487,7 +488,7 @@ console.log(window.location.origin)
 
 function submit(id){
 
-    var sec_prottoyon = document.getElementById('sec_prottoyon').value;
+    var sec_prottoyon = document.getElementById('sec_prottoyon').innerHTML;
     var khat = document.getElementById('khat').value;
     var last_years_money = document.getElementById('amountab').value;
     var currently_paid_money = document.getElementById('amountabb').value;
