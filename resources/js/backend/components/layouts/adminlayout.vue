@@ -467,7 +467,7 @@ export default {
         this.sonodlistCount()
         setInterval(() => {
             this.sonodlistCount()
-        }, 5000);
+        }, 18000);
     }
 }
 </script>

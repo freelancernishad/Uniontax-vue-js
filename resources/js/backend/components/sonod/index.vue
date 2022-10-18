@@ -654,7 +654,7 @@ export default {
 
         setInterval(() => {
             this.sonodList(true,this.sonod_id)
-        }, 5000);
+        }, 18000);
     }
 }
 </script>

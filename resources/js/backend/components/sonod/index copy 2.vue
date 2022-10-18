@@ -316,7 +316,7 @@ export default {
         }, 2000);
         setInterval(() => {
             this.sonodList(true)
-        }, 5000);
+        }, 18000);
     }
 }
 </script>
