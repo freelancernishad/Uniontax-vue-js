@@ -384,10 +384,12 @@
                 <div class="col-md-12" >
                     <div class="form-group">
                         <label for="amountab">প্রত্যয়ন প্রদানের বিবরণ </label>
-                        <input type="hidden" id="sec_prottoyon" value="{{ $sec_prottoyon }}">
-                        <textarea  class="form-control" style="height:100px;resize:none" readonly="{{ $readonly }}" >{{ $sec_prottoyon }}</textarea>
+                       
+                        <textarea  class="form-control" style="height:100px;resize:none"  id="sec_prottoyon" readonly="{{ $readonly }}" >{{ $sec_prottoyon }}</textarea>
                     </div>
                 </div>
+                @else
+                <input type="hidden" id="sec_prottoyon" value="{{ $sec_prottoyon }}">
                 @endif
 
 
