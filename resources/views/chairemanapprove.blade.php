@@ -491,7 +491,7 @@ console.log(window.location.origin)
 
 function submit(id){
 
-    var sec_prottoyon = document.getElementById('sec_prottoyon').innerHTML;
+    var sec_prottoyon = document.getElementById('sec_prottoyon').value;
     var khat = document.getElementById('khat').value;
     var last_years_money = document.getElementById('amountab').value;
     var currently_paid_money = document.getElementById('amountabb').value;
