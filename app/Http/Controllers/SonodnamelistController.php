@@ -45,7 +45,8 @@ class SonodnamelistController extends Controller
         $data = $request->data;
         $admin = $request->admin;
         if ($admin) {
-            return Sonodnamelist::with('sonods')->get();
+            return Sonodnamelist::all();
+            // return Sonodnamelist::with('sonods')->get();
         }
         if ($data) {
             return Sonodnamelist::where('enname', $data)->first();
