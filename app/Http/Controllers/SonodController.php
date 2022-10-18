@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\ActionLog;
 use App\Models\Uniouninfo;
 use App\Models\Expenditure;
+use App\Models\Notifications;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\DB;
@@ -429,11 +430,24 @@ class SonodController extends Controller
             //    $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
             // $oldsonodNo = (int)$oldsonod->sonod_Id;
             //  $Insertdata['sonod_Id'] =  $oldsonodNo+1;
-            return $sonod =   sonod::create($Insertdata);
+             $sonod =   sonod::create($Insertdata);
             if ($stutus == 'Pending') {
                 $deccription = "Congratulation! Your application $sonod->sonod_Id has been Submited.Wait for Approval";
                 smsSend($deccription, $sonod->applicant_mobile);
             }
+
+            $notifiData = ['union'=>$sonod->unioun_name,'roles'=>'Secretary'];
+            $notificationsCount = Notifications::where($notifiData)->count();
+            if($notificationsCount>0){
+               $notifications = Notifications::where($notifiData)->latest()->first();
+               $data =' {"to":"'.$notifications->key.'","notification":{"body":"'.$sonod->applicant_name.' একটি '.$sonod->sonod_name.' এর নুতুন আবেদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"https://www.tepriganj.uniontax.gov.bd/public/assets/img/bangladesh-govt.png","click_action":"'.url('/secretary/pay/'.$sonod->id).'"}}';
+               pushNotification($data);
+            }
+
+
+
+
+
             return  $sonod;
         } catch (Exception $e) {
             return sent_error($e->getMessage(), $e->getCode());
@@ -451,7 +465,17 @@ class SonodController extends Controller
     }
     public function sec_sonod_action(Request $request, $id)
     {
+
+
+
+
         $sonod = Sonod::find($id);
+
+
+
+
+
+
         $sec_prottoyon = $request->sec_prottoyon;
         // return $request->all();
         $arraydata = [
@@ -482,6 +506,22 @@ class SonodController extends Controller
                 'sec_prottoyon' => $sec_prottoyon,
                 'stutus' => $approveData,
             ];
+
+
+            $notifiData = ['union'=>$sonod->unioun_name,'roles'=>'Chairman'];
+            $notificationsCount = Notifications::where($notifiData)->count();
+            if($notificationsCount>0){
+               $notifications = Notifications::where($notifiData)->latest()->first();
+               $data =' {"to":"'.$notifications->key.'","notification":{"body":"সচিব '.$sonod->applicant_name.' এর '.$sonod->sonod_name.' এর আবেদনটি অনুমোদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"https://www.tepriganj.uniontax.gov.bd/public/assets/img/bangladesh-govt.png","click_action":"'.url('/chairman/approve/'.$sonod->id).'"}}';
+               pushNotification($data);
+            }
+
+
+
+
+
+
+
             // return $updateData;
             return $sonod->update($updateData);
         }
@@ -501,6 +541,9 @@ class SonodController extends Controller
         $updateData['chaireman_name'] = $Uniouninfo->c_name;
         $updateData['c_email'] = $Uniouninfo->c_email;
         $updateData['chaireman_sign'] = $Uniouninfo->c_signture;
+
+
+
 
         return $sonod->update($updateData);
     }
@@ -590,11 +633,30 @@ class SonodController extends Controller
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
             }
             smsSend($deccription, $sonod->applicant_mobile);
+
+
+
+
+
+
+
         } else {
             $updatedata = [
                 'stutus' => $action,
             ];
         }
+
+
+
+        $notifiData = ['union'=>$sonod->unioun_name,'roles'=>'Secretary'];
+        $notificationsCount = Notifications::where($notifiData)->count();
+        if($notificationsCount>0){
+           $notifications = Notifications::where($notifiData)->latest()->first();
+           $data =' {"to":"'.$notifications->key.'","notification":{"body":"চেয়ারম্যান '.$sonod->applicant_name.' এর '.$sonod->sonod_name.' এর আবেদনটি অনুমোদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"https://www.tepriganj.uniontax.gov.bd/public/assets/img/bangladesh-govt.png","click_action":"'.url('/secretary/pay/'.$sonod->id).'"}}';
+           pushNotification($data);
+        }
+
+
         // return $type;
         if($type=='notify'){
 
