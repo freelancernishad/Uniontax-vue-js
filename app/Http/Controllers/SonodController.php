@@ -500,7 +500,7 @@ class SonodController extends Controller
         $numto = new NumberToBangla();
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
         if ($sec_prottoyon) {
-            $approveData = $request->approveData;
+          return   $approveData = $request->approeDatav;
             if($approveData =='null_approved'){
                 $approveData = 'Secretary_approved';
             }
@@ -543,7 +543,7 @@ class SonodController extends Controller
             'total_amount' => $request->amounta,
             'amount_deails' => $amount_deails,
             'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
-            'stutus' => $request->approveData,
+            'stutus' => $request->approeDatav,
         ];
 
         $Uniouninfo =   Uniouninfo::where('short_name_e', $sonod->unioun_name)->latest()->first();
