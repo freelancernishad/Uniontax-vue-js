@@ -501,7 +501,10 @@ class SonodController extends Controller
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
         if ($sec_prottoyon) {
              $approveData = $request->approeDatav;
+
             if($approveData =='null_approved'){
+                $approveData = 'Secretary_approved';
+            }else{
                 $approveData = 'Secretary_approved';
             }
             $updateData = [
