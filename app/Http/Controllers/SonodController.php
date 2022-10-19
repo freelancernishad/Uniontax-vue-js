@@ -500,7 +500,7 @@ class SonodController extends Controller
         $numto = new NumberToBangla();
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
         if ($sec_prottoyon) {
-          return   $approveData = $request->approeDatav;
+             $approveData = $request->approeDatav;
             if($approveData =='null_approved'){
                 $approveData = 'Secretary_approved';
             }
