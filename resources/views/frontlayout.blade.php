@@ -151,7 +151,7 @@ p.help.text-right {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.3.82') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.3.83') }}" async ></script>
 
 <script>
     // function linkrun(linkdata){
@@ -211,7 +211,7 @@ if ("{{ Auth::user() }}") {
 
 
 
-{{-- 
+{{--
 
 
 <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>

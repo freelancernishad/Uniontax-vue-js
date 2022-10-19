@@ -23,7 +23,7 @@
                                     <option value="">চিহ্নিত করুন</option>
                                     <option  value="all">সকল</option>
                                     <option value="holdingtax">হোল্ডিং ট্যাক্স</option>
-                                    <option v-for="(sonod, r) in SonodNames" :key="'dropdown' + r" :value="sonod.bnname">{{ sonod.bnname }}</option>
+                                    <option v-for="(sonod, r) in SonodNamesAdmin" :key="'dropdown' + r" :value="sonod.bnname">{{ sonod.bnname }}</option>
                                 </select>
                             </div>
 
@@ -97,13 +97,26 @@ export default {
                 to:'',
             },
             isload:false,
-            rows:{}
+            rows:{},
+            SonodNamesAdmin:{},
         };
     },
     mounted() {
 
     },
     methods: {
+
+
+        async getSonodNamesAdmin(){
+
+
+        var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);
+        this.SonodNamesAdmin = res.data
+
+
+        },
+
+
 
         async onSubmit(){
             this.isload = true
