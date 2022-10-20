@@ -443,7 +443,7 @@ export default {
                 this.approveType = '';
                 this.deleteRoute = '';
                 // this.editRoute='sonodedit';
-                this.editRoute = '';
+                this.editRoute = 'sonodedit';
                 this.viewRoute = 'sonodview';
                 this.Type = 'অনুমোদিত আবেদন';
                 if (localStorage.getItem('position') == 'Secretary') {
@@ -455,7 +455,7 @@ export default {
             } else if (this.$route.params.type == 'cancel') {
                 this.approveType = 'vueAction';
                 this.approveData = `${localStorage.getItem('position')}_approved`;
-                this.editRoute = '';
+                this.editRoute = 'sonodedit';
                 this.cancelRoute = '';
                 // this.deleteRoute='/api/sonod/delete';
                 this.viewRoute = 'sonodview';
