@@ -651,7 +651,7 @@
                         <th>জাতীয় পরিচয়পত্র/জন্মনিবন্ধন নম্বর</th>
                         <th><button type="button" class="flex justify-start btn btn-info" @click="addMore()">যোগ করুন</button></th>
                     </tr>
-                    <tr v-for="(successor, index) in form.successors" :key="index">
+                    <tr v-for="(successor, index) in successors" :key="index">
                         <input type="hidden" v-model="successor.w_id = index">
                         <th><input v-model="successor.w_name" placeholder="নাম" class="form-control" /></th>
                         <th>
@@ -793,6 +793,15 @@ export default {
                     },
                 ],
             },
+            successors: [
+                    {
+                        w_id: "",
+                        w_name: "",
+                        w_relation: "",
+                        w_age: "",
+                        w_nid: "",
+                    },
+                ],
             getdivisions:{},
             getdistricts:{},
             getthanas:{},
@@ -894,15 +903,17 @@ export default {
             }
         },
         addMore() {
-            this.form.successors.push({
+
+            this.successors.push({
                 w_name: "",
                 w_relation: "",
                 w_age: "",
                 w_nid: "",
             });
+            console.log(this.successors)
         },
         remove(index) {
-            this.form.successors.splice(index, 1);
+            this.successors.splice(index, 1);
         },
 
 
@@ -942,6 +953,7 @@ this.getdivisionFunPer();
         },
 
         async onSubmit() {
+            this.form.successors = this.successors;
             var res = await this.callApi('post', '/api/sonod/update', this.form);
             Notification.customSuccess(`Your data has been Updated`);
             this.$router.push({ name: 'sonod', params: { name: this.sonodnamedata.enname.replaceAll(' ', '_'), type: 'new' } })
@@ -954,9 +966,9 @@ this.getdivisionFunPer();
         this.form = res.data.sonod
         this.sonodnamedata = res.data.sonodnamedata
         // console.log(res.data.sonod.successor_list)
-        this.form.successors = JSON.parse(res.data.sonod.successor_list)
+        this.successors = JSON.parse(res.data.sonod.successor_list);
 
-
+// console.log(this.successors);
 
 
         }
