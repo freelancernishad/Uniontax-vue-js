@@ -36,6 +36,20 @@
                                                 required/>
                                         </div>
                                     </div>
+
+
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="" class="labelColor">মালিকের ছবি</label>
+                                            <input type="file" accept="image/*" class="custom-file-input" @change="FileSelected($event, 'image')" id="image">
+                                            <label class="custom-file-label" style="margin: 34px auto 0px;width: 93%;padding: 10px 5px;height: 46px;" for="image">Choose file</label>
+                                        </div>
+                                        <img style="width: 25%;" thumbnail fluid v-if="form.image != ''" :src="form.image" alt="Image 3" />
+                                    </div>
+
+
                                     <!-- col-md-4 -->
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -61,7 +75,7 @@
                                             <label class="control-label col-form-label">ওয়াড নং</label>
 
 
-                                            <select v-model="form.word_no" id="word_no" class="form-control" required>
+                                            <select v-model="form.word_no" id="word_no" class="form-control" disabled required>
                                                 <option value="">ওয়াড নং</option>
                                                 <option value="1">১</option>
                                                 <option value="2">২</option>
@@ -236,6 +250,7 @@
                     nid_no:'',
                     mobile_no:'',
                     category:'',
+                    image:'',
                     bokeya:[],
                     griher_barsikh_mullo:0,
                     jomir_vara:0,
@@ -244,9 +259,32 @@
             }
         },
         methods: {
-            async list(){
-                var res = await this.callApi('get',`/api/holding/tax/list?word=${this.$route.params.word}&union=${this.Users.unioun}`,[]);
-            },
+
+
+
+
+
+        FileSelected($event, parent_index) {
+            let file = $event.target.files[0];
+            if (file.size > 5048576) {
+                Notification.image_validation();
+            } else {
+                let reader = new FileReader;
+                reader.onload = event => {
+                    this.form[parent_index] = event.target.result
+                    // console.log(event.target.result);
+                };
+                reader.readAsDataURL(file)
+            }
+            //   console.log($event.target.result);
+        },
+
+
+
+
+            // async list(){
+            //     var res = await this.callApi('get',`/api/holding/tax/list?word=${this.$route.params.word}&union=${localStorage.getItem('unioun')}`,[]);
+            // },
 
 
             addMore() {
@@ -266,17 +304,22 @@
                     this.form['unioun']= this.Users.unioun
                     var res = await this.callApi('post',`/api/holding/tax/submit`,this.form)
 
-                    this.$router.push({ name: 'holdingTaxWord'})
+                    this.$router.push({ name: 'holdingTaxList',params:{word:this.$route.params.wordNo}})
             Notification.customSuccess('Holding tax Update Success');
                 },
 
 
         },
         mounted() {
-            setTimeout(() => {
-                this.list();
+            // setTimeout(() => {
+                // this.list();
 
-            }, 3000);
+            // }, 3000);
+
+            this.form.word_no = this.$route.params.wordNo;
+
+
+
         },
     }
     </script>
@@ -286,5 +329,11 @@
         font-size: 26px;
         margin: 4px;
     }
+
+    .custom-file-label::after {
+        height: 4.40rem;
+        padding: 10px 17px;
+    }
+
 
     </style>

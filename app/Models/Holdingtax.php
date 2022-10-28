@@ -36,6 +36,7 @@ class Holdingtax extends Model
             'current_year_kor',
             'bokeya',
             'total_bokeya',
+            'image',
     ];
 
 }

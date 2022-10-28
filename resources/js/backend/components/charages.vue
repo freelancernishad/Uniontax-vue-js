@@ -123,7 +123,6 @@ export default {
 
         async onSubmit() {
 
-
        this.preLooding = true
                 var district = this.getUsers.district
                 var thana = this.getUsers.thana

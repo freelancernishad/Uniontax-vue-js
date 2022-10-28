@@ -94,7 +94,13 @@
 
          <td v-else><button @click="paynow(bok.id)" class="btn btn-info" >পরিশোধ করুন</button></td>
 
-         <td><a target="_blank" :href="'/holding/tax/invoice/'+bok.id" class="btn btn-info" >রশিদ</a></td>
+         <td>
+
+            <a v-if="bok.status=='Paid'" target="_blank" :href="'/holding/tax/certificate_of_honor/'+bok.id" class="btn btn-info" >সম্মাননাপত্র</a>
+
+            <a target="_blank" :href="'/holding/tax/invoice/'+bok.id" class="btn btn-info" >রশিদ</a>
+
+        </td>
 
 
     </tr>

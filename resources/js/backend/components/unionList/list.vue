@@ -159,10 +159,11 @@ export default {
 
 
             this.preLooding = true
-            var position = this.Users.position
-            var thana = this.Users.thana
-            var district = this.Users.district
-            axios.get(`/api/get/union/list?position=${position}&thana=${thana}&district=${district}`)
+            var position = localStorage.getItem('position');
+            var userid = localStorage.getItem('userid');
+            // var thana = this.Users.thana
+            // var district = this.Users.district
+            axios.get(`/api/get/union/list?position=${position}&userid=${userid}`)
                 .then(({ data }) => {
                     // console.log(data)
                   this.items = data
@@ -188,10 +189,10 @@ export default {
 
     },
     mounted() {
-       setTimeout(()=>{
+    //    setTimeout(()=>{
         this.sonodname();
 
-      }, 2000);
+    //   }, 2000);
     }
 
 

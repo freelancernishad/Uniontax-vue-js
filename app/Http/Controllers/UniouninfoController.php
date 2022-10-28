@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Uniouninfo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UniouninfoController extends Controller
@@ -1143,11 +1144,15 @@ return $Insertdata;
     public function index(Request $request)
     {
          $position =$request->position;
-         $thana = $request->thana;
-         $district = $request->district;
 
-        if ($position && $thana && $district) {
+        //  $thana = $request->thana;
+        //  $district = $request->district;
 
+        if ($position) {
+
+            $user = User::find($request->userid);
+         $thana = $user->thana;
+         $district = $user->district;
 
             if($position=='District_admin'){
                 return Uniouninfo::where('district', $district)->get();

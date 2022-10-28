@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\HoldingBokeya;
 use Illuminate\Support\Facades\DB;
 use Rakibhstu\Banglanumber\NumberToBangla;
+use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 
 class HoldingtaxController extends Controller
 {
@@ -138,6 +139,21 @@ class HoldingtaxController extends Controller
 
     }
 
+
+
+    public function holdingCertificate_of_honor(Request $request,$id)
+    {
+           $holdingBokeya = HoldingBokeya::find($id);
+           $holdingTax = Holdingtax::find($holdingBokeya->holdingTax_id);
+              $uniouninfo = Uniouninfo::where('short_name_e',$holdingTax->unioun)->first();
+
+
+
+          $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+        $pdf = LaravelMpdf::loadView('pdf.certificate_of_honor',compact('uniouninfo','holdingTax','holdingBokeya'));
+        return $pdf->stream("$fileName-$holdingBokeya->holdingTax_id.pdf");
+
+    }
 
 
 
@@ -910,13 +926,13 @@ class HoldingtaxController extends Controller
         $union = $r->union;
         if(!$word && !$union){
 
-            return Holdingtax::all();
+            return Holdingtax::orderBy('id','desc')->get();
         }
         if(!$word){
 
-            return Holdingtax::where(['unioun' => $union])->get();
+            return Holdingtax::where(['unioun' => $union])->orderBy('id','desc')->get();
         }
-        return Holdingtax::where(['unioun' => $union, 'word_no' => $word])->get();
+        return Holdingtax::where(['unioun' => $union, 'word_no' => $word])->orderBy('id','desc')->get();
     }
     public function show(Request $r,$id)
     {
@@ -1084,7 +1100,7 @@ $total_bokeya = 0;
 
 
 
-         $data = $r->except('bokeya');
+         $data = $r->except('bokeya','image');
       $data['bokeya'] = $bokeya;
       $data['total_bokeya'] = $total_bokeya;
       $data['barsikh_muller_percent'] = $barsikh_muller_percent;
@@ -1100,6 +1116,12 @@ $total_bokeya = 0;
       $data['total_prodey_korjoggo_barsikh_mullo'] = $total_prodey_korjoggo_barsikh_mullo;
       $data['current_year_kor'] = $current_year_kor;
 
+      $imageCount =  count(explode(';', $r->image));
+      if ($imageCount > 1) {
+          $data['image'] =  fileupload($r->image, "holding/image/", 250, 300);
+      }
+
+
         $holding =  Holdingtax::create($data);
         $curentdata = [
             'holdingTax_id'=>$holding->id,
@@ -1107,6 +1129,12 @@ $total_bokeya = 0;
             'price'=>$current_year_kor,
             'status'=>'Unpaid'
         ];
+
+
+
+
+
+
         HoldingBokeya::create($curentdata);
 
 $total_bokeya = 0;
