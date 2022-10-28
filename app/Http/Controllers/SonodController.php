@@ -439,9 +439,10 @@ class SonodController extends Controller
             $notifiData = ['union'=>$sonod->unioun_name,'roles'=>'Secretary'];
             $notificationsCount = Notifications::where($notifiData)->count();
             if($notificationsCount>0){
+               $action =   makeshorturl(url('/secretary/approve/'.$sonod->id));
                $notifications = Notifications::where($notifiData)->latest()->first();
-               $data =' {"to":"'.$notifications->key.'","notification":{"body":"'.$sonod->applicant_name.' একটি '.$sonod->sonod_name.' এর নুতুন আবেদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"'.asset('assets/img/bangladesh-govt.png').'","click_action":"'.url('/secretary/approve/'.$sonod->id).'"}}';
-               pushNotification($data);
+               $data =' {"to":"'.$notifications->key.'","notification":{"body":"'.$sonod->applicant_name.' একটি '.$sonod->sonod_name.' এর নুতুন আবেদন করেছে","title":"সনদ নং '.int_en_to_bn($sonod->sonod_Id).'","icon":"'.asset('assets/img/bangladesh-govt.png').'","click_action":"'.$action.'"}}';
+                pushNotification($data);
             }
 
             // $details = [
@@ -859,7 +860,7 @@ class SonodController extends Controller
         if ($sondId) {
             // return $sondId;
             // return 'sss';
-            return Sonod::where("sonod_Id", "LIKE", "%{$sondId}%")->where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
+            return Sonod::where("sonod_Id", "LIKE", "%$sondId%")->where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
         }
         if ($unioun_name) {
             if ($payment_status) {

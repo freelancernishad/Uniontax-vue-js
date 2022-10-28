@@ -40,6 +40,7 @@ Route::get('details',[NotificationsController::class,'details']);
 
 
 
+
 Route::get('/unioncreate', function () {
 
 return view('unioncreate');
@@ -84,7 +85,16 @@ Route::get('/cashbook/download', [ExpenditureController::class,'cashbook_downloa
 Route::get('/secretary/approve/{id}', [SonodController::class,'SecretariNotificationApprove']);
 Route::get('/chairman/approve/{id}', [SonodController::class,'ChairnamNotificationApprove']);
 Route::get('/secretary/pay/{id}', [SonodController::class,'SecretariNotificationPay']);
+Route::get('/allow/application/notification', function () {
+
+    return view('applicationNotification');
+
+
+    });
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
+
+
+
     Route::get('/{vue_capture?}', function () {
         // return   Auth::user()->roles->permission;
         $roles = Role::all();

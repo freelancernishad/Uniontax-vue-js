@@ -14,11 +14,22 @@
             <!-- Breadcubs Area End Here -->
 
             <div class="card">
-                <div class="card-header" style="display: flex;justify-content: space-between;align-items: center;">
+                <div class="card-header" >
                     <form @submit.stop.prevent="onSubmit">
-                        <div class="d-flex">
+                        <div class="row">
 
-                            <div class="form-group">
+                            <div class="form-group col-md-3" v-if="$localStorage.getItem('position')=='District_admin'">
+                                <select v-model="form.union" id="sonod" class="form-control" required>
+                                    <option value="">ইউনিয়ন নির্বাচন করুন</option>
+
+                                    <option v-for="(union,ind) in unionList" :key="'union' + ind" :value="union.short_name_e">{{ union.short_name_b }}</option>
+
+
+
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
                                 <select v-model="form.sonod_type" id="sonod" class="form-control" required>
                                     <option value="">চিহ্নিত করুন</option>
                                     <option  value="all">সকল</option>
@@ -27,15 +38,15 @@
                                 </select>
                             </div>
 
-                            <div class="form-group ml-3">
+                            <div class="form-group col-md-3">
                                 <input type="date" v-model="form.from" class="form-control">
                             </div>
 
-                            <div class="form-group ml-3">
+                            <div class="form-group col-md-3">
                                 <input type="date" v-model="form.to" class="form-control">
                             </div>
 
-                            <div class="form-group ml-3">
+                            <div class="form-group col-md-3">
                                 <button type="button" style="font-size: 22px;margin-left: 10px;" class="btn btn-info" disabled v-if="isload">অপেক্ষা করুন....</button>
                                 <button type="submit" style="font-size: 22px;margin-left: 10px;" class="btn btn-info" v-else>খুজুন</button>
                             </div>
@@ -45,7 +56,13 @@
 
                     </form>
 
-                    <a style="    font-size: 20px;" target="_blank" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to+'&union='+$localStorage.getItem('unioun')"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
+
+
+
+                    <a style="    font-size: 20px;float: right;" target="_blank" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to+'&union='+form.union"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
+
+
+
 
 
 
@@ -88,6 +105,12 @@ export default {
     },
     async created() {
 
+        if(localStorage.getItem('position')=='District_admin'){
+            this.form.union ='';
+        }else{
+            this.form.union = localStorage.getItem('unioun');
+
+        }
     },
     data() {
         return {
@@ -97,6 +120,8 @@ export default {
                 to:'',
             },
             isload:false,
+            unionName:'',
+            unionList:{},
             rows:{},
             SonodNamesAdmin:{},
         };
@@ -108,6 +133,11 @@ export default {
 
 
         async getSonodNamesAdmin(){
+
+
+        var unions = await this.callApi('get', '/api/get/union/list', []);
+        this.unionList = unions.data
+
 
 
         var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);

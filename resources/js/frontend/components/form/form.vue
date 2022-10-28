@@ -970,8 +970,8 @@ export default {
                 this.form.year = new Date().getFullYear();
                 this.sonodname();
 
-                setTimeout(() => {
-                    this.form.sonod_name = this.sonodnamedata.bnname;
+                //setTimeout(() => {
+                   // this.form.sonod_name = this.sonodnamedata.bnname;
 
                     // var res = axios({ method: 'get', url: `/api/sonod/sonod_Id?union=${this.getUnion}`, data: [] })
                     // axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
@@ -979,7 +979,7 @@ export default {
                     //         //   console.log(response.data)
                     //         this.form.sonod_Id = `${response.data}`;
                     //     })
-                }, 3000);
+                //}, 3000);
 
 
             },
@@ -1181,6 +1181,7 @@ export default {
                 axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`)
                     .then(({ data }) => {
                         this.sonodnamedata = data
+						this.form.sonod_name = this.sonodnamedata.bnname;
                         window.scrollTo(0, 0);
                     })
                     .catch()

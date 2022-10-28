@@ -11,6 +11,27 @@ use Intervention\Image\Facades\Image;
 
 
 
+    function makeshorturl($url){
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://uniontax.xyz/make/url?short_url=$url",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+
+));
+
+ return $response = curl_exec($curl);
+
+curl_close($curl);
+    }
+
     function pushNotification($data){
 
 $curl = curl_init();
@@ -27,11 +48,11 @@ curl_setopt_array($curl, array(
   CURLOPT_POSTFIELDS =>$data,
   CURLOPT_HTTPHEADER => array(
     'Content-Type: application/json',
-    'Authorization: key=AAAAA9ZSfLc:APA91bGfD1V-O-SVfDKT3Ef9L2Dc3SowJCjUzRV6ybrJLMtlsEToErGZsywYqgMqAXpG9hMq3axz15LW7PoJ-LMjCkSp32l3wvsqnLQQ6o6Wl6YRWU-DHD2_CTeCUemzzf7SWJ-hMOGz'
+    'Authorization: key=AAAA-EA0BlM:APA91bEjaymOOGtnp1u9K7RymKyswgYqkI390pCj2R63ritYAHWmYbdI5D9O9h7XB6G6ADa3Nk9sZg9SDCWkwreJnrvcjGGOEI6_euAbgHezKblGxD68_CJEZdLOhyfafJ0u4ZKxQD9D'
   ),
 ));
 
-$response = curl_exec($curl);
+ $response = curl_exec($curl);
 
 curl_close($curl);
     }

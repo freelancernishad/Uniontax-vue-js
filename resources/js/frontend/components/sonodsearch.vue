@@ -244,20 +244,22 @@ export default {
 }
 /*Icons in the ProgressBar*/
 #progressbar #account:before {
-    font-family: FontAwesome;
-    content: "";
+
+    content: "Done";
+
+
 }
 #progressbar #personal:before {
     font-family: FontAwesome;
-    content: "";
+    content: "Done";
 }
 #progressbar #payment:before {
     font-family: FontAwesome;
-    content: "";
+    content: "Done";
 }
 #progressbar #confirm:before {
     font-family: FontAwesome;
-    content: "";
+    content: "Done";
 }
 /*ProgressBar before any progress*/
 #progressbar li:before {
@@ -316,3 +318,7 @@ export default {
     object-fit: cover;
 }
 </style>
+
+
+
+

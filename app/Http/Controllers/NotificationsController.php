@@ -122,22 +122,50 @@ class NotificationsController extends Controller
 
 
 
+
+            $url = url()->current();
+            $domain =  explode('//',$url);
+
+             $subdomain =  explode('.', $domain[1]);
+
+               if($subdomain[0]=='www'){
+
+                    $subdomainCount =  count($subdomain);
+                    $subdomainget = $subdomain[1];
+
+               }else{
+
+
+                   $subdomainCount =  count($subdomain);
+                   $subdomainget = $subdomain[0];
+
+               }
+
+
+
+
+// return $request->all();
+
+
+
+
     $devicename        = $this->getDeviceName();
     $operatingsystem        = $this->getOS();
      $browser   = $this->getBrowser();
 
 
 
-            $data=array('union'=>'',"key"=>$request->key,"browser"=>$browser,"operatingsystem"=>$operatingsystem,"devicename"=>$devicename);
 
-           $dataCount =  Notifications::where($data)->count();
+            $data=array('union'=>$subdomainget,'roles'=>$request->roles,"key"=>$request->key,"browser"=>$browser,"operatingsystem"=>$operatingsystem,"devicename"=>$devicename);
+
+           $dataCount =  Notifications::where(['union'=>$subdomainget,'roles'=>$request->roles])->count();
            if($dataCount>0){
 
-            echo "Record already have.<br/>";
+            echo 0;
            }else{
             Notifications::create($data);
             //   DB::table('notifications')->insert($data);
-            echo "Record inserted successfully.<br/>";
+            echo 1;
            }
 
 

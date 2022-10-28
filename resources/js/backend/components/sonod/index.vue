@@ -11,13 +11,45 @@
                 <li>{{ SonodName.bnname }} {{ Type }}</li>
             </ul>
         </div>
+
+
+
         <div class="card">
             <div class="card-header">
                 <h3>সনদ নাম্বার দিয়ে খুঁজুন</h3>
                 <div class="form-group" style="width:250px">
                     <input type="text" class="form-control" v-model="sonod_id" @input="searchSondId">
                 </div>
+
+
+
+                <nav aria-label="Page navigation example" v-if="TotalRows>20">
+            <ul class="pagination  justify-content-end">
+                <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+                <li class="page-item" v-for="(pag,index) in Totalpage" :key="'p'+index" v-if="index==0 && pag.url">
+                    <router-link class="page-link"
+                        :to="{name:'sonod',params:{name:$route.params.name,type:$route.params.type},query:{page:pag.url.split('?')[1].split('=')[1]}}"
+                        v-html="pag.label"></router-link>
+                </li>
+                <li class="page-item" v-for="(pag,index) in Totalpage" :key="'i'+index"
+                    :class="{active:pag.active,'disabled':pag.label=='...'}"
+                    v-if="index!=0 && pag.label!='Next &raquo;'">
+                    <router-link class="page-link"
+                        :to="{name:'sonod',params:{name:$route.params.name,type:$route.params.type},query:{page:pag.label}}"
+                        v-html="pag.label"></router-link>
+                </li>
+                <li class="page-item" v-for="(pag,index) in Totalpage" :key="'l'+index"
+                    v-if="pag.label=='Next &raquo;'  && pag.url">
+                    <router-link class="page-link"
+                        :to="{name:'sonod',params:{name:$route.params.name,type:$route.params.type},query:{page:pag.url.split('?')[1].split('=')[1]}}"
+                        v-html="pag.label"></router-link>
+                </li>
+                <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+            </ul>
+        </nav>
+
             </div>
+
             <div class="card-body">
                 <table class="table table-hover table-striped sonodTable">
                     <thead class="sonodThead">
@@ -86,12 +118,14 @@
                         </tr>
                     </tbody>
                     <tfoot>
+
                     </tfoot>
                 </table>
                 <!-- <approve-component></approve-component> -->
             </div>
-        </div>
-        <nav aria-label="Page navigation example" v-if="TotalRows>20">
+            <div class="card-footer">
+
+                <nav aria-label="Page navigation example" v-if="TotalRows>20">
             <ul class="pagination  justify-content-end">
                 <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
                 <li class="page-item" v-for="(pag,index) in Totalpage" :key="'p'+index" v-if="index==0 && pag.url">
@@ -115,6 +149,9 @@
                 <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
             </ul>
         </nav>
+            </div>
+        </div>
+
         <!-- Info modal -->
         <b-modal :id="infoModal.id" size="xl" :title="infoModal.title">
 
@@ -609,14 +646,14 @@ export default {
                     var unioun = ``
                 }
                 if (sondId) {
-                    var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}&sondId=${sondId}`, []);
+                    var res = await this.callApi('get', `/api/sonod/list?sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}&sondId=${sondId}`, []);
                 } else {
                     var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}`, []);
                 }
                 // var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
                 this.items = res.data.data
-                this.TotalRows = `${this.items.length}`;
-                // console.log(this.TotalRows)
+                this.TotalRows = `${res.data.total}`;
+                console.log(res.data.total)
                 this.Totalpage = res.data.links
                 if (!auto) window.scrollTo(0, 0);
                 if (!auto) this.preLooding = false
