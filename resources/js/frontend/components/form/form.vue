@@ -440,7 +440,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12" v-if="sonodnamedata.enname == 'Miscellaneous certificates'">
+                    <div class="col-md-12" v-if="sonodnamedata.enname == 'Miscellaneous certificates' || sonodnamedata.enname == 'Certificate of No Objection'">
                         <div class="form-group">
                             <label for="" class="labelColor">আবেদনকৃত প্রত্যয়নের বিবরণ উল্লেখ করুন</label>
                             <textarea class="form-control" v-model="form.prottoyon" cols="30" rows="4"></textarea>

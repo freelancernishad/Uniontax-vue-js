@@ -5,11 +5,11 @@
 
     <form v-on:submit.prevent="formsubmit">
         <div class="row">
-            <div class="col-md-12" v-if="Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র'">
+            <div class="col-md-12" v-if="Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র' || Details.sonod_name == 'অনাপত্তি সনদপত্র'">
                 <h5>আবেদনকৃত প্রত্যয়নের বিবরণ</h5>
                 <p>{{ sonodlist.prottoyon }}</p>
             </div>
-            <div class="col-md-12" v-if="Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র'">
+            <div class="col-md-12" v-if="Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র' || Details.sonod_name == 'অনাপত্তি সনদপত্র'">
                 <div class="form-group">
                     <label for="amountab">প্রত্যয়ন প্রদানের বিবরণ </label>
                     <textarea v-model="form.sec_prottoyon" class="form-control"
@@ -212,7 +212,7 @@ export default {
             this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। আমার জানামতে সে একজন ${this.Details.disabled} প্রতিবন্ধী । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তার বিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
         } else if (this.Details.sonod_name == 'অনাপত্তি সনদপত্র') {
              this.readonly = false
-            this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সেই বর্তমানে প্রোগ্রামার পদে নিযুক্ত আছেন । তার পাসপোর্ট আবেদনের প্রয়োজনীয় কাগজপত্র এর সঙ্গে পেরন করা হলো  । ইতিপূর্বে পুলিশ ভেরিফিকেশন সম্পন্ন হয়েছে  । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তার বিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
+            this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} `;
         } else if (this.Details.sonod_name == 'অগভীর নলকূপ স্থাপন') {
              this.readonly = true
             this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের স্থায়ী বাসিন্দা। আমার জানামতে তার বিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তার বসতবাড়িতে বর্তমানে কোন টিউবওয়েল নেই । তাই তাকে অগভীর নলকূপ বসানোর অনুমতি দেওয়া হল ।`;
