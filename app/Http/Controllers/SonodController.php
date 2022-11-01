@@ -933,6 +933,12 @@ class SonodController extends Controller
     }
     public function sonodDownload(Request $request, $name, $id)
     {
+
+
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
+
        $row = Sonod::find($id);
         $sonod_name = $row->sonod_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
