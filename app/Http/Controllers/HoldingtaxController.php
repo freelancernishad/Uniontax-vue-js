@@ -941,7 +941,7 @@ class HoldingtaxController extends Controller
     }
     public function store(Request $r)
     {
-        // return $r->all();
+        //  return $r->all();
         //  echo '<pre>';
         //  print_r($r->input());
         $griher_barsikh_mullo = $this->int_bn_to_en($r->griher_barsikh_mullo);
@@ -1135,16 +1135,43 @@ $total_bokeya = 0;
 
 
 
-        HoldingBokeya::create($curentdata);
+       $hosdingBokeya =  HoldingBokeya::create($curentdata);
 
 $total_bokeya = 0;
         foreach ($r->bokeya as  $value) {
            $total_bokeya += $value['price'];
+            $payYear = '';
+           if($value['status']=='Paid'){
+            $payYear = explode('-',$value['year'])[1];
+
+
+
+            $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
+            $req_timestamp = date('Y-m-d H:i:s');
+           $customerData = [
+               'union' => $hosdingtax->unioun,
+               'trxId' => time(),
+               'sonodId' => $hosdingBokeya->id,
+               'sonod_type' => 'holdingtax',
+               'amount' => $hosdingBokeya->price,
+               'mob' => "01909756552",
+               'status' => "Paid",
+               'date' => $payYear.date('-m-d'),
+               'month' => date('F'),
+               'year' => $payYear,
+               'created_at' => $req_timestamp,
+           ];
+           Payment::create($customerData);
+
+           }
+
+
             $bokeyadata = [
                 'holdingTax_id'=>$holding->id,
                 'year'=>$value['year'],
                 'price'=>$value['price'],
-                'status'=>'Unpaid'
+                'payYear'=>$payYear,
+                'status'=>$value['status']
             ];
             HoldingBokeya::create($bokeyadata);
 
