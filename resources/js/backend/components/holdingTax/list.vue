@@ -25,7 +25,7 @@
                         </div>
 
 
-                        <form  @submit.prevent="formSubmit">
+                        <form  @submit.prevent="formSubmit('menual')">
 
 
 <div class="form-group">
@@ -46,6 +46,33 @@
 </div>
 
 </form>
+
+
+
+<nav aria-label="Page navigation example" v-if="TotalRows>20">
+<ul class="pagination  justify-content-end">
+<!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+<li class="page-item" v-for="(pag,index) in Totalpage" :key="'p'+index" v-if="index==0 && pag.url">
+    <router-link class="page-link"
+        :to="{name:'holdingTaxList',params:{word:$route.params.word},query:{page:pag.url.split('?')[1].split('=')[1],q:$route.query.q}}"
+        v-html="pag.label"></router-link>
+</li>
+<li class="page-item" v-for="(pag,index) in Totalpage" :key="'i'+index"
+    :class="{active:pag.active,'disabled':pag.label=='...'}"
+    v-if="index!=0 && pag.label!='Next &raquo;'">
+    <router-link class="page-link"
+        :to="{name:'holdingTaxList',params:{word:$route.params.word},query:{page:pag.label,q:$route.query.q}}"
+        v-html="pag.label"></router-link>
+</li>
+<li class="page-item" v-for="(pag,index) in Totalpage" :key="'l'+index"
+    v-if="pag.label=='Next &raquo;'  && pag.url">
+    <router-link class="page-link"
+        :to="{name:'holdingTaxList',params:{word:$route.params.word},query:{page:pag.url.split('?')[1].split('=')[1],q:$route.query.q}}"
+        v-html="pag.label"></router-link>
+</li>
+<!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+</ul>
+</nav>
 
 
                     </div>
@@ -87,6 +114,41 @@
                             </tbody>
                        </table>
                     </div>
+
+
+
+                    <div class="card-footer">
+
+<nav aria-label="Page navigation example" v-if="TotalRows>20">
+<ul class="pagination  justify-content-end">
+<!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+<li class="page-item" v-for="(pag,index) in Totalpage" :key="'p'+index" v-if="index==0 && pag.url">
+    <router-link class="page-link"
+        :to="{name:'holdingTaxList',params:{word:$route.params.word},query:{page:pag.url.split('?')[1].split('=')[1],q:$route.query.q}}"
+        v-html="pag.label"></router-link>
+</li>
+<li class="page-item" v-for="(pag,index) in Totalpage" :key="'i'+index"
+    :class="{active:pag.active,'disabled':pag.label=='...'}"
+    v-if="index!=0 && pag.label!='Next &raquo;'">
+    <router-link class="page-link"
+        :to="{name:'holdingTaxList',params:{word:$route.params.word},query:{page:pag.label,q:$route.query.q}}"
+        v-html="pag.label"></router-link>
+</li>
+<li class="page-item" v-for="(pag,index) in Totalpage" :key="'l'+index"
+    v-if="pag.label=='Next &raquo;'  && pag.url">
+    <router-link class="page-link"
+        :to="{name:'holdingTaxList',params:{word:$route.params.word},query:{page:pag.url.split('?')[1].split('=')[1],q:$route.query.q}}"
+        v-html="pag.label"></router-link>
+</li>
+<!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+</ul>
+</nav>
+</div>
+
+
+
+
+
                 </div>
 
             </div>
@@ -116,15 +178,44 @@
                 form:{
                 userdata:'',
             },
-            isSending: false
+            isSending: false,
+            PerPageData: '20',
+            TotalRows: '1',
+            Totalpage: {},
             }
         },
+
+
+        watch: {
+        '$route': {
+            handler(newValue, oldValue) {
+                var q = '';
+                if (this.$route.query.q){
+
+                    q = this.$route.query.q;
+                    this.form.userdata = q;
+                    this.formSubmit();
+                }else{
+                    this.list();
+
+                }
+
+
+
+            },
+            deep: true
+        }
+    },
+
         methods: {
             async list(){
-
-
-                var res = await this.callApi('get',`/api/holding/tax/list?word=${this.$route.params.word}&union=${localStorage.getItem('unioun')}`,[]);
-                this.rows = res.data;
+                this.preLooding = true
+                var page = 1;
+                if (this.$route.query.page) page = this.$route.query.page;
+                var res = await this.callApi('get',`/api/holding/tax/list?page=${page}&word=${this.$route.params.word}&union=${localStorage.getItem('unioun')}`,[]);
+                this.rows = res.data.data;
+                this.TotalRows = `${res.data.total}`;
+                this.Totalpage = res.data.links
                 this.preLooding = false
             },
 
@@ -143,10 +234,27 @@
             this.$root.$emit('bv::show::modal', this.infoModal.id, button)
         },
 
-        async formSubmit(){
+        async formSubmit(type='auto'){
+            this.preLooding = true
             this.isSending = true
-            var res = await this.callApi('post',`/api/holding/tax/search?union=${localStorage.getItem('unioun')}`,this.form);
-            this.rows = res.data;
+            var page = 1;
+               if(type!='menual') if (this.$route.query.page) page = this.$route.query.page;
+            var res = await this.callApi('post',`/api/holding/tax/search?page=${page}&union=${localStorage.getItem('unioun')}`,this.form);
+            this.rows = res.data.data;
+            this.TotalRows = `${res.data.total}`;
+                this.Totalpage = res.data.links
+
+
+
+
+            if(this.$route.query.q!=this.form.userdata)this.$router.push({ name: 'holdingTaxList',params:{word:this.$route.params.word},query:{page:page,q:this.form.userdata}})
+
+
+
+
+
+            this.preLooding = false
+
             this.isSending = false
         }
 
@@ -155,8 +263,19 @@
 
         },
         mounted() {
-            // setTimeout(() => {
-                this.list();
+            var q = '';
+                if (this.$route.query.q){
+
+                    q = this.$route.query.q;
+                    this.form.userdata = q;
+                    this.formSubmit();
+                } else{
+
+                    this.list();
+                }
+                // setTimeout(() => {
+                // this.list();
+                // this.list();
 
             // }, 3000);
         },
@@ -168,5 +287,7 @@
         font-size: 26px;
         margin: 4px;
     }
-
+    li.page-item.active a {
+    color: white !important;
+}
     </style>

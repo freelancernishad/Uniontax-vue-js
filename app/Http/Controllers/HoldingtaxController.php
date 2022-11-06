@@ -926,13 +926,13 @@ class HoldingtaxController extends Controller
         $union = $r->union;
         if(!$word && !$union){
 
-            return Holdingtax::orderBy('id','desc')->get();
+            return Holdingtax::orderBy('id','desc')->paginate(20);
         }
         if(!$word){
 
-            return Holdingtax::where(['unioun' => $union])->orderBy('id','desc')->get();
+            return Holdingtax::where(['unioun' => $union])->orderBy('id','desc')->paginate(20);
         }
-        return Holdingtax::where(['unioun' => $union, 'word_no' => $word])->orderBy('id','desc')->get();
+        return Holdingtax::where(['unioun' => $union, 'word_no' => $word])->orderBy('id','desc')->paginate(20);
     }
     public function show(Request $r,$id)
     {
@@ -1296,7 +1296,7 @@ $total_bokeya = 0;
                 ->orWhere('nid_no', 'like', "%$userdata%")
                 ->orWhere('mobile_no', 'like', "%$userdata%");
             })
-            ->get();
+            ->paginate(20);
         }
 
 
@@ -1309,7 +1309,7 @@ $total_bokeya = 0;
         ->orWhere('nid_no', 'like', "%$userdata%")
         ->orWhere('mobile_no', 'like', "%$userdata%")
 
-        ->get();
+        ->paginate(20);
 
 
 

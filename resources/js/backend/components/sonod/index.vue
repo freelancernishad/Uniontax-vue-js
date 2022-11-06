@@ -653,7 +653,7 @@ export default {
                 // var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
                 this.items = res.data.data
                 this.TotalRows = `${res.data.total}`;
-                console.log(res.data.total)
+                // console.log(res.data.total)
                 this.Totalpage = res.data.links
                 if (!auto) window.scrollTo(0, 0);
                 if (!auto) this.preLooding = false
