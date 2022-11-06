@@ -1142,7 +1142,7 @@ $total_bokeya = 0;
            $total_bokeya += $value['price'];
             $payYear = '';
            if($value['status']=='Paid'){
-            $payYear = explode('-',$value['year'])[1];
+            $payYear = explode('-',$value['year'])[0];
 
 
 
@@ -1282,12 +1282,25 @@ $total_bokeya = 0;
 
 
         $userdata = $r->userdata;
+        if($r->union){
+            $union = $r->union;
+
+
+
+            return DB::table('holdingtaxes')
+            ->where('unioun',$union)
+            ->where(function ($q)  use ($userdata,$union) {
+
+                $q->orWhere('holding_no', 'like', "%$userdata%")
+                ->orWhere('maliker_name', 'like', "%$userdata%")
+                ->orWhere('nid_no', 'like', "%$userdata%")
+                ->orWhere('mobile_no', 'like', "%$userdata%");
+            })
+            ->get();
+        }
+
 
         $data['userdata']=$userdata;
-
-        $wheredala = [['holding_no', 'like', "%$userdata%"]];
-
-
 
         return DB::table('holdingtaxes')
 

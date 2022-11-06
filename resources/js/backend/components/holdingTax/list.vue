@@ -15,9 +15,39 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h3>হোল্ডিং ট্যাক্স</h3>
-                        <router-link :to="{name:'holdingTaxadd',params:{wordNo:$route.params.word}}" class="btn btn-info">হোল্ডিং ট্যাক্স যোগ করুন</router-link>
+                    <div class="card-header">
+
+                        <div class=" d-flex justify-content-between align-items-center">
+
+                            <h3>হোল্ডিং ট্যাক্স</h3>
+                            <router-link :to="{name:'holdingTaxadd',params:{wordNo:$route.params.word}}" class="btn btn-info">হোল্ডিং ট্যাক্স যোগ করুন</router-link>
+
+                        </div>
+
+
+                        <form  @submit.prevent="formSubmit">
+
+
+<div class="form-group">
+    <label for=""></label>
+    <div class="d-flex">
+        <input type="text" v-model="form.userdata" id="userdata" class="form-control"
+            placeholder="এখানে আপনার হোল্ডিং নং/নাম/জাতীয় পরিচয় পত্র নম্বর/মোবাইল নম্বর (যে কোন একটি তথ্য) এন্ট্রি করুন"
+            >
+
+
+    </div>
+</div>
+
+<div class="form-group text-center">
+    <button type="button" style="    font-size: 20px;padding: 5px 23px;" disabled class="btn btn-info text-center" v-if="isSending">Wait...</button>
+    <button type="submit" style="    font-size: 20px;padding: 5px 23px;" class="btn btn-info text-center" v-else>খুঁজুন</button>
+
+</div>
+
+</form>
+
+
                     </div>
                     <div class="card-body">
                        <table class="table">
@@ -83,6 +113,10 @@
                     bokeya:{},
                     content_id: '',
                 },
+                form:{
+                userdata:'',
+            },
+            isSending: false
             }
         },
         methods: {
@@ -109,7 +143,12 @@
             this.$root.$emit('bv::show::modal', this.infoModal.id, button)
         },
 
-
+        async formSubmit(){
+            this.isSending = true
+            var res = await this.callApi('post',`/api/holding/tax/search?union=${localStorage.getItem('unioun')}`,this.form);
+            this.rows = res.data;
+            this.isSending = false
+        }
 
 
 

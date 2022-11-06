@@ -28,16 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `tax_invoices`
 --
 
-CREATE TABLE `tax_invoices` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `invoiceId` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `holdingTax_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `PayYear` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `totalAmount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tax_invoices`
@@ -167,8 +157,6 @@ INSERT INTO `tax_invoices` (`id`, `invoiceId`, `holdingTax_id`, `PayYear`, `tota
 --
 -- Indexes for table `tax_invoices`
 --
-ALTER TABLE `tax_invoices`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -177,9 +165,7 @@ ALTER TABLE `tax_invoices`
 --
 -- AUTO_INCREMENT for table `tax_invoices`
 --
-ALTER TABLE `tax_invoices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

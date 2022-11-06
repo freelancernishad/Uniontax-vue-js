@@ -28,22 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `payments`
 --
 
-CREATE TABLE `payments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `union` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trxId` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sonodId` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sonod_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `applicant_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `month` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'October',
-  `year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '2022',
-  `balance` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `payments`
@@ -2390,8 +2374,6 @@ INSERT INTO `payments` (`id`, `union`, `trxId`, `sonodId`, `sonod_type`, `amount
 --
 -- Indexes for table `payments`
 --
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -2400,9 +2382,7 @@ ALTER TABLE `payments`
 --
 -- AUTO_INCREMENT for table `payments`
 --
-ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2326;
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

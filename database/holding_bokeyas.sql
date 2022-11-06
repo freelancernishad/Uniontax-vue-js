@@ -28,17 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `holding_bokeyas`
 --
 
-CREATE TABLE `holding_bokeyas` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `holdingTax_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payYear` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `holding_bokeyas`
 --
@@ -311,8 +300,6 @@ INSERT INTO `holding_bokeyas` (`id`, `holdingTax_id`, `year`, `price`, `payYear`
 --
 -- Indexes for table `holding_bokeyas`
 --
-ALTER TABLE `holding_bokeyas`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -321,9 +308,7 @@ ALTER TABLE `holding_bokeyas`
 --
 -- AUTO_INCREMENT for table `holding_bokeyas`
 --
-ALTER TABLE `holding_bokeyas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
