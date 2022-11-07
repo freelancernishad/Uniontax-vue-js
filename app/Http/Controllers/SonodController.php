@@ -595,6 +595,10 @@ class SonodController extends Controller
         ];
         Payment::create($customerData);
 
+
+
+
+
         if($type=='notify'){
 
              $sonod->update(['payment_status' => 'Paid']);
@@ -603,6 +607,9 @@ class SonodController extends Controller
 
             return $sonod->update(['payment_status' => 'Paid']);
         }
+
+
+
 
 
     }
@@ -985,6 +992,7 @@ class SonodController extends Controller
             return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
         }
     }
+
     public function invoice(Request $request, $name, $id)
     {
         $row = Sonod::find($id);
@@ -993,14 +1001,580 @@ class SonodController extends Controller
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
         $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
+
+$TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
+
         if ($name == 'c') {
             $pdf = LaravelMpdf::loadView('cinvoice', compact('row', 'sonod', 'uniouninfo'));
             $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
         } else {
-            $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
-            $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+
+
+            $khatlist = $row->amount_deails;
+            $khatlist = json_decode($khatlist);
+            $total = $khatlist->tredeLisenceFee;
+            $amount = ($total*$khatlist->vatAykor)/100;
+
+
+            $totalAmount = $khatlist->pesaKor+$total+$amount;
+
+            $amounts = number_format($totalAmount,2);
+
+            $numto = new NumberToBangla();
+            $amount = $numto->bnMoney((float)$amounts);
+
+
+
+    // return $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount);
+            $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+            $data['fileName'] = $fileName;
+            $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
+            $mpdf->WriteHTML( $this->invoicePdf($row,$sonod,$uniouninfo,$TaxInvoice,$amount));
+            $mpdf->Output($fileName,'I');
+
+            // $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
+            // $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+
+
+
+
         }
     }
+
+
+
+
+    public function invoicePdf($sonod,$sonodName,$unions,$TaxInvoice,$amountWord){
+
+        $full_name = $unions->full_name;
+        $short_name_b = $unions->short_name_b;
+        $thana = $unions->thana;
+        $district = $unions->district;
+
+
+
+        $maliker_name = $sonod->applicant_name;
+        $father_or_samir_name = $sonod->applicant_father_name;
+        $gramer_name = $sonod->applicant_present_village;
+        $word_no = $sonod->applicant_present_word_number;
+        $mobile_no = $sonod->applicant_mobile;
+
+
+        $khatlist = $sonod->amount_deails;
+        $khatlist = json_decode($khatlist);
+        $total = $khatlist->tredeLisenceFee;
+        $amount = ($total*$khatlist->vatAykor)/100;
+
+
+        $totalAmount = $khatlist->pesaKor+$total+$amount;
+
+
+
+        $invoiceId = $TaxInvoice->trxId;
+        $status = $TaxInvoice->status;
+        $created_at = date("d/m/Y", strtotime($TaxInvoice->created_at));
+        $subtotal = number_format($TaxInvoice->amount,2);
+
+        // <div style='text-align:right'>(ডিলারের কপি)</div>
+        $html = "
+
+        <style>
+        @page {
+            margin: 10px;
+           }
+
+        .memoborder{
+            width: 48%;
+        }
+
+        .memo {
+        //    width: 500px;
+        //    margin:0 auto;
+        //    padding:20px;
+            background: white;
+
+        }
+
+
+
+        .memoHead {
+            text-align: center;
+            color:black
+        }
+        .companiname {
+            margin:0;
+        }
+        p {
+
+            color:black;
+            margin:0;
+
+        }div {
+
+            color:black;
+            margin:0;
+
+        }
+        p.defalttext.address {
+            background:black;
+            width: 269px;
+            margin: 0 auto;
+            color: white;
+            border-radius: 50px;
+            padding: 2px 0px;
+        }
+        p.defalttext {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0;
+            /* transform: scaleX(1.2); */
+
+        }
+
+
+        .thead .tr {
+            color: black;
+        }
+        .thead .tr .th {
+            color: black;
+        }
+
+        .tr {
+            border: 1px solid black;
+        }
+
+        .th {
+            border: 1px solid black;
+            border-right: 1px solid white;
+        }
+
+        .td {
+            border: 1px solid black;
+        }
+        .table,  .td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          text-align: center;
+          color:black;
+        }.th, {
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+
+        .td {
+            height: 18.5px;
+
+        }
+        .slNo{
+            float: right;
+            width: 300px;
+        }
+
+
+
+.tdlist{
+    height: 200px;
+    vertical-align: top;
+}
+
+        </style>
+
+
+    <div id='body'>
+
+    <div class='memoborder' style='float:left' >
+    <div class='memobg memobg1'>
+            <div class='memo'>
+            <div class='memoHead'>
+
+
+
+            <p class='defalttext'>ইউপি ফরম-১০</p>
+            <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
+            <p class='defalttext'>উপজেলা: $thana, জেলা: $district  </p>
+            <h2 class='companiname' style='  color: #410fcc;'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
+
+            if($status=='Paid'){
+                $html .="            <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: green;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>পরিশোধিত </h2>";
+            }else{
+
+                $html .="           <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: red;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>অপরিশোধিত </h2>";
+            }
+
+
+
+            $html .="
+
+
+
+
+        </div>
+
+        <table style='width:100%'>
+        <tr>
+            <td colspan='2'></td>
+            <td style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
+        <tr>
+
+        <tr>
+            <td colspan='3'>$sonodName->bnname</td>
+
+        <tr>
+
+        <tr>
+            <td >নাম: $maliker_name </td>
+            <td colspan='2'>পিতার নাম- $father_or_samir_name</td>
+
+        <tr>
+        <tr>
+            <td >ঠিকানা: গ্রাম- $gramer_name,</td>
+            <td >ওয়ার্ড- ".int_en_to_bn($word_no)."</td>
+            <td >ডাকঘর- $short_name_b</td>
+
+        <tr>
+        <tr>
+            <td >উপজেলা: $thana </td>
+            <td >জেলা: $district</td>
+            <td >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
+
+        <tr>
+        </table>
+    <p></p>
+
+
+
+
+                <div class='memobody' style='position: relative;'>
+
+                    <div class='productDetails'>
+                        <table class='table' style='border:1px solid #444B8F;width:100%' cellspacing='0'>
+                            <thead class='thead'>
+                                <tr class='tr'>
+                                    <td class='th defaltfont' colspan='4' width='10%'>আদায়ের বিবরণ</td>
+                                </tr>
+
+                                <tr class='tr'>
+                                    <td class='td defaltfont' width='5%'>ক্র. নং</td>
+                                    <td class='td defaltfont' width='25%'>খাত</td>
+                                    <td class='td defaltfont' width='15%'>বর্তমানে পরিশোধকৃত টাকা</td>
+                                    <td class='td defaltfont' width='15%'>মোট টাকার পরিমাণ</td>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody class='tbody'>";
+
+
+
+                                    // $totalpay = $orders->pay;
+                                    // $totaldue = $orders->due;
+                                    $index = 1;
+
+                                // $orderDetails = json_decode($orders->Invoices);
+
+
+
+                                  $html .="  <tr class='tr'>
+                                        <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                                        <td class='td  defaltfont'>পেশা কর</td>
+                                        <td class='td  defaltfont'>".int_en_to_bn($khatlist->pesaKor)."</td>
+                                        <td class='td  defaltfont'>".int_en_to_bn($khatlist->pesaKor)."</td>
+                                    </tr>";
+
+
+
+                                  $html .="  <tr class='tr'>
+                                        <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
+                                        <td class='td  defaltfont'>ট্রেড লাইসেন্স ফি</td>
+                                        <td class='td  defaltfont'>".int_en_to_bn($khatlist->tredeLisenceFee)."</td>
+                                        <td class='td  defaltfont'>".int_en_to_bn($khatlist->tredeLisenceFee)."</td>
+                                    </tr>";
+
+
+
+                                  $html .="  <tr class='tr'>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn(3)."</td>
+                                        <td class='td tdlist defaltfont'>ভ্যাট ও আয়কর</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($amount)."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($amount)."</td>
+                                    </tr>";
+
+
+
+                                        $index++;
+
+
+
+
+
+
+
+
+
+                                $html .=" </tbody>
+                            <tfoot class='tfoot'>";
+
+
+
+
+
+                            $html .="
+                            <tr class='tr'>
+                            <td colspan='3' class='defalttext td defaltfont'style='text-align:right;    padding: 0 13px;'><p> মোট </p></td>
+                            <td class='td defaltfont'>".int_en_to_bn($totalAmount)."</td>
+                    </tr>
+
+
+                            ";
+
+
+
+
+
+
+
+
+                                $html .=" </tfoot>
+                        </table>
+                        <p style='margin-top:15px;padding:0 15px;' class='defaltfont'>কথায় : $amountWord</p>
+
+                    </div>
+                </div>
+                <div class='memofooter' style='margin-top:25px'>
+                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>ইউপি সচিব/আদায়কারীর স্বাক্ষর
+                    </br>
+                    তারিখ: ".int_en_to_bn($created_at)."
+                    </p>
+
+                    <p style='float:right;width:30%;text-align:right;padding:10px 15px' class='defaltfont'>ইউপি চেয়ারম্যানের স্বাক্ষর</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+    <div class='memoborder' style='float:right' >
+    <div class='memobg memobg1'>
+            <div class='memo'>
+            <div class='memoHead'>
+
+
+
+            <p class='defalttext'>ইউপি ফরম-১০</p>
+            <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
+            <p class='defalttext'>উপজেলা: $thana, জেলা: $district  </p>
+            <h2 class='companiname'  style='  color: #410fcc;'>ট্যাক্স, রেট ও বিবিধ প্রাপ্তি আদায় রশিদ </h2>";
+
+            if($status=='Paid'){
+                $html .="            <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: green;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>পরিশোধিত </h2>";
+            }else{
+
+                $html .="           <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: red;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>অপরিশোধিত </h2>";
+            }
+
+
+
+            $html .="
+
+
+
+
+        </div>
+
+        <table style='width:100%'>
+        <tr>
+        <td colspan='2'></td>
+        <td style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
+    <tr>
+
+    <tr>
+        <td colspan='3'>$sonodName->bnname</td>
+
+    <tr>
+
+        <tr>
+            <td >নাম: $maliker_name </td>
+            <td colspan='2'>পিতার নাম- $father_or_samir_name</td>
+
+        <tr>
+        <tr>
+            <td >ঠিকানা: গ্রাম- $gramer_name,</td>
+            <td >ওয়ার্ড- ".int_en_to_bn($word_no)."</td>
+            <td >ডাকঘর- $short_name_b</td>
+
+        <tr>
+        <tr>
+            <td >উপজেলা: $thana </td>
+            <td >জেলা: $district</td>
+            <td >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
+
+        <tr>
+        </table>
+    <p></p>
+
+
+
+
+                <div class='memobody' style='position: relative;'>
+
+                    <div class='productDetails'>
+                        <table class='table' style='border:1px solid #444B8F;width:100%' cellspacing='0'>
+                            <thead class='thead'>
+                                <tr class='tr'>
+                                    <td class='th defaltfont' colspan='4' width='10%'>আদায়ের বিবরণ</td>
+                                </tr>
+
+                                <tr class='tr'>
+                                <td class='td defaltfont' width='5%'>ক্র. নং</td>
+                                <td class='td defaltfont' width='25%'>খাত</td>
+                                <td class='td defaltfont' width='15%'>বর্তমানে পরিশোধকৃত টাকা</td>
+                                <td class='td defaltfont' width='15%'>মোট টাকার পরিমাণ</td>
+
+
+                                </tr>
+                            </thead>
+                            <tbody class='tbody'>";
+
+
+
+                                    // $totalpay = $orders->pay;
+                                    // $totaldue = $orders->due;
+                                    $index = 1;
+
+                                // $orderDetails = json_decode($orders->Invoices);
+
+
+
+                                $html .="  <tr class='tr'>
+                                <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                                <td class='td  defaltfont'>পেশা কর</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($khatlist->pesaKor)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($khatlist->pesaKor)."</td>
+                            </tr>";
+
+
+
+                          $html .="  <tr class='tr'>
+                                <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
+                                <td class='td  defaltfont'>ট্রেড লাইসেন্স ফি</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($khatlist->tredeLisenceFee)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($khatlist->tredeLisenceFee)."</td>
+                            </tr>";
+
+
+
+                          $html .="  <tr class='tr'>
+                                <td class='td tdlist defaltfont'>".int_en_to_bn(3)."</td>
+                                <td class='td tdlist defaltfont'>ভ্যাট ও আয়কর</td>
+                                <td class='td tdlist defaltfont'>".int_en_to_bn($amount)."</td>
+                                <td class='td tdlist defaltfont'>".int_en_to_bn($amount)."</td>
+                            </tr>";
+
+
+
+                                        $index++;
+
+
+
+
+
+
+
+
+
+                                $html .=" </tbody>
+                            <tfoot class='tfoot'>";
+
+
+
+                            $html .="
+                            <tr class='tr'>
+                            <td colspan='3' class='defalttext td defaltfont'style='text-align:right;    padding: 0 13px;'><p> মোট </p></td>
+                            <td class='td defaltfont'>".int_en_to_bn($totalAmount)."</td>
+                    </tr>
+
+
+                            ";
+
+
+
+
+
+
+
+                                $html .=" </tfoot>
+                        </table>
+                        <p style='margin-top:15px;padding:0 15px;' class='defaltfont'>কথায় : $amountWord</p>
+
+                    </div>
+                </div>
+                <div class='memofooter' style='margin-top:25px'>
+                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>ইউপি সচিব/আদায়কারীর স্বাক্ষর
+                    </br>
+                    তারিখ: ".int_en_to_bn($created_at)."
+                    </p>
+
+                    <p style='float:right;width:30%;text-align:right;padding:10px 15px' class='defaltfont'>ইউপি চেয়ারম্যানের স্বাক্ষর</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+
+        </div>
+
+
+
+        ";
+
+
+        return $html;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function userDocument(Request $request, $name, $id)
     {
         $row = Sonod::find($id);
