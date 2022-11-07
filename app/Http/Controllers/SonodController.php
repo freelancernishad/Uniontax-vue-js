@@ -1813,7 +1813,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         // return view('sonod',compact('row','sonod','uniouninfo'));
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
         $sonodNO = ' <div class="signature text-center position-relative">
-সনদ নং: ' .  int_en_to_bn($row->sonod_Id) . ' <br /> ইস্যুর তারিখ: </div>';
+সনদ নং: ' .  int_en_to_bn($row->sonod_Id) . ' <br /> ইস্যুর তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->created_at))).'</div>';
 
 
 
