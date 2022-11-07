@@ -33,7 +33,7 @@
 
         </div>
 
-<p style='text-align:right'>রশিদ নং : 254823</p>
+<p style='text-align:right'>রশিদ নং : $TaxInvoice->trxId</p>
         <p>প্রদানকারীর নাম:  $row->applicant_name  , পিতা/স্বামীর নাম:   $row->applicant_father_name  ,  ওয়ার্ড নং-  $row->applicant_present_word_number ,  গ্রাম:   $row->applicant_present_village ,  উপজেলা:  $row->applicant_present_Upazila  , জেলা:  $row->applicant_present_district </p>";
 
 
@@ -42,6 +42,8 @@
 
         $html .="".invoiceView($row->id)."";
 
+
+
         $html .="</div>
         <p style='text-align:left'>কথায় :  $row->the_amount_of_money_in_words ।</p>
 
@@ -49,8 +51,10 @@
         <p style='text-align:right'>আদায়কারীর স্বাক্ষর</p>
         ";
         echo $html;
-// echo "<h5>..................................................................................................................................................................................................</h5>";
-//     echo $html;
+
+
+echo "<h5>..................................................................................................................................................................................................</h5>";
+    echo $html;
 
 @endphp
 

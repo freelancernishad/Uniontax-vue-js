@@ -1010,30 +1010,30 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         } else {
 
 
-            $khatlist = $row->amount_deails;
-            $khatlist = json_decode($khatlist);
-            $total = $khatlist->tredeLisenceFee;
-            $amount = ($total*$khatlist->vatAykor)/100;
+    //         $khatlist = $row->amount_deails;
+    //         $khatlist = json_decode($khatlist);
+    //         $total = $khatlist->tredeLisenceFee;
+    //         $amount = ($total*$khatlist->vatAykor)/100;
 
 
-            $totalAmount = $khatlist->pesaKor+$total+$amount;
+    //         $totalAmount = $khatlist->pesaKor+$total+$amount;
 
-            $amounts = number_format($totalAmount,2);
+    //         $amounts = number_format($totalAmount,2);
 
-            $numto = new NumberToBangla();
-            $amount = $numto->bnMoney((float)$amounts);
+    //         $numto = new NumberToBangla();
+    //         $amount = $numto->bnMoney((float)$amounts);
 
 
 
-    // return $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount);
-            $fileName = 'Invoice-'.date('Y-m-d H:m:s');
-            $data['fileName'] = $fileName;
-            $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
-            $mpdf->WriteHTML( $this->invoicePdf($row,$sonod,$uniouninfo,$TaxInvoice,$amount));
-            $mpdf->Output($fileName,'I');
+    // // return $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount);
+    //         $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+    //         $data['fileName'] = $fileName;
+    //         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
+    //         $mpdf->WriteHTML( $this->invoicePdf($row,$sonod,$uniouninfo,$TaxInvoice,$amount));
+    //         $mpdf->Output($fileName,'I');
 
-            // $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo'));
-            // $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+            $pdf = LaravelMpdf::loadView('invoice', compact('row', 'sonod', 'uniouninfo','TaxInvoice'));
+            $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
 
 
 
