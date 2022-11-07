@@ -16,6 +16,10 @@ class HoldingtaxController extends Controller
 
     public function holdingAllPenddingInvoice(Request $request)
     {
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
+
          $unioun =  $request->unioun;
          $holdingtax = Holdingtax::where('unioun',$unioun)->get();
 
@@ -24,10 +28,10 @@ class HoldingtaxController extends Controller
          $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
 
         foreach ($holdingtax as $value) {
-            $HoldingBokeya = HoldingBokeya::where('holdingTax_id',$value->id)->get();
-            foreach ($HoldingBokeya as $HB) {
+             $holdingBokeya = HoldingBokeya::where(['holdingTax_id'=>$value->id,'status'=>'Unpaid'])->first();
+            // foreach ($HoldingBokeya as $HB) {
 
-                $holdingBokeya = HoldingBokeya::find($HB->id);
+                // $holdingBokeya = HoldingBokeya::find($HB->id);
                 // print_r($holdingBokeya);
 
 
@@ -57,7 +61,7 @@ class HoldingtaxController extends Controller
                     }else{
 
                         $invoice=[
-                            'invoiceId'=>time(),
+                            'invoiceId'=>time().$holdingBokeya->id,
                             'holdingTax_id'=>$holdingTax_id,
                             'PayYear'=>date('Y'),
                             'totalAmount'=>$holdingBokeyasAmount,
@@ -87,7 +91,7 @@ class HoldingtaxController extends Controller
                  }else{
 
                      $invoice=[
-                         'invoiceId'=>time(),
+                         'invoiceId'=>time().$holdingBokeya->id,
                          'holdingTax_id'=>$holdingTax_id,
                          'PayYear'=>$payYear,
                          'totalAmount'=>$holdingBokeyasAmount,
@@ -142,14 +146,23 @@ class HoldingtaxController extends Controller
 
                 if($holdingBokeya->status=='Unpaid'){
 
-                    $mpdf->WriteHTML( $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount));
-                    $mpdf->AddPage();
+                    // return $TaxInvoice->invoiceId.' --- '.time().$HB->id;
+
+                    // if($TaxInvoice->invoiceId==time().$HB->id){
+
+                    // }else{
+
+                        $mpdf->WriteHTML( $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount));
+                        $mpdf->AddPage();
+
+                    // }
+
                 }
 
 
 
 
-            }
+            // }
         }
         $mpdf->Output($fileName,'I');
 
@@ -190,7 +203,7 @@ class HoldingtaxController extends Controller
             }else{
 
                 $invoice=[
-                    'invoiceId'=>time(),
+                    'invoiceId'=>time().$id,
                     'holdingTax_id'=>$holdingTax_id,
                     'PayYear'=>date('Y'),
                     'totalAmount'=>$holdingBokeyasAmount,
@@ -220,7 +233,7 @@ class HoldingtaxController extends Controller
          }else{
 
              $invoice=[
-                 'invoiceId'=>time(),
+                 'invoiceId'=>time().$id,
                  'holdingTax_id'=>$holdingTax_id,
                  'PayYear'=>$payYear,
                  'totalAmount'=>$holdingBokeyasAmount,
