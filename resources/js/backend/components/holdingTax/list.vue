@@ -96,9 +96,11 @@
                                     <td>{{ row.nid_no }}</td>
                                     <td>{{ row.mobile_no }}</td>
                                     <td>
+                                        <router-link :to="{name:'holdingTaxedit',params:{id:row.id}}" class="btn btn-success" >এডিট</router-link>
+
                                         <span size="sm" v-if="buttonLoader" class="btn btn-info mr-1 mt-1"><img width="20px" src="https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif" alt=""></span>
 
-                                        <router-link :to="{name:'holdingTaxView',params:{id:row.id}}" class="btn btn-success" v-else >দেখুন</router-link>
+                                        <router-link :to="{name:'holdingTaxView',params:{id:row.id}}" class="btn btn-info" v-else >দেখুন</router-link>
 
 
 

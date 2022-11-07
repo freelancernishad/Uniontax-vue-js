@@ -14,7 +14,151 @@ use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 class HoldingtaxController extends Controller
 {
 
-    public function holdingPaymentInvoice(Request $request,$id)
+    public function holdingAllPenddingInvoice(Request $request)
+    {
+         $unioun =  $request->unioun;
+         $holdingtax = Holdingtax::where('unioun',$unioun)->get();
+
+         $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+         $data['fileName'] = $fileName;
+         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
+
+        foreach ($holdingtax as $value) {
+            $HoldingBokeya = HoldingBokeya::where('holdingTax_id',$value->id)->get();
+            foreach ($HoldingBokeya as $HB) {
+
+                $holdingBokeya = HoldingBokeya::find($HB->id);
+                // print_r($holdingBokeya);
+
+
+                $payYear = $holdingBokeya->payYear;
+                $holdingTax_id = $holdingBokeya->holdingTax_id;
+                $holdingTax = Holdingtax::find($holdingTax_id);
+                $union = $holdingTax->unioun;
+                $unions = Uniouninfo::where(['short_name_e'=>$union])->first();
+
+
+
+
+               if($holdingBokeya->status=='Unpaid'){
+
+
+                    $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->get();
+                   $holdingBokeyasAmount = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->sum('price');
+                    $TaxInvoicecount =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->count();
+
+                   if($TaxInvoicecount>0){
+
+                    $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->first();
+                    $invoice=[
+                     'totalAmount'=>$holdingBokeyasAmount,
+                     ];
+                    $TaxInvoice->update($invoice);
+                    }else{
+
+                        $invoice=[
+                            'invoiceId'=>time(),
+                            'holdingTax_id'=>$holdingTax_id,
+                            'PayYear'=>date('Y'),
+                            'totalAmount'=>$holdingBokeyasAmount,
+                            'status'=>'Unpaid',
+                        ];
+                        TaxInvoice::create($invoice);
+                    }
+
+                  $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->first();
+
+
+
+                }else{
+
+                    $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->get();
+                    $holdingBokeyasAmount = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->sum('price');
+                    $TaxInvoicecount =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->count();
+
+
+                    if($TaxInvoicecount>0){
+                        $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->first();
+                        $invoice=[
+                         'totalAmount'=>$holdingBokeyasAmount,
+                         'status'=>'Paid',
+                         ];
+                        $TaxInvoice->update($invoice);
+                 }else{
+
+                     $invoice=[
+                         'invoiceId'=>time(),
+                         'holdingTax_id'=>$holdingTax_id,
+                         'PayYear'=>$payYear,
+                         'totalAmount'=>$holdingBokeyasAmount,
+                         'status'=>'Paid',
+                     ];
+                     TaxInvoice::create($invoice);
+                 }
+
+                 $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear,'status'=>'Paid'])->first();
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                $holdingTax = Holdingtax::find($holdingTax_id);
+                $union = $holdingTax->unioun;
+                $unions = Uniouninfo::where(['short_name_e'=>$union])->first();
+
+                if($holdingBokeya->status=='Unpaid'){
+                    $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->get();
+                    $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid','year'=>'2022-2023'])->sum('price');
+                    $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->where('year','!=','2022-2023')->sum('price');
+                }else{
+
+
+                    $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->get();
+                    $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear,'year'=>'2022-2023'])->sum('price');
+                    $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->where('year','!=','2022-2023')->sum('price');
+                }
+
+
+        // return $previousamount;
+
+
+                // die();
+            //  return   $amounts =(int)number_format($TaxInvoice->totalAmount,2);
+                 $amounts =(float)$TaxInvoice->totalAmount;
+
+                $numto = new NumberToBangla();
+                $amount = $numto->bnMoney($amounts);
+
+                if($holdingBokeya->status=='Unpaid'){
+
+                    $mpdf->WriteHTML( $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount));
+                    $mpdf->AddPage();
+                }
+
+
+
+
+            }
+        }
+        $mpdf->Output($fileName,'I');
+
+
+    }
+
+
+
+    public function holdingPaymentInvoice($id)
     {
 
           $holdingBokeya = HoldingBokeya::find($id);
@@ -123,10 +267,11 @@ class HoldingtaxController extends Controller
 
 
         // die();
-        $amounts = number_format($TaxInvoice->totalAmount,2);
+    //  return   $amounts =(int)number_format($TaxInvoice->totalAmount,2);
+         $amounts =(float)$TaxInvoice->totalAmount;
 
         $numto = new NumberToBangla();
-        $amount = $numto->bnMoney((float)$amounts);
+        $amount = $numto->bnMoney($amounts);
 
 
 
@@ -396,8 +541,8 @@ class HoldingtaxController extends Controller
                                   $html .="  <tr class='tr items'>
                                         <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>
                                         <td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn($previousamount)."</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn($currentamount)."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($previousamount,2))."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($currentamount,2))."</td>
                                         <td class='td tdlist defaltfont'>".int_en_to_bn($subtotal)."</td>
 
                                     </tr>";
@@ -563,8 +708,8 @@ class HoldingtaxController extends Controller
                                   $html .="  <tr class='tr items'>
                                         <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>
                                         <td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn($previousamount)."</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn($currentamount)."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($previousamount,2))."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($currentamount,2))."</td>
                                         <td class='td tdlist defaltfont'>".int_en_to_bn($subtotal)."</td>
 
                                     </tr>";
@@ -941,7 +1086,29 @@ class HoldingtaxController extends Controller
     }
     public function store(Request $r)
     {
-        //  return $r->all();
+
+
+
+
+
+        if($r->id){
+            $id = $r->id;
+            $data = $r->except('bokeya','image');
+            $Holdingtax =  Holdingtax::find($id);
+            $Holdingtax->update($data);
+            $bokeya = $r->bokeya;
+            foreach ($bokeya as $value) {
+            $HoldingBokeya =  HoldingBokeya::find($value['id']);
+            $HoldingBokeya->update($value);
+            }
+            return $Holdingtax;
+        }
+
+
+
+
+
+
         //  echo '<pre>';
         //  print_r($r->input());
         $griher_barsikh_mullo = $this->int_bn_to_en($r->griher_barsikh_mullo);
@@ -1177,7 +1344,7 @@ $total_bokeya = 0;
 
 
         }
-
+        return $holding;
 
 
 

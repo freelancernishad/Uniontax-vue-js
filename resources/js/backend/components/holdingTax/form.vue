@@ -192,18 +192,34 @@
                         <td>
                             <input type="hidden" v-model="form.itemId = index">
                             <div class="form-group">
-                                                           <select v-model="bok.year" class="form-control">
 
-                                                           <option>2021-2022</option><option>2020-2021</option><option>2019-2020</option><option>2018-2019</option><option>2017-2018</option><option>2016-2017</option><option>2015-2016</option><option>2014-2015</option><option>2013-2014</option><option>2012-2013</option><option>2011-2012</option><option>2010-2011</option><option>2009-2010</option><option>2008-2009</option><option>2007-2008</option><option>2006-2007</option><option>2005-2006</option><option>2004-2005</option><option>2003-2004</option><option>2002-2003</option><option>2001-2002</option>                                                        </select>
+
+                                <select v-model="bok.year" class="form-control" v-if="bok.status=='Paid'"  disabled>
+                                    <option>2022-2023</option><option>2021-2022</option><option>2020-2021</option><option>2019-2020</option><option>2018-2019</option><option>2017-2018</option><option>2016-2017</option><option>2015-2016</option><option>2014-2015</option><option>2013-2014</option><option>2012-2013</option><option>2011-2012</option><option>2010-2011</option><option>2009-2010</option><option>2008-2009</option><option>2007-2008</option><option>2006-2007</option><option>2005-2006</option><option>2004-2005</option><option>2003-2004</option><option>2002-2003</option><option>2001-2002</option>
+                                </select>
+
+                                <select v-model="bok.year" class="form-control" v-else>
+                                    <option>2022-2023</option><option>2021-2022</option><option>2020-2021</option><option>2019-2020</option><option>2018-2019</option><option>2017-2018</option><option>2016-2017</option><option>2015-2016</option><option>2014-2015</option><option>2013-2014</option><option>2012-2013</option><option>2011-2012</option><option>2010-2011</option><option>2009-2010</option><option>2008-2009</option><option>2007-2008</option><option>2006-2007</option><option>2005-2006</option><option>2004-2005</option><option>2003-2004</option><option>2002-2003</option><option>2001-2002</option>
+                                </select>
+
+
                             </div>
-
                         </td>
 
-                        <td><div class="form-group"><input type="number" v-model="bok.price"  class="form-control w-full py-2 border border-indigo-500 rounded" min="0"  step="5"/></div></td>
+                        <td><div class="form-group">
+
+                            <input type="tel" v-model="bok.price" v-if="bok.status=='Paid'"  class="form-control w-full py-2 border border-indigo-500 rounded" min="0" disabled  />
+                            <input type="tel" v-model="bok.price" v-else  class="form-control w-full py-2 border border-indigo-500 rounded" min="0"  />
+
+                        </div></td>
 
 
 
-                        <td><button type="button" class="ml-2 btn btn-danger" @click="remove(index)" v-show="index != 0">Remove</button></td>
+                        <td>
+                            <span  v-if="bok.status=='Paid'" class="btn btn-success" >Paid</span>
+                            <button type="button" class="ml-2 btn btn-danger" v-else  @click="remove(index)" v-show="index != 0">Remove</button>
+
+                        </td>
                     </tr>
 
 
@@ -286,11 +302,21 @@
             //     var res = await this.callApi('get',`/api/holding/tax/list?word=${this.$route.params.word}&union=${localStorage.getItem('unioun')}`,[]);
             // },
 
+            async info() {
+
+
+            var item = await this.callApi('get',`/api/holding/tax/show/${this.$route.params.id}`);
+
+            this.form = item.data
+            var res = await this.callApi('get',`/api/holding/bokeya/list?holdingTax_id=${item.data.id}`,[])
+
+            this.form.bokeya = res.data
+            },
 
             addMore() {
                 this.form.bokeya.push({
                                 itemId: "",
-                                status: "",
+                                status: "Unpaid",
                                 year: "",
                                 price: 0,
                 });
@@ -303,8 +329,8 @@
                 async finalSubmit(){
                     this.form['unioun']= this.Users.unioun
                     var res = await this.callApi('post',`/api/holding/tax/submit`,this.form)
-
-                    this.$router.push({ name: 'holdingTaxList',params:{word:this.$route.params.wordNo}})
+                    // console.log(res.data.word_no)
+                    this.$router.push({ name: 'holdingTaxList',params:{word:res.data.word_no}})
             Notification.customSuccess('Holding tax Update Success');
                 },
 
@@ -315,8 +341,13 @@
                 // this.list();
 
             // }, 3000);
+            if(this.$route.params.id){
+                this.info();
+            }else{
+                this.form.word_no = this.$route.params.wordNo;
 
-            this.form.word_no = this.$route.params.wordNo;
+            }
+
 
 
 

@@ -77,6 +77,7 @@ Route::get('/pay/holding/tax/{id}', [HoldingtaxController::class,'holding_tax_pa
 Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSuccess']);
 
 Route::get('/holding/tax/certificate_of_honor/{id}', [HoldingtaxController::class,'holdingCertificate_of_honor']);
+Route::get('/holding/tax/invoice/all/list', [HoldingtaxController::class,'holdingAllPenddingInvoice']);
 Route::get('/holding/tax/invoice/{id}', [HoldingtaxController::class,'holdingPaymentInvoice']);
 
 Route::get('/report/export', [PaymentController::class,'export']);
