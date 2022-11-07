@@ -19,7 +19,7 @@ class HoldingtaxController extends Controller
          $unioun =  $request->unioun;
          $holdingtax = Holdingtax::where('unioun',$unioun)->get();
 
-         $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+         $fileName = 'Invoice-'.date('Y-m-d H:m:s').'.pdf';
          $data['fileName'] = $fileName;
          $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
 

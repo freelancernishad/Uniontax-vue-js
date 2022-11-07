@@ -70,10 +70,10 @@
                                         ওয়ার্ড</router-link>
                                 </div>
 
-
+<!--
                                 <div class="col-md-2 col-sm-3 col-4">
                                     <a :href="'/holding/tax/invoice/all/list?unioun='+this.$localStorage.getItem('unioun')" class="btn btn-info btn-lg">অপরিশোধিত ট্যাক্স</a>
-                                </div>
+                                </div> -->
 
 
 
