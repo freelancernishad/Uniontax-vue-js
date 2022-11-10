@@ -122,11 +122,26 @@
 
 
 
+                @if($Product->sonod_type=='holdingtax')
                 <td class="td" style="text-align:center">{{ $Product->sonod->applicant_name }}</td>
                 <td class="td" style="text-align:center">গ্রামঃ- {{ $Product->sonod->applicant_present_village }},
                     হোল্ডিং নং- {{ int_en_to_bn($Product->sonod->applicant_holding_tax_number) }}</td>
                 <td class="td" style="text-align:center">{{ int_en_to_bn($Product->sonod->applicant_mobile) }}</td>
+
+                @else
+
+
+
+                <td class="td" style="text-align:center">{{ $Product->sonod->applicant_name }}</td>
+                <td class="td" style="text-align:center">গ্রামঃ- {{ $Product->sonod->applicant_present_village }},
+                    হোল্ডিং নং- {{ int_en_to_bn($Product->sonod->applicant_holding_tax_number) }}</td>
+                <td class="td" style="text-align:center">{{ int_en_to_bn($Product->sonod->applicant_mobile) }}</td>
+                @endif
+
                 <td class="td" style="text-align:center">{{ int_en_to_bn(round($Product->amount,2)) }}</td>
+
+
+
             </tr>
             @php
             $i++;

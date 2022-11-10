@@ -28,4 +28,8 @@ class Payment extends Model
         return $this->belongsTo(Sonod::class, 'sonodId', 'id');
     }
 
+    public function tax(){
+        return $this->belongsTo(Holdingtax::class, 'sonodId', 'id');
+    }
+
 }

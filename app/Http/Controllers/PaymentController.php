@@ -38,12 +38,13 @@ class PaymentController extends Controller
         if($sonod_type && $from && $to){
             if($sonod_type=='all'){
             // return Payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
-            $row = Payment::with(['sonod'])->where(['union'=>$union,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+            $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
             }else{
-                 $row = Payment::with(['sonod'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+                 $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
             }
 
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
+        return view('Export',compact('row','uniouninfo','sonod_type','from','to'));
         $pdf = LaravelMpdf::loadView('Export',compact('row','uniouninfo','sonod_type','from','to'));
         return $pdf->stream("hlsdfhlo.pdf");
 
