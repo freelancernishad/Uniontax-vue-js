@@ -42,7 +42,7 @@ class PaymentController extends Controller
             }else{
                  $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
             }
-
+            // return $row;
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
         return view('Export',compact('row','uniouninfo','sonod_type','from','to'));
         $pdf = LaravelMpdf::loadView('Export',compact('row','uniouninfo','sonod_type','from','to'));
@@ -51,9 +51,9 @@ class PaymentController extends Controller
         }
 
         if($sonod_type=='all'){
-            $row = Payment::with(['sonod'])->where(['union'=>$union,'status'=>'Paid'])->orderBy('id','desc')->get();
+            $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'status'=>'Paid'])->orderBy('id','desc')->get();
         }
-        $row = Payment::with(['sonod'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
+        $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->orderBy('id','desc')->get();
         // return Excel::download($export, 'report.xlsx');
 
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();

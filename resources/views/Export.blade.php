@@ -123,10 +123,20 @@
 
 
                 @if($Product->sonod_type=='holdingtax')
-                <td class="td" style="text-align:center">{{ $Product->sonod->applicant_name }}</td>
-                <td class="td" style="text-align:center">গ্রামঃ- {{ $Product->sonod->applicant_present_village }},
-                    হোল্ডিং নং- {{ int_en_to_bn($Product->sonod->applicant_holding_tax_number) }}</td>
-                <td class="td" style="text-align:center">{{ int_en_to_bn($Product->sonod->applicant_mobile) }}</td>
+
+                @php
+                    $PDO = \DB::connection()->getPdo();
+                    $QUERY = $PDO->prepare("SELECT * FROM `holdingtaxes` WHERE `id`='".$Product->tax->holdingTax_id."'");
+                    $QUERY->execute();
+                     $holdingTax=$QUERY->fetch();
+                // print_r($holdingTax);
+                // print_r($holdingTax['maliker_name']);
+                @endphp
+
+                <td class="td" style="text-align:center">{{ $holdingTax['maliker_name'] }}</td>
+                <td class="td" style="text-align:center">গ্রামঃ- {{ $holdingTax['gramer_name'] }},
+                    হোল্ডিং নং- {{ int_en_to_bn($holdingTax['holding_no']) }}</td>
+                <td class="td" style="text-align:center">{{ int_en_to_bn($holdingTax['mobile_no']) }}</td>
 
                 @else
 

@@ -39,4 +39,9 @@ class Holdingtax extends Model
             'image',
     ];
 
+    public function holdingTax(){
+        return $this->belongsTo(HoldingBokeya::class, 'holdingTax_id', 'id');
+    }
+
+
 }

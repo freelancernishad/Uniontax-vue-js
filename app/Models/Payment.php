@@ -29,7 +29,7 @@ class Payment extends Model
     }
 
     public function tax(){
-        return $this->belongsTo(Holdingtax::class, 'sonodId', 'id');
+        return $this->belongsTo(HoldingBokeya::class, 'sonodId', 'id');
     }
 
 }
