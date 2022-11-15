@@ -169,10 +169,21 @@
                                 $C_color = '#7230A0';
                                 $C_size = '18px';
                                 $color = 'black';
+                                $style = '';
                                 if($row->unioun_name=='dhamor'){
                                     $C_color = '#5c1caa';
                                     $C_size = '20px';
                                     $color = '#5c1caa';
+                                }
+
+                                if($row->unioun_name=='toria'){
+                                    $C_color = '#5c1caa';
+                                    $style = "
+
+                                    margin-bottom: -33px;
+                                margin-left: 83px;
+                                    ";
+
                                 }
 
 
@@ -182,7 +193,7 @@
 
 
                             <div class="signature text-center position-relative" style="color:{{ $color }}">
-                                <img width="170px"  src="{{ base64($row->chaireman_sign) }}"><br/>
+                                <img width="170px" style="{{ $style }}"  src="{{ base64($row->chaireman_sign) }}"><br/>
                                 <b><span style="color:{{ $C_color }};font-size:{{ $C_size }};">{{ $row->chaireman_name }}</span> <br />
                                         </b><span style="font-size:16px;">চেয়ারম্যান</span><br />
 
