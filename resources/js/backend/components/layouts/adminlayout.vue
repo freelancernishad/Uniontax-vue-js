@@ -395,12 +395,17 @@ export default {
         },
     async sonodlistCount() {
             var unionname = localStorage.getItem('unioun');
-            if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+            var useridsent ='';
+            if (this.$localStorage.getItem('position') == 'District_admin') {
 
+                var unionname = '';
+            }else if(this.$localStorage.getItem('position') == 'Thana_admin'){
+                var userid = localStorage.getItem('userid');
+                    var useridsent = `&userid=${userid}`;
                 var unionname = '';
             }
 
-            var allSonodc = await this.callApi('get', `/api/get/sonod/count?union=${unionname}&postion=${localStorage.getItem('position')}`, []);
+            var allSonodc = await this.callApi('get', `/api/get/sonod/count?union=${unionname}&postion=${localStorage.getItem('position')}${useridsent}`, []);
             this.allSonodCount = allSonodc.data
             // console.log(allSonodc)
         },

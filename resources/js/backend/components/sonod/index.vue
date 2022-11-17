@@ -640,15 +640,19 @@ export default {
                 } else {
                     stutus = this.$route.params.type;
                 }
+                var useridsent = ``
                 var unioun = ``
                 if (this.$localStorage.getItem('position') == 'Chairman' || this.$localStorage.getItem('position') == 'Secretary') var unioun = `&unioun_name=${localStorage.getItem('unioun')}`
                 if (this.$localStorage.getItem('position') == 'Thana_admin') {
+                    var userid = localStorage.getItem('userid');
+                    var useridsent = `&userid=${userid}`;
                     var unioun = ``
                 }
+
                 if (sondId) {
-                    var res = await this.callApi('get', `/api/sonod/list?sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}&sondId=${sondId}`, []);
+                    var res = await this.callApi('get', `/api/sonod/list?sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}&sondId=${sondId}${useridsent}`, []);
                 } else {
-                    var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}`, []);
+                    var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}${useridsent}`, []);
                 }
                 // var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
                 this.items = res.data.data

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Exception;
+use App\Models\User;
 use App\Models\Sonod;
 use App\Models\Charage;
 use App\Models\Citizen;
@@ -8,8 +9,8 @@ use App\Models\Payment;
 use App\Models\ActionLog;
 use App\Models\Uniouninfo;
 use App\Models\Expenditure;
-use App\Models\Notifications;
 use Illuminate\Http\Request;
+use App\Models\Notifications;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -858,12 +859,27 @@ class SonodController extends Controller
     }
     public function index(Request $request)
     {
+
         $sonod_name = $request->sonod_name;
         $stutus = $request->stutus;
         $payment_status = $request->payment_status;
         $unioun_name = $request->unioun_name;
         $sondId = $request->sondId;
         $sonod_name =  $this->enBnName($sonod_name)->bnname;
+
+        $userid = $request->userid;
+        if($userid){
+            $user = User::find($userid);
+             $thana = $user->thana;
+
+             if ($payment_status) {
+                return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'applicant_present_Upazila' => $thana, 'payment_status' => $payment_status])->orderBy('id', 'DESC')->paginate(20);
+            }
+            return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'applicant_present_Upazila' => $thana])->orderBy('id', 'DESC')->paginate(20);
+
+        }
+
+
         if ($sondId) {
             // return $sondId;
             // return 'sss';
@@ -876,6 +892,11 @@ class SonodController extends Controller
             return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
         }
         return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus])->orderBy('id', 'DESC')->paginate(20);
+
+
+
+
+
         $datas = QueryBuilder::for(Sonod::class)
             ->allowedFilters([
                 AllowedFilter::exact('unioun_name'),
@@ -1632,9 +1653,23 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
     }
     public function totlaAmount(Request $request)
     {
+        $userid = $request->userid;
         $union = $request->union;
         if ($union) {
             return Payment::where(['status' => 'Paid', 'union' => $union])->sum('amount');
+        }elseif($userid){
+            $user = User::find($userid);
+            $thana = $user->thana;
+            $unionlist = Uniouninfo::where('thana',$thana)->get();
+            $totalamount = 0;
+          foreach ($unionlist as $value) {
+            // print_r($value->short_name_e);
+            $totalamount += Payment::where(['union'=>$value->short_name_e,'status'=> 'Paid'])->sum('amount');
+            # code...
+          }
+          return $totalamount;
+
+
         } else {
             return Payment::where('status', 'Paid')->sum('amount');
         }
@@ -1642,12 +1677,37 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
     public function counting(Request $request, $status)
     {
         $union = $request->union;
+        $userid = $request->userid;
+
+        if($userid){
+            $user = User::find($userid);
+            $thana = $user->thana;
+            $unionlist = Uniouninfo::where('thana',$thana)->get();
+            $total = 0;
+          foreach ($unionlist as $value) {
+            if ($status == 'all') {
+                $total +=  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $value->short_name_e])->count();
+            }else{
+
+                $total +=  Sonod::where(['stutus' => $status, 'unioun_name' => $union])->count();
+            }
+            # code...
+          }
+          return $total;
+
+
+        }
+
+
+
         if ($union) {
             if ($status == 'all') {
                 return  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $union])->count();
             }
             return  Sonod::where(['stutus' => $status, 'unioun_name' => $union])->count();
         }
+
+
         if ($status == 'all') {
             return  Sonod::where('stutus', '!=', 'Prepaid')->count();
         }

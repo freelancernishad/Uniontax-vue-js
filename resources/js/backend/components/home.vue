@@ -158,7 +158,6 @@ export default {
     data() {
         return {
             sonodCount:{
-
             allSonodCount:0,
             pendingSonodCount:0,
             approvedSonodCount:0,
@@ -190,11 +189,14 @@ export default {
 
 
        async sonodCountDashbord(status = '',data=''){
-
+        var  userid = localStorage.getItem('userid');
         if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
 
             var res = await this.callApi('get',`/api/count/sonod/${status}?union=${localStorage.getItem('unioun')}`,[]);
-        }else{
+        }else if(localStorage.getItem('position')=='Thana_admin'){
+                var res = await this.callApi('get',`/api/count/sonod/${status}?userid=${userid}`,[]);
+         }else{
+
             var res = await this.callApi('get',`/api/count/sonod/${status}`,[]);
 
         }
@@ -203,10 +205,14 @@ export default {
         },
        async totalamount(){
 
+        var  userid = localStorage.getItem('userid');
+
 
         if(localStorage.getItem('position')=='Secretary' || localStorage.getItem('position')=='Chairman'){
             var res = await this.callApi('get',`/api/sum/amount?union=${localStorage.getItem('unioun')}`,[]);
 
+            }else if(localStorage.getItem('position')=='Thana_admin'){
+                var res = await this.callApi('get',`/api/sum/amount?userid=${userid}`,[]);
             }else{
                 var res = await this.callApi('get',`/api/sum/amount`,[]);
 

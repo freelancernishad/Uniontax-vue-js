@@ -194,10 +194,11 @@ export default {
 
         unionlist(){
 
+            var userid = localStorage.getItem('userid');
             var position = this.Users.position
             var thana = this.Users.thana
             var district = this.Users.district
-            axios.get(`/api/get/union/list?position=${position}&thana=${thana}&district=${district}`)
+            axios.get(`/api/get/union/list?position=${position}&userid=${userid}`)
                 .then(({ data }) => {
                     // console.log(data)
                 this.unions = data

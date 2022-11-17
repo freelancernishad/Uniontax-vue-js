@@ -1155,6 +1155,7 @@ return $Insertdata;
          $district = $user->district;
 
             if($position=='District_admin'){
+
                 return Uniouninfo::where('district', $district)->get();
 
 

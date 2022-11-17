@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\User;
 use App\Models\Sonod;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\Auth;
+
 class SonodnamelistController extends Controller
 {
     public function updatesonodname(Request $request)
@@ -55,6 +57,14 @@ class SonodnamelistController extends Controller
     }
     public function sonodCount(Request $request)
     {
+        $userid = $request->userid;
+        $Upazila = '';
+        if($userid){
+            $user = User::find($userid);
+           $Upazila =  $user->thana;
+        }
+
+
         $union = $request->union;
         $position = $request->postion;
         // return $request->all();
@@ -76,13 +86,30 @@ class SonodnamelistController extends Controller
             }
             // return $penddingStatus;
             if ($union == '') {
-                $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $penddingStatus])->count();
-                $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $Secretary_approvedstatus])->count();
-                if ($Secretary_approvedstatus == 'Secretary_approved') {
-                    $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus, 'payment_status' => 'Unpaid'])->count();
-                } else {
-                    $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus])->count();
+
+                if($userid){
+
+                     $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $penddingStatus, 'applicant_present_Upazila' => $Upazila])->count();
+                    $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $Secretary_approvedstatus, 'applicant_present_Upazila' => $Upazila])->count();
+                    if ($Secretary_approvedstatus == 'Secretary_approved') {
+                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus, 'payment_status' => 'Unpaid', 'applicant_present_Upazila' => $Upazila])->count();
+                    } else {
+                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus, 'applicant_present_Upazila' => $Upazila])->count();
+                    }
+
+                }else{
+                    $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $penddingStatus])->count();
+                    $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $Secretary_approvedstatus])->count();
+                    if ($Secretary_approvedstatus == 'Secretary_approved') {
+                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus, 'payment_status' => 'Unpaid'])->count();
+                    } else {
+                        $sonodCount['approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['sonod_name' => $value->bnname, 'stutus' => $approvedstatus])->count();
+                    }
                 }
+
+
+
+
             } else {
                 $sonodCount['Pending'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $value->bnname, 'stutus' => $penddingStatus])->count();
                 $sonodCount['Secretary_approved'][str_replace(" ", "_", $value->enname)] =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $value->bnname, 'stutus' => $Secretary_approvedstatus])->count();
