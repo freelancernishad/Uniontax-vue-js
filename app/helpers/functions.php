@@ -88,6 +88,11 @@ curl_close($curl);
         return  str_replace(" ", "_", $sonodList->enname);
     }
 
+    function unionname($unionname){
+      return  $sonodList = Uniouninfo::where(['short_name_e'=>$unionname])->first();
+
+    }
+
     function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[],$path='payment'){
 
          $url = "http://" . $_SERVER['HTTP_HOST'];

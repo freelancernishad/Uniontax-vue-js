@@ -1651,6 +1651,40 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 
         return Sonod::find($id);
     }
+
+
+
+    public function sonodcountall(Request $request)
+    {
+        $userid = $request->userid;
+        $union = $request->union;
+
+        if($userid){
+            $user = User::find($userid);
+            $thana = $user->thana;
+            $unionlist = Uniouninfo::where('thana',$thana)->get();
+            $total = [];
+          foreach ($unionlist as $value) {
+            array_push($total,
+
+            [
+                'Unionname'=>unionname($value->short_name_e)->full_name,
+                'approved'=>Sonod::where(['stutus' => 'approved', 'unioun_name' => $value->short_name_e])->count(),
+                'Secretary_approved'=>Sonod::where(['stutus' => 'Secretary_approved', 'unioun_name' => $value->short_name_e])->count(),
+                'Pending'=>Sonod::where(['stutus' => 'Pending', 'unioun_name' => $value->short_name_e])->count(),
+                'cancel'=>Sonod::where(['stutus' => 'cancel', 'unioun_name' => $value->short_name_e])->count(),
+                ]
+
+            );
+
+          }
+          return $total;
+
+
+        }
+    }
+
+
     public function totlaAmount(Request $request)
     {
         $userid = $request->userid;
@@ -1674,6 +1708,10 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
             return Payment::where('status', 'Paid')->sum('amount');
         }
     }
+
+
+
+
     public function counting(Request $request, $status)
     {
         $union = $request->union;
@@ -1685,11 +1723,12 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
             $unionlist = Uniouninfo::where('thana',$thana)->get();
             $total = 0;
           foreach ($unionlist as $value) {
+
             if ($status == 'all') {
-                $total +=  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $value->short_name_e])->count();
+                 $total +=  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $value->short_name_e])->count();
             }else{
 
-                $total +=  Sonod::where(['stutus' => $status, 'unioun_name' => $union])->count();
+                $total +=  Sonod::where(['stutus' => $status, 'unioun_name' => $value->short_name_e])->count();
             }
             # code...
           }

@@ -163,6 +163,16 @@
 
 
                         <li class="nav-item" @click="submenu(0)"
+                            v-if="this.$localStorage.getItem('position') == 'Thana_admin'">
+                            <router-link :to="{ name: 'sonodcountall' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>ইস্যুকৃত সনদ প্রতিবেদন</span></router-link>
+                        </li>
+
+
+
+
+
+                        <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
                             <router-link :to="{ name: 'unionprofile' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ইউনিয়ন প্রোফাইল</span></router-link>
