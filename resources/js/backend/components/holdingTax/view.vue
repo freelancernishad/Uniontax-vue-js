@@ -1,5 +1,7 @@
 <template>
     <div>
+        <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"
+            objectbg="#999793" opacity="80" name="circular"></loader>
 
         <div class="breadcrumbs-area">
             <h3>হোল্ডিং ট্যাক্স</h3>
@@ -159,6 +161,7 @@
             return {
                 rows:{},
                 buttonLoader:false,
+                preLooding:false,
                 infoModal: {
                     id: 'info-modal',
                     title: '',
@@ -182,10 +185,12 @@
             var res = await this.callApi('get',`/api/holding/bokeya/list?holdingTax_id=${item.data.id}`,[])
 
             this.infoModal.bokeya = res.data
+            this.preLooding = false
         },
 
 
         async paynow(id){
+
             Swal.fire({
                         title: 'Are you sure?',
                         text: `Paid this data!`,
@@ -196,9 +201,12 @@
                         confirmButtonText: `Yes, Paid it!`
                     }).then(async (result) => {
                         if (result.isConfirmed) {
+                            this.preLooding = true
                             var res  = await this.callApi('post',`/api/holding/bokeya/action?id=${id}`,[]);
                             this.info();
+
                             Notification.customSuccess(`Your data has been Paid`);
+
 
                         }
                     })
