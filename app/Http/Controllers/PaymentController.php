@@ -44,7 +44,7 @@ class PaymentController extends Controller
             }
             // return $row;
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
-        return view('Export',compact('row','uniouninfo','sonod_type','from','to'));
+        // return view('Export',compact('row','uniouninfo','sonod_type','from','to'));
         $pdf = LaravelMpdf::loadView('Export',compact('row','uniouninfo','sonod_type','from','to'));
         return $pdf->stream("hlsdfhlo.pdf");
 
