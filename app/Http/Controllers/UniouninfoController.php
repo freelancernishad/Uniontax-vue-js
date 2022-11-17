@@ -1144,9 +1144,18 @@ return $Insertdata;
     public function index(Request $request)
     {
          $position =$request->position;
+         $userid =$request->userid;
 
         //  $thana = $request->thana;
         //  $district = $request->district;
+
+
+        if($userid){
+            $user = User::find($userid);
+            $position = $user->position;
+        }
+
+
 
         if ($position) {
 
