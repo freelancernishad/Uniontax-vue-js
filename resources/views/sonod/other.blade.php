@@ -19,9 +19,18 @@
         <tr>
         <td width="30%">ঠিকানা</td><td>:  গ্রাম: {{ $row->applicant_present_village }}, ডাকঘর: {{ $row->applicant_present_post_office }}, উপজেলা: {{ $row->applicant_present_Upazila }}, জেলা: {{ $row->applicant_present_district }}</td>
         </tr>
-        {{-- <tr>
-        <td width="30%">পেশা</td><td>: {{ $row->applicant_occupation }}</td>
-        </tr> --}}
+
+        @if($row->applicant_present_word_number)
+
+        <tr>
+            <td width="30%">ওয়ার্ড নং</td><td>: {{ int_en_to_bn($row->applicant_present_word_number) }}</td>
+        </tr>
+        @endif
+        @if($row->applicant_holding_tax_number)
+         <tr>
+        <td width="30%">হোল্ডিং নং</td><td>: {{ int_en_to_bn($row->applicant_holding_tax_number) }}</td>
+        </tr>
+        @endif
     </table>
 
     <p
