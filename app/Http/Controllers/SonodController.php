@@ -296,13 +296,13 @@ class SonodController extends Controller
     function allsonodId($union, $sonodname)
     {
         $sonodFinalId = '';
-        $sortYear =  date('y');
+        $sortYear =  date('y')-1;
         $UniouninfoCount =   Uniouninfo::where('short_name_e', $union)->latest()->count();
-        $SonodCount =   Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->count();
+        $SonodCount =   Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname])->latest()->count();
         if ($UniouninfoCount > 0) {
             $Uniouninfo =   Uniouninfo::where('short_name_e', $union)->latest()->first();
             if ($SonodCount > 0) {
-                $Sonod =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname, 'year' => date('Y')])->latest()->first();
+                $Sonod =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname])->latest()->first();
                 // $sonodFinalId = 'fgdfgdfg';
                 $sonodFinalId = $Sonod->sonod_Id + 1;
                 // if ($Sonod->sonod_Id == '') {
