@@ -38,7 +38,7 @@
 
 <style>
 *{
-    --defaultColor: <?php  echo $uniounDetials->defaultColor ?>;
+    --defaultColor: <?php  if($uniounDetials->defaultColor){echo $uniounDetials->defaultColor;}else{ echo 'green';} ?>;
 }
 
 div#exampleModal {
