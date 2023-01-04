@@ -1198,7 +1198,9 @@ export default {
             var service = Number(this.getvatTax.service)
             var vatAmount = ((sonod_fee * vat) / 100);
             var taxAmount = ((sonod_fee * tax) / 100);
-            var totalamount = sonod_fee + vatAmount + taxAmount + service
+            // var totalamount = sonod_fee + vatAmount + taxAmount + service
+            var totalamount = sonod_fee
+
             this.charages = {
                 sonod_fee: sonod_fee,
                 vatAmount: vatAmount,
@@ -1223,9 +1225,12 @@ export default {
             if (payment_type == 'Prepaid') {
                 redirect = `/sonod/payment/${datas.id}`
                 this.waitForPayment = true;
-                this.checkPayment(datas.id);
+                // this.checkPayment(datas.id);
                 this.form['id'] = datas.id;
-                window.open(redirect, '_blank');
+                // window.open(redirect, '_blank');
+                window.location.href =redirect;
+
+
             } else if (payment_type == 'Postpaid') {
                 this.waitForPayment = true;
                 // this.checkPayment(datas.id);
@@ -1307,25 +1312,42 @@ export default {
                                         window.open(redirect, '_blank');
                                         return false; // Prevent confirmed
                                     },
-                                    // preDeny: () => {
-                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                    //     window.open(redirect, '_blank');
-                                    //     return false; // Prevent denied
-                                    // },
                                 }).then(async (result) => {
-                                    console.log(result)
                                     if (result.isConfirmed) {
-                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
                                         redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
                                         window.open(redirect, '_blank');
+                                    }else if (result.isDismissed) {
+                                        //cancel
+                                        this.$router.push({ name: 'home' })
                                     }
-                                    // else if (result.isDenied) {
-                                    //     // this.$root.$emit('bv::hide::modal', 'info-modal')
-                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                    //     window.open(redirect, '_blank');
-                                    // }
+                                })
+                            }else if(res.data.stutus == 'failed'){
+                                Swal.fire({
+                                    title: 'দুঃখিত',
+                                    text: `সনদের ফি প্রদান হয়েছে বার্থ হয়েছে`,
+                                    icon: 'error',
+                                    confirmButtonColor: 'green',
+                                    confirmButtonText: `আবার চেষ্টা করুন`,
+                                    // showDenyButton: true,
+                                    showCancelButton: true,
+                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
+                                    cancelButtonText: 'Back to home',
+                                    customClass: {
+                                        actions: 'my-actions',
+                                        cancelButton: 'order-1 right-gap',
+                                        confirmButton: 'order-2',
+                                        // denyButton: 'order-3',
+                                    },
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                }).then(async (result) => {
+                                    if (result.isConfirmed) {
+                                        redirect = `/sonod/payment/${datas.id}`
 
-                                    else if (result.isDismissed) {
+                                        this.checkPayment(res.data.id);
+                                        this.form['id'] = res.data.id;
+                                        window.open(redirect, '_blank');
+                                    }else if (result.isDismissed) {
                                         //cancel
                                         this.$router.push({ name: 'home' })
                                     }

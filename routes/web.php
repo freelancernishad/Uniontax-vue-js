@@ -1,7 +1,9 @@
 <?php
 use App\Models\Role;
+use App\Models\Payment;
 use App\Models\Visitor;
 use App\Models\Uniouninfo;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SonodController;
@@ -67,14 +69,48 @@ Route::post('logout',[LoginController::class,'logout']);
 
 
 Route::get('/sonod/payment/success/{id}', [SonodController::class,'sonodpaymentSuccessView']);
-Route::get('/payment/success', [SonodController::class,'sonodpaymentSuccess']);
+
+
+Route::get('/payment/success', function (Request $request) {
+    // return $request->all();
+    $transId = $request->transId;
+
+    $payment = Payment::where(['trxId' => $transId])->first();
+    if($payment->sonod_type=='holdingtax'){
+        $redirect = "/holdingPay/success?transId=$transId";
+    }else{
+        $redirect = "/payment/success/confirm?transId=$transId";
+
+    }
+// return;
+    echo "
+    <h3 style='text-align:center'>Please wait 5 seconds.This page is auto redirect you</h3>
+    <script>
+    setTimeout(() => {
+    window.location.href='$redirect'
+    }, 5000);
+    </script>
+    ";
+    // return redirect("/payment/success/confirm?transId=$transId");
+});
+
+
+Route::get('/payment/success/confirm', [SonodController::class,'sonodpaymentSuccess']);
+
+
+
+
 Route::get('/sonod/payment/{id}', [SonodController::class,'sonodpayment']);
+
+
 Route::get('/sonod/{name}/{id}', [SonodController::class,'sonodDownload']);
 Route::get('/invoice/{name}/{id}', [SonodController::class,'invoice']);
 Route::get('/document/{name}/{id}', [SonodController::class,'userDocument']);
 Route::get('/pay/holding/tax/{id}', [HoldingtaxController::class,'holding_tax_pay_Online']);
 
+
 Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSuccess']);
+
 
 Route::get('/holding/tax/certificate_of_honor/{id}', [HoldingtaxController::class,'holdingCertificate_of_honor']);
 Route::get('/holding/tax/invoice/all/list', [HoldingtaxController::class,'holdingAllPenddingInvoice']);

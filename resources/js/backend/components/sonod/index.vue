@@ -109,12 +109,13 @@
                                 <span size="sm" @click="cancel(cancelRoute, item.id, 'cancel', $event.target)"
                                     v-if="cancelRoute != ''" class="btn btn-danger mr-1 mt-1">বাতিল করুন</span>
                             </td>
-                            <td class="sonodTd" style="background: red;color: white;" v-if="item.payment_status=='Unpaid'">
-                                অপরিশোধিত
-                            </td>
-                            <td class="sonodTd" style="background: green;color: white;" v-else>
+                            <td class="sonodTd" style="background: green;color: white;"  v-if="item.payment_status=='Paid'">
                                 পরিশোধিত
                             </td>
+                            <td class="sonodTd" style="background: red;color: white;" v-else>
+                                অপরিশোধিত
+                            </td>
+
                         </tr>
                     </tbody>
                     <tfoot>

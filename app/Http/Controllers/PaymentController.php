@@ -2,16 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sonod;
 use App\Models\Payment;
+use App\Models\Holdingtax;
 use App\Models\Uniouninfo;
 use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\ReportExport;
+use App\Models\HoldingBokeya;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 
 class PaymentController extends Controller
 {
+
+
+
+    public function ipn(Request $request)
+    {
+        $data = $request->all();
+        Log::info(json_encode($data));
+        $sonod = Sonod::find($data['cust_info']['cust_id']);
+        $trnx_id = $data['trnx_info']['mer_trnx_id'];
+        $payment = payment::where('trxid', $trnx_id)->first();
+
+
+
+        $Insertdata = [];
+
+        if ($data['msg_code'] == '1020') {
+            $Insertdata = [
+                'status' => 'Paid',
+                'method' => $data['pi_det_info']['pi_name'],
+            ];
+
+            if($payment->sonod_type=='holdingtax'){
+                $hosdingBokeya = HoldingBokeya::find($payment->sonodId);
+                // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
+                $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
+            }else{
+                $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
+
+            }
+
+
+
+        } else {
+            $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
+            $Insertdata = ['status' => 'Failed',];
+        }
+
+        $Insertdata['ipnResponse'] = json_encode($data);
+        // return $Insertdata;
+
+
+
+
+
+        return $payment->update($Insertdata);
+    }
 
 
 

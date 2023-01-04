@@ -31,13 +31,17 @@ class SonodController extends Controller
     }
     public function sonodpaymentSuccessView(Request $request, $id)
     {
+
+
         $sonod = Sonod::find($id);
         return view('sonodsuccess', compact('sonod'));
+
+
     }
     public function sonodpaymentSuccess(Request $request)
     {
         $transId =  $request->transId;
-        $payment = Payment::where(['trxId' => $transId])->first();
+         $payment = Payment::where(['trxId' => $transId])->first();
         $id = $payment->sonodId;
         $sonod = Sonod::find($id);
         $unioun_name =  $sonod->unioun_name;
@@ -46,15 +50,34 @@ class SonodController extends Controller
         // $sonodnamelists = Sonodnamelist::where(['bnname' => $sonod_name])->first();
         $payment_type = $uniouninfo->payment_type;
         if ($payment_type == 'Prepaid') {
-            $payment->update(['status' => 'Paid']);
-            $sonod->update(['stutus' => 'Pending', 'payment_status' => 'Paid']);
+
+
+            // $payment->update(['status' => 'Paid']);
+            // $sonod->update(['stutus' => 'Pending', 'payment_status' => 'Paid']);
+
             // $sonod_name = sonodEnName($sonod->sonod_name);
+
+if($payment->status=='Paid'){
             $InvoiceUrl =  url("/invoice/c/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
             $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.. Invoice: $InvoiceUrl";
             smsSend($deccription, $sonod->applicant_mobile);
+            return view('applicationSuccess', compact('payment', 'sonod'));
+}else{
+    echo "
+    <div style='text-align:center'>
+    <h1 style='text-align:center'>Payment Failed</h1>
+    <a href='/' style='border:1px solid black;padding:10px 12px; background:red;color:white'>Back To Home</a>
+    <a href='/sonod/payment/$sonod->id' style='border:1px solid black;padding:10px 12px; background:green;color:white'>Pay Again</a>
+    </div>
+    ";
+}
+
+
             // return redirect("/document/$sonod->sonod_name/$id");
-            echo "<script>window.close();</script>";
+            // echo "<script>window.close();</script>";
+
+
         } elseif ($payment_type == 'Postpaid') {
             $payment->update(['status' => 'Paid']);
             $sonod->update(['payment_status' => 'Paid']);
@@ -145,6 +168,7 @@ class SonodController extends Controller
             $unioninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
             $district = $unioninfos->district;
             $thana = $unioninfos->thana;
+            $u_code = $unioninfos->u_code;
             $CharageCount = Charage::where(['district' => $district, 'thana' => $thana])->count();
             $vat = 0;
             $tax = 0;
@@ -189,14 +213,23 @@ class SonodController extends Controller
             } else {
                 $amount = $total_amount;
             }
-            $trnx_id = time();
+            $trnx_id = $u_code.'-'.time();
             $cust_info = [
                 "cust_email" => "",
-                "cust_id" => "$sonod->sonod_Id",
+                "cust_id" => "$sonod->id",
                 "cust_mail_addr" => "Address",
                 "cust_mobo_no" => "$sonod->applicant_mobile",
                 "cust_name" => "Customer Name"
             ];
+            $trns_info = [
+                "ord_det" => 'sonod',
+                "ord_id" => "$sonod->sonod_Id",
+                "trnx_amt" => $amount,
+                "trnx_currency" => "BDT",
+                "trnx_id" => "$trnx_id"
+            ];
+            $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
+
             $req_timestamp = date('Y-m-d H:i:s');
             $customerData = [
                 'union' => $sonod->unioun_name,
@@ -206,11 +239,17 @@ class SonodController extends Controller
                 'amount' => $amount,
                 'mob' => $sonod->applicant_mobile,
                 'status' => "Pending",
+                'paymentUrl' => $redirectutl,
+                'method' => 'ekpay',
                 'date' => date('Y-m-d'),
                 'created_at' => $req_timestamp,
             ];
             Payment::create($customerData);
-            $redirectutl =  ekpayToken($trnx_id, $amount, $cust_info);
+
+
+
+
+
             return redirect($redirectutl);
         } elseif ($payment_type == 'Postpaid') {
             $stutus = $sonod->stutus;

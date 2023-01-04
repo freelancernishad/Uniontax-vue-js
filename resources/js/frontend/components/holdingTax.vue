@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(row,index) in rows">
+                    <tr v-for="(row,index) in rows.data">
                         <td>{{ row.holding_no }}</td>
                         <td>{{ row.maliker_name }}</td>
                         <td>{{ row.nid_no }}</td>
@@ -100,7 +100,8 @@ export default {
             },
             rows: {},
 
-            isSending: false
+            buttonLoader: false,
+            isSending: false,
         }
 
     },

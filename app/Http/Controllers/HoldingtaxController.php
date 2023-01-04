@@ -1366,7 +1366,15 @@ $total_bokeya = 0;
     public function holding_tax_pay_Online(Request $request,$id)
     {
         $holdingBokeya = HoldingBokeya::find($id);
-        $trnx_id = time();
+
+
+       $holdingTax = Holdingtax::where(['id'=>$holdingBokeya->holdingTax_id])->first();
+      $unioninfos = Uniouninfo::where(['short_name_e' => $holdingTax->unioun])->first();
+      $u_code = $unioninfos->u_code;
+
+    //   $holdingBokeyasAmount = HoldingBokeya::where(['holdingTax_id'=>$holdingBokeya->holdingTax_id,'status'=>'Unpaid'])->sum('price');
+
+        $trnx_id = $u_code.'-'.time();
         $cust_info = [
             "cust_email" => "",
             "cust_id" => "$holdingBokeya->id",
@@ -1374,7 +1382,17 @@ $total_bokeya = 0;
             "cust_mobo_no" => "01909756552",
             "cust_name" => "Customer Name"
         ];
-        $holdingTax = Holdingtax::where(['id'=>$holdingBokeya->holdingTax_id])->first();
+
+        $trns_info = [
+            "ord_det" => 'sonod',
+            "ord_id" => "$holdingBokeya->id",
+            "trnx_amt" => $holdingBokeya->price,
+            "trnx_currency" => "BDT",
+            "trnx_id" => "$trnx_id"
+        ];
+        $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
+
+
         $req_timestamp = date('Y-m-d H:i:s');
         $customerData = [
             'union' => $holdingTax->unioun,
@@ -1384,12 +1402,16 @@ $total_bokeya = 0;
             'amount' => $holdingBokeya->price,
             'mob' => "01909756552",
             'status' => "Pending",
+            'paymentUrl' => $redirectutl,
+            'method' => 'ekpay',
             'date' => date('Y-m-d'),
             'created_at' => $req_timestamp,
         ];
         Payment::create($customerData);
 
-         $redirectutl =  ekpayToken($trnx_id, $holdingBokeya->price, $cust_info,'holdingPay');
+        //  $redirectutl =  ekpayToken($trnx_id, $holdingBokeya->price, $cust_info,'holdingPay');
+
+
         echo "
         <script>
             window.location.href='$redirectutl'
@@ -1404,11 +1426,12 @@ $total_bokeya = 0;
             // return $request->all();
             $transId = $request->transId;
             $payment = Payment::where(['trxId'=>$transId])->first();
-            $payment->update(['status'=>'Paid']);
+            // $payment->update(['status'=>'Paid']);
             $holdingBokeya = HoldingBokeya::find($payment->sonodId);
 
-            $holdingBokeya->update(['status'=>'Paid']);
-            $redirectutl = url("/holding/tax/$holdingBokeya->holdingTax_id");
+            // $holdingBokeya->update(['status'=>'Paid']);
+
+            $redirectutl = url("/holding/tax/invoice/$holdingBokeya->id");
             echo "
             <script>
                 window.location.href='$redirectutl'

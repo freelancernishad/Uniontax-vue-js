@@ -19,6 +19,9 @@ class Payment extends Model
         'date',
         'month',
         'year',
+        'paymentUrl',
+        'ipnResponse',
+        'method',
         'balance',
     ];
 
