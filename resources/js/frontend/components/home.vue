@@ -187,9 +187,28 @@
             <side-bar class-name="col-md-3"></side-bar>
         </div>
 
+
         <b-modal :id="actionModalhome.id" size="xl" title="ইউনিয়ন নির্বাচন করুন" ok-only>
                     <union-select :custom-url="actionModalhome.title" />
         </b-modal>
+
+
+
+        <div class="popupcard" v-if="popupShow">
+            <div class="popupcard-body">
+                <div class="card-header" style="padding: 0 13px;text-align: right;">
+                    <span style="cursor: pointer;color: red;font-weight: 600;font-size: 20px;padding: 0 8px;" @click="hidepop">&Chi;</span>
+                </div>
+                <img width="100%" :src="$asseturl+'assets/img/bn-01.png'" alt="">
+            </div>
+        </div>
+
+
+
+
+
+
+
 
     </div>
 </template>
@@ -208,6 +227,10 @@ export default {
         // if (!User.loggedIn()) {
         //     this.$router.push({ name: "/login" });
         // }
+
+
+        this.popupShow = true
+
     },
     components: {
         VueFlux,
@@ -222,6 +245,7 @@ export default {
         return {
             selectedUser: '',
             flipped: false,
+            popupShow: false,
             vfOptions: {
                 autoplay: true,
             },
@@ -258,13 +282,19 @@ export default {
                 "wave",
                 "zip",
             ],
+
+
             actionModalhome: {
                 id: 'action-modal-home',
                 title: '',
                 status: '',
                 content: {},
                 content_id: '',
-            }
+            },
+
+
+
+
             //   vfCaptions: [],
         };
     },
@@ -272,6 +302,9 @@ export default {
     },
     methods: {
 
+        hidepop(){
+            this.popupShow = false
+        },
         sendInfo(item, button) {
 
 
@@ -285,6 +318,20 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+.popupcard {
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000000c7;
+}
+.popupcard-body {
+    width: 90%;
+    margin: 30px auto;
+    background: white;
+}
 a.prev {
     display: none !important;
 }
