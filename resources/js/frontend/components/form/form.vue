@@ -1199,13 +1199,24 @@ export default {
             var vatAmount = ((sonod_fee * vat) / 100);
             var taxAmount = ((sonod_fee * tax) / 100);
             // var totalamount = sonod_fee + vatAmount + taxAmount + service
-            var totalamount = sonod_fee
+
+            var tradeVat = 15;
+            if(this.form.sonod_name=='ট্রেড লাইসেন্স'){
+
+                var TradevatAmount = ((sonod_fee * tradeVat) / 100);
+                var totalamount = sonod_fee + TradevatAmount
+            }else{
+
+                var totalamount = sonod_fee
+            }
+
 
             this.charages = {
                 sonod_fee: sonod_fee,
                 vatAmount: vatAmount,
                 taxAmount: taxAmount,
                 service: service,
+                tradeVat: tradeVat,
                 totalamount: totalamount,
             },
                 this.$root.$emit('bv::show::modal', this.infoModal.id)
@@ -1219,6 +1230,7 @@ export default {
             } else if (payment_type == 'Postpaid') {
                 this.form.stutus = 'Pending';
             }
+            this.form['charages'] = this.charages;
             var res = await this.callApi('post', '/api/sonod/submit', this.form);
             var datas = res.data;
             // this.$router.push({ name: 'home' })

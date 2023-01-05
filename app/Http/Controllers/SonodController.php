@@ -179,37 +179,58 @@ if($payment->status=='Paid'){
                 $tax = $charge->tax;
                 $service = $charge->service;
             }
-            $vatAmount = (($sonod_fee * $vat) / 100);
-            $taxAmount = (($sonod_fee * $tax) / 100);
-            $totalamount = $sonod_fee + $vatAmount + $taxAmount + $service;
-            if ($totalamount == null || $totalamount == '' || $totalamount < 10) {
-                $totalamount = 10;
+
+            $tradeVat = 15;
+
+            // $vatAmount = (($sonod_fee * $vat) / 100);
+            // $taxAmount = (($sonod_fee * $tax) / 100);
+            // $totalamount = $sonod_fee + $vatAmount + $taxAmount + $service;
+
+
+
+
+
+
+            if($sonod_name=='ট্রেড লাইসেন্স'){
+                $TradevatAmount = (($sonod_fee * $tradeVat) / 100);
+                $totalamount = $sonod_fee + $TradevatAmount;
+            }else{
+                $totalamount = $sonod_fee;
             }
-            $arraydata = [
-                'total_amount' => $totalamount,
-                'pesaKor' => $request->pesaKor,
-                'tredeLisenceFee' => $request->tredeLisenceFee,
-                'vatAykor' => $request->vatAykor,
-                'khat' => $request->khat,
-                'last_years_money' => 0,
-                'currently_paid_money' => $totalamount,
-            ];
-            $amount_deails = json_encode($arraydata);
-            $numto = new NumberToBangla();
-            $the_amount_of_money_in_words = $numto->bnMoney($totalamount) . ' মাত্র';
-            $updateData = [
-                'khat' => $request->khat,
-                'last_years_money' => 0,
-                'currently_paid_money' => $totalamount,
-                'total_amount' => $totalamount,
-                'amount_deails' => $amount_deails,
-                'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
-            ];
-            $sonod->update($updateData);
+
+
+            if ($totalamount == null || $totalamount == '' || $totalamount < 1) {
+                $totalamount = 1;
+            }
+
+            // $arraydata = [
+            //     'total_amount' => $totalamount,
+            //     'pesaKor' => $request->pesaKor,
+            //     'tredeLisenceFee' => $request->tredeLisenceFee,
+            //     'vatAykor' => $request->vatAykor,
+            //     'khat' => $request->khat,
+            //     'last_years_money' => 0,
+            //     'currently_paid_money' => $totalamount,
+            // ];
+            // $amount_deails = json_encode($arraydata);
+            // $numto = new NumberToBangla();
+            // $the_amount_of_money_in_words = $numto->bnMoney($totalamount) . ' মাত্র';
+            // $updateData = [
+            //     'khat' => $request->khat,
+            //     'last_years_money' => 0,
+            //     'currently_paid_money' => $totalamount,
+            //     'total_amount' => $totalamount,
+            //     'amount_deails' => $amount_deails,
+            //     'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
+            // ];
+            // $sonod->update($updateData);
+
+
+
             $total_amount = $sonod->total_amount;
             $amount = 0;
-            if ($total_amount == null || $total_amount == '' || $total_amount < 10) {
-                $amount = 10;
+            if ($total_amount == null || $total_amount == '' || $total_amount < 1) {
+                $amount = 1;
             } else {
                 $amount = $total_amount;
             }
@@ -425,7 +446,8 @@ if($payment->status=='Paid'){
     public function sonod_submit(Request $r)
     {
 
-
+        // return $r->all();
+// return $r->charages['totalamount'];
 
         $id = $r->id;
         $stutus = $r->stutus;
@@ -439,7 +461,7 @@ if($payment->status=='Paid'){
         $sonodEnName =  Sonodnamelist::where('bnname', $r->sonod_name)->first();
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
-        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
+        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors', 'charages']);
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
@@ -470,6 +492,45 @@ if($payment->status=='Paid'){
             //    $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
             // $oldsonodNo = (int)$oldsonod->sonod_Id;
             //  $Insertdata['sonod_Id'] =  $oldsonodNo+1;
+
+
+
+            $stutus = $r->stutus;
+            if($stutus=='Prepaid'){
+
+                $totalamount = $r->charages['totalamount'];
+                $sonod_fee = $r->charages['sonod_fee'];
+                $tradeVat = $r->charages['tradeVat'];
+
+                $arraydata = [
+                'total_amount' => $totalamount,
+                'pesaKor' => 0,
+                'tredeLisenceFee' => $sonod_fee,
+                'vatAykor' => $tradeVat,
+                'khat' => '',
+                'last_years_money' => 0,
+                'currently_paid_money' => $totalamount,
+                ];
+                $amount_deails = json_encode($arraydata);
+                $numto = new NumberToBangla();
+                $the_amount_of_money_in_words = $numto->bnMoney($totalamount) . ' মাত্র';
+
+                $Insertdata['khat'] = '';
+                $Insertdata['last_years_money'] = 0;
+                $Insertdata['currently_paid_money'] = $totalamount;
+                $Insertdata['total_amount'] = $totalamount;
+                $Insertdata['the_amount_of_money_in_words'] = $the_amount_of_money_in_words;
+                $Insertdata['amount_deails'] = $amount_deails;
+
+
+            }
+
+
+
+// return $Insertdata;
+
+
+
              $sonod =   sonod::create($Insertdata);
             if ($stutus == 'Pending') {
                 $deccription = "Congratulation! Your application $sonod->sonod_Id has been Submited.Wait for Approval";
@@ -516,15 +577,7 @@ if($payment->status=='Paid'){
     public function sec_sonod_action(Request $request, $id)
     {
 
-
-
-
         $sonod = Sonod::find($id);
-
-
-
-
-
 
         $sec_prottoyon = $request->sec_prottoyon;
         // return $request->all();
@@ -548,17 +601,29 @@ if($payment->status=='Paid'){
             }else{
                 $approveData = 'Secretary_approved';
             }
-            $updateData = [
-                'khat' => $request->khat,
-                'last_years_money' => $request->last_years_money,
-                'currently_paid_money' => $request->currently_paid_money,
-                'total_amount' => $request->amounta,
-                'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
-                'khat' => $request->khat,
-                'amount_deails' => $amount_deails,
-                'sec_prottoyon' => $sec_prottoyon,
-                'stutus' => $approveData,
-            ];
+
+
+            if($sonod->payment_status=='Paid'){
+                $updateData = [
+                    'sec_prottoyon' => $sec_prottoyon,
+                    'stutus' => $approveData,
+                ];
+            }else{
+                $updateData = [
+                    'khat' => $request->khat,
+                    'last_years_money' => $request->last_years_money,
+                    'currently_paid_money' => $request->currently_paid_money,
+                    'total_amount' => $request->amounta,
+                    'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
+                    'khat' => $request->khat,
+                    'amount_deails' => $amount_deails,
+                    'sec_prottoyon' => $sec_prottoyon,
+                    'stutus' => $approveData,
+                ];
+            }
+
+
+
 
 
             $notifiData = ['union'=>$sonod->unioun_name,'roles'=>'Chairman'];
