@@ -197,7 +197,16 @@
         <div class="popupcard" v-if="popupShow">
             <div class="popupcard-body">
                 <div class="card-header" style="padding: 0 13px;text-align: right;">
-                    <span style="cursor: pointer;color: red;font-weight: 600;font-size: 20px;padding: 0 8px;" @click="hidepop">&Chi;</span>
+                    <span style="    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    font-size: 25px;
+    padding: 5px 24px;
+    position: absolute;
+    top: 5%;
+    left: 40%;
+    background: green;
+    border-radius: 12px;" @click="hidepop">শুভ উদ্বোধন</span>
                 </div>
                 <img width="100%" :src="$asseturl+'assets/img/bn-01.png'" alt="">
             </div>
@@ -331,6 +340,7 @@ export default {
     width: 90%;
     margin: 30px auto;
     background: white;
+        position: relative;
 }
 a.prev {
     display: none !important;
