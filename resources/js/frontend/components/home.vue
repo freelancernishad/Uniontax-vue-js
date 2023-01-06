@@ -201,7 +201,7 @@
     color: white;
     font-weight: 600;
     font-size: 25px;
-    padding: 5px 24px;
+    padding: 5px 37px;
     position: absolute;
     top: 5%;
     left: 40%;
