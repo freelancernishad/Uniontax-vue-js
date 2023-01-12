@@ -107,9 +107,6 @@ curl_close($curl);
      $AKPAY_MER_REG_ID = $uniounDetials->AKPAY_MER_REG_ID;
     $AKPAY_MER_PASS_KEY = $uniounDetials->AKPAY_MER_PASS_KEY;
 
-//        mer_reg_id: tetulia01_mer
-// Tet@merEK091
-// Tet@merEK091
 
 
 

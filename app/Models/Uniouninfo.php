@@ -28,6 +28,8 @@ class Uniouninfo extends Model
         'google_map',
         'defaultColor',
         'payment_type',
+        'AKPAY_MER_REG_ID',
+        'AKPAY_MER_PASS_KEY',
         'status',
     ];
 }

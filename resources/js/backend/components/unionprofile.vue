@@ -128,7 +128,7 @@
 
 
 
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
           <div class="form-group">
               <label class="control-label col-form-label">পেমেন্টের ধরণ</label>
 

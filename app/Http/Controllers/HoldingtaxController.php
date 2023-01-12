@@ -1390,7 +1390,7 @@ $total_bokeya = 0;
             "trnx_currency" => "BDT",
             "trnx_id" => "$trnx_id"
         ];
-        $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
+        $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info,'payment',$holdingTax->unioun);
 
 
         $req_timestamp = date('Y-m-d H:i:s');

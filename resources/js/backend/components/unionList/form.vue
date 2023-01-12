@@ -78,6 +78,25 @@
             </div>
 
 
+
+          <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label col-form-label">AKPAY_MER_REG_ID</label>
+            <input type="text" class="form-control"  id="AKPAY_MER_REG_ID" v-model="form.AKPAY_MER_REG_ID"  />
+          </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-form-label">AKPAY_MER_PASS_KEY</label>
+
+                    <input type="text" class="form-control"  id="AKPAY_MER_PASS_KEY" v-model="form.AKPAY_MER_PASS_KEY"  />
+
+            </div>
+            </div>
+
+
           <div class="col-md-6">
           <div class="form-group">
               <label class="control-label col-form-label">ইউনিয়নের বিবরন (বাংলা)</label>
@@ -228,6 +247,8 @@ export default {
                 defaultColor:null,
                 payment_type:null,
                 status:null,
+                AKPAY_MER_REG_ID:null,
+                AKPAY_MER_PASS_KEY:null,
              },
         }
     },
