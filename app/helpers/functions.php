@@ -95,20 +95,29 @@ curl_close($curl);
 
 
 
-    function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='payment'){
+    function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='payment',$unioun_name=''){
 
         $Apiurl = env('AKPAY_API_URL');
         $url = env('AKPAY_IPN_URL');
+
         $whitelistip = env('WHITE_LIST_IP');
        $req_timestamp = date('Y-m-d H:i:s');
+
+     $uniounDetials =  unionname($unioun_name);
+     $AKPAY_MER_REG_ID = $uniounDetials->AKPAY_MER_REG_ID;
+    $AKPAY_MER_PASS_KEY = $uniounDetials->AKPAY_MER_PASS_KEY;
+
+//        mer_reg_id: tetulia01_mer
+// Tet@merEK091
+// Tet@merEK091
 
 
 
 
        $post = [
           'mer_info' => [
-             "mer_reg_id" => env('AKPAY_MER_REG_ID'),
-             "mer_pas_key" => env('AKPAY_MER_PASS_KEY')
+             "mer_reg_id" => $AKPAY_MER_REG_ID,
+             "mer_pas_key" => $AKPAY_MER_PASS_KEY
           ],
           "req_timestamp" => "$req_timestamp GMT+6",
           "feed_uri" => [

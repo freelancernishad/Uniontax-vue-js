@@ -249,7 +249,8 @@ if($payment->status=='Paid'){
                 "trnx_currency" => "BDT",
                 "trnx_id" => "$trnx_id"
             ];
-            $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
+            // return $sonod->unioun_name;
+            $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info,'payment',$sonod->unioun_name);
 
             $req_timestamp = date('Y-m-d H:i:s');
             $customerData = [
@@ -309,7 +310,7 @@ if($payment->status=='Paid'){
                 'created_at' => $req_timestamp,
             ];
             Payment::create($customerData);
-            $redirectutl =  ekpayToken($trnx_id, $amount, $cust_info);
+            $redirectutl =  ekpayToken($trnx_id, $amount, $cust_info,'payment',$sonod->unioun_name);
             return redirect($redirectutl);
         }
     }
