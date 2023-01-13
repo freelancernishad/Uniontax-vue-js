@@ -229,7 +229,7 @@ export default {
         // }
 
 
-        this.popupShow = true
+        this.popupShow = false
 
     },
     components: {
