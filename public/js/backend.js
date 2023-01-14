@@ -4668,10 +4668,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 4;
-                return _this3.callApi('post', "/api/payment/report/search", _this3.form);
+                return _this3.callApi('get', "/api/payment/report/search?payment_type=".concat(_this3.form.payment_type, "&sonod_type=").concat(_this3.form.sonod_type, "&from=").concat(_this3.form.from, "&to=").concat(_this3.form.to), []);
 
               case 4:
                 res = _context3.sent;
+                // var res = await this.callApi('get',`/api/payment/report/search`,this.form);
                 // this.$router.push({name:'report',query: {''}})
                 _this3.rows = res.data;
                 _this3.isload = false;

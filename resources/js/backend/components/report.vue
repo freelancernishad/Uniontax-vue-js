@@ -172,7 +172,8 @@ export default {
 
 
 
-            var res = await this.callApi('post',`/api/payment/report/search`,this.form);
+            var res = await this.callApi('get',`/api/payment/report/search?payment_type=${this.form.payment_type}&sonod_type=${this.form.sonod_type}&from=${this.form.from}&to=${this.form.to}`,[]);
+            // var res = await this.callApi('get',`/api/payment/report/search`,this.form);
             // this.$router.push({name:'report',query: {''}})
             this.rows = res.data
             this.isload = false

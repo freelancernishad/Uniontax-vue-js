@@ -194,6 +194,7 @@ Route::post('holding/tax/submit',[HoldingtaxController::class,'store']);
 
 Route::post('holding/tax/search',[HoldingtaxController::class,'holdingSearch']);
 
+Route::get('payment/report/search',[PaymentController::class,'Search']);
 Route::post('payment/report/search',[PaymentController::class,'Search']);
 // Route::post('online/payment/report/search',[PaymentController::class,'onlinePaymentSearch']);
 
