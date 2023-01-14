@@ -1404,6 +1404,7 @@ $total_bokeya = 0;
             'status' => "Pending",
             'paymentUrl' => $redirectutl,
             'method' => 'ekpay',
+            'payment_type' => 'online',
             'date' => date('Y-m-d'),
             'created_at' => $req_timestamp,
         ];

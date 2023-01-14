@@ -43,6 +43,7 @@
                             <div class="form-group col-md-3">
                                 <select v-model="form.payment_type" id="sonod" class="form-control" required>
                                     <option value="">চিহ্নিত করুন</option>
+                                    <option  value="all">সকল পেমেন্ট</option>
                                     <option  value="menual">ম্যানুয়াল পেমেন্ট</option>
                                     <option value="online">অনলাইন পেমেন্ট</option>
 
@@ -72,7 +73,7 @@
 
 
 
-                    <a style="    font-size: 20px;float: right;" target="_blank" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to+'&union='+form.union"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
+                    <a style="    font-size: 20px;float: right;" target="_blank" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to+'&union='+form.union+'&payment_type='+form.payment_type"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
 
 
 
@@ -128,7 +129,7 @@ export default {
     data() {
         return {
             form:{
-                payment_type:'menual',
+                payment_type:'all',
                 sonod_type:'',
                 from:'',
                 to:'',

@@ -261,7 +261,7 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
                                 <li
                                     style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
                                     <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt="">
-                                    <span style="padding: 0 15px;"> <b> সার্বিক ব্যবস্থাপনায়:</b> <br> © ২০২২ উপজেলা প্রশাসন, তেঁতুলিয়া,পঞ্চগড়</span>
+                                    <span style="padding: 0 15px;"> <b> ব্যবস্থাপনা ও তত্ত্ববধানে:</b> <br> © ২০২৩ জেলা প্রশাসন, পঞ্চগড়।</span>
                                 </li>
                             </ul>
                         </div>
