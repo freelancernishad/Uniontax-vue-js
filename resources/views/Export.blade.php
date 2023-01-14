@@ -54,9 +54,16 @@
             </td>
         </tr>
     </table>
+
+
+
+    <h2 style="width:350px;background:green;padding:10px 10px;margin:10px auto;text-align:center;color:white;border-radius: 20px;font-size:20px">সেবা প্রদান ও ফি আদায় সংক্রান্ত প্রতিবেদন</h2>
+
+
+
     <table width="100%">
         <tr style="margin-top:2px;margin-bottom:2px;">
-            @if($sonod_type=='holdingtax')
+            {{-- @if($sonod_type=='holdingtax')
             <td>হোল্ডিং ট্যাক্স</td>
             @elseif($sonod_type=='all')
             <td>সকল ফি এর প্রতিবেদন</td>
@@ -64,19 +71,22 @@
             <td>
                 {{ $sonod_type }}
             </td>
-            @endif
+            @endif --}}
+            <td></td>
             <td style="text-align: center; " width="50%">
             </td>
             <td style="text-align: right">
-                ২০২২-২০২৩
+                {{-- অর্থ বছর: ২০২২-২০২৩ --}}
             </td>
         </tr>
         <tr style="margin-top:2px;margin-bottom:2px;">
-            <td>
-                {{ int_en_to_bn(date("d/m/Y", strtotime($from))) }} - {{ int_en_to_bn(date("d/m/Y", strtotime($to))) }}
+            <td colspan="2">
+              <span>প্রতিবেদনের সময়কালঃ</span>  {{ int_en_to_bn(date("d/m/Y", strtotime($from))) }} - {{ int_en_to_bn(date("d/m/Y", strtotime($to))) }}
             </td>
-            <td>
+            <td style="text-align: right">
+                অর্থ বছর: ২০২২-২০২৩
             </td>
+
         </tr>
     </table>
     <table width="100%" style="border-collapse: collapse;" border="0">
