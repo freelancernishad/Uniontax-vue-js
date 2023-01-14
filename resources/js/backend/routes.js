@@ -16,7 +16,7 @@ let cashbook = require('./components/cashbook/list.vue').default;
 let cashbookForm = require('./components/cashbook/form.vue').default;
 
 let report = require('./components/report.vue').default;
-let onlinereport = require('./components/onlinereport.vue').default;
+// let onlinereport = require('./components/onlinereport.vue').default;
 let sonodcountall = require('./components/sonodcountall.vue').default;
 
 let userlist = require('./components/users/list.vue').default;
@@ -77,7 +77,7 @@ export const routes = [
 
 
   { path:  `${prefix}/report`, component: report, name:'report',meta: { layout: adminlayout } },
-  { path:  `${prefix}/online/payment/report`, component: onlinereport, name:'onlinereport',meta: { layout: adminlayout } },
+//   { path:  `${prefix}/online/payment/report`, component: onlinereport, name:'onlinereport',meta: { layout: adminlayout } },
 
 
   { path:  `${prefix}/sonodcountall`, component: sonodcountall, name:'sonodcountall',meta: { layout: adminlayout } },
