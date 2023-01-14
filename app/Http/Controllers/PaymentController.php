@@ -121,19 +121,30 @@ class PaymentController extends Controller
     public function Search(Request $request)
     {
         // return $request->all();
+        $payment_type = $request->payment_type;
         $sonod_type = $request->sonod_type;
 
         $from = $request->from;
         $to = $request->to;
+
         $union = $request->union;
+
+        if($payment_type=='menual'){
+            $filter=where('method','==',null);
+        }elseif($payment_type=='menual'){
+            $filter->where('method','!=',null);
+        }elseif($payment_type=='menual'){
+            $filter->where('method','!=',null);
+        }
+
+
+
 
         if($union){
 
 
             if($from && $to){
                 if($sonod_type=='all'){
-
-
                     return Payment::where(['union'=>$union,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
                 }
                 return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();

@@ -38,19 +38,6 @@
                                 </select>
                             </div>
 
-
-
-                            <div class="form-group col-md-3">
-                                <select v-model="form.payment_type" id="sonod" class="form-control" required>
-                                    <option value="">চিহ্নিত করুন</option>
-                                    <option  value="menual">ম্যানুয়াল পেমেন্ট</option>
-                                    <option value="online">অনলাইন পেমেন্ট</option>
-
-                                </select>
-                            </div>
-
-
-
                             <div class="form-group col-md-3">
                                 <input type="date" v-model="form.from" class="form-control">
                             </div>
@@ -72,7 +59,7 @@
 
 
 
-                    <a style="    font-size: 20px;float: right;" target="_blank" :href="'/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to+'&union='+form.union"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
+                    <a style="    font-size: 20px;float: right;" target="_blank" :href="'/online/payment/report/export?sonod_type='+form.sonod_type+'&from='+form.from+'&to='+form.to+'&union='+form.union"  v-if="form.sonod_type!='' && form.from!='' && form.to!=''" class="btn btn-info">প্রতিবেদন ডাউনলোড</a>
 
 
 
@@ -128,7 +115,6 @@ export default {
     data() {
         return {
             form:{
-                payment_type:'menual',
                 sonod_type:'',
                 from:'',
                 to:'',
@@ -171,7 +157,7 @@ export default {
 
 
 
-            var res = await this.callApi('post',`/api/report/search`,this.form);
+            var res = await this.callApi('post',`/api/online/payment/report/search`,this.form);
             // this.$router.push({name:'report',query: {''}})
             this.rows = res.data
             this.isload = false
