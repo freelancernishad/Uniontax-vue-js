@@ -162,9 +162,9 @@
             @endforeach
             <tr>
                 @if($sonod_type=='all')
-                <td colspan="5" class="td" style="text-align: right">মোট</td>
+                <td colspan="6" class="td" style="text-align: right">মোট</td>
                 @else
-                <td colspan="4" class="td" style="text-align: right">মোট</td>
+                <td colspan="5" class="td" style="text-align: right">মোট</td>
                 @endif
                 <td class="td" style="text-align:center">{{ int_en_to_bn(round($total,2)) }}</td>
             </tr>
