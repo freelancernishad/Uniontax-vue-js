@@ -4668,7 +4668,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 4;
-                return _this3.callApi('post', "/api/report/search", _this3.form);
+                return _this3.callApi('post', "/api/payment/report/search", _this3.form);
 
               case 4:
                 res = _context3.sent;

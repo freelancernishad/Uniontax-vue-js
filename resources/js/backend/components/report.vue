@@ -172,7 +172,7 @@ export default {
 
 
 
-            var res = await this.callApi('post',`/api/report/search`,this.form);
+            var res = await this.callApi('post',`/api/payment/report/search`,this.form);
             // this.$router.push({name:'report',query: {''}})
             this.rows = res.data
             this.isload = false
