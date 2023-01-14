@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sonod;
+use App\Models\SonodFee;
 use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,46 @@ class SonodnamelistController extends Controller
             return Sonodnamelist::create($data);
         }
     }
+
+
+    public function updatesonodnameFee(Request $request)
+    {
+        $sonodlist =  $request->sonodfee;
+        $unionname =  $request->unionname;
+        foreach ($sonodlist as $key=>$value) {
+            // return $key;
+           $sonodName = Sonodnamelist::where('service_id',$key)->first();
+
+           $filter = [
+                'unioun'=>$unionname,
+                'service_id'=>$key,
+           ];
+           $sonodFeeCount = SonodFee::where($filter)->count();
+           if($sonodFeeCount>0){
+            $sonodFee = SonodFee::where($filter)->first();
+            $sonodFee->update(['fees'=>$value]);
+
+           }else{
+            SonodFee::create(['unioun'=>$unionname,'service_id'=>$key,'fees'=>$value]);
+           }
+
+        }
+    }
+
+    public function feeList(Request $request)
+    {
+        $unioun = $request->unioun;
+        $sondFee = SonodFee::where(['unioun'=>$unioun])->get();
+        $sonodfee = [];
+        foreach ($sondFee as $value) {
+            $sonodfee[$value->service_id] = $value->fees;
+        }
+        return $sonodfee;
+    }
+
+
+
+
     public function getsonodname(Request $request, $id)
     {
         $data =  Sonodnamelist::find($id);
@@ -44,6 +85,8 @@ class SonodnamelistController extends Controller
      */
     public function index(Request $request)
     {
+        $fees = $request->fees;
+
         $data = $request->data;
         $admin = $request->admin;
         if ($admin) {
@@ -51,6 +94,18 @@ class SonodnamelistController extends Controller
             // return Sonodnamelist::with('sonods')->get();
         }
         if ($data) {
+            if($fees){
+
+                $sonodname =  Sonodnamelist::where('enname', $data)->first();
+                 $sonodFee =  SonodFee::where('service_id', $sonodname->service_id)->first();
+                $data = [
+                    'sonodname'=>$sonodname,
+                    'sonodFee'=>$sonodFee,
+
+                ];
+                return $data;
+            }
+
             return Sonodnamelist::where('enname', $data)->first();
         }
         return Sonodnamelist::all();

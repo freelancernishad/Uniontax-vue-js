@@ -864,6 +864,7 @@ export default {
             submitLoad: false,
             sameStatus: '',
             sonodnamedata: {},
+            sonodnameFee: {},
             SonodNamesOptions: {},
             form: {
                 image: null,
@@ -1178,9 +1179,11 @@ export default {
         },
         sonodname() {
             if (this.$route.params.name) {
-                axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`)
+                axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}&fees=1`)
                     .then(({ data }) => {
-                        this.sonodnamedata = data
+                        this.sonodnamedata = data.sonodname
+                        this.sonodnameFee = data.sonodFee
+
 						this.form.sonod_name = this.sonodnamedata.bnname;
                         window.scrollTo(0, 0);
                     })
@@ -1192,7 +1195,7 @@ export default {
             this.infoModal.content = ''
         },
         async onSubmit() {
-            var sonod_fee = Number(this.sonodnamedata.sonod_fee)
+            var sonod_fee = Number(this.sonodnameFee.fees)
             var vat = Number(this.getvatTax.vat)
             var tax = Number(this.getvatTax.tax)
             var service = Number(this.getvatTax.service)

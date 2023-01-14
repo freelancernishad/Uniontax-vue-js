@@ -6,6 +6,7 @@ use App\Models\Sonod;
 use App\Models\Charage;
 use App\Models\Citizen;
 use App\Models\Payment;
+use App\Models\SonodFee;
 use App\Models\ActionLog;
 use App\Models\Uniouninfo;
 use App\Models\Expenditure;
@@ -164,7 +165,8 @@ if($payment->status=='Paid'){
         $sonodnamelists = Sonodnamelist::where(['bnname' => $sonod_name])->first();
         $payment_type = $uniouninfo->payment_type;
         if ($payment_type == 'Prepaid') {
-            $sonod_fee =  $sonodnamelists->sonod_fee;
+            $sonodFees =  SonodFee::where('service_id', $sonodnamelists->service_id)->first();
+            $sonod_fee =  $sonodFees->fees;
             $unioninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
             $district = $unioninfos->district;
             $thana = $unioninfos->thana;
