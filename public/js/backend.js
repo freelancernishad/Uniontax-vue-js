@@ -4668,7 +4668,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 4;
-                return _this3.callApi('get', "/api/payment/report/search?payment_type=".concat(_this3.form.payment_type, "&sonod_type=").concat(_this3.form.sonod_type, "&from=").concat(_this3.form.from, "&to=").concat(_this3.form.to), []);
+                return _this3.callApi('get', "/api/payment/report/search?payment_type=".concat(_this3.form.payment_type, "&sonod_type=").concat(_this3.form.sonod_type, "&from=").concat(_this3.form.from, "&to=").concat(_this3.form.to, "&union=").concat(_this3.getUsers.unioun), []);
 
               case 4:
                 res = _context3.sent;

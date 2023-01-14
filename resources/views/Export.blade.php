@@ -84,6 +84,7 @@
             <tr>
                 <th class="td" style="text-align:center" width="10%">ক্রমিক নং</th>
 
+                <th class="td" style="text-align:center" width="20%">তারিখ</th>
 
                 @if($sonod_type=='all')
                 <th class="td" style="text-align:center" width="20%">সেবার ধরণ</th>
@@ -105,6 +106,7 @@
             <tr>
                 <td class="td" style="text-align:center">{{ int_en_to_bn($i) }}</td>
 
+                <td class="td" style="text-align:center">{{ int_en_to_bn(date("d-m-Y",strtotime($Product->created_at)))  }}</td>
                 @if($sonod_type=='all')
 
 
