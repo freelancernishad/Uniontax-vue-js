@@ -130,11 +130,11 @@ class PaymentController extends Controller
         $union = $request->union;
 
         if($payment_type=='menual'){
-            $filter=where('method','==',null);
+            $filter=[];
         }elseif($payment_type=='menual'){
-            $filter->where('method','!=',null);
+            $filter=[];
         }elseif($payment_type=='menual'){
-            $filter->where('method','!=',null);
+            $filte=[];
         }
 
 
