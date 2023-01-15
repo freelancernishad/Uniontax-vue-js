@@ -1179,7 +1179,7 @@ export default {
         },
         sonodname() {
             if (this.$route.params.name) {
-                axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}&fees=1`)
+                axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}&fees=1&unioun=${this.getUnion}`)
                     .then(({ data }) => {
                         this.sonodnamedata = data.sonodname
                         this.sonodnameFee = data.sonodFee

@@ -165,7 +165,7 @@ if($payment->status=='Paid'){
         $sonodnamelists = Sonodnamelist::where(['bnname' => $sonod_name])->first();
         $payment_type = $uniouninfo->payment_type;
         if ($payment_type == 'Prepaid') {
-            $sonodFees =  SonodFee::where('service_id', $sonodnamelists->service_id)->first();
+            $sonodFees =  SonodFee::where(['service_id'=> $sonodnamelists->service_id,'unioun'=> $unioun_name])->first();
             $sonod_fee =  $sonodFees->fees;
             $unioninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
             $district = $unioninfos->district;

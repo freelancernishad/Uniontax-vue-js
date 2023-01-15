@@ -86,6 +86,7 @@ class SonodnamelistController extends Controller
     public function index(Request $request)
     {
         $fees = $request->fees;
+        $unioun = $request->unioun;
 
         $data = $request->data;
         $admin = $request->admin;
@@ -97,7 +98,7 @@ class SonodnamelistController extends Controller
             if($fees){
 
                 $sonodname =  Sonodnamelist::where('enname', $data)->first();
-                 $sonodFee =  SonodFee::where('service_id', $sonodname->service_id)->first();
+                 $sonodFee =  SonodFee::where(['service_id'=> $sonodname->service_id,'unioun'=>$unioun])->first();
                 $data = [
                     'sonodname'=>$sonodname,
                     'sonodFee'=>$sonodFee,
