@@ -82,6 +82,7 @@
 
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive tableFixHead">
                     <table class="table">
                         <thead>
                             <tr>
@@ -103,6 +104,7 @@
 
 
                     </table>
+                </div>
                 </div>
             </div>
 
@@ -172,7 +174,7 @@ export default {
 
 
 
-            var res = await this.callApi('get',`/api/payment/report/search?payment_type=${this.form.payment_type}&sonod_type=${this.form.sonod_type}&from=${this.form.from}&to=${this.form.to}&union=${this.getUsers.unioun}`,[]);
+            var res = await this.callApi('get',`/api/payment/report/search?payment_type=${this.form.payment_type}&sonod_type=${this.form.sonod_type}&from=${this.form.from}&to=${this.form.to}&union=${this.form.union}`,[]);
             // var res = await this.callApi('get',`/api/payment/report/search`,this.form);
             // this.$router.push({name:'report',query: {''}})
             this.rows = res.data
@@ -184,4 +186,14 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+
+
+.tableFixHead          { overflow: auto;     height: 100vh; }
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; }
+
+/* Just common table stuff. Really. */
+.tableFixHead table  { border-collapse: collapse; width: 100%; }
+.tableFixHead th, td { padding: 8px 16px; }
+.tableFixHead th     { background:#eee; }
+
 </style>
