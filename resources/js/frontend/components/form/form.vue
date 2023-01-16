@@ -1195,7 +1195,16 @@ export default {
             this.infoModal.content = ''
         },
         async onSubmit() {
-            var sonod_fee = Number(this.sonodnameFee.fees)
+            var sonod_fee = 0
+            var payment_type = this.getunionInfos.payment_type;
+            if (payment_type == 'Prepaid') {
+                var sonod_fee = Number(this.sonodnameFee.fees)
+            }
+
+
+
+
+
             var vat = Number(this.getvatTax.vat)
             var tax = Number(this.getvatTax.tax)
             var service = Number(this.getvatTax.service)
@@ -1222,6 +1231,9 @@ export default {
                 tradeVat: tradeVat,
                 totalamount: totalamount,
             },
+
+
+
                 this.$root.$emit('bv::show::modal', this.infoModal.id)
         },
         async finalSubmit() {
