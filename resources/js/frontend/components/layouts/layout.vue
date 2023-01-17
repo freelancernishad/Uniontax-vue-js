@@ -364,14 +364,15 @@ export default {
 
             }
 
-console.log(sub,subdomainget)
+// console.log(sub,subdomainget)
+            localStorage.setItem('unioun',subdomainget)
 
         if (sub) {
 
         this.$store.commit('setWebsiteStatus', subdomainget)
 
             var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomainget}`, []);
-            console.log(unioninfo)
+            // console.log(unioninfo)
             this.ff['district'] = unioninfo.data.district
             this.ff['thana'] = unioninfo.data.thana
             var charge = await this.callApi('post', `/api/vattax/get`, this.ff);
