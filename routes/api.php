@@ -19,6 +19,8 @@ use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\HoldingBokeyaController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\SonodnamelistController;
+use App\Http\Controllers\TradeLicenseKhatController;
+use App\Http\Controllers\TradeLicenseKhatFeeController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -66,7 +68,10 @@ Route::get('/gotoUnion', [countryApiController::class,'gotoUnion']);
 
 
 Route::post('unionCreate', [UniouninfoController::class,'unionCreate']);
-
+Route::resources([
+	'tradeLicenseKhat' => TradeLicenseKhatController::class,
+	'tradeLicenseKhatFee' => TradeLicenseKhatFeeController::class,
+]);
 
 
 Route::post('register', [authController::class,'register']);

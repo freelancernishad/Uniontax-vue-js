@@ -40,6 +40,8 @@ class Sonod extends Model
         'applicant_vat_id_number',
         'applicant_tax_id_number',
         'applicant_type_of_business',
+        'applicant_type_of_businessKhat',
+        'applicant_type_of_businessKhatAmount',
         'applicant_father_name',
         'applicant_mother_name',
         'ut_father_name',

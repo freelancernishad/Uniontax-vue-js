@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\Notifications;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\DB;
+use App\Models\TradeLicenseKhatFee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -194,8 +195,17 @@ if($payment->status=='Paid'){
 
 
             if($sonod_name=='ট্রেড লাইসেন্স'){
+
+                $khat_id_1 = $sonod->applicant_type_of_businessKhat;
+                $khat_id_2 = $sonod->applicant_type_of_businessKhatAmount;
+                $pesaKorFee =  TradeLicenseKhatFee::where(['khat_id_1'=>$khat_id_1,'khat_id_2'=>$khat_id_2])->first();
+
+
+
+
+
                 $TradevatAmount = (($sonod_fee * $tradeVat) / 100);
-                $totalamount = $sonod_fee + $TradevatAmount;
+                $totalamount =$pesaKorFee->fee + $sonod_fee + $TradevatAmount;
             }else{
                 $totalamount = $sonod_fee;
             }
@@ -204,6 +214,11 @@ if($payment->status=='Paid'){
             if ($totalamount == null || $totalamount == '' || $totalamount < 1) {
                 $totalamount = 1;
             }
+
+
+
+
+            // return $totalamount;
 
             // $arraydata = [
             //     'total_amount' => $totalamount,
@@ -505,10 +520,11 @@ if($payment->status=='Paid'){
                 $totalamount = $r->charages['totalamount'];
                 $sonod_fee = $r->charages['sonod_fee'];
                 $tradeVat = $r->charages['tradeVat'];
+                $pesaKor = $r->charages['pesaKor'];
 
                 $arraydata = [
                 'total_amount' => $totalamount,
-                'pesaKor' => 0,
+                'pesaKor' => $pesaKor,
                 'tredeLisenceFee' => $sonod_fee,
                 'vatAykor' => $tradeVat,
                 'khat' => '',

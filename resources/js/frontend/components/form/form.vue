@@ -409,12 +409,47 @@
                             <input type="text" class="form-control" v-model="form.applicant_tax_id_number">
                         </div>
                     </div>
+
+
+
+
+
+
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
-                            <label for="" class="labelColor">ব্যবসার ধরন</label>
-                            <input type="text" class="form-control" v-model="form.applicant_type_of_business">
+                            <label for="" class="labelColor">ব্যবসা, বৃত্তি, পেশা, বা শিল্প প্রতিষ্ঠানের শ্রেণী</label>
+                            <select class="form-control" v-model="form.applicant_type_of_businessKhat" @change="GetKhatSubCate">
+                                <option value="">নির্বাচন করুন</option>
+
+                                <option v-for="(TradeLicenseKhat,indexs) in TradeLicenseKhats" :key="indexs" :value="TradeLicenseKhat.khat_id">{{ TradeLicenseKhat.name }}</option>
+
+                            </select>
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_type_of_business"> -->
                         </div>
                     </div>
+
+
+
+
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
+                        <div class="form-group">
+                            <label for="" class="labelColor">মূলধন/ব্যবসার ধরন</label>
+                            <select class="form-control" v-model="form.applicant_type_of_businessKhatAmount"  @change="GetKhatSubCateAmount">
+                                <option value="">নির্বাচন করুন</option>
+
+                                <option v-for="(TradeLicenseKhatAmout,indexs) in TradeLicenseKhatAmouts" :key="indexs" :value="TradeLicenseKhatAmout.khat_id">{{ TradeLicenseKhatAmout.name }}</option>
+
+                            </select>
+                            <!-- <input type="text" class="form-control" v-model="form.applicant_type_of_business"> -->
+                        </div>
+                    </div>
+
+
+
+
+
+
+
                     <div class="col-md-4" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate' || sonodnamedata.enname == 'Trade license'"></div>
                     <div class="col-md-4" v-else>
                         <div class="form-group">
@@ -860,6 +895,7 @@ export default {
                 service: 0,
                 totalamount: 0,
             },
+            pesaKor:0,
             waitForPayment: false,
             submitLoad: false,
             sameStatus: '',
@@ -902,6 +938,8 @@ export default {
                 applicant_vat_id_number: null,
                 applicant_tax_id_number: null,
                 applicant_type_of_business: null,
+                applicant_type_of_businessKhat: null,
+                applicant_type_of_businessKhatAmount: null,
                 successor_father_alive_status: null,
                 successor_mother_alive_status: null,
                 utname: null,
@@ -950,6 +988,11 @@ export default {
                     },
                 ],
             },
+            TradeLicenseKhats:{},
+            TradeLicenseKhatAmouts:{},
+
+
+
             getdivisions:{},
             getdistricts:{},
             getthanas:{},
@@ -991,6 +1034,31 @@ export default {
     //       console.log('ss');
     //     },
     methods: {
+
+
+
+
+        async TradeLicenseKhatFun(){
+            var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=main`,[]);
+            this.TradeLicenseKhats = res.data;
+        },
+
+
+
+
+        async GetKhatSubCate(){
+            var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=sub&main_khat_id=${this.form.applicant_type_of_businessKhat}`,[]);
+            this.TradeLicenseKhatAmouts = res.data.tradeSub;
+            this.form.applicant_type_of_business =  res.data.tradeMain.name;
+        },
+
+        async GetKhatSubCateAmount(){
+            var res = await this.callApi('get',`/api/tradeLicenseKhatFee?khat_id_1=${this.form.applicant_type_of_businessKhat}&khat_id_2=${this.form.applicant_type_of_businessKhatAmount}`,[]);
+            this.pesaKor = res.data.fee;
+
+        },
+
+
 
 
         async getdivisionFun(){
@@ -1215,8 +1283,9 @@ export default {
             var tradeVat = 15;
             if(this.form.sonod_name=='ট্রেড লাইসেন্স'){
 
-                var TradevatAmount = ((sonod_fee * tradeVat) / 100);
-                var totalamount = sonod_fee + TradevatAmount
+
+                var TradevatAmount =  ((sonod_fee * tradeVat) / 100);
+                var totalamount = Number(this.pesaKor) + sonod_fee + TradevatAmount
             }else{
 
                 var totalamount = sonod_fee
@@ -1227,6 +1296,7 @@ export default {
                 sonod_fee: sonod_fee,
                 vatAmount: vatAmount,
                 taxAmount: taxAmount,
+                pesaKor: this.pesaKor,
                 service: service,
                 tradeVat: tradeVat,
                 totalamount: totalamount,
@@ -1439,6 +1509,7 @@ export default {
     mounted() {
 
 
+        this.TradeLicenseKhatFun();
         this.getdivisionFun();
         this.getdivisionFunPer();
 
