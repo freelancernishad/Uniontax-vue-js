@@ -418,7 +418,7 @@
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
                             <label for="" class="labelColor">ব্যবসা, বৃত্তি, পেশা, বা শিল্প প্রতিষ্ঠানের শ্রেণী</label>
-                            <select class="form-control" v-model="form.applicant_type_of_businessKhat" @change="GetKhatSubCate">
+                            <select class="form-control" v-model="form.applicant_type_of_businessKhat" @change="GetKhatSubCate" required>
                                 <option value="">নির্বাচন করুন</option>
 
                                 <option v-for="(TradeLicenseKhat,indexs) in TradeLicenseKhats" :key="indexs" :value="TradeLicenseKhat.khat_id">{{ TradeLicenseKhat.name }}</option>
@@ -434,7 +434,7 @@
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
                             <label for="" class="labelColor">মূলধন/ব্যবসার ধরন</label>
-                            <select class="form-control" v-model="form.applicant_type_of_businessKhatAmount"  @change="GetKhatSubCateAmount">
+                            <select class="form-control" v-model="form.applicant_type_of_businessKhatAmount"  @change="GetKhatSubCateAmount" required>
                                 <option value="">নির্বাচন করুন</option>
 
                                 <option v-for="(TradeLicenseKhatAmout,indexs) in TradeLicenseKhatAmouts" :key="indexs" :value="TradeLicenseKhatAmout.khat_id">{{ TradeLicenseKhatAmout.name }}</option>
