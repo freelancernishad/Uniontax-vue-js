@@ -97,7 +97,13 @@ curl_close($curl);
 
     function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='payment',$unioun_name=''){
 
-        $Apiurl = env('AKPAY_API_URL');
+
+
+
+
+
+
+
         $url = env('AKPAY_IPN_URL');
 
         $whitelistip = env('WHITE_LIST_IP');
@@ -107,8 +113,13 @@ curl_close($curl);
      $AKPAY_MER_REG_ID = $uniounDetials->AKPAY_MER_REG_ID;
     $AKPAY_MER_PASS_KEY = $uniounDetials->AKPAY_MER_PASS_KEY;
 
+        if($AKPAY_MER_REG_ID=='tetulia_test'){
+            $Apiurl = 'https://sandbox.ekpay.gov.bd/ekpaypg/v1';
 
+        }else{
+            $Apiurl = env('AKPAY_API_URL');
 
+        }
 
 
        $post = [
