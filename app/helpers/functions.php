@@ -106,7 +106,7 @@ curl_close($curl);
 
         $url = env('AKPAY_IPN_URL');
 
-        $whitelistip = env('WHITE_LIST_IP');
+
        $req_timestamp = date('Y-m-d H:i:s');
 
      $uniounDetials =  unionname($unioun_name);
@@ -115,10 +115,10 @@ curl_close($curl);
 
         if($AKPAY_MER_REG_ID=='tetulia_test'){
             $Apiurl = 'https://sandbox.ekpay.gov.bd/ekpaypg/v1';
-
+            $whitelistip = '1.1.1.1';
         }else{
             $Apiurl = env('AKPAY_API_URL');
-
+            $whitelistip = env('WHITE_LIST_IP');
         }
 
 
