@@ -420,7 +420,7 @@ export default {
             // console.log(item)
             },
         async visitorfun() {
-            var unionname = 'all';
+            var unionname = 'uniontax';
             if (this.getType == 'Union') {
                 unionname = this.getUnion;
             }
