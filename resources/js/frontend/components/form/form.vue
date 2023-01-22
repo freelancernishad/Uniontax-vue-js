@@ -430,7 +430,7 @@
 
 
 
-                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license' && businessType == true">
                         <div class="form-group">
                             <label for="" class="labelColor">মূলধন/ব্যবসার ধরন</label>
                             <select class="form-control" v-model="form.applicant_type_of_businessKhatAmount"  @change="GetKhatSubCateAmount" required>
@@ -1013,6 +1013,7 @@ export default {
             Perdivision:'',
             applicant_present_district:'',
             applicant_permanent_district:'',
+            businessType:true,
         };
     },
     watch: {
@@ -1056,11 +1057,23 @@ export default {
         async GetKhatSubCate(){
             var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=sub&main_khat_id=${this.form.applicant_type_of_businessKhat}`,[]);
             this.TradeLicenseKhatAmouts = res.data.tradeSub;
+
+            if(res.data.tradeSub.length>0){
+                        this.businessType = true
+            }else{
+                this.GetKhatSubCateAmount('single')
+                this.businessType = false
+
+            }
+
+
             // this.form.applicant_type_of_business =  res.data.tradeMain.name;
         },
 
-        async GetKhatSubCateAmount(){
-            var res = await this.callApi('get',`/api/tradeLicenseKhatFee?khat_id_1=${this.form.applicant_type_of_businessKhat}&khat_id_2=${this.form.applicant_type_of_businessKhatAmount}`,[]);
+        async GetKhatSubCateAmount(type=''){
+            var typeData = '';
+            if(type=='single') typeData = '&dataget=single'
+            var res = await this.callApi('get',`/api/tradeLicenseKhatFee?khat_id_1=${this.form.applicant_type_of_businessKhat}&khat_id_2=${this.form.applicant_type_of_businessKhatAmount}${typeData}`,[]);
             this.pesaKor = res.data.fee;
 
         },

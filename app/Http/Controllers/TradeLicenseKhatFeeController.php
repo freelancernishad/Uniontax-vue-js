@@ -16,7 +16,13 @@ class TradeLicenseKhatFeeController extends Controller
     {
         $khat_id_1 = $request->khat_id_1;
         $khat_id_2 = $request->khat_id_2;
-        return TradeLicenseKhatFee::where(['khat_id_1'=>$khat_id_1,'khat_id_2'=>$khat_id_2])->first();
+        $dataget = $request->dataget;
+        if($dataget=='single'){
+            return TradeLicenseKhatFee::where(['khat_id_1'=>$khat_id_1])->first();
+        }else{
+            return TradeLicenseKhatFee::where(['khat_id_1'=>$khat_id_1,'khat_id_2'=>$khat_id_2])->first();
+        }
+
     }
 
     /**
