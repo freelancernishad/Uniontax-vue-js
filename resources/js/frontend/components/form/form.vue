@@ -424,7 +424,6 @@
                                 <option v-for="(TradeLicenseKhat,indexs) in TradeLicenseKhats" :key="indexs" :value="TradeLicenseKhat.khat_id">{{ TradeLicenseKhat.name }}</option>
 
                             </select>
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_type_of_business"> -->
                         </div>
                     </div>
 
@@ -440,7 +439,15 @@
                                 <option v-for="(TradeLicenseKhatAmout,indexs) in TradeLicenseKhatAmouts" :key="indexs" :value="TradeLicenseKhatAmout.khat_id">{{ TradeLicenseKhatAmout.name }}</option>
 
                             </select>
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_type_of_business"> -->
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
+                        <div class="form-group">
+                            <label for="" class="labelColor">ব্যবসার বিবরণ</label>
+                            <input type="text" class="form-control" v-model="form.applicant_type_of_business" required>
                         </div>
                     </div>
 
@@ -1049,7 +1056,7 @@ export default {
         async GetKhatSubCate(){
             var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=sub&main_khat_id=${this.form.applicant_type_of_businessKhat}`,[]);
             this.TradeLicenseKhatAmouts = res.data.tradeSub;
-            this.form.applicant_type_of_business =  res.data.tradeMain.name;
+            // this.form.applicant_type_of_business =  res.data.tradeMain.name;
         },
 
         async GetKhatSubCateAmount(){
