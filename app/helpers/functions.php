@@ -1420,6 +1420,48 @@ try {
     }
 
 
+
+function SmsNocSmsSend($deccription = '', $applicant_mobile = '01909756552')
+{
+
+    $smsnocapikey = '108|DuxHEDfb1kQKISfSZCJ980XfCKQ2mpwvCCLThVqf ';
+    $smsnocsenderid = '8809617611301';
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://app.smsnoc.com/api/v3/sms/send',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>'{
+"recipient":"88'.$applicant_mobile.'",
+"sender_id":"'.$smsnocsenderid.'",
+"type":"plain",
+"message":"'.$deccription.'"
+}',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json',
+    'Accept: application/json',
+    'Authorization: Bearer '.$smsnocapikey.''
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
+}
+
+
+
+
+
 function characterCount($string){
     // replace array below with proper Bengali stopwords
     $stopWords = array('i','a','about','an','and','are','as','at','be','by','com','de','en','for','from','how','in','is','it','la','of','on','or','that','the','this','to','was','what','when','where','who','will','with','und','the','www');

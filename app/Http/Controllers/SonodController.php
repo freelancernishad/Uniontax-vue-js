@@ -62,8 +62,8 @@ class SonodController extends Controller
 if($payment->status=='Paid'){
             $InvoiceUrl =  url("/invoice/c/$id");
             // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। অনুমোদনের জন্য অপেক্ষা করুন।";
-            $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.. Invoice: $InvoiceUrl";
-            smsSend($deccription, $sonod->applicant_mobile);
+            $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.";
+            // smsSend($deccription, $sonod->applicant_mobile);
             return view('applicationSuccess', compact('payment', 'sonod'));
 }else{
     echo "
@@ -554,7 +554,7 @@ if($payment->status=='Paid'){
              $sonod =   sonod::create($Insertdata);
             if ($stutus == 'Pending') {
                 $deccription = "Congratulation! Your application $sonod->sonod_Id has been Submited.Wait for Approval";
-                smsSend($deccription, $sonod->applicant_mobile);
+                // smsSend($deccription, $sonod->applicant_mobile);
             }
 
             $notifiData = ['union'=>$sonod->unioun_name,'roles'=>'Secretary'];
@@ -694,7 +694,7 @@ if($payment->status=='Paid'){
         $InvoiceUrl =  url("/invoice/d/$id");
         $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Paid. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
         // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে পরিশোধিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
-        smsSend($deccription, $sonod->applicant_mobile);
+        // smsSend($deccription, $sonod->applicant_mobile);
         $req_timestamp = date('Y-m-d H:i:s');
 
 
@@ -746,7 +746,7 @@ if($payment->status=='Paid'){
         $sonod->update(['cancedby' => $request->names, 'cancedbyUserid' => $request->user_id]);
         $InvoiceUrl =  url("/reject/$id");
         $deccription = "Opps! Your application $sonod->sonod_Id  has been Not Approve. Details : " . $InvoiceUrl;
-        smsSend($deccription, $sonod->applicant_mobile);
+        // smsSend($deccription, $sonod->applicant_mobile);
         $updatedata = [
             'stutus' => $request->status,
         ];
@@ -770,14 +770,19 @@ if($payment->status=='Paid'){
             if ($payment_type == 'Prepaid') {
                 $sonodUrl =  url("/sonod/d/$id");
                 $InvoiceUrl =  url("/invoice/d/$id");
-                $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Sonod : " . $sonodUrl . " Invoice : " . $InvoiceUrl;
+                // $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Sonod : " . $sonodUrl;
+                $deccription = "Congratulation! Your application $sonod->sonod_Id has been approved. Document is available at  $sonodUrl";
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
+                // smsSend($deccription, $sonod->applicant_mobile);
+                SmsNocSmsSend($deccription, $sonod->applicant_mobile);
+
             } elseif ($payment_type == 'Postpaid') {
                 $paymentUrl =  url("/sonod/payment/$id");
                 $deccription = "Congratulation! Your application $sonod->sonod_Id  has been Approved. Pay: " . $paymentUrl;
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। আবেদনের ফি প্রদানের জন্য ক্লিক করুন " . $paymentUrl;
             }
-            smsSend($deccription, $sonod->applicant_mobile);
+
+
 
 
 
