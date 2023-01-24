@@ -22,6 +22,7 @@ class Payment extends Model
         'paymentUrl',
         'ipnResponse',
         'method',
+		'payment_type',
         'balance',
     ];
 
