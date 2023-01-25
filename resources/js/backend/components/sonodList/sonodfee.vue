@@ -25,7 +25,7 @@
             <tbody>
                 <tr v-for="(row,index) in rows" :key="index">
                     <th>{{ row.bnname }}</th>
-                    <th><input type="text" v-model="form.sonodfee[row.service_id]" class="form-control"  placeholder="" aria-describedby="helpId"></th>
+                    <th><input type="number" v-model="form.sonodfee[row.service_id]" class="form-control"  placeholder="" aria-describedby="helpId"></th>
                 </tr>
             </tbody>
 
