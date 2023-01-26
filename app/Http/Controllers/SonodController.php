@@ -1790,8 +1790,17 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 
         if($userid){
             $user = User::find($userid);
-            $thana = $user->thana;
-            $unionlist = Uniouninfo::where('thana',$thana)->get();
+            if($user->position=='District_admin'){
+
+                $district = $user->district;
+                $unionlist = Uniouninfo::where('district',$district)->get();
+            }else{
+
+                $thana = $user->thana;
+                $unionlist = Uniouninfo::where('thana',$thana)->get();
+            }
+
+
             $total = [];
           foreach ($unionlist as $value) {
             array_push($total,

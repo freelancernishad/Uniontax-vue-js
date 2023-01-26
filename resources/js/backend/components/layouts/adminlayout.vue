@@ -11,7 +11,13 @@
                 <div class="header-logo">
                     <h3 style="    margin-bottom: 0;">
                         <router-link :to="{ name: 'Dashboard' }" class="text-white">
-                            {{ user.position }} Panel
+
+                                <span v-if="user.position=='District_admin'">জেলা এডমিন প্যানেল</span>
+                                <span v-else-if="user.position=='Chairman'">চেয়ারম্যান এডমিন প্যানেল</span>
+                                <span v-else-if="user.position=='Secretary'">সচিব এডমিন প্যানেল</span>
+                                <span v-else>উপজেলা এডমিন প্যানেল</span>
+
+                            <!-- {{ user.position }} Panel -->
                             <!-- <img width="80%" src="http://esoft4u.tmscedu.com/asset/img/Logo123.png" alt="logo"> -->
                         </router-link>
                     </h3>
@@ -55,7 +61,16 @@
                             aria-expanded="false">
                             <div class="admin-title">
                                 <h5 class="item-title">{{ user.names }}</h5>
-                                <span>{{ user.position }}</span>
+
+
+                                <span v-if="user.position=='District_admin'">জেলা প্রশাসক</span>
+                                <span v-else-if="user.position=='Chairman'">চেয়ারম্যান</span>
+                                <span v-else-if="user.position=='Secretary'">সচিব</span>
+                                <span v-else>উপজেলা নির্বাহী অফিসার</span>
+
+
+
+                                <!-- <span>{{ user.position }}</span> -->
                             </div>
                             <div class="admin-img">
                                 <img :src="$asseturl + 'dashboard_asset/img/figure/admin.jpg'" alt="Admin">
@@ -63,7 +78,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="item-header">
-                                <h6 class="item-title">{{ $localStorage.getItem('user') }}</h6>
+                                <h6 class="item-title">{{ user.names }}</h6>
                             </div>
                             <div class="item-content">
                                 <ul class="settings-list">
@@ -169,7 +184,7 @@
 
 
                         <li class="nav-item" @click="submenu(0)"
-                            v-if="this.$localStorage.getItem('position') == 'Thana_admin'">
+                            v-if="this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'District_admin'">
                             <router-link :to="{ name: 'sonodcountall' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ইস্যুকৃত সনদ প্রতিবেদন</span></router-link>
                         </li>
@@ -205,27 +220,27 @@
 
 
 
-                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'District_admin'">
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'super_admin'">
                             <router-link :to="{ name: 'charages' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ফি</span></router-link>
                         </li>
 
 
                         <li class="nav-item" @click="submenu(0)"
-                            v-if="Users.position == 'Thana_admin' || Users.position == 'District_admin'">
+                            v-if="Users.position == 'super_admin'">
                             <router-link :to="{ name: 'unionlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ইউনিয়ন এর তালিকা</span></router-link>
                         </li>
 
 
                         <li class="nav-item" @click="submenu(0)"
-                            v-if="Users.position == 'Thana_admin' || Users.position == 'District_admin'">
+                            v-if="Users.position == 'super_admin'">
                             <router-link :to="{ name: 'sonodlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>সেবার তালিকা</span></router-link>
                         </li>
 
 
-                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'District_admin' || Users.position == 'Thana_admin'">
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'super_admin'">
                             <router-link :to="{ name: 'userlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ইউজার তালিকা</span></router-link>
                         </li>

@@ -16,11 +16,13 @@
             <div class="card">
                 <div class="card-header" >
                     <form @submit.stop.prevent="onSubmit">
-                        <div class="row">
+                        <div class="row" style="align-items: center; justify-content: center;">
 
                             <div class="form-group col-md-3" v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin'">
                                 <select v-model="form.union" id="sonod" class="form-control" required>
                                     <option value="">ইউনিয়ন নির্বাচন করুন</option>
+
+                                    <!-- <option v-if="$localStorage.getItem('position')=='District_admin'" value="all">সকল প্রতিবেদন</option> -->
 
                                     <option v-for="(union,ind) in unionList" :key="'union' + ind" :value="union.short_name_e">{{ union.short_name_b }}</option>
 
@@ -53,7 +55,17 @@
 
 
                             <div class="form-group col-md-3">
+
+                            </div>
+
+
+
+                            <div class="form-group col-md-3">
                                 <input type="date" v-model="form.from" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-1">
+                               থেকে
                             </div>
 
                             <div class="form-group col-md-3">

@@ -129,7 +129,7 @@
                                 <div class="item-content">
                                     <div class="item-title">মোট আদায়কৃত ফি'র পরিমাণ</div>
                                     <div class="item-number"><span class="counter"
-                                            :data-num="amount">{{ amount }}</span></div>
+                                            :data-num="amount.toFixed(2)">{{ amount.toFixed(2) }}</span></div>
                                 </div>
                             </div>
                         </div>

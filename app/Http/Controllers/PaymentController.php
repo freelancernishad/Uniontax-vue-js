@@ -94,29 +94,48 @@ class PaymentController extends Controller
             $filter=[];
         }
 
+
+        if($union=='all'){
+            $unionfilter=[];
+        }else{
+            $unionfilter=['union'=>$union];
+        }
+
+
+
+
+
         if($sonod_type && $from && $to){
+
+
+
+
             if($sonod_type=='all'){
             // return Payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
-            $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'status'=>'Paid'])->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+            $row = Payment::with(['sonod','tax'])->where(['status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
             }else{
-                 $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+                 $row = Payment::with(['sonod','tax'])->where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
             }
+
             // return $row;
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
         // return view('Export',compact('row','uniouninfo','sonod_type','from','to'));
-        $pdf = LaravelMpdf::loadView('Export',compact('row','uniouninfo','sonod_type','from','to'));
+        $pdf = LaravelMpdf::loadView('Export',compact('row','uniouninfo','sonod_type','from','to','union'));
         return $pdf->stream("hlsdfhlo.pdf");
 
         }
 
+
+
+
         if($sonod_type=='all'){
-            $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'status'=>'Paid'])->where($filter)->orderBy('id','desc')->get();
+            $row = Payment::with(['sonod','tax'])->where(['status'=>'Paid'])->where($unionfilter)->where($filter)->orderBy('id','desc')->get();
         }
-        $row = Payment::with(['sonod','tax'])->where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->where($filter)->orderBy('id','desc')->get();
+        $row = Payment::with(['sonod','tax'])->where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where($unionfilter)->where($filter)->orderBy('id','desc')->get();
         // return Excel::download($export, 'report.xlsx');
 
         $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
-        $pdf = LaravelMpdf::loadView('Export',compact('row','uniouninfo','sonod_type','from','to'));
+        $pdf = LaravelMpdf::loadView('Export',compact('row','uniouninfo','sonod_type','from','to','union'));
         return $pdf->stream("hlsdfhlo.pdf");
 
 
@@ -149,26 +168,36 @@ class PaymentController extends Controller
 
         if($union){
 
+            if($union=='all'){
+                $unionfilter=[];
+            }else{
+                $unionfilter=['union'=>$union];
+            }
+
 
             if($from && $to){
                 if($sonod_type=='all'){
-                    return Payment::where(['union'=>$union,'status'=>'Paid'])->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+
+                    return Payment::where(['status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
                 }
-                return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
+                return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
 
             }elseif($from){
                 if($sonod_type=='all'){
-                return Payment::where(['union'=>$union,'status'=>'Paid'])->where($filter)->where('date',$from)->orderBy('id','desc')->get();
+                return Payment::where(['status'=>'Paid'])->where($unionfilter)->where($filter)->where('date',$from)->orderBy('id','desc')->get();
                 }
-                return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->where($filter)->where('date',$from)->orderBy('id','desc')->get();
+                return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where($unionfilter)->where($filter)->where('date',$from)->orderBy('id','desc')->get();
 
             }else{
                 if($sonod_type=='all'){
-                return Payment::where(['union'=>$union,'status'=>'Paid'])->where($filter)->orderBy('id','desc')->get();
+                return Payment::where(['status'=>'Paid'])->where($unionfilter)->where($filter)->orderBy('id','desc')->get();
                 }
-                return Payment::where(['union'=>$union,'sonod_type'=>$sonod_type,'status'=>'Paid'])->where($filter)->orderBy('id','desc')->get();
+                return Payment::where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where($unionfilter)->where($filter)->orderBy('id','desc')->get();
 
             }
+
+
+
         }else{
 
             if($from && $to){
