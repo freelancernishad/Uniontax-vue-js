@@ -25,7 +25,15 @@
 
 
                 <div class="sidebarTitle mb-3 defaltColor"  v-if="getType=='Union'">
-                        <h4>এক নজরে {{  getunionInfos.short_name_b  }} ইউনিয়ন</h4>
+
+
+
+
+                        <h4 v-if="getunionInfos.type=='pourosova'">এক নজরে {{  getunionInfos.short_name_b  }}</h4>
+                        <h4 v-else>এক নজরে {{  getunionInfos.short_name_b  }} ইউনিয়ন</h4>
+
+
+
                     </div>
                     <p class='sidebaruser text-center' v-if="getType=='Union'">
                         <img width="100%" height="100px" alt="" :src="getunionInfos.u_image"> </p>
@@ -74,6 +82,10 @@ export default {
             type:String,
             default:'col-md-3'
         }
+    },
+    created(){
+
+        // console.log(this.getunionInfos.short_name_b)
     }
 }
 </script>
