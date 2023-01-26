@@ -54,21 +54,33 @@
 
 
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3"   v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin'">
 
                             </div>
 
 
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin'">
                                 <input type="date" v-model="form.from" class="form-control">
                             </div>
 
-                            <div class="form-group col-md-1">
+                            <div class="form-group col-md-2"  v-else>
+                                <input type="date" v-model="form.from" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-1"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin'">
                                থেকে
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-1"  v-else>
+                               থেকে
+                            </div>
+
+                            <div class="form-group col-md-3"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin'">
+                                <input type="date" v-model="form.to" class="form-control">
+                            </div>
+
+                            <div class="form-group col-md-2"  v-else>
                                 <input type="date" v-model="form.to" class="form-control">
                             </div>
 
