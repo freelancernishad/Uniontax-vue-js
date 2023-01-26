@@ -160,6 +160,9 @@ if($payment->status=='Paid'){
     {
         //  $unioun_name =  $r->unioun_name;
         $sonod = Sonod::find($id);
+
+       $applicant_mobile =  int_bn_to_en($sonod->applicant_mobile);
+
         $unioun_name =  $sonod->unioun_name;
         $sonod_name =  $sonod->sonod_name;
         $uniouninfo = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
@@ -256,7 +259,7 @@ if($payment->status=='Paid'){
                 "cust_email" => "",
                 "cust_id" => "$sonod->id",
                 "cust_mail_addr" => "Address",
-                "cust_mobo_no" => "$sonod->applicant_mobile",
+                "cust_mobo_no" => "$applicant_mobile",
                 "cust_name" => "Customer Name"
             ];
             $trns_info = [
@@ -276,7 +279,7 @@ if($payment->status=='Paid'){
                 'sonodId' => $id,
                 'sonod_type' => $sonod->sonod_name,
                 'amount' => $amount,
-                'mob' => $sonod->applicant_mobile,
+                'mob' => $applicant_mobile,
                 'status' => "Pending",
                 'paymentUrl' => $redirectutl,
                 'method' => 'ekpay',
@@ -312,7 +315,7 @@ if($payment->status=='Paid'){
                 "cust_email" => "",
                 "cust_id" => "$sonod->sonod_Id",
                 "cust_mail_addr" => "Address",
-                "cust_mobo_no" => "$sonod->applicant_mobile",
+                "cust_mobo_no" => "$applicant_mobile",
                 "cust_name" => "Customer Name"
             ];
             $req_timestamp = date('Y-m-d H:i:s');
@@ -322,7 +325,7 @@ if($payment->status=='Paid'){
                 'sonodId' => $id,
                 'sonod_type' => $sonod->sonod_name,
                 'amount' => $amount,
-                'mob' => $sonod->applicant_mobile,
+                'mob' => $applicant_mobile,
                 'status' => "Pending",
                 'date' => date('Y-m-d'),
                 'created_at' => $req_timestamp,
