@@ -7,6 +7,7 @@
 
 
                 <h3 v-if="Users.position=='District_admin'">জেলা প্রশাসকের ড্যাশবোর্ড</h3>
+                <h3 v-if="Users.position=='Sub_District_admin'">উপপরিচালকের ড্যাশবোর্ড</h3>
                 <h3 v-else-if="Users.position=='Chairman'">চেয়ারম্যানের ড্যাশবোর্ড</h3>
                 <h3 v-else-if="Users.position=='Secretary'">সচিবের ড্যাশবোর্ড</h3>
                 <h3 v-else>উপজেলা ড্যাশবোর্ড</h3>

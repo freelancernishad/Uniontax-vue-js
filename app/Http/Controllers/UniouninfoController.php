@@ -1163,7 +1163,7 @@ return $Insertdata;
          $thana = $user->thana;
          $district = $user->district;
 
-            if($position=='District_admin'){
+            if($position=='District_admin' || $position=='super_admin' || $position=='Sub_District_admin'){
 
                 return Uniouninfo::where('district', $district)->get();
 

@@ -13,6 +13,7 @@
                         <router-link :to="{ name: 'Dashboard' }" class="text-white">
 
                                 <span v-if="user.position=='District_admin'">জেলা এডমিন প্যানেল</span>
+                                <span v-if="user.position=='Sub_District_admin'">উপপরিচালক প্যানেল</span>
                                 <span v-else-if="user.position=='Chairman'">চেয়ারম্যান এডমিন প্যানেল</span>
                                 <span v-else-if="user.position=='Secretary'">সচিব এডমিন প্যানেল</span>
                                 <span v-else>উপজেলা এডমিন প্যানেল</span>
@@ -64,6 +65,7 @@
 
 
                                 <span v-if="user.position=='District_admin'">জেলা প্রশাসক</span>
+                                <span v-if="user.position=='Sub_District_admin'">উপপরিচালক </span>
                                 <span v-else-if="user.position=='Chairman'">চেয়ারম্যান</span>
                                 <span v-else-if="user.position=='Secretary'">সচিব</span>
                                 <span v-else>উপজেলা নির্বাহী অফিসার</span>
@@ -184,7 +186,7 @@
 
 
                         <li class="nav-item" @click="submenu(0)"
-                            v-if="this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'District_admin'">
+                            v-if="this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Sub_District_admin'">
                             <router-link :to="{ name: 'sonodcountall' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ইস্যুকৃত সনদ প্রতিবেদন</span></router-link>
                         </li>
