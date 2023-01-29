@@ -20,6 +20,7 @@ use App\Http\Controllers\HoldingBokeyaController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\SonodnamelistController;
 use App\Http\Controllers\TradeLicenseKhatController;
+use App\Http\Controllers\CitizenInformationController;
 use App\Http\Controllers\TradeLicenseKhatFeeController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -72,6 +73,11 @@ Route::resources([
 	'tradeLicenseKhat' => TradeLicenseKhatController::class,
 	'tradeLicenseKhatFee' => TradeLicenseKhatFeeController::class,
 ]);
+
+
+Route::post('citizen/information/nid', [CitizenInformationController::class,'citizeninformationNID']);
+Route::post('citizen/information/brn', [CitizenInformationController::class,'citizeninformationBRN']);
+
 
 
 Route::post('register', [authController::class,'register']);

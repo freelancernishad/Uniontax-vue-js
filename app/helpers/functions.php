@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Sonod;
 use App\Models\Visitor;
 use App\Models\Uniouninfo;
@@ -7,6 +8,52 @@ use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+
+
+
+ function SonodCounting($status,$union='',$userid='')
+{
+    $union = $union;
+    $userid = $userid;
+
+    if($userid){
+        $user = User::find($userid);
+        $thana = $user->thana;
+        $unionlist = Uniouninfo::where('thana',$thana)->get();
+        $total = 0;
+      foreach ($unionlist as $value) {
+
+        if ($status == 'all') {
+             $total +=  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $value->short_name_e])->count();
+        }else{
+
+            $total +=  Sonod::where(['stutus' => $status, 'unioun_name' => $value->short_name_e])->count();
+        }
+        # code...
+      }
+      return $total;
+
+
+    }
+
+
+
+    if ($union) {
+        if ($status == 'all') {
+            return  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $union])->count();
+        }
+        return  Sonod::where(['stutus' => $status, 'unioun_name' => $union])->count();
+    }
+
+
+    if ($status == 'all') {
+        return  Sonod::where('stutus', '!=', 'Prepaid')->count();
+    }
+    return  Sonod::where(['stutus' => $status])->count();
+}
+
+
+
 
 
 

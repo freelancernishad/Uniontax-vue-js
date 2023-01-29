@@ -4,6 +4,8 @@ use App\Models\Payment;
 use App\Models\Visitor;
 use App\Models\Uniouninfo;
 use Illuminate\Http\Request;
+use App\Models\Sonodnamelist;
+use App\Models\TradeLicenseKhat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SonodController;
@@ -13,6 +15,7 @@ use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
+use lemonpatwari\bangladeshgeocode\Models\Division;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -225,6 +228,11 @@ Route::get('/allow/application/notification', function () {
 
 
     });
+
+
+
+
+
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 
 
@@ -232,9 +240,25 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
     Route::get('/{vue_capture?}', function () {
         // return   Auth::user()->roles->permission;
         $roles = Role::all();
-        return view('layout',compact('roles'));
+        $Sonodnamelist =  Sonodnamelist::all();
+
+
+
+
+        return view('layout',compact('roles','Sonodnamelist'));
     })->where('vue_capture', '[\/\w\.-]*')->name('dashboard');
 });
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/{vue_capture?}', function () {
 
     $url = url()->current();
@@ -266,11 +290,15 @@ Route::get('/{vue_capture?}', function () {
         }
     }
 
+    // return $sonodnamesprops = Sonodnamelist::all();
+    $sonodnamesprops = Sonodnamelist::select(['id','service_id','bnname','enname','icon'])->get();
+    $allDivision = Division::all();
+    $tradeLicenseKhat = TradeLicenseKhat::where(['type'=>'main'])->get();
 
  if($sub){
 
     $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomainget])->first();
-     return view('frontlayout',compact('uniounDetials'));
+     return view('frontlayout',compact('uniounDetials','sonodnamesprops','allDivision','tradeLicenseKhat'));
     }else{
 
 
@@ -278,7 +306,8 @@ Route::get('/{vue_capture?}', function () {
 
         // return  Uniouninfo::find(1);
  $uniounDetials['defaultColor']  = 'green';
-      $uniounDetials = json_decode(json_encode($uniounDetials));
-     return view('frontlayout',compact('uniounDetials'));
+    //   $uniounDetials = json_decode(json_encode($uniounDetials));
+      $uniounDetials =  Uniouninfo::where(['short_name_e'=>'uniontax'])->first();
+     return view('frontlayout',compact('uniounDetials','sonodnamesprops','allDivision','tradeLicenseKhat'));
  }
 })->where('vue_capture', '[\/\w\.-]*')->name('frontend');

@@ -61,9 +61,11 @@ const store = new Vuex.Store({
         },
         siteType:'',
         unioun_name:'',
+        getAllDivision:{},
         sonodNameList:{},
         unionInfo:{},
         vatTax:{},
+        TradeLicenseKhat:{},
 
     },// as like data(){return:{}}
     mutations:{
@@ -82,6 +84,12 @@ const store = new Vuex.Store({
         },
         setUpdateSonodNames(state,data){
             state.sonodNameList = data
+        },
+        setUpdateTrandeLicenseKhat(state,data){
+            state.TradeLicenseKhat = data
+        },
+        setUpdateDivision(state,data){
+            state.getAllDivision = data
         },
        async setUpdateUser(state,data){
             state.Users = data
@@ -104,17 +112,19 @@ const store = new Vuex.Store({
 
 
         setWebsiteStatus(state,data){
+            // console.log(data.subdomainget)
 
 
             // if(data=='salbahan')window.location.href='https://uniontax.gov.bd/'
-            if(data!='main'){
+            if(data.subdomainget!='main'){
 
-                axios.post(`/api/union/info?union=${data}`)
-                .then((res)=>{
-                    // console.log(unionname);
-                    // console.log(res);
-                    state.unionInfo = res.data
-                })
+                // axios.post(`/api/union/info?union=${data}`)
+                // .then((res)=>{
+                //     // console.log(unionname);
+                //     // console.log(res);
+                //     state.unionInfo = res.data
+                // })
+                state.unionInfo = data.uniounDetialsprops
                 state.unioun_name = data
                 state.siteType = 'Union'
             }else{
@@ -134,6 +144,12 @@ const store = new Vuex.Store({
         },
         getUpdateSonodNames(state){
             return state.sonodNameList
+        },
+        getUpdateTrandeLicenseKhat(state){
+            return state.TradeLicenseKhat
+        },
+        getUpdateDivision(state){
+           return state.getAllDivision
         },
         getUpdateUser(state){
             return state.Users

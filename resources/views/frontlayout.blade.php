@@ -119,7 +119,7 @@ p.help.text-right {
 
 
 
-        <component :is="$route.meta.layout || 'div'" >
+        <component :is="$route.meta.layout || 'div'" :unioundetialsprops="{{$uniounDetials}}" :sonodnamesprops="{{$sonodnamesprops}}" :alldivisionprops="{{$allDivision}}" :tradelicenseprops="{{$tradeLicenseKhat}}" >
             <router-view />
           </component>
 

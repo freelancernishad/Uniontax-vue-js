@@ -998,6 +998,8 @@ if($payment->status=='Paid'){
         $unioun_name = $request->unioun_name;
         $sondId = $request->sondId;
         $sonod_name =  $this->enBnName($sonod_name)->bnname;
+         $Sonodnamelist = Sonodnamelist::where('bnname', $sonod_name)->first();
+
 
         $userid = $request->userid;
         if($userid){
@@ -1005,25 +1007,55 @@ if($payment->status=='Paid'){
              $thana = $user->thana;
 
              if ($payment_status) {
-                return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'applicant_present_Upazila' => $thana, 'payment_status' => $payment_status])->orderBy('id', 'DESC')->paginate(20);
+                $sonods = Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'applicant_present_Upazila' => $thana, 'payment_status' => $payment_status])->orderBy('id', 'DESC')->paginate(20);
+                $returnData = [
+                    'sonods'=>$sonods,
+                    'sonod_name'=>$Sonodnamelist,
+                ];
+                return $returnData;
+
             }
-            return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'applicant_present_Upazila' => $thana])->orderBy('id', 'DESC')->paginate(20);
+            $sonods = Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'applicant_present_Upazila' => $thana])->orderBy('id', 'DESC')->paginate(20);
+            $returnData = [
+                'sonods'=>$sonods,
+                'sonod_name'=>$Sonodnamelist,
+            ];
+            return $returnData;
 
         }
 
 
         if ($sondId) {
-            // return $sondId;
-            // return 'sss';
-            return Sonod::where("sonod_Id", "LIKE", "%$sondId%")->where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
+
+            $sonods =  Sonod::where("sonod_Id", "LIKE", "%$sondId%")->where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
+            $returnData = [
+                'sonods'=>$sonods,
+                'sonod_name'=>$Sonodnamelist,
+            ];
+            return $returnData;
         }
         if ($unioun_name) {
             if ($payment_status) {
-                return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name, 'payment_status' => $payment_status])->orderBy('id', 'DESC')->paginate(20);
+                $sonods =  Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name, 'payment_status' => $payment_status])->orderBy('id', 'DESC')->paginate(20);
+                $returnData = [
+                    'sonods'=>$sonods,
+                    'sonod_name'=>$Sonodnamelist,
+                ];
+                return $returnData;
             }
-            return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
+            $sonods =  Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
+            $returnData = [
+                'sonods'=>$sonods,
+                'sonod_name'=>$Sonodnamelist,
+            ];
+            return $returnData;
         }
-        return Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus])->orderBy('id', 'DESC')->paginate(20);
+        $sonods = Sonod::where(['sonod_name' => $sonod_name, 'stutus' => $stutus])->orderBy('id', 'DESC')->paginate(20);
+        $returnData = [
+            'sonods'=>$sonods,
+            'sonod_name'=>$Sonodnamelist,
+        ];
+        return $returnData;
 
 
 
@@ -1862,18 +1894,42 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
             $user = User::find($userid);
             $thana = $user->thana;
             $unionlist = Uniouninfo::where('thana',$thana)->get();
+            $allSonodCount = 0;
+            $pendingSonodCount = 0;
+            $approvedSonodCount = 0;
+            $cancelSonodCount = 0;
             $total = 0;
           foreach ($unionlist as $value) {
 
             if ($status == 'all') {
-                 $total +=  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $value->short_name_e])->count();
+                //  $total +=  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $value->short_name_e])->count();
+                 $allSonodCount +=  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $value->short_name_e])->count();
+                 $pendingSonodCount +=  Sonod::where('stutus', 'Pending')->where(['unioun_name' => $value->short_name_e])->count();
+                 $approvedSonodCount +=  Sonod::where('stutus', 'approved')->where(['unioun_name' => $value->short_name_e])->count();
+                 $cancelSonodCount +=  Sonod::where('stutus', 'cancel')->where(['unioun_name' => $value->short_name_e])->count();
             }else{
 
-                $total +=  Sonod::where(['stutus' => $status, 'unioun_name' => $value->short_name_e])->count();
+                // $total +=  Sonod::where(['stutus' => $status, 'unioun_name' => $value->short_name_e])->count();
+                $allSonodCount += 0;
+                $pendingSonodCount +=  Sonod::where(['stutus' => 'Pending', 'unioun_name' => $value->short_name_e])->count();
+                $approvedSonodCount +=  Sonod::where(['stutus' => 'approved', 'unioun_name' => $value->short_name_e])->count();
+                $cancelSonodCount +=  Sonod::where(['stutus' => 'cancel', 'unioun_name' => $value->short_name_e])->count();
+
             }
             # code...
           }
-          return $total;
+
+
+
+          $ReturnData = [
+            'allSonodCount'=>$allSonodCount,
+            'pendingSonodCount'=>$pendingSonodCount,
+            'approvedSonodCount'=>$approvedSonodCount,
+            'cancelSonodCount'=>$cancelSonodCount,
+        ];
+
+
+          return $ReturnData;
 
 
         }
@@ -1882,16 +1938,49 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 
         if ($union) {
             if ($status == 'all') {
-                return  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $union])->count();
+                 $allSonodCount =  Sonod::where('stutus', '!=', 'Prepaid')->where(['unioun_name' => $union])->count();
+                 $pendingSonodCount =  Sonod::where('stutus', 'Pending')->where(['unioun_name' => $union])->count();
+                 $approvedSonodCount =  Sonod::where('stutus', 'approved')->where(['unioun_name' => $union])->count();
+                 $cancelSonodCount =  Sonod::where('stutus', 'cancel')->where(['unioun_name' => $union])->count();
+
+                $ReturnData = [
+                    'allSonodCount'=>$allSonodCount,
+                    'pendingSonodCount'=>$pendingSonodCount,
+                    'approvedSonodCount'=>$approvedSonodCount,
+                    'cancelSonodCount'=>$cancelSonodCount,
+                ];
+                return $ReturnData;
+
+
+
+
             }
             return  Sonod::where(['stutus' => $status, 'unioun_name' => $union])->count();
         }
 
 
         if ($status == 'all') {
-            return  Sonod::where('stutus', '!=', 'Prepaid')->count();
+            // return  Sonod::where('stutus', '!=', 'Prepaid')->count();
+
+            $allSonodCount =  Sonod::where('stutus', '!=', 'Prepaid')->count();
+
+
         }
-        return  Sonod::where(['stutus' => $status])->count();
+        $pendingSonodCount =  Sonod::where('stutus', 'Pending')->count();
+        $approvedSonodCount =  Sonod::where('stutus', 'approved')->count();
+        $cancelSonodCount =  Sonod::where('stutus', 'cancel')->count();
+
+        $ReturnData = [
+            'allSonodCount'=>$allSonodCount,
+            'pendingSonodCount'=>$pendingSonodCount,
+            'approvedSonodCount'=>$approvedSonodCount,
+            'cancelSonodCount'=>$cancelSonodCount,
+        ];
+
+
+          return $ReturnData;
+
+        // return  Sonod::where(['stutus' => $status])->count();
     }
     public function niddob(Request $request)
     {

@@ -57,8 +57,8 @@ export default {
 
 
        async getdivisionFun(){
-         var res = await this.callApi('get',`/api/getdivisions`,[]);
-         this.getdivisions = res.data;
+        //  var res = await this.callApi('get',`/api/getdivisions`,[]);
+         this.getdivisions = this.allDivision;
         },
 
        async getdistrictFun(){

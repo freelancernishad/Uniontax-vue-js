@@ -1047,8 +1047,8 @@ export default {
 
 
         async TradeLicenseKhatFun(){
-            var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=main`,[]);
-            this.TradeLicenseKhats = res.data;
+            // var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=main`,[]);
+            this.TradeLicenseKhats = this.TradeLicenseKhat;
         },
 
 
@@ -1082,8 +1082,8 @@ export default {
 
 
         async getdivisionFun(){
-         var res = await this.callApi('get',`/api/getdivisions`,[]);
-         this.getdivisions = res.data;
+        //  var res = await this.callApi('get',`/api/getdivisions`,[]);
+         this.getdivisions = this.allDivision;
         },
 
         async getdistrictFun(){
@@ -1115,8 +1115,8 @@ export default {
         //////////////////////////////////
 
         async getdivisionFunPer(){
-         var res = await this.callApi('get',`/api/getdivisions`,[]);
-         this.getdivisionsPer = res.data;
+        //  var res = await this.callApi('get',`/api/getdivisions`,[]);
+         this.getdivisionsPer = this.allDivision;
         },
 
         async getdistrictFunPer(){

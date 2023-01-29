@@ -319,10 +319,14 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
 </template>
 <script>
 export default {
-    props: ['user'],
+    props: ['user','unioundetialsprops','sonodnamesprops','alldivisionprops','tradelicenseprops'],
     async created() {
-        var res = await this.callApi('get', '/api/get/sonodname/list', []);
-        this.$store.commit('setUpdateSonodNames', res.data)
+        // var res = await this.callApi('get', '/api/get/sonodname/list', []);
+        // this.$store.commit('setUpdateSonodNames', res.data)
+        this.$store.commit('setUpdateDivision', this.alldivisionprops)
+        this.$store.commit('setUpdateSonodNames', this.sonodnamesprops)
+        this.$store.commit('setUpdateTrandeLicenseKhat', this.tradelicenseprops)
+
 
         var url = this.$appUrl.split("//");
 
@@ -369,16 +373,21 @@ export default {
 
         if (sub) {
 
-        this.$store.commit('setWebsiteStatus', subdomainget)
+        // this.$store.commit('setWebsiteStatus', subdomainget)
+           var  unionData = {'subdomainget':subdomainget,'uniounDetialsprops':this.unioundetialsprops};
+        this.$store.commit('setWebsiteStatus', unionData)
 
-            var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomainget}`, []);
+            // var unioninfo = await this.callApi('post', `/api/union/info?union=${subdomainget}`, []);
             // console.log(unioninfo)
-            this.ff['district'] = unioninfo.data.district
-            this.ff['thana'] = unioninfo.data.thana
-            var charge = await this.callApi('post', `/api/vattax/get`, this.ff);
-            this.$store.commit('setvatTax', charge.data)
+            this.ff['district'] = this.unioundetialsprops.district
+            this.ff['thana'] = this.unioundetialsprops.thana
+            // var charge = await this.callApi('post', `/api/vattax/get`, this.ff);
+            // this.$store.commit('setvatTax', charge.data)
+            this.$store.commit('setvatTax', 0)
         }else{
-        this.$store.commit('setWebsiteStatus', 'main')
+        // this.$store.commit('setWebsiteStatus', 'main')
+        var  unionData = {'subdomainget':'main','uniounDetialsprops':this.unioundetialsprops};
+        this.$store.commit('setWebsiteStatus', unionData)
 
         }
     },
@@ -422,7 +431,7 @@ export default {
         async visitorfun() {
             var unionname = 'uniontax';
             if (this.getType == 'Union') {
-                unionname = this.getUnion;
+                unionname = this.getUnion.subdomainget;
             }
             var visitcreate = await this.callApi('post', `/api/visitorcreate`, [])
             var res = await this.callApi('get', `/api/visitorcount?union=${unionname}`, [])
@@ -436,7 +445,7 @@ export default {
         }
     },
     mounted() {
-        this.getCategory();
+        // this.getCategory();
         setTimeout(() => {
             this.visitorfun();
         }, 2000);

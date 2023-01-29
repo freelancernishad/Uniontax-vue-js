@@ -177,9 +177,9 @@ return [
         Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Rakibhstu\Banglanumber\NumberToBanglaServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
 
-
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -237,7 +237,10 @@ return [
 
         'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
     ],
 
 ];

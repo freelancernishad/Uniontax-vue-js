@@ -342,9 +342,12 @@
 </template>
 <script>
 export default {
-    props: ['user', 'permission', 'roles'],
+    props: ['user', 'permission', 'roles','Sonodnamelists'],
     async created() {
-        this.getSonodNamesAdmin();
+        // this.getSonodNamesAdmin();
+
+
+        this.SonodNamesAdmin = this.Sonodnamelists;
 
         // var url = this.$appUrl.split("//");
         // var subdomain = url[1].split(".");
@@ -356,14 +359,11 @@ export default {
             window.location.href = '/login'
         }
 
-        //             if(this.$route.params.name){
-        //  var ress =  await this.callApi('get',`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_',' ')}`,[]);
-        //        this.$store.commit('setUpdateSonodName', ress.data)
-        //             }
-        if (this.$route.params.name) {
-            var result = await this.callApi('get', `/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`, []);
-            this.$store.commit('setUpdateSonodName', result.data)
-        }
+
+        // if (this.$route.params.name) {
+        //     var result = await this.callApi('get', `/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}`, []);
+        //     this.$store.commit('setUpdateSonodName', result.data)
+        // }
 
 
 
@@ -428,7 +428,10 @@ export default {
     async getSonodNamesAdmin(){
         this.preLooding = true
 
+
         var res = await this.callApi('get', '/api/get/sonodname/list?admin=1', []);
+
+
         this.SonodNamesAdmin = res.data
         this.preLooding = false
 

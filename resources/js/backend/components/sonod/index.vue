@@ -420,7 +420,7 @@ export default {
     watch: {
         '$route': {
             handler(newValue, oldValue) {
-                this.uniondata();
+                // this.uniondata();
                 this.sonodList();
             },
             deep: true
@@ -656,7 +656,10 @@ export default {
                     var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&stutus=${stutus}&payment_status=${payment_status}${useridsent}`, []);
                 }
                 // var res = await this.callApi('get', `/api/sonod/list?page=${page}&sonod_name=${this.$route.params.name}${unioun}&filter[stutus]=${stutus}&filter[payment_status]=${payment_status}`, []);
-                this.items = res.data.data
+                this.items = res.data.sonods.data
+
+                this.$store.commit('setUpdateSonodName', res.data.sonod_name)
+
                 this.TotalRows = `${res.data.total}`;
                 // console.log(res.data.total)
                 this.Totalpage = res.data.links
@@ -690,7 +693,7 @@ export default {
         },
     },
     mounted() {
-        this.uniondata();
+        // this.uniondata();
 
             this.sonodList();
 

@@ -109,6 +109,8 @@ export default {
         ...mapGetters({
             'SonodName' : 'getUpdateSonodName',
             'SonodNames' : 'getUpdateSonodNames',
+            'allDivision' : 'getUpdateDivision',
+            'TradeLicenseKhat' : 'getUpdateTrandeLicenseKhat',
             'Users' : 'getUpdateUser',
             // 'userPermission' : 'getUserPermission',
             // 'getUserRoles' : 'getUserRoles',

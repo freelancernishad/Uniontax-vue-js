@@ -159,12 +159,11 @@ export default {
     data() {
         return {
             sonodCount:{
-            allSonodCount:0,
-            pendingSonodCount:0,
-            approvedSonodCount:0,
-            cancelSonodCount:0,
-
-        },
+                allSonodCount:0,
+                pendingSonodCount:0,
+                approvedSonodCount:0,
+                cancelSonodCount:0,
+            },
         amount:0,
         };
     },
@@ -181,11 +180,12 @@ export default {
     methods: {
 
         callCount(){
-            this.sonodCountDashbord('all','allSonodCount')
-                this.sonodCountDashbord('Pending','pendingSonodCount')
-                this.sonodCountDashbord('approved','approvedSonodCount')
-                this.sonodCountDashbord('cancel','cancelSonodCount')
+                this.sonodCountDashbord('all','allSonodCount')
+                // this.sonodCountDashbord('Pending','pendingSonodCount')
+                // this.sonodCountDashbord('approved','approvedSonodCount')
+                // this.sonodCountDashbord('cancel','cancelSonodCount')
         },
+
 
 
 
@@ -197,13 +197,13 @@ export default {
         }else if(localStorage.getItem('position')=='Thana_admin'){
                 var res = await this.callApi('get',`/api/count/sonod/${status}?userid=${userid}`,[]);
          }else{
-
             var res = await this.callApi('get',`/api/count/sonod/${status}`,[]);
-
         }
-
-            this.sonodCount[data] = res.data;
+            this.sonodCount = res.data;
         },
+
+
+
        async totalamount(){
 
         var  userid = localStorage.getItem('userid');

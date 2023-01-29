@@ -60,7 +60,7 @@ li.page-item.active button {
 
 
     <div id="app">
-        <component :is="$route.meta.layout || 'div'"   :user="{{Auth::user()}}" :permission="{{ Auth::user()->roles}}" :roles="{{ $roles }}">
+        <component :is="$route.meta.layout || 'div'"   :Sonodnamelists="{{$Sonodnamelist}}" :user="{{Auth::user()}}" :permission="{{ Auth::user()->roles}}" :roles="{{ $roles }}">
             <router-view />
           </component>
 
