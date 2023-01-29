@@ -21,7 +21,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Facades\Validator;
 use Rakibhstu\Banglanumber\NumberToBangla;
-use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+// use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class SonodController extends Controller
