@@ -12,7 +12,8 @@ use App\Exports\ReportExport;
 use App\Models\HoldingBokeya;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
-use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+// use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 
 class PaymentController extends Controller
 {
