@@ -56,7 +56,7 @@ Route::group([
 
 });
 
-
+Route::post('nagorik/seba/insert',[SonodController::class, 'sonod_submit']);
 
 // country api
 Route::get('/getdivisions', [countryApiController::class,'getdivisions']);
@@ -128,7 +128,7 @@ Route::get('sonod/list',[SonodController::class,'index']);
 Route::post('role/assign',[authController::class,'roleAssign']);
 
 Route::get('sonod/single/{id}',[SonodController::class, 'singlesonod']);
-Route::post('get/sonods/submit',[SonodController::class, 'sonod_submit']);
+
 Route::post('sonod/update',[SonodController::class, 'sonod_update']);
 
 Route::get('sonod/delete/{id}',[SonodController::class, 'sonod_delete']);
