@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\HoldingBokeya;
 use Illuminate\Support\Facades\DB;
 use Rakibhstu\Banglanumber\NumberToBangla;
-use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+// use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 
 class HoldingtaxController extends Controller
 {
