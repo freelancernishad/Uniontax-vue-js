@@ -678,6 +678,77 @@
                                 v-show="index != 0">মুছন</button></th>
                     </tr>
                 </table>
+
+
+                <div class="row" v-if="this.$localStorage.getItem('position')=='super_admin'">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">খাত</label>
+                            <input type="text"  class="form-control" v-model="form.khat"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">currently_paid_money</label>
+                            <input type="number"  class="form-control" v-model="form.currently_paid_money"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">total_amount</label>
+                            <input type="number"  class="form-control" v-model="form.total_amount"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">the_amount_of_money_in_words</label>
+                            <input type="text"  class="form-control" v-model="form.the_amount_of_money_in_words"/>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">prottoyon</label>
+                            <textarea  class="form-control" cols="30" rows="4" style="height:130px" v-model="form.prottoyon"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">sec_prottoyon</label>
+                            <textarea  class="form-control" cols="30" rows="4" style="height:130px" v-model="form.sec_prottoyon"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">stutus</label>
+                            <input type="text"  class="form-control" v-model="form.stutus"/>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">sonod_Id</label>
+                            <input type="text"  class="form-control" v-model="form.sonod_Id"/>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
                 <div style="text-align:center">
                     <b-button type="submit" variant="primary">সাবমিট</b-button>
                 </div>
@@ -688,7 +759,9 @@
     </div>
 </template>
 <script>
+
 export default {
+
     data() {
         return {
             infoModal: {

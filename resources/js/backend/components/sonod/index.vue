@@ -17,10 +17,15 @@
         <div class="card">
             <div class="card-header">
                 <h3>সনদ নাম্বার দিয়ে খুঁজুন</h3>
-                <div class="form-group" style="width:250px">
-                    <input type="text" class="form-control" v-model="sonod_id" @input="searchSondId">
-                </div>
+                <form @submit.stop.prevent="searchSondId">
+                <div class="form-group d-flex" style="width:300px">
+                    <input type="text" class="form-control" v-model="sonod_id" >
 
+                    <button type="button" disabled class="btn btn-info" v-if="searching" style="font-size: 22px;margin-left: 11px;">অপেক্ষা করুন</button>
+                    <button type="submit" class="btn btn-info" v-else style="font-size: 22px;margin-left: 11px;">খুঁজুন</button>
+
+                </div>
+            </form>
 
 
                 <nav aria-label="Page navigation example" v-if="TotalRows>20">
@@ -374,6 +379,7 @@ export default {
     },
     data() {
         return {
+            searching: false,
             preLooding: true,
             nidverify: false,
             dobverify: false,
@@ -428,6 +434,7 @@ export default {
     },
     methods: {
         searchSondId() {
+            this.searching = true
             this.sonodList(true, this.sonod_id)
         },
         async paynow(route, id, button) {
@@ -660,11 +667,12 @@ export default {
 
                 this.$store.commit('setUpdateSonodName', res.data.sonod_name)
 
-                this.TotalRows = `${res.data.total}`;
+                this.TotalRows = `${res.data.sonods.total}`;
                 // console.log(res.data.total)
-                this.Totalpage = res.data.links
+                this.Totalpage = res.data.sonods.links
                 if (!auto) window.scrollTo(0, 0);
                 if (!auto) this.preLooding = false
+                this.searching = false
             }
             this.actionAccess()
         },

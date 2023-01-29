@@ -1028,7 +1028,15 @@ if($payment->status=='Paid'){
 
         if ($sondId) {
 
-            $sonods =  Sonod::where("sonod_Id", "LIKE", "%$sondId%")->where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
+
+            if($unioun_name){
+                $sonods =  Sonod::where("sonod_Id", "LIKE", "%$sondId%")->where(['sonod_name' => $sonod_name, 'stutus' => $stutus, 'unioun_name' => $unioun_name])->orderBy('id', 'DESC')->paginate(20);
+            }else{
+                $sonods =  Sonod::where("sonod_Id", "LIKE", "%$sondId%")->where(['sonod_name' => $sonod_name, 'stutus' => $stutus])->orderBy('id', 'DESC')->paginate(20);
+            }
+
+
+
             $returnData = [
                 'sonods'=>$sonods,
                 'sonod_name'=>$Sonodnamelist,
