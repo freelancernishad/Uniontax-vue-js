@@ -1336,7 +1336,7 @@ export default {
                 this.form.stutus = 'Pending';
             }
             this.form['charages'] = this.charages;
-            var res = await this.callApi('post', '/api/sonods/submit', this.form);
+            var res = await this.callApi('post', '/api/get/sonods/submit', this.form);
             var datas = res.data;
             // this.$router.push({ name: 'home' })
             if (payment_type == 'Prepaid') {

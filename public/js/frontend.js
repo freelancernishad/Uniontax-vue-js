@@ -3153,7 +3153,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this16.form['charages'] = _this16.charages;
                 _context14.next = 6;
-                return _this16.callApi('post', '/api/sonods/submit', _this16.form);
+                return _this16.callApi('post', '/api/get/sonods/submit', _this16.form);
 
               case 6:
                 res = _context14.sent;
