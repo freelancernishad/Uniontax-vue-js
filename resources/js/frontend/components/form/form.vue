@@ -7,7 +7,7 @@
 
 
             <div class="form-pannel">
-                <input type="hidden" v-model="form.unioun_name = getUnion">
+                <input type="hidden" v-model="form.unioun_name = getUnion.subdomainget">
 
 
 
