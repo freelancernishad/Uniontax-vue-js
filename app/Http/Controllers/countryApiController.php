@@ -14,9 +14,18 @@ class countryApiController extends Controller
     {
         $id =  $r->id;
         if($id){
-            return Division::find($id);
+
+          return  $getdivisions = cache()->remember('getdivisions-'.$id, 60*60*24, function () use($id) {
+                return Division::find($id);
+            });
+
+
+
         }
-        return Division::all();
+
+        return  $getdivisions = cache()->remember('getdivisions', 60*60*24, function () {
+            return Division::all();
+        });
     }
 
     public function getdistrict(Request $r)
@@ -24,12 +33,25 @@ class countryApiController extends Controller
          $ownid =  $r->ownid;
         $id =  $r->id;
         if($ownid){
-            return District::find($ownid);
+
+            return  cache()->remember('ownid-'.$ownid, 60*60*24, function () use($ownid) {
+                return District::find($ownid);
+            });
+
         }
         if($id){
-            return District::where(['division_id'=>$id])->get();
+
+            return  cache()->remember('division_id-'.$id, 60*60*24, function () use($id) {
+                return District::where(['division_id'=>$id])->get();
+            });
+
+
         }
-        return District::all();
+        return  cache()->remember('getdistricts', 60*60*24, function () {
+            return District::all();
+        });
+
+
 
     }
 
@@ -38,9 +60,15 @@ class countryApiController extends Controller
         $id =  $r->id;
 
         if($id){
-            return  Thana::where('district_id',$id)->get();
+            return  cache()->remember('getthana-'.$id, 60*60*24, function () use($id) {
+                return  Thana::where('district_id',$id)->get();
+            });
+
         }
-        return  Thana::all();
+        return  cache()->remember('Thanas', 60*60*24, function () {
+            return  Thana::all();
+        });
+
     }
 
 

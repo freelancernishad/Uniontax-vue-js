@@ -13,9 +13,20 @@ public function visitorCount(Request $request)
 {
     $union = $request->union;
     if($union){
-        return Visitor::where(['union'=>$union])->count();
+        $visitorCounting = cache()->remember('visitor-'.$union, 60*60*24, function () use($union) {
+            return Visitor::where(['union'=>$union])->count();
+        });
+return $visitorCounting;
+
+
     }
+    $visitorCounting = cache()->remember('visitor-uniontax', 60*60*24, function () {
+        return Visitor::where(['union'=>''])->count();
+    });
+return $visitorCounting;
     return Visitor::where(['union'=>''])->count();
+
+
     return Visitor::count();
 }
 public function visitorcreate(Request $request)

@@ -141,7 +141,7 @@
 
                         <div class="col-md-12">
                             <h6 class="serviceTitle position-relative defaltColor">
-                                ইউনিয়ন পরিষদ ডিজিটাল সেবা
+                                ক্যাশলেস ইউনিয়ন পরিষদ সেবা
                             </h6>
                         </div>
                         <div class="col-md-12">
@@ -252,6 +252,9 @@ export default {
             vfImages: [
                 this.$asseturl + "assets/img/padmabanner.jpeg",
                 this.$asseturl + "assets/img/slider2.jpg",
+                this.$asseturl + "assets/img/smart_bangladesh.jpeg",
+                this.$asseturl + "assets/img/pm-smart-bangladesh-en.jpeg",
+                this.$asseturl + "assets/img/digital-connectivity.jpeg",
                 // this.$asseturl + "assets/img/61ed07bbaac6b597183901.jpg",
                 // this.$asseturl + "assets/img/slide1.jpeg",
                 // this.$asseturl + "assets/img/slide2.jpeg",

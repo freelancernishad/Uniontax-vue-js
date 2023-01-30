@@ -59,10 +59,11 @@ a:hover {
 }
 
 .serviceBox {
-  box-shadow: 0px 0px 15px -4px #000 !important;
-  padding: 13px 4px;
-  height: 120px !important;
-  transition: all 0.4s;
+    box-shadow: 0px 7px 9px -2px #0000007a !important;
+    padding: 13px 4px;
+    height: 120px !important;
+    transition: all 0.4s;
+    border: 1px solid @php  if($uniounDetials->defaultColor){echo $uniounDetials->defaultColor;}else{ echo 'green';} @endphp;
 }
 </style>
 
@@ -152,7 +153,7 @@ p.help.text-right {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.4.35') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.4.36') }}" async ></script>
 
 <script>
 

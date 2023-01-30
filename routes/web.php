@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Sonodnamelist;
 use App\Models\TradeLicenseKhat;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SonodController;
 use App\Http\Controllers\PaymentController;
@@ -291,13 +292,35 @@ Route::get('/{vue_capture?}', function () {
     }
 
     // return $sonodnamesprops = Sonodnamelist::all();
-    $sonodnamesprops = Sonodnamelist::select(['id','service_id','bnname','enname','icon'])->get();
-    $allDivision = Division::all();
-    $tradeLicenseKhat = TradeLicenseKhat::where(['type'=>'main'])->get();
+
+
+    // $sonodnamesprops = Sonodnamelist::select(['id','service_id','bnname','enname','icon'])->get();
+   $sonodnamesprops = cache()->remember('sonodnamesprops', 60*60*24, function () {
+        return Sonodnamelist::select(['id','service_id','bnname','enname','icon'])->get();
+    });
+
+
+
+    $allDivision = cache()->remember('allDivision', 60*60*24, function () {
+        return Division::all();
+    });
+
+    $tradeLicenseKhat = cache()->remember('tradeLicenseKhat', 60*60*24, function () {
+        return TradeLicenseKhat::where(['type'=>'main'])->get();
+    });
+
+    // $tradeLicenseKhat = TradeLicenseKhat::where(['type'=>'main'])->get();
+
+// return 'uniounDetials-'.$subdomainget;
+
 
  if($sub){
 
-    $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomainget])->first();
+    // $uniounDetials =  Uniouninfo::where(['short_name_e'=>$subdomainget])->first();
+
+    $uniounDetials = cache()->remember('uniounDetials-'.$subdomainget, 60*60*24, function () use($subdomainget) {
+        return Uniouninfo::where(['short_name_e'=>$subdomainget])->first();
+    });
      return view('frontlayout',compact('uniounDetials','sonodnamesprops','allDivision','tradeLicenseKhat'));
     }else{
 
@@ -307,7 +330,10 @@ Route::get('/{vue_capture?}', function () {
         // return  Uniouninfo::find(1);
  $uniounDetials['defaultColor']  = 'green';
     //   $uniounDetials = json_decode(json_encode($uniounDetials));
-      $uniounDetials =  Uniouninfo::where(['short_name_e'=>'uniontax'])->first();
+    //   $uniounDetials =  Uniouninfo::where(['short_name_e'=>'uniontax'])->first();
+      $uniounDetials = cache()->remember('uniounDetials-uniontax', 60*60*24, function () {
+        return Uniouninfo::where(['short_name_e'=>'uniontax'])->first();
+    });
      return view('frontlayout',compact('uniounDetials','sonodnamesprops','allDivision','tradeLicenseKhat'));
  }
 })->where('vue_capture', '[\/\w\.-]*')->name('frontend');

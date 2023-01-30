@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Visitor;
+use App\Models\Uniouninfo;
+use App\Observers\VisitorObserver;
+use App\Observers\UniouninfoObserver;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -27,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Uniouninfo::observe(UniouninfoObserver::class);
+        Visitor::observe(VisitorObserver::class);
     }
 }

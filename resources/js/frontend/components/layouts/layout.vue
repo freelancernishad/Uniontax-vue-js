@@ -4,8 +4,7 @@
             <header>
                 <div class="topHeader">
                     <div class="row">
-                        <div class="topheaderItem col-md-6 col-6"><span>ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে
-                                স্বাগতম</span></div>
+                        <div class="topheaderItem col-md-6 col-6"><span>ইউনিয়ন পরিষদ ক্যাশলেস সেবা সিস্টেমে স্বাগতম</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right"><span
                                 style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{
                                         curentdate
@@ -218,7 +217,21 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
                                     </ul>
                                 </div>
                             </div>
+
                             <div class="col-md-4">
+                                <div class="imbox">
+                                    <div class="sidebarTitle mb-3 defaltColor">
+                                        <h4 class='text-center'>নোটিশ বোর্ড</h4>
+                                    </div>
+                                    <ul class='list-unstyled importantLInk' style="padding: 0 11px;">
+                                        <!-- <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://forms.mygov.bd/" title="বাংলাদেশ ফরম">বাংলাদেশ ফরম</a></li> -->
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="col-md-4">
                                 <div class="imbox">
                                     <div class="column block" style="padding: 0 0px;">
                                         <iframe width="100%" height="240"
@@ -228,7 +241,7 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
                                             allowfullscreen></iframe>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -280,7 +293,11 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
                             </ul>
                         </div>
                         </div>
-                        </div>
+                </div>
+
+                <div class="footerpayment">
+                    
+                </div>
 
 
 
