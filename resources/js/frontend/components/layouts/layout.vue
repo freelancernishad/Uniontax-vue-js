@@ -21,7 +21,7 @@
                             <router-link :to="{ name: 'home' }">
                                 <img width="50%" v-if="getType == 'main'"
                                     :src="$asseturl + 'assets/img/mail_logo-01.png'" alt="">
-                                <img width="50%" v-else-if="getType == 'Union'" :src="getunionInfos.web_logo" alt="">
+                                <img width="50%" v-else-if="getType == 'Union'" :src="$asseturl+getunionInfos.web_logo" alt="">
                             </router-link>
                         </div>
                         <div class="middleHeaderItem col-md-6 mb-3">
@@ -296,7 +296,7 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
                 </div>
 
                 <div class="footerpayment">
-                    
+
                 </div>
 
 

@@ -13,7 +13,8 @@
                         <router-link :to="{ name: 'Dashboard' }" class="text-white">
 
                                 <span v-if="user.position=='District_admin'">জেলা এডমিন প্যানেল</span>
-                                <span v-if="user.position=='Sub_District_admin'">উপপরিচালক প্যানেল</span>
+                                <span v-else-if="user.position=='super_admin'">সুপার এডমিন প্যানেল</span>
+                                <span v-else-if="user.position=='Sub_District_admin'">উপ-পরিচালক প্যানেল</span>
                                 <span v-else-if="user.position=='Chairman'">চেয়ারম্যান এডমিন প্যানেল</span>
                                 <span v-else-if="user.position=='Secretary'">সচিব এডমিন প্যানেল</span>
                                 <span v-else>উপজেলা এডমিন প্যানেল</span>
