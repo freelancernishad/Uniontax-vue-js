@@ -1771,6 +1771,12 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 
     public function userDocument(Request $request, $name, $id)
     {
+		        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
+		
+		
+		
         $row = Sonod::find($id);
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
