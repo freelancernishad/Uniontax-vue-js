@@ -299,7 +299,15 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
 
                 </div>
 
+                <div class="footerpayment row ">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <img :src="$asseturl+'assets/img/ekpay.png'" width="100%" alt="">
 
+                    </div>
+                    <div class="col-md-2"></div>
+
+                </div>
 
 
 
