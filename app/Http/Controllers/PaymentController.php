@@ -28,41 +28,150 @@ class PaymentController extends Controller
         $trnx_id = $data['trnx_info']['mer_trnx_id'];
         $payment = payment::where('trxid', $trnx_id)->first();
 
-
-
         $Insertdata = [];
-
         if ($data['msg_code'] == '1020') {
             $Insertdata = [
                 'status' => 'Paid',
                 'method' => $data['pi_det_info']['pi_name'],
             ];
-
             if($payment->sonod_type=='holdingtax'){
                 $hosdingBokeya = HoldingBokeya::find($payment->sonodId);
                 // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
                 $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
             }else{
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
-
             }
-
-
-
         } else {
             $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
             $Insertdata = ['status' => 'Failed',];
         }
-
         $Insertdata['ipnResponse'] = json_encode($data);
         // return $Insertdata;
-
-
-
-
-
         return $payment->update($Insertdata);
     }
+
+
+    public function ReCallIpn(Request $request)
+    {
+
+        $trnx_id = $request->trnx_id;
+        $trans_date = date("Y-m-d", strtotime($request->trans_date));
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://pg.ekpay.gov.bd/ekpaypg/v1/get-status',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+
+         "trnx_id":"'.$trnx_id.'",
+         "trans_date":"'.$trans_date.'"
+
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+
+        $response1 = curl_exec($curl);
+
+        curl_close($curl);
+         $data =  json_decode($response1);
+
+
+
+
+
+        // $data = $request->all();
+
+
+
+        Log::info(json_encode($data));
+        $sonod = Sonod::find($data->cust_info->cust_id);
+        $trnx_id = $data->trnx_info->mer_trnx_id;
+        $payment = payment::where('trxid', $trnx_id)->first();
+
+        $Insertdata = [];
+        if ($data->msg_code == '1020') {
+            $Insertdata = [
+                'status' => 'Paid',
+                'method' => $data->pi_det_info->pi_name,
+            ];
+            if($payment->sonod_type=='holdingtax'){
+                $hosdingBokeya = HoldingBokeya::find($payment->sonodId);
+                // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
+                $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
+            }else{
+                // return  $sonod;
+                $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
+            }
+        } else {
+            $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
+            $Insertdata = ['status' => 'Failed',];
+        }
+        $Insertdata['ipnResponse'] = json_encode($data);
+        // return $Insertdata;
+        return $payment->update($Insertdata);
+    }
+
+
+
+
+
+    public function AkpayPaymentCheck(Request $request)
+    {
+
+        $trnx_id = $request->trnx_id;
+        $trans_date = date("Y-m-d", strtotime($request->trans_date));
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://pg.ekpay.gov.bd/ekpaypg/v1/get-status',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+
+         "trnx_id":"'.$trnx_id.'",
+         "trans_date":"'.$trans_date.'"
+
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+
+        $response1 = curl_exec($curl);
+
+        curl_close($curl);
+
+
+        $myserver = Payment::where(['trxId'=>$trnx_id])->first();
+
+
+      return   $data =  [
+        'myserver'=>$myserver,
+        'akpay'=> json_decode($response1),
+      ];
+
+
+    }
+
+
+
+
+
 
 
 

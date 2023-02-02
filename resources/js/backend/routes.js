@@ -12,6 +12,9 @@ let unionprofile = require('./components/unionprofile.vue').default;
 let charages = require('./components/charages.vue').default;
 let profile = require('./components/profile.vue').default;
 
+
+let trxcheck = require('./components/trxcheck.vue').default;
+
 let cashbook = require('./components/cashbook/list.vue').default;
 let cashbookForm = require('./components/cashbook/form.vue').default;
 
@@ -138,6 +141,9 @@ export const routes = [
   { path:  `${prefix}/category`, component: category, name:'category',meta: { layout: adminlayout } },
   { path:  `${prefix}/category/add`, component: categoryform, name:'categoryform',meta: { layout: adminlayout } },
   { path:  `${prefix}/category/edit/:id`, component: categoryform, name:'categoryedit',meta: { layout: adminlayout } },
+
+
+  { path:  `${prefix}/check/trx`, component: trxcheck, name:'trxcheck',meta: { layout: adminlayout } },
 
 
   { path: "*", component: PageNotFound }

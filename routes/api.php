@@ -56,7 +56,7 @@ Route::group([
 
 });
 
-Route::post('nagorik/seba/insert',[SonodController::class, 'sonod_submit']);
+Route::post('nagorik/seba/inserts',[SonodController::class, 'sonod_submit']);
 
 // country api
 Route::get('/getdivisions', [countryApiController::class,'getdivisions']);
@@ -142,6 +142,8 @@ Route::get('sonod/sonod_Id',[SonodController::class, 'sonod_id']);
 Route::post('sonod/search',[SonodController::class, 'sonod_search']);
 
 Route::post('/ipn',[PaymentController::class ,'ipn']);
+Route::post('/re/call/ipn',[PaymentController::class ,'ReCallIpn']);
+Route::post('/check/payments/ipn',[PaymentController::class ,'AkpayPaymentCheck']);
 
 Route::get('akpay',[SonodController::class, 'akpay']);
 

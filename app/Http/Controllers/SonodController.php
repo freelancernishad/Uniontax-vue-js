@@ -617,14 +617,15 @@ if($payment->status=='Paid'){
         $amount_deails = json_encode($arraydata);
         $numto = new NumberToBangla();
         $the_amount_of_money_in_words = $numto->bnMoney($request->amounta) . ' মাত্র';
-        if ($sec_prottoyon) {
-             $approveData = $request->approeDatav;
+        $approveData = $request->approeDatav;
 
-            if($approveData =='null_approved'){
-                $approveData = 'Secretary_approved';
-            }else{
-                $approveData = 'Secretary_approved';
-            }
+        if($approveData =='null_approved'){
+            $approveData = 'Secretary_approved';
+        }else{
+            $approveData = 'Secretary_approved';
+        }
+        // if ($sec_prottoyon) {
+
 
 
             if($sonod->payment_status=='Paid'){
@@ -659,35 +660,30 @@ if($payment->status=='Paid'){
             }
 
 
-
-
-
-
-
             // return $updateData;
             return $sonod->update($updateData);
-        }
+        // }
 
 
-        $updateData = [
-            'khat' => $request->khat,
-            'last_years_money' => $request->last_years_money,
-            'currently_paid_money' => $request->currently_paid_money,
-            'total_amount' => $request->amounta,
-            'amount_deails' => $amount_deails,
-            'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
-            'stutus' => $request->approeDatav,
-        ];
+        // $updateData = [
+        //     'khat' => $request->khat,
+        //     'last_years_money' => $request->last_years_money,
+        //     'currently_paid_money' => $request->currently_paid_money,
+        //     'total_amount' => $request->amounta,
+        //     'amount_deails' => $amount_deails,
+        //     'the_amount_of_money_in_words' => $the_amount_of_money_in_words,
+        //     'stutus' => $approveData,
+        // ];
 
-        $Uniouninfo =   Uniouninfo::where('short_name_e', $sonod->unioun_name)->latest()->first();
-        $updateData['chaireman_name'] = $Uniouninfo->c_name;
-        $updateData['c_email'] = $Uniouninfo->c_email;
-        $updateData['chaireman_sign'] = $Uniouninfo->c_signture;
-
-
+        // $Uniouninfo =   Uniouninfo::where('short_name_e', $sonod->unioun_name)->latest()->first();
+        // $updateData['chaireman_name'] = $Uniouninfo->c_name;
+        // $updateData['c_email'] = $Uniouninfo->c_email;
+        // $updateData['chaireman_sign'] = $Uniouninfo->c_signture;
 
 
-        return $sonod->update($updateData);
+
+
+        // return $sonod->update($updateData);
     }
     public function sonod_pay(Request $request, $id)
     {
@@ -1774,9 +1770,9 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 		        ini_set('max_execution_time', '60000');
         ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
         ini_set('memory_limit', '12008M');
-		
-		
-		
+
+
+
         $row = Sonod::find($id);
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
