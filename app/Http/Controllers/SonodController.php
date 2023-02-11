@@ -787,11 +787,31 @@ if($payment->status=='Paid'){
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
                 // smsSend($deccription, $sonod->applicant_mobile);
 
-                SmsNocSmsSend($deccription, $sonod->applicant_mobile);
+                // SmsNocSmsSend($deccription, $sonod->applicant_mobile);
 
 
 
-                $deccriptionEmail = "Your application $sonod->sonod_Id has been approved. Document is available at  $sonodUrl";
+                $deccriptionEmail = "Your application no $sonod->sonod_Id has been approved and your document is available at  $sonodUrl";
+
+
+
+                $deccriptionEmail = "
+               <p> প্রিয় সেবা গ্রহীতা জনাব $sonod->applicant_name,</p>
+               <p> অত্যন্ত আনন্দের সাথে জানানো যাচ্ছে যে, $sonod->sonod_name এর জন্য আপনার দাখিলকৃত ".int_en_to_bn($sonod->sonod_Id)." নং আবেদনপত্রটি ইউনিয়ন পরিষদ কর্তৃক অনুমোদন করা হয়েছে। </p>
+               <p>  প্রদত্ত সেবার নথি ডাউনলোড করার জন্য সংযুক্ত লিংকটিতে ক্লিক করুন $sonodUrl</p>
+
+               <br/>
+               <br/>
+               <p>ধন্যবাদ,</p>
+               <p>uniontax.gov.bd টিম</p>
+
+
+";
+
+
+
+
+
                  $emaildata= ['deccription'=>$deccriptionEmail];
                 Mail::send('email_view', $emaildata, function ($m) use ($sonod) {
                     $applicant_email = $sonod->applicant_email;
@@ -845,12 +865,12 @@ if($payment->status=='Paid'){
         // return $type;
 
 
-        if($type=='notify'){
+        // if($type=='notify'){
 
-             $sonod->update($updatedata);
-             return redirect('/dashboard');
-            }
-            return $sonod->update($updatedata);
+        //      $sonod->update($updatedata);
+        //      return redirect('/dashboard');
+        //     }
+        //     return $sonod->update($updatedata);
     }
 
     public function ChairnamNotificationApprove($id)

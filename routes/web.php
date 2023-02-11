@@ -123,6 +123,14 @@ $AKPAY_MER_PASS_KEY = 'Tet@merEK091';
 
 
 
+Route::get('/textemail', function () {
+    $deccriptionEmail = "Your application no. 77349852200010 has been approved. Document is available at https://test.uniontax.gov.bd/sonod/d/22425";
+    $emaildata= ['deccription'=>$deccriptionEmail];
+return view('email_view',$emaildata);
+
+
+});
+
 Route::get('/smstest', function () {
 
     $details = [
