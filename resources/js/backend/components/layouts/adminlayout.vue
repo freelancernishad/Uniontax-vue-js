@@ -66,7 +66,8 @@
 
 
                                 <span v-if="user.position=='District_admin'">জেলা প্রশাসক</span>
-                                <span v-if="user.position=='Sub_District_admin'">উপপরিচালক </span>
+                                <span v-else-if="user.position=='super_admin'">সুপার এডমিন প্যানেল</span>
+                                <span v-else-if="user.position=='Sub_District_admin'">উপপরিচালক </span>
                                 <span v-else-if="user.position=='Chairman'">চেয়ারম্যান</span>
                                 <span v-else-if="user.position=='Secretary'">সচিব</span>
                                 <span v-else>উপজেলা নির্বাহী অফিসার</span>

@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\DB;
 use App\Models\TradeLicenseKhatFee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Facades\Validator;
-use Rakibhstu\Banglanumber\NumberToBangla;
 // use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Rakibhstu\Banglanumber\NumberToBangla;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 
@@ -484,7 +485,7 @@ if($payment->status=='Paid'){
         $sonodEnName =  Sonodnamelist::where('bnname', $r->sonod_name)->first();
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
-        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors', 'charages']);
+        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors', 'charages','Annual_income']);
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
@@ -501,6 +502,17 @@ if($payment->status=='Paid'){
         if ($birth_certificateCount > 1) {
             $Insertdata['applicant_birth_certificate_attachment'] =  fileupload($r->applicant_birth_certificate_attachment, "sonod/$filepath/applicant_birth_certificate_attachment/");
         }
+
+        $Annual_income = $r->Annual_income;
+        if($Annual_income){
+            $Insertdata['Annual_income'] = $Annual_income;
+
+            $numto = new NumberToBangla();
+            $Annual_income_text = $numto->bnMoney(int_bn_to_en($Annual_income)) . ' মাত্র';
+
+            $Insertdata['Annual_income_text'] = $Annual_income_text;
+        }
+
         // $Insertdata['sonod_Id'] = $successors;
         $Insertdata['successor_list'] = $successors;
         $Uniouninfo =   Uniouninfo::where('short_name_e', $r->unioun_name)->latest()->first();
@@ -774,7 +786,30 @@ if($payment->status=='Paid'){
                 $deccription = "Congratulation! Your application $sonod->sonod_Id has been approved. Document is available at  $sonodUrl";
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
                 // smsSend($deccription, $sonod->applicant_mobile);
+
                 SmsNocSmsSend($deccription, $sonod->applicant_mobile);
+
+
+
+                $deccriptionEmail = "Your application $sonod->sonod_Id has been approved. Document is available at  $sonodUrl";
+                 $emaildata= ['deccription'=>$deccriptionEmail];
+                Mail::send('email_view', $emaildata, function ($m) use ($sonod) {
+                    $applicant_email = $sonod->applicant_email;
+                    $applicant_name = $sonod->applicant_name;
+                    $m->from("uniontax.gov.bd@gmail.com", 'uniontax.gov.bd');
+                    $m->to($applicant_email,$applicant_name)->subject('Application Approved');
+                });
+
+
+
+
+
+
+
+
+
+
+
 
             } elseif ($payment_type == 'Postpaid') {
                 $paymentUrl =  url("/sonod/payment/$id");
@@ -808,6 +843,8 @@ if($payment->status=='Paid'){
 
 
         // return $type;
+
+
         if($type=='notify'){
 
              $sonod->update($updatedata);

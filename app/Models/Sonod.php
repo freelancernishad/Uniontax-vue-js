@@ -26,6 +26,7 @@ class Sonod extends Model
         'applicant_date_of_birth',
         'family_name',
         'Annual_income',
+        'Annual_income_text',
         'Subject_to_permission',
         'disabled',
         'The_subject_of_the_certificate',

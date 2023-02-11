@@ -256,7 +256,7 @@
                         v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'">
                         <div class="form-group">
                             <label for="" class="labelColor">বার্ষিক আয়</label>
-                            <input type="text" class="form-control" v-model="form.Annual_income">
+                            <input type="number" class="form-control" v-model="form.Annual_income">
                         </div>
                     </div>
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'permit'">

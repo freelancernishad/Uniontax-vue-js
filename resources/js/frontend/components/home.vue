@@ -251,7 +251,7 @@ export default {
             },
             vfImages: [
                 this.$asseturl + "assets/img/padmabanner.jpeg",
-                this.$asseturl + "assets/img/slider2.jpg",
+                // this.$asseturl + "assets/img/slider2.jpg",
                 this.$asseturl + "assets/img/smart_bangladesh.jpeg",
                 this.$asseturl + "assets/img/pm-smart-bangladesh-en-1.jpeg",
                 this.$asseturl + "assets/img/digital-connectivity.jpeg",
