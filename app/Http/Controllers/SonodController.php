@@ -787,7 +787,7 @@ if($payment->status=='Paid'){
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
                 // smsSend($deccription, $sonod->applicant_mobile);
 
-                // SmsNocSmsSend($deccription, $sonod->applicant_mobile);
+                SmsNocSmsSend($deccription, $sonod->applicant_mobile);
 
 
 
@@ -865,12 +865,12 @@ if($payment->status=='Paid'){
         // return $type;
 
 
-        // if($type=='notify'){
+        if($type=='notify'){
 
-        //      $sonod->update($updatedata);
-        //      return redirect('/dashboard');
-        //     }
-        //     return $sonod->update($updatedata);
+             $sonod->update($updatedata);
+             return redirect('/dashboard');
+            }
+            return $sonod->update($updatedata);
     }
 
     public function ChairnamNotificationApprove($id)
