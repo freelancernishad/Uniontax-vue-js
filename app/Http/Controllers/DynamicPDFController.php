@@ -110,9 +110,9 @@ class DynamicPDFController extends Controller
 
         $monthNumber = month_to_number($newDateMonth);
         if($monthNumber>6){
-            $ortoBotsor = int_en_to_bn(intval($newDateYear).'-'.intval($newDateYear)+1);
+            $ortoBotsor = int_en_to_bn($newDateYear.'-'.$newDateYear+1);
         }else{
-            $ortoBotsor = int_en_to_bn(intval($newDateYear)-1 .'-'.intval($newDateYear));
+            $ortoBotsor = int_en_to_bn($newDateYear-1 .'-'.$newDateYear);
 
         }
 
