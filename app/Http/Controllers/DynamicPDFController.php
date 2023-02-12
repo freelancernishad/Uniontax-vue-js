@@ -106,7 +106,7 @@ class DynamicPDFController extends Controller
 
         // $newDateMonth = 'May';
         $newDateMonth = date("F", strtotime($orgDate));
-        $newDateYear = intval(date("Y", strtotime($orgDate)));
+        $newDateYear = (int)date("Y", strtotime($orgDate));
 
         $monthNumber = month_to_number($newDateMonth);
         if($monthNumber>6){
