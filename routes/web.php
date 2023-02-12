@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SonodController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DynamicPDFController;
 use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
@@ -28,7 +29,23 @@ use lemonpatwari\bangladeshgeocode\Models\Division;
 |
 */
 
+// Route::get('/pdf/download/{Sname}/{id}', function () {
+//     return 'sss';
+//    });
 
+
+
+
+
+Route::get('/invoice/view/{id}', [DynamicPDFController::class,'viewpdf']);
+
+
+Route::get('/pdf/download/{Sname}/{id}', [DynamicPDFController::class,'pdf']);
+
+
+Route::get('/invoices/{id}', [DynamicPDFController::class,'convert_customer_data_to_html']);
+
+Route::get('/pdfC', [DynamicPDFController::class,'pdfC']);
 
 
 
@@ -345,3 +362,10 @@ Route::get('/{vue_capture?}', function () {
      return view('frontlayout',compact('uniounDetials','sonodnamesprops','allDivision','tradeLicenseKhat'));
  }
 })->where('vue_capture', '[\/\w\.-]*')->name('frontend');
+
+
+
+
+
+
+
