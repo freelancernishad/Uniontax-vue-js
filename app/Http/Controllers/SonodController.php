@@ -814,7 +814,14 @@ if($payment->status=='Paid'){
 
                  $emaildata= ['deccription'=>$deccriptionEmail];
                 Mail::send('email_view', $emaildata, function ($m) use ($sonod) {
+
                     $applicant_email = $sonod->applicant_email;
+                    if($applicant_email){
+                        $applicant_email = $sonod->applicant_email;
+                    }else{
+                        $applicant_email = "nishadmd267729@gmail.com";
+                    }
+
                     $applicant_name = $sonod->applicant_name;
                     $m->from("uniontax.gov.bd@gmail.com", 'uniontax.gov.bd');
                     $m->to($applicant_email,$applicant_name)->subject('Application Approved');
