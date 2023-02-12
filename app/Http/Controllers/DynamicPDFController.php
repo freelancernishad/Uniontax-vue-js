@@ -149,9 +149,10 @@ class DynamicPDFController extends Controller
             $logoPofile = base64($filepath . $userInfo->file);
         }
         //in Controller
+        $qrUrl = url("/pdf/download/$Sname/$id");
         $qrcode = \QrCode::size(70)
             ->format('svg')
-            ->generate('codingdriver.com');
+            ->generate($qrUrl);
         /*
 ================================================================================================================
                                                 citizen_apps1
