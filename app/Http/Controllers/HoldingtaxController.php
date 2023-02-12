@@ -500,7 +500,7 @@ class HoldingtaxController extends Controller
 
         <tr>
             <td >নাম: $maliker_name </td>
-            <td colspan='2'>পিতার নাম- $father_or_samir_name</td>
+            <td colspan='2'>পিতা/স্বামীর নাম- $father_or_samir_name</td>
 
         <tr>
         <tr>
@@ -667,7 +667,7 @@ class HoldingtaxController extends Controller
 
         <tr>
             <td >নাম: $maliker_name </td>
-            <td colspan='2'>পিতার নাম- $father_or_samir_name</td>
+            <td colspan='2'>পিতা/স্বামীর নাম- $father_or_samir_name</td>
 
         <tr>
         <tr>
