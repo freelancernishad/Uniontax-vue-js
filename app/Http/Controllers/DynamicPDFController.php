@@ -83,7 +83,9 @@ class DynamicPDFController extends Controller
     }
     public function pdfHTML($Sname, $id,$uniounName,$userInfo)
     {
-
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
 
         $uniounInfo =  Uniouninfo::where('short_name_e', $uniounName)->first();
 
@@ -102,7 +104,7 @@ class DynamicPDFController extends Controller
             $filepath = 'oldData/citizen_services/';
         }
         $orgDate = $userInfo->updated_at;
-        $newDate = date("d F Y", strtotime($orgDate));
+         $newDate = date("d F Y", strtotime($orgDate));
 
         // $newDateMonth = 'May';
         $newDateMonth = date("F", strtotime($orgDate));
@@ -110,9 +112,11 @@ class DynamicPDFController extends Controller
 
         $monthNumber = month_to_number($newDateMonth);
         if($monthNumber>6){
-            $ortoBotsor = int_en_to_bn($newDateYear.'-'.$newDateYear+1);
+            $nextYear = $newDateYear+1;
+            $ortoBotsor = int_en_to_bn($newDateYear.'-'.$nextYear);
         }else{
-            $ortoBotsor = int_en_to_bn($newDateYear-1 .'-'.$newDateYear);
+            $preYear = $newDateYear-1;
+            $ortoBotsor = int_en_to_bn($preYear .'-'.$newDateYear);
 
         }
 
