@@ -35,6 +35,22 @@
 <!--
                     <div class="col-md-4">
                         <div class="form-group">
+                            <label for="" class="labelColor">ধর্ম</label>
+                            <select class="form-control" v-model="form.applicant_religion">
+                                <option value="">নির্বাচন করুন</option>
+                                <option>ইসলাম</option>
+                                <option>হিন্দু</option>
+                                <option>বৌদ্ধ</option>
+                                <option>খ্রিস্টান</option>
+                                <option>অন্যান্য</option>
+                            </select>
+                        </div>
+                    </div> -->
+
+
+<!--
+                    <div class="col-md-4">
+                        <div class="form-group">
                             <label for="" class="labelColor">বৈবাহিক সম্পর্ক</label>
                             <select class="form-control" v-model="form.applicant_marriage_status">
                                 <option value="">নির্বাচন করুন</option>
@@ -472,7 +488,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">মোবাইল</label>
-                            <input type="tel" class="form-control" name="phone" maxlength="11" v-model="form.applicant_mobile" required>
+                            <input type="tel" class="form-control" name="phone" minlength="11" maxlength="11" v-model="form.applicant_mobile" required>
                         </div>
                     </div>
                     <div class="col-md-4">

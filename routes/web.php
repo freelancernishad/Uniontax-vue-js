@@ -276,15 +276,6 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 });
 
 
-
-
-
-
-
-
-
-
-
 Route::get('/{vue_capture?}', function () {
 
     $url = url()->current();

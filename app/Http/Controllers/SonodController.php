@@ -485,7 +485,19 @@ if($payment->status=='Paid'){
         $sonodEnName =  Sonodnamelist::where('bnname', $r->sonod_name)->first();
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
-        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors', 'charages','Annual_income']);
+        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors', 'charages','Annual_income','applicant_type_of_businessKhat','applicant_type_of_businessKhatAmount']);
+
+            $Insertdata['applicant_type_of_businessKhat'] = $r->applicant_type_of_businessKhat;
+
+            if($r->applicant_type_of_businessKhatAmount){
+                $Insertdata['applicant_type_of_businessKhatAmount'] = $r->applicant_type_of_businessKhatAmount;
+            }else{
+                $Insertdata['applicant_type_of_businessKhatAmount'] = 0;
+            }
+
+
+
+
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
@@ -2324,6 +2336,11 @@ $nagoriinfo = '';
 
 
 if ($sonod_name == 'ওয়ারিশান সনদ') {
+
+
+
+
+
         $nagoriinfo .= '
             <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, মরহুম ' . $row->utname . ', পিতা/স্বামী- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->ut_grame . ', ডাকঘর- ' . $row->ut_post . ', উপজেলা: ' . $row->ut_thana . ', জেলা- ' . $row->ut_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->ut_word).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা ছিলেন। মৃত্যুকালে তিনি নিম্নোক্ত ওয়ারিশগণ রেখে যান। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
             <br>

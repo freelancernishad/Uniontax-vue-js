@@ -44,6 +44,11 @@ class Handler extends ExceptionHandler
         if ($exception instanceof AccessDeniedHttpException) {
             return response(view('errors.404'), 404);
         }
+        if ($exception instanceof \Symfony\Component\Debug\Exception\FatalErrorException) {
+            return response()->view('errors.500', [], 500);
+        }
+
+
         return parent::render($request, $exception);
     }
 
