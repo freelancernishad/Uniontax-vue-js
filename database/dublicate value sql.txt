@@ -1,0 +1,1 @@
+SELECT `union`, COUNT(`union`) FROM payments WHERE `date`='2023-02-26' && `status`='Paid' GROUP BY `union` HAVING COUNT(`union`) > 1

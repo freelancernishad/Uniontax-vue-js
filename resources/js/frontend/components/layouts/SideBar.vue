@@ -16,7 +16,7 @@
                     <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
                 </div>
                 <p class="sidebaruser text-center"  v-if="getType=='main'">
-                    <img width="70%" alt="" :src="$asseturl+'assets/img/uno-pic.png'" />
+                    <img width="70%" alt="" :src="$asseturl+'assets/img/uno-pic2.png'" />
                 </p>
                 <div class="contactInfo text-center"  v-if="getType=='main'">
                     <span><b> সোহাগ চন্দ্র সাহা</b></span> <br />
