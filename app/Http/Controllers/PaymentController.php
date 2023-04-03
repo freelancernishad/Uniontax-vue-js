@@ -410,4 +410,54 @@ class PaymentController extends Controller
     {
         //
     }
+
+
+
+
+    public function SearchByAll(Request $request)
+    {
+        $type = $request->type;
+        $search = $request->search;
+        $from = $request->from;
+        $to = $request->to;
+        $searchData = [];
+        if($type=='district'){
+            $searchData['district'] = $search;
+        }else{
+            $searchData['thana'] = $search;
+        }
+
+
+
+
+
+        $unioninfo = Uniouninfo::where($searchData)->get();
+
+
+
+        $result = [];
+        foreach ($unioninfo as $value) {
+            $paymentCount = Payment::where(['union'=>$value->short_name_e,'status'=>'Paid'])->whereBetween('date', [$from, $to])->count();
+            $totalAmount = Payment::where(['union'=>$value->short_name_e,'status'=>'Paid'])->whereBetween('date', [$from, $to])->sum('amount');
+
+            $resultPush = [
+                'unionFull_name'=>$value->full_name,
+                'unionShort_name_e'=>$value->short_name_e,
+                'short_name_b'=>$value->short_name_b,
+                'district'=>$value->district,
+                'thana'=>$value->thana,
+                'AKPAY_MER_REG_ID'=>$value->AKPAY_MER_REG_ID,
+                'totalAmount'=>$totalAmount,
+                'paymentCount'=>$paymentCount,
+            ];
+            array_push($result,$resultPush);
+        }
+
+        return $result;
+
+
+    }
+
+
+
 }

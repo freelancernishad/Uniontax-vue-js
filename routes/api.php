@@ -209,6 +209,12 @@ Route::post('holding/tax/search',[HoldingtaxController::class,'holdingSearch']);
 
 Route::get('payment/report/search',[PaymentController::class,'Search']);
 Route::post('payment/report/search',[PaymentController::class,'Search']);
+
+
+
+Route::get('payment/ekpay/report/search',[PaymentController::class,'SearchByAll']);
+
+
 // Route::post('online/payment/report/search',[PaymentController::class,'onlinePaymentSearch']);
 
 

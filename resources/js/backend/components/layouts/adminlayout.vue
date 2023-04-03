@@ -231,6 +231,12 @@
 
 
                         <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'super_admin'">
+                            <router-link :to="{ name: 'ekpayPaymentList' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Ekpay Payments</span></router-link>
+                        </li>
+
+
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'super_admin'">
                             <router-link :to="{ name: 'trxcheck' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>Trx check</span></router-link>
                         </li>

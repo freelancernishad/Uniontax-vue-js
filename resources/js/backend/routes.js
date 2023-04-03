@@ -15,6 +15,9 @@ let profile = require('./components/profile.vue').default;
 
 let trxcheck = require('./components/trxcheck.vue').default;
 
+let ekpayPaymentList = require('./components/ekpayPayment/list.vue').default;
+
+
 let cashbook = require('./components/cashbook/list.vue').default;
 let cashbookForm = require('./components/cashbook/form.vue').default;
 
@@ -84,6 +87,9 @@ export const routes = [
 
 
   { path:  `${prefix}/sonodcountall`, component: sonodcountall, name:'sonodcountall',meta: { layout: adminlayout } },
+
+
+  { path:  `${prefix}/ekpayPayment/list`, component: ekpayPaymentList, name:'ekpayPaymentList',meta: { layout: adminlayout } },
 
 
   { path:  `${prefix}/cashbook/list`, component: cashbook, name:'cashbook',meta: { layout: adminlayout } },
