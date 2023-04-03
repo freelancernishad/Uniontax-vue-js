@@ -437,8 +437,8 @@ class PaymentController extends Controller
 
         $result = [];
         foreach ($unioninfo as $value) {
-            $paymentCount = Payment::where(['union'=>$value->short_name_e,'status'=>'Paid'])->whereBetween('date', [$from, $to])->count();
-            $totalAmount = Payment::where(['union'=>$value->short_name_e,'status'=>'Paid'])->whereBetween('date', [$from, $to])->sum('amount');
+            $paymentCount = Payment::where(['union'=>$value->short_name_e,'status'=>'Paid','payment_type'=>'online'])->whereBetween('date', [$from, $to])->count();
+            $totalAmount = Payment::where(['union'=>$value->short_name_e,'status'=>'Paid','payment_type'=>'online'])->whereBetween('date', [$from, $to])->sum('amount');
 
             $resultPush = [
                 'unionFull_name'=>$value->full_name,
