@@ -20,7 +20,7 @@
           <input type="text" v-model="form.names" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
-
+<!--
         <div class="form-group col-md-6">
           <label for="">পদবি</label>
 
@@ -32,13 +32,13 @@
             <option value="Secretary">সচিব</option>
           </select>
 
-        </div>
+        </div> -->
 
 
         <div class="form-group col-md-6">
           <label for="">জেলা</label>
 
-          <select v-model="form.district" class="form-control">
+          <select v-model="form.district" class="form-control" readonly disabled>
             <option selected value="পঞ্চগড়">পঞ্চগড়</option>
           </select>
 
@@ -48,7 +48,7 @@
         <div class="form-group col-md-6">
           <label for="">উপজেলা</label>
 
-          <input type="text" class="form-control" v-model="form.thana">
+          <input type="text" class="form-control" v-model="form.thana"  readonly disabled>
 
 
         </div>
