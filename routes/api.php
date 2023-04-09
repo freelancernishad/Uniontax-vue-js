@@ -75,6 +75,8 @@ Route::resources([
 ]);
 
 
+Route::get('citizen/information/nid/extanal', [CitizenInformationController::class,'citizeninformationNIDExtanal']);
+
 Route::post('citizen/information/nid', [CitizenInformationController::class,'citizeninformationNID']);
 Route::post('citizen/information/brn', [CitizenInformationController::class,'citizeninformationBRN']);
 

@@ -35,6 +35,12 @@ use lemonpatwari\bangladeshgeocode\Models\Division;
 
 
 
+    
+
+
+
+
+
 
 
 Route::get('/invoice/view/{id}', [DynamicPDFController::class,'viewpdf']);
