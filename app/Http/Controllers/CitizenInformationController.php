@@ -14,21 +14,26 @@ class CitizenInformationController extends Controller
     public function citizeninformationNIDExtanal(Request $request)
     {
 
-        return $this->SaveNid('6911211719','1997-10-27');
+        ini_set('max_execution_time', '6000000000000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12000008M');
 
-        // $sonods =  Sonod::select(['applicant_national_id_number','applicant_date_of_birth'])->get();
+        $sonods =  Sonod::select(['applicant_national_id_number','applicant_date_of_birth'])->get();
 
-        // $sonodData = [];
+        $sonodData = [];
 
-        // foreach ($sonods as $value) {
-        //     if($value->applicant_national_id_number && $value->applicant_date_of_birth){
-        //         array_push($sonodData,[
-        //             'applicant_national_id_number' => $value->applicant_national_id_number,
-        //             'applicant_date_of_birth' => $value->applicant_date_of_birth,
-        //         ]);
-        //     }
-        // }
-        // return $sonodData;
+        foreach ($sonods as $value) {
+            if($value->applicant_national_id_number && $value->applicant_date_of_birth){
+
+                 $this->SaveNid($value->applicant_national_id_number,$value->applicant_date_of_birth);
+
+                array_push($sonodData,[
+                    'applicant_national_id_number' => $value->applicant_national_id_number,
+                    'applicant_date_of_birth' => $value->applicant_date_of_birth,
+                ]);
+            }
+        }
+        return $sonodData;
 
 
     }
@@ -64,6 +69,9 @@ class CitizenInformationController extends Controller
         $response = curl_exec($curl);
         curl_close($curl);
         $response = json_decode($response);
+        if(!$response){
+            return;
+        }
         if(!$response->status){
             $responseData = [
                 'informations'=>[],
