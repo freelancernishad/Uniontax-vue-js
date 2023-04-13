@@ -84,6 +84,7 @@ class Sonod extends Model
         'prottoyon',
         'sec_prottoyon',
         'utname',
+        'ut_religion',
         'stutus',
         'payment_status',
         'chaireman_name',

@@ -2348,15 +2348,22 @@ $nagoriinfo = '';
 
 if ($sonod_name == 'ওয়ারিশান সনদ') {
 
+        if($row->ut_religion=='ইসলাম'){
+            $deathStatus = 'মরহুম';
+            $deathStatus2 = 'মরহুমের';
+        }else{
+            $deathStatus = 'স্বর্গীয়';
+            $deathStatus2 = 'স্বর্গীয় ব্যক্তির';
 
+        }
 
 
 
         $nagoriinfo .= '
-            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, মরহুম ' . $row->utname . ', পিতা/স্বামী- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->ut_grame . ', ডাকঘর- ' . $row->ut_post . ', উপজেলা: ' . $row->ut_thana . ', জেলা- ' . $row->ut_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->ut_word).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা ছিলেন। মৃত্যুকালে তিনি নিম্নোক্ত ওয়ারিশগণ রেখে যান। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
+            <p style="margin-top:0px;margin-bottom:5px;font-size:15px;text-align:justify">&nbsp; &nbsp; &nbsp; এই মর্মে প্রত্যয়ন করা যাচ্ছে যে, '.$deathStatus.' ' . $row->utname . ', পিতা/স্বামী- ' . $row->ut_father_name . ', মাতা- ' . $row->ut_mother_name . ', গ্রাম- ' . $row->ut_grame . ', ডাকঘর- ' . $row->ut_post . ', উপজেলা: ' . $row->ut_thana . ', জেলা- ' . $row->ut_district . '। তিনি অত্র ইউনিয়নের '.int_en_to_bn($row->ut_word).' নং ওয়ার্ডের '.$row->applicant_resident_status.' বাসিন্দা ছিলেন। মৃত্যুকালে তিনি নিম্নোক্ত ওয়ারিশগণ রেখে যান। নিম্নে তাঁর ওয়ারিশ/ওয়ারিশগণের নাম ও সম্পর্ক উল্লেখ করা হলো।<br>
             <br>
 
-            &nbsp; &nbsp; &nbsp; আমি মরহুমের বিদেহী আত্মার মাগফেরাত কামনা করি।
+            &nbsp; &nbsp; &nbsp; আমি '.$deathStatus2.' বিদেহী আত্মার মাগফেরাত কামনা করি।
                 </p>';
             } else {
 

@@ -32,20 +32,19 @@
                         </div>
                     </div>
 
-<!--
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">ধর্ম</label>
-                            <select class="form-control" v-model="form.applicant_religion">
+                            <select class="form-control" v-model="form.ut_religion">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>ইসলাম</option>
                                 <option>হিন্দু</option>
                                 <option>বৌদ্ধ</option>
                                 <option>খ্রিস্টান</option>
-                                <option>অন্যান্য</option>
                             </select>
                         </div>
-                    </div> -->
+                    </div>
 
 
 <!--
@@ -931,6 +930,7 @@ export default {
                 unioun_name: null,
                 year: null,
                 ut_name: null,
+                ut_religion: '',
                 sonod_name: null,
                 applicant_holding_tax_number: null,
                 applicant_national_id_number: null,
