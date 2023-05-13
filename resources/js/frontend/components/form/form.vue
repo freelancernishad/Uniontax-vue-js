@@ -656,7 +656,7 @@
                         <div class="app-heading"> সংযুক্ত</div>
                     </div>
 
-                    <div class="col-md-12 row">
+                    <div class="col-md-12 row mb-3">
                         <div class="col-md-4">
                             <label for="" class="labelColor">সংযুক্তির ধরণ</label>
                             <select class="form-control" v-model="attactType" required>
