@@ -67,11 +67,11 @@ class Notification{
         this.errorSound()
 	}
 
-	image_validation(){
+	image_validation(text='File size should be less then 1MB!'){
 		new Noty({
 			type: 'error',
 			layout: 'topRight',
-			text: 'File size should be less then 1MB!',
+			text: text,
 			timeout: 2000,
 		}).show();
         this.errorSound()

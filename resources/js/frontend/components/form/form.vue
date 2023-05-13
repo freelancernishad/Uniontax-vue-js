@@ -1197,8 +1197,11 @@ export default {
 
         FileSelected($event, parent_index) {
             let file = $event.target.files[0];
-            if (file.size > 5048576) {
-                Notification.image_validation();
+            // console.log(file.size);
+            if (file.size < 307200) {
+                Notification.image_validation('File size should be minimum 300KB!');
+            }else if (file.size > 5242880) {
+                Notification.image_validation('File size should be less then 5MB!');
             } else {
                 let reader = new FileReader;
                 reader.onload = event => {
