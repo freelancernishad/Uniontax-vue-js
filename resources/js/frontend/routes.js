@@ -10,6 +10,7 @@ let forget = require('./components/auth/forget.vue').default;
 let certificate = require('./components/form/aftersubmit.vue').default;
 
 let application = require('./components/form/form.vue').default;
+let application2 = require('./components/form/form2.vue').default;
 
 let blogs = require('./components/blogs/index.vue').default;
 let blogread = require('./components/blogs/read.vue').default;
@@ -42,6 +43,7 @@ export const routes = [
     { path:  `${prefix}verification/sonod/:id`, component: sonodVerify, name:'sonodVerify',meta: { layout: layout } },
     { path:  `${prefix}sonod/search`, component: sonodsearch, name:'sonodsearch',meta: { layout: layout } },
     { path:  `${prefix}application/:name`, component: application, name:'application',meta: { layout: layout } },
+    { path:  `${prefix}application2/:name`, component: application2, name:'application2',meta: { layout: layout } },
     { path:  `${prefix}blogs/:name`, component: blogs, name:'blogs',meta: { layout: layout } },
     { path:  `${prefix}blogs/read/:id`, component: blogread, name:'blogread',meta: { layout: layout } },
     { path:  `${prefix}reject/:id`, component: reject, name:'reject',meta: { layout: layout } },

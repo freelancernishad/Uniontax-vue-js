@@ -652,15 +652,26 @@
 
                 <div class="row">
 
-
                     <div class="col-md-12">
                         <div class="app-heading"> সংযুক্ত</div>
                     </div>
+
+                    <div class="col-md-12 row">
+                        <div class="col-md-4">
+                            <label for="" class="labelColor">সংযুক্তির ধরণ</label>
+                            <select class="form-control" v-model="attactType" required>
+                                <option value="">নির্বাচন করুন</option>
+                                <option value="nid">জাতীয় পরিচয়পত্র</option>
+                                <option value="dob">জন্ম নিবন্ধন</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <!-- col-md-4 -->
-                    <div class="col-md-4">
+                    <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page)</label>
-                            <input type="file" accept="image/*" class="form-control custom-file-input" @change="FileSelected($event, 'applicant_national_id_front_attachment')" id="applicant_national_id_front_attachment">
+                            <input type="file" accept="image/*" class="form-control custom-file-input" @change="FileSelected($event, 'applicant_national_id_front_attachment')" id="applicant_national_id_front_attachment" required>
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_national_id_front_attachment">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_front_attachment != null"
                                 :src="form.applicant_national_id_front_attachment" alt="Image 3" />
@@ -668,11 +679,11 @@
                     </div>
                     <!-- col-md-4 -->
                     <!-- col-md-4 -->
-                    <div class="col-md-4">
+                    <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page)</label>
                             <input type="file" accept="image/*" class="form-control custom-file-input"
-                                @change="FileSelected($event, 'applicant_national_id_back_attachment')" id="applicant_national_id_back_attachment">
+                                @change="FileSelected($event, 'applicant_national_id_back_attachment')" id="applicant_national_id_back_attachment" required>
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_national_id_back_attachment">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_back_attachment != null"
                                 :src="form.applicant_national_id_back_attachment" alt="Image 3" />
@@ -680,11 +691,11 @@
                     </div>
                     <!-- col-md-4 -->
                     <!-- col-md-4 -->
-                    <div class="col-md-4">
+                    <div class="col-md-4"  v-if="attactType=='dob'">
                         <div class="form-group">
                             <label for="" class="labelColor">জন্ম নিবন্ধন</label>
                             <input type="file" accept="image/*" class="form-control custom-file-input"
-                                @change="FileSelected($event, 'applicant_birth_certificate_attachment')" id="applicant_birth_certificate_attachment">
+                                @change="FileSelected($event, 'applicant_birth_certificate_attachment')" id="applicant_birth_certificate_attachment" required>
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_birth_certificate_attachment">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_birth_certificate_attachment != null"
                                 :src="form.applicant_birth_certificate_attachment" alt="Image 3" />
@@ -692,6 +703,10 @@
                     </div>
                     <!-- col-md-4 -->
                 </div>
+
+
+
+
                 <div class="app-heading"
                     v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'">
                     ওয়ারিশগণের
@@ -902,8 +917,16 @@
 </template>
 <script>
 export default {
+
+    created() {
+        this.form.applicant_national_id_front_attachment = this.$asseturl+'demonid/front.jpg'
+        this.form.applicant_national_id_back_attachment = this.$asseturl+'demonid/back.jpg'
+    },
+
+
     data() {
         return {
+            attactType:'nid',
             infoModal: {
                 id: 'info-modal',
                 title: '',
@@ -1035,6 +1058,11 @@ export default {
     watch: {
         '$route': {
             handler(newValue, oldValue) {
+
+                if(this.$route.params.name=='Certificate_of_Building_Construction_Pond_Excavation_Mountain_Cutting'){
+                    this.$router.push({ name: 'application2',parmas:{name:this.$route.params.name} })
+                }
+
                 this.form.year = new Date().getFullYear();
                 this.sonodname();
 
@@ -1543,6 +1571,14 @@ export default {
         }
     },
     mounted() {
+
+
+
+        if(this.$route.params.name=='Certificate_of_Building_Construction_Pond_Excavation_Mountain_Cutting'){
+                    this.$router.push({ name: 'application2',parmas:{name:this.$route.params.name} })
+                }
+
+
 
 
         this.TradeLicenseKhatFun();
