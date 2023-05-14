@@ -1200,6 +1200,13 @@ export default {
             // console.log(file.size);
             if (file.size < 307200) {
                 event.target.value = '';
+
+                if(parent_index=='applicant_national_id_front_attachment'){
+                    this.form[parent_index] = this.$asseturl+'demonid/front.jpg'
+                }else if(parent_index=='applicant_national_id_back_attachment'){
+                    this.form[parent_index] = this.$asseturl+'demonid/back.jpg'
+                }
+
                 Swal.fire({
                     icon: 'error',
                     title: 'দুঃখিত',
