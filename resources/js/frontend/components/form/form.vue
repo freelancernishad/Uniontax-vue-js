@@ -670,9 +670,9 @@
                     <!-- col-md-4 -->
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
-                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page)</label>
+                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
                             <input type="file" accept="image/*" class="form-control custom-file-input" @change="FileSelected($event, 'applicant_national_id_front_attachment')" id="applicant_national_id_front_attachment" required>
-                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_national_id_front_attachment">Choose file</label>
+                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_national_id_front_attachment">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_front_attachment != null"
                                 :src="form.applicant_national_id_front_attachment" alt="Image 3" />
                         </div>
@@ -681,10 +681,10 @@
                     <!-- col-md-4 -->
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
-                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page)</label>
+                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
                             <input type="file" accept="image/*" class="form-control custom-file-input"
                                 @change="FileSelected($event, 'applicant_national_id_back_attachment')" id="applicant_national_id_back_attachment" required>
-                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_national_id_back_attachment">Choose file</label>
+                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_national_id_back_attachment">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_back_attachment != null"
                                 :src="form.applicant_national_id_back_attachment" alt="Image 3" />
                         </div>
@@ -693,10 +693,10 @@
                     <!-- col-md-4 -->
                     <div class="col-md-4"  v-if="attactType=='dob'">
                         <div class="form-group">
-                            <label for="" class="labelColor">জন্ম নিবন্ধন</label>
+                            <label for="" class="labelColor">জন্ম নিবন্ধন <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
                             <input type="file" accept="image/*" class="form-control custom-file-input"
                                 @change="FileSelected($event, 'applicant_birth_certificate_attachment')" id="applicant_birth_certificate_attachment" required>
-                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;"  for="applicant_birth_certificate_attachment">Choose file</label>
+                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_birth_certificate_attachment">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_birth_certificate_attachment != null"
                                 :src="form.applicant_birth_certificate_attachment" alt="Image 3" />
                         </div>
@@ -1199,10 +1199,26 @@ export default {
             let file = $event.target.files[0];
             // console.log(file.size);
             if (file.size < 307200) {
-                Notification.image_validation('File size should be minimum 300KB!');
-            }else if (file.size > 5242880) {
-                Notification.image_validation('File size should be less then 5MB!');
-            } else {
+                event.target.value = '';
+                Swal.fire({
+                    icon: 'error',
+                    title: 'দুঃখিত',
+                    text: 'ছবি অবশ্যই 300KB এর উপরে হতে হবে!'
+
+                    })
+                // Notification.image_validation('ছবি অবশ্যই 300KB এর উপরে হতে হবে!');
+            }
+            // else if (file.size > 5242880) {
+            //     event.target.value = '';
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'দুঃখিত',
+            //         text: 'ছবি অবশ্যই 5MB এর উপরে হতে হবে!'
+
+            //         })
+            //     // Notification.image_validation('ছবি অবশ্যই 5MB এর উপরে হতে হবে!');
+            // }
+             else {
                 let reader = new FileReader;
                 reader.onload = event => {
                     this.form[parent_index] = event.target.result
@@ -1330,6 +1346,27 @@ export default {
             this.infoModal.content = ''
         },
         async onSubmit() {
+
+            // if(this.attactType=='nid'){
+            //     if(!this.form.applicant_national_id_front_attachment){
+
+            //     }else if(!this.form.applicant_national_id_back_attachment){
+
+            //     }
+
+            // }if(this.attactType=='nid'){
+            //     if(!this.form.applicant_birth_certificate_attachment){
+
+            //     }
+            // }
+
+
+
+
+
+
+
+
             var sonod_fee = 0
             var payment_type = this.getunionInfos.payment_type;
             if (payment_type == 'Prepaid') {
