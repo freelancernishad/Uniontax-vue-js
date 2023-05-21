@@ -9,6 +9,7 @@ let forget = require('./components/auth/forget.vue').default;
 
 let certificate = require('./components/form/aftersubmit.vue').default;
 
+// let application = require('./components/form/formwithNid.vue').default;
 let application = require('./components/form/form.vue').default;
 let application2 = require('./components/form/form2.vue').default;
 

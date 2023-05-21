@@ -18,6 +18,7 @@ class Uniouninfo extends Model
         'sonod_logo',
         'c_signture',
         'c_name',
+        'c_type',
         'c_email',
         'u_image',
         'u_description',
@@ -30,6 +31,7 @@ class Uniouninfo extends Model
         'payment_type',
         'AKPAY_MER_REG_ID',
         'AKPAY_MER_PASS_KEY',
+        'smsBalance',
         'status',
     ];
 }

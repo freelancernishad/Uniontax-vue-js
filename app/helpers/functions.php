@@ -1468,8 +1468,18 @@ try {
 
 
 
-function SmsNocSmsSend($deccription = '', $applicant_mobile = '01909756552')
+function SmsNocSmsSend($deccription = '', $applicant_mobile = '01909756552',$union='test')
 {
+    $unionInfoCount = Uniouninfo::where('short_name_e',$union)->count();
+    if(!$unionInfoCount){
+        return 'union not found';
+    }
+
+    $unionInfo = Uniouninfo::where('short_name_e',$union)->first();
+    $smsBalance = $unionInfo->smsBalance;
+    if(!$smsBalance){
+        return 'you dont have balace';
+    }
 
     $smsnocapikey = '108|DuxHEDfb1kQKISfSZCJ980XfCKQ2mpwvCCLThVqf ';
     $smsnocsenderid = '8809617611301';
@@ -1501,6 +1511,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 curl_close($curl);
+$unionInfo->update(['smsBalance'=>$smsBalance-1]);
 echo $response;
 
 }

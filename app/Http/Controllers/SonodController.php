@@ -795,6 +795,7 @@ if($payment->status=='Paid'){
                 'chaireman_name' => $uniouninfos->c_name,
                 'c_email' => $uniouninfos->c_email,
                 'chaireman_sign' => $uniouninfos->c_signture,
+                'chaireman_type' => $uniouninfos->c_type,
                 'stutus' => $action,
             ];
             $sonod_name =  sonodEnName($sonod->sonod_name);
@@ -807,7 +808,7 @@ if($payment->status=='Paid'){
                 // $deccription = "অভিনন্দন! আপনার আবেদনটি সফলভাবে অনুমোদিত হয়েছে। সনদ : $sonodUrl রশিদ : $InvoiceUrl";
                 // smsSend($deccription, $sonod->applicant_mobile);
 
-                SmsNocSmsSend($deccription, $sonod->applicant_mobile);
+                 SmsNocSmsSend($deccription, $sonod->applicant_mobile,$unioun_name);
 
 
 

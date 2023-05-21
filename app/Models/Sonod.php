@@ -88,6 +88,7 @@ class Sonod extends Model
         'stutus',
         'payment_status',
         'chaireman_name',
+        'chaireman_type',
         'c_email',
         'chaireman_sign',
         'cancedby',
