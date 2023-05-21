@@ -215,7 +215,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">আবেদনকারীর নাম <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" v-model="form.applicant_name" required>
+                            <input type="text" class="form-control" v-model="form.applicant_name" required disabled>
                         </div>
                     </div>
 
@@ -234,7 +234,7 @@
                     <div class="col-md-4" v-else>
                         <div class="form-group">
                             <label for="" class="labelColor">লিঙ্গ</label>
-                            <select class="form-control" v-model="form.applicant_gender">
+                            <select class="form-control" v-model="form.applicant_gender" disabled>
                                 <option value="">লিঙ্গ নির্বাচন করুন</option>
                                 <option>পুরুষ</option>
                                 <option>মহিলা</option>
@@ -246,14 +246,14 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">পিতা/স্বামীর নাম</label>
-                            <input type="text" class="form-control" v-model="form.applicant_father_name">
+                            <input type="text" class="form-control" v-model="form.applicant_father_name" disabled>
                         </div>
                     </div>
 
                     <div class="col-md-4" >
                         <div class="form-group">
                             <label for="" class="labelColor">মাতার নাম</label>
-                            <input type="text" class="form-control" v-model="form.applicant_mother_name">
+                            <input type="text" class="form-control" v-model="form.applicant_mother_name" disabled>
                         </div>
                     </div>
 
@@ -262,7 +262,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">হোল্ডিং নং</label>
-                            <input type="text" class="form-control" v-model="form.applicant_holding_tax_number">
+                            <input type="text" class="form-control" v-model="form.applicant_holding_tax_number" >
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -522,13 +522,14 @@
 
 
 
-                        <div class="form-group" style="    margin-top: 66px !important;">
+                        <div class="form-group" >
                             <label for="" class="labelColor">বিভাগ</label>
 
-                            <select class='form-control' name="division" id="division" v-model="Pdivision" @change="getdistrictFun" >
+                            <input type="text" v-model="Pdivision" class="form-control" disabled>
+                            <!-- <select class='form-control' name="division" id="division" v-model="Pdivision" @change="getdistrictFun" >
                             <option value="">বিভাগ নির্বাচন করুন</option>
                                 <option v-for="div in getdivisions" :key="div.id" :value="div.id">{{ div.bn_name }}</option>
-                        </select>
+                        </select> -->
 
                             <!-- <input type="text" class="form-control" v-model="form.applicant_present_district"> -->
                         </div>
@@ -536,22 +537,22 @@
                         <div class="form-group">
                             <label for="" class="labelColor">জেলা</label>
 
-                        <select   class='form-control' name="district" id="district" v-model="applicant_present_district" @change="getthanaFun" >
+                        <!-- <select   class='form-control' name="district" id="district" v-model="applicant_present_district" @change="getthanaFun" >
                             <option value="">জেলা নির্বাচন করুন</option>
                             <option v-for="dist in getdistricts" :key="dist.id" :value="dist.id">{{ dist.bn_name }}</option>
-                        </select>
+                        </select> -->
 
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_district"> -->
+                            <input type="text" class="form-control" v-model="form.applicant_present_district" disabled>
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">উপজেলা/থানা</label>
 
-                        <select  class='form-control' name="thana" id="thana" v-model="form.applicant_present_Upazila" @change="getuniounFun" >
+                        <!-- <select  class='form-control' name="thana" id="thana" v-model="form.applicant_present_Upazila" @change="getuniounFun" >
                             <option value="">উপজেলা নির্বাচন করুন</option>
                             <option v-for="thana in getthanas" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
-                        </select>
+                        </select> -->
 
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_Upazila"> -->
+                            <input type="text" class="form-control" v-model="form.applicant_present_Upazila" disabled>
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">পোষ্ট অফিস</label>
@@ -576,7 +577,7 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">গ্রাম/মহল্লা</label>
-                            <input type="text" class="form-control" v-model="form.applicant_present_village">
+                            <input type="text" class="form-control" v-model="form.applicant_present_village" disabled>
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
@@ -587,21 +588,22 @@
                     </div>
                     <div class="col-md-6">
                         <div class="app-heading">স্থায়ী ঠিকানা</div>
-                        <div class="col-md-12">
+
+                        <!-- <div class="col-md-12">
                             <input type="checkbox" id="checkbox" v-model="sameStatus" @change="sameAddress"> <label
                                 for="checkbox"> বর্তমান ঠিকানা ও স্থায়ী ঠিকানা একই হলে</label>
-                        </div>
+                        </div> -->
 
 
                         <div class="form-group">
                             <label for="" class="labelColor">বিভাগ</label>
 
-                            <select class='form-control' name="division" id="division" v-model="Perdivision" @change="getdistrictFunPer" >
+                            <!-- <select class='form-control' name="division" id="division" v-model="Perdivision" @change="getdistrictFunPer" >
                             <option value="">বিভাগ নির্বাচন করুন</option>
                                 <option v-for="div in getdivisionsPer" :key="div.id" :value="div.id">{{ div.bn_name }}</option>
-                        </select>
+                        </select> -->
 
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_present_district"> -->
+                            <input type="text" class="form-control" v-model="Perdivision" disabled>
                         </div>
 
 
@@ -609,24 +611,24 @@
                         <div class="form-group">
                             <label for="" class="labelColor">জেলা</label>
 
-                            <select   class='form-control' name="district" id="district" v-model="applicant_permanent_district" @change="getthanaFunPer" >
+                            <!-- <select   class='form-control' name="district" id="district" v-model="applicant_permanent_district" @change="getthanaFunPer" >
                             <option value="">জেলা নির্বাচন করুন</option>
                             <option v-for="dist in getdistrictsPer" :key="dist.id" :value="dist.id">{{ dist.bn_name }}</option>
-                        </select>
+                        </select> -->
 
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_district"> -->
+                            <input type="text" class="form-control" v-model="form.applicant_permanent_district" disabled>
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">উপজেলা/থানা</label>
-                            <select  class='form-control' name="thana" id="thana" v-model="form.applicant_permanent_Upazila" @change="getuniounFunPer" >
+                            <!-- <select  class='form-control' name="thana" id="thana" v-model="form.applicant_permanent_Upazila" @change="getuniounFunPer" >
                                 <option value="">উপজেলা নির্বাচন করুন</option>
                                 <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
-                            </select>
-                            <!-- <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila"> -->
+                            </select> -->
+                            <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila" disabled>
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">পোষ্ট অফিস</label>
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_post_office">
+                            <input type="text" class="form-control" v-model="form.applicant_permanent_post_office" disabled>
                         </div>
 
                         <div class="form-group">
@@ -649,7 +651,7 @@
 
                         <div class="form-group">
                             <label for="" class="labelColor">গ্রাম/মহল্লা</label>
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_village">
+                            <input type="text" class="form-control" v-model="form.applicant_permanent_village" disabled>
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
@@ -659,7 +661,7 @@
 
                     </div>
                 </div>
-
+<!-- 
                 <div class="row">
 
                     <div class="col-md-12">
@@ -677,7 +679,7 @@
                         </div>
                     </div>
 
-                    <!-- col-md-4 -->
+              
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
@@ -687,8 +689,7 @@
                                 :src="form.applicant_national_id_front_attachment" alt="Image 3" />
                         </div>
                     </div>
-                    <!-- col-md-4 -->
-                    <!-- col-md-4 -->
+            
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
@@ -699,8 +700,7 @@
                                 :src="form.applicant_national_id_back_attachment" alt="Image 3" />
                         </div>
                     </div>
-                    <!-- col-md-4 -->
-                    <!-- col-md-4 -->
+            
                     <div class="col-md-4"  v-if="attactType=='dob'">
                         <div class="form-group">
                             <label for="" class="labelColor">জন্ম নিবন্ধন <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
@@ -711,9 +711,9 @@
                                 :src="form.applicant_birth_certificate_attachment" alt="Image 3" />
                         </div>
                     </div>
-                    <!-- col-md-4 -->
+         
                 </div>
-
+ -->
 
 
 
@@ -936,6 +936,7 @@ export default {
 
     data() {
         return {
+            sToken:'',
             attactType:'nid',
             infoModal: {
                 id: 'info-modal',
@@ -1074,6 +1075,7 @@ export default {
                 }
 
                 this.form.year = new Date().getFullYear();
+                this.getToken();
                 this.sonodname();
 
                 //setTimeout(() => {
@@ -1629,13 +1631,78 @@ export default {
 
 
 
+        async getToken(){
+            var res = await this.callApi('get',`https://uniontax.xyz/api/token/genarate`,[]);
+            this.sToken = res.data.apitoken;
+        },
+
+
+
         async checknid(){
-            var nidData = {  
-                'nidNumber':'2385830951',
-                'dateOfBirth':'1975-11-10'
+
+
+            if(this.form.applicant_national_id_number=='' && this.form.applicant_date_of_birth==''){
+
+                Swal.fire({
+                title: 'দুঃখিত',
+                text: `জাতীয় পরিচয়পত্র নং এবং জন্ম তারিখ পূরণ করতে হবে`,
+                icon: 'error',
+            })
+        }else{
+
+    
+
+                var nidData = {
+                    'nidNumber':this.form.applicant_national_id_number,
+                    'dateOfBirth':this.form.applicant_date_of_birth
+                }
+                var res = await this.callApi('post',`https://uniontax.xyz/api/citizen/information/nid?sToken=${this.sToken}`,nidData);
+
+                if(res.data.status!=200){
+                Swal.fire({
+                    title: 'দুঃখিত',
+                    text: `কিছু একটা সমস্যা হয়েছে `,
+                    icon: 'error',
+                    confirmButtonColor: 'red',
+                    confirmButtonText: `আবার চেষ্টা করুন`,
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        this.getToken();
+                    }
+                })
+                }else{
+                    var nidD = res.data.informations;
+                    this.form.applicant_name = nidD.fullNameBN
+                    var gen = 'পুরুষ';
+                    if(nidD.gender=='male'){
+                        gen = 'পুরুষ';
+                    }else{
+                        gen = 'মহিলা';
+                    }
+                    this.form.applicant_gender = gen
+                    this.form.applicant_father_name = nidD.fathersNameBN
+                    this.form.applicant_mother_name = nidD.mothersNameBN
+                    this.form.applicant_holding_tax_number = nidD.presentHolding
+
+
+            
+                    this.Pdivision = 'রংপুর'
+                    this.form.applicant_present_district = nidD.presentDistrict
+                    this.form.applicant_present_Upazila = nidD.presentThana
+                    this.form.applicant_present_post_office = nidD.presentPost
+                    this.form.applicant_present_village = nidD.presentVillage
+
+
+                    this.Perdivision = 'রংপুর'
+                    this.form.applicant_permanent_district = nidD.presentDistrict
+                    this.form.applicant_permanent_Upazila = nidD.presentThana
+                    this.form.applicant_permanent_post_office = nidD.presentPost
+                    this.form.applicant_permanent_village = nidD.presentVillage
+
+                }
             }
-            var res = await this.callApi('post',`https://uniontax.xyz/api/citizen/information/nid?sToken=JDJ5JDEwJEd1THF1aFFocHhjd3VCRWs2Sm5yRy5jWkRhT1NYb0ZyWFloeWhSTk0xNlZMeGJuYURmbkUy`,nidData);
-            console.log(res.data);
         }
 
 
@@ -1650,6 +1717,7 @@ export default {
     mounted() {
 
 
+        this.getToken();
 
         if(this.$route.params.name=='Certificate_of_Building_Construction_Pond_Excavation_Mountain_Cutting'){
                     this.$router.push({ name: 'application2',parmas:{name:this.$route.params.name} })

@@ -20,6 +20,15 @@ window.User = User
 Vue.prototype.$appUrl = window.location.origin
 import Notification from '../helpers/Notification';
 window.Notification = Notification
+
+
+import Applicationform from './components/form/form.vue'
+Vue.component('Applicationform', Applicationform);
+import ApplicationformwitnNid from './components/form/formwithNid.vue'
+Vue.component('ApplicationformwitnNid', ApplicationformwitnNid);
+
+
+
 import UnionSelect from './components/layouts/unonselect.vue'
 Vue.component('UnionSelect', UnionSelect);
 

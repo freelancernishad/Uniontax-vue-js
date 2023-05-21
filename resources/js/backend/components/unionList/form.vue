@@ -97,6 +97,25 @@
             </div>
 
 
+
+          <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-form-label">Sms Balance</label>
+                    <input type="Number" class="form-control"  id="smsBalance" v-model="form.smsBalance"  />
+            </div>
+            </div>
+
+
+
+          <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-form-label">Nid Service</label>
+                    <input type="Number" class="form-control"  id="nidService" v-model="form.nidService"  />
+
+            </div>
+            </div>
+
+
           <div class="col-md-6">
           <div class="form-group">
               <label class="control-label col-form-label">ইউনিয়নের বিবরন (বাংলা)</label>
@@ -249,6 +268,8 @@ export default {
                 status:null,
                 AKPAY_MER_REG_ID:null,
                 AKPAY_MER_PASS_KEY:null,
+                smsBalance:null,
+                nidService:null,
              },
         }
     },

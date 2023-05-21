@@ -917,7 +917,7 @@
 </template>
 <script>
 export default {
-
+    name: 'Applicationform',
     created() {
         this.form.applicant_national_id_front_attachment = this.$asseturl+'demonid/front.jpg'
         this.form.applicant_national_id_back_attachment = this.$asseturl+'demonid/back.jpg'
