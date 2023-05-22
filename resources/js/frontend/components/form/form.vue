@@ -670,7 +670,7 @@
                     <!-- col-md-4 -->
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
-                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
+                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 200KB এর উপরে হতে হবে!)</span></label>
                             <input type="file" accept="image/*" class="form-control custom-file-input" @change="FileSelected($event, 'applicant_national_id_front_attachment')" id="applicant_national_id_front_attachment" required>
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_national_id_front_attachment">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_front_attachment != null"
@@ -681,7 +681,7 @@
                     <!-- col-md-4 -->
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
-                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
+                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 200KB এর উপরে হতে হবে!)</span></label>
                             <input type="file" accept="image/*" class="form-control custom-file-input"
                                 @change="FileSelected($event, 'applicant_national_id_back_attachment')" id="applicant_national_id_back_attachment" required>
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_national_id_back_attachment">Choose file</label>
@@ -693,7 +693,7 @@
                     <!-- col-md-4 -->
                     <div class="col-md-4"  v-if="attactType=='dob'">
                         <div class="form-group">
-                            <label for="" class="labelColor">জন্ম নিবন্ধন <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
+                            <label for="" class="labelColor">জন্ম নিবন্ধন <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 200KB এর উপরে হতে হবে!)</span></label>
                             <input type="file" accept="image/*" class="form-control custom-file-input"
                                 @change="FileSelected($event, 'applicant_birth_certificate_attachment')" id="applicant_birth_certificate_attachment" required>
                                 <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_birth_certificate_attachment">Choose file</label>
@@ -1198,7 +1198,7 @@ export default {
         FileSelected($event, parent_index) {
             let file = $event.target.files[0];
             // console.log(file.size);
-            if (file.size < 307200) {
+            if (file.size < 204800) {
                 event.target.value = '';
 
                 if(parent_index=='applicant_national_id_front_attachment'){
@@ -1210,7 +1210,7 @@ export default {
                 Swal.fire({
                     icon: 'error',
                     title: 'দুঃখিত',
-                    text: 'ছবি অবশ্যই 300KB এর উপরে হতে হবে!'
+                    text: 'ছবি অবশ্যই 200KB এর উপরে হতে হবে!'
 
                     })
                 // Notification.image_validation('ছবি অবশ্যই 300KB এর উপরে হতে হবে!');
