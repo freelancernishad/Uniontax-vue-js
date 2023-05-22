@@ -192,21 +192,23 @@
                     </div>
 
 
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র নং</label>
                             <input type="text" class="form-control" v-model="form.applicant_national_id_number">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="" class="labelColor">জন্ম তারিখ</label>
                             <input type="date" class="form-control" v-model="form.applicant_date_of_birth">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                           <button class="btn btn-info" type="button" @click="checknid">Check Nid</button>
+                    <div class="col-md-2" style="display: flex;justify-content: space-around;align-items: center;margin-top: 14px;">
+                        <div class="form-group mb-0">
+                           <button class="btn btn-info" type="button" v-if="nidSearch" disabled>অপেক্ষা করুন....</button>
+                           <button class="btn btn-info" type="button" @click="checknid" v-else>Check Nid</button>
+
                         </div>
                     </div>
 
@@ -556,7 +558,7 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">পোষ্ট অফিস</label>
-                            <input type="text" class="form-control" v-model="form.applicant_present_post_office">
+                            <input type="text" class="form-control" v-model="form.applicant_present_post_office" disabled>
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">ওয়ার্ড নং</label>
@@ -661,7 +663,7 @@
 
                     </div>
                 </div>
-<!-- 
+<!--
                 <div class="row">
 
                     <div class="col-md-12">
@@ -679,7 +681,7 @@
                         </div>
                     </div>
 
-              
+
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
@@ -689,7 +691,7 @@
                                 :src="form.applicant_national_id_front_attachment" alt="Image 3" />
                         </div>
                     </div>
-            
+
                     <div class="col-md-4" v-if="attactType=='nid'">
                         <div class="form-group">
                             <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
@@ -700,7 +702,7 @@
                                 :src="form.applicant_national_id_back_attachment" alt="Image 3" />
                         </div>
                     </div>
-            
+
                     <div class="col-md-4"  v-if="attactType=='dob'">
                         <div class="form-group">
                             <label for="" class="labelColor">জন্ম নিবন্ধন <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
@@ -711,7 +713,7 @@
                                 :src="form.applicant_birth_certificate_attachment" alt="Image 3" />
                         </div>
                     </div>
-         
+
                 </div>
  -->
 
@@ -954,6 +956,7 @@ export default {
             pesaKor:0,
             waitForPayment: false,
             submitLoad: false,
+            nidSearch: false,
             sameStatus: '',
             sonodnamedata: {},
             sonodnameFee: {},
@@ -967,10 +970,10 @@ export default {
                 ut_religion: '',
                 sonod_name: null,
                 applicant_holding_tax_number: null,
-                applicant_national_id_number: null,
+                applicant_national_id_number: '',
                 applicant_birth_certificate_number: null,
                 applicant_passport_number: null,
-                applicant_date_of_birth: null,
+                applicant_date_of_birth: '',
                 family_name: null,
                 Annual_income: null,
                 Subject_to_permission: null,
@@ -1639,69 +1642,88 @@ export default {
 
 
         async checknid(){
+            this.nidSearch = true;
 
 
-            if(this.form.applicant_national_id_number=='' && this.form.applicant_date_of_birth==''){
+                if(this.form.applicant_national_id_number=='' && this.form.applicant_date_of_birth==''){
 
-                Swal.fire({
-                title: 'দুঃখিত',
-                text: `জাতীয় পরিচয়পত্র নং এবং জন্ম তারিখ পূরণ করতে হবে`,
-                icon: 'error',
-            })
-        }else{
 
-    
 
-                var nidData = {
-                    'nidNumber':this.form.applicant_national_id_number,
-                    'dateOfBirth':this.form.applicant_date_of_birth
-                }
-                var res = await this.callApi('post',`https://uniontax.xyz/api/citizen/information/nid?sToken=${this.sToken}`,nidData);
+                    Swal.fire({
+                        title: 'দুঃখিত',
+                        text: `জাতীয় পরিচয়পত্র নং এবং জন্ম তারিখ পূরণ করতে হবে`,
+                        icon: 'error',
+                    })
 
-                if(res.data.status!=200){
-                Swal.fire({
-                    title: 'দুঃখিত',
-                    text: `কিছু একটা সমস্যা হয়েছে `,
-                    icon: 'error',
-                    confirmButtonColor: 'red',
-                    confirmButtonText: `আবার চেষ্টা করুন`,
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        this.getToken();
-                    }
-                })
+
+                    this.nidSearch = false;
                 }else{
-                    var nidD = res.data.informations;
-                    this.form.applicant_name = nidD.fullNameBN
-                    var gen = 'পুরুষ';
-                    if(nidD.gender=='male'){
-                        gen = 'পুরুষ';
-                    }else{
-                        gen = 'মহিলা';
+
+                    if(this.form.applicant_national_id_number.length==10 || this.form.applicant_national_id_number.length==13 || this.form.applicant_national_id_number.length==17){
+
+
+
+                    var nidData = {
+                        'nidNumber':this.form.applicant_national_id_number,
+                        'dateOfBirth':this.form.applicant_date_of_birth
                     }
-                    this.form.applicant_gender = gen
-                    this.form.applicant_father_name = nidD.fathersNameBN
-                    this.form.applicant_mother_name = nidD.mothersNameBN
-                    this.form.applicant_holding_tax_number = nidD.presentHolding
+                    var res = await this.callApi('post',`https://uniontax.xyz/api/citizen/information/nid?sToken=${this.sToken}`,nidData);
+
+                    if(res.data.status!=200){
+                    Swal.fire({
+                        title: 'দুঃখিত',
+                        text: `কিছু একটা সমস্যা হয়েছে `,
+                        icon: 'error',
+                        confirmButtonColor: 'red',
+                        confirmButtonText: `আবার চেষ্টা করুন`,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+                            this.getToken();
+                        }
+                    })
+                    }else{
+                        var nidD = res.data.informations;
+                        this.form.image = nidD.photoUrl
+                        this.form.applicant_name = nidD.fullNameBN
+                        var gen = 'পুরুষ';
+                        if(nidD.gender=='male'){
+                            gen = 'পুরুষ';
+                        }else{
+                            gen = 'মহিলা';
+                        }
+                        this.form.applicant_gender = gen
+                        this.form.applicant_father_name = nidD.fathersNameBN
+                        this.form.applicant_mother_name = nidD.mothersNameBN
+                        this.form.applicant_holding_tax_number = nidD.presentHolding
 
 
-            
-                    this.Pdivision = 'রংপুর'
-                    this.form.applicant_present_district = nidD.presentDistrict
-                    this.form.applicant_present_Upazila = nidD.presentThana
-                    this.form.applicant_present_post_office = nidD.presentPost
-                    this.form.applicant_present_village = nidD.presentVillage
+
+                        this.Pdivision = 'রংপুর'
+                        this.form.applicant_present_district = nidD.presentDistrict
+                        this.form.applicant_present_Upazila = nidD.presentThana
+                        this.form.applicant_present_post_office = nidD.presentPost
+                        this.form.applicant_present_village = nidD.presentVillage
 
 
-                    this.Perdivision = 'রংপুর'
-                    this.form.applicant_permanent_district = nidD.presentDistrict
-                    this.form.applicant_permanent_Upazila = nidD.presentThana
-                    this.form.applicant_permanent_post_office = nidD.presentPost
-                    this.form.applicant_permanent_village = nidD.presentVillage
+                        this.Perdivision = 'রংপুর'
+                        this.form.applicant_permanent_district = nidD.presentDistrict
+                        this.form.applicant_permanent_Upazila = nidD.presentThana
+                        this.form.applicant_permanent_post_office = nidD.presentPost
+                        this.form.applicant_permanent_village = nidD.presentVillage
 
+                    }
+
+
+                }else{
+                    Swal.fire({
+                        title: 'দুঃখিত',
+                        text: `জাতীয় পরিচয়পত্র নং অবশ্যই ১০ অথবা ১৩ অথবা ১৭ ডিজিটের হতে হবে`,
+                        icon: 'error',
+                    })
                 }
+                this.nidSearch = false;
             }
         }
 
