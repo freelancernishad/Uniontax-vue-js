@@ -348,7 +348,7 @@
                         <textarea class="form-control" v-model="b.reson" cols="30" rows="10"
                             style="height:100px;resize:none"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-info">Not Approve</button>
+                    <button type="submit" class="btn btn-info">বাতিল</button>
                 </form>
             </div>
             <div v-else>

@@ -1637,6 +1637,7 @@ export default {
         async getToken(){
             var res = await this.callApi('get',`https://uniontax.xyz/api/token/genarate`,[]);
             this.sToken = res.data.apitoken;
+            this.nidSearch = false;
         },
 
 
@@ -1722,8 +1723,9 @@ export default {
                         text: `জাতীয় পরিচয়পত্র নং অবশ্যই ১০ অথবা ১৩ অথবা ১৭ ডিজিটের হতে হবে`,
                         icon: 'error',
                     })
+                    this.nidSearch = false;
                 }
-                this.nidSearch = false;
+
             }
         }
 

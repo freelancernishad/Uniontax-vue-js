@@ -773,12 +773,14 @@ if($payment->status=='Paid'){
     public function cancelsonod(Request $request, $id)
     {
         $sonod = Sonod::find($id);
+        $unioun_name = $sonod->unioun_name;
         $data = $request->all();
         ActionLog::create($data);
         $sonod->update(['cancedby' => $request->names, 'cancedbyUserid' => $request->user_id]);
-        $InvoiceUrl =  url("/reject/$id");
+        $InvoiceUrl =  url("api/reject/$id");
         $deccription = "Opps! Your application $sonod->sonod_Id  has been Not Approve. Details : " . $InvoiceUrl;
         // smsSend($deccription, $sonod->applicant_mobile);
+        SmsNocSmsSend($deccription, $sonod->applicant_mobile,$unioun_name);
         $updatedata = [
             'stutus' => $request->status,
         ];
