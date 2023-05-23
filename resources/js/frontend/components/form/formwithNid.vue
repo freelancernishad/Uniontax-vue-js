@@ -1684,6 +1684,7 @@ export default {
                             this.getToken();
                         }
                     })
+
                     }else{
                         var nidD = res.data.informations;
                         this.form.image = nidD.photoUrl
@@ -1716,7 +1717,7 @@ export default {
 
                     }
 
-
+                    this.nidSearch = false;
                 }else{
                     Swal.fire({
                         title: 'দুঃখিত',
