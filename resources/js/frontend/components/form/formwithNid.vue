@@ -192,16 +192,16 @@
                     </div>
 
 
-                    <div class="col-md-12 row mb-3">
+                    <!-- <div class="col-md-12 row mb-3">
                         <div class="col-md-4">
                             <label for="" class="labelColor">আইডির ধরণ</label>
-                            <select class="form-control" v-model="attactType" required>
+                            <select class="form-control" v-model="attactType" >
                                 <option value="">নির্বাচন করুন</option>
                                 <option value="nid">জাতীয় পরিচয়পত্র</option>
                                 <option value="dob">জন্ম নিবন্ধন</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="col-md-5" v-if="attactType=='dob'">
