@@ -1701,7 +1701,7 @@ export default {
                         var unioncheck = await this.callApi('post',`/api/nid/check/${this.form.unioun_name}`,[]);
 
                         var nidD = res.data.informations;
-                        // this.form.image = nidD.photoUrl
+                        this.form.image = nidD.photoUrl
                         this.form.applicant_name = nidD.fullNameBN
                         var gen = 'পুরুষ';
                         if(nidD.gender=='male'){
@@ -1777,7 +1777,7 @@ export default {
                         var unioncheck = await this.callApi('post',`/api/nid/check/${this.form.unioun_name}`,[]);
 
                         var nidD = res.data.informations;
-                        this.form.image = nidD.photoUrl
+                        // this.form.image = nidD.photoUrl
                         this.form.applicant_name = nidD.fullNameBN
                         var gen = 'পুরুষ';
                         if(nidD.gender=='male'){
