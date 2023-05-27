@@ -1,7 +1,13 @@
 <template>
     <div>
-        <Applicationform  v-if="nidService==0"/>
-        <ApplicationformwitnNid v-else/>
+
+        <Applicationformprepay  v-if="nidService==0"/>
+        <ApplicationformwitnNidprepay v-else/> 
+
+
+
+
+
     </div>
 </template>
 
@@ -13,22 +19,25 @@ created() {
 },
     data() {
         return {
-            nidService:0
+            nidService:0,
+          
         }
     },
-    watch: {
-        '$route': {
-            handler(newValue, oldValue) {
-                this.checkNidService();
-            },
-            deep: true
-        }
-    },
+
     methods: {
+
+
         async checkNidService(){
             var res = await this.callApi('post',`/api/nid/service/${this.getUnion.subdomainget}`,[])
             this.nidService = res.data;
-        }
+        },
+
+   
+
+
+         },
+    mounted() {
+
     },
 
 }

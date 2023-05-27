@@ -15,6 +15,7 @@ class Sonod extends Model
         'year',
         'image',
         'sonod_name',
+        'uniqeKey',
         'successor_father_name',
         'successor_mother_name',
         'successor_father_alive_status',
@@ -93,5 +94,6 @@ class Sonod extends Model
         'chaireman_sign',
         'cancedby',
         'cancedbyUserid',
+        'pBy',
     ];
 }

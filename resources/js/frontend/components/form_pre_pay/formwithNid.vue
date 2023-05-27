@@ -671,67 +671,10 @@
                             <label for="" class="labelColor">গ্রাম/মহল্লা</label>
                             <input type="text" class="form-control" v-model="form.applicant_permanent_village" disabled>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="" class="labelColor">রোড/ব্লক/সেক্টর</label>
-                            <input type="text" class="form-control"
-                                v-model="form.applicant_permanent_road_block_sector">
-                        </div> -->
+    
 
                     </div>
                 </div>
-<!--
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="app-heading"> সংযুক্ত</div>
-                    </div>
-
-                    <div class="col-md-12 row mb-3">
-                        <div class="col-md-4">
-                            <label for="" class="labelColor">সংযুক্তির ধরণ</label>
-                            <select class="form-control" v-model="attactType" required>
-                                <option value="">নির্বাচন করুন</option>
-                                <option value="nid">জাতীয় পরিচয়পত্র</option>
-                                <option value="dob">জন্ম নিবন্ধন</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4" v-if="attactType=='nid'">
-                        <div class="form-group">
-                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Front page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
-                            <input type="file" accept="image/*" class="form-control custom-file-input" @change="FileSelected($event, 'applicant_national_id_front_attachment')" id="applicant_national_id_front_attachment" required>
-                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_national_id_front_attachment">Choose file</label>
-                            <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_front_attachment != null"
-                                :src="form.applicant_national_id_front_attachment" alt="Image 3" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" v-if="attactType=='nid'">
-                        <div class="form-group">
-                            <label for="" class="labelColor">জাতীয় পরিচয়পত্র (Back page) <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
-                            <input type="file" accept="image/*" class="form-control custom-file-input"
-                                @change="FileSelected($event, 'applicant_national_id_back_attachment')" id="applicant_national_id_back_attachment" required>
-                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_national_id_back_attachment">Choose file</label>
-                            <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_national_id_back_attachment != null"
-                                :src="form.applicant_national_id_back_attachment" alt="Image 3" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4"  v-if="attactType=='dob'">
-                        <div class="form-group">
-                            <label for="" class="labelColor">জন্ম নিবন্ধন <br/><span style="font-size:11px;color:red">(ছবি অবশ্যই 300KB এর উপরে হতে হবে!)</span></label>
-                            <input type="file" accept="image/*" class="form-control custom-file-input"
-                                @change="FileSelected($event, 'applicant_birth_certificate_attachment')" id="applicant_birth_certificate_attachment" required>
-                                <label class="custom-file-label" style="margin: 0px auto;margin-top: 56px;width: 93%;"  for="applicant_birth_certificate_attachment">Choose file</label>
-                            <img style="    width: 100%;" thumbnail fluid v-if="form.applicant_birth_certificate_attachment != null"
-                                :src="form.applicant_birth_certificate_attachment" alt="Image 3" />
-                        </div>
-                    </div>
-
-                </div>
- -->
 
 
 
@@ -783,164 +726,7 @@
             </div>
         </form>
         <!-- Info modal -->
-        <b-modal :id="infoModal.id" size="xl" :title="infoModal.title" ok-only ok-disabled no-close-on-esc
-            no-close-on-backdrop>
-
-            <div class="row" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'" >
-
-
-        <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certificate of Inheritance'"><b>মৃত ব্যাক্তির নাম : </b>{{ form.utname }}</div>
-        <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Inheritance certificate'"><b>জীবিত ব্যক্তির নাম : </b>{{ form.utname }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>বৈবাহিক সম্পর্ক : </b>{{ form.applicant_marriage_status }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>পিতা/স্বামীর নাম : </b>{{ form.ut_father_name }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>মাতার নাম : </b>{{ form.ut_mother_name }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>পিতা জীবিত কিনা : </b>{{ form.successor_father_alive_status }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>মাতা জীবিত কিনা : </b>{{ form.successor_mother_alive_status }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>পেশা : </b>{{ form.applicant_occupation }}</div>
-        <div class="col-md-4 col-6 mt-3"><b>বাসিন্দা : </b>{{ form.applicant_resident_status }}</div>
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="app-heading">আবেদনকারীর তথ্য</div>
-                </div>
-                <div class="col-md-4 mt-3"></div>
-                <div class="col-md-4 mt-3"><img width="100%" :src="form.image" alt=""></div>
-                <div class="col-md-4 mt-3"></div>
-                <div class="col-md-4 col-6 mt-3"><b>আবেদনকারীর নাম : </b>{{ form.applicant_name }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certification of the same name'">
-                    <b>দ্বিতীয় নাম : </b>{{ form.applicant_second_name }}
-                </div>
-
-                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-
-                <div class="col-md-4 col-6 mt-3" v-else><b>লিঙ্গ : </b>{{ form.applicant_gender }}</div>
-
-                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-                <div class="col-md-4 col-6 mt-3" v-else><b>পিতা/স্বামীর নাম : </b>{{ form.applicant_father_name }}
-                </div>
-
-                <div class="col-md-4 col-6 mt-3"><b>মাতার নাম : </b>{{ form.applicant_mother_name }}</div>
-
-                <div class="col-md-4 col-6 mt-3"><b>ন্যাশনাল আইডি : </b>{{ form.applicant_national_id_number }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>জন্ম নিবন্ধন নং : </b>{{ form.applicant_birth_certificate_number }}
-                </div>
-                <div class="col-md-4 col-6 mt-3"><b>হোল্ডিং নং : </b>{{ form.applicant_holding_tax_number }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>জম্ম তারিখ : </b>{{ form.applicant_date_of_birth }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Family certificate'"><b>বংশের নাম :
-                    </b>{{ form.family_name }}</div>
-                <div class="col-md-4 col-6 mt-3"
-                    v-if="sonodnamedata.enname == 'Certificate of annual income' || sonodnamedata.enname == 'Parents Income Certificate'">
-                    <b>বার্ষিক আয় : </b>{{ form.Annual_income }}
-                </div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'permit'"><b>অনুমতি এর বিষয় : </b>{{
-                form.Subject_to_permission
-                }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.bnname == 'প্রতিবন্ধী সনদপত্র'"><b>প্রতিবন্ধী :
-                    </b>{{ form.disabled }}</div>
-                <div class="col-md-4 col-6 mt-3"
-                    v-if="sonodnamedata.enname == 'No Objection Letter to Transfer of Constituency'"><b>স্থানান্তরিত
-                        এলাকার নাম : </b>{{ form.Name_of_the_transferred_area }}</div>
-                <div class="col-md-4 col-6 mt-3" v-if="sonodnamedata.enname == 'Certificate'"><b>প্রত্যয়নপত্র এর বিষয় :
-                    </b>{{ form.The_subject_of_the_certificate }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>পাসপোর্ট নং : </b>{{ form.applicant_passport_number }}</div>
-                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-                <div class="col-md-4 col-6 mt-3" v-else><b>বৈবাহিক সম্পর্ক : </b>{{ form.applicant_marriage_status }}</div>
-                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-                <div class="col-md-4 col-6 mt-3" v-else><b>পেশা: </b>{{ form.applicant_occupation }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>শিক্ষাগত যোগ্যতা: </b>{{ form.applicant_education }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>ধর্ম: </b>{{ form.applicant_religion }}</div>
-                <div class="col-md-4 col-6 mt-3" style="display:none" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'"></div>
-                <div class="col-md-4 col-6 mt-3" v-else><b>বাসিন্দা: </b>{{ form.applicant_resident_status }}</div>
-                <div class="col-md-12 col-12 mt-3" v-if="form.sonod_name != 'ট্রেড লাইসেন্স'"><b>আবেদনকৃত প্রত্যয়নের
-                        : <br> </b>{{ form.prottoyon }}</div>
-                <div class="col-md-12">
-                    <div class="app-heading">বর্তমান ঠিকানা</div>
-                </div>
-                <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ form.applicant_present_village }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ form.applicant_present_road_block_sector }}
-                </div>
-                <div class="col-md-4 col-6 mt-3"><b>ওয়ার্ড নং: </b>{{ form.applicant_present_word_number }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>জেলা: </b>{{ form.applicant_present_district }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ form.applicant_present_Upazila }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ form.applicant_present_post_office }}</div>
-                <div class="col-md-12">
-                    <div class="app-heading">স্থায়ী ঠিকানা</div>
-                </div>
-                <div class="col-md-4 col-6 mt-3"><b>গ্রাম/মহল্লা: </b>{{ form.applicant_permanent_village }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>রোড/ব্লক/সেক্টর: </b>{{ form.applicant_permanent_road_block_sector
-                }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>ওয়ার্ড নং: </b>{{ form.applicant_permanent_word_number }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>জেলা: </b>{{ form.applicant_permanent_district }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>উপজেলা/থানা: </b>{{ form.applicant_permanent_Upazila }}</div>
-                <div class="col-md-4 col-6 mt-3"><b>পোষ্ট অফিস: </b>{{ form.applicant_permanent_post_office }}</div>
-                <div class="col-md-12">
-                    <div class="app-heading">যোগাযোগের ঠিকানা</div>
-                </div>
-                <div class="col-md-6 col-6 mt-3"><b>মোবাইল: </b>{{ form.applicant_mobile }}</div>
-                <div class="col-md-6 col-6 mt-3"><b>ইমেল: </b>{{ form.applicant_email }}</div>
-                <div class="col-md-12">
-                    <div class="app-heading">সংযুক্ত</div>
-                </div>
-                <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Front page)</span> <br> <img width="100%"
-                        :src="form.applicant_national_id_front_attachment" alt=""></div>
-                <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Back page)</span> <br> <img width="100%"
-                        :src="form.applicant_national_id_back_attachment" alt=""></div>
-                <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%"
-                        :src="form.applicant_birth_certificate_attachment" alt=""></div>
-                <div class="col-md-12" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.bnname == 'Inheritance certificate'">
-                    <div class="app-heading">ওয়ারিশগনের তালিকা </div>
-                </div>
-                <table class="table" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.bnname == 'Inheritance certificate'">
-                    <tr>
-                        <th>ক্রমিক</th>
-                        <th>নাম</th>
-                        <th>সম্পর্ক</th>
-                        <th>জন্ম তারিখ</th>
-                        <th>জাতীয় পরিচয়পত্র নাম্বার</th>
-                    </tr>
-                    <tr v-for="(ut, indexs) in form.successors" :key="'ut' + indexs">
-                        <td>{{ ut.w_id }}</td>
-                        <td>{{ ut.w_name }}</td>
-                        <td>{{ ut.w_relation }}</td>
-                        <td>{{ ut.w_age }}</td>
-                        <td>{{ ut.w_nid }}</td>
-                    </tr>
-                </table>
-            </div>
-            <br>
-            <br>
-            <form @submit.stop.prevent="finalSubmit" style="margin-top: 50px;">
-                <div class="text-center" style="width:50%;margin:0 auto" v-if="getunionInfos.payment_type == 'Prepaid'">
-                    <h3>আপনার আবেদনটি সফল করার জন্য সনদের ফি প্রদান করুন । {{ sonodnamedata.bnname }} এর ফি {{
-                    charages.totalamount
-                    }} টাকা ।</h3>
-                    <button type="submit" class="btn btn-info" v-if="!submitLoad">Pay And Submit</button>
-                    <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
-                    <button type="submit" class="btn btn-info" v-if="submitLoad">Try Again</button>
-                </div>
-                <div class="text-center" style="width:50%;margin:0 auto"
-                    v-else-if="getunionInfos.payment_type == 'Postpaid'">
-                    <h3>আপনার আবেদনটি সফল করার জন্য Confirm বাটন এ চাপ দিন</h3>
-                    <button type="submit" class="btn btn-info" v-if="!submitLoad">Confirm</button>
-                    <span class="btn btn-info" v-else-if="submitLoad">Please Wait...</span>
-                </div>
-            </form>
-
-            <template #modal-footer>
-<div></div>
-      </template>
-
-        </b-modal>
+        
     </div>
 </template>
 <script>
@@ -965,13 +751,7 @@ export default {
                 content: '',
                 content_id: '',
             },
-            charages: {
-                sonod_fee: 0,
-                vatAmount: 0,
-                taxAmount: 0,
-                service: 0,
-                totalamount: 0,
-            },
+
             pesaKor:0,
             waitForPayment: false,
             submitLoad: false,
@@ -1069,211 +849,27 @@ export default {
             },
             TradeLicenseKhats:{},
             TradeLicenseKhatAmouts:{},
-
-
-
-            getdivisions:{},
-            getdistricts:{},
-            getthanas:{},
-            getuniouns:{},
-
-            getdivisionsPer:{},
-            getdistrictsPer:{},
-            getthanasPer:{},
-            getuniounsPer:{},
             Pdivision:'',
             Perdivision:'',
-            applicant_present_district:'',
-            applicant_permanent_district:'',
+
+
+        
             businessType:true,
         };
     },
     watch: {
         '$route': {
             handler(newValue, oldValue) {
-
-                if(this.$route.params.name=='Certificate_of_Building_Construction_Pond_Excavation_Mountain_Cutting'){
-                    this.$router.push({ name: 'application2',parmas:{name:this.$route.params.name} })
-                }
-
-                this.form.year = new Date().getFullYear();
                 this.getToken();
-                this.sonodname();
-
-                //setTimeout(() => {
-                   // this.form.sonod_name = this.sonodnamedata.bnname;
-
-                    // var res = axios({ method: 'get', url: `/api/sonod/sonod_Id?union=${this.getUnion}`, data: [] })
-                    // axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
-                    //     .then((response) => {
-                    //         //   console.log(response.data)
-                    //         this.form.sonod_Id = `${response.data}`;
-                    //     })
-                //}, 3000);
-
-
             },
             deep: true
         }
     },
-    //   updated() {
-    //       console.log('ss');
-    //     },
+
     methods: {
 
 
 
-
-        async TradeLicenseKhatFun(){
-            // var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=main`,[]);
-            this.TradeLicenseKhats = this.TradeLicenseKhat;
-        },
-
-
-
-
-        async GetKhatSubCate(){
-            var res = await this.callApi('get',`/api/tradeLicenseKhat?searhtype=sub&main_khat_id=${this.form.applicant_type_of_businessKhat}`,[]);
-            this.TradeLicenseKhatAmouts = res.data.tradeSub;
-
-            if(res.data.tradeSub.length>0){
-                        this.businessType = true
-            }else{
-                this.GetKhatSubCateAmount('single')
-                this.businessType = false
-
-            }
-
-
-            // this.form.applicant_type_of_business =  res.data.tradeMain.name;
-        },
-
-        async GetKhatSubCateAmount(type=''){
-            var typeData = '';
-            if(type=='single') typeData = '&dataget=single'
-            var res = await this.callApi('get',`/api/tradeLicenseKhatFee?khat_id_1=${this.form.applicant_type_of_businessKhat}&khat_id_2=${this.form.applicant_type_of_businessKhatAmount}${typeData}`,[]);
-            this.pesaKor = res.data.fee;
-
-        },
-
-
-
-
-        async getdivisionFun(){
-        //  var res = await this.callApi('get',`/api/getdivisions`,[]);
-         this.getdivisions = this.allDivision;
-        },
-
-        async getdistrictFun(){
-
-        var res = await this.callApi('get',`/api/getdistrict?id=${this.Pdivision}`,[]);
-        this.getdistricts = res.data;
-
-
-
-
-        },
-
-        async getthanaFun(){
-        var res = await this.callApi('get',`/api/getthana?id=${this.applicant_present_district}`,[]);
-        this.getthanas = res.data;
-        var resOwn = await this.callApi('get',`/api/getdistrict?ownid=${this.applicant_present_district}`,[]);
-        this.form.applicant_present_district = resOwn.data.bn_name
-
-        },
-
-        async getuniounFun(){
-        var res = await this.callApi('get',`/api/getunioun?id=${this.thana}`,[]);
-        this.getuniouns = res.data;
-        },
-
-
-
-
-        //////////////////////////////////
-
-        async getdivisionFunPer(){
-        //  var res = await this.callApi('get',`/api/getdivisions`,[]);
-         this.getdivisionsPer = this.allDivision;
-        },
-
-        async getdistrictFunPer(){
-
-        var res = await this.callApi('get',`/api/getdistrict?id=${this.Perdivision}`,[]);
-        this.getdistrictsPer = res.data;
-
-
-
-        },
-
-        async getthanaFunPer(){
-            // console.log(this.applicant_permanent_district)
-        var res = await this.callApi('get',`/api/getthana?id=${this.applicant_permanent_district}`,[]);
-        this.getthanasPer = res.data;
-        var resOwn = await this.callApi('get',`/api/getdistrict?ownid=${this.applicant_permanent_district}`,[]);
-        this.form.applicant_permanent_district = resOwn.data.bn_name
-
-        },
-
-        async getuniounFunPer(){
-        var res = await this.callApi('get',`/api/getunioun?id=${this.thana}`,[]);
-        this.getuniounsPer = res.data;
-        },
-
-
-
-
-
-
-
-
-
-
-        FileSelected($event, parent_index) {
-            let file = $event.target.files[0];
-            // console.log(file.size);
-            if (file.size < 307200) {
-                event.target.value = '';
-
-                if(parent_index=='applicant_national_id_front_attachment'){
-                    this.form[parent_index] = this.$asseturl+'demonid/front.jpg'
-                }else if(parent_index=='applicant_national_id_back_attachment'){
-                    this.form[parent_index] = this.$asseturl+'demonid/back.jpg'
-                }
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'দুঃখিত',
-                    text: 'ছবি অবশ্যই 300KB এর উপরে হতে হবে!'
-
-                    })
-                // Notification.image_validation('ছবি অবশ্যই 300KB এর উপরে হতে হবে!');
-            }
-            // else if (file.size > 5242880) {
-            //     event.target.value = '';
-            //     Swal.fire({
-            //         icon: 'error',
-            //         title: 'দুঃখিত',
-            //         text: 'ছবি অবশ্যই 5MB এর উপরে হতে হবে!'
-
-            //         })
-            //     // Notification.image_validation('ছবি অবশ্যই 5MB এর উপরে হতে হবে!');
-            // }
-             else {
-                let reader = new FileReader;
-                reader.onload = event => {
-                    this.form[parent_index] = event.target.result
-                    // console.log(event.target.result);
-                };
-                reader.readAsDataURL(file)
-            }
-            //   console.log($event.target.result);
-        },
-        portKeydown(e) {
-            if (/^\+$/.test(e.key)) {
-                e.preventDefault();
-            }
-        },
         addMore() {
             this.form.successors.push({
                 w_name: "",
@@ -1285,370 +881,31 @@ export default {
         remove(index) {
             this.form.successors.splice(index, 1);
         },
-        validateState(name) {
-            const { $dirty, $error } = this.$v.form[name];
-            // console.log($error)
-            return $dirty ? !$error : null;
-        },
-        resetForm() {
-            this.form.image = null;
-            this.form.applicant_holding_tax_number = null;
-            this.form.applicant_national_id_number = null;
-            this.form.applicant_birth_certificate_number = null;
-            this.form.applicant_passport_number = null;
-            this.form.applicant_date_of_birth = null;
-            this.form.family_name = null;
-            this.form.Annual_income = null;
-            this.form.Subject_to_permission = null;
-            this.form.disabled = null;
-            this.form.The_subject_of_the_certificate = null;
-            this.form.Name_of_the_transferred_area = null;
-            this.form.applicant_name = null;
-            this.form.applicant_second_name = null;
-            this.form.applicant_gender = null;
-            this.form.applicant_marriage_status = null;
-            this.form.applicant_father_name = null;
-            this.form.applicant_mother_name = null;
-            this.form.applicant_occupation = null;
-            this.form.applicant_education = null;
-            this.form.applicant_religion = null;
-            this.form.applicant_resident_status = null;
-            ////////////////////////////////////////////// =               this.for;.// =বর্তমান ঠিকানা
-            this.form.applicant_present_village = null;
-            this.form.applicant_present_road_block_sector = null;
-            this.form.applicant_present_word_number = null;
-            this.form.applicant_present_district = null;
-            this.form.applicant_present_Upazila = null;
-            this.form.applicant_present_post_office = null;
-            ////////////////////////////////////////////// =               this.for;.// =স্থায়ী ঠিকানা
-            this.form.applicant_permanent_village = null;
-            this.form.applicant_permanent_road_block_sector = null;
-            this.form.applicant_permanent_word_number = null;
-            this.form.applicant_permanent_district = null;
-            this.form.applicant_permanent_Upazila = null;
-            this.form.applicant_permanent_post_office = null;
-            ////////////////////////////////////////////// =               this.for;.// =যোগাযোগের ঠিকানা
-            this.form.applicant_mobile = null;
-            this.form.applicant_email = null;
-            ////////////////////////////////////////////// =               this.for;.// =Attachment
-            this.form.applicant_national_id_front_attachment = null;
-            this.form.applicant_national_id_back_attachment = null;
-            this.form.applicant_birth_certificate_attachment = null;
-            this.form.prottoyon = null;
-            this.$nextTick(() => {
-                this.$v.$reset();
-            });
-        },
-        sameAddress() {
-            // console.log(value)
-            if (this.sameStatus) {
 
-                this.getdivisionFunPer();
-                this.Perdivision = this.Pdivision
-                this.getdistrictFunPer();
-                this.applicant_permanent_district = this.applicant_present_district
-                this.getthanaFunPer();
-                this.form.applicant_permanent_Upazila = this.form.applicant_present_Upazila
+ 
+ 
 
-
-                this.form.applicant_permanent_village = this.form.applicant_present_village
-                this.form.applicant_permanent_road_block_sector = this.form.applicant_present_road_block_sector
-                this.form.applicant_permanent_word_number = this.form.applicant_present_word_number
-
-                this.form.applicant_permanent_post_office = this.form.applicant_present_post_office
-
-
-
-
-            } else {
-                this.form.applicant_permanent_village = null
-                this.form.applicant_permanent_road_block_sector = null
-                this.form.applicant_permanent_word_number = null
-                this.form.applicant_permanent_district = null
-                this.form.applicant_permanent_Upazila = null
-                this.form.applicant_permanent_post_office = null
-            }
-        },
-        sonodname() {
-            if (this.$route.params.name) {
-                axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}&fees=1&unioun=${localStorage.getItem('unioun')}`)
-                    .then(({ data }) => {
-                        this.sonodnamedata = data.sonodname
-                        this.sonodnameFee = data.sonodFee
-
-						this.form.sonod_name = this.sonodnamedata.bnname;
-                        window.scrollTo(0, 0);
-                    })
-                    .catch()
-            }
-        },
         resetInfoModal() {
             this.infoModal.title = ''
             this.infoModal.content = ''
         },
-        async onSubmit() {
-
-            // if(this.attactType=='nid'){
-            //     if(!this.form.applicant_national_id_front_attachment){
-
-            //     }else if(!this.form.applicant_national_id_back_attachment){
-
-            //     }
-
-            // }if(this.attactType=='nid'){
-            //     if(!this.form.applicant_birth_certificate_attachment){
-
-            //     }
-            // }
 
 
-
-
-
-
-
-
-            var sonod_fee = 0
-            var payment_type = this.getunionInfos.payment_type;
-            if (payment_type == 'Prepaid') {
-                var sonod_fee = Number(this.sonodnameFee.fees)
-            }
-
-
-
-
-
-            var vat = Number(this.getvatTax.vat)
-            var tax = Number(this.getvatTax.tax)
-            var service = Number(this.getvatTax.service)
-            var vatAmount = ((sonod_fee * vat) / 100);
-            var taxAmount = ((sonod_fee * tax) / 100);
-            // var totalamount = sonod_fee + vatAmount + taxAmount + service
-
-            var tradeVat = 15;
-            if(this.form.sonod_name=='ট্রেড লাইসেন্স'){
-
-
-                var TradevatAmount =  ((sonod_fee * tradeVat) / 100);
-                var totalamount = Number(this.pesaKor) + sonod_fee + TradevatAmount
+        async getSonods(){
+            var sToken = this.$route.query.sToken;
+            var res = await this.callApi('get',`/api/get/sonod/by/key?sToken=${sToken}`);
+            if(res.data==404){
+                this.$router.push('/');
             }else{
 
-                var totalamount = sonod_fee
-            }
-
-
-            this.charages = {
-                sonod_fee: sonod_fee,
-                vatAmount: vatAmount,
-                taxAmount: taxAmount,
-                pesaKor: this.pesaKor,
-                service: service,
-                tradeVat: tradeVat,
-                totalamount: totalamount,
-            },
-
-
-
-                this.$root.$emit('bv::show::modal', this.infoModal.id)
-        },
-        async finalSubmit() {
-            this.submitLoad = true;
-            var redirect;
-            var payment_type = this.getunionInfos.payment_type;
-            if (payment_type == 'Prepaid') {
-                this.form.stutus = 'Prepaid';
-            } else if (payment_type == 'Postpaid') {
-                this.form.stutus = 'Pending';
-            }
-            this.form['charages'] = this.charages;
-            var res = await this.callApi('post', '/api/nagorik/seba/inserts', this.form);
-            var datas = res.data;
-            // this.$router.push({ name: 'home' })
-            if (payment_type == 'Prepaid') {
-                redirect = `/sonod/payment/${datas.id}`
-                this.waitForPayment = true;
-                // this.checkPayment(datas.id);
-                this.form['id'] = datas.id;
-                // window.open(redirect, '_blank');
-                window.location.href =redirect;
-
-
-            } else if (payment_type == 'Postpaid') {
-                this.waitForPayment = true;
-                // this.checkPayment(datas.id);
-                // this.form['id'] = datas.id;
-                Swal.fire({
-                    title: 'অভিনন্দন',
-                    text: `আপনার আবেদনটি সফলভাবে দাখিল হয়েছে`,
-                    icon: 'success',
-                    confirmButtonColor: 'green',
-                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                    // showDenyButton: true,
-                    showCancelButton: true,
-                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
-                    cancelButtonText: 'Back to home',
-                    customClass: {
-                        actions: 'my-actions',
-                        cancelButton: 'order-1 right-gap',
-                        confirmButton: 'order-2',
-                        denyButton: 'order-3',
-                    },
-                    allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    preConfirm: () => {
-                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-                        window.open(redirect, '_blank');
-                        return false; // Prevent confirmed
-                    },
-                    preDeny: () => {
-                        redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                        window.open(redirect, '_blank');
-                        return false; // Prevent denied
-                    },
-                }).then(async (result) => {
-                    console.log(result)
-                    if (result.isConfirmed) {
-                        // this.$root.$emit('bv::hide::modal', 'info-modal')
-                    } else if (result.isDenied) {
-                        // this.$root.$emit('bv::hide::modal', 'info-modal')
-                    } else if (result.isDismissed) {
-                        //cancel
-                        this.$router.push({ name: 'home' })
-                    }
-                })
-                //  console.log(this.waitForPayment)
-                // redirect = '/document/' + datas.sonod_name + '/' + datas.id;
-                // window.open(redirect, '_blank');
+                this.form = res.data;
             }
         },
-        checkPayment(id) {
-            var redirect;
-            setInterval(() => {
-                if (this.waitForPayment) {
-                    axios.get(`/api/sonod/single/${id}`).then((res) => {
-                        var payment_type = this.getunionInfos.payment_type;
-                        if (payment_type == 'Prepaid') {
-                            if (res.data.stutus == 'Pending' && res.data.payment_status == 'Paid') {
-                                this.waitForPayment = false;
-                                // console.log(this.waitForPayment)
-                                Swal.fire({
-                                    title: 'Success',
-                                    text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
-                                    icon: 'success',
-                                    confirmButtonColor: 'green',
-                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                                    // showDenyButton: true,
-                                    showCancelButton: true,
-                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                    cancelButtonText: 'Back to home',
-                                    customClass: {
-                                        actions: 'my-actions',
-                                        cancelButton: 'order-1 right-gap',
-                                        confirmButton: 'order-2',
-                                        // denyButton: 'order-3',
-                                    },
-                                    allowOutsideClick: false,
-                                    allowEscapeKey: false,
-                                    preConfirm: () => {
-                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                        return false; // Prevent confirmed
-                                    },
-                                }).then(async (result) => {
-                                    if (result.isConfirmed) {
-                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                    }else if (result.isDismissed) {
-                                        //cancel
-                                        this.$router.push({ name: 'home' })
-                                    }
-                                })
-                            }else if(res.data.stutus == 'failed'){
-                                Swal.fire({
-                                    title: 'দুঃখিত',
-                                    text: `সনদের ফি প্রদান হয়েছে বার্থ হয়েছে`,
-                                    icon: 'error',
-                                    confirmButtonColor: 'green',
-                                    confirmButtonText: `আবার চেষ্টা করুন`,
-                                    // showDenyButton: true,
-                                    showCancelButton: true,
-                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                    cancelButtonText: 'Back to home',
-                                    customClass: {
-                                        actions: 'my-actions',
-                                        cancelButton: 'order-1 right-gap',
-                                        confirmButton: 'order-2',
-                                        // denyButton: 'order-3',
-                                    },
-                                    allowOutsideClick: false,
-                                    allowEscapeKey: false,
-                                }).then(async (result) => {
-                                    if (result.isConfirmed) {
-                                        redirect = `/sonod/payment/${datas.id}`
 
-                                        this.checkPayment(res.data.id);
-                                        this.form['id'] = res.data.id;
-                                        window.open(redirect, '_blank');
-                                    }else if (result.isDismissed) {
-                                        //cancel
-                                        this.$router.push({ name: 'home' })
-                                    }
-                                })
-                            }
-                        } else if (payment_type == 'Postpaid') {
-                            if (res.data.stutus == 'Pending') {
-                                this.waitForPayment = false;
-                                Swal.fire({
-                                    title: 'অভিনন্দন',
-                                    text: `আপনার আবেদনটি সফলভাবে দাখিল হয়েছে`,
-                                    icon: 'success',
-                                    confirmButtonColor: 'green',
-                                    confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-                                    // showDenyButton: true,
-                                    showCancelButton: true,
-                                    // denyButtonText: 'রশিদ ডাউনলোড করুন',
-                                    cancelButtonText: 'Back to home',
-                                    customClass: {
-                                        actions: 'my-actions',
-                                        cancelButton: 'order-1 right-gap',
-                                        confirmButton: 'order-2',
-                                        // denyButton: 'order-3',
-                                    },
-                                    allowOutsideClick: false,
-                                    allowEscapeKey: false,
-                                    preConfirm: () => {
-                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                        return false; // Prevent confirmed
-                                    },
-                                    // preDeny: () => {
-                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                    //     window.open(redirect, '_blank');
-                                    //     return false; // Prevent denied
-                                    // },
-                                }).then(async (result) => {
-                                    console.log(result)
-                                    if (result.isConfirmed) {
-                                        // this.$root.$emit('bv::hide::modal', 'info-modal')
-                                        redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-                                        window.open(redirect, '_blank');
-                                    }
-                                    //  else if (result.isDenied) {
-                                    //     // this.$root.$emit('bv::hide::modal', 'info-modal')
-                                    //     redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-                                    //     window.open(redirect, '_blank');
-                                    // }
-                                     else if (result.isDismissed) {
-                                        //cancel
-                                        this.$router.push({ name: 'home' })
-                                    }
-                                })
-                            }
-                        }
-                        // console.log(res)
-                    })
-                }
-            }, 3000);
+
+
+        async onSubmit() {
+            this.$root.$emit('bv::show::modal', this.infoModal.id)
         },
 
 
@@ -1701,7 +958,7 @@ export default {
                         var unioncheck = await this.callApi('post',`/api/nid/check/${this.form.unioun_name}`,[]);
 
                         var nidD = res.data.informations;
-                        // this.form.image = nidD.photoUrl
+                        this.form.image = nidD.photoUrl
                         this.form.applicant_name = nidD.fullNameBN
                         var gen = 'পুরুষ';
                         if(nidD.gender=='male'){
@@ -1777,7 +1034,7 @@ export default {
                         var unioncheck = await this.callApi('post',`/api/nid/check/${this.form.unioun_name}`,[]);
 
                         var nidD = res.data.informations;
-                        this.form.image = nidD.photoUrl
+                        // this.form.image = nidD.photoUrl
                         this.form.applicant_name = nidD.fullNameBN
                         var gen = 'পুরুষ';
                         if(nidD.gender=='male'){
@@ -1833,75 +1090,8 @@ export default {
 
     },
     mounted() {
-
-
         this.getToken();
-
-        if(this.$route.params.name=='Certificate_of_Building_Construction_Pond_Excavation_Mountain_Cutting'){
-                    this.$router.push({ name: 'application2',parmas:{name:this.$route.params.name} })
-                }
-
-
-
-
-        this.TradeLicenseKhatFun();
-        this.getdivisionFun();
-        this.getdivisionFunPer();
-
-        // if(localStorage.getItem('form')){
-        //     this.form = JSON.parse(localStorage.getItem('form'))
-        // }
-        this.form.year = new Date().getFullYear();
-        this.sonodname();
-        setTimeout(() => {
-            this.form.sonod_name = this.sonodnamedata.bnname;
-
-            // var res = axios({ method: 'get', url: `/api/sonod/sonod_Id?union=${this.getUnion}`, data: [] })
-            // axios.get(`/api/sonod/sonod_Id?union=${this.getUnion}`)
-            //     .then((response) => {
-            //         //   console.log(response.data)
-            //         this.form.sonod_Id = `${response.data}`;
-            //     })
-        }, 3000);
-        //   Swal.fire({
-        //                             title: 'Success',
-        //                             text: `সনদের ফি সফলভাবে প্রদান হয়েছে`,
-        //                             icon: 'success',
-        //                             confirmButtonColor: 'green',
-        //                             confirmButtonText: `আবেদন পত্র ডাউনলোড করুন`,
-        //                             showDenyButton: true,
-        //                             showCancelButton: true,
-        //                             denyButtonText: 'রশিদ ডাউনলোড করুন',
-        //                             cancelButtonText:'Back to home',
-        //                             customClass: {
-        //                                 actions: 'my-actions',
-        //                                 cancelButton: 'order-1 right-gap',
-        //                                 confirmButton: 'order-2',
-        //                                 denyButton: 'order-3',
-        //                             },
-        //                             allowOutsideClick: false,
-        //                             allowEscapeKey: false,
-        //                             preConfirm: () => {
-        //                             return false; // Prevent confirmed
-        //                             },
-        //                             preDeny: () => {
-        //                                 return false; // Prevent denied
-        //                             },
-        //                         }).then(async (result) => {
-        //                             console.log(result)
-        //                             if (result.isConfirmed) {
-        //                                 // this.$root.$emit('bv::hide::modal', 'info-modal')
-        //                                 redirect = '/document/' + res.data.sonod_name + '/' + res.data.id;
-        //                                 window.open(redirect, '_blank');
-        //                             } else if (result.isDenied) {
-        //                                 // this.$root.$emit('bv::hide::modal', 'info-modal')
-        //                                 redirect = '/invoice/' + res.data.sonod_name + '/' + res.data.id;
-        //                                 window.open(redirect, '_blank');
-        //                             } else if (result.isDismissed) {
-        //                                 //cancel
-        //                                 this.$router.push({ name: 'home' })
-        //                             }
-        //                         })
+        this.getSonods();
     }
 };
 </script>

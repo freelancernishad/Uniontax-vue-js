@@ -58,6 +58,11 @@ Route::group([
 
 Route::post('nagorik/seba/inserts',[SonodController::class, 'sonod_submit']);
 
+Route::post('nagorik/pre/pay/inserts',[SonodController::class, 'sonod_submit_pre_pay']);
+
+Route::get('get/sonod/by/key',[SonodController::class,'sonodByKey']);
+
+
 // country api
 Route::get('/getdivisions', [countryApiController::class,'getdivisions']);
 Route::get('/getdistrict', [countryApiController::class,'getdistrict']);
@@ -69,6 +74,10 @@ Route::get('/gotoUnion', [countryApiController::class,'gotoUnion']);
 
 
 Route::post('unionCreate', [UniouninfoController::class,'unionCreate']);
+
+Route::post('nid/service/{union}', [UniouninfoController::class,'unionservicecheck']);
+Route::post('nid/check/{union}', [UniouninfoController::class,'unioncheck']);
+
 Route::resources([
 	'tradeLicenseKhat' => TradeLicenseKhatController::class,
 	'tradeLicenseKhatFee' => TradeLicenseKhatFeeController::class,
@@ -92,6 +101,8 @@ Route::get('get/users/delete/{id}',[RoleController::class,'deleteuser']);
 
 Route::get('update/users/{id}',[RoleController::class,'getuser']);
 Route::post('update/users',[RoleController::class,'updateuser']);
+
+
 
 
 

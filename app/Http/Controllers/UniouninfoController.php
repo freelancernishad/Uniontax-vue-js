@@ -11,6 +11,35 @@ use Illuminate\Support\Facades\Hash;
 class UniouninfoController extends Controller
 {
 
+
+    public function unionservicecheck($union)
+    {
+
+        $Uniouninfo = Uniouninfo::where('short_name_e',$union)->first();
+
+        return $nidServiceOld = (int)$Uniouninfo->nidService;
+
+
+    }
+
+
+    public function unioncheck($union)
+    {
+
+        $Uniouninfo = Uniouninfo::where('short_name_e',$union)->first();
+
+        $nidServiceOld = (int)$Uniouninfo->nidService;
+        if($nidServiceOld>0){
+            $nidService = (int)$Uniouninfo->nidService-1;
+            $Uniouninfo->update(['nidService'=>$nidService]);
+            return $Uniouninfo;
+        }else{
+            return 404;
+        }
+
+    }
+
+
     public function apicall($url,$data,$method=true)
     {
 

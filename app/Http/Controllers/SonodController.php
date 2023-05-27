@@ -10,6 +10,7 @@ use App\Models\SonodFee;
 use App\Models\ActionLog;
 use App\Models\Uniouninfo;
 use App\Models\Expenditure;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Notifications;
 use App\Models\Sonodnamelist;
@@ -20,8 +21,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use Illuminate\Support\Facades\Validator;
 // use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Illuminate\Support\Facades\Validator;
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
@@ -272,7 +273,11 @@ if($payment->status=='Paid'){
                 "trnx_id" => "$trnx_id"
             ];
             // return $sonod->unioun_name;
-            $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info,'payment',$sonod->unioun_name);
+
+      
+                $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info,'payment',$sonod->unioun_name);
+         
+
 
             $req_timestamp = date('Y-m-d H:i:s');
             $customerData = [
@@ -2473,6 +2478,83 @@ return Sonod::where(['sonod_name'=>$sonod_name,'sonod_Id'=>$sonod_Id])->first();
         // return $request->all();
     }
 
+
+
+
+        public function sonod_submit_pre_pay(Request $r)
+        {
+            $Insertdata = $r->except(['sonod_Id']);
+            $random = Str::random(60);
+
+            $Insertdata['uniqeKey'] = $random;
+            $Insertdata['pBy'] = 'Pre Pay';
+            $Insertdata['applicant_type_of_businessKhat'] = $r->applicant_type_of_businessKhat;
+
+            if($r->applicant_type_of_businessKhatAmount){
+                $Insertdata['applicant_type_of_businessKhatAmount'] = $r->applicant_type_of_businessKhatAmount;
+            }else{
+                $Insertdata['applicant_type_of_businessKhatAmount'] = 0;
+            }
+
+
+            $unioun_name = $r->unioun_name;
+            $sonod_name = $r->sonod_name;
+
+            $sonodId = (string)$this->allsonodId($unioun_name, $sonod_name);
+            $Insertdata['sonod_Id'] = $sonodId;
+
+            $stutus = $r->stutus;
+            if($stutus=='Prepaid'){
+
+                $totalamount = $r->charages['totalamount'];
+                $sonod_fee = $r->charages['sonod_fee'];
+                $tradeVat = $r->charages['tradeVat'];
+                $pesaKor = $r->charages['pesaKor'];
+
+                $arraydata = [
+                'total_amount' => $totalamount,
+                'pesaKor' => $pesaKor,
+                'tredeLisenceFee' => $sonod_fee,
+                'vatAykor' => $tradeVat,
+                'khat' => '',
+                'last_years_money' => 0,
+                'currently_paid_money' => $totalamount,
+                ];
+                $amount_deails = json_encode($arraydata);
+                $numto = new NumberToBangla();
+                $the_amount_of_money_in_words = $numto->bnMoney($totalamount) . ' মাত্র';
+
+                $Insertdata['khat'] = '';
+                $Insertdata['last_years_money'] = 0;
+                $Insertdata['currently_paid_money'] = $totalamount;
+                $Insertdata['total_amount'] = $totalamount;
+                $Insertdata['the_amount_of_money_in_words'] = $the_amount_of_money_in_words;
+                $Insertdata['amount_deails'] = $amount_deails;
+
+
+            }
+
+            $sonod =   sonod::create($Insertdata);
+            return  $sonod;
+
+
+
+
+
+        }
+
+    public function sonodByKey(Request $request)
+    {
+        $sToken = $request->sToken;
+
+        $sonodCount = Sonod::where(['uniqeKey'=>$sToken])->count();
+        if($sonodCount>0){
+            $sonod = Sonod::where(['uniqeKey'=>$sToken])->first();
+            return $sonod;
+        }else{
+            return 404;
+        }
+    }
 
 
 }

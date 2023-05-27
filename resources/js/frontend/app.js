@@ -28,6 +28,12 @@ import ApplicationformwitnNid from './components/form/formwithNid.vue'
 Vue.component('ApplicationformwitnNid', ApplicationformwitnNid);
 
 
+import Applicationformprepay from './components/form_pre_pay/form.vue'
+Vue.component('Applicationformprepay', Applicationformprepay);
+import ApplicationformwitnNidprepay from './components/form_pre_pay/formwithNid.vue'
+Vue.component('ApplicationformwitnNidprepay', ApplicationformwitnNidprepay);
+
+
 
 import UnionSelect from './components/layouts/unonselect.vue'
 Vue.component('UnionSelect', UnionSelect);

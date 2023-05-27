@@ -17,6 +17,7 @@ use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
+use App\Models\Sonod;
 use lemonpatwari\bangladeshgeocode\Models\Division;
 /*
 |--------------------------------------------------------------------------
@@ -207,12 +208,26 @@ Route::get('/payment/success', function (Request $request) {
     $transId = $request->transId;
 
     $payment = Payment::where(['trxId' => $transId])->first();
+
+
     if($payment->sonod_type=='holdingtax'){
         $redirect = "/holdingPay/success?transId=$transId";
     }else{
-        $redirect = "/payment/success/confirm?transId=$transId";
+
+        $sonod = Sonod::find($payment->sonodId);
+        if($sonod->pBy=='Pre Pay'){
+
+            $redirect = "/applications/final/form?sToken=$sonod->uniqeKey";
+        }else{
+            $redirect = "/payment/success/confirm?transId=$transId";
+
+        }
+
+
 
     }
+
+
 // return;
     echo "
     <h3 style='text-align:center'>Please wait 10 seconds.This page will auto redirect you</h3>

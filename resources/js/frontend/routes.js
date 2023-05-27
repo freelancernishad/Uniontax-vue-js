@@ -13,6 +13,10 @@ let certificate = require('./components/form/aftersubmit.vue').default;
 
 
 let application = require('./components/form/application.vue').default;
+// let application = require('./components/form_pre_pay/application.vue').default;
+let finalform = require('./components/form_pre_pay/applicationfinal.vue').default;
+
+
 // let application = require('./components/form/form.vue').default;
 
 
@@ -50,6 +54,10 @@ export const routes = [
     { path:  `${prefix}verification/sonod/:id`, component: sonodVerify, name:'sonodVerify',meta: { layout: layout } },
     { path:  `${prefix}sonod/search`, component: sonodsearch, name:'sonodsearch',meta: { layout: layout } },
     { path:  `${prefix}application/:name`, component: application, name:'application',meta: { layout: layout } },
+
+    { path:  `${prefix}applications/final/form`, component: finalform, name:'finalform',meta: { layout: layout } },
+
+
     { path:  `${prefix}application2/:name`, component: application2, name:'application2',meta: { layout: layout } },
     { path:  `${prefix}blogs/:name`, component: blogs, name:'blogs',meta: { layout: layout } },
     { path:  `${prefix}blogs/read/:id`, component: blogread, name:'blogread',meta: { layout: layout } },
