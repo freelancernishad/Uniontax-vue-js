@@ -192,7 +192,7 @@
                     </div>
 
 
-                    <!-- <div class="col-md-12 row mb-3">
+                    <div class="col-md-12 row mb-3">
                         <div class="col-md-4">
                             <label for="" class="labelColor">আইডির ধরণ</label>
                             <select class="form-control" v-model="attactType" >
@@ -201,7 +201,7 @@
                                 <option value="dob">জন্ম নিবন্ধন</option>
                             </select>
                         </div>
-                    </div> -->
+                    </div>
 
 
                     <div class="col-md-5" v-if="attactType=='dob'">
@@ -223,7 +223,7 @@
                             <input type="date" class="form-control" v-model="form.applicant_date_of_birth">
                         </div>
                     </div>
-                    <div class="col-md-2" style="display: flex;justify-content: space-around;align-items: center;margin-top: 14px;">
+                    <div class="col-md-2" style="display: flex;justify-content: space-around;align-items: center;margin-top: 14px;" v-if="attactType=='nid'">
                         <div class="form-group mb-0">
                            <button class="btn btn-info" type="button" v-if="nidSearch" disabled>অপেক্ষা করুন....</button>
                            <button class="btn btn-info" type="button" @click="checknid" v-else>Check Nid</button>
@@ -238,7 +238,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">আবেদনকারীর নাম <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" v-model="form.applicant_name" required disabled>
+                            <input type="text" class="form-control" v-model="form.applicant_name" required :disabled="attactType=='nid'">
                         </div>
                     </div>
 
@@ -257,7 +257,7 @@
                     <div class="col-md-4" v-else>
                         <div class="form-group">
                             <label for="" class="labelColor">লিঙ্গ</label>
-                            <select class="form-control" v-model="form.applicant_gender" disabled>
+                            <select class="form-control" v-model="form.applicant_gender"  :disabled="attactType=='nid'">
                                 <option value="">লিঙ্গ নির্বাচন করুন</option>
                                 <option>পুরুষ</option>
                                 <option>মহিলা</option>
@@ -269,14 +269,14 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">পিতা/স্বামীর নাম</label>
-                            <input type="text" class="form-control" v-model="form.applicant_father_name" disabled>
+                            <input type="text" class="form-control" v-model="form.applicant_father_name"  :disabled="attactType=='nid'">
                         </div>
                     </div>
 
                     <div class="col-md-4" >
                         <div class="form-group">
                             <label for="" class="labelColor">মাতার নাম</label>
-                            <input type="text" class="form-control" v-model="form.applicant_mother_name" disabled>
+                            <input type="text" class="form-control" v-model="form.applicant_mother_name"  :disabled="attactType=='nid'">
                         </div>
                     </div>
 
