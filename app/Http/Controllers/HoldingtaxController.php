@@ -1079,6 +1079,8 @@ class HoldingtaxController extends Controller
         $en_digits = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
         return str_replace($bn_digits, $en_digits, $number);
     }
+
+
     public function index(Request $r)
     {
         $word = $r->word;
@@ -1093,6 +1095,68 @@ class HoldingtaxController extends Controller
         }
         return Holdingtax::where(['unioun' => $union, 'word_no' => $word])->orderBy('id','desc')->paginate(20);
     }
+
+
+    public function bokeyaReport(Request $request)
+    {
+
+
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
+
+        $word = $request->word;
+        $union = $request->union;
+        $status = 'Unpaid';
+        $uniouninfo = Uniouninfo::where(['short_name_e' => $union])->first();
+        if(!$word && !$union){
+        //   return  $holdingtaxs = Holdingtax::with('holdingBokeyas')->orderBy('id','desc')->get();
+
+    $holdingtaxs =  Holdingtax::with(['holdingBokeyas' => function ($query) use ($status) {$query->where('status', $status)->where('price','!=','0');}])->orderBy('id','desc')->get();
+    $holdingtaxs =  $filteredHoldingTaxs = $holdingtaxs->filter(function ($holdingTax) {
+       return !$holdingTax->holdingBokeyas->isEmpty();
+   });
+
+            $fileName = 'report-'.date('Y-m-d H:m:s');
+            $pdf = LaravelMpdf::loadView('pdf.unpaidHolding',compact('uniouninfo','holdingtaxs','word'));
+            return $pdf->stream("$fileName.pdf");
+
+        }
+        if(!$word){
+
+            // $holdingtaxs =  Holdingtax::with('holdingBokeyas')->where(['unioun' => $union])->orderBy('id','desc')->get();
+
+            $holdingtaxs =  Holdingtax::with(['holdingBokeyas' => function ($query) use ($status) {$query->where('status', $status)->where('price','!=','0');}])->where(['unioun' => $union])->orderBy('id','desc')->get();
+            $holdingtaxs =  $filteredHoldingTaxs = $holdingtaxs->filter(function ($holdingTax) {
+               return !$holdingTax->holdingBokeyas->isEmpty();
+           });
+
+            $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+            $pdf = LaravelMpdf::loadView('pdf.unpaidHolding',compact('uniouninfo','holdingtaxs','word'));
+            return $pdf->stream("$fileName.pdf");
+
+        }
+
+
+
+    $holdingtaxs =  Holdingtax::with(['holdingBokeyas' => function ($query) use ($status) {$query->where('status', $status)->where('price','!=','0');}])->where(['unioun' => $union, 'word_no' => $word])->orderBy('id','desc')->get();
+     $holdingtaxs =  $filteredHoldingTaxs = $holdingtaxs->filter(function ($holdingTax) {
+        return !$holdingTax->holdingBokeyas->isEmpty();
+    });
+
+
+
+        $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+        $pdf = LaravelMpdf::loadView('pdf.unpaidHolding',compact('uniouninfo','holdingtaxs','word'));
+        return $pdf->stream("$fileName.pdf");
+
+
+
+
+    }
+
+
+
     public function show(Request $r,$id)
     {
 

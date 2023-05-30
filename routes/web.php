@@ -36,7 +36,7 @@ use lemonpatwari\bangladeshgeocode\Models\Division;
 
 
 
-    
+
 
 
 
@@ -256,6 +256,11 @@ Route::get('/pay/holding/tax/{id}', [HoldingtaxController::class,'holding_tax_pa
 
 
 Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSuccess']);
+
+
+
+Route::get('holding/tax/bokeya/list',[HoldingtaxController::class,'bokeyaReport']);
+
 
 
 Route::get('/holding/tax/certificate_of_honor/{id}', [HoldingtaxController::class,'holdingCertificate_of_honor']);

@@ -20,7 +20,12 @@
                         <div class=" d-flex justify-content-between align-items-center">
 
                             <h3>হোল্ডিং ট্যাক্স</h3>
+
+                            <a class="btn btn-success" :href="'/holding/tax/bokeya/list?word='+$route.params.word+'&union='+$localStorage.getItem('unioun')" target="_blank" rel="noopener noreferrer">বকেয়া রিপোর্ট</a>
+
                             <router-link :to="{name:'holdingTaxadd',params:{wordNo:$route.params.word}}" class="btn btn-info">হোল্ডিং ট্যাক্স যোগ করুন</router-link>
+
+
 
                         </div>
 

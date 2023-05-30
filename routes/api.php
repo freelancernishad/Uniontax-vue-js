@@ -209,9 +209,16 @@ Route::post('citizen/submit',[CitizenController::class,'store']);
 
 /// Holding Tax
 
+
+
+
+
 Route::get('holding/bokeya/list',[HoldingBokeyaController::class,'index']);
 
 Route::post('holding/bokeya/action',[HoldingtaxController::class,'holding_tax_pay']);
+
+
+
 
 Route::get('holding/tax/list',[HoldingtaxController::class,'index']);
 Route::get('holding/tax/show/{id}',[HoldingtaxController::class,'show']);
