@@ -207,7 +207,7 @@ export default {
             this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। তার বার্ষিক আয় ${this.Details.Annual_income}/${this.Details.Annual_income_text} । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের ${this.Details.applicant_resident_status} বাসিন্দা। আমার জানামতে তার বিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
         } else if (this.Details.sonod_name == 'একই নামের প্রত্যয়ন') {
              this.readonly = true
-            this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। প্রকাশ থাকে যে "${this.Details.applicant_name}" ও "${this.Details.applicant_second_name}" একই ব্যক্তি । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের ${this.Details.applicant_resident_status} বাসিন্দা। আমার জানামতে তার বিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
+            this.form.sec_prottoyon = `জনাব ${this.Details.utname} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। প্রকাশ থাকে যে "${this.Details.utname}" ও "${this.Details.applicant_second_name}" একই ব্যক্তি । সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের ${this.Details.applicant_resident_status} বাসিন্দা। আমার জানামতে তার বিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই।`;
         } else if (this.Details.sonod_name == 'অনুমতি পত্র') {
              this.readonly = false
             this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের ${this.Details.applicant_resident_status} বাসিন্দা। আমার জানামতে তার বিরুদ্ধে রাষ্ট্রদ্রোহিতার অভিযোগ নেই। তাকে ${this.Details.Subject_to_permission} অনুমতি দেওয়া হল ।`;

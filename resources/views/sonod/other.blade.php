@@ -4,9 +4,29 @@
         <td width="30%">সনদ নং</td><td>: {{ int_en_to_bn($row->sonod_Id) }}</td>
         </tr>
 
+
+        @if ($row->sonod_name=='একই নামের প্রত্যয়ন')
+
+        @if($row->sameNameNew==1)
         <tr>
-        <td width="30%">সনদধারীর নাম</td><td>: {{ $row->applicant_name }}</td>
+            <td width="30%">সনদধারীর নাম</td><td>: {{ $row->utname }}</td>
         </tr>
+
+        @else
+        <tr>
+            <td width="30%">সনদধারীর নাম</td><td>: {{ $row->applicant_name }}</td>
+        </tr>
+
+        @endif
+
+        @else
+        <tr>
+            <td width="30%">সনদধারীর নাম</td><td>: {{ $row->applicant_name }}</td>
+        </tr>
+
+        @endif
+
+
         <tr>
         <td width="30%">পিতা/স্বামীর নাম</td><td>: {{ $row->applicant_father_name }}</td>
         </tr>

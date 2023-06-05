@@ -57,19 +57,55 @@
                         <td>:</td>
                         <td>{{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }}</td>
                     </tr>
+                    @if ($row->sonod_name=='একই নামের প্রত্যয়ন')
 
+                    @if($row->sameNameNew==1)
                     <tr>
                         <td>আবেদনকারীর নাম</td>
                         <td>:</td>
                         <td>{{ $row->applicant_name }}</td>
                     </tr>
-                           @if ($row->sonod_name=='একই নামের প্রত্যয়ন')
+
                     <tr>
-                        <td>আবেদনকারীর দ্বিতীয় নাম </td>
+                        <td>সনদ ধারীর নাম </td>
+                        <td>:</td>
+                        <td>{{ $row->utname }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>সনদ ধারীর দ্বিতীয় নাম </td>
                         <td>:</td>
                         <td>{{ $row->applicant_second_name }}</td>
                     </tr>
+
+                    @else
+                    <tr>
+                        <td>সনদ ধারীর নাম</td>
+                        <td>:</td>
+                        <td>{{ $row->applicant_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>সনদ ধারীর দ্বিতীয় নাম </td>
+                        <td>:</td>
+                        <td>{{ $row->applicant_second_name }}</td>
+                    </tr>
+
                     @endif
+
+
+
+
+
+                    @else
+                        <tr>
+                            <td>আবেদনকারীর নাম</td>
+                            <td>:</td>
+                            <td>{{ $row->applicant_name }}</td>
+                        </tr>
+                    @endif
+
+
                     @if ($row->sonod_name=='ওয়ারিশ সনদ')
                     <tr>
                         <td>মৃত ব্যাক্তির নাম</td>
@@ -84,11 +120,21 @@
                     </tr>
                     @endif
 
+                    @if($row->applicant_national_id_number)
                     <tr>
                         <td>এনআইডি নং</td>
                         <td>:</td>
                         <td>{{ int_en_to_bn($row->applicant_national_id_number) }}</td>
                     </tr>
+
+                    @else
+                    <tr>
+                        <td>জন্ম নিবন্ধন নং</td>
+                        <td>:</td>
+                        <td>{{ int_en_to_bn($row->applicant_birth_certificate_number) }}</td>
+                    </tr>
+
+                    @endif
 
                     <tr>
                         <td>পিতা/স্বামীর নাম</td>

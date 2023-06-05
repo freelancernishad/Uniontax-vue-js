@@ -274,9 +274,9 @@ if($payment->status=='Paid'){
             ];
             // return $sonod->unioun_name;
 
-      
+
                 $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info,'payment',$sonod->unioun_name);
-         
+
 
 
             $req_timestamp = date('Y-m-d H:i:s');
@@ -500,6 +500,9 @@ if($payment->status=='Paid'){
                 $Insertdata['applicant_type_of_businessKhatAmount'] = 0;
             }
 
+            if($r->sonod_name=='একই নামের প্রত্যয়ন'){
+                $Insertdata['sameNameNew'] = 1;
+            }
 
 
 
