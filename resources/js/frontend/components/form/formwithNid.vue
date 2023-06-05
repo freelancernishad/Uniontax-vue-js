@@ -249,7 +249,7 @@
                         <div class="form-group">
 
                             <label for="" class="labelColor">আবেদনকারীর নাম <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" v-model="form.applicant_name" required>
+                            <input type="text" class="form-control" v-model="form.applicant_name" required :disabled="attactType=='nid'">
                         </div>
                     </div>
 
