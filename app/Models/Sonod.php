@@ -95,5 +95,7 @@ class Sonod extends Model
         'cancedby',
         'cancedbyUserid',
         'pBy',
+        'sameNameNew',
+        'orthoBchor',
     ];
 }
