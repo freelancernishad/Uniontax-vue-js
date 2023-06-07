@@ -117,26 +117,19 @@
 
     <h2 style="width:350px;background:green;padding:10px 10px;margin:10px auto;text-align:center;color:white;border-radius: 20px;font-size:20px">সেবা প্রদান ও ফি আদায় সংক্রান্ত প্রতিবেদন</h2>
 
+        <h3 style="text-align: center">
+        @if($sonod_type=='holdingtax')
+       হোল্ডিং ট্যাক্স
+        @elseif($sonod_type=='all')
+        সকল ফি এর প্রতিবেদন
+        @else
+            {{ $sonod_type }}
+        @endif
+        </h3>
+
 
 
     <table width="100%">
-        <tr style="margin-top:2px;margin-bottom:2px;">
-            {{-- @if($sonod_type=='holdingtax')
-            <td>হোল্ডিং ট্যাক্স</td>
-            @elseif($sonod_type=='all')
-            <td>সকল ফি এর প্রতিবেদন</td>
-            @else
-            <td>
-                {{ $sonod_type }}
-            </td>
-            @endif --}}
-            <td></td>
-            <td style="text-align: center; " width="50%">
-            </td>
-            <td style="text-align: right">
-                {{-- অর্থ বছর: ২০২২-২০২৩ --}}
-            </td>
-        </tr>
         <tr style="margin-top:2px;margin-bottom:2px;">
             <td colspan="2">
               <span>প্রতিবেদনের সময়কালঃ</span>  {{ int_en_to_bn(date("d/m/Y", strtotime($from))) }} থেকে {{ int_en_to_bn(date("d/m/Y", strtotime($to))) }} পর্যন্ত
@@ -144,7 +137,6 @@
             <td style="text-align: right">
                 অর্থ বছর: ২০২২-২০২৩
             </td>
-
         </tr>
     </table>
 
@@ -163,7 +155,10 @@
                 <th class="td" style="text-align:center" width="20%">সেবা গ্রহনকারীর নাম</th>
                 <th class="td" style="text-align:center" width="30%">ঠিকানা (হোল্ডিং ও গ্রাম)</th>
                 <th class="td" style="text-align:center" width="20%">মোবাইল নম্বর</th>
+
                 <th class="td" style="text-align:center" width="20%">আদায়কৃত ফি এর পরিমান</th>
+
+
             </tr>
         </thead>
         <tbody>

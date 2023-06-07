@@ -505,24 +505,29 @@ if($payment->status=='Paid'){
             }
 
 
+            if($r->sonod_name=='বিবিধ প্রত্যয়নপত্র'){
+                $Insertdata['sameNameNew'] = 1;
+            }
+
+
 
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
         $birth_certificateCount =  count(explode(';', $r->applicant_birth_certificate_attachment));
 
-		
+
 		$unioun_name = $r->unioun_name;
         $sonod_name = $r->sonod_name;
         $dateFolder = date("Y/m/d");
         $sonodId = (string)$this->allsonodId($unioun_name, $sonod_name);
-		
-	
+
+
         if ($imageCount > 1) {
             $Insertdata['image'] =  fileupload($r->image, "sonod/$filepath/$dateFolder/$sonodId/", 250, 300);
         }
 
- 
+
         if ($national_id_frontCount > 1) {
             $Insertdata['applicant_national_id_front_attachment'] =  fileupload($r->applicant_national_id_front_attachment, "sonod/$filepath/$dateFolder/$sonodId/");
         }
@@ -1877,9 +1882,19 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         $sonodnames = Sonodnamelist::where(['bnname' => $row->sonod_name])->first();
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
         if ($EnsonodName == 'Certificate_of_Inheritance' || $EnsonodName == 'Inheritance_certificate') {
+
             // return view('userdocumentUt',compact('row', 'sonod', 'uniouninfo'));
             $pdf = LaravelMpdf::loadView('userdocumentUt', compact('row', 'sonod', 'uniouninfo'));
             return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+
+
+        }else if ($EnsonodName == 'Miscellaneous_certificates' || $EnsonodName == 'Certification_of_the_same_name') {
+
+            // return view('userdocumentUt',compact('row', 'sonod', 'uniouninfo'));
+            $pdf = LaravelMpdf::loadView('userdocument2', compact('row', 'sonod', 'uniouninfo'));
+            return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+
+
         } else {
             // return view('userdocument',compact('row', 'sonod', 'uniouninfo'));
             $pdf = LaravelMpdf::loadView('userdocument', compact('row', 'sonod', 'uniouninfo'));

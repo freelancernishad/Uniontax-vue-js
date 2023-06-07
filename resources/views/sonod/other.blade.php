@@ -33,12 +33,41 @@
         <tr>
         <td width="30%">মাতার নাম</td><td>: {{ $row->applicant_mother_name }}</td>
         </tr>
+
+
+        @if($row->applicant_national_id_number)
         <tr>
-        <td width="30%">জাতীয় পরিচয়পত্র নং</td><td>: {{ int_en_to_bn($row->applicant_national_id_number) }}</td>
+            <td width="30%">জাতীয় পরিচয়পত্র নং</td>
+            <td>: {{ int_en_to_bn($row->applicant_national_id_number) }}</td>
         </tr>
+
+        @else
+        <tr>
+            <td>জন্ম নিবন্ধন নং</td>
+            <td>: {{ int_en_to_bn($row->applicant_birth_certificate_number) }}</td>
+        </tr>
+
+        @endif
+
+
+
+        @if($row->sameNameNew==1)
+        @if($row->sonod_name=='বিবিধ প্রত্যয়নপত্র' || $row->sonod_name=='একই নামের প্রত্যয়ন')
+        <tr>
+            <td width="30%">ঠিকানা</td>
+            <td>: গ্রাম: {{ $row->ut_grame }}, ডাকঘর: {{ $row->ut_post }}, উপজেলা: {{ $row->ut_thana }} , জেলা: {{ $row->ut_district }}</td>
+        </tr>
+        @else
+        <tr>
+            <td width="30%">ঠিকানা</td><td>:  গ্রাম: {{ $row->applicant_present_village }}, ডাকঘর: {{ $row->applicant_present_post_office }}, উপজেলা: {{ $row->applicant_present_Upazila }}, জেলা: {{ $row->applicant_present_district }}</td>
+            </tr>
+        @endif
+        @else
         <tr>
         <td width="30%">ঠিকানা</td><td>:  গ্রাম: {{ $row->applicant_present_village }}, ডাকঘর: {{ $row->applicant_present_post_office }}, উপজেলা: {{ $row->applicant_present_Upazila }}, জেলা: {{ $row->applicant_present_district }}</td>
         </tr>
+        @endif
+
 
         @if($row->applicant_present_word_number)
 
