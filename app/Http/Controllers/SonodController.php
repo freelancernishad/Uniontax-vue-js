@@ -511,15 +511,18 @@ if($payment->status=='Paid'){
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
         $birth_certificateCount =  count(explode(';', $r->applicant_birth_certificate_attachment));
 
-        if ($imageCount > 1) {
-            $Insertdata['image'] =  fileupload($r->image, "sonod/$filepath/image/", 250, 300);
-        }
-
-        $unioun_name = $r->unioun_name;
+		
+		$unioun_name = $r->unioun_name;
         $sonod_name = $r->sonod_name;
         $dateFolder = date("Y/m/d");
         $sonodId = (string)$this->allsonodId($unioun_name, $sonod_name);
+		
+	
+        if ($imageCount > 1) {
+            $Insertdata['image'] =  fileupload($r->image, "sonod/$filepath/$dateFolder/$sonodId/", 250, 300);
+        }
 
+ 
         if ($national_id_frontCount > 1) {
             $Insertdata['applicant_national_id_front_attachment'] =  fileupload($r->applicant_national_id_front_attachment, "sonod/$filepath/$dateFolder/$sonodId/");
         }
