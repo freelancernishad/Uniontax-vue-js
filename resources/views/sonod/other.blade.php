@@ -108,18 +108,38 @@
         </tr>
         @endif
 
-
-        @if($row->applicant_present_word_number)
-
-        <tr>
-            <td width="30%">ওয়ার্ড নং</td><td>: {{ int_en_to_bn($row->applicant_present_word_number) }}</td>
-        </tr>
+        @if($row->sonod_name=='বিবিধ প্রত্যয়নপত্র' || $row->sonod_name=='একই নামের প্রত্যয়ন')
+            @if($row->sameNameNew==1)
+                @if($row->ut_word)
+                <tr>
+                    <td width="30%">ওয়ার্ড নং</td><td>: {{ int_en_to_bn($row->ut_word) }}</td>
+                </tr>
+                @endif
+            @else
+                @if($row->applicant_present_word_number)
+                <tr>
+                    <td width="30%">ওয়ার্ড নং</td><td>: {{ int_en_to_bn($row->applicant_present_word_number) }}</td>
+                </tr>
+                @endif
+            @endif
+        @else
+            @if($row->applicant_present_word_number)
+            <tr>
+                <td width="30%">ওয়ার্ড নং</td><td>: {{ int_en_to_bn($row->applicant_present_word_number) }}</td>
+            </tr>
+            @endif
+            @if($row->applicant_holding_tax_number)
+            <tr>
+            <td width="30%">হোল্ডিং নং</td><td>: {{ int_en_to_bn($row->applicant_holding_tax_number) }}</td>
+            </tr>
+            @endif
         @endif
-        @if($row->applicant_holding_tax_number)
-         <tr>
-        <td width="30%">হোল্ডিং নং</td><td>: {{ int_en_to_bn($row->applicant_holding_tax_number) }}</td>
-        </tr>
-        @endif
+
+
+
+
+
+
     </table>
 
     <p
