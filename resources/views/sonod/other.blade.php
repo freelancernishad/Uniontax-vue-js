@@ -27,12 +27,34 @@
         @endif
 
 
+        @if($row->sonod_name=='বিবিধ প্রত্যয়নপত্র' || $row->sonod_name=='একই নামের প্রত্যয়ন')
+            @if($row->sameNameNew==1)
+            <tr>
+                <td width="30%">পিতা/স্বামীর নাম</td><td>: {{ $row->ut_father_name }}</td>
+                </tr>
+                <tr>
+                <td width="30%">মাতার নাম</td><td>: {{ $row->ut_mother_name }}</td>
+                </tr>
+            @else
+            <tr>
+                <td width="30%">পিতা/স্বামীর নাম</td><td>: {{ $row->applicant_father_name }}</td>
+                </tr>
+                <tr>
+                <td width="30%">মাতার নাম</td><td>: {{ $row->applicant_mother_name }}</td>
+                </tr>
+            @endif
+
+        @else
         <tr>
-        <td width="30%">পিতা/স্বামীর নাম</td><td>: {{ $row->applicant_father_name }}</td>
-        </tr>
-        <tr>
-        <td width="30%">মাতার নাম</td><td>: {{ $row->applicant_mother_name }}</td>
-        </tr>
+            <td width="30%">পিতা/স্বামীর নাম</td><td>: {{ $row->applicant_father_name }}</td>
+            </tr>
+            <tr>
+            <td width="30%">মাতার নাম</td><td>: {{ $row->applicant_mother_name }}</td>
+            </tr>
+        @endif
+
+
+
 
 
         @if($row->applicant_national_id_number)
