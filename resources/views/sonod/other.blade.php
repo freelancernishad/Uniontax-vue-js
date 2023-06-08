@@ -56,20 +56,38 @@
 
 
 
-
-        @if($row->applicant_national_id_number)
-        <tr>
-            <td width="30%">জাতীয় পরিচয়পত্র নং</td>
-            <td>: {{ int_en_to_bn($row->applicant_national_id_number) }}</td>
-        </tr>
-
+        @if($row->sonod_name=='বিবিধ প্রত্যয়নপত্র' || $row->sonod_name=='একই নামের প্রত্যয়ন')
+            @if($row->sameNameNew==1)
+            @else
+                @if($row->applicant_national_id_number)
+                <tr>
+                    <td width="30%">জাতীয় পরিচয়পত্র নং</td>
+                    <td>: {{ int_en_to_bn($row->applicant_national_id_number) }}</td>
+                </tr>
+                @else
+                <tr>
+                    <td>জন্ম নিবন্ধন নং</td>
+                    <td>: {{ int_en_to_bn($row->applicant_birth_certificate_number) }}</td>
+                </tr>
+                @endif
+            @endif
         @else
-        <tr>
-            <td>জন্ম নিবন্ধন নং</td>
-            <td>: {{ int_en_to_bn($row->applicant_birth_certificate_number) }}</td>
-        </tr>
 
+            @if($row->applicant_national_id_number)
+            <tr>
+                <td width="30%">জাতীয় পরিচয়পত্র নং</td>
+                <td>: {{ int_en_to_bn($row->applicant_national_id_number) }}</td>
+            </tr>
+            @else
+            <tr>
+                <td>জন্ম নিবন্ধন নং</td>
+                <td>: {{ int_en_to_bn($row->applicant_birth_certificate_number) }}</td>
+            </tr>
+            @endif
         @endif
+
+
+
 
 
 
