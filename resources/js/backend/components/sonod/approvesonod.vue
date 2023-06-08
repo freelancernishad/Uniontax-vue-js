@@ -177,7 +177,7 @@ export default {
              this.readonly = true
         } else if (this.Details.sonod_name == 'বিবিধ প্রত্যয়নপত্র') {
              this.readonly = false
-            this.form.sec_prottoyon = `জনাব ${this.Details.applicant_name} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের ${this.Details.applicant_resident_status} বাসিন্দা। ${this.sonodlist.prottoyon}`;
+            this.form.sec_prottoyon = `জনাব ${this.Details.utname} কে আমি ব্যক্তিগতভাবে চিনি ও জানি। সে জন্মসূত্রে বাংলাদেশের নাগরিক এবং অত্র ইউনিয়ন পরিষদের ${this.Details.applicant_resident_status} বাসিন্দা। ${this.sonodlist.prottoyon}`;
 
 
         } else if (this.Details.sonod_name == 'চারিত্রিক সনদ') {

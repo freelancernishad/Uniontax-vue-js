@@ -5,7 +5,7 @@
         </tr>
 
 
-        @if ($row->sonod_name=='একই নামের প্রত্যয়ন')
+        @if ($row->sonod_name=='একই নামের প্রত্যয়ন' || $row->sonod_name=='বিবিধ প্রত্যয়নপত্র')
 
         @if($row->sameNameNew==1)
         <tr>
