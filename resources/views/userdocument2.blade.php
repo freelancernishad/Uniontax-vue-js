@@ -59,42 +59,42 @@
                     </tr>
                     @if ($row->sonod_name=='একই নামের প্রত্যয়ন' || $row->sonod_name=='বিবিধ প্রত্যয়নপত্র')
 
-                    @if($row->sameNameNew==1)
-                    <tr>
-                        <td>আবেদনকারীর নাম</td>
-                        <td>:</td>
-                        <td>{{ $row->applicant_name }}</td>
-                    </tr>
+                        @if($row->sameNameNew==1)
+                            <tr>
+                                <td>আবেদনকারীর নাম</td>
+                                <td>:</td>
+                                <td>{{ $row->applicant_name }}</td>
+                            </tr>
 
-                    <tr>
-                        <td>সনদ ধারীর নাম </td>
-                        <td>:</td>
-                        <td>{{ $row->utname }}</td>
-                    </tr>
+                            <tr>
+                                <td>সনদ ধারীর নাম </td>
+                                <td>:</td>
+                                <td>{{ $row->utname }}</td>
+                            </tr>
 
-                    @if($row->sonod_name=='একই নামের প্রত্যয়ন')
-                    <tr>
-                        <td>সনদ ধারীর দ্বিতীয় নাম </td>
-                        <td>:</td>
-                        <td>{{ $row->applicant_second_name }}</td>
-                    </tr>
-                    @endif
+                            @if($row->sonod_name=='একই নামের প্রত্যয়ন')
+                            <tr>
+                                <td>সনদ ধারীর দ্বিতীয় নাম </td>
+                                <td>:</td>
+                                <td>{{ $row->applicant_second_name }}</td>
+                            </tr>
+                            @endif
 
 
-                    @else
-                    <tr>
-                        <td>সনদ ধারীর নাম</td>
-                        <td>:</td>
-                        <td>{{ $row->applicant_name }}</td>
-                    </tr>
-                        @if($row->sonod_name=='একই নামের প্রত্যয়ন')
+                        @else
                         <tr>
-                            <td>সনদ ধারীর দ্বিতীয় নাম </td>
+                            <td>সনদ ধারীর নাম</td>
                             <td>:</td>
-                            <td>{{ $row->applicant_second_name }}</td>
+                            <td>{{ $row->applicant_name }}</td>
                         </tr>
+                            @if($row->sonod_name=='একই নামের প্রত্যয়ন')
+                            <tr>
+                                <td>সনদ ধারীর দ্বিতীয় নাম </td>
+                                <td>:</td>
+                                <td>{{ $row->applicant_second_name }}</td>
+                            </tr>
+                            @endif
                         @endif
-                    @endif
 
 
 
