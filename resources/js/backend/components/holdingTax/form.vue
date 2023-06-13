@@ -135,6 +135,16 @@
 
 
                                     <!-- col-md-4 -->
+                                    <div class="col-md-4" id="busnessName_d" v-if="form.category=='প্রতিষ্ঠান'">
+                                        <div class="form-group">
+                                            <label class="control-label col-form-label">প্রতিষ্ঠানের নাম</label>
+                                            <input type="text" class="form-control" id="busnessName"
+                                            v-model="form.busnessName"  />
+                                        </div>
+                                    </div>
+
+
+                                    <!-- col-md-4 -->
                                     <div class="col-md-4" id="griher_barsikh_mullo_d" v-if="form.category=='মালিক নিজে বসবাসকারী' || form.category=='আংশিক ভাড়া' || form.category=='প্রতিষ্ঠান'">
                                         <div class="form-group">
                                             <label class="control-label col-form-label">গৃহের বার্ষিক মূল্য</label>
@@ -267,6 +277,7 @@
                     mobile_no:'',
                     category:'',
                     image:'',
+                    busnessName:'',
                     bokeya:[],
                     griher_barsikh_mullo:0,
                     jomir_vara:0,

@@ -37,6 +37,7 @@ class Holdingtax extends Model
             'bokeya',
             'total_bokeya',
             'image',
+            'busnessName',
     ];
 
     public function holdingTax(){
