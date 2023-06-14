@@ -231,17 +231,16 @@ class HoldingtaxController extends Controller
                  'status'=>'Paid',
                  ];
                 $TaxInvoice->update($invoice);
-         }else{
-
-             $invoice=[
-                 'invoiceId'=>time().$id,
-                 'holdingTax_id'=>$holdingTax_id,
-                 'PayYear'=>$payYear,
-                 'totalAmount'=>$holdingBokeyasAmount,
-                 'status'=>'Paid',
-             ];
-             TaxInvoice::create($invoice);
-         }
+            }else{
+                $invoice=[
+                    'invoiceId'=>time().$id,
+                    'holdingTax_id'=>$holdingTax_id,
+                    'PayYear'=>$payYear,
+                    'totalAmount'=>$holdingBokeyasAmount,
+                    'status'=>'Paid',
+                ];
+                TaxInvoice::create($invoice);
+            }
 
          $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear,'status'=>'Paid'])->first();
 
@@ -334,6 +333,8 @@ class HoldingtaxController extends Controller
         $gramer_name = $customers->gramer_name;
         $word_no = $customers->word_no;
         $mobile_no = $customers->mobile_no;
+        $category = $customers->category;
+        $busnessName = $customers->busnessName;
 
         $invoiceId = $TaxInvoice->invoiceId;
         $status = $TaxInvoice->status;
@@ -553,9 +554,20 @@ class HoldingtaxController extends Controller
 
 
                                   $html .="  <tr class='tr items'>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>
-                                        <td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($previousamount,2))."</td>
+                                        <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>";
+
+
+                            if ($category=='প্রতিষ্ঠান') {
+
+                                $html .="<td class='td tdlist defaltfont'>প্রতিষ্ঠানের বাৎসরিক মূল্যের উপর কর <br/> ($busnessName)</td>";
+                            }else{
+                                $html .="<td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>";
+
+                            }
+
+
+
+                                         $html .="<td class='td tdlist defaltfont'>".int_en_to_bn(number_format($previousamount,2))."</td>
                                         <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($currentamount,2))."</td>
                                         <td class='td tdlist defaltfont'>".int_en_to_bn($subtotal)."</td>
 
@@ -719,14 +731,23 @@ class HoldingtaxController extends Controller
                                 // $orderDetails = json_decode($orders->Invoices);
 
 
-                                  $html .="  <tr class='tr items'>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>
-                                        <td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($previousamount,2))."</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($currentamount,2))."</td>
-                                        <td class='td tdlist defaltfont'>".int_en_to_bn($subtotal)."</td>
+                                $html .="  <tr class='tr items'>
+                                <td class='td tdlist defaltfont'>".int_en_to_bn($index)."</td>";
 
-                                    </tr>";
+
+                                if ($category=='প্রতিষ্ঠান') {
+                                    $html .="<td class='td tdlist defaltfont'>প্রতিষ্ঠানের বাৎসরিক মূল্যের উপর কর  <br/> ($busnessName)</td>";
+                                }else{
+                                    $html .="<td class='td tdlist defaltfont'>বসত বাড়ীর বাৎসরিক মূল্যের উপর কর</td>";
+                                }
+
+
+
+                                 $html .="<td class='td tdlist defaltfont'>".int_en_to_bn(number_format($previousamount,2))."</td>
+                                <td class='td tdlist defaltfont'>".int_en_to_bn(number_format($currentamount,2))."</td>
+                                <td class='td tdlist defaltfont'>".int_en_to_bn($subtotal)."</td>
+
+                            </tr>";
 
                                         $index++;
 
