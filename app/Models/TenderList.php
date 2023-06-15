@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class TenderList extends Model
+{
+    use HasFactory;
+
+
+    protected $fillable=[
+       'tender_type',
+       'tender_name',
+       'tender_word_no',
+       'division',
+       'district',
+       'thana',
+       'union',
+       'govt_price',
+       'form_price',
+       'deposit_percent',
+       'form_buy_last_date',
+       'tender_start',
+       'tender_end',
+       'tender_roles',
+    ];
+
+}
