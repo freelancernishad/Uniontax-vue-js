@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\blogController;
@@ -13,6 +14,7 @@ use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\ActionLogController;
 use App\Http\Controllers\countryApiController;
 use App\Http\Controllers\HoldingtaxController;
+use App\Http\Controllers\TenderListController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\BlogCategoryController;
@@ -81,8 +83,12 @@ Route::post('nid/check/{union}', [UniouninfoController::class,'unioncheck']);
 Route::resources([
 	'tradeLicenseKhat' => TradeLicenseKhatController::class,
 	'tradeLicenseKhatFee' => TradeLicenseKhatFeeController::class,
+	'tender' => TenderListController::class,
 ]);
 
+Route::get('get/all/aplications/{tender_id}', function ($tender_id) {
+    return Tender::where('tender_id',$tender_id)->get();
+  });
 
 Route::get('citizen/information/nid/extanal', [CitizenInformationController::class,'citizeninformationNIDExtanal']);
 

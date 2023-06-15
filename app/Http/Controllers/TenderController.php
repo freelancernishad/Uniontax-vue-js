@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TenderList;
-use Illuminate\Support\Str;
+use App\Models\Tender;
 use Illuminate\Http\Request;
 
-class TenderListController extends Controller
+class TenderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class TenderListController extends Controller
      */
     public function index()
     {
-        return TenderList::all();
+        //
     }
 
     /**
@@ -36,31 +35,27 @@ class TenderListController extends Controller
      */
     public function store(Request $request)
     {
-        $datas = $request->all();
-        $random = Str::random(60);
-        $datas['tender_id'] = time().$random;
-
-        return TenderList::create($datas);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TenderList  $tenderList
+     * @param  \App\Models\Tender  $tender
      * @return \Illuminate\Http\Response
      */
-    public function show(TenderList $tenderList,$id)
+    public function show(Tender $tender)
     {
-        return TenderList::find($id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TenderList  $tenderList
+     * @param  \App\Models\Tender  $tender
      * @return \Illuminate\Http\Response
      */
-    public function edit(TenderList $tenderList)
+    public function edit(Tender $tender)
     {
         //
     }
@@ -69,29 +64,22 @@ class TenderListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TenderList  $tenderList
+     * @param  \App\Models\Tender  $tender
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TenderList $tenderList,$id)
+    public function update(Request $request, Tender $tender)
     {
-        $datas = $request->all();
-
-        $tenderList = TenderList::find($id);
-
-        $tenderList->update($datas);
-
-         return $tenderList;
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TenderList  $tenderList
+     * @param  \App\Models\Tender  $tender
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TenderList $tenderList)
+    public function destroy(Tender $tender)
     {
-       $tenderList->delete();
-       return 1;
+        //
     }
 }

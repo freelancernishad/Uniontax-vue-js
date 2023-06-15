@@ -75,6 +75,10 @@ Vue.component('b-button', BButton)
 Vue.component('b-img', BImg)
 
 
+import Editor from '@tinymce/tinymce-vue'
+Vue.component('vue-editor', Editor);
+
+
 
 import Swal from 'sweetalert2'
 window.Swal = Swal;

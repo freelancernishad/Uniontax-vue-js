@@ -15,6 +15,8 @@ class CreateTenderListsTable extends Migration
     {
         Schema::create('tender_lists', function (Blueprint $table) {
             $table->id();
+            $table->string('union_name')->nullable();
+            $table->string('tender_id')->nullable();
             $table->string('tender_type')->nullable();
             $table->string('tender_name')->nullable();
             $table->string('tender_word_no')->nullable();
@@ -28,6 +30,7 @@ class CreateTenderListsTable extends Migration
             $table->string('form_buy_last_date')->nullable();
             $table->string('tender_start')->nullable();
             $table->string('tender_end')->nullable();
+            $table->string('tender_open')->nullable();
             $table->longText('tender_roles')->nullable();
             $table->timestamps();
         });

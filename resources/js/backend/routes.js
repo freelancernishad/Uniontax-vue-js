@@ -28,6 +28,10 @@ let sonodcountall = require('./components/sonodcountall.vue').default;
 let userlist = require('./components/users/list.vue').default;
 let userlistedit = require('./components/users/form.vue').default;
 
+let tenderlist = require('./components/tenders/list.vue').default;
+let tenderlistedit = require('./components/tenders/form.vue').default;
+let tendersubmitlist = require('./components/tenders/tenderSubmit.vue').default;
+
 let citizenlist = require('./components/citizen/list.vue').default;
 let citizenadd = require('./components/citizen/form.vue').default;
 
@@ -100,6 +104,12 @@ export const routes = [
   { path:  `${prefix}/user/list`, component: userlist, name:'userlist',meta: { layout: adminlayout } },
   { path:  `${prefix}/user/list/add`, component: userlistedit, name:'userlistadd',meta: { layout: adminlayout } },
   { path:  `${prefix}/user/list/edit/:id`, component: userlistedit, name:'userlistedit',meta: { layout: adminlayout } },
+
+
+  { path:  `${prefix}/tender/list`, component: tenderlist, name:'tenderlist',meta: { layout: adminlayout } },
+  { path:  `${prefix}/tender/list/add`, component: tenderlistedit, name:'tenderlistadd',meta: { layout: adminlayout } },
+  { path:  `${prefix}/tender/list/edit/:id`, component: tenderlistedit, name:'tenderlistedit',meta: { layout: adminlayout } },
+  { path:  `${prefix}/tender/submit/list/:tender_id`, component: tendersubmitlist, name:'tendersubmitlist',meta: { layout: adminlayout } },
 
 
 

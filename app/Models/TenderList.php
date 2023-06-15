@@ -11,6 +11,8 @@ class TenderList extends Model
 
 
     protected $fillable=[
+       'union_name',
+       'tender_id',
        'tender_type',
        'tender_name',
        'tender_word_no',
@@ -24,6 +26,7 @@ class TenderList extends Model
        'form_buy_last_date',
        'tender_start',
        'tender_end',
+       'tender_open',
        'tender_roles',
     ];
 

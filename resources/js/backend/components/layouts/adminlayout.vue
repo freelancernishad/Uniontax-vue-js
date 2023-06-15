@@ -261,6 +261,12 @@
                                     class="flaticon-dashboard"></i><span>ইউজার তালিকা</span></router-link>
                         </li>
 
+
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'Secretary'">
+                            <router-link :to="{ name: 'tenderlist' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>ইজারা</span></router-link>
+                        </li>
+
 <!--
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'Chairman' || Users.position == 'Secretary'">
