@@ -298,12 +298,16 @@ export default {
 
 
 
+
             //   vfCaptions: [],
         };
     },
     mounted() {
+
     },
     methods: {
+
+
 
         hidepop(){
             this.popupShow = false

@@ -15,6 +15,7 @@ class TenderList extends Model
        'tender_id',
        'tender_type',
        'tender_name',
+       'description',
        'tender_word_no',
        'division',
        'district',

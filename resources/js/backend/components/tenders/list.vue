@@ -142,7 +142,8 @@ export default {
         sonodname(){
             var position = this.Users.position
             var thana = this.Users.thana
-              axios.get(`/api/tender`)
+            var unioun = this.Users.unioun
+              axios.get(`/api/tender?union_name=${unioun}`)
                 .then(({ data }) => {
                     // console.log(data)
                   this.items = data

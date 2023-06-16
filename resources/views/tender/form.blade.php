@@ -176,9 +176,9 @@ text-align: center;
     <div class="col-md-12 mt-3 my-3">
 
         {{-- <p>দাখিলকৃত দরপত্র নম্বর: {{ $dorId }}</p> --}}
-        <p>বিজ্ঞপ্তির তারিখ: {{ $tender_list-> }}০৯/০২/২০২৩</p>
+        <p>বিজ্ঞপ্তির তারিখ: {{ int_en_to_bn(date('d/m/Y', strtotime($tender_list->created_at))) }}</p>
         <p>স্মারক নং-১২০</p>
-        <p>নিলামের বিবরণ- তেঁতুলিয়া উপজেলা পরিষদের নিয়ন্ত্রণাধীন/মালিকানাধীন জায়গায় বিভিন্ন প্রজাতির মরা/ঝড়ে উপড়ে পড়া/ঝুঁকিপূর্ণ/বিনষ্টযোগ্য ৪৫টি গাছ এবং গাছের ডালপালা নিলামে বিক্রয়</p>
+        <p>নিলামের বিবরণ- {{ $tender_list->description }}</p>
 
     </div>
 
@@ -261,7 +261,7 @@ text-align: center;
     <div class="col-md-12 mt-3">
         <div class="form-group">
           <label class="mb-1" for="DorAmount">দাখিলকৃত দরের পরিমাণ (টাকা)</label>
-          <input type="text" class="form-control" id="DorAmount" name="DorAmount" required>
+          <input type="number" min="{{ $tender_list->govt_price+1 }}"  class="form-control" id="DorAmount" name="DorAmount" required>
         </div>
     </div>
 

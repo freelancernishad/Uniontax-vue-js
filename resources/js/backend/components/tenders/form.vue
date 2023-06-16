@@ -24,6 +24,11 @@
           <input type="text" v-model="form.tender_name" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
+        <div class="form-group col-md-12">
+          <label for="">ইজারার বিবরণ</label>
+             <textarea v-model="form.description" class="form-control" style="height:150px"></textarea>
+        </div>
+
 
         <div class="form-group col-md-6">
           <label for="">ওয়ার্ড নং</label>
@@ -103,6 +108,7 @@ export default {
             form:{
                 tender_type:'',
                 tender_name:'',
+                description:'',
                 tender_word_no:'',
                 govt_price:'',
                 form_price:'',

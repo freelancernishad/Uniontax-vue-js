@@ -19,6 +19,7 @@ class CreateTenderListsTable extends Migration
             $table->string('tender_id')->nullable();
             $table->string('tender_type')->nullable();
             $table->string('tender_name')->nullable();
+            $table->longText('description')->nullable();
             $table->string('tender_word_no')->nullable();
             $table->string('division')->nullable();
             $table->string('district')->nullable();

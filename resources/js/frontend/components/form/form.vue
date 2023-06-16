@@ -1,5 +1,7 @@
 <template>
     <div>
+  
+
         <form @submit.stop.prevent="onSubmit">
 
             <!-- <div class="panel-heading" style="font-weight: bold; font-size: 20px;background:#159513;text-align:center;color:white">{{ sonodnamedata.bnname }} </div> -->
@@ -931,6 +933,7 @@ export default {
 
     data() {
         return {
+        
             attactType:'nid',
             infoModal: {
                 id: 'info-modal',
@@ -1341,6 +1344,7 @@ export default {
             }
         },
         sonodname() {
+     
             if (this.$route.params.name) {
                 axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}&fees=1&unioun=${localStorage.getItem('unioun')}`)
                     .then(({ data }) => {
@@ -1352,6 +1356,7 @@ export default {
                     })
                     .catch()
             }
+     
         },
         resetInfoModal() {
             this.infoModal.title = ''

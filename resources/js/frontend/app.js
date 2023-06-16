@@ -33,7 +33,9 @@ Vue.component('Applicationformprepay', Applicationformprepay);
 import ApplicationformwitnNidprepay from './components/form_pre_pay/formwithNid.vue'
 Vue.component('ApplicationformwitnNidprepay', ApplicationformwitnNidprepay);
 
+import loader from "vue-ui-preloader";
 
+Vue.use(loader);
 
 import UnionSelect from './components/layouts/unonselect.vue'
 Vue.component('UnionSelect', UnionSelect);

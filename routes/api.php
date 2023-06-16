@@ -24,6 +24,7 @@ use App\Http\Controllers\SonodnamelistController;
 use App\Http\Controllers\TradeLicenseKhatController;
 use App\Http\Controllers\CitizenInformationController;
 use App\Http\Controllers\TradeLicenseKhatFeeController;
+use App\Models\TenderList;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -89,6 +90,26 @@ Route::resources([
 Route::get('get/all/aplications/{tender_id}', function ($tender_id) {
     return Tender::where('tender_id',$tender_id)->get();
   });
+
+Route::get('get/all/tender/list', function (Request $request) {
+    $union_name = $request->union_name;
+
+    if($union_name){
+        return TenderList::where('union_name',$union_name)->orderBy('id','desc')->get();
+    }else{
+        return TenderList::orderBy('id','desc')->get();
+
+    }
+  });
+
+Route::get('get/single/tender/{id}', function (Request $request,$id) {
+
+        return TenderList::find($id);
+
+  });
+
+
+
 
 Route::get('citizen/information/nid/extanal', [CitizenInformationController::class,'citizeninformationNIDExtanal']);
 

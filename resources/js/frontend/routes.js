@@ -36,6 +36,9 @@ let notice = require('./components/notice.vue').default;
 
 let home = require('./components/home.vue').default;
 let reject = require('./components/reject.vue').default;
+
+let tenderView = require('./components/tender/view.vue').default;
+
 let PageNotFound = require('./components/404.vue').default;
 
 
@@ -62,6 +65,9 @@ export const routes = [
     { path:  `${prefix}blogs/:name`, component: blogs, name:'blogs',meta: { layout: layout } },
     { path:  `${prefix}blogs/read/:id`, component: blogread, name:'blogread',meta: { layout: layout } },
     { path:  `${prefix}reject/:id`, component: reject, name:'reject',meta: { layout: layout } },
+
+
+    { path:  `${prefix}tenderview/:id`, component: tenderView, name:'tenderView',meta: { layout: layout } },
 
   { path: "*", component: PageNotFound }
 

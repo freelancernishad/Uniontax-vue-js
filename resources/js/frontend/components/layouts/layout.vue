@@ -221,10 +221,15 @@ padding: 3px 11px;"> ইউনিয়ন পরিষদের ডিজিটা
                             <div class="col-md-4">
                                 <div class="imbox">
                                     <div class="sidebarTitle mb-3 defaltColor">
-                                        <h4 class='text-center'>নোটিশ বোর্ড</h4>
+                                        <h4 class='text-center'>ইজারা নোটিশ বোর্ড</h4>
                                     </div>
                                     <ul class='list-unstyled importantLInk' style="padding: 0 11px;">
-                                        <!-- <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://forms.mygov.bd/" title="বাংলাদেশ ফরম">বাংলাদেশ ফরম</a></li> -->
+
+
+
+                                        <li v-for="(tender,indexs) in tenders" :key="'tender'+indexs"><i class="fas fa-check-circle"></i> &nbsp;<router-link :to="{name:'tenderView',params:{id:tender.id}}">{{ tender.tender_name }}</router-link></li>
+
+
 
                                     </ul>
                                 </div>
@@ -399,6 +404,7 @@ export default {
         if (sub) {
 
         // this.$store.commit('setWebsiteStatus', subdomainget)
+        this.subdomaingetOwn = subdomainget
            var  unionData = {'subdomainget':subdomainget,'uniounDetialsprops':this.unioundetialsprops};
         this.$store.commit('setWebsiteStatus', unionData)
 
@@ -411,6 +417,7 @@ export default {
             this.$store.commit('setvatTax', 0)
         }else{
         // this.$store.commit('setWebsiteStatus', 'main')
+        this.subdomaingetOwn = 'main'
         var  unionData = {'subdomainget':'main','uniounDetialsprops':this.unioundetialsprops};
         this.$store.commit('setWebsiteStatus', unionData)
 
@@ -418,6 +425,7 @@ export default {
     },
     data() {
         return {
+            subdomaingetOwn:'main',
             selectedUser: '',
             curentdate: '',
             curenttime: '',
@@ -430,7 +438,8 @@ export default {
                 status: '',
                 content: {},
                 content_id: '',
-            }
+            },
+            tenders:{},
         }
     },
     watch: {
@@ -443,6 +452,21 @@ export default {
         }
     },
     methods: {
+        async getTender(){
+            console.log(this.subdomaingetOwn)
+
+            if (this.getType == 'Union') {
+              var  unionname = this.getUnion.subdomainget;
+                var res = await this.callApi('get',`/api/get/all/tender/list?union_name=${unionname}`,[]);
+            }else{
+                var res = await this.callApi('get',`/api/get/all/tender/list`,[]);
+            }
+          
+
+
+        this.tenders = res.data;
+        },
+
 
         sendInfo(item,button) {
 
@@ -473,6 +497,7 @@ export default {
         // this.getCategory();
         setTimeout(() => {
             this.visitorfun();
+            this.getTender();
         }, 2000);
         var date = new Date();
         this.curentdate = User.dateformat(new Date())[0]

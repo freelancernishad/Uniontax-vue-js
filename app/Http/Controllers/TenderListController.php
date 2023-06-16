@@ -13,9 +13,13 @@ class TenderListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return TenderList::all();
+        $union_name = $request->union_name;
+        if($union_name){
+            return TenderList::where('union_name',$union_name)->orderBy('id','desc')->get();
+        }
+        return TenderList::orderBy('id','desc')->get();
     }
 
     /**

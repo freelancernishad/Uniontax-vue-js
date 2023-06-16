@@ -13,7 +13,8 @@ export default {
                 7: "৭",
                 8: "৮",
                 9: "৯",
-              }
+              },
+              preloader:false,
         }
     },
 

@@ -13,7 +13,9 @@ created() {
 },
     data() {
         return {
-            nidService:0
+            nidService:0,
+     
+
         }
     },
     watch: {

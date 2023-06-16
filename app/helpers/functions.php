@@ -200,7 +200,7 @@ curl_close($curl);
           "cust_info" => $cust_info,
           "trns_info" =>$trns_info,
           "ipn_info" => [
-             "ipn_channel" => "1",
+             "ipn_channel" => "3",
              "ipn_email" => "freelancernishad123@gmail.com",
              "ipn_uri" => "$url/api/ipn"
           ],
