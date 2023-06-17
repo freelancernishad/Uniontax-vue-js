@@ -11,6 +11,8 @@ class Tender extends Model
     protected $fillable = [
         'tender_id',
         'dorId',
+        'nidNo',
+        'nidDate',
         'applicant_orgName',
         'applicant_org_fatherName',
         'vill',

@@ -194,6 +194,35 @@ text-align: center;
     </div> --}}
 
 
+
+    <div class="col-md-12 mt-3 row">
+
+
+        <div class="col-md-5" >
+            <div class="form-group">
+                <label for="" class="labelColor">জাতীয় পরিচয়পত্র নং</label>
+                <input type="text" id="nidNo" name="nidNo" class="form-control" >
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="" class="labelColor">জন্ম তারিখ</label>
+                <input type="date" id="nidDate" name="nidDate" class="form-control" >
+            </div>
+        </div>
+        <div class="col-md-2" style="display: flex;justify-content: space-around;align-items: center;margin-top: 14px;" v-if="attactType=='nid'">
+            <div class="form-group mb-0">
+               <button class="btn btn-info" type="button" onclick="checknid()">Check Nid</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
     <div class="col-md-12 mt-3">
         <div class="form-group">
           <label class="mb-1" for="applicant_orgName">দরপত্র দাখিলকারীর নাম</label>
@@ -375,6 +404,133 @@ text-align: center;
     })
     </script>
 @endif
+
+
+<script>
+
+var sToken ='';
+
+function getToken(){
+
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+        };
+        fetch("https://uniontax.xyz/api/token/genarate", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            sToken = result.apitoken;
+        })
+        .catch(error => console.log('error', error));
+
+
+        }
+        getToken();
+
+        function checknid(){
+
+
+
+
+
+            var nidNo = document.getElementById('nidNo').value;
+            var nidDate = document.getElementById('nidDate').value;
+
+
+
+
+            if(nidNo=='' && nidDate==''){
+                    Swal.fire({
+                        title: 'দুঃখিত',
+                        text: `জাতীয় পরিচয়পত্র নং এবং জন্ম তারিখ পূরণ করতে হবে`,
+                        icon: 'error',
+                    })
+                    this.nidSearch = false;
+                }else{
+                    if(nidNo.length==10 || nidNo.length==13 || nidNo.length==17){
+
+
+                    var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "nidNumber": nidNo,
+  "dateOfBirth": nidDate
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch(`https://uniontax.xyz/api/citizen/information/nid?sToken=${sToken}`, requestOptions)
+  .then(response => response.json())
+  .then(res => {
+    console.log(res.status)
+
+            if(res.status!=200){
+                        Swal.fire({
+                            title: 'দুঃখিত',
+                            text: `কিছু একটা সমস্যা হয়েছে `,
+                            icon: 'error',
+                            confirmButtonColor: 'red',
+                            confirmButtonText: `আবার চেষ্টা করুন`,
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                        }).then(async (result) => {
+                            if (result.isConfirmed) {
+                                getToken();
+                            }
+                        })
+                    }else{
+
+                        var nidD = res.informations;
+
+                        var applicant_orgName = document.getElementById('applicant_orgName');
+                        var applicant_org_fatherName = document.getElementById('applicant_org_fatherName');
+                        var addvilless = document.getElementById('addvilless');
+                        var postoffice = document.getElementById('postoffice');
+                        var thana = document.getElementById('thana');
+                        var distric = document.getElementById('distric');
+               
+                        applicant_orgName.value = nidD.fullNameBN
+                        applicant_org_fatherName.value = nidD.fathersNameBN
+                        distric.value = nidD.presentDistrict
+                        thana.value = nidD.presentThana
+                        postoffice.value = nidD.presentPost
+                        addvilless.value = nidD.presentVillage
+                    }
+  })
+  .catch(error => console.log('error', error));
+
+
+
+
+
+
+
+
+
+
+                }else{
+                    Swal.fire({
+                        title: 'দুঃখিত',
+                        text: `জাতীয় পরিচয়পত্র নং অবশ্যই ১০ অথবা ১৩ অথবা ১৭ ডিজিটের হতে হবে`,
+                        icon: 'error',
+                    })
+                }
+            }
+
+
+
+        }
+
+
+</script>
+
+
 
 
 </body>
