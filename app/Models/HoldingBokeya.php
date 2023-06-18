@@ -17,4 +17,11 @@ class HoldingBokeya extends Model
         'payYear',
         'status',
     ];
+
+
+    public function holdingPayments()
+    {
+        return $this->hasMany(Payment::class, 'sonodId');
+    }
+
 }

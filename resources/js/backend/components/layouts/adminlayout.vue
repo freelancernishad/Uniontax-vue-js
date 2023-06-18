@@ -242,6 +242,12 @@
                         </li>
 
 
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'super_admin'">
+                            <router-link :to="{ name: 'trxGet' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Trx get</span></router-link>
+                        </li>
+
+
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'super_admin'">
                             <router-link :to="{ name: 'unionlist' }" class="nav-link"><i
@@ -262,7 +268,7 @@
                         </li>
 
 
-                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'Secretary'">
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'Secretary' || Users.position == 'Chairman'">
                             <router-link :to="{ name: 'tenderlist' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ইজারা</span></router-link>
                         </li>

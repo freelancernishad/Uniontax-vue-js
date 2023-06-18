@@ -245,6 +245,9 @@ Route::get('holding/bokeya/list',[HoldingBokeyaController::class,'index']);
 Route::post('holding/bokeya/action',[HoldingtaxController::class,'holding_tax_pay']);
 
 
+Route::post('get/holding/tax',[HoldingBokeyaController::class,'holdingTaxPending']);
+
+
 
 
 Route::get('holding/tax/list',[HoldingtaxController::class,'index']);

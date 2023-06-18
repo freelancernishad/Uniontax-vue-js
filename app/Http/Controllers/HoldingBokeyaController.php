@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HoldingBokeya;
+use App\Models\Holdingtax;
 use Illuminate\Http\Request;
 
 class HoldingBokeyaController extends Controller
@@ -17,6 +18,16 @@ class HoldingBokeyaController extends Controller
         $holdingTax_id = $request->holdingTax_id;
         return HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id])->get();
     }
+
+    function holdingTaxPending(Request $request) {
+
+        $union = $request->union;
+        $holdingTax = $request->holdingTax;
+
+        return Holdingtax::with('holdingBokeyas','holdingBokeyas.holdingPayments')->where(['holding_no'=>$holdingTax,'unioun'=>$union])->get();
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
