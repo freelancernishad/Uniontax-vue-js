@@ -195,6 +195,9 @@ Route::post('contact',[UniouninfoController::class, 'contact']);
 
 
 
+Route::get('get/prepaid/sonod',[SonodController::class, 'preapidSonod']);
+
+
 Route::get('sonodcountall',[SonodController::class, 'sonodcountall']);
 Route::get('sum/amount',[SonodController::class, 'totlaAmount']);
 Route::get('count/sonod/{status}',[SonodController::class, 'counting']);

@@ -248,6 +248,12 @@
                         </li>
 
 
+                        <li class="nav-item" @click="submenu(0)" v-if="Users.position == 'super_admin'">
+                            <router-link :to="{ name: 'prepaidsonod' }" class="nav-link"><i
+                                    class="flaticon-dashboard"></i><span>Prepaid Sonod</span></router-link>
+                        </li>
+
+
                         <li class="nav-item" @click="submenu(0)"
                             v-if="Users.position == 'super_admin'">
                             <router-link :to="{ name: 'unionlist' }" class="nav-link"><i

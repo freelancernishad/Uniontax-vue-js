@@ -98,4 +98,11 @@ class Sonod extends Model
         'sameNameNew',
         'orthoBchor',
     ];
+
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'sonodId');
+    }
+
 }

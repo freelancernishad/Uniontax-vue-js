@@ -25,6 +25,7 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Facades\Validator;
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
+use NunoMaduro\Collision\Adapters\Phpunit\Style;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class SonodController extends Controller
@@ -2576,6 +2577,18 @@ return Sonod::where(['sonod_name'=>$sonod_name,'sonod_Id'=>$sonod_Id])->first();
             return 404;
         }
     }
+
+
+
+
+    function preapidSonod() {
+
+         $dates = date('Y-m-d', strtotime(date('Y-m-d')));
+
+
+        return Sonod::with('payments')->where('stutus','Prepaid')->where('created_at','LIKE',"%$dates%")->get();
+    }
+
 
 
 }

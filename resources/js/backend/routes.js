@@ -15,6 +15,7 @@ let profile = require('./components/profile.vue').default;
 
 let trxcheck = require('./components/trxcheck.vue').default;
 let trxGet = require('./components/trxget.vue').default;
+let prepaidsonod = require('./components/prepaidsonod.vue').default;
 
 let ekpayPaymentList = require('./components/ekpayPayment/list.vue').default;
 
@@ -162,6 +163,7 @@ export const routes = [
 
   { path:  `${prefix}/check/trx`, component: trxcheck, name:'trxcheck',meta: { layout: adminlayout } },
   { path:  `${prefix}/get/trx`, component: trxGet, name:'trxGet',meta: { layout: adminlayout } },
+  { path:  `${prefix}/get/prepaidsonod`, component: prepaidsonod, name:'prepaidsonod',meta: { layout: adminlayout } },
 
 
   { path: "*", component: PageNotFound }
