@@ -21,6 +21,8 @@ use App\Http\Controllers\HoldingtaxController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\TenderController;
+use App\Http\Controllers\TenderListController;
 use lemonpatwari\bangladeshgeocode\Models\Division;
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,8 @@ use lemonpatwari\bangladeshgeocode\Models\Division;
 //    });
 
 
+
+Route::get('/pdf/tenders/{tender_id}', [TenderListController::class,'viewpdf']);
 
 
 Route::get('/tenders/{tender_id}', function ($tender_id) {

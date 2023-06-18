@@ -20,6 +20,11 @@
         </div>
 
         <div class="form-group col-md-6">
+          <label for="">স্মারক নং</label>
+          <input type="text" v-model="form.memorial_no" class="form-control" placeholder="" aria-describedby="helpId">
+        </div>
+
+        <div class="form-group col-md-6">
           <label for="">ইজারার শিরোনাম</label>
           <input type="text" v-model="form.tender_name" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
@@ -65,6 +70,11 @@
           <input type="datetime-local" v-model="form.form_buy_last_date" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
+        <div class="form-group col-md-6">
+          <label for="">বিজ্ঞপ্তির তারিখ</label>
+          <input type="datetime-local" v-model="form.noticeDate" class="form-control" placeholder="" aria-describedby="helpId">
+        </div>
+
 
         <div class="form-group col-md-6">
           <label for="">দরপত্র গ্রহনের শুরুর তারিখ</label>
@@ -107,11 +117,13 @@ export default {
         return {
             form:{
                 tender_type:'',
+                memorial_no:'',
                 tender_name:'',
                 description:'',
                 tender_word_no:'',
                 govt_price:'',
                 form_price:'',
+                noticeDate:'',
                 form_buy_last_date:'',
                 tender_start:'',
                 tender_end:'',
