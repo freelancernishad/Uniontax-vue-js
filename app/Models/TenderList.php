@@ -31,6 +31,12 @@ class TenderList extends Model
        'tender_end',
        'tender_open',
        'tender_roles',
+       'commette1phone',
+       'commette1pass',
+       'commette2phone',
+       'commette2pass',
+       'commette3phone',
+       'commette3pass',
     ];
 
 }

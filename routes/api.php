@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Tender;
+use App\Models\TenderList;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\blogController;
@@ -24,7 +26,6 @@ use App\Http\Controllers\SonodnamelistController;
 use App\Http\Controllers\TradeLicenseKhatController;
 use App\Http\Controllers\CitizenInformationController;
 use App\Http\Controllers\TradeLicenseKhatFeeController;
-use App\Models\TenderList;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -86,6 +87,41 @@ Route::resources([
 	'tradeLicenseKhatFee' => TradeLicenseKhatFeeController::class,
 	'tender' => TenderListController::class,
 ]);
+
+    Route::post('committe/update/{id}', function (Request $request,$id) {
+        $commette1phone = $request->commette1phone;
+        $commette2phone = $request->commette2phone;
+        $commette3phone = $request->commette3phone;
+
+
+
+        $updatedData = [
+            'commette1phone'=> $commette1phone,
+            'commette1pass'=> Str::random(8),
+            'commette2phone'=> $commette2phone,
+            'commette2pass'=> Str::random(8),
+            'commette3phone'=> $commette3phone,
+            'commette3pass'=> Str::random(8),
+        ];
+
+
+
+        $tenderList = TenderList::find($id);
+
+        SmsNocSmsSend("ইযারা মূল্যায়নের পাসওয়ার্ড ".$updatedData['commette1pass'],$updatedData['commette1phone'],$tenderList->union_name);
+        SmsNocSmsSend("ইযারা মূল্যায়নের পাসওয়ার্ড ".$updatedData['commette2pass'],$updatedData['commette2phone'],$tenderList->union_name);
+        SmsNocSmsSend("ইযারা মূল্যায়নের পাসওয়ার্ড ".$updatedData['commette3pass'],$updatedData['commette3phone'],$tenderList->union_name);
+
+
+
+
+        // return $updatedData;
+
+        $tenderList->update($updatedData);
+
+
+
+    });
 
 Route::get('get/all/aplications/{tender_id}', function ($tender_id) {
     return Tender::where('tender_id',$tender_id)->get();
