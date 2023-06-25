@@ -374,10 +374,11 @@ $style = '';
 
 
      if($currentDate<$tender_open){
-         return [
-            "messages"=>"tender Open date : $tender_list->tender_open",
-            "status"=>422,
-         ];
+         $result =  [
+             "messages"=>"tender Open date : $tender_list->tender_open",
+             "status"=>422,
+            ];
+        return response()->json([$result],422);
       }
 
 
