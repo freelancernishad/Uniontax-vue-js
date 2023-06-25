@@ -25,7 +25,8 @@
 
 
        <div class="text-center">
-        <a :href="'/tenders/'+tender.tender_id" class="btn btn-info">ইজারা দাখিল করার জন্য ক্লিক করুন</a>
+            <a target="_blank" :href="'/pdf/tenders/'+tender.tender_id" class="btn btn-info">বিজ্ঞপ্তি ডাউনলোড করুন</a>
+            <a :href="'/tenders/'+tender.tender_id" class="btn btn-info">ইজারা দাখিল করার জন্য ক্লিক করুন</a>
        </div>
 
 

@@ -113,7 +113,8 @@ export default {
             var tender_id = this.$route.params.tender_id
             var res = await this.callApi('post',`/api/tender/selection/${tender_id}`);
             if(res.status==200){
-                this.getApplication();
+                this.getApplication('Selected');
+                // this.applications = res.data.data
             }
         },
 
@@ -125,10 +126,12 @@ export default {
             this.tenders = res.data;
         },
 
-        getApplication() {
+        getApplication(Selected='') {
+            var quiry = '';
+            if(Selected)  quiry = `?status=${Selected}`;
             var tender_id = this.$route.params.tender_id
             axios
-                .get(`/api/get/all/aplications/${tender_id}`)
+                .get(`/api/get/all/aplications/${tender_id}${quiry}`)
                 .then(({ data }) => (this.applications = data))
                 .catch();
         },

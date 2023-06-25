@@ -111,7 +111,7 @@ class TenderListController extends Controller
 
 
         ini_set('max_execution_time', '60000');
-        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set("pcre.backtrack_limit", "50000000000000000");
         ini_set('memory_limit', '12008M');
 
         // $pdf = LaravelMpdf::loadView('tender.notice');

@@ -7700,7 +7700,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
 
                 if (res.status == 200) {
-                  _this.getApplication();
+                  _this.getApplication('Selected'); // this.applications = res.data.data
+
                 }
 
               case 5:
@@ -7739,8 +7740,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getApplication: function getApplication() {
       var _this3 = this;
 
+      var Selected = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var quiry = '';
+      if (Selected) quiry = "?status=".concat(Selected);
       var tender_id = this.$route.params.tender_id;
-      axios.get("/api/get/all/aplications/".concat(tender_id)).then(function (_ref) {
+      axios.get("/api/get/all/aplications/".concat(tender_id).concat(quiry)).then(function (_ref) {
         var data = _ref.data;
         return _this3.applications = data;
       })["catch"]();
@@ -10748,7 +10752,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                  Submit\n              ")])])]);
+  }, [_vm._v("\r\n                  Submit\r\n              ")])])]);
 }];
 render._withStripped = true;
 
@@ -20518,7 +20522,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "control-label col-form-label"
-  }, [_vm._v("ওয়েবসাইট এর লোগো\n              ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("ওয়েবসাইট এর লোগো\r\n              ")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "file",
@@ -20546,7 +20550,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "control-label col-form-label"
-  }, [_vm._v("সনদ এর লোগো\n              ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("সনদ এর লোগো\r\n              ")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "file",
@@ -20574,7 +20578,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "control-label col-form-label"
-  }, [_vm._v("চেয়ারম্যানের স্বাক্ষর\n              ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("চেয়ারম্যানের স্বাক্ষর\r\n              ")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "file",
@@ -20602,7 +20606,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "control-label col-form-label"
-  }, [_vm._v("ইউনিয়নের ছবি\n              ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("ইউনিয়নের ছবি\r\n              ")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "file",
@@ -20640,7 +20644,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                  সাবমিট\n              ")])])]);
+  }, [_vm._v("\r\n                  সাবমিট\r\n              ")])])]);
 }];
 render._withStripped = true;
 
@@ -40406,7 +40410,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tableFixHead[data-v-e33b8d6e]          { overflow: auto;     height: 100vh;\n}\n.tableFixHead thead th[data-v-e33b8d6e] { position: -webkit-sticky; position: sticky; top: 0; z-index: 1;\n}\n\n/* Just common table stuff. Really. */\n.tableFixHead table[data-v-e33b8d6e]  { border-collapse: collapse; width: 100%;\n}\n.tableFixHead th[data-v-e33b8d6e], td[data-v-e33b8d6e] { padding: 8px 16px;\n}\n.tableFixHead th[data-v-e33b8d6e]     { background:#eee;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.tableFixHead[data-v-e33b8d6e]          { overflow: auto;     height: 100vh;\n}\n.tableFixHead thead th[data-v-e33b8d6e] { position: -webkit-sticky; position: sticky; top: 0; z-index: 1;\n}\r\n\r\n/* Just common table stuff. Really. */\n.tableFixHead table[data-v-e33b8d6e]  { border-collapse: collapse; width: 100%;\n}\n.tableFixHead th[data-v-e33b8d6e], td[data-v-e33b8d6e] { padding: 8px 16px;\n}\n.tableFixHead th[data-v-e33b8d6e]     { background:#eee;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40526,7 +40530,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nul.nav.sub-group-menu.menu-open.child {\n    padding: 0 !important;\n}\nul.nav.sub-group-menu.menu-open.child li {\n    padding: 10px 0;\n}\n.slide-enter-active {\n    transition-duration: 0.3s;\n    transition-timing-function: ease-in;\n}\n.slide-leave-active {\n    transition-duration: 0.3s;\n    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);\n}\n.slide-enter-to,\n.slide-leave {\n    max-height: 100px;\n    overflow: hidden;\n}\n.slide-enter,\n.slide-leave-to {\n    overflow: hidden;\n    max-height: 0;\n}\na.nav-link span {\n    font-size: 14px !important;\n}\ntextarea.form-control {\n    background: #b9b9b9 !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nul.nav.sub-group-menu.menu-open.child {\r\n    padding: 0 !important;\n}\nul.nav.sub-group-menu.menu-open.child li {\r\n    padding: 10px 0;\n}\n.slide-enter-active {\r\n    transition-duration: 0.3s;\r\n    transition-timing-function: ease-in;\n}\n.slide-leave-active {\r\n    transition-duration: 0.3s;\r\n    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);\n}\n.slide-enter-to,\r\n.slide-leave {\r\n    max-height: 100px;\r\n    overflow: hidden;\n}\n.slide-enter,\r\n.slide-leave-to {\r\n    overflow: hidden;\r\n    max-height: 0;\n}\na.nav-link span {\r\n    font-size: 14px !important;\n}\ntextarea.form-control {\r\n    background: #b9b9b9 !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40550,7 +40554,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tableFixHead[data-v-bccf53f8]          { overflow: auto;     height: 100vh;\n}\n.tableFixHead thead th[data-v-bccf53f8] { position: -webkit-sticky; position: sticky; top: 0; z-index: 1;\n}\n\n/* Just common table stuff. Really. */\n.tableFixHead table[data-v-bccf53f8]  { border-collapse: collapse; width: 100%;\n}\n.tableFixHead th[data-v-bccf53f8], td[data-v-bccf53f8] { padding: 8px 16px;\n}\n.tableFixHead th[data-v-bccf53f8]     { background:#eee;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.tableFixHead[data-v-bccf53f8]          { overflow: auto;     height: 100vh;\n}\n.tableFixHead thead th[data-v-bccf53f8] { position: -webkit-sticky; position: sticky; top: 0; z-index: 1;\n}\r\n\r\n/* Just common table stuff. Really. */\n.tableFixHead table[data-v-bccf53f8]  { border-collapse: collapse; width: 100%;\n}\n.tableFixHead th[data-v-bccf53f8], td[data-v-bccf53f8] { padding: 8px 16px;\n}\n.tableFixHead th[data-v-bccf53f8]     { background:#eee;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40574,7 +40578,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading[data-v-35912088] {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #ffffff;\n    background: #255f95;\n}\n.form-pannel[data-v-35912088] {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading[data-v-35912088] {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel[data-v-35912088] {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu[data-v-35912088] {\n    z-index: 99999;\n}\n.labelColor[data-v-35912088] {\n    color: #493eff;\n    font-weight: 600;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading[data-v-35912088] {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #ffffff;\r\n    background: #255f95;\n}\n.form-pannel[data-v-35912088] {\r\n    border: 1px solid #159513;\r\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading[data-v-35912088] {\r\n    padding: 11px 0px;\r\n    border-top-right-radius: 6px;\r\n    border-top-left-radius: 6px;\r\n    margin-top: 20px;\n}\n.form-pannel[data-v-35912088] {\r\n    border-bottom-left-radius: 6px;\r\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu[data-v-35912088] {\r\n    z-index: 99999;\n}\n.labelColor[data-v-35912088] {\r\n    color: #493eff;\r\n    font-weight: 600;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40598,7 +40602,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nth.position-relative[data-v-2856bc0a] {\n    font-size: 13px;\n}\nth[data-v-2856bc0a] {\n    font-size: 11px;\n}\ntd[data-v-2856bc0a] {\n    font-size: 12px !important;\n}\nli.page-item.active a[data-v-2856bc0a] {\n    color: white !important;\n}\n@media\nonly screen and (max-width: 760px),\n(min-device-width: 768px) and (max-device-width: 1024px)  {\n\n\t/* Force table to not be like tables anymore */\n.sonodTable[data-v-2856bc0a], .sonodThead[data-v-2856bc0a], .sonodTbody[data-v-2856bc0a], .sonodTh[data-v-2856bc0a], .sonodTd[data-v-2856bc0a], .sonodTr[data-v-2856bc0a] {\n\t\tdisplay: block;\n}\n\n\t/* Hide table headers (but not display: none;, for accessibility) */\n.sonodThead .sonodTr[data-v-2856bc0a] {\n\t\tposition: absolute;\n\t\ttop: -9999px;\n\t\tleft: -9999px;\n}\n.sonodTr[data-v-2856bc0a] { border: 1px solid #ccc;\n}\n.sonodTr[data-v-2856bc0a]:nth-child(odd) {\n      background: #ccc;\n}\n.sonodTd[data-v-2856bc0a] {\n\t\t/* Behave  like a \"row\" */\n\t\tborder: none;\n\t\tborder-bottom: 1px solid #eee;\n\t\tposition: relative;\n        padding-top: 12px;\n    padding-bottom: 12px;\n\t\tpadding-left: 50%;\n}\n.sonodTd[data-v-2856bc0a]:before {\n\t\t/* Now like a table header */\n\t\tposition: absolute;\n\t\t/* Top/left values mimic padding */\n\t\ttop: 6px;\n\t\tleft: 6px;\n\t\twidth: 45%;\n\t\tpadding-right: 10px;\n\t\twhite-space: nowrap;\n}\n\n\t/*\n\tLabel the data\n\t*/\n.sonodTd[data-v-2856bc0a]:nth-of-type(1):before { content: \"সনদ নাম্বার\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(2):before { content: \"নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(3):before { content: \"পিতার/স্বামীর নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(4):before { content: \"গ্রাম/মহল্লা\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(5):before { content: \"আবেদনের তারিখ\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(6):before { content: \"কার্যক্রম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(7):before { content: \"ফি\";\n}\n}\n\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nth.position-relative[data-v-2856bc0a] {\r\n    font-size: 13px;\n}\nth[data-v-2856bc0a] {\r\n    font-size: 11px;\n}\ntd[data-v-2856bc0a] {\r\n    font-size: 12px !important;\n}\nli.page-item.active a[data-v-2856bc0a] {\r\n    color: white !important;\n}\n@media\r\nonly screen and (max-width: 760px),\r\n(min-device-width: 768px) and (max-device-width: 1024px)  {\r\n\r\n\t/* Force table to not be like tables anymore */\n.sonodTable[data-v-2856bc0a], .sonodThead[data-v-2856bc0a], .sonodTbody[data-v-2856bc0a], .sonodTh[data-v-2856bc0a], .sonodTd[data-v-2856bc0a], .sonodTr[data-v-2856bc0a] {\r\n\t\tdisplay: block;\n}\r\n\r\n\t/* Hide table headers (but not display: none;, for accessibility) */\n.sonodThead .sonodTr[data-v-2856bc0a] {\r\n\t\tposition: absolute;\r\n\t\ttop: -9999px;\r\n\t\tleft: -9999px;\n}\n.sonodTr[data-v-2856bc0a] { border: 1px solid #ccc;\n}\n.sonodTr[data-v-2856bc0a]:nth-child(odd) {\r\n      background: #ccc;\n}\n.sonodTd[data-v-2856bc0a] {\r\n\t\t/* Behave  like a \"row\" */\r\n\t\tborder: none;\r\n\t\tborder-bottom: 1px solid #eee;\r\n\t\tposition: relative;\r\n        padding-top: 12px;\r\n    padding-bottom: 12px;\r\n\t\tpadding-left: 50%;\n}\n.sonodTd[data-v-2856bc0a]:before {\r\n\t\t/* Now like a table header */\r\n\t\tposition: absolute;\r\n\t\t/* Top/left values mimic padding */\r\n\t\ttop: 6px;\r\n\t\tleft: 6px;\r\n\t\twidth: 45%;\r\n\t\tpadding-right: 10px;\r\n\t\twhite-space: nowrap;\n}\r\n\r\n\t/*\r\n\tLabel the data\r\n\t*/\n.sonodTd[data-v-2856bc0a]:nth-of-type(1):before { content: \"সনদ নাম্বার\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(2):before { content: \"নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(3):before { content: \"পিতার/স্বামীর নাম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(4):before { content: \"গ্রাম/মহল্লা\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(5):before { content: \"আবেদনের তারিখ\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(6):before { content: \"কার্যক্রম\";\n}\n.sonodTd[data-v-2856bc0a]:nth-of-type(7):before { content: \"ফি\";\n}\n}\r\n\r\n\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40646,7 +40650,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-dialog.modal-xl {\n    max-width: 1200px;\n}\n.app-heading {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #159513;\n}\n.customcheckbox {\n    padding: 0 !important;\n    width: 22px;\n    height: 26px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-dialog.modal-xl {\r\n    max-width: 1200px;\n}\n.app-heading {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #159513;\n}\n.customcheckbox {\r\n    padding: 0 !important;\r\n    width: 22px;\r\n    height: 26px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
