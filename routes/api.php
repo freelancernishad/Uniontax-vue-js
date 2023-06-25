@@ -125,8 +125,14 @@ Route::post('tender/selection/{tender_id}', [TenderListController::class,'Seleti
 
     });
 
-Route::get('get/all/aplications/{tender_id}', function ($tender_id) {
-    return Tender::where('tender_id',$tender_id)->get();
+Route::get('get/all/aplications/{tender_id}', function (Request $request,$tender_id) {
+
+    $status = $request->status;
+    if($status){
+        return Tender::where(['tender_id'=>$tender_id,'status'=>$status])->get();
+    }else{
+        return Tender::where('tender_id',$tender_id)->get();
+    }
   });
 
 Route::get('get/all/tender/list', function (Request $request) {

@@ -103,9 +103,9 @@ export default {
     },
     mounted() {
 
-    //   this.getApplication();
 
-      this.getTender();
+        this.getTender();
+        this.getApplication('Selected');
     },
     methods: {
 
