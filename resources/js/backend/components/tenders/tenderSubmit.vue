@@ -5,6 +5,17 @@
 
 
 
+        <div class="d-flex justify-content-center align-items-center">
+
+            <button class="btn btn-info py-3 px-3" @click="selections">এই বাটন ক্লিক করে নির্বাচন করুন</button>
+
+        </div>
+
+
+
+
+
+
         <div class="text-right">
             <a :href="'/pdf/sder/download/'+$route.params.tender_id" class="btn btn-info" target="_blank">Pdf Download</a>
         </div>
@@ -84,15 +95,35 @@ export default {
 
     data() {
         return {
+            tenders:{},
             applications:{},
             popup:false,
             poupitems:{},
         };
     },
     mounted() {
-      this.getApplication();
+
+    //   this.getApplication();
+
+      this.getTender();
     },
     methods: {
+
+       async selections(){
+            var tender_id = this.$route.params.tender_id
+            var res = await this.callApi('post',`/api/tender/selection/${tender_id}`);
+            if(res.status==200){
+                this.getApplication();
+            }
+        },
+
+
+
+        async getTender(){
+            var tender_id = this.$route.params.tender_id
+            var res = await this.callApi('get',`/api/tender/${tender_id}`,[]);
+            this.tenders = res.data;
+        },
 
         getApplication() {
             var tender_id = this.$route.params.tender_id
@@ -101,6 +132,8 @@ export default {
                 .then(({ data }) => (this.applications = data))
                 .catch();
         },
+
+
         showImage(items){
             this.popup = true;
             this.poupitems = items

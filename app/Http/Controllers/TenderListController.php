@@ -359,5 +359,33 @@ $style = '';
 
 
 
+    function SeletionTender(Request $request,$tender_id){
+
+
+
+         $tender_list =  TenderList::find($tender_id);
+
+          // return view('form');
+      $currentDate = strtotime(date("d-m-Y H:i:s"));
+
+      $tender_open = strtotime(date("d-m-Y H:i:s",strtotime($tender_list->tender_open)));
+
+
+
+
+     if($currentDate<$tender_open){
+         return [
+            "messages"=>"tender Open date : $tender_list->tender_open",
+            "status"=>422,
+         ];
+      }
+
+
+
+    }
+
+
+
+
 
 }

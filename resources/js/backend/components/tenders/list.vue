@@ -277,7 +277,7 @@ export default {
                             icon:'success'
                         })
 
-                        this.$router.push({name:'tendersubmitlist',params:{id:item.id}});
+                        this.$router.push({name:'tendersubmitlist',params:{tender_id:item.id}});
 
 
                     }else{
