@@ -25,5 +25,6 @@ class Tender extends Model
         'depositAmount',
         'bank_draft_image',
         'deposit_details',
+        'status',
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tender;
 use App\Models\TenderList;
 use App\Models\Uniouninfo;
 use Illuminate\Support\Str;
@@ -363,23 +364,43 @@ $style = '';
 
 
 
-         $tender_list =  TenderList::find($tender_id);
-
-          // return view('form');
-      $currentDate = strtotime(date("d-m-Y H:i:s"));
-
-      $tender_open = strtotime(date("d-m-Y H:i:s",strtotime($tender_list->tender_open)));
+    $tender_list =  TenderList::find($tender_id);
 
 
 
 
-     if($currentDate<$tender_open){
-         $result =  [
-             "messages"=>"tender Open date : $tender_list->tender_open",
-             "status"=>422,
-            ];
+    $currentDate = strtotime(date("d-m-Y H:i:s"));
+    $tender_open = strtotime(date("d-m-Y H:i:s",strtotime($tender_list->tender_open)));
+    if($currentDate<$tender_open){
+        $result =  [
+            "messages"=>"tender Open date : $tender_list->tender_open",
+            "status"=>422,
+        ];
         return response()->json([$result],422);
-      }
+    }
+   // $tender_list->update(['status'=>'Completed']);
+
+    $tendersCount = Tender::where(['tender_id'=>$tender_id])->orderBy('DorAmount','desc')->count();
+    if($tendersCount<1){
+       $result =  [
+           "messages"=>"Cant find Tender",
+           "status"=>404,
+       ];
+       return response()->json([$result],404);
+    }
+    $tendersDorAmount = Tender::where(['tender_id'=>$tender_id])->orderBy('DorAmount','desc')->first()->DorAmount;
+    $tenders = Tender::where(['DorAmount'=>$tendersDorAmount])->orderBy('DorAmount','desc')->get();
+
+    foreach ($tenders as $value) {
+        $value->update(['status'=>'Selected']);
+    }
+    $result =  [
+        "data"=>$tenders,
+        "messages"=>"found Tender",
+        "status"=>200,
+    ];
+    return response()->json([$result],200);
+
 
 
 

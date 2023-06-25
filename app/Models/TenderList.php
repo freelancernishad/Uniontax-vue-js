@@ -31,6 +31,7 @@ class TenderList extends Model
        'tender_end',
        'tender_open',
        'tender_roles',
+       'status',
        'commette1phone',
        'commette1pass',
        'commette2phone',
