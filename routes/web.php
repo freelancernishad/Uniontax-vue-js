@@ -71,14 +71,99 @@ Route::get('/tenders/{tender_id}', function ($tender_id) {
     $EndDate = strtotime(date("d-m-Y H:i:s",strtotime($tender_list->tender_end)));
 
 
-
+    // <h1 style='text-align:center;margin-top:20px;color:green'>ফলাফল এর জন্য অপেক্ষা করুন :- ".date('d-m-Y h:i A',strtotime($tender_list->tender_open))."  পর্যন্ত</h1>
 
    if($currentDate>$EndDate){
-       return '<h1 style="text-align:center;margin-top:20px;color:red">দরপত্র দাখিলের সময় শেষ</h1>';
+
+
+       if($tender_list->status=='Completed'){
+        $selectedPerson = Tender::where(['tender_id'=>$tender_list->id,'status'=>'Selected'])->get();
+
+        $table = "";
+        $table .="
+        <table class='table' border='1' style='border-collapse:collapse'>
+        <thead>
+            <tr>
+            <th scope='col'>দরপত্র নম্বর</th>
+            <th scope='col'>নাম</th>
+            <th scope='col'>পিতার নাম</th>
+            <th scope='col'>ঠিকানা</th>
+            <th scope='col'>মোবাইল</th>
+            <th scope='col'>দরের পরিমাণ</th>
+            <th scope='col'>কথায়</th>
+            <th scope='col'>জামানতের পরিমাণ</th>
+            </tr>
+        </thead>
+        <tbody>";
+
+        foreach ($selectedPerson as $application) {
+
+
+            $table .="
+            <tr>
+            <th scope='row'>$application->dorId</th>
+                <td>$application->applicant_orgName</td>
+                <td>$application->applicant_org_fatherName</td>
+                <td>গ্রাম- $application->vill, ডাকঘর- $application->postoffice, উপজেলা- $application->thana, জেলা- $application->distric</td>
+                <td>$application->mobile</td>
+                <td>$application->DorAmount</td>
+                <td>$application->DorAmountText</td>
+                <th>$application->depositAmount</td>
+                </tr>";
+
+            }
+
+
+        $table .="</tbody>
+        </table>";
+
+
+        return "
+
+            <style>
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            tr:nth-of-type(odd) {
+                background: #eee;
+            }
+            th {
+                background: green;
+                color: white;
+                font-weight: bold;
+            }
+            td, th {
+                padding: 6px;
+                border: 1px solid #ccc;
+                text-align: left;
+            }
+            </style>
+
+        <h1 style='text-align:center;margin-top:20px;color:green'>এই ইজারার নির্বাচিত সদস্যা এর তথ্য নিচে দেখুন।</h1>
+
+            $table
+
+
+        ";
+    }else{
+        $tender_list->update(['status'=>'proccesing']);
+        return "
+        <h1 style='text-align:center;margin-top:20px;color:red'>দরপত্র দাখিলের সময় শেষ</h1>
+        <h1 style='text-align:center;margin-top:20px;color:green'>ফলাফল এর জন্য অপেক্ষা করুন </h1>
+        ";
+    }
+
+
+
+
+
     }
 
    if($currentDate>$startDate){
-
+    $tender_list->update(['status'=>'active']);
        return view('tender.form',compact('dorId','tender_list'));
     }else{
 

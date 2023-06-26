@@ -1,6 +1,6 @@
 <template>
     <div>
-  
+
 
         <form @submit.stop.prevent="onSubmit">
 
@@ -476,6 +476,21 @@
 
 
 
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
+                        <div class="form-group">
+                            <label for="" class="labelColor">অর্থ বছর</label>
+                            <select class="form-control" v-model="form.orthoBchor" required>
+                                <option value="">অর্থ বছর নির্বাচন করুন</option>
+                                <option value="2023-24">২০২৩-২৪</option>
+                                <option value="2022-23">২০২২-২৩</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+
+
+
 
 
 
@@ -933,7 +948,7 @@ export default {
 
     data() {
         return {
-        
+
             attactType:'nid',
             infoModal: {
                 id: 'info-modal',
@@ -1030,6 +1045,7 @@ export default {
                 applicant_national_id_back_attachment: null,
                 applicant_birth_certificate_attachment: null,
                 prottoyon: null,
+                orthoBchor: '2022-23',
                 stutus: 'Pending',
                 payment_status: 'Unpaid',
                 successors: [
@@ -1344,7 +1360,7 @@ export default {
             }
         },
         sonodname() {
-     
+
             if (this.$route.params.name) {
                 axios.get(`/api/get/sonodname/list?data=${this.$route.params.name.replaceAll('_', ' ')}&fees=1&unioun=${localStorage.getItem('unioun')}`)
                     .then(({ data }) => {
@@ -1356,7 +1372,7 @@ export default {
                     })
                     .catch()
             }
-     
+
         },
         resetInfoModal() {
             this.infoModal.title = ''

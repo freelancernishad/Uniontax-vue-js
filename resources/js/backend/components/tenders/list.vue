@@ -46,17 +46,22 @@
                     <td>{{ item.tender_start }}</td>
                     <td>{{ item.tender_end }}</td>
                     <td>
-                        <a size="sm" target="_blank" :href="'/tenders/'+ item.tender_id" class="btn btn-danger mr-1 mt-1">সিডিউল ফর্ম</a>
+                        <a size="sm" target="_blank" :href="'/tenders/'+ item.tender_id" class="btn btn-danger mr-1 mt-1" v-if="item.status!='Completed'">সিডিউল ফর্ম</a>
 
                         <span size="sm" @click="tenderComitti(item.id)" class="btn btn-success mr-1 mt-1" v-if="!item.commette1phone && !item.commette2phone && !item.commette3phone">মূল্যায়ন কমিটি তৈরি করুন</span>
 
                         <span size="sm" @click="tenderComittiVeiw(item)" class="btn btn-success mr-1 mt-1" v-else>মূল্যায়ন কমিটি দেখুন</span>
 
 
-                        <span size="sm" @click="tendeSelection(item)" class="btn btn-success mr-1 mt-1" v-if="item.isOpen"  >মূল্যায়ন করার জন্য ক্লিক দিন</span>
+                        <span size="sm" @click="tendeSelection(item)" class="btn btn-success mr-1 mt-1" v-if="item.isOpen && item.status=='proccesing'"   >মূল্যায়ন করার জন্য ক্লিক দিন</span>
+
+                        <span size="sm" class="btn btn-danger mr-1 mt-1" v-if="!item.isOpen && item.status=='proccesing'"   >মূল্যায়ন করার জন্য অপেক্ষা করুন</span>
+
+
+                        <router-link size="sm" :to="{name:'tendersubmitlist',params:{tender_id:item.id}}" class="btn btn-success mr-1 mt-1" v-if="item.status=='Completed'"   >নির্বাচিত তালিকা</router-link>
 
                         <!-- <router-link size="sm" :to="{ name: 'tendersubmitlist', params: { tender_id: item.id } }" class="btn btn-success mr-1 mt-1">Submited Tender</router-link> -->
-                        <router-link size="sm" :to="{ name: 'tenderlistedit', params: { id: item.id } }" class="btn btn-info mr-1 mt-1">Edit</router-link>
+                        <router-link size="sm" :to="{ name: 'tenderlistedit', params: { id: item.id } }" class="btn btn-info mr-1 mt-1" v-if="item.status=='pending'">Edit</router-link>
                     </td>
 
                 </tr>
@@ -141,14 +146,10 @@ export default {
         '$route':  {
             handler(newValue, oldValue) {
 
-        // hello
+                    this.sonodname();
 
-
-      },
-      deep: true
-
-
-
+            },
+        deep: true
         }
     },
 
@@ -301,10 +302,12 @@ export default {
 
 
         sonodname(){
+            this.preLooding = true
             var position = this.Users.position
             var thana = this.Users.thana
             var unioun = this.Users.unioun
-              axios.get(`/api/tender?union_name=${unioun}`)
+            var status = this.$route.params.name;
+              axios.get(`/api/tender?union_name=${unioun}&status=${status}`)
                 .then(({ data }) => {
                     // console.log(data)
                   this.items = data

@@ -159,7 +159,7 @@ export default {
                 var res = await this.callApi('post', '/api/tender', this.form);
                 Notification.customSuccess('Tender Create Success');
             }
-            this.$router.push({ name: 'tenderlist'})
+            this.$router.push({ name: 'tenderlist',params:{name:'pending'}})
         },
     },
     mounted(){

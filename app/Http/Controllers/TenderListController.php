@@ -22,9 +22,15 @@ class TenderListController extends Controller
     public function index(Request $request)
     {
         $union_name = $request->union_name;
+        $status = $request->status;
+        if($union_name && $status){
+            return TenderList::where(['union_name'=>$union_name,'status'=>$status])->orderBy('id','desc')->get();
+        }
         if($union_name){
             return TenderList::where('union_name',$union_name)->orderBy('id','desc')->get();
         }
+
+
         return TenderList::orderBy('id','desc')->get();
     }
 
@@ -49,6 +55,7 @@ class TenderListController extends Controller
         $datas = $request->all();
         $random = Str::random(20);
         $datas['tender_id'] = time().$random;
+        $datas['status'] = 'pending';
 
         return TenderList::create($datas);
     }
@@ -378,7 +385,7 @@ $style = '';
         ];
         return response()->json([$result],422);
     }
-   // $tender_list->update(['status'=>'Completed']);
+
 
     $tendersCount = Tender::where(['tender_id'=>$tender_id])->orderBy('DorAmount','desc')->count();
     if($tendersCount<1){
@@ -394,6 +401,7 @@ $style = '';
     foreach ($tenders as $value) {
         $value->update(['status'=>'Selected']);
     }
+    $tender_list->update(['status'=>'Completed']);
     $result =  [
         "data"=>$tenders,
         "messages"=>"found Tender",

@@ -1,24 +1,32 @@
 <template>
     <div>
+        <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" name="circular"></loader>
 
+        <div class="breadcrumbs-area">
+    <h3>নির্বাচিত তালিকা</h3>
+    <ul>
+        <li>
+            <router-link :to="{name:'Dashboard'}">Home</router-link>
+        </li>
+        <li>নির্বাচিত তালিকা</li>
+    </ul>
+</div>
     <div class="container mt-5">
 
 
 
-        <div class="d-flex justify-content-center align-items-center">
-
+        <div class="d-flex justify-content-center align-items-center" v-if="tenders.status!='Completed'">
             <button class="btn btn-info py-3 px-3" @click="selections">এই বাটন ক্লিক করে নির্বাচন করুন</button>
-
         </div>
 
 
 
 
 
-
+<!--
         <div class="text-right">
             <a :href="'/pdf/sder/download/'+$route.params.tender_id" class="btn btn-info" target="_blank">Pdf Download</a>
-        </div>
+        </div> -->
 
         <div class="table-responsive">
             <table class="table">
@@ -95,8 +103,9 @@ export default {
 
     data() {
         return {
-            tenders:{},
+            tenders:{status:'Completed'},
             applications:{},
+            preLooding:false,
             popup:false,
             poupitems:{},
         };
@@ -105,17 +114,51 @@ export default {
 
 
         this.getTender();
-        this.getApplication('Selected');
+        if(this.tenders.status=='Completed'){
+            this.getApplication('Selected');
+        }
     },
     methods: {
 
        async selections(){
-            var tender_id = this.$route.params.tender_id
-            var res = await this.callApi('post',`/api/tender/selection/${tender_id}`);
-            if(res.status==200){
-                this.getApplication('Selected');
-                // this.applications = res.data.data
-            }
+
+
+        Swal.fire({
+            title: 'ইজারাটি কি সফটওয়্যার এর মাধমে নির্বাচন করতে চান?',
+            showCancelButton: true,
+            confirmButtonText: 'হ্যাঁ',
+            }).then(async (result) => {
+                this.preLooding = true
+                if (result.isConfirmed) {
+                    var tender_id = this.$route.params.tender_id
+                    var res = await this.callApi('post',`/api/tender/selection/${tender_id}`);
+                    if(res.status==200){
+                        this.getApplication('Selected');
+                        this.getTender();
+                        this.preLooding = false
+                    }else if(res.status==404){
+                        Swal.fire({
+                            icon:'error',
+                            title:'কোনো ইজারা জমা হয় নি!',
+                        })
+                        this.preLooding = false
+                    }else if(res.status==422){
+                        Swal.fire({
+                            icon:'error',
+                            title:'ইজারা খোলার সময় হয় নি!',
+                        })
+                        this.preLooding = false
+                    }
+                }
+            })
+
+
+
+
+
+
+
+
         },
 
 

@@ -108,7 +108,7 @@ export const routes = [
   { path:  `${prefix}/user/list/edit/:id`, component: userlistedit, name:'userlistedit',meta: { layout: adminlayout } },
 
 
-  { path:  `${prefix}/tender/list`, component: tenderlist, name:'tenderlist',meta: { layout: adminlayout } },
+  { path:  `${prefix}/tenders/list/:name`, component: tenderlist, name:'tenderlist',meta: { layout: adminlayout } },
   { path:  `${prefix}/tender/list/add`, component: tenderlistedit, name:'tenderlistadd',meta: { layout: adminlayout } },
   { path:  `${prefix}/tender/list/edit/:id`, component: tenderlistedit, name:'tenderlistedit',meta: { layout: adminlayout } },
   { path:  `${prefix}/tender/submit/list/:tender_id`, component: tendersubmitlist, name:'tendersubmitlist',meta: { layout: adminlayout } },
