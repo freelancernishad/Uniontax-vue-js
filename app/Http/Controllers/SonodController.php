@@ -2409,7 +2409,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 
                 ';
 
-                if($row->unioun_name=='balarampur')
+                if($row->unioun_name=='balarampur'){
                 $nagoriinfo .= '<p style="margin: 0;font-size:14px;">বিঃদ্রঃ উক্ত ওয়ারিশান সনদের সকল দায়ভার  সংশ্লিষ্ট ইউপি সদস্য/সদস্যার যাচাইকারীর ওপর বর্তাইবে ।</p>';
                     }
 
@@ -2423,7 +2423,7 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 
                 </p>';
 
-                if($row->unioun_name=='balarampur')
+                if($row->unioun_name=='balarampur'){
                 $nagoriinfo .= '<p style="margin: 0;font-size:14px;">বিঃদ্রঃ উক্ত উত্তরাধিকারী সনদের সকল দায়ভার  সংশ্লিষ্ট ইউপি সদস্য/সদস্যার যাচাইকারীর ওপর বর্তাইবে ।</p>';
                     }
 
