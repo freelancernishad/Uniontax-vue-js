@@ -482,7 +482,7 @@
                             <select class="form-control" v-model="form.orthoBchor" required>
                                 <option value="">অর্থ বছর নির্বাচন করুন</option>
                                 <option value="2023-24">২০২৩-২৪</option>
-                                <option value="2022-23">২০২২-২৩</option>
+                                <!-- <option value="2022-23">২০২২-২৩</option> -->
                             </select>
 
                         </div>
@@ -1045,7 +1045,7 @@ export default {
                 applicant_national_id_back_attachment: null,
                 applicant_birth_certificate_attachment: null,
                 prottoyon: null,
-                orthoBchor: '2022-23',
+                orthoBchor: '2023-24',
                 stutus: 'Pending',
                 payment_status: 'Unpaid',
                 successors: [
