@@ -521,7 +521,7 @@ if($payment->status=='Paid'){
             if($date<7){
                 $orthobochor = ($year-1)."-".date('y');
             }else{
-                $orthobochor = $year."-".date('y')+1;
+                $orthobochor = $year."-". (date('y')+1);
             }
 
 /////////////////////////////
