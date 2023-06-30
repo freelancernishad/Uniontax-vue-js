@@ -383,32 +383,37 @@ if($payment->status=='Paid'){
         };
         return $sonodFinalId;
     }
-    function allsonodId($union, $sonodname)
+    function allsonodId($union, $sonodname,$orthoBchor)
     {
         $sonodFinalId = '';
-        $sortYear =  date('y')-1;
+
+        $date = date('m');
+        if($date<7){
+            $sortYear =  date('y')-1;
+        }else{
+            $sortYear =  date('y');
+        }
+
+
+
+
+
         $UniouninfoCount =   Uniouninfo::where('short_name_e', $union)->latest()->count();
-        $SonodCount =   Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname])->latest()->count();
+        $SonodCount =   Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname,'orthoBchor'=>$orthoBchor])->latest()->count();
         if ($UniouninfoCount > 0) {
             $Uniouninfo =   Uniouninfo::where('short_name_e', $union)->latest()->first();
             if ($SonodCount > 0) {
-                $Sonod =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname])->latest()->first();
-                // $sonodFinalId = 'fgdfgdfg';
+                $Sonod =  Sonod::where(['unioun_name' => $union, 'sonod_name' => $sonodname,'orthoBchor'=>$orthoBchor])->latest()->first();
                 $sonodFinalId = $Sonod->sonod_Id + 1;
-                // if ($Sonod->sonod_Id == '') {
-                //     $sonod_Id = str_pad(00001, 5, '0', STR_PAD_LEFT);
-                //     $sonodFinalId =  $Uniouninfo->u_code . $sortYear . $sonod_Id;
-                // } else {
-                //     // $sonod_Id = $Sonod->Sonod+1;
-                //     $sonod_Id = str_pad($Sonod->sonod_Id, 5, '0', STR_PAD_LEFT);
-                //     // $sonodFinalId =  $Uniouninfo->u_code.$sortYear.$sonod_Id;
-                //     $sonodFinalId = $Sonod->sonod_Id + 1;
-                // }
             } else {
                 $sonod_Id = str_pad(00001, 5, '0', STR_PAD_LEFT);
                 $sonodFinalId =  $Uniouninfo->u_code . $sortYear . $sonod_Id;
             }
         };
+
+
+
+
         return $sonodFinalId;
     }
 
@@ -491,7 +496,7 @@ if($payment->status=='Paid'){
         $sonodEnName =  Sonodnamelist::where('bnname', $r->sonod_name)->first();
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
-        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors', 'charages','Annual_income','applicant_type_of_businessKhat','applicant_type_of_businessKhatAmount']);
+        $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors', 'charages','Annual_income','applicant_type_of_businessKhat','applicant_type_of_businessKhatAmount','orthoBchor']);
 
             $Insertdata['applicant_type_of_businessKhat'] = $r->applicant_type_of_businessKhat;
 
@@ -509,6 +514,23 @@ if($payment->status=='Paid'){
             if($r->sonod_name=='বিবিধ প্রত্যয়নপত্র'){
                 $Insertdata['sameNameNew'] = 1;
             }
+///////////////////////////////
+            $year = date('Y');
+            $date = date('m');
+            $orthobochor = '';
+            if($date<7){
+                $orthobochor = ($year-1)."-".date('y');
+            }else{
+                $orthobochor = $year."-".date('y')+1;
+            }
+
+/////////////////////////////
+
+            if($r->sonod_name=='ট্রেড লাইসেন্স'){
+                $Insertdata['orthoBchor'] = $r->orthoBchor;
+            }else{
+                $Insertdata['orthoBchor'] = $orthobochor;
+            }
 
 
 
@@ -521,7 +543,7 @@ if($payment->status=='Paid'){
 		$unioun_name = $r->unioun_name;
         $sonod_name = $r->sonod_name;
         $dateFolder = date("Y/m/d");
-        $sonodId = (string)$this->allsonodId($unioun_name, $sonod_name);
+        $sonodId = (string)$this->allsonodId($unioun_name, $sonod_name,$orthobochor);
 
 
         if ($imageCount > 1) {

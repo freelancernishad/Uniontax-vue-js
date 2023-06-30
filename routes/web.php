@@ -390,6 +390,20 @@ $AKPAY_MER_PASS_KEY = 'Tet@merEK091';
 
 
 Route::get('/textemail', function () {
+
+    $year = date('Y');
+    $date = date('m');
+    $orthobochor = '';
+    if($date<7){
+        $orthobochor = ($year-1)."-".date('y');
+    }else{
+        $orthobochor = $year."-".date('y')+1;
+    }
+
+    return $orthobochor;
+    die();
+
+
     $deccriptionEmail = "Your application no. 77349852200010 has been approved. Document is available at https://test.uniontax.gov.bd/sonod/d/22425";
     $emaildata= ['deccription'=>$deccriptionEmail];
 return view('email_view',$emaildata);
