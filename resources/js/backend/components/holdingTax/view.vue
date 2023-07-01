@@ -87,7 +87,7 @@
 
 <tbody>
 
-    <tr v-for="bok in infoModal.bokeya">
+    <tr v-for="bok in infoModal.bokeya"  v-if="bok.price!='0'">
         <td>{{ bok.year }}</td>
         <td>{{ bok.price }}</td>
 
@@ -110,7 +110,7 @@
 
     <tr>
         <td>মোট বকেয়া:</td>
-        <td>{{ infoModal.content.total_bokeya }}</td>
+        <td>{{ infoModal.totalBokeya }}</td>
         <td></td>
 
 
@@ -171,6 +171,7 @@
                     },
                     bokeya:{},
                     content_id: '',
+                    totalBokeya: 0,
                 },
             }
         },
@@ -186,6 +187,17 @@
             var res = await this.callApi('get',`/api/holding/bokeya/list?holdingTax_id=${item.data.id}`,[])
 
             this.infoModal.bokeya = res.data
+
+            var totalBokeya = 0;
+            res.data.forEach(ele => {
+                if(ele.status=='Unpaid'){
+                    totalBokeya += Number(ele.price);
+                }
+            });
+            this.infoModal.totalBokeya = totalBokeya;
+
+
+
             this.preLooding = false
         },
 
