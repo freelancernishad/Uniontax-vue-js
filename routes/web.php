@@ -49,7 +49,6 @@ Route::get('/holding/tax/renew', function () {
             "status"=> "Unpaid",
         ];
         HoldingBokeya::create($insertData);
-
     }
 
 
