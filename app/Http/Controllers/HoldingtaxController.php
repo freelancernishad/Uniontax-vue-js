@@ -204,6 +204,7 @@ class HoldingtaxController extends Controller
             $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->first();
             $invoice=[
              'totalAmount'=>$holdingBokeyasAmount,
+             'orthoBchor'=>$COB,
              ];
             $TaxInvoice->update($invoice);
             }else{
