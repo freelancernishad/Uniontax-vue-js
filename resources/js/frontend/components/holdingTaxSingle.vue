@@ -76,7 +76,7 @@
 
 <tbody>
 
-    <tr v-for="bok in infoModal.bokeya">
+    <tr v-for="bok in infoModal.bokeya" v-if="bok.price!='0'">
         <td>{{ bok.year }}</td>
         <td>{{ bok.price }}</td>
 
@@ -171,7 +171,7 @@
             var totalBokeya = 0;
             res.data.forEach(ele => {
                 if(ele.status=='Unpaid'){
-                    totalBokeya += ele.price;
+                    totalBokeya += Number(ele.price);
                 }
             });
             this.infoModal.totalBokeya = totalBokeya;
