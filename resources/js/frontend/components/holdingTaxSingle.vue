@@ -90,7 +90,7 @@
 
     <tr>
         <td>মোট বকেয়া:</td>
-        <td>{{ infoModal.content.total_bokeya }}</td>
+        <td>{{ infoModal.totalBokeya }}</td>
         <td></td>
 
 
@@ -150,6 +150,7 @@
                     },
                     bokeya:{},
                     content_id: '',
+                    totalBokeya: 0,
                 },
             }
         },
@@ -165,6 +166,18 @@
             var res = await this.callApi('get',`/api/holding/bokeya/list?holdingTax_id=${item.data.id}`,[])
 
             this.infoModal.bokeya = res.data
+
+
+            var totalBokeya = 0;
+            res.data.forEach(ele => {
+                if(ele.status=='Unpaid'){
+                    totalBokeya += ele.price;
+                }
+            });
+            this.infoModal.totalBokeya = totalBokeya;
+
+
+
         },
 
 
