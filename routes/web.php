@@ -23,6 +23,7 @@ use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\TenderController;
 use App\Http\Controllers\TenderListController;
+use App\Models\HoldingBokeya;
 use lemonpatwari\bangladeshgeocode\Models\Division;
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,26 @@ use lemonpatwari\bangladeshgeocode\Models\Division;
 |
 */
 
-// Route::get('/pdf/download/{Sname}/{id}', function () {
-//     return 'sss';
-//    });
+Route::get('/holding/tax/renew', function () {
+    $holdingBokeya =  HoldingBokeya::where(['year'=>'2022-2023'])->get();
+
+
+    foreach ($holdingBokeya as $value) {
+
+        $insertData = [
+            "holdingTax_id"=> $value->holdingTax_id,
+            "year"=> "2023-2024",
+            "price"=> $value->price,
+            "status"=> "Unpaid",
+        ];
+        HoldingBokeya::create($insertData);
+
+    }
+
+
+
+
+   });
 
 
 

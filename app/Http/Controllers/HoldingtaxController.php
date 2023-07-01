@@ -175,8 +175,13 @@ class HoldingtaxController extends Controller
     public function holdingPaymentInvoice($id)
     {
 
+
           $holdingBokeya = HoldingBokeya::find($id);
 
+          $COB = COB(1);
+          if($holdingBokeya->payOB){
+              $COB = $holdingBokeya->payOB;
+          }
 
         $payYear = $holdingBokeya->payYear;
         $holdingTax_id = $holdingBokeya->holdingTax_id;
@@ -207,6 +212,7 @@ class HoldingtaxController extends Controller
                     'invoiceId'=>time().$id,
                     'holdingTax_id'=>$holdingTax_id,
                     'PayYear'=>date('Y'),
+                    'orthoBchor'=>$COB,
                     'totalAmount'=>$holdingBokeyasAmount,
                     'status'=>'Unpaid',
                 ];
@@ -228,6 +234,7 @@ class HoldingtaxController extends Controller
                 $TaxInvoice =  TaxInvoice::where(['holdingTax_id'=>$holdingTax_id,'PayYear'=>$payYear])->first();
                 $invoice=[
                  'totalAmount'=>$holdingBokeyasAmount,
+                 'orthoBchor'=>$COB,
                  'status'=>'Paid',
                  ];
                 $TaxInvoice->update($invoice);
@@ -236,6 +243,7 @@ class HoldingtaxController extends Controller
                     'invoiceId'=>time().$id,
                     'holdingTax_id'=>$holdingTax_id,
                     'PayYear'=>$payYear,
+                    'orthoBchor'=>$COB,
                     'totalAmount'=>$holdingBokeyasAmount,
                     'status'=>'Paid',
                 ];
@@ -263,16 +271,19 @@ class HoldingtaxController extends Controller
         $union = $holdingTax->unioun;
         $unions = Uniouninfo::where(['short_name_e'=>$union])->first();
 
+
+
+
         if($holdingBokeya->status=='Unpaid'){
             $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->get();
-            $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid','year'=>'2022-2023'])->sum('price');
-            $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->where('year','!=','2022-2023')->sum('price');
+            $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid','year'=>COB(1)])->sum('price');
+            $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'status'=>'Unpaid'])->where('year','!=',COB(1))->sum('price');
         }else{
 
 
             $holdingBokeyas = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->get();
-            $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear,'year'=>'2022-2023'])->sum('price');
-            $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->where('year','!=','2022-2023')->sum('price');
+            $currentamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear,'year'=>COB(1)])->sum('price');
+            $previousamount  = HoldingBokeya::where(['holdingTax_id'=>$holdingTax_id,'payYear'=>$payYear])->where('year','!=',COB(1))->sum('price');
         }
 
 
@@ -338,6 +349,7 @@ class HoldingtaxController extends Controller
 
         $invoiceId = $TaxInvoice->invoiceId;
         $status = $TaxInvoice->status;
+        $orthoBchor = $TaxInvoice->orthoBchor;
         $created_at = date("d/m/Y", strtotime($TaxInvoice->created_at));
         $subtotal = number_format($TaxInvoice->totalAmount,2);
 
@@ -490,7 +502,7 @@ class HoldingtaxController extends Controller
 
         <table style='width:100%'>
         <tr>
-            <td colspan='2'>অর্থ বছর- ".int_en_to_bn('2022-2023')."</td>
+            <td colspan='2'>অর্থ বছর- ".int_en_to_bn($orthoBchor)."</td>
             <td style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
         <tr>
 
@@ -668,7 +680,7 @@ class HoldingtaxController extends Controller
 
         <table style='width:100%'>
         <tr>
-            <td colspan='2'>অর্থ বছর- ".int_en_to_bn('2022-2023')."</td>
+            <td colspan='2'>অর্থ বছর- ".int_en_to_bn($orthoBchor)."</td>
             <td style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
         <tr>
 
@@ -1391,7 +1403,7 @@ $total_bokeya = 0;
         $holding =  Holdingtax::create($data);
         $curentdata = [
             'holdingTax_id'=>$holding->id,
-            'year'=>"2022-2023",
+            'year'=>"2023-2024",
             'price'=>$current_year_kor,
             'status'=>'Unpaid'
         ];

@@ -37,7 +37,7 @@ class PaymentController extends Controller
             if($payment->sonod_type=='holdingtax'){
                 $hosdingBokeya = HoldingBokeya::find($payment->sonodId);
                 // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
-                $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
+                $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y'),'payOB'=>COB(1)]);
             }else{
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
             }

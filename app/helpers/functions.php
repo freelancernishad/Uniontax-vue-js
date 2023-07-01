@@ -1649,3 +1649,30 @@ function characterCount($string){
 // EOF;
 // var_dump(extractCommonWords($string), $string);
 
+
+function COB($full=0){
+    $year = date('Y');
+    $date = date('m');
+    $orthobochor = '';
+
+    if($full){
+        if($date<7){
+            $orthobochor = ($year-1)."-".date('Y');
+        }else{
+            $orthobochor = $year."-". (date('Y')+1);
+        }
+    }else{
+        if($date<7){
+            $orthobochor = ($year-1)."-".date('y');
+        }else{
+            $orthobochor = $year."-". (date('y')+1);
+        }
+    }
+
+
+
+
+    return $orthobochor;
+
+
+}

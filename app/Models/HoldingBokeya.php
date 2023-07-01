@@ -15,6 +15,7 @@ class HoldingBokeya extends Model
         'year',
         'price',
         'payYear',
+        'payOB',
         'status',
     ];
 

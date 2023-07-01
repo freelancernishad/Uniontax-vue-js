@@ -13,6 +13,7 @@ class TaxInvoice extends Model
        'invoiceId',
        'holdingTax_id',
        'PayYear',
+       'orthoBchor',
        'totalAmount',
        'status',
     ];
