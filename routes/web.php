@@ -24,6 +24,7 @@ use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\TenderController;
 use App\Http\Controllers\TenderListController;
 use App\Models\HoldingBokeya;
+use App\Models\Holdingtax;
 use lemonpatwari\bangladeshgeocode\Models\Division;
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +37,38 @@ use lemonpatwari\bangladeshgeocode\Models\Division;
 |
 */
 
+Route::get('/holding/tax/update/{union}', function ($unioun) {
+
+    $holdingtaxs =  Holdingtax::with(['holdingBokeyas' => function ($query) use ($unioun) {
+        $query->where(['year'=>'2023-2024','price'=>0]);
+
+    }])->where('unioun', $unioun)->orderBy('id','desc')->get();
+
+
+    $holdingtaxs =  $filteredHoldingTaxs = $holdingtaxs->filter(function ($holdingTax) {
+        return !$holdingTax->holdingBokeyas->isEmpty();
+    });
+
+
+    return $holdingtaxs;
+
+    // $holdingBokeya =  HoldingBokeya::where(['year'=>'2022-2023'])->get();
+    // foreach ($holdingBokeya as $value) {
+
+    //     $insertData = [
+    //         "holdingTax_id"=> $value->holdingTax_id,
+    //         "year"=> "2023-2024",
+    //         "price"=> $value->price,
+    //         "status"=> "Unpaid",
+    //     ];
+    //     HoldingBokeya::create($insertData);
+    // }
+
+    // 47085
+   });
+
 Route::get('/holding/tax/renew', function () {
     $holdingBokeya =  HoldingBokeya::where(['year'=>'2022-2023'])->get();
-
-
     foreach ($holdingBokeya as $value) {
 
         $insertData = [
@@ -50,8 +79,6 @@ Route::get('/holding/tax/renew', function () {
         ];
         HoldingBokeya::create($insertData);
     }
-
-
 
     // 47085
    });

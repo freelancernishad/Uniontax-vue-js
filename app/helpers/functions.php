@@ -1676,3 +1676,166 @@ function COB($full=0){
 
 
 }
+
+
+
+function holdingTaxAmount(){
+    
+
+
+        //  echo '<pre>';
+        //  print_r($r->input());
+
+        
+        $griher_barsikh_mullo = $this->int_bn_to_en($r->griher_barsikh_mullo);
+        $jomir_vara = $this->int_bn_to_en($r->jomir_vara);
+        $barsikh_vara = $this->int_bn_to_en($r->barsikh_vara);
+        $category = $r->category;
+
+
+
+
+
+        if ($category == 'মালিক নিজে বসবাসকারী') {
+            //বার্ষিক মূল্যের 7.5%
+            $barsikh_muller_percent = ($griher_barsikh_mullo * 7.5) / 100;
+            //মোট মূল্য
+            $total_mullo = $jomir_vara + $barsikh_muller_percent;
+            //রক্ষণাবেক্ষণ খরচ
+            $rokhona_bekhon_khoroch = $total_mullo / 6;
+            // প্রাক্কলিত মূল্য
+            $prakklito_mullo = $total_mullo - $rokhona_bekhon_khoroch;
+            // রেয়াত
+            $reyad = $prakklito_mullo / 4;
+            // প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $prodey_korjoggo_barsikh_mullo = $prakklito_mullo - $reyad;
+            // নির্ধারিত হোল্ডিং কর (৭%)
+            $current_year_kor = ($prodey_korjoggo_barsikh_mullo * 7) / 100;
+            if ($current_year_kor >= 500) {
+                $current_year_kor = 500;
+            } else {
+                $current_year_kor = $current_year_kor;
+            }
+            //echo $current_year_kor;
+            //আংশিক প্রদেয় করযোগ্য
+            $angsikh_prodoy_korjoggo_barsikh_mullo = '';
+            //রক্ষণাবেক্ষণ খরচ (6%)
+            $rokhona_bekhon_khoroch_percent = '';
+            //প্রদেয় করযোগ্য বার্ষিক ভাড়ার মূল্য
+            $prodey_korjoggo_barsikh_varar_mullo = '';
+            //মোট প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $total_prodey_korjoggo_barsikh_mullo = '';
+        } else if ($category == 'প্রতিষ্ঠান') {
+            //বার্ষিক মূল্যের 7.5%
+            $barsikh_muller_percent = ($griher_barsikh_mullo * 7.5) / 100;
+            //মোট মূল্য
+            $total_mullo = $jomir_vara + $barsikh_muller_percent;
+            //রক্ষণাবেক্ষণ খরচ
+            $rokhona_bekhon_khoroch = $total_mullo / 6;
+            // প্রাক্কলিত মূল্য
+            $prakklito_mullo = $total_mullo - $rokhona_bekhon_khoroch;
+            // রেয়াত
+            $reyad = $prakklito_mullo / 4;
+            // প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $prodey_korjoggo_barsikh_mullo = $prakklito_mullo - $reyad;
+            // নির্ধারিত হোল্ডিং কর (৭%)
+            $current_year_kor = ($prodey_korjoggo_barsikh_mullo * 7) / 100;
+            //আংশিক প্রদেয় করযোগ্য
+            $angsikh_prodoy_korjoggo_barsikh_mullo = '';
+            //রক্ষণাবেক্ষণ খরচ (6%)
+            $rokhona_bekhon_khoroch_percent = '';
+            //প্রদেয় করযোগ্য বার্ষিক ভাড়ার মূল্য
+            $prodey_korjoggo_barsikh_varar_mullo = '';
+            //মোট প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $total_prodey_korjoggo_barsikh_mullo = '';
+        } else if ($category == 'ভাড়া') {
+            //ভারা
+            //বার্ষিক ভাড়ার মূল্যের
+            //রক্ষণাবেক্ষণ খরচ ৬%
+            // প্রদেয় করযোগ্য বার্ষিক মূল্য = বার্ষিক ভাড়ার মূল্যের - রক্ষণাবেক্ষণ খরচ
+            // নির্ধারিত হোল্ডিং কর (৭%) =  প্রদেয় করযোগ্য বার্ষিক মূল্য৭%
+            //বার্ষিক মূল্যের 7.5%
+            $barsikh_muller_percent = '';
+            //মোট মূল্য
+            $total_mullo = '';
+            //রক্ষণাবেক্ষণ খরচ
+            $rokhona_bekhon_khoroch = '';
+            // প্রাক্কলিত মূল্য
+            $prakklito_mullo = '';
+            // রেয়াত
+            $reyad = '';
+            // প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $prodey_korjoggo_barsikh_mullo = '';
+            //আংশিক প্রদেয় করযোগ্য
+            $angsikh_prodoy_korjoggo_barsikh_mullo = '';
+            //রক্ষণাবেক্ষণ খরচ (6%)
+            $rokhona_bekhon_khoroch_percent = $barsikh_vara / 6;;
+            //প্রদেয় করযোগ্য বার্ষিক ভাড়ার মূল্য
+            $prodey_korjoggo_barsikh_varar_mullo = $barsikh_vara - $rokhona_bekhon_khoroch_percent;
+            //মোট প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $total_prodey_korjoggo_barsikh_mullo = '';
+            // নির্ধারিত হোল্ডিং কর (৭%)
+            $current_year_kor = ($prodey_korjoggo_barsikh_varar_mullo * 7) / 100;
+            if ($current_year_kor >= 500) {
+                $current_year_kor = 500;
+            } else {
+                $current_year_kor = $current_year_kor;
+            }
+            //echo $current_year_kor;
+        } else if ($category == 'আংশিক ভাড়া') {
+            //বার্ষিক মূল্যের 7.5%
+            $barsikh_muller_percent = ($griher_barsikh_mullo * 7.5) / 100;
+            //মোট মূল্য
+            $total_mullo = $jomir_vara + $barsikh_muller_percent;
+            //রক্ষণাবেক্ষণ খরচ
+            $rokhona_bekhon_khoroch = $total_mullo / 6;
+            // প্রাক্কলিত মূল্য
+            $prakklito_mullo = $total_mullo - $rokhona_bekhon_khoroch;
+            // রেয়াত
+            $reyad = $prakklito_mullo / 4;
+            // প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $prodey_korjoggo_barsikh_mullo = '';
+            //আংশিক প্রদেয় করযোগ্য
+            $angsikh_prodoy_korjoggo_barsikh_mullo = $prakklito_mullo - $reyad;
+            //রক্ষণাবেক্ষণ খরচ (6%)
+            $rokhona_bekhon_khoroch_percent = $barsikh_vara / 6;
+            //প্রদেয় করযোগ্য বার্ষিক ভাড়ার মূল্য
+            $prodey_korjoggo_barsikh_varar_mullo = $barsikh_vara - $rokhona_bekhon_khoroch_percent;
+            //মোট প্রদেয় করযোগ্য বার্ষিক মূল্য
+            $total_prodey_korjoggo_barsikh_mullo = $angsikh_prodoy_korjoggo_barsikh_mullo + $prodey_korjoggo_barsikh_varar_mullo;
+            // নির্ধারিত হোল্ডিং কর (৭%)
+            $current_year_kor = ($total_prodey_korjoggo_barsikh_mullo * 7) / 100;
+            if ($current_year_kor >= 500) {
+                $current_year_kor = 500;
+            } else {
+                $current_year_kor = $current_year_kor;
+            }
+            //echo $current_year_kor;
+        }
+
+        //die();
+        //ভারা
+        //বার্ষিক ভাড়ার মূল্যের
+        //রক্ষণাবেক্ষণ খরচ ৬%
+        // প্রদেয় করযোগ্য বার্ষিক মূল্য = বার্ষিক ভাড়ার মূল্যের - রক্ষণাবেক্ষণ খরচ
+        // নির্ধারিত হোল্ডিং কর (৭%) =  প্রদেয় করযোগ্য বার্ষিক মূল্য৭%
+        //মালিক + ভাড়া
+        //গৃহের বার্ষিক  মূল্য
+        //বার্ষিক মূল্যের 7.5%
+        //জমির ভাড়া
+        //মোট মূল্য
+        //রক্ষণাবেক্ষণ খরচ
+        //প্রাক্কলিত মূল্য
+        //রেয়াত
+        //আংশিক প্রদেয় করযোগ্য = প্রাক্কলিত মূল্য -রেয়াত
+        //বার্ষিক ভাড়ার = ইনপুট
+        //রক্ষণাবেক্ষণ খরচ (6%)  = বার্ষিক ভাড়ার ৬%
+        //প্রদেয় করযোগ্য বার্ষিক ভাড়ার মূল্য  = বার্ষিক ভাড়ার -রক্ষণাবেক্ষণ খরচ
+        //মোট প্রদেয় করযোগ্য বার্ষিক মূল্য  = আংশিক প্রদেয় করযোগ্য + প্রদেয় করযোগ্য বার্ষিক ভাড়ার মূল্য
+        // নির্ধারিত হোল্ডিং কর (৭%) = মোট প্রদেয় করযোগ্য বার্ষিক মূল্য৭%
+
+
+        return $current_year_kor;
+
+}
+
