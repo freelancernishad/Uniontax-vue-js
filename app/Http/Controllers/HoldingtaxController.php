@@ -1223,9 +1223,9 @@ class HoldingtaxController extends Controller
 
         //  echo '<pre>';
         //  print_r($r->input());
-        $griher_barsikh_mullo = $this->int_bn_to_en($r->griher_barsikh_mullo);
-        $jomir_vara = $this->int_bn_to_en($r->jomir_vara);
-        $barsikh_vara = $this->int_bn_to_en($r->barsikh_vara);
+        $griher_barsikh_mullo = int_bn_to_en($r->griher_barsikh_mullo);
+        $jomir_vara = int_bn_to_en($r->jomir_vara);
+        $barsikh_vara = int_bn_to_en($r->barsikh_vara);
         $category = $r->category;
         if ($category == 'মালিক নিজে বসবাসকারী') {
             //বার্ষিক মূল্যের 7.5%

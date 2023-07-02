@@ -49,6 +49,7 @@ Route::get('/holding/tax/update/{union}', function ($unioun) {
         return !$holdingTax->holdingBokeyas->isEmpty();
     });
 
+    holdingTaxAmount();
 
     return $holdingtaxs;
 
