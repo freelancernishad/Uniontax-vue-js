@@ -1679,7 +1679,7 @@ function COB($full=0){
 
 
 
-function holdingTaxAmount($category,$griher_barsikh_mullo,$jomir_vara,$barsikh_vara){
+function holdingTaxAmount($category='মালিক নিজে বসবাসকারী',$griher_barsikh_mullo=0,$jomir_vara=0,$barsikh_vara=0){
 
 
 
