@@ -1679,18 +1679,20 @@ function COB($full=0){
 
 
 
-function holdingTaxAmount(){
-    
+function holdingTaxAmount($category,$griher_barsikh_mullo,$jomir_vara,$barsikh_vara){
+
 
 
         //  echo '<pre>';
         //  print_r($r->input());
 
-        
-        $griher_barsikh_mullo = $this->int_bn_to_en($r->griher_barsikh_mullo);
-        $jomir_vara = $this->int_bn_to_en($r->jomir_vara);
-        $barsikh_vara = $this->int_bn_to_en($r->barsikh_vara);
-        $category = $r->category;
+
+        $griher_barsikh_mullo = int_bn_to_en($griher_barsikh_mullo);
+        $jomir_vara = int_bn_to_en($jomir_vara);
+        $barsikh_vara = int_bn_to_en($barsikh_vara);
+        $category = $category;
+
+
 
 
 
