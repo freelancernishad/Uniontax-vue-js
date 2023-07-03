@@ -168,7 +168,8 @@ export default {
                             <li>${item.commette3phone}</li>
                         </ol>
 
-                        `
+                        `,
+
 
                     })
         },
@@ -192,6 +193,8 @@ export default {
                 </div>
                 `,
             focusConfirm: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
             preConfirm: async (resolve) => {
                 var committe1 = document.getElementById('committe1').value
                 var committe2 = document.getElementById('committe2').value
@@ -257,6 +260,8 @@ export default {
                 </div>
 
                 `,
+                allowOutsideClick: false,
+                        allowEscapeKey: false,
             focusConfirm: false,
             preConfirm: async (resolve) => {
 

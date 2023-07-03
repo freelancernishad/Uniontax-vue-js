@@ -26,6 +26,8 @@ use App\Http\Controllers\TenderListController;
 use App\Models\HoldingBokeya;
 use App\Models\Holdingtax;
 use lemonpatwari\bangladeshgeocode\Models\Division;
+use PhpParser\Node\Stmt\Foreach_;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +73,7 @@ Route::get('/holding/tax/update/{union}', function ($unioun) {
     $i = 1;
     foreach ($holdingtaxs as $value) {
 
+
        $griher_barsikh_mullo =  $value->griher_barsikh_mullo ? int_bn_to_en($value->griher_barsikh_mullo) : 0;
        $jomir_vara =  $value->jomir_vara ? int_bn_to_en($value->jomir_vara) : 0;
        $barsikh_vara =  $value->barsikh_vara ? int_bn_to_en($value->barsikh_vara) : 0;
@@ -78,7 +81,16 @@ Route::get('/holding/tax/update/{union}', function ($unioun) {
 
             $currentYearAmount =  holdingTaxAmount($value->category,$griher_barsikh_mullo,$jomir_vara,$barsikh_vara);
 
-            if($currentYearAmount<1){
+            foreach ($value->holdingBokeyas as $hB) {
+                $bokeyaUpdate = HoldingBokeya::find($hB->id);
+                 $bokeyaUpdate->update(['price'=>$currentYearAmount]);
+            }
+
+            // return $value->holdingBokeyas;
+
+
+
+            // if($currentYearAmount<1){
                 $html .= "
 
                 <tr>
@@ -93,7 +105,7 @@ Route::get('/holding/tax/update/{union}', function ($unioun) {
                 </tr>
                 ";
                 $i++;
-            }
+            // }
             // print_r("$currentYearAmount <br/>");
 
 

@@ -115,7 +115,7 @@ export default {
 
         this.getTender();
         if(this.tenders.status=='Completed'){
-            this.getApplication('Selected');
+            this.getApplication();
         }
     },
     methods: {
@@ -133,7 +133,7 @@ export default {
                     var tender_id = this.$route.params.tender_id
                     var res = await this.callApi('post',`/api/tender/selection/${tender_id}`);
                     if(res.status==200){
-                        this.getApplication('Selected');
+                        this.getApplication();
                         this.getTender();
                         this.preLooding = false
                     }else if(res.status==404){
