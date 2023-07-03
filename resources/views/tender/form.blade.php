@@ -154,8 +154,35 @@ text-align: center;
           </div>
         @endif
 
+        @if($requestMethod=='GET')
 
 
+
+        <form method="POST" enctype="multipart/form-data" action="/tenders/{{ $tender_list->tender_id }}">
+            @csrf
+        <div class="row">
+            <div class="col-md-12 mt-3 row">
+                <div class="col-md-5" >
+                    <div class="form-group">
+                        <label for="" class="labelColor">ফর্ম মোবাইল</label>
+                        <input type="text" id="PhoneNumber" name="PhoneNumber"   class="form-control" >
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="" class="labelColor">ফর্ম নং</label>
+                        <input type="text" id="form_code" name="form_code" class="form-control" >
+                    </div>
+                </div>
+                <div class="col-md-2" style="display: flex;justify-content: space-around;align-items: center;margin-top: 14px;" v-if="attactType=='nid'">
+                    <div class="form-group mb-0">
+                    <button class="btn btn-info" type="submit">Get Form</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    @else
 
 
     <form method="POST" enctype="multipart/form-data" action="/form/submit">
@@ -163,6 +190,11 @@ text-align: center;
 
 
         <input type="hidden" name="tender_id" value="{{ $tender_list->id }}">
+
+
+
+
+
 
         <div class="row">
 
@@ -181,18 +213,6 @@ text-align: center;
         <p>নিলামের বিবরণ- {{ $tender_list->description }}</p>
 
     </div>
-
-
-
-
-{{--
-    <div class="col-md-12 mt-3">
-        <div class="form-group">
-          <label class="mb-1" for="email">ইমেইল</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-    </div> --}}
-
 
 
     <div class="col-md-12 mt-3 row">
@@ -328,6 +348,7 @@ text-align: center;
         <button type="submit" class="btn btn-info mt-5">দরপত্র দাখিল করুন</button>
       </form>
 
+      @endif
 
 
 
@@ -494,7 +515,7 @@ fetch(`https://uniontax.xyz/api/citizen/information/nid?sToken=${sToken}`, reque
                         var postoffice = document.getElementById('postoffice');
                         var thana = document.getElementById('thana');
                         var distric = document.getElementById('distric');
-               
+
                         applicant_orgName.value = nidD.fullNameBN
                         applicant_org_fatherName.value = nidD.fathersNameBN
                         distric.value = nidD.presentDistrict

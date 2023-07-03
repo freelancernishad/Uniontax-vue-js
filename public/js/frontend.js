@@ -23906,13 +23906,18 @@ var render = function render() {
   }), _vm._v(" "), _c("div", {
     staticClass: "text-center"
   }, [_c("a", {
-    staticClass: "btn btn-info",
+    staticClass: "btn btn-danger mt-3",
     attrs: {
       target: "_blank",
       href: "/pdf/tenders/" + _vm.tender.tender_id
     }
   }, [_vm._v("বিজ্ঞপ্তি ডাউনলোড করুন")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-info",
+    staticClass: "btn btn-warning mt-3",
+    attrs: {
+      href: "/tenders/form/buy/" + _vm.tender.tender_id
+    }
+  }, [_vm._v("সিডিউল ফর্ম কিনুন")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-info mt-3",
     attrs: {
       href: "/tenders/" + _vm.tender.tender_id
     }

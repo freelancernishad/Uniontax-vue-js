@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TenderFormBuy;
+use App\Models\Payment;
 use Illuminate\Http\Request;
+use App\Models\TenderFormBuy;
 
 class TenderFormBuyController extends Controller
 {
@@ -50,6 +51,7 @@ class TenderFormBuyController extends Controller
        ];
        $tenderformbuy = TenderFormBuy::create($datas);
 
+       return redirect("/tenders/payment/$tenderformbuy->id");
 
     }
 
@@ -97,4 +99,36 @@ class TenderFormBuyController extends Controller
     {
         //
     }
+
+
+    function tenderFormPaymentSuccess(Request $request){
+
+
+        $transId =  $request->transId;
+        $payment = Payment::where(['trxId' => $transId])->first();
+        $id = $payment->sonodId;
+        $sonod = TenderFormBuy::find($id);
+
+
+
+
+
+
+                    if($payment->status=='Paid'){
+                        $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.";
+                        return view('tenderSuccess', compact('payment', 'sonod'));
+                    }else{
+                    echo "
+                    <div style='text-align:center'>
+                    <h1 style='text-align:center'>Payment Failed</h1>
+                    <a href='/' style='border:1px solid black;padding:10px 12px; background:red;color:white'>Back To Home</a>
+                    <a href='/sonod/payment/$sonod->id' style='border:1px solid black;padding:10px 12px; background:green;color:white'>Pay Again</a>
+                    </div>
+                    ";
+                    }
+
+
+    }
+
+
 }

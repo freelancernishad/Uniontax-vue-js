@@ -22,6 +22,7 @@ use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\TenderController;
+use App\Http\Controllers\TenderFormBuyController;
 use App\Http\Controllers\TenderListController;
 use App\Models\HoldingBokeya;
 use App\Models\Holdingtax;
@@ -159,7 +160,6 @@ Route::get('/pdf/tenders/{tender_id}', [TenderListController::class,'viewpdf']);
 
 
 
-Route::get('/tenders/payment/{tender_id}', [TenderListController::class,'PaymentCreate']);
 
 
 
@@ -207,138 +207,14 @@ Route::get('/tenders/form/buy/{tender_id}', function ($tender_id) {
 
 
 
+Route::get('/tenders/payment/{id}', [TenderListController::class,'PaymentCreate']);
 
-Route::get('/tenders/{tender_id}', function ($tender_id) {
 
-
-    $tender_list_count = TenderList::where('tender_id',$tender_id)->count();
-    if($tender_list_count<1){
-        return 'No data Found';
-    }
-
-    $tender_list = TenderList::where('tender_id',$tender_id)->first();
-    $tenderCount =  Tender::where('tender_id',$tender_list->id)->count();
-    if($tenderCount>0){
-        $tender = Tender::where('tender_id',$tender_list->id)->orderBy('id','desc')->first();
-        $dorId = $tender->dorId+1;
-    }else{
-        $dorId = 120001;
-    }
+Route::get('/tenders/{tender_id}', [TenderListController::class,'TenderForm']);
+Route::post('/tenders/{tender_id}', [TenderListController::class,'TenderForm']);
 
 
 
-    // return view('form');
-      $currentDate = strtotime(date("d-m-Y H:i:s"));
-
-    $startDate = strtotime(date("d-m-Y H:i:s",strtotime($tender_list->tender_start)));
-
-    $EndDate = strtotime(date("d-m-Y H:i:s",strtotime($tender_list->tender_end)));
-
-
-    // <h1 style='text-align:center;margin-top:20px;color:green'>ফলাফল এর জন্য অপেক্ষা করুন :- ".date('d-m-Y h:i A',strtotime($tender_list->tender_open))."  পর্যন্ত</h1>
-
-   if($currentDate>$EndDate){
-
-
-       if($tender_list->status=='Completed'){
-        $selectedPerson = Tender::where(['tender_id'=>$tender_list->id,'status'=>'Selected'])->get();
-
-        $table = "";
-        $table .="
-        <table class='table' border='1' style='border-collapse:collapse'>
-        <thead>
-            <tr>
-            <th scope='col'>দরপত্র নম্বর</th>
-            <th scope='col'>নাম</th>
-            <th scope='col'>পিতার নাম</th>
-            <th scope='col'>ঠিকানা</th>
-            <th scope='col'>মোবাইল</th>
-            <th scope='col'>দরের পরিমাণ</th>
-            <th scope='col'>কথায়</th>
-            <th scope='col'>জামানতের পরিমাণ</th>
-            </tr>
-        </thead>
-        <tbody>";
-
-        foreach ($selectedPerson as $application) {
-
-
-            $table .="
-            <tr>
-            <th scope='row'>$application->dorId</th>
-                <td>$application->applicant_orgName</td>
-                <td>$application->applicant_org_fatherName</td>
-                <td>গ্রাম- $application->vill, ডাকঘর- $application->postoffice, উপজেলা- $application->thana, জেলা- $application->distric</td>
-                <td>$application->mobile</td>
-                <td>$application->DorAmount</td>
-                <td>$application->DorAmountText</td>
-                <th>$application->depositAmount</td>
-                </tr>";
-
-            }
-
-
-        $table .="</tbody>
-        </table>";
-
-
-        return "
-
-            <style>
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            tr:nth-of-type(odd) {
-                background: #eee;
-            }
-            th {
-                background: green;
-                color: white;
-                font-weight: bold;
-            }
-            td, th {
-                padding: 6px;
-                border: 1px solid #ccc;
-                text-align: left;
-            }
-            </style>
-
-        <h1 style='text-align:center;margin-top:20px;color:green'>এই ইজারার নির্বাচিত সদস্যা এর তথ্য নিচে দেখুন।</h1>
-
-            $table
-
-
-        ";
-    }else{
-        $tender_list->update(['status'=>'proccesing']);
-        return "
-        <h1 style='text-align:center;margin-top:20px;color:red'>দরপত্র দাখিলের সময় শেষ</h1>
-        <h1 style='text-align:center;margin-top:20px;color:green'>ফলাফল এর জন্য অপেক্ষা করুন </h1>
-        ";
-    }
-
-
-
-
-
-    }
-
-   if($currentDate>$startDate){
-    $tender_list->update(['status'=>'active']);
-       return view('tender.form',compact('dorId','tender_list'));
-    }else{
-
-        return view('tender.countdown',compact('tender_list'));
-   }
-
-
-
-
-
-});
 
 Route::post('/form/submit', function (Request $request) {
 
@@ -632,6 +508,8 @@ Route::get('/payment/success', function (Request $request) {
 
     if($payment->sonod_type=='holdingtax'){
         $redirect = "/holdingPay/success?transId=$transId";
+    }elseif($payment->sonod_type=='Tenders_form'){
+        $redirect = "/tenderformpay/success?transId=$transId";
     }else{
 
         $sonod = Sonod::find($payment->sonodId);
@@ -676,6 +554,9 @@ Route::get('/pay/holding/tax/{id}', [HoldingtaxController::class,'holding_tax_pa
 
 
 Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSuccess']);
+
+
+Route::get('/tenderformpay/success', [TenderFormBuyController::class,'tenderFormPaymentSuccess']);
 
 
 
@@ -804,5 +685,32 @@ Route::get('/{vue_capture?}', function () {
 
 
 
-
+// INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+// (NULL, '2021_09_06_171488_create_districts_table', '1'),
+// (NULL, '2021_09_06_171499_create_thanas_table', '1'),
+// (NULL, '2021_09_06_171500_create_unions_table', '1'),
+// (NULL, '2022_07_06_113708_create_roles_table', '1'),
+// (NULL, '2022_07_09_013746_create_sonods_table', '1'),
+// (NULL, '2022_07_09_013824_create_uniouninfos_table', '1'),
+// (NULL, '2022_07_09_013853_create_payments_table', '1'),
+// (NULL, '2022_07_09_021300_create_sonodnamelists_table', '1'),
+// (NULL, '2022_08_02_122714_create_visitors_table', '1'),
+// (NULL, '2022_08_02_150515_create_blog_categories_table', '1'),
+// (NULL, '2022_08_02_172832_create_blogs_table', '1'),
+// (NULL, '2022_08_02_222336_create_blog_comments_table', '1'),
+// (NULL, '2022_08_03_111957_create_action_logs_table', '1'),
+// (NULL, '2022_08_03_225736_create_charages_table', '1'),
+// (NULL, '2022_08_05_221643_create_citizens_table', '1'),
+// (NULL, '2022_09_08_021223_create_holdingtaxes_table', '1'),
+// (NULL, '2022_09_08_133102_create_holding_bokeyas_table', '1'),
+// (NULL, '2022_09_12_033937_create_tax_invoices_table', '1'),
+// (NULL, '2022_10_02_090432_create_expenditures_table', '1'),
+// (NULL, '2022_10_18_022118_create_notifications_table', '1'),
+// (NULL, '2022_11_07_094943_create_invoices_table', '1'),
+// (NULL, '2023_01_20_140727_create_trade_license_khats_table', '1'),
+// (NULL, '2023_01_20_141631_create_trade_license_khat_fees_table', '1'),
+// (NULL, '2023_01_29_210625_create_citizen_information_table', '1'),
+// (NULL, '2023_06_15_112024_create_tender_lists_table', '1'),
+// (NULL, '2023_06_15_234901_create_tenders_table', '1'),
+// (NULL, '2023_07_03_160558_create_tender_form_buys_table', '1');
 

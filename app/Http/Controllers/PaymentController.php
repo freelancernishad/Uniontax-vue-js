@@ -10,6 +10,8 @@ use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\ReportExport;
 use App\Models\HoldingBokeya;
+use App\Models\TenderFormBuy;
+use App\Models\TenderList;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 // use Meneses\LaravelMpdf\Facades\LaravelMpdf;
@@ -34,13 +36,34 @@ class PaymentController extends Controller
                 'status' => 'Paid',
                 'method' => $data['pi_det_info']['pi_name'],
             ];
+
+
+
             if($payment->sonod_type=='holdingtax'){
                 $hosdingBokeya = HoldingBokeya::find($payment->sonodId);
                 // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
                 $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y'),'payOB'=>COB(1)]);
+            }elseif($payment->sonod_type=='Tenders_form'){
+
+
+
+                $TenderFormBuy = TenderFormBuy::find($payment->sonodId);
+                $TenderFormBuy->update(['status'=>'Paid']);
+
+
+                $tenderList = TenderList::find($TenderFormBuy->tender_id);
+                $unioun_name = $tenderList->union;
+                $deccription = "Your form Tender NO." . $TenderFormBuy->form_code;
+                SmsNocSmsSend($deccription, $sonod->applicant_mobile,$unioun_name);
+
+
+
             }else{
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
             }
+
+
+
         } else {
             $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
             $Insertdata = ['status' => 'Failed',];
