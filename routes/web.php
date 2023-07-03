@@ -49,10 +49,66 @@ Route::get('/holding/tax/update/{union}', function ($unioun) {
         return !$holdingTax->holdingBokeyas->isEmpty();
     });
 
-    holdingTaxAmount();
+    $html = "
+        <table border='1' width='100%'>
+            <thead>
+                <tr>
+                    <th>Sl</th>
+                    <th>Holding No</th>
+                    <th>Name</th>
+                    <th>Word no</th>
+                    <th>NId</th>
+                    <th>Mobile</th>
+                    <th>griher_barsikh_mullo</th>
+                    <th>Return Holding</th>
+                </tr>
+            </thead>
+            <tbody>
 
-    return $holdingtaxs;
 
+    ";
+    // return $holdingtaxs;
+    $i = 1;
+    foreach ($holdingtaxs as $value) {
+
+       $griher_barsikh_mullo =  $value->griher_barsikh_mullo ? int_bn_to_en($value->griher_barsikh_mullo) : 0;
+       $jomir_vara =  $value->jomir_vara ? int_bn_to_en($value->jomir_vara) : 0;
+       $barsikh_vara =  $value->barsikh_vara ? int_bn_to_en($value->barsikh_vara) : 0;
+
+
+            $currentYearAmount =  holdingTaxAmount($value->category,$griher_barsikh_mullo,$jomir_vara,$barsikh_vara);
+
+            if($currentYearAmount<1){
+                $html .= "
+
+                <tr>
+                    <td>$i</td>
+                    <td>$value->holding_no</td>
+                    <td>$value->gramer_name</td>
+                    <td>$value->word_no</td>
+                    <td>$value->nid_no</td>
+                    <td>$value->mobile_no</td>
+                    <td>$value->griher_barsikh_mullo</td>
+                    <td>$currentYearAmount</td>
+                </tr>
+                ";
+                $i++;
+            }
+            // print_r("$currentYearAmount <br/>");
+
+
+
+
+    }
+
+$html .= "
+
+        </tbody>
+
+        </table>
+        ";
+
+        echo $html;
     // $holdingBokeya =  HoldingBokeya::where(['year'=>'2022-2023'])->get();
     // foreach ($holdingBokeya as $value) {
 
