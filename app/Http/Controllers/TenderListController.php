@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tender;
+use App\Models\Payment;
+use App\Models\TenderFormBuy;
 use App\Models\TenderList;
 use App\Models\Uniouninfo;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 use Rakibhstu\Banglanumber\NumberToBangla;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 
 
 
@@ -115,6 +117,7 @@ class TenderListController extends Controller
 
     public function viewpdf(Request $request, $tender_id)
     {
+
 
 
         ini_set('max_execution_time', '60000');
@@ -415,6 +418,78 @@ $style = '';
     }
 
 
+    function PaymentCreate($id) {
+
+
+        $tenderform = TenderFormBuy::find($id);
+
+        $sonodFees =  TenderList::find($tenderform->tender_id);
+        $sonod_fee =  $sonodFees->form_price;
+        $unioun_name =  $sonodFees->union_name;
+        $unioninfos = Uniouninfo::where(['short_name_e' => $unioun_name])->first();
+        $u_code = $unioninfos->u_code;
+
+
+
+
+
+
+        $totalamount = $sonod_fee;
+        $applicant_mobile = $tenderform->PhoneNumber;
+        $total_amount = $totalamount;
+        $amount = 0;
+        if ($total_amount == null || $total_amount == '' || $total_amount < 1) {
+            $amount = 1;
+        } else {
+            $amount = $total_amount;
+        }
+        $trnx_id = $u_code.'-'.time();
+        $cust_info = [
+            "cust_email" => "",
+            "cust_id" => "$id",
+            "cust_mail_addr" => "Address",
+            "cust_mobo_no" => "$applicant_mobile",
+            "cust_name" => "Customer Name"
+        ];
+        $trns_info = [
+            "ord_det" => 'sonod',
+            "ord_id" => "$id",
+            "trnx_amt" => $amount,
+            "trnx_currency" => "BDT",
+            "trnx_id" => "$trnx_id"
+        ];
+        // return $sonod->unioun_name;
+
+
+            $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info,'payment',$unioun_name);
+
+
+
+        $req_timestamp = date('Y-m-d H:i:s');
+
+        $customerData = [
+            'union' => $unioun_name,
+            'trxId' => $trnx_id,
+            'sonodId' => $id,
+            'sonod_type' => 'Tenders_form',
+            'amount' => $amount,
+            'mob' => $applicant_mobile,
+            'status' => "Pending",
+            'paymentUrl' => $redirectutl,
+            'method' => 'ekpay',
+            'payment_type' => 'online',
+            'date' => date('Y-m-d'),
+            'created_at' => $req_timestamp,
+        ];
+        Payment::create($customerData);
+
+
+
+
+
+        return redirect($redirectutl);
+
+    }
 
 
 

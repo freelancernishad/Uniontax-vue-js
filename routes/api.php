@@ -25,6 +25,7 @@ use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\SonodnamelistController;
 use App\Http\Controllers\TradeLicenseKhatController;
 use App\Http\Controllers\CitizenInformationController;
+use App\Http\Controllers\TenderFormBuyController;
 use App\Http\Controllers\TradeLicenseKhatFeeController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -83,11 +84,17 @@ Route::post('nid/service/{union}', [UniouninfoController::class,'unionserviceche
 Route::post('nid/check/{union}', [UniouninfoController::class,'unioncheck']);
 
 
+
+
 Route::resources([
     'tradeLicenseKhat' => TradeLicenseKhatController::class,
 	'tradeLicenseKhatFee' => TradeLicenseKhatFeeController::class,
 	'tender' => TenderListController::class,
+	'tenderform' => TenderFormBuyController::class,
 ]);
+
+
+
 Route::post('tender/selection/{tender_id}', [TenderListController::class,'SeletionTender']);
 
     Route::post('committe/update/{id}', function (Request $request,$id) {
@@ -99,11 +106,11 @@ Route::post('tender/selection/{tender_id}', [TenderListController::class,'Seleti
 
         $updatedData = [
             'commette1phone'=> $commette1phone,
-            'commette1pass'=> Str::random(8),
+            'commette1pass'=> mt_rand(1000000, 9999999),
             'commette2phone'=> $commette2phone,
-            'commette2pass'=> Str::random(8),
+            'commette2pass'=> mt_rand(1000000, 9999999),
             'commette3phone'=> $commette3phone,
-            'commette3pass'=> Str::random(8),
+            'commette3pass'=> mt_rand(1000000, 9999999),
         ];
 
 

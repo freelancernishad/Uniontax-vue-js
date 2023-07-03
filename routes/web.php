@@ -157,6 +157,57 @@ Route::get('/holding/tax/renew', function () {
 Route::get('/pdf/tenders/{tender_id}', [TenderListController::class,'viewpdf']);
 
 
+
+
+Route::get('/tenders/payment/{tender_id}', [TenderListController::class,'PaymentCreate']);
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/tenders/form/buy/{tender_id}', function ($tender_id) {
+
+
+    $tender_list_count = TenderList::where('tender_id',$tender_id)->count();
+    if($tender_list_count<1){
+        return '<h1 style="text-align:center;color:red">কোনও তথ্য খুজে পাওয়া জায় নি</h1>';
+    }
+
+    $tender_list = TenderList::where('tender_id',$tender_id)->first();
+
+      $currentDate = strtotime(date("d-m-Y H:i:s"));
+
+    $form_buy_last_date = strtotime(date("d-m-Y H:i:s",strtotime($tender_list->form_buy_last_date)));
+
+
+
+   if($currentDate<$form_buy_last_date){
+
+    $tender_list->update(['status'=>'active']);
+       return view('tender.formbuy',compact('tender_list'));
+
+    }else{
+
+        return '<h1 style="text-align:center;color:red">সিডিউল ফর্ম কেনার সময় শেষ</h1>';
+   }
+
+
+
+
+
+});
+
+
+
+
+
 Route::get('/tenders/{tender_id}', function ($tender_id) {
 
 
