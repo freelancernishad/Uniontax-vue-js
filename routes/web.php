@@ -82,10 +82,10 @@ Route::get('/holding/tax/update/{union}', function ($unioun) {
 
             $currentYearAmount =  holdingTaxAmount($value->category,$griher_barsikh_mullo,$jomir_vara,$barsikh_vara);
 
-            // foreach ($value->holdingBokeyas as $hB) {
-            //     $bokeyaUpdate = HoldingBokeya::find($hB->id);
-            //      $bokeyaUpdate->update(['price'=>$currentYearAmount]);
-            // }
+            foreach ($value->holdingBokeyas as $hB) {
+                $bokeyaUpdate = HoldingBokeya::find($hB->id);
+                 $bokeyaUpdate->update(['price'=>$currentYearAmount]);
+            }
 
 
 
