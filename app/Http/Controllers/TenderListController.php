@@ -319,8 +319,8 @@ $color = '#5c1caa';
 $style = '';
 
 
-            $ccc = '<img width="170px"  style="'.$style.'" src="' . base64($row->chaireman_sign) . '"><br/>
-                              <b><span style="color:'.$C_color.';font-size:'.$C_size.';">' . $row->chaireman_name . '</span> <br />
+            $ccc = '<img width="170px"  style="'.$style.'" src="' . base64($uniouninfo->c_signture) . '"><br/>
+                              <b><span style="color:'.$C_color.';font-size:'.$C_size.';">' . $uniouninfo->c_name . '</span> <br />
                                       </b><span style="font-size:16px;">চেয়ারম্যান</span><br />';
 
 
