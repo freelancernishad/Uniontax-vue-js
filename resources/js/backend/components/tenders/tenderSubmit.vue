@@ -103,7 +103,7 @@ export default {
 
     data() {
         return {
-            tenders:{status:'Completed'},
+            tenders:{status:'Pending'},
             applications:{},
             preLooding:false,
             popup:false,
