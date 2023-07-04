@@ -114,9 +114,12 @@ export default {
 
 
         this.getTender();
-        if(this.tenders.status=='Completed'){
-            this.getApplication();
-        }
+        setTimeout(() => {
+            if(this.tenders.status=='Completed'){
+                this.getApplication();
+            }
+        }, 3000);
+
     },
     methods: {
 
@@ -170,6 +173,7 @@ export default {
         },
 
         getApplication(Selected='') {
+            this.preLooding = true;
             var quiry = '';
             if(Selected)  quiry = `?status=${Selected}`;
             var tender_id = this.$route.params.tender_id
@@ -177,6 +181,7 @@ export default {
                 .get(`/api/get/all/aplications/${tender_id}${quiry}`)
                 .then(({ data }) => (this.applications = data))
                 .catch();
+                this.preLooding = false
         },
 
 
