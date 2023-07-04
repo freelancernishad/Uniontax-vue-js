@@ -236,27 +236,27 @@ export default {
                 `
                 <div class="form-group">
                     <lable>Comitte one phone number</lable>
-                    <input type='text' id="commette1phone" class="swal2-input" autocomplete="off" required>
+                    <input type='text' name="phone1" id="commette1phone" class="swal2-input" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <lable>Comitte one password</lable>
-                    <input type='password' id="commette1pass" class="swal2-input" autocomplete="off" required>
+                    <input type='password' name="pass1" id="commette1pass" class="swal2-input" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <lable>Comitte one phone number</lable>
-                    <input type='text' id="commette2phone" class="swal2-input" autocomplete="off" required>
+                    <input type='text' id="commette2phone" name="phone2" class="swal2-input" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <lable>Comitte one password</lable>
-                    <input type='password' id="commette2pass" class="swal2-input" autocomplete="off" required>
+                    <input type='password' name="pass2" id="commette2pass" class="swal2-input" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <lable>Comitte one phone number</lable>
-                    <input type='text' id="commette3phone" class="swal2-input" autocomplete="off" required>
+                    <input type='text' id="commette3phone" name="phone3" class="swal2-input" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <lable>Comitte one password</lable>
-                    <input type='password' id="commette3pass" class="swal2-input" autocomplete="off" required>
+                    <input type='password' name="pass3" id="commette3pass" class="swal2-input" autocomplete="off" required>
                 </div>
 
                 `,
