@@ -10,6 +10,7 @@ use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\ReportExport;
 use App\Models\HoldingBokeya;
+use App\Models\Tender;
 use App\Models\TenderFormBuy;
 use App\Models\TenderList;
 use Illuminate\Support\Facades\Log;
@@ -47,14 +48,14 @@ class PaymentController extends Controller
 
 
 
-                $TenderFormBuy = TenderFormBuy::find($payment->sonodId);
-                $TenderFormBuy->update(['status'=>'Paid']);
+                $TenderFormBuy = Tender::find($payment->sonodId);
+                $TenderFormBuy->update(['payment_status'=>'Paid']);
 
 
                 $tenderList = TenderList::find($TenderFormBuy->tender_id);
                 $unioun_name = $tenderList->union_name;
-                $deccription = "Your Tender form NO." . $TenderFormBuy->form_code;
-                SmsNocSmsSend($deccription, $TenderFormBuy->PhoneNumber,$unioun_name);
+                $deccription = "Your Tender Successfuly submited";
+                SmsNocSmsSend($deccription, $TenderFormBuy->mobile,$unioun_name);
 
 
 

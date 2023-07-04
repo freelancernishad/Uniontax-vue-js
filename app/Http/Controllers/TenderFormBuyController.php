@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Tender;
 use Illuminate\Http\Request;
 use App\Models\TenderFormBuy;
 
@@ -107,7 +108,7 @@ class TenderFormBuyController extends Controller
         $transId =  $request->transId;
         $payment = Payment::where(['trxId' => $transId])->first();
         $id = $payment->sonodId;
-        $sonod = TenderFormBuy::find($id);
+        $sonod = Tender::find($id);
 
 
 
@@ -115,7 +116,7 @@ class TenderFormBuyController extends Controller
 
 
                     if($payment->status=='Paid'){
-                        $deccription = "Congratulation! Your application $sonod->sonod_Id has been Paid.Wait for Approval.";
+                        $deccription = "Congratulation! Your application $sonod->dorId has been Paid.Wait for Approval.";
                         return view('tenderSuccess', compact('payment', 'sonod'));
                     }else{
                     echo "

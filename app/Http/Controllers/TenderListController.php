@@ -421,7 +421,7 @@ $style = '';
     function PaymentCreate($id) {
 
 
-        $tenderform = TenderFormBuy::find($id);
+        $tenderform = Tender::find($id);
 
         $sonodFees =  TenderList::find($tenderform->tender_id);
         $sonod_fee =  $sonodFees->form_price;
@@ -435,7 +435,7 @@ $style = '';
 
 
         $totalamount = $sonod_fee;
-        $applicant_mobile = $tenderform->PhoneNumber;
+        $applicant_mobile = $tenderform->mobile;
         $total_amount = $totalamount;
         $amount = 0;
         if ($total_amount == null || $total_amount == '' || $total_amount < 1) {

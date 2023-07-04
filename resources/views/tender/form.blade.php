@@ -303,13 +303,13 @@ text-align: center;
     <div class="col-md-12 mt-3">
         <div class="form-group">
           <label class="mb-1" for="mobile">মোবাইল নম্বর</label>
-          <input type="text" class="form-control" id="mobile" name="mobile" required>
+          <input type="tel" class="form-control" id="mobile" name="mobile" minlength="11" maxlength="11" required>
         </div>
     </div>
 
     <div class="col-md-12 mt-3">
         <div class="form-group">
-          <label class="mb-1" for="DorAmount">দাখিলকৃত দরের পরিমাণ (টাকা)</label>
+          <label class="mb-1" for="DorAmount">দাখিলকৃত দরের পরিমাণ (সর্ব নিম্ন দরপত্র দাখিল {{ $tender_list->govt_price+1 }} টাকা)</label>
           <input type="number" min="{{ $tender_list->govt_price+1 }}"  class="form-control" id="DorAmount" name="DorAmount" required>
         </div>
     </div>

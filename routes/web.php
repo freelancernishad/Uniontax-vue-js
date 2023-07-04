@@ -237,10 +237,14 @@ Route::post('/form/submit', function (Request $request) {
 
         $data['bank_draft_image'] = $bank_draft_image;
         $data['deposit_details'] = $deposit_details;
+        $data['payment_status'] = 'Unpaid';
 
-      Tender::create($data);
+      $tender =  Tender::create($data);
       Session::flash('Smessage', 'আপনার দরপত্রটি দাখিল হয়েছে');
-      return redirect()->back();
+
+      return redirect("/tenders/payment/$tender->id");
+
+    //   return redirect()->back();
 
 
     });
