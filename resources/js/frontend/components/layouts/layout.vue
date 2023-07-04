@@ -119,6 +119,11 @@
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'notice' }">নোটিশ</router-link>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <router-link class="nav-link" :to="{ name: 'tenders' }">ইজারা</router-link>
+                                        </li>
+
                                         <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'contact' }">যোগাযোগ
                                             </router-link>
@@ -461,7 +466,7 @@ export default {
             }else{
                 var res = await this.callApi('get',`/api/get/all/tender/list`,[]);
             }
-          
+
 
 
         this.tenders = res.data;

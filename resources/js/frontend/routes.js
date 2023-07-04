@@ -33,6 +33,7 @@ let holdingTaxSingle = require('./components/holdingTaxSingle.vue').default;
 let contact = require('./components/contact.vue').default;
 let upProfile = require('./components/upProfile.vue').default;
 let notice = require('./components/notice.vue').default;
+let tenders = require('./components/tenders.vue').default;
 
 let home = require('./components/home.vue').default;
 let reject = require('./components/reject.vue').default;
@@ -50,6 +51,7 @@ export const routes = [
     { path:  `${prefix}forget`, component: forget, name:'forget',meta: { layout: layout } },
     { path:  `${prefix}uniontax/profile`, component: upProfile, name:'upProfile',meta: { layout: layout } },
     { path:  `${prefix}notice`, component: notice, name:'notice',meta: { layout: layout } },
+    { path:  `${prefix}notice/tenders`, component: tenders, name:'tenders',meta: { layout: layout } },
     { path:  `${prefix}contact`, component: contact, name:'contact',meta: { layout: layout } },
     { path:  `${prefix}holding/tax`, component: holdingTax, name:'holdingTax',meta: { layout: layout } },
     { path:  `${prefix}holding/tax/:id`, component: holdingTaxSingle, name:'holdingTaxSingle',meta: { layout: layout } },

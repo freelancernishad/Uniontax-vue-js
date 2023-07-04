@@ -12,13 +12,13 @@
 
        <p>ইজারার ধরণ : {{ tender.tender_type }}</p>
        <p>সরকারি মূল্য : {{ tender.govt_price }}</p>
-       <p>সিডিউল মূল্য CK Pay এর মাধমে : {{ tender.form_price }}</p>
+       <p>সিডিউল মূল্য : {{ tender.form_price }}</p>
        <p>অনলাইনে সিডিউল ক্রয়ের শেষ তারিখ : {{ dateformatGlobal(tender.form_buy_last_date)[6] }}</p>
        <p>দরপত্র গ্রহনের শুরুর তারিখ : {{ dateformatGlobal(tender.tender_start)[6] }}</p>
        <p>দরপত্র গ্রহনের শেষ তারিখ : {{ dateformatGlobal(tender.tender_end)[6] }}</p>
        <p>দরপত্র খোলার তারিখ : {{ dateformatGlobal(tender.tender_open)[6] }}</p>
 
-       <h4 class="text-center">সর্তাবলী</h4>
+       <h4 class="text-center">শর্তাবলি</h4>
        <hr>
        <div style="word-wrap: break-word;" v-html="tender.tender_roles"></div>
 

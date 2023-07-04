@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="">সিডিউল মূল্য CK Pay এর মাধমে</label>
+          <label for="">সিডিউল মূল্য</label>
           <input type="Number" v-model="form.form_price" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
@@ -94,7 +94,7 @@
 
 
         <div class="form-group col-md-12">
-          <label for="">সর্তাবলী</label>
+          <label for="">শর্তাবলি</label>
           <vue-editor v-model="form.tender_roles" api-key="nhnny39zzu3w0euy077ojdf9gk1n3mjpkobk25i228rt3qkz" style="height:250px;" :init="tinyInt"></vue-editor>
         <!-- <textarea v-model="form.tender_roles" class="form-control" style="height:300px"></textarea> -->
         </div>
