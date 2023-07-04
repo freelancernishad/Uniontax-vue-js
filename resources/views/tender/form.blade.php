@@ -154,7 +154,7 @@ text-align: center;
           </div>
         @endif
 
-        @if($requestMethod=='GET')
+        {{-- @if($requestMethod=='GET')
 
 
 
@@ -182,7 +182,7 @@ text-align: center;
             </div>
         </div>
     </form>
-    @else
+    @else --}}
 
 
     <form method="POST" enctype="multipart/form-data" action="/form/submit">
@@ -348,7 +348,7 @@ text-align: center;
         <button type="submit" class="btn btn-info mt-5">দরপত্র দাখিল করুন</button>
       </form>
 
-      @endif
+      {{-- @endif --}}
 
 
 

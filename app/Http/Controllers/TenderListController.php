@@ -498,25 +498,25 @@ $style = '';
 
          $requestMethod = request()->method();
 
-         if($requestMethod=='POST'){
+        //  if($requestMethod=='POST'){
 
-             $PhoneNumber = $request->PhoneNumber;
-             $form_code = $request->form_code;
-             $TenderFormBuy =  TenderFormBuy::where(['PhoneNumber'=>$PhoneNumber,'form_code'=>$form_code,'status'=>'Paid'])->count();
+        //      $PhoneNumber = $request->PhoneNumber;
+        //      $form_code = $request->form_code;
+        //      $TenderFormBuy =  TenderFormBuy::where(['PhoneNumber'=>$PhoneNumber,'form_code'=>$form_code,'status'=>'Paid'])->count();
 
-            if($TenderFormBuy<1){
-                // $messageData =  "
-                //     <h1 style='color:red;text-align:center'>মোবাইল নং অথবা ফর্ম নং ভুল। দরপত্র দাখিক করার জন্য সঠিক মোবাইল নং এবং সঠিক ফর্ম নং প্রদান করুন।</h1>
-                // ";
+        //     if($TenderFormBuy<1){
+        //         // $messageData =  "
+        //         //     <h1 style='color:red;text-align:center'>মোবাইল নং অথবা ফর্ম নং ভুল। দরপত্র দাখিক করার জন্য সঠিক মোবাইল নং এবং সঠিক ফর্ম নং প্রদান করুন।</h1>
+        //         // ";
 
-                $messageData =  "মোবাইল নং অথবা ফর্ম নং ভুল। দরপত্র দাখিক করার জন্য সঠিক মোবাইল নং এবং সঠিক ফর্ম নং প্রদান করুন।";
+        //         $messageData =  "মোবাইল নং অথবা ফর্ম নং ভুল। দরপত্র দাখিক করার জন্য সঠিক মোবাইল নং এবং সঠিক ফর্ম নং প্রদান করুন।";
 
-                Session::flash('Fmessage', $messageData);
-                return redirect()->back();
-            }
+        //         Session::flash('Fmessage', $messageData);
+        //         return redirect()->back();
+        //     }
 
 
-         }
+        //  }
 
 
 
