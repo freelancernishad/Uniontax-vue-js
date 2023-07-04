@@ -688,6 +688,8 @@ Route::get('/{vue_capture?}', function () {
 
 
 // INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+// (NULL, '2013_01_14_151829_create_sonod_fees_table', '1'),
+// (NULL, '2021_09_06_171487_create_divisions_table', '1'),
 // (NULL, '2021_09_06_171488_create_districts_table', '1'),
 // (NULL, '2021_09_06_171499_create_thanas_table', '1'),
 // (NULL, '2021_09_06_171500_create_unions_table', '1'),
@@ -713,6 +715,5 @@ Route::get('/{vue_capture?}', function () {
 // (NULL, '2023_01_20_141631_create_trade_license_khat_fees_table', '1'),
 // (NULL, '2023_01_29_210625_create_citizen_information_table', '1'),
 // (NULL, '2023_06_15_112024_create_tender_lists_table', '1'),
-// (NULL, '2023_06_15_234901_create_tenders_table', '1'),
-// (NULL, '2023_07_03_160558_create_tender_form_buys_table', '1');
+// (NULL, '2023_06_15_234901_create_tenders_table', '1');
 

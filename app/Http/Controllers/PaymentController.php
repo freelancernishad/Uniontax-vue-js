@@ -52,7 +52,7 @@ class PaymentController extends Controller
 
 
                 $tenderList = TenderList::find($TenderFormBuy->tender_id);
-                $unioun_name = $tenderList->union;
+                $unioun_name = $tenderList->union_name;
                 $deccription = "Your form Tender NO." . $TenderFormBuy->form_code;
                 SmsNocSmsSend($deccription, $sonod->applicant_mobile,$unioun_name);
 
