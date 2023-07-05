@@ -208,8 +208,8 @@ text-align: center;
     <div class="col-md-12 mt-3 my-3">
 
         {{-- <p>দাখিলকৃত দরপত্র নম্বর: {{ $dorId }}</p> --}}
-        <p>বিজ্ঞপ্তির তারিখ: {{ int_en_to_bn(date('d/m/Y', strtotime($tender_list->created_at))) }}</p>
-        <p>স্মারক নং-১২০</p>
+        <p>বিজ্ঞপ্তির তারিখ: {{ int_en_to_bn(date('d/m/Y', strtotime($tender_list->noticeDate))) }}</p>
+        <p>স্মারক নং- {{ int_en_to_bn($tender_list->memorial_no) }}</p>
         <p>নিলামের বিবরণ- {{ $tender_list->description }}</p>
 
     </div>

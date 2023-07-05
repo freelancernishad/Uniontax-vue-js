@@ -161,41 +161,41 @@ export default {
                         title:'মূল্যায়ন কমিটি',
                         html:`
 
-                        <table width="100%" border="1">
+                        <table width="100%" border="1" style="border-collapse: collapse;">
                             <tbody>
                                 <tr>
-                                    <td>ক্রমিক<td>
-                                    <td>নাম<td>
-                                    <td>পদবি<td>
-                                    <td>মোবাইল<td>
+                                    <td>ক্রমিক</td>
+                                    <td>নাম</td>
+                                    <td>পদবি</td>
+                                    <td>মোবাইল</td>
                                 </tr>
 
                                 <tr>
-                                    <td>১<td>
-                                    <td>${item.committe1name}<td>
-                                    <td>${item.committe1position}<td>
-                                    <td>${item.committe1name}<td>
+                                    <td>১</td>
+                                    <td>${item.committe1name}</td>
+                                    <td>${item.committe1position}</td>
+                                    <td>${item.committe1name}</td>
                                 </tr>
 
                                 <tr>
-                                    <td>২<td>
-                                    <td>${item.committe2name}<td>
-                                    <td>${item.committe2position}<td>
-                                    <td>${item.committe2name}<td>
+                                    <td>২</td>
+                                    <td>${item.committe2name}</td>
+                                    <td>${item.committe2position}</td>
+                                    <td>${item.committe2name}</td>
                                 </tr>
 
                                 <tr>
-                                    <td>৩<td>
-                                    <td>${item.committe3name}<td>
-                                    <td>${item.committe3position}<td>
-                                    <td>${item.committe3name}<td>
+                                    <td>৩</td>
+                                    <td>${item.committe3name}</td>
+                                    <td>${item.committe3position}</td>
+                                    <td>${item.committe3name}</td>
                                 </tr>
 
                             </tbody>
                         </table>
 
 
-                   
+
 
                         `,
 

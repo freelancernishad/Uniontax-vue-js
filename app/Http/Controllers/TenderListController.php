@@ -173,8 +173,8 @@ class TenderListController extends Controller
     public function pdfHTMLut($row,$uniouninfo)
     {
 
-        $created_at = $row->created_at;
-        $month = date('m', strtotime($created_at));
+        $noticeDate = $row->noticeDate;
+        $month = date('m', strtotime($noticeDate));
         $MYear = date('Y');
         $Mmonth = date('m');
         $Mdate = date('d');
@@ -196,7 +196,7 @@ class TenderListController extends Controller
             <table width='100%'>
                 <tr>
                     <td style='text-align:left'>স্মারক নং:- ".int_en_to_bn($row->memorial_no)."</td>
-                    <td style='text-align:right'>তারিখ:- ".int_en_to_bn(date('d/m/Y', strtotime($created_at)))."</td>
+                    <td style='text-align:right'>তারিখ:- ".int_en_to_bn(date('d/m/Y', strtotime($noticeDate)))."</td>
                 </tr>
             </table>
             <p style='text-align:center;text-weight:700'><u>$row->tender_name</u></p>
