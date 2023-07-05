@@ -140,7 +140,7 @@ class TenderListController extends Controller
         $uniouninfo = Uniouninfo::where('short_name_e', $row->union_name)->first();
 
         $filename = time().".pdf";
-
+        return $this->pdfHTMLut($row,$uniouninfo);
             $mpdf = new \Mpdf\Mpdf([
                 'default_font_size' => 13,
                 'default_font' => 'bangla',
@@ -162,6 +162,7 @@ class TenderListController extends Controller
             $mpdf->showWatermarkImage = true;
             // $mpdf->WriteHTML('<watermarkimage src="'.$watermark.'" alpha="0.1" size="80,80" />');
             $mpdf->SetDisplayMode('fullpage');
+
             $mpdf->WriteHTML($this->pdfHTMLut($row,$uniouninfo));
             $mpdf->useSubstitutions = false;
             $mpdf->simpleTables = true;
@@ -233,6 +234,9 @@ class TenderListController extends Controller
 
              </table>
 
+             <p style='text-align:center;text-weight:700'><u>শর্তাবলি</u></p>
+
+             $uniouninfo->tender_roles
 
 
 
