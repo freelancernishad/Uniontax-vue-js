@@ -158,15 +158,44 @@ export default {
 
         tenderComittiVeiw(item){
             Swal.fire({
-                        title:'তিন জন কমিটির ফোন নাম্বার',
+                        title:'মূল্যায়ন কমিটি',
                         html:`
 
+                        <table width="100%" border="1">
+                            <tbody>
+                                <tr>
+                                    <td>ক্রমিক<td>
+                                    <td>নাম<td>
+                                    <td>পদবি<td>
+                                    <td>মোবাইল<td>
+                                </tr>
 
-                        <ol style='text-align:left;font-size:18px'>
-                            <li>${item.commette1phone}</li>
-                            <li>${item.commette2phone}</li>
-                            <li>${item.commette3phone}</li>
-                        </ol>
+                                <tr>
+                                    <td>১<td>
+                                    <td>${item.committe1name}<td>
+                                    <td>${item.committe1position}<td>
+                                    <td>${item.committe1name}<td>
+                                </tr>
+
+                                <tr>
+                                    <td>২<td>
+                                    <td>${item.committe2name}<td>
+                                    <td>${item.committe2position}<td>
+                                    <td>${item.committe2name}<td>
+                                </tr>
+
+                                <tr>
+                                    <td>৩<td>
+                                    <td>${item.committe3name}<td>
+                                    <td>${item.committe3position}<td>
+                                    <td>${item.committe3name}<td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                   
 
                         `,
 
