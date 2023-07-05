@@ -174,14 +174,14 @@ class TenderListController extends Controller
     {
 
         $noticeDate = $row->noticeDate;
-        $month = date('m', strtotime('01-05-2023'));
+        $month = date('m', strtotime('01-07-2023'));
         $MYear = date('Y');
         $Mmonth = date('m');
         $Mdate = date('d');
         if($month>6){
 
             $meyad = "০১/০৭/".int_en_to_bn($MYear);
-            $orthoBotsor = int_en_to_bn($MYear."-".$MYear+1);
+            $orthoBotsor = int_en_to_bn($MYear."-".($MYear+1));
 
         }else{
             $meyad = "০১/০৭/".int_en_to_bn($MYear-1);
