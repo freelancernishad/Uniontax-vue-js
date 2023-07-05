@@ -236,7 +236,7 @@ class TenderListController extends Controller
 
              <p style='text-align:center;text-weight:700'><u>শর্তাবলি</u></p>
 
-             $uniouninfo->tender_roles
+             $row->tender_roles
 
 
 
