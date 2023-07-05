@@ -176,34 +176,95 @@ export default {
 
         tenderComitti(id){
             Swal.fire({
-            title: 'Result Committe',
+            title: 'মূল্যায়ন কমিটি',
             html:
                 `
+
                 <div class="form-group">
-                    <lable>Comitte one phone number</lable>
+                    <lable>১নং মূল্যায়ন কমিটি মেম্বার নাম </lable>
+                    <input id="committe1name" class="swal2-input" required>
+                </div>
+
+                <div class="form-group">
+                    <lable>১নং মূল্যায়ন কমিটি মেম্বার পদবি </lable>
+                    <input id="committe1position" class="swal2-input" required>
+                </div>
+
+                <div class="form-group">
+                    <lable>১নং মূল্যায়ন কমিটি মেম্বার মোবাইল </lable>
                     <input id="committe1" class="swal2-input" required>
                 </div>
+
+
                 <div class="form-group">
-                    <lable>Comitte two phone number</lable>
+                    <lable>২নং মূল্যায়ন কমিটি মেম্বার নাম </lable>
+                    <input id="committe2name" class="swal2-input" required>
+                </div>
+
+                <div class="form-group">
+                    <lable>২নং মূল্যায়ন কমিটি মেম্বার পদবি </lable>
+                    <input id="committe2position" class="swal2-input" required>
+                </div>
+
+                <div class="form-group">
+                    <lable>২নং মূল্যায়ন কমিটি মেম্বার মোবাইল</lable>
                     <input id="committe2" class="swal2-input" required>
                 </div>
+
+
+
                 <div class="form-group">
-                    <lable>Comitte three phone number</lable>
+                    <lable>৩নং মূল্যায়ন কমিটি মেম্বার নাম </lable>
+                    <input id="committe3name" class="swal2-input" required>
+                </div>
+
+                <div class="form-group">
+                    <lable>৩নং মূল্যায়ন কমিটি মেম্বার পদবি </lable>
+                    <input id="committe3position" class="swal2-input" required>
+                </div>
+
+                <div class="form-group">
+                    <lable>৩নং মূল্যায়ন কমিটি মেম্বার মোবাইল</lable>
                     <input id="committe3" class="swal2-input" required>
                 </div>
+
+
                 `,
             focusConfirm: false,
             allowOutsideClick: false,
             allowEscapeKey: false,
             preConfirm: async (resolve) => {
+
                 var committe1 = document.getElementById('committe1').value
+                var committe1name = document.getElementById('committe1name').value
+                var committe1position = document.getElementById('committe1position').value
+
                 var committe2 = document.getElementById('committe2').value
+                var committe2name = document.getElementById('committe2name').value
+                var committe2position = document.getElementById('committe2position').value
+
                 var committe3 = document.getElementById('committe3').value
+                var committe3name = document.getElementById('committe3name').value
+                var committe3position = document.getElementById('committe3position').value
+
+
+
                 if(committe1 && committe2 && committe3){
                     var formValues = {};
+
                     formValues['commette1phone'] = committe1;
+                    formValues['committe1name'] = committe1name;
+                    formValues['committe1position'] = committe1position;
+
                     formValues['commette2phone'] = committe2;
+                    formValues['committe2name'] = committe2name;
+                    formValues['committe2position'] = committe2position;
+
                     formValues['commette3phone'] = committe3;
+                    formValues['committe3name'] = committe3name;
+                    formValues['committe3position'] = committe3position;
+
+
                     var res = await this.callApi('post',`/api/committe/update/${id}`,formValues);
                     if(res.status==200){
                         Swal.fire({
