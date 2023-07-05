@@ -18,7 +18,7 @@
 
 <tr v-for="(tender,indexs) in tenders" :key="'tenders'+indexs">
 
-<td>{{ dateformatGlobal(tender.created_at)[6] }}</td>
+<td>{{ dateformatGlobal(tender.noticeDate)[6] }}</td>
 
 <td>{{ tender.description }}</td>
 
