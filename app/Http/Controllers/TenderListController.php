@@ -174,7 +174,7 @@ class TenderListController extends Controller
     {
 
         $noticeDate = $row->noticeDate;
-        $month = date('m', strtotime('2023-08-01'));
+        $month = date('m', strtotime(date("Y-m-d",strtotime("2023-08-01"))));
         $MYear = date('Y');
         $Mmonth = date('m');
         $Mdate = date('d');
