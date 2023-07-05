@@ -140,7 +140,7 @@ class TenderListController extends Controller
         $uniouninfo = Uniouninfo::where('short_name_e', $row->union_name)->first();
 
         $filename = time().".pdf";
-        return $this->pdfHTMLut($row,$uniouninfo);
+        // return $this->pdfHTMLut($row,$uniouninfo);
             $mpdf = new \Mpdf\Mpdf([
                 'default_font_size' => 13,
                 'default_font' => 'bangla',
