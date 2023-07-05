@@ -174,7 +174,7 @@ class TenderListController extends Controller
     {
 
         $noticeDate = $row->noticeDate;
-         $month = date('m', strtotime(date("Y-m-d")));
+        $month = date('m', strtotime('01-07-2023'));
         $MYear = date('Y');
         $Mmonth = date('m');
         $Mdate = date('d');
@@ -187,7 +187,7 @@ class TenderListController extends Controller
             $meyad = "০১/০৭/".int_en_to_bn($MYear-1);
             $orthoBotsor = int_en_to_bn($MYear-1 ."-".$MYear);
         }
-
+        
         $form_price = $row->form_price;
 
         $numto = new NumberToBangla();
