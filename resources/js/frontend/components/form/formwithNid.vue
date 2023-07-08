@@ -1059,6 +1059,7 @@ export default {
                 applicant_national_id_back_attachment: null,
                 applicant_birth_certificate_attachment: null,
                 prottoyon: null,
+                orthoBchor: '2023-24',
                 stutus: 'Pending',
                 payment_status: 'Unpaid',
                 successors: [
