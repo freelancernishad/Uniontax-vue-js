@@ -93,9 +93,12 @@
 
 
         <td v-if="bok.status=='Paid'"><span class="btn btn-success" >পরিশোধিত</span></td>
+        <td v-else><a :href="'/pay/holding/tax/'+bok.id"  class="btn btn-info" >পরিশোধ করুন</a></td>
+
 
          <!-- <td v-else><button @click="paynow(bok.id)" class="btn btn-info" >পরিশোধ করুন</button></td> -->
-         <td v-else></td>
+
+         <!-- <td v-else></td> -->
 
          <td>
 
