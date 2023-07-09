@@ -174,21 +174,21 @@ export default {
                                     <td>১</td>
                                     <td>${item.committe1name}</td>
                                     <td>${item.committe1position}</td>
-                                    <td>${item.committe1phone}</td>
+                                    <td>${item.commette1phone}</td>
                                 </tr>
 
                                 <tr>
                                     <td>২</td>
                                     <td>${item.committe2name}</td>
                                     <td>${item.committe2position}</td>
-                                    <td>${item.committe2phone}</td>
+                                    <td>${item.commette2phone}</td>
                                 </tr>
 
                                 <tr>
                                     <td>৩</td>
                                     <td>${item.committe3name}</td>
                                     <td>${item.committe3position}</td>
-                                    <td>${item.committe3phone}</td>
+                                    <td>${item.commette3phone}</td>
                                 </tr>
 
                             </tbody>
