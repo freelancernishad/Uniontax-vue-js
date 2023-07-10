@@ -335,12 +335,17 @@ text-align: center;
           <input type="file" class="form-control" id="bank_draft_image" name="bank_draft_image" required>
         </div>
     </div>
+
+
+
+{{--
+
     <div class="col-md-12 mt-3">
         <div class="form-group">
           <label class="mb-1" for="deposit_details">দরপত্র সিডিউলের ছবি আপলোড করুন</label>
           <input type="file" class="form-control" id="deposit_details" name="deposit_details" required>
         </div>
-    </div>
+    </div> --}}
 
 
     </div>

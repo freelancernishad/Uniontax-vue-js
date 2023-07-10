@@ -228,16 +228,26 @@ Route::post('/form/submit', function (Request $request) {
         $bank_draft_image->move($path, $fileName);
         $bank_draft_image = asset('files/bank_draft_image/'.$fileName);
 
-        $deposit_details = $request->file('deposit_details');
-        $extension = $deposit_details->getClientOriginalExtension();
-        $path = public_path('files/deposit_details/');
-        $fileName = $request->dorId.'-'.uniqid().'.'.$extension;
-        $deposit_details->move($path, $fileName);
-        $deposit_details = asset('files/deposit_details/'.$fileName);
+
+
+
+
+        // $deposit_details = $request->file('deposit_details');
+        // $extension = $deposit_details->getClientOriginalExtension();
+        // $path = public_path('files/deposit_details/');
+        // $fileName = $request->dorId.'-'.uniqid().'.'.$extension;
+        // $deposit_details->move($path, $fileName);
+        // $deposit_details = asset('files/deposit_details/'.$fileName);
+        // $data['deposit_details'] = $deposit_details;
+
+
 
         $data['bank_draft_image'] = $bank_draft_image;
-        $data['deposit_details'] = $deposit_details;
         $data['payment_status'] = 'Unpaid';
+
+
+
+
 
       $tender =  Tender::create($data);
       Session::flash('Smessage', 'আপনার দরপত্রটি দাখিল হয়েছে');
