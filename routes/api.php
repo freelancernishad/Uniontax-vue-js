@@ -152,9 +152,9 @@ Route::get('get/all/aplications/{tender_id}', function (Request $request,$tender
 
     $status = $request->status;
     if($status){
-        return Tender::where(['tender_id'=>$tender_id,'status'=>$status])->get();
+        return Tender::where(['tender_id'=>$tender_id,'status'=>$status,'payment_status'=>'Paid'])->get();
     }else{
-        return Tender::where('tender_id',$tender_id)->orderBy('DorAmount','desc')->get();
+        return Tender::where(['tender_id'=>$tender_id,'payment_status'=>'Paid'])->orderBy('DorAmount','desc')->get();
     }
   });
 

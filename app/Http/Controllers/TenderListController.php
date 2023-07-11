@@ -395,7 +395,7 @@ $style = '';
     }
 
 
-    $tendersCount = Tender::where(['tender_id'=>$tender_id,'payment_status'=>'Paid'])->orderBy('DorAmount','desc')->count();
+     $tendersCount = Tender::where(['tender_id'=>$tender_id,'payment_status'=>'Paid'])->orderBy('DorAmount','desc')->count();
     if($tendersCount<1){
        $result =  [
            "messages"=>"Cant find Tender",
@@ -622,7 +622,7 @@ $style = '';
                 }
                 </style>
 
-            <h1 style='text-align:center;margin-top:20px;color:green'>এই ইজারার নির্বাচিত সদস্যা এর তথ্য নিচে দেখুন।</h1>
+            <h1 style='text-align:center;margin-top:20px;color:green'>এই ইজারার নির্বাচিত সদস্য এর তথ্য নিচে দেখুন।</h1>
 
                 $table
 
