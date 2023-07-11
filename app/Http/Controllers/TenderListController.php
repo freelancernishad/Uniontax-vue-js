@@ -187,7 +187,7 @@ class TenderListController extends Controller
             $meyad = "০১/০৭/".int_en_to_bn($MYear-1);
             $orthoBotsor = int_en_to_bn($MYear-1 ."-".$MYear);
         }
-        
+
         $form_price = $row->form_price;
 
         $numto = new NumberToBangla();
@@ -395,7 +395,7 @@ $style = '';
     }
 
 
-    $tendersCount = Tender::where(['tender_id'=>$tender_id])->orderBy('DorAmount','desc')->count();
+    $tendersCount = Tender::where(['tender_id'=>$tender_id,'payment_status'=>'Paid'])->orderBy('DorAmount','desc')->count();
     if($tendersCount<1){
        $result =  [
            "messages"=>"Cant find Tender",
@@ -403,8 +403,8 @@ $style = '';
        ];
        return response()->json([$result],404);
     }
-    $tendersDorAmount = Tender::where(['tender_id'=>$tender_id])->orderBy('DorAmount','desc')->first()->DorAmount;
-    $tenders = Tender::where(['DorAmount'=>$tendersDorAmount])->orderBy('DorAmount','desc')->get();
+    $tendersDorAmount = Tender::where(['tender_id'=>$tender_id,'payment_status'=>'Paid'])->orderBy('DorAmount','desc')->first()->DorAmount;
+    $tenders = Tender::where(['DorAmount'=>$tendersDorAmount,'payment_status'=>'Paid'])->orderBy('DorAmount','desc')->get();
 
     foreach ($tenders as $value) {
         $value->update(['status'=>'Selected']);
