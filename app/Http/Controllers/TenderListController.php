@@ -498,17 +498,24 @@ $style = '';
             </p>
 
 
+            <p>
+
+            &nbsp;&nbsp;&nbsp;&nbsp; $tenderSelected->applicant_orgName , পিতা: $tenderSelected->applicant_org_fatherName, <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; গ্রামঃ $tenderSelected->vill , ডাকঘরঃ $tenderSelected->postoffice , <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp; উপজেলাঃ $tenderSelected->thana, জেলাঃ $tenderSelected->distric <br/>
+         </p>
 
 
+         <p style='margin:0 !important'>অনুলিপি : সদয় জ্ঞাতার্থে /জ্ঞাতার্থে  কার্যাথে</p>
 
 
+         <p style='margin:0 !important'>১। জেলা প্রশাসক,পঞ্চগড়।</p>
+         <p style='margin:0 !important'>২। চেয়ারম্যান, উপজেলা পরিষদ তেতুলিয়া, পঞ্চগড়।</p>
+         <p style='margin:0 !important'>৩। উপজেলা নির্বাহী অফিসার, তেতুলিয়া, পঞ্চগড়।</p>
+         <p style='margin:0 !important'>৪। নোটিশ বোড/ওয়েবসাইড।</p>
+         <p style='margin:0 !important'>৫। অফিস কপি।</p>
 
 
-
-
-             <p style='text-align:center;text-weight:700'><u>শর্তাবলি</u></p>
-
-             $row->tender_roles
 
 
 
