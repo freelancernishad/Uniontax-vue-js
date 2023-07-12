@@ -478,7 +478,7 @@ $style = '';
                     <td style='text-align:right'>তারিখ:- ".int_en_to_bn(date('d/m/Y', strtotime($noticeDate)))."</td>
                 </tr>
             </table>
-            <p style='text-align:center;text-weight:700'><u>$row->tender_name</u></p>
+       
 
             <p style='text-weight:700'>বিষয়ঃ  $row->tender_name নিলামে বিক্রয় কার্যাদেশ প্রসঙ্গে। </p>
 
