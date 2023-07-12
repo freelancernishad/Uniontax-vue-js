@@ -44,6 +44,9 @@ class TenderList extends Model
        'committe3position',
        'commette3phone',
        'commette3pass',
+       'bankName',
+       'bankCheck',
+       'daysOfDepositeAmount',
     ];
 
 }
