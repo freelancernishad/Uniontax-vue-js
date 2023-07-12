@@ -475,7 +475,7 @@ $style = '';
             <table width='100%'>
                 <tr>
                     <td style='text-align:left'>স্মারক নং:- ".int_en_to_bn($row->memorial_no)."</td>
-                    <td style='text-align:right'>তারিখ:- ".int_en_to_bn(date('d/m/Y', strtotime($noticeDate)))."</td>
+                    <td style='text-align:right'>তারিখ:- ".int_en_to_bn(date('d/m/Y', strtotime($noticeDate)))."ইং তারিখের নিলাম বিজ্ঞপ্তি মোতাবেক </td>
                 </tr>
             </table>
 
