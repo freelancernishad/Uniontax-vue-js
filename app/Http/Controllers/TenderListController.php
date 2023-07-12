@@ -375,6 +375,212 @@ $style = '';
 
 
 
+
+    public function workAccessPdf(Request $request, $tender_id)
+    {
+
+
+
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "50000000000000000");
+        ini_set('memory_limit', '12008M');
+
+        // $pdf = LaravelMpdf::loadView('tender.notice');
+        // return $pdf->stream("fghfg.pdf");
+
+
+        $tender_list_count = TenderList::where('tender_id',$tender_id)->count();
+        if($tender_list_count<1){
+            return 'No data Found';
+        }
+
+        $row = TenderList::where('tender_id',$tender_id)->first();
+
+
+
+        $uniouninfo = Uniouninfo::where('short_name_e', $row->union_name)->first();
+
+        $filename = time().".pdf";
+        // return $this->pdfHTMLut($row,$uniouninfo);
+            $mpdf = new \Mpdf\Mpdf([
+                'default_font_size' => 13,
+                'default_font' => 'bangla',
+                'mode' => 'utf-8',
+                'format' => 'A4',
+                'setAutoTopMargin' => 'stretch',
+                'setAutoBottomMargin' => 'stretch'
+            ]);
+            $mpdf->SetDisplayMode('fullpage');
+            $mpdf->SetHTMLHeader($this->pdfWordHeader($row,$uniouninfo, $filename));
+            // $mpdf->SetHTMLFooter($this->pdfFooter($row,$uniouninfo, $filename));
+            // $mpdf->SetHTMLHeader('Document Title|Center Text|{PAGENO}');
+            $mpdf->defaultheaderfontsize = 10;
+            $mpdf->defaultheaderfontstyle = 'B';
+            $mpdf->defaultheaderline = 0;
+            $mpdf->defaultfooterfontsize = 10;
+            $mpdf->defaultfooterfontstyle = 'BI';
+            $mpdf->defaultfooterline = 0;
+            $mpdf->showWatermarkImage = true;
+            // $mpdf->WriteHTML('<watermarkimage src="'.$watermark.'" alpha="0.1" size="80,80" />');
+            $mpdf->SetDisplayMode('fullpage');
+
+            $mpdf->WriteHTML($this->pdfWordHTMLut($row,$uniouninfo));
+            $mpdf->useSubstitutions = false;
+            $mpdf->simpleTables = true;
+            $mpdf->Output($filename, 'I');
+
+    }
+
+    public function pdfWordHTMLut($row,$uniouninfo)
+    {
+
+        $tenderSubmitCount = Tender::where(['tender_id'=>$row->id,'payment_status'=>'Paid'])->count();
+        $tenderSelected = Tender::where(['tender_id'=>$row->id,'status'=>'Selected'])->first();
+        $noticeDate = $row->noticeDate;
+        $month = date('m', strtotime('01-07-2023'));
+        $MYear = date('Y');
+        $Mmonth = date('m');
+        $Mdate = date('d');
+        if($month>6){
+
+            $meyadStart = "০১/০৭/".int_en_to_bn($MYear);
+            $meyadEnd = "৩০/০৬/".int_en_to_bn($MYear+1);
+            $orthoBotsor = int_en_to_bn($MYear."-".($MYear+1));
+
+        }else{
+            $meyadStart = "০১/০৭/".int_en_to_bn($MYear-1);
+            $meyadEnd = "৩০/০৬/".int_en_to_bn($MYear);
+            $orthoBotsor = int_en_to_bn($MYear-1 ."-".$MYear);
+        }
+
+        $form_price = $row->form_price;
+
+        $numto = new NumberToBangla();
+        $the_amount_of_money_in_words = $numto->bnMoney($form_price) . ' মাত্র';
+
+        $DorAmount = $numto->bnMoney($tenderSelected->DorAmount) . ' মাত্র';
+
+
+        $amount = $tenderSelected->DorAmount;
+        $percentage15 = 15;
+        $result15Percent = ($amount * $percentage15) / 100;
+        $result15PercentText = $numto->bnMoney($result15Percent) . ' মাত্র';
+
+        $percentage5 = 15;
+        $result5Percent = ($amount * $percentage5) / 100;
+        $result5PercentText = $numto->bnMoney($result5Percent) . ' মাত্র';
+
+
+        $nagoriinfo = "
+            <table width='100%'>
+                <tr>
+                    <td style='text-align:left'>স্মারক নং:- ".int_en_to_bn($row->memorial_no)."</td>
+                    <td style='text-align:right'>তারিখ:- ".int_en_to_bn(date('d/m/Y', strtotime($noticeDate)))."</td>
+                </tr>
+            </table>
+            <p style='text-align:center;text-weight:700'><u>$row->tender_name</u></p>
+
+            <p style='text-weight:700'>বিষয়ঃ  $row->tender_name নিলামে বিক্রয় কার্যাদেশ প্রসঙ্গে। </p>
+
+            <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;উপযুক্ত বিষয় ও সুত্রোক্ত স্মারকের প্রেক্ষিতে জানানো যাচ্ছে যে, $row->tender_name ইউনিয়ন পরিষদ আইন ২০০৯ এবং আদশকর তফসিল-২০১৩, মোতাবেক গত-".int_en_to_bn(date('d/m/Y', strtotime($noticeDate)))."ইং তারিখের ".int_en_to_bn($row->memorial_no)." নং স্মারকে নিলাম দরপত্র বিজ্ঞপ্তি আহবান করা হয়।
+            </p>
+
+
+            <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;উক্ত নিলাম কাযক্রমে নির্ধারিত তারিখ ও সময়ের মধ্যে দাখিলকৃত মোট ".int_en_to_bn($tenderSubmitCount)."টি দরপত্রের মধ্যে $tenderSelected->applicant_orgName, পিতা: $tenderSelected->applicant_org_fatherName, গ্রামঃ $tenderSelected->vill, ডাকঘরঃ $tenderSelected->postoffice, উপজেলাঃ $tenderSelected->thana, জেলাঃ $tenderSelected->distric এর দাখিলকৃত দর ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) সর্বোচ্চ হওয়ায় তার দরটি গৃহিত হয় এবং এ সংক্রান্ত দরপত্র আহবান ও মুল্যায়ন কমিটি কর্তৃক কার্যাদেশ প্রদানের জন্য সুপারিশ করা হয়।
+            </p>
+
+
+
+            <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      এমতাবস্থায় $tenderSelected->applicant_orgName, পিতা: $tenderSelected->applicant_org_fatherName, গ্রামঃ $tenderSelected->vill, ডাকঘরঃ $tenderSelected->postoffice, উপজেলাঃ $tenderSelected->thana, জেলাঃ $tenderSelected->distric-কে তার দাখিলকৃত দর ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) রাজশাহী কৃষি উন্নয়ন ব্যাংক ১২২-৩৮৪৩ হিসাব নম্বরে এবং তৎসঙ্গে নিদিষ্ট কোডে বিধি মোতাবেক দাখিলকৃত  ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) এর ১৫% ভ্যাট =  ".int_en_to_bn($result15Percent)."/-($result15PercentText) এবং দাখিলকৃত ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) এর  ৫% আয়কর = ".int_en_to_bn($result5PercentText)."/-($result5PercentText) সরকারি কোষাগারে আগামী ০৭ (সাত) কমদিবসের মধ্যে সমুদয় অর্থ জমা প্রদান নিশ্চিত করা সাপেক্ষে $meyadStart ইং তারিখে হতে $meyadEnd ইং তারিখ পর্যন্ত $row->tender_name প্রদানের কার্যাদেশ প্রদান করা হলো। অন্যথায়/ ব্যথতায় জামানত বাজেয়াপ্তসহ নিলাম বিজ্ঞপ্তিটি বাজেয়াপ্ত বলে গন্য হইবে এবং পুনরায় ডাক প্রদান করা হইবে।
+            </p>
+
+
+
+
+
+
+
+
+
+
+             <p style='text-align:center;text-weight:700'><u>শর্তাবলি</u></p>
+
+             $row->tender_roles
+
+
+
+        ";
+
+        return $nagoriinfo;
+    }
+
+    public function pdfWordHeader($row,$uniouninfo, $filename)
+    {
+
+
+
+
+        $pdfHead = '
+
+
+
+        ';
+        $output = '
+          ' . $pdfHead . '
+              <table width="100%" style="border-collapse: collapse;" border="0">
+                  <tr>
+                      <td style="text-align: center;" width="20%">
+					  <span style="color:#b400ff;"><b>
+					  উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+
+					  </span>
+                      </td>
+                      <td style="text-align: center;" width="20%">
+                          <img width="70px" src="' . base64('backend/bd-logo.png') . '">
+                      </td>
+                      <td style="text-align: center;" width="20%">';
+        $output .= '</td>
+                  </tr>
+                  <tr style="margin-top:2px;margin-bottom:2px;">
+                      <td>
+                      </td>
+                      <td style="text-align: center;" width="50%">
+                          <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ</p>
+                          <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p>
+
+                      </td>
+                      <td>
+                      </td>
+                  </tr>
+                  <tr style="margin-top:0px;margin-bottom:0px;">
+                      <td>
+                      </td>
+                      <td style="margin-top:0px; margin-bottom:0px; text-align: center;" width=50%>
+                          <h1 style="color: #7230A0; margin: 0px; font-size: 28px">' . $uniouninfo->full_name . '</h3>
+                      </td>
+                      <td>
+                      </td>
+                  </tr>
+                  <tr style="margin-top:2px;margin-bottom:2px;">
+                      <td>
+                      </td>
+                      <td style="text-align: center; " width="50%">
+
+                          <p style="font-size:20px">উপজেলা: ' . $uniouninfo->thana . ', জেলা: ' . $uniouninfo->district . ' ।</p>
+                      </td>
+                      <td>
+                      </td>
+                  </tr>
+                  </table>';
+        return $output;
+    }
+
+
+
+
     function SeletionTender(Request $request,$tender_id){
 
 

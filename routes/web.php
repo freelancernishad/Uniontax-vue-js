@@ -174,6 +174,8 @@ Route::get('/pdf/tenders/{tender_id}', [TenderListController::class,'viewpdf']);
 
 
 
+
+
 Route::get('/tenders/form/buy/{tender_id}', function ($tender_id) {
 
 
@@ -604,7 +606,7 @@ Route::get('/allow/application/notification', function () {
 
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 
-
+    Route::get('/pdf/tenders/work/access/{tender_id}', [TenderListController::class,'workAccessPdf']);
 
     Route::get('/{vue_capture?}', function () {
         // return   Auth::user()->roles->permission;
