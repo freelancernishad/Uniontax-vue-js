@@ -475,6 +475,11 @@ $style = '';
 
 
         $nagoriinfo = "
+         <style>
+         p{
+            font-size:15px
+         }
+         </style>
             <table width='100%'>
                 <tr>
                     <td style='text-align:left'>স্মারক নং:- ".int_en_to_bn($row->memorial_no)."</td>
@@ -623,7 +628,7 @@ $style = '';
         <table width="100%" style="border-collapse: collapse;" border="0">
                               <tr>
                                   <td  style="text-align: center;" width="40%">
-                         
+
                                   </td>
                                   <td style="text-align: center; width: 200px;" width="30%">
                                       <img width="100px" src="' . base64($uniouninfo->sonod_logo) . '">
