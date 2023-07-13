@@ -463,10 +463,10 @@ $style = '';
 
         $amount = $tenderSelected->DorAmount;
         $percentage15 = 15;
-        $result15Percent = round(($amount * $percentage15) / 100, 2);
+        $result15Percent = number_format((float)($amount * $percentage15) / 100, 2, '.', '');
         $result15PercentText = $numto->bnMoney($result15Percent) . ' মাত্র';
 
-        $percentage5 = 15;
+        $percentage5 = 5;
         $result5Percent = ($amount * $percentage5) / 100;
         $result5PercentText = $numto->bnMoney(round($result5Percent, 2)) . ' মাত্র';
 
