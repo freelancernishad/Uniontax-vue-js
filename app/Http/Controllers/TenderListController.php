@@ -648,7 +648,7 @@ $style = '';
             color: white;
             text-align: center;
             padding: 2px 2px;font-size: 16px;     margin-top: 0px;" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
-                            <p class="m-0" style="font-size:14px;text-align:center">বিজ্ঞপ্তিটি যাচাই করতে QR কোড স্ক্যান করুন</p>
+                         
                       </div>
                   </div>
               </div>';
