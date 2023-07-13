@@ -467,7 +467,7 @@ $style = '';
         $result15PercentText = $numto->bnMoney($result15Percent) . ' মাত্র';
 
         $percentage5 = 5;
-        $result5Percent = ($amount * $percentage5) / 100;
+        $result5Percent = number_format((float)($amount * $percentage5) / 100, 2, '.', '');
         $result5PercentText = $numto->bnMoney(round($result5Percent, 2)) . ' মাত্র';
 
 
