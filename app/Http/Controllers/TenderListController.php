@@ -458,10 +458,13 @@ $style = '';
         $numto = new NumberToBangla();
         $the_amount_of_money_in_words = $numto->bnMoney($form_price) . ' মাত্র';
 
-        $DorAmount = $numto->bnMoney($tenderSelected->DorAmount) . ' মাত্র';
+
+        $amount = number_format((float)$tenderSelected->DorAmount, 2, '.', '');
+      
+
+        $DorAmount = $numto->bnMoney($amount) . ' মাত্র';
 
 
-        $amount = $tenderSelected->DorAmount;
         $percentage15 = 15;
         $result15Percent = number_format((float)($amount * $percentage15) / 100, 2, '.', '');
         $result15PercentText = $numto->bnMoney($result15Percent) . ' মাত্র';
