@@ -623,10 +623,7 @@ $style = '';
         <table width="100%" style="border-collapse: collapse;" border="0">
                               <tr>
                                   <td  style="text-align: center;" width="40%">
-                             <div class="signature text-center position-relative">
-                                      ' . $qrcode . '<br/>
-                                       ' . $sonodNO . '
-                                    </div>
+                         
                                   </td>
                                   <td style="text-align: center; width: 200px;" width="30%">
                                       <img width="100px" src="' . base64($uniouninfo->sonod_logo) . '">
