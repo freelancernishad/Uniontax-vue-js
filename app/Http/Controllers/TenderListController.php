@@ -464,11 +464,11 @@ $style = '';
         $amount = $tenderSelected->DorAmount;
         $percentage15 = 15;
         $result15Percent = ($amount * $percentage15) / 100;
-        $result15PercentText = $numto->bnMoney($result15Percent) . ' মাত্র';
+        $result15PercentText = $numto->bnMoney(round($result15Percent, 2)) . ' মাত্র';
 
         $percentage5 = 15;
         $result5Percent = ($amount * $percentage5) / 100;
-        $result5PercentText = $numto->bnMoney($result5Percent) . ' মাত্র';
+        $result5PercentText = $numto->bnMoney(round($result5Percent, 2)) . ' মাত্র';
 
 
         $nagoriinfo = "
