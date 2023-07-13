@@ -412,7 +412,7 @@ $style = '';
             ]);
             $mpdf->SetDisplayMode('fullpage');
             $mpdf->SetHTMLHeader($this->pdfWordHeader($row,$uniouninfo, $filename));
-            // $mpdf->SetHTMLFooter($this->pdfFooter($row,$uniouninfo, $filename));
+            $mpdf->SetHTMLFooter($this->pdfWordFooter($row,$uniouninfo, $filename));
             // $mpdf->SetHTMLHeader('Document Title|Center Text|{PAGENO}');
             $mpdf->defaultheaderfontsize = 10;
             $mpdf->defaultheaderfontstyle = 'B';
@@ -588,7 +588,71 @@ $style = '';
         return $output;
     }
 
+    public function pdfWordFooter($row,$uniouninfo, $filename)
+    {
 
+
+
+
+        $sonodNO = ' <div class="signature text-center position-relative">
+        স্মারক নং: ' .  int_en_to_bn($row->memorial_no) . ' <br /> বিজ্ঞপ্তির তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->created_at))).'</div>';
+
+
+
+
+$C_color = '#5c1caa';
+$C_size = '20px';
+$color = '#5c1caa';
+$style = '';
+
+
+            $ccc = '<img width="170px"  style="'.$style.'" src="' . base64($uniouninfo->c_signture) . '"><br/>
+                              <b><span style="color:'.$C_color.';font-size:'.$C_size.';">' . $uniouninfo->c_name . '</span> <br />
+                                      </b><span style="font-size:16px;">চেয়ারম্যান</span><br />';
+
+
+
+         $qrurl = url("/pdf/tenders/$row->tender_id");
+
+        // $qrurl = url("/verification/sonod/$row->id");
+        //in Controller
+        $qrcode = \QrCode::size(70)
+            ->format('svg')
+            ->generate($qrurl);
+        $output = '
+        <table width="100%" style="border-collapse: collapse;" border="0">
+                              <tr>
+                                  <td  style="text-align: center;" width="40%">
+                             <div class="signature text-center position-relative">
+                                      ' . $qrcode . '<br/>
+                                       ' . $sonodNO . '
+                                    </div>
+                                  </td>
+                                  <td style="text-align: center; width: 200px;" width="30%">
+                                      <img width="100px" src="' . base64($uniouninfo->sonod_logo) . '">
+                                  </td>
+                                  <td style="text-align: center;" width="40%">
+                                      <div class="signature text-center position-relative" style="color:'.$color.'">
+
+                                      ' . $ccc . $uniouninfo->full_name . ' <br> ' . $uniouninfo->thana . ', ' . $uniouninfo->district . ' ।
+                                      <br/>
+                                      '. $row->c_email.'
+
+                                      </div>
+                                  </td>
+                              </tr>
+                          </table>
+                            <p style="background: #787878;
+            color: white;
+            text-align: center;
+            padding: 2px 2px;font-size: 16px;     margin-top: 0px;" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
+                            <p class="m-0" style="font-size:14px;text-align:center">বিজ্ঞপ্তিটি যাচাই করতে QR কোড স্ক্যান করুন</p>
+                      </div>
+                  </div>
+              </div>';
+        $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $output);
+        return $output;
+    }
 
 
     function SeletionTender(Request $request,$tender_id){
