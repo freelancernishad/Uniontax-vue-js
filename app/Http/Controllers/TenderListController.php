@@ -477,7 +477,7 @@ $style = '';
         $nagoriinfo = "
          <style>
          p{
-            font-size:15px
+            font-size:16px
          }
          </style>
             <table width='100%'>
