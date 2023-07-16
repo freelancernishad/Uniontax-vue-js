@@ -1221,43 +1221,37 @@ export default {
 
         FileSelected($event, parent_index) {
             let file = $event.target.files[0];
-            // console.log(file.size);
-            if (file.size < 204800) {
-                event.target.value = '';
 
-                if(parent_index=='applicant_national_id_front_attachment'){
-                    this.form[parent_index] = this.$asseturl+'demonid/front.jpg'
-                }else if(parent_index=='applicant_national_id_back_attachment'){
-                    this.form[parent_index] = this.$asseturl+'demonid/back.jpg'
-                }
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'দুঃখিত',
-                    text: 'ছবি অবশ্যই 200KB এর উপরে হতে হবে!'
-
-                    })
-                // Notification.image_validation('ছবি অবশ্যই 300KB এর উপরে হতে হবে!');
-            }
-            // else if (file.size > 5242880) {
-            //     event.target.value = '';
-            //     Swal.fire({
-            //         icon: 'error',
-            //         title: 'দুঃখিত',
-            //         text: 'ছবি অবশ্যই 5MB এর উপরে হতে হবে!'
-
-            //         })
-            //     // Notification.image_validation('ছবি অবশ্যই 5MB এর উপরে হতে হবে!');
-            // }
-             else {
+            if(parent_index=='image'){
                 let reader = new FileReader;
                 reader.onload = event => {
                     this.form[parent_index] = event.target.result
-                    // console.log(event.target.result);
                 };
                 reader.readAsDataURL(file)
+            }else{
+                if (file.size < 204800) {
+                    event.target.value = '';
+                    if(parent_index=='applicant_national_id_front_attachment'){
+                        this.form[parent_index] = this.$asseturl+'demonid/front.jpg'
+                    }else if(parent_index=='applicant_national_id_back_attachment'){
+                        this.form[parent_index] = this.$asseturl+'demonid/back.jpg'
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'দুঃখিত',
+                        text: 'ছবি অবশ্যই 200KB এর উপরে হতে হবে!'
+
+                        })
+                }else {
+                    let reader = new FileReader;
+                    reader.onload = event => {
+                        this.form[parent_index] = event.target.result
+                    };
+                    reader.readAsDataURL(file)
+                }
             }
-            //   console.log($event.target.result);
+
+
         },
         portKeydown(e) {
             if (/^\+$/.test(e.key)) {
