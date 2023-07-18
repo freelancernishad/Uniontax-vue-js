@@ -110,6 +110,15 @@
           <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label col-form-label">Nid Service</label>
+                    <input type="Number" class="form-control"  id="nidService" v-model="form.nidServicestatus"  />
+
+            </div>
+            </div>
+
+
+          <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-form-label">Nid Balance</label>
                     <input type="Number" class="form-control"  id="nidService" v-model="form.nidService"  />
 
             </div>

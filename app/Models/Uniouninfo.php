@@ -32,6 +32,7 @@ class Uniouninfo extends Model
         'AKPAY_MER_REG_ID',
         'AKPAY_MER_PASS_KEY',
         'smsBalance',
+        'nidServicestatus',
         'nidService',
         'status',
     ];

@@ -17,7 +17,10 @@ class UniouninfoController extends Controller
 
         $Uniouninfo = Uniouninfo::where('short_name_e',$union)->first();
 
-        return $nidServiceOld = (int)$Uniouninfo->nidService;
+         $nidServicestatus = (int)$Uniouninfo->nidServicestatus;
+         $nidServicebalace = (int)$Uniouninfo->nidService;
+
+        return ['nidServicestatus'=>$nidServicestatus,'nidServicebalace'=>$nidServicebalace];
 
 
     }
