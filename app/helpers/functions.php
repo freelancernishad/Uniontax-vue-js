@@ -1650,19 +1650,25 @@ function characterCount($string){
 // var_dump(extractCommonWords($string), $string);
 
 
-function COB($full=0){
+function COB($full=0,$month=''){
     $year = date('Y');
-    $date = date('m');
+
+    if($month==''){
+        $month = date('m');
+    }else{
+        $month = $month;
+    }
+
     $orthobochor = '';
 
     if($full){
-        if($date<7){
+        if($month<7){
             $orthobochor = ($year-1)."-".date('Y');
         }else{
             $orthobochor = $year."-". (date('Y')+1);
         }
     }else{
-        if($date<7){
+        if($month<7){
             $orthobochor = ($year-1)."-".date('y');
         }else{
             $orthobochor = $year."-". (date('y')+1);

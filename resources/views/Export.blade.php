@@ -135,7 +135,7 @@
               <span>প্রতিবেদনের সময়কালঃ</span>  {{ int_en_to_bn(date("d/m/Y", strtotime($from))) }} থেকে {{ int_en_to_bn(date("d/m/Y", strtotime($to))) }} পর্যন্ত
             </td>
             <td style="text-align: right">
-                অর্থ বছর: ২০২২-২০২৩
+                অর্থ বছর: {{ int_en_to_bn(COB(1,date("m", strtotime($from)))) }}
             </td>
         </tr>
     </table>
