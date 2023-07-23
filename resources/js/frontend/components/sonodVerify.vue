@@ -152,7 +152,7 @@
                                             </div>
                                             <div class="col-6 border-dash">
                                                 <div class="beneficiary-details-left cert-verify-content-div">
-                                                    11-10-2021
+                                                    {{ dateformatGlobal(row.created_at)[4] }}
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                             </div>
                                             <div class="col-6 border-dash">
                                                 <div class="beneficiary-details-left cert-verify-content-div">
-                                                    14-11-2021
+
                                                 </div>
                                             </div>
                                         </div>
@@ -224,7 +224,7 @@
                                             </div>
                                             <div class="col-6 border-dash">
                                                 <div class="beneficiary-details-left cert-verify-content-div">
-                                                    3
+                                                   1
                                                 </div>
                                             </div>
                                         </div>
