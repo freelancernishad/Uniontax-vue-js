@@ -401,7 +401,7 @@ $style = '';
         $uniouninfo = Uniouninfo::where('short_name_e', $row->union_name)->first();
 
         $filename = time().".pdf";
-        // return $this->pdfHTMLut($row,$uniouninfo);
+        // return $this->pdfWordHTMLut($row,$uniouninfo);
             $mpdf = new \Mpdf\Mpdf([
                 'default_font_size' => 13,
                 'default_font' => 'bangla',
@@ -497,17 +497,35 @@ $style = '';
 
             <p style='text-align: justify;'>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;উক্ত নিলাম কাযক্রমে নির্ধারিত তারিখ ও সময়ের মধ্যে দাখিলকৃত মোট ".int_en_to_bn($tenderSubmitCount)."টি দরপত্রের মধ্যে $tenderSelected->applicant_orgName, পিতা: $tenderSelected->applicant_org_fatherName, গ্রামঃ $tenderSelected->vill, ডাকঘরঃ $tenderSelected->postoffice, উপজেলাঃ $tenderSelected->thana, জেলাঃ $tenderSelected->distric এর দাখিলকৃত দর ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) সর্বোচ্চ হওয়ায় তার দরটি গৃহিত হয় এবং এ সংক্রান্ত দরপত্র আহবান ও মুল্যায়ন কমিটি কর্তৃক কার্যাদেশ প্রদানের জন্য সুপারিশ করা হয়।
-            </p>
+            </p>";
 
 
 
-            <p style='text-align: justify;'>
+
+
+
+
+
+
+            if($row->permitDetials){
+                $nagoriinfo .= "<p style='text-align: justify;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      $row->permitDetials</p>";
+            }else{
+            $nagoriinfo .= " <p style='text-align: justify;'>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      এমতাবস্থায় $tenderSelected->applicant_orgName, পিতা: $tenderSelected->applicant_org_fatherName, গ্রামঃ $tenderSelected->vill, ডাকঘরঃ $tenderSelected->postoffice, উপজেলাঃ $tenderSelected->thana, জেলাঃ $tenderSelected->distric-কে তার দাখিলকৃত দর ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) $row->bankName $row->bankCheck হিসাব নম্বরে এবং তৎসঙ্গে নিদিষ্ট কোডে বিধি মোতাবেক দাখিলকৃত  ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) এর ১৫% ভ্যাট =  ".int_en_to_bn($result15Percent)."/-($result15PercentText) এবং দাখিলকৃত ".int_en_to_bn($tenderSelected->DorAmount)."/-($DorAmount) এর  ৫% আয়কর = ".int_en_to_bn($result5Percent)."/-($result5PercentText) সরকারি কোষাগারে আগামী ".int_en_to_bn($row->daysOfDepositeAmount)." কর্মদিবসের মধ্যে সমুদয় অর্থ জমা প্রদান নিশ্চিত করা সাপেক্ষে $meyadStart ইং তারিখে হতে $meyadEnd ইং তারিখ পর্যন্ত $row->tender_name প্রদানের কার্যাদেশ প্রদান করা হলো। অন্যথায়/ ব্যথতায় জামানত বাজেয়াপ্তসহ নিলাম বিজ্ঞপ্তিটি বাজেয়াপ্ত বলে গন্য হইবে এবং পুনরায় ডাক প্রদান করা হইবে।
-            </p>
+            </p>";
+        }
 
 
-            <p>
 
+
+
+
+
+
+
+
+
+            $nagoriinfo .= "<p>
             &nbsp;&nbsp;&nbsp;&nbsp; $tenderSelected->applicant_orgName , পিতা: $tenderSelected->applicant_org_fatherName, <br/>
             &nbsp;&nbsp;&nbsp;&nbsp; গ্রামঃ $tenderSelected->vill , ডাকঘরঃ $tenderSelected->postoffice , <br/>
             &nbsp;&nbsp;&nbsp;&nbsp; উপজেলাঃ $tenderSelected->thana, জেলাঃ $tenderSelected->distric <br/>
@@ -648,7 +666,7 @@ $style = '';
             color: white;
             text-align: center;
             padding: 2px 2px;font-size: 16px;     margin-top: 0px;" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূক কাজে সহায়তা করুন"</p>
-                         
+
                       </div>
                   </div>
               </div>';

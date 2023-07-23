@@ -47,6 +47,7 @@ class TenderList extends Model
        'bankName',
        'bankCheck',
        'daysOfDepositeAmount',
+       'permitDetials',
     ];
 
 }
