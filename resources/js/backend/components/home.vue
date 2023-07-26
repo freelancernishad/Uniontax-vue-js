@@ -143,7 +143,7 @@
             <!-- Dashboard summery End Here -->
 
 
-            <div class="popup" v-if="showPopup" @click="closePopup">
+            <div class="popup" v-if="showPopup" >
                 <div class="content">
                     <div class="text-right" style="text-align: right!important;padding: 16px 30px;">
                         <span class="close-btn" @click="closePopup">Close</span>
