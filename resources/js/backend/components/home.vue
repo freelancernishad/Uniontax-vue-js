@@ -142,8 +142,23 @@
             </div>
             <!-- Dashboard summery End Here -->
 
+
+            <div class="popup" v-if="showPopup" @click="closePopup">
+                <div class="content">
+                    <div class="text-right" style="text-align: right!important;padding: 16px 30px;">
+                        <span class="close-btn" @click="closePopup">Close</span>
+                    </div>
+                    <img :src="$asseturl+'payment-notice.jpg'" alt="Popup Image">
+                </div>
+            </div>
+
+
+
         </div>
-    </div>
+
+
+
+    <!-- </div> -->
 </template>
 <script>
 // import { mapState,mapActions } from 'vuex';
@@ -161,6 +176,7 @@ export default {
     },
     data() {
         return {
+            showPopup: true,
             sonodCount:{
                 allSonodCount:0,
                 pendingSonodCount:0,
@@ -181,7 +197,9 @@ export default {
 
     },
     methods: {
-
+        closePopup() {
+            this.showPopup = false;
+        },
         callCount(){
                 this.sonodCountDashbord('all','allSonodCount')
                 // this.sonodCountDashbord('Pending','pendingSonodCount')
@@ -231,4 +249,64 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+/* app.css (Your CSS file) */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: auto;
+}
+
+.content {
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  background: white ;
+}
+
+.content img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.close-btn {
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1;
+  background-color: #ff5733;
+  padding: 10px;
+
+}
+
+/* Mobile responsive styles */
+@media (max-width: 767px) {
+  .popup {
+    justify-content: flex-start;
+    padding: 20px;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .close-btn {
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #ff5733;
+    border-radius: 50%;
+  }
+}
 </style>
