@@ -187,8 +187,30 @@
                                         <hr />
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <table class="table table-striped">
+        <div class="col-md-12" v-if="$route.params.id">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th width="30%">সাল</th>
+                        <th  width="40%">টাকার পরিমান</th>
+                        <th  width="30%"><button type="button" class="btn btn-info"  v-if="!$route.params.id" @click="addMore()">Add More</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  v-for="(bok, index) in form.bokeya" :key="index">
+                        <td>{{ bok.year }}</td>
+                        <td>{{ bok.price }}</td>
+                        <td>
+                            <span  v-if="bok.status=='Paid'" class="btn btn-success" >Paid</span>
+                            <button type="button" @click="openEditForm(bok)" class="ml-2 btn btn-danger" v-else >Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12" v-else>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th width="30%">সাল</th>
@@ -196,51 +218,32 @@
                         <th  width="30%"><button type="button" class="btn btn-info" @click="addMore()">Add More</button></th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr  v-for="(bok, index) in form.bokeya" :key="index">
                         <td>
                             <input type="hidden" v-model="form.itemId = index">
                             <div class="form-group">
-
-
                                 <select v-model="bok.year" class="form-control" v-if="bok.status=='Paid'"  disabled>
                                     <option>2023-2024</option><option>2022-2023</option><option>2021-2022</option><option>2020-2021</option><option>2019-2020</option><option>2018-2019</option><option>2017-2018</option><option>2016-2017</option><option>2015-2016</option><option>2014-2015</option><option>2013-2014</option><option>2012-2013</option><option>2011-2012</option><option>2010-2011</option><option>2009-2010</option><option>2008-2009</option><option>2007-2008</option><option>2006-2007</option><option>2005-2006</option><option>2004-2005</option><option>2003-2004</option><option>2002-2003</option><option>2001-2002</option>
                                 </select>
-
                                 <select v-model="bok.year" class="form-control" v-else>
                                     <option>2023-2024</option><option>2022-2023</option><option>2021-2022</option><option>2020-2021</option><option>2019-2020</option><option>2018-2019</option><option>2017-2018</option><option>2016-2017</option><option>2015-2016</option><option>2014-2015</option><option>2013-2014</option><option>2012-2013</option><option>2011-2012</option><option>2010-2011</option><option>2009-2010</option><option>2008-2009</option><option>2007-2008</option><option>2006-2007</option><option>2005-2006</option><option>2004-2005</option><option>2003-2004</option><option>2002-2003</option><option>2001-2002</option>
                                 </select>
-
-
                             </div>
                         </td>
-
                         <td><div class="form-group">
-
                             <input type="tel" v-model="bok.price" v-if="bok.status=='Paid'"  class="form-control w-full py-2 border border-indigo-500 rounded" min="0" disabled  />
                             <input type="tel" v-model="bok.price" v-else  class="form-control w-full py-2 border border-indigo-500 rounded" min="0"  />
 
                         </div></td>
-
-
-
                         <td>
                             <span  v-if="bok.status=='Paid'" class="btn btn-success" >Paid</span>
                             <button type="button" class="ml-2 btn btn-danger" v-else  @click="remove(index)" v-show="index != 0">Remove</button>
-
                         </td>
                     </tr>
-
-
-
                 </tbody>
-
-
             </table>
-
-
-                                    </div>
+        </div>
 
 
 
@@ -259,6 +262,35 @@
 
             </div>
             </div>
+
+
+
+
+    <!-- Custom popup for the edit form -->
+    <div v-if="showPopup" class="custom-popup">
+      <div class="popup-content">
+        <form @submit.prevent="submitForm" class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for=""> {{formData.year}} অর্থ বছর এর পরিমান</label>
+                    <input v-model="formData.price" type="text" placeholder="Price" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-12 mt-3">
+                <button type="submit" class="btn btn-info">Save</button>
+                <button @click="closePopup" class="btn btn-danger">Cancel</button>
+            </div>
+        </form>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
             </div>
 </template>
 
@@ -282,12 +314,31 @@
                     griher_barsikh_mullo:0,
                     jomir_vara:0,
                     barsikh_vara:0,
-                }
+                },
+                showPopup: false,
+                formData: {
+                    id: '',
+                    price: '',
+                },
             }
         },
         methods: {
 
+            openEditForm(bokeya) {
+            this.showPopup = true;
 
+            this.formData.id = bokeya.id;
+            this.formData.price = bokeya.price;
+            this.formData.year = bokeya.year;
+            },
+            closePopup() {
+            this.showPopup = false;
+            },
+           async submitForm() {
+            var res = await this.callApi('post',`/api/holding/bokeya/edit/${this.formData.id}`,this.formData);
+            this.info();
+            this.closePopup();
+            },
 
 
 
@@ -377,5 +428,27 @@
         padding: 10px 17px;
     }
 
+    /* Add custom styles for the custom popup and its content */
+.custom-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Add other custom styles for the form fields, buttons, etc. */
 
     </style>

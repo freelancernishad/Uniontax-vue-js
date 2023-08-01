@@ -94,4 +94,14 @@ class HoldingBokeyaController extends Controller
     {
         //
     }
+
+
+    function holdingTaxEdit(Request $request,$id){
+        $holdingBokeya = HoldingBokeya::find($id);
+        $holdingBokeya->update(['price'=>$request->price]);
+        return $holdingBokeya;
+
+    }
+
+
 }
