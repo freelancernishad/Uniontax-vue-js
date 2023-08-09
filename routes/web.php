@@ -529,18 +529,12 @@ Route::get('/payment/success', function (Request $request) {
     }elseif($payment->sonod_type=='Tenders_form'){
         $redirect = "/tenderformpay/success?transId=$transId";
     }else{
-
         $sonod = Sonod::find($payment->sonodId);
         if($sonod->pBy=='Pre Pay'){
-
             $redirect = "/applications/final/form?sToken=$sonod->uniqeKey";
         }else{
             $redirect = "/payment/success/confirm?transId=$transId";
-
         }
-
-
-
     }
 
 
