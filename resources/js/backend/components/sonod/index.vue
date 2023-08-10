@@ -106,8 +106,12 @@
                                 <span size="sm" @click="paynow(payRoute, item.id, $event.target)"
                                     v-if="item.payment_status == 'Unpaid' && item.stutus == 'approved' && payRoute != ''"
                                     class="btn btn-info mr-1 mt-1">ফি পরিশোধ করুন</span>
-                                <a :href="'/invoice/d/' + item.id" target="_blank" size="sm"
-                                    v-if="item.stutus == 'approved'" class="btn btn-info mr-1 mt-1">রশিদ প্রিন্ট</a>
+
+                                <a :href="'/invoice/d/' + item.id" target="_blank" size="sm" class="btn btn-info mr-1 mt-1">রশিদ প্রিন্ট</a>
+
+                                <!-- <a :href="'/invoice/d/' + item.id" target="_blank" size="sm"
+                                    v-if="item.stutus == 'approved'" class="btn btn-info mr-1 mt-1">রশিদ প্রিন্ট</a> -->
+
                                 <a :href="'/sonod/d/' + item.id" target="_blank" size="sm"
                                     v-if="item.stutus == 'approved' && item.payment_status == 'Paid'"
                                     class="btn btn-info mr-1 mt-1">সনদ</a>
