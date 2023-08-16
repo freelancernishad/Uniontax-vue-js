@@ -319,7 +319,7 @@
                     <div class="col-md-4" v-if="sonodnamedata.enname != 'Certificate of Inheritance'">
                         <div class="form-group">
                             <label for="" class="labelColor">ছবি</label>
-                            <input type="file" accept="image/*" class="custom-file-input" @change="FileSelected($event, 'image')" id="image">
+                            <input type="file" accept="image/*" class="custom-file-input" @change="FileSelected2($event, 'image')" id="image">
                             <label class="custom-file-label" style="margin: 0px auto;margin-top: 32px;width: 93%;" for="image">Choose file</label>
                             <img style="    width: 100%;" thumbnail fluid v-if="form.image != null" :src="form.image" alt="Image 3" />
                         </div>
@@ -1252,6 +1252,17 @@ export default {
             }
 
 
+        },
+
+
+
+        FileSelected2($event, parent_index) {
+            let file = $event.target.files[0];
+                let reader = new FileReader;
+                reader.onload = event => {
+                    this.form[parent_index] = event.target.result
+                };
+                reader.readAsDataURL(file)
         },
         portKeydown(e) {
             if (/^\+$/.test(e.key)) {
