@@ -1263,6 +1263,13 @@ if($payment->status=='Paid'){
         ini_set('memory_limit', '12008M');
 
        $row = Sonod::find($id);
+
+       if($row->stutus=='cancel'){
+        return "
+            <h1 style='color:red;text-align:center'>সনদটি বাতিল করা হয়েছে!<h1>
+        ";
+       }
+
         $sonod_name = $row->sonod_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e', $row->unioun_name)->first();
