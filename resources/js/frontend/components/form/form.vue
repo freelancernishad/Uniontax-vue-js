@@ -298,6 +298,7 @@
                                 <option>বাক</option>
                                 <option>বুদ্ধি</option>
                                 <option>বহুবিধ</option>
+                                <option>মানসিক</option>
                             </select>
                         </div>
                     </div>
