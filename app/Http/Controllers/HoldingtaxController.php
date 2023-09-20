@@ -293,18 +293,21 @@ class HoldingtaxController extends Controller
 
         // die();
     //  return   $amounts =(int)number_format($TaxInvoice->totalAmount,2);
-         $amounts =(float)$TaxInvoice->totalAmount;
+    //    return  $amounts =(float)$TaxInvoice->totalAmount.'.00';
+
+         $amounts = number_format((float)$TaxInvoice->totalAmount, 2, '.', ''); ;
 
         $numto = new NumberToBangla();
-        $amount = $numto->bnMoney($amounts);
+        $amount = $numto->bnMoney($amounts) . ' মাত্র';
 
 
+        $qrurl = url("/holding/tax/invoice/$id");
 
 // return $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount);
         $fileName = 'Invoice-'.date('Y-m-d H:m:s');
         $data['fileName'] = $fileName;
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
-        $mpdf->WriteHTML( $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount));
+        $mpdf->WriteHTML( $this->invoice($holdingTax,$unions,$amount,$holdingBokeyas,'right',$TaxInvoice,$currentamount,$previousamount,$id));
         $mpdf->Output($fileName,'I');
 
     }
@@ -331,12 +334,13 @@ class HoldingtaxController extends Controller
 
 
 
-    public function invoice($customers,$unions,$amount,$bokeyas,$float,$TaxInvoice,$currentamount=0,$previousamount=0){
+    public function invoice($customers,$unions,$amount,$bokeyas,$float,$TaxInvoice,$currentamount=0,$previousamount=0,$id=0){
 
         $full_name = $unions->full_name;
         $short_name_b = $unions->short_name_b;
         $thana = $unions->thana;
         $district = $unions->district;
+        $c_signture = $unions->c_signture;
 
 
         $holding_no = $customers->holding_no;
@@ -353,6 +357,37 @@ class HoldingtaxController extends Controller
         $orthoBchor = $TaxInvoice->orthoBchor;
         $created_at = date("d/m/Y", strtotime($TaxInvoice->created_at));
         $subtotal = number_format($TaxInvoice->totalAmount,2);
+
+
+
+        $qrurl = url("/holding/tax/invoice/$id");
+        $qrcode = "<img src='https://chart.apis.google.com/chart?cht=qr&chl=$qrurl&chs=100'/>";
+
+
+
+        $footerSection = "
+
+
+        <table width='100%'>
+        <tr>
+            <td>
+            ইউপি সচিব/আদায়কারীর স্বাক্ষর
+                <br/>
+                তারিখ: ".int_en_to_bn($created_at)."
+            </td>
+            <td>
+            $qrcode
+            </td>
+            <td style='text-align:right' width='70px'>
+            <img width='130px' src='".base64($c_signture)."'/>
+            ইউপি চেয়ারম্যানের স্বাক্ষর
+            </td>
+        </tr>
+    </table>
+        ";
+
+
+
 
         // <div style='text-align:right'>(ডিলারের কপি)</div>
         $html = "
@@ -626,12 +661,9 @@ class HoldingtaxController extends Controller
                     </div>
                 </div>
                 <div class='memofooter' style='margin-top:25px'>
-                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>ইউপি সচিব/আদায়কারীর স্বাক্ষর
-                    </br>
-                    তারিখ: ".int_en_to_bn($created_at)."
-                    </p>
 
-                    <p style='float:right;width:30%;text-align:right;padding:10px 15px' class='defaltfont'>ইউপি চেয়ারম্যানের স্বাক্ষর</p>
+                    $footerSection
+
                 </div>
             </div>
         </div>
@@ -802,12 +834,9 @@ class HoldingtaxController extends Controller
                     </div>
                 </div>
                 <div class='memofooter' style='margin-top:25px'>
-                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>ইউপি সচিব/আদায়কারীর স্বাক্ষর
-                    </br>
-                    তারিখ: ".int_en_to_bn($created_at)."
-                    </p>
 
-                    <p style='float:right;width:30%;text-align:right;padding:10px 15px' class='defaltfont'>ইউপি চেয়ারম্যানের স্বাক্ষর</p>
+                    $footerSection
+
                 </div>
             </div>
         </div>
