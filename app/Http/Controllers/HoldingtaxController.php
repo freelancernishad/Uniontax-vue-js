@@ -365,6 +365,27 @@ class HoldingtaxController extends Controller
 
 
 
+    //     $footerSection = "
+
+
+    //     <table width='100%'>
+    //     <tr>
+    //         <td>
+    //         ইউপি সচিব/আদায়কারীর স্বাক্ষর
+    //             <br/>
+    //             তারিখ: ".int_en_to_bn($created_at)."
+    //         </td>
+    //         <td>
+    //         $qrcode
+    //         </td>
+    //         <td style='text-align:right' width='70px'>
+    //         <img width='130px' src='".base64($c_signture)."'/>
+    //         ইউপি চেয়ারম্যানের স্বাক্ষর
+    //         </td>
+    //     </tr>
+    // </table>
+    //     ";
+
         $footerSection = "
 
 
@@ -378,15 +399,15 @@ class HoldingtaxController extends Controller
             <td>
             $qrcode
             </td>
-            <td style='text-align:right' width='70px'>
-            <img width='130px' src='".base64($c_signture)."'/>
+            <td style='text-align:right' width='130px'>
             ইউপি চেয়ারম্যানের স্বাক্ষর
             </td>
         </tr>
     </table>
+    
+
+
         ";
-
-
 
 
         // <div style='text-align:right'>(ডিলারের কপি)</div>
