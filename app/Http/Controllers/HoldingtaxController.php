@@ -404,7 +404,9 @@ class HoldingtaxController extends Controller
             </td>
         </tr>
     </table>
-    
+
+    <p style='background-color:#7e7e7e;color: white;padding:5px 10px;text-align:center'>এই রশিদ টি ইলেকট্রনিক ভাবে তৈরি হয়েছে,  কোন স্বাক্ষর প্রয়োজন নেই।</p>
+
 
 
         ";
