@@ -8,18 +8,90 @@
             </div>
             <div class="form-pannel">
 
+                <div class="row" v-if="this.$localStorage.getItem('position')=='super_admin'">
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="">খাত</label>
+        <input type="text"  class="form-control" v-model="form.khat"/>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="">currently_paid_money</label>
+        <input type="tel"  class="form-control" v-model="form.currently_paid_money"/>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="">total_amount</label>
+        <input type="tel"  class="form-control" v-model="form.total_amount"/>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="">the_amount_of_money_in_words</label>
+        <input type="text"  class="form-control" v-model="form.the_amount_of_money_in_words"/>
+    </div>
+</div>
+
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="">prottoyon</label>
+        <textarea  class="form-control" cols="30" rows="4" style="height:130px" v-model="form.prottoyon"></textarea>
+    </div>
+</div>
+
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="">sec_prottoyon</label>
+        <textarea  class="form-control" cols="30" rows="4" style="height:130px" v-model="form.sec_prottoyon"></textarea>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="">stutus</label>
+        <input type="text"  class="form-control" v-model="form.stutus"/>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <label for="">sonod_Id</label>
+        <input type="text"  class="form-control" v-model="form.sonod_Id"/>
+    </div>
+</div>
+
+
+</div>
 
 
 
 
-                <div class="row" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate'" >
+                <div class="row" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.enname == 'Inheritance certificate' || sonodnamedata.enname == 'Certification of the same name'|| sonodnamedata.enname == 'Miscellaneous certificates'" >
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor" v-if="sonodnamedata.enname == 'Certificate of Inheritance'">মৃত ব্যাক্তির নাম *</label>
                             <label for="" class="labelColor" v-if="sonodnamedata.enname == 'Inheritance certificate'">জীবিত ব্যক্তির নাম *</label>
+                            <label for="" class="labelColor" v-if="sonodnamedata.enname == 'Certification of the same name'|| sonodnamedata.enname == 'Miscellaneous certificates'">সনদ ধারীর নাম</label>
                             <input type="text" class="form-control" v-model="form.utname">
                         </div>
                     </div>
+
+
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Certification of the same name'">
+                        <div class="form-group">
+                            <label for="" class="labelColor">সনদ ধারীর দ্বিতীয় নাম</label>
+                            <input type="text" class="form-control" v-model="form.applicant_second_name">
+                        </div>
+                    </div>
+
 
                     <div class="col-md-4">
                         <div class="form-group">
@@ -31,6 +103,21 @@
                             </select>
                         </div>
                     </div>
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">ধর্ম</label>
+                            <select class="form-control" v-model="form.ut_religion">
+                                <option value="">নির্বাচন করুন</option>
+                                <option>ইসলাম</option>
+                                <option>হিন্দু</option>
+                                <option>বৌদ্ধ</option>
+                                <option>খ্রিস্টান</option>
+                            </select>
+                        </div>
+                    </div>
+
 
 <!--
                     <div class="col-md-4">
@@ -165,7 +252,6 @@
 
 
                 </div>
-
 
                     <div class="row">
 
@@ -472,7 +558,7 @@
                             <option v-for="dist in getdistricts" :key="dist.id" :value="dist.id">{{ dist.bn_name }}</option>
                         </select> -->
 
-                            <input type="text" class="form-control" v-model="form.applicant_present_district" disabled>
+                            <input type="text" class="form-control" v-model="form.applicant_present_district" >
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">উপজেলা/থানা</label>
@@ -482,7 +568,7 @@
                             <option v-for="thana in getthanas" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
                         </select> -->
 
-                            <input type="text" class="form-control" v-model="form.applicant_present_Upazila" disabled>
+                            <input type="text" class="form-control" v-model="form.applicant_present_Upazila" >
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">পোষ্ট অফিস</label>
@@ -545,7 +631,7 @@
                             <option v-for="dist in getdistrictsPer" :key="dist.id" :value="dist.id">{{ dist.bn_name }}</option>
                         </select> -->
 
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_district" disabled>
+                            <input type="text" class="form-control" v-model="form.applicant_permanent_district" >
                         </div>
                         <div class="form-group">
                             <label for="" class="labelColor">উপজেলা/থানা</label>
@@ -553,7 +639,7 @@
                                 <option value="">উপজেলা নির্বাচন করুন</option>
                                 <option v-for="thana in getthanasPer" :key="thana.id" :value="thana.bn_name">{{ thana.bn_name }}</option>
                             </select> -->
-                            <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila" disabled>
+                            <input type="text" class="form-control" v-model="form.applicant_permanent_Upazila" >
                         </div>
 
 
@@ -680,68 +766,6 @@
                 </table>
 
 
-                <div class="row" v-if="this.$localStorage.getItem('position')=='super_admin'">
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">খাত</label>
-                            <input type="text"  class="form-control" v-model="form.khat"/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">currently_paid_money</label>
-                            <input type="number"  class="form-control" v-model="form.currently_paid_money"/>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">total_amount</label>
-                            <input type="number"  class="form-control" v-model="form.total_amount"/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">the_amount_of_money_in_words</label>
-                            <input type="text"  class="form-control" v-model="form.the_amount_of_money_in_words"/>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">prottoyon</label>
-                            <textarea  class="form-control" cols="30" rows="4" style="height:130px" v-model="form.prottoyon"></textarea>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">sec_prottoyon</label>
-                            <textarea  class="form-control" cols="30" rows="4" style="height:130px" v-model="form.sec_prottoyon"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">stutus</label>
-                            <input type="text"  class="form-control" v-model="form.stutus"/>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">sonod_Id</label>
-                            <input type="text"  class="form-control" v-model="form.sonod_Id"/>
-                        </div>
-                    </div>
-
-
-                </div>
 
 
 

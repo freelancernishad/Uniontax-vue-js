@@ -425,6 +425,7 @@ if($payment->status=='Paid'){
 
 
         $id = $r->id;
+        $sonod =   Sonod::find($id);
         $stutus = $r->stutus;
         // if($id){
         //     return Sonod::find($id);
@@ -437,22 +438,43 @@ if($payment->status=='Paid'){
         $filepath =  str_replace(' ', '_', $sonodEnName->enname);
         $Insertdata = [];
         $Insertdata = $r->except(['sonod_Id', 'image', 'applicant_national_id_front_attachment', 'applicant_national_id_back_attachment', 'applicant_birth_certificate_attachment', 'successors']);
+
+
+
         $imageCount =  count(explode(';', $r->image));
         $national_id_frontCount =  count(explode(';', $r->applicant_national_id_front_attachment));
         $national_id_backCount =  count(explode(';', $r->applicant_national_id_back_attachment));
         $birth_certificateCount =  count(explode(';', $r->applicant_birth_certificate_attachment));
+
+
+		$unioun_name = $sonod->unioun_name;
+        $sonod_name = $sonod->sonod_name;
+        $dateFolder = date("Y/m/d");
+        $sonodId = (string)$sonod->sonod_Id;
+
+
         if ($imageCount > 1) {
-            $Insertdata['image'] =  fileupload($r->image, "sonod/$filepath/image/", 250, 300);
+            $Insertdata['image'] =  fileupload($r->image, "sonod/$filepath/$dateFolder/$sonodId/", 250, 300);
         }
+
+
         if ($national_id_frontCount > 1) {
-            $Insertdata['applicant_national_id_front_attachment'] =  fileupload($r->applicant_national_id_front_attachment, "sonod/$filepath/applicant_national_id_front_attachment/");
+            $Insertdata['applicant_national_id_front_attachment'] =  fileupload($r->applicant_national_id_front_attachment, "sonod/$filepath/$dateFolder/$sonodId/");
         }
         if ($national_id_backCount > 1) {
-            $Insertdata['applicant_national_id_back_attachment'] =  fileupload($r->applicant_national_id_back_attachment, "sonod/$filepath/applicant_national_id_back_attachment/");
+            $Insertdata['applicant_national_id_back_attachment'] =  fileupload($r->applicant_national_id_back_attachment, "sonod/$filepath/$dateFolder/$sonodId/");
         }
+
+
         if ($birth_certificateCount > 1) {
             $Insertdata['applicant_birth_certificate_attachment'] =  fileupload($r->applicant_birth_certificate_attachment, "sonod/$filepath/applicant_birth_certificate_attachment/");
         }
+
+
+
+
+
+
         // $Insertdata['sonod_Id'] = $successors;
         $Insertdata['successor_list'] = $successors;
         $Uniouninfo =   Uniouninfo::where('short_name_e', $r->unioun_name)->latest()->first();
@@ -467,7 +489,7 @@ if($payment->status=='Paid'){
             //    $oldsonod =  Sonod::where(['unioun_name' => $unioun_name,'sonod_name' => $sonod_name, 'year' => date('Y')])->latest()->first();
             // $oldsonodNo = (int)$oldsonod->sonod_Id;
             //  $Insertdata['sonod_Id'] =  $oldsonodNo+1;
-             $sonod =   Sonod::find($id);
+
            return  $sonod->update($Insertdata);
 
             // return  $sonod;
