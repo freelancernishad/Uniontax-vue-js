@@ -314,7 +314,18 @@ curl_close($curl);
 
     function sonodView($id){
         $row = Sonod::find($id);
-        $sonod = Sonodnamelist::where('bnname',$row->sonod_name)->first();
+        if($row->sonod_name=='বিবিধ প্রত্যয়নপত্র'){
+            if($row->alive_status=='0'){
+                $sonod = Sonodnamelist::where('bnname',$row->sonod_name)->first();
+                $sonod->template = "&nbsp; &nbsp; &nbsp; আমি তার আত্মার মাকফিরাত কামনা করি।";
+            }else{
+                $sonod = Sonodnamelist::where('bnname',$row->sonod_name)->first();
+            }
+        }else{
+            $sonod = Sonodnamelist::where('bnname',$row->sonod_name)->first();
+        }
+
+
         $uniouninfo = Uniouninfo::where('short_name_e',$row->unioun_name)->first();
 $blade = 'other';
 $slug =  str_replace(' ', '_', $sonod->enname);

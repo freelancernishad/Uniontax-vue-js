@@ -37,6 +37,7 @@ class Sonod extends Model
         'applicant_name_of_the_organization',
         'organization_address',
         'applicant_name',
+        'alive_status',
         'applicant_gender',
         'applicant_marriage_status',
         'applicant_vat_id_number',

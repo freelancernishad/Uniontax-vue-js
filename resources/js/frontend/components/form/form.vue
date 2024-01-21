@@ -33,6 +33,19 @@
                     </div>
 
 
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Miscellaneous certificates'">
+                        <div class="form-group">
+                            <label for="" class="labelColor">জীবিত/মৃত
+                            </label>
+                            <select class="form-control" v-model="form.alive_status">
+                                <option value="">নির্বাচন করুন</option>
+                                <option value="1">জীবিত</option>
+                                <option value="0">মৃত</option>
+                            </select>
+                        </div>
+                    </div>
+
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="" class="labelColor">লিঙ্গ</label>
@@ -996,6 +1009,7 @@ export default {
                 applicant_second_name: null,
                 applicant_name_of_the_organization: null,
                 organization_address: null,
+                alive_status: "1",
                 applicant_gender: null,
                 applicant_marriage_status: null,
                 ut_father_name: null,
@@ -1005,7 +1019,7 @@ export default {
                 applicant_occupation: null,
                 applicant_education: null,
                 applicant_religion: null,
-                applicant_resident_status: null,
+                applicant_resident_status: 'স্থায়ী',
                 applicant_owner_type: null,
                 applicant_vat_id_number: null,
                 applicant_tax_id_number: null,
@@ -1303,6 +1317,7 @@ export default {
             this.form.Name_of_the_transferred_area = null;
             this.form.applicant_name = null;
             this.form.applicant_second_name = null;
+            this.form.alive_status = '1';
             this.form.applicant_gender = null;
             this.form.applicant_marriage_status = null;
             this.form.applicant_father_name = null;
@@ -1310,7 +1325,7 @@ export default {
             this.form.applicant_occupation = null;
             this.form.applicant_education = null;
             this.form.applicant_religion = null;
-            this.form.applicant_resident_status = null;
+            this.form.applicant_resident_status = 'স্থায়ী';
             ////////////////////////////////////////////// =               this.for;.// =বর্তমান ঠিকানা
             this.form.applicant_present_village = null;
             this.form.applicant_present_road_block_sector = null;
