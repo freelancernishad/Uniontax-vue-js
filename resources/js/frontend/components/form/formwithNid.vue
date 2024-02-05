@@ -1667,7 +1667,6 @@ export default {
 
 
         async getToken(){
-
             var res = await this.callApi('get',`https://uniontax.xyz/api/token/genarate`,[]);
             this.sToken = res.data.apitoken;
             this.nidSearch = false;
