@@ -176,7 +176,7 @@ export default {
     },
     data() {
         return {
-            showPopup: true,
+            showPopup: false,
             sonodCount:{
                 allSonodCount:0,
                 pendingSonodCount:0,
