@@ -9,6 +9,7 @@
         "carlos-meneses/laravel-mpdf": "^2.1",
         "devfaysal/laravel-bangladesh-geocode": "^1.0",
         "fruitcake/laravel-cors": "^2.0",
+        "google/cloud-vision": "^1.9",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
         "laravel/framework": "^8.75",
