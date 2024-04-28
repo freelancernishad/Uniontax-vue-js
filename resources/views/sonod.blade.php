@@ -24,9 +24,39 @@
             <table width="100%" style="border-collapse: collapse;" border="0">
                 <tr>
                     <td style="text-align: center;" width="20%">
-                    <span style="color:#b400ff;"><b>
-                    উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
-                    </span>
+
+
+
+
+                        @if($row->unioun_name=='gognagar')
+
+                            @if($row->sonod_name=='ট্রেড লাইসেন্স')
+                            @php
+                                $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
+                            //  $qrurl = url("/verification/sonod/$row->id");
+                                $qrcode = \QrCode::size(70)
+                            ->format('svg')
+                            ->generate($qrurl);
+                            echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+                            @endphp
+                                    <br/>
+                                    <div class="signature text-center position-relative" style='font-size:11px'>
+                                        ইস্যুর তারিখ: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }}
+                                    </div>
+
+                                </div>
+                            @else
+                                <span style="color:#b400ff;"><b>
+                                    উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+                                    </span>
+                            @endif
+
+                        @else
+                            <span style="color:#b400ff;"><b>
+                            উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+                            </span>
+                        @endif
+
                     </td>
                     <td style="text-align: center;" width="20%">
                         <img width="70px" src="{{ base64('backend/bd-logo.png') }}">
@@ -126,38 +156,87 @@
                         ?>
 {{ sonodView($row->id) }}
 
+@php
+// echo $row->unioun_name;
 
+
+$C_color = '#7230A0';
+$C_size = '18px';
+$color = 'black';
+$style = '';
+if($row->unioun_name=='dhamor'){
+    $C_color = '#5c1caa';
+    $C_size = '20px';
+    $color = '#5c1caa';
+}
+
+if($row->unioun_name=='toria'){
+    $C_color = '#5c1caa';
+    $style = "
+
+    margin-bottom: -33px;
+margin-left: 83px;
+    ";
+
+}
+
+
+
+@endphp
 
 <table width="100%" style="border-collapse: collapse;" border="0">
                     <tr>
-                        <td  style="text-align: center;" width="40%">
+                        <td style="text-align: center;vertical-align: bottom;"  width="40%">
+
+
+                @if($row->unioun_name!='gognagar')
                    <div class="signature text-center position-relative">
                     @php
-
-
-// $utf8 = $row->sonod_name; // file must be UTF-8 encoded
-// $iso88591_1 = utf8_decode($utf8);
-// $iso88591_2 = iconv('UTF-8', 'ISO-8859-1', $utf8);
-// $iso88591_2 = mb_convert_encoding($utf8, 'ISO-8859-1', 'UTF-8');
-
-
                      $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
-
-
                     //  $qrurl = url("/verification/sonod/$row->id");
                         $qrcode = \QrCode::size(70)
                     ->format('svg')
                     ->generate($qrurl);
-
                    echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
                     @endphp
-
 
                            <br/>
                             <div class="signature text-center position-relative">
                                 সনদ নং: {{ int_en_to_bn($row->sonod_Id) }} <br /> ইস্যুর তারিখ: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }} </div>
+                    </div>
+                    @else
 
-                          </div>
+                        @if($row->sonod_name=='ট্রেড লাইসেন্স')
+                        <div class="signature text-center position-relative" style="color:black">
+                            <br/>
+                             <b><span style="color:#7230A0;font-size:18px;">মহিউদ্দিন দেওয়ান</span> <br />
+                                     </b><span style="font-size:16px;">সচিব</span><br />
+                             {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।
+                         <br>
+
+                         </div>
+                        @else
+                        <div class="signature text-center position-relative">
+                            @php
+                             $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
+                            //  $qrurl = url("/verification/sonod/$row->id");
+                                $qrcode = \QrCode::size(70)
+                            ->format('svg')
+                            ->generate($qrurl);
+                           echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+                            @endphp
+
+                                   <br/>
+                                    <div class="signature text-center position-relative">
+                                        সনদ নং: {{ int_en_to_bn($row->sonod_Id) }} <br /> ইস্যুর তারিখ: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }} </div>
+                            </div>
+                        @endif
+
+
+
+                    @endif
+
+
                         </td>
                         <td style="text-align: center; width: 200px;" width="30%">
                             <img width="100px" src="{{ base64($uniouninfo->sonod_logo) }}">
@@ -165,33 +244,7 @@
                         <td style="text-align: center;" width="40%">
 
 
-                            @php
-                                // echo $row->unioun_name;
 
-
-                                $C_color = '#7230A0';
-                                $C_size = '18px';
-                                $color = 'black';
-                                $style = '';
-                                if($row->unioun_name=='dhamor'){
-                                    $C_color = '#5c1caa';
-                                    $C_size = '20px';
-                                    $color = '#5c1caa';
-                                }
-
-                                if($row->unioun_name=='toria'){
-                                    $C_color = '#5c1caa';
-                                    $style = "
-
-                                    margin-bottom: -33px;
-                                margin-left: 83px;
-                                    ";
-
-                                }
-
-
-
-                            @endphp
 
 
 
