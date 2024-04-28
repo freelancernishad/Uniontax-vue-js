@@ -257,7 +257,9 @@ margin-left: 83px;
 
                                 {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।
                             <br>
+                            @if($row->unioun_name!='gognagar')
                             {{ $row->c_email }}
+                            @endif
                             </div>
 
 
