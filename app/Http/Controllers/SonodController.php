@@ -2268,7 +2268,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 
                 if($row->unioun_name=='gognagar'){
                     $headerLeft = '
-                    
+
                     <div class="signature text-center position-relative">
                     ' . $qrcode . '<br/>
                      ' . $sonodNO . '
@@ -2290,7 +2290,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                       <td style="text-align: center;" width="20%">
                       ' . $headerLeft . '
 
-					  
+
 
 
                       </td>
@@ -2304,12 +2304,13 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 
         if($row->unioun_name=='gognagar'){
             $headertop ='                          <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>';
-        
+
         $website = '     <tr style="margin-top:2px;margin-bottom:2px;">
         <td>
         </td>
         <td style="text-align: center; " width="50%">
             <p style="font-size:12px">ওয়েবসাইটঃ https://gognagarup.narayanganj.gov.bd</p>
+            <p style="font-size:12px">ইমাইলঃ '. $row->c_email.'</p>
         </td>
         <td>
         </td>
@@ -2357,7 +2358,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                       </td>
                   </tr>
                     '.$website.'
-             
+
 
 
   </table>
@@ -2422,7 +2423,7 @@ margin-left: 83px;
                 $footerLeft = "<div class='signature text-center position-relative' style='color:black'>
                 <br/>
                  <b><span style='color:#7230A0;font-size:18px;'></span> <br />
-                         </b><span style='font-size:16px;'>মেম্বার</span><br />
+                         </b><span style='font-size:16px;'>ইউপি সদস্য/সদস্যা</span><br />
                   $uniouninfo->full_name <br>  $uniouninfo->thana ,  $uniouninfo->district  ।
              <br>
 
