@@ -2303,6 +2303,8 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         //   }
 
         if($row->unioun_name=='gognagar'){
+            $headertop ='                          <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>';
+        
         $website = '     <tr style="margin-top:2px;margin-bottom:2px;">
         <td>
         </td>
@@ -2313,8 +2315,11 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         </td>
     </tr>';
         }else{
+            $headertop ='                          <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ</p>
+            <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p>';
             $website = '';
         }
+
 
 
         $output .= '</td>
@@ -2323,8 +2328,10 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                       <td>
                       </td>
                       <td style="text-align: center;" width="50%">
-                          <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ</p>
-                          <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p>
+
+
+                      '.$headertop.'
+
 
                       </td>
                       <td>
