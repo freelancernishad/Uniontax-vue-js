@@ -2263,7 +2263,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                     ->generate($qrurl);
                     $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
                     $sonodNO = ' <div class="signature text-center position-relative">
-                     ইস্যুর তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->created_at))).'</div>';
+                    সনদ নং: ' .  int_en_to_bn($row->sonod_Id) . ' <br /> ইস্যুর তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->created_at))).'</div>';
 
 
                 if($row->unioun_name=='gognagar'){
@@ -2420,6 +2420,7 @@ margin-left: 83px;
 
 
             if($row->unioun_name=='gognagar'){
+                $email = '';
                 $footerLeft = "<div class='signature text-center position-relative' style='color:black'>
                 <br/>
                  <b><span style='color:#7230A0;font-size:18px;'></span> <br />
@@ -2429,12 +2430,14 @@ margin-left: 83px;
 
              </div>";
             }else{
+                $email = $row->c_email;
                 $footerLeft = '<div class="signature text-center position-relative">
                 ' . $qrcode . '<br/>
                  ' . $sonodNO . '
               </div>';
 
             }
+
 
 
 
@@ -2458,7 +2461,7 @@ margin-left: 83px;
 
                                       ' . $ccc . $uniouninfo->full_name . ' <br> ' . $uniouninfo->thana . ', ' . $uniouninfo->district . ' ।
                                       <br/>
-                                      '. $row->c_email.'
+                                      '. $email.'
 
                                       </div>
                                   </td>
