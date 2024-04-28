@@ -103,6 +103,24 @@
                     <td>
                     </td>
                 </tr>
+
+
+                @php
+                          if($row->unioun_name=='gognagar'){
+        echo $website = '     <tr style="margin-top:2px;margin-bottom:2px;">
+        <td>
+        </td>
+        <td style="text-align: center; " width="50%">
+            <p style="font-size:12px">ওয়েবসাইটঃ https://gognagarup.narayanganj.gov.bd</p>
+        </td>
+        <td>
+        </td>
+    </tr>';
+        }else{
+           echo  $website = '';
+        }
+                @endphp
+
 </table>
 
 

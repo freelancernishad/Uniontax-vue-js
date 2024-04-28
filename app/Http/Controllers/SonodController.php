@@ -2254,15 +2254,45 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                 ">' . $sonod_name . '</div> <br>
                 ';
 
+                $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
+
+                // $qrurl = url("/verification/sonod/$row->id");
+                //in Controller
+                $qrcode = \QrCode::size(70)
+                    ->format('svg')
+                    ->generate($qrurl);
+                    $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+                    $sonodNO = ' <div class="signature text-center position-relative">
+                     ইস্যুর তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->created_at))).'</div>';
+
+
+                if($row->unioun_name=='gognagar'){
+                    $headerLeft = '
+                    
+                    <div class="signature text-center position-relative">
+                    ' . $qrcode . '<br/>
+                     ' . $sonodNO . '
+                  </div>
+                    ';
+                }else{
+                    $headerLeft = '<span style="color:#b400ff;"><b>
+                    উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+                    </span>';
+                }
+
+
+
+
         $output = '
           ' . $pdfHead . '
               <table width="100%" style="border-collapse: collapse;" border="0">
                   <tr>
                       <td style="text-align: center;" width="20%">
-					  <span style="color:#b400ff;"><b>
-					  উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+                      ' . $headerLeft . '
 
-					  </span>
+					  
+
+
                       </td>
                       <td style="text-align: center;" width="20%">
                           <img width="70px" src="' . base64('backend/bd-logo.png') . '">
@@ -2271,6 +2301,22 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         //   if ($Sname == 'successor_apps' || $Sname == 'ut') {}else{
         // 	     $output .= '<img width="100px" src="' . $logoPofile . '">';
         //   }
+
+        if($row->unioun_name=='gognagar'){
+        $website = '     <tr style="margin-top:2px;margin-bottom:2px;">
+        <td>
+        </td>
+        <td style="text-align: center; " width="50%">
+            <p style="font-size:12px">ওয়েবসাইটঃ https://gognagarup.narayanganj.gov.bd</p>
+        </td>
+        <td>
+        </td>
+    </tr>';
+        }else{
+            $website = '';
+        }
+
+
         $output .= '</td>
                   </tr>
                   <tr style="margin-top:2px;margin-bottom:2px;">
@@ -2303,6 +2349,10 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                       <td>
                       </td>
                   </tr>
+                    '.$website.'
+             
+
+
   </table>
                 ' . $ssName . '
         ';
@@ -2357,14 +2407,40 @@ margin-left: 83px;
         $qrcode = \QrCode::size(70)
             ->format('svg')
             ->generate($qrurl);
+        $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+
+
+
+            if($row->unioun_name=='gognagar'){
+                $footerLeft = "<div class='signature text-center position-relative' style='color:black'>
+                <br/>
+                 <b><span style='color:#7230A0;font-size:18px;'></span> <br />
+                         </b><span style='font-size:16px;'>মেম্বার</span><br />
+                  $uniouninfo->full_name <br>  $uniouninfo->thana ,  $uniouninfo->district  ।
+             <br>
+
+             </div>";
+            }else{
+                $footerLeft = '<div class="signature text-center position-relative">
+                ' . $qrcode . '<br/>
+                 ' . $sonodNO . '
+              </div>';
+
+            }
+
+
+
+
+
         $output = '
         <table width="100%" style="border-collapse: collapse;" border="0">
                               <tr>
-                                  <td  style="text-align: center;" width="40%">
-                             <div class="signature text-center position-relative">
-                                      ' . $qrcode . '<br/>
-                                       ' . $sonodNO . '
-                                    </div>
+                                  <td  style="text-align: center;vertical-align: bottom;" width="40%">
+
+
+                                  '.$footerLeft.'
+
+
                                   </td>
                                   <td style="text-align: center; width: 200px;" width="30%">
                                       <img width="100px" src="' . base64($uniouninfo->sonod_logo) . '">

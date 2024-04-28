@@ -142,11 +142,12 @@
 
     </table>
 
-    <p
+
+    <p 
     > {!! int_en_to_bn($row->sec_prottoyon) !!}<br>
     </p>
 
-    <p style="margin-bottom: 10px;"
+    <p style="margin-bottom: 6px;"
     > {!! $sonod->template  !!}<br>
     </p>
 
