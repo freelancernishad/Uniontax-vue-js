@@ -2310,7 +2310,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         </td>
         <td style="text-align: center; " width="50%">
             <p style="font-size:12px">ওয়েবসাইটঃ https://gognagarup.narayanganj.gov.bd</p>
-            <p style="font-size:12px">ইমাইলঃ '. $row->c_email.'</p>
+            <p style="font-size:12px">ইমেলঃ '. $row->c_email.'</p>
         </td>
         <td>
         </td>
