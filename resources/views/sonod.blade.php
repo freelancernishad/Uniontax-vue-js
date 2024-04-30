@@ -30,7 +30,7 @@
 
                         @if($row->unioun_name=='gognagar')
 
-
+                            @if($row->sonod_name=='ট্রেড লাইসেন্স')
                             @php
                                 $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
                             //  $qrurl = url("/verification/sonod/$row->id");
@@ -45,7 +45,11 @@
                                     </div>
 
                                 </div>
-
+                            @else
+                                <span style="color:#b400ff;"><b>
+                                    উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+                                    </span>
+                            @endif
 
                         @else
                             <span style="color:#b400ff;"><b>
@@ -108,7 +112,7 @@
         </td>
         <td style="text-align: center; " width="50%">
             <p style="font-size:12px">ওয়েবসাইটঃ https://gognagarup.narayanganj.gov.bd</p>
-            <p style="font-size:12px">ইমেলঃ '. $row->c_email.'</p>
+            <p style="font-size:12px">ই-মেইলঃ '. $row->c_email.'</p>
         </td>
         <td>
         </td>
@@ -219,11 +223,9 @@ margin-left: 83px;
                             <div class="signature text-center position-relative">
                                 সনদ নং: {{ int_en_to_bn($row->sonod_Id) }} <br /> ইস্যুর তারিখ: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }} </div>
                     </div>
-
-
                     @else
 
-
+                        @if($row->sonod_name=='ট্রেড লাইসেন্স')
                         <div class="signature text-center position-relative" style="color:black">
                             <br/>
                              <b><span style="color:#7230A0;font-size:18px;">মহিউদ্দিন দেওয়ান</span> <br />
@@ -232,7 +234,22 @@ margin-left: 83px;
                          <br>
 
                          </div>
+                        @else
+                        <div class="signature text-center position-relative">
+                            @php
+                             $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
+                            //  $qrurl = url("/verification/sonod/$row->id");
+                                $qrcode = \QrCode::size(70)
+                            ->format('svg')
+                            ->generate($qrurl);
+                           echo $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+                            @endphp
 
+                                   <br/>
+                                    <div class="signature text-center position-relative">
+                                        সনদ নং: {{ int_en_to_bn($row->sonod_Id) }} <br /> ইস্যুর তারিখ: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }} </div>
+                            </div>
+                        @endif
 
 
 

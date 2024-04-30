@@ -48,8 +48,8 @@
 
                         <div class="text-center mt-3">
                                     <img width="50px" :src="$asseturl+'assets/img/bangladesh-govt.png'" alt="">
-                                    <h4 style="margin: 0;    margin-top: 10px;">জেলা প্রশাসন</h4>
-                                    পঞ্চগড়।
+                                    <h4 style="margin: 0;    margin-top: 10px;">স্মার্ট বাংলাদেশ</h4>
+                                    ক্যাশ লেস , পেপার লেস সেবা সিস্টেম
 								</div>
 
                     </form>
