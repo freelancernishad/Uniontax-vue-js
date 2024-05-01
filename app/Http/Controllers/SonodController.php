@@ -1332,8 +1332,24 @@ if($payment->status=='Paid'){
 
 
 
+
             // return view('sonod', compact('row', 'sonod', 'uniouninfo'));
-            $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo','sonodnames'));
+
+            if($row->sonod_name=='ট্রেড লাইসেন্স'){
+                if($row->format==2){
+
+                    $pdf = LaravelMpdf::loadView('sonod-tradelicense-format2', compact('row', 'sonod', 'uniouninfo','sonodnames'));
+                }else{
+                    $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo','sonodnames'));
+
+                }
+
+            }else{
+
+                $pdf = LaravelMpdf::loadView('sonod', compact('row', 'sonod', 'uniouninfo','sonodnames'));
+            }
+
+
             return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
         }
     }

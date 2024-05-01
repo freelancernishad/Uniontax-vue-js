@@ -539,7 +539,7 @@
 
 
 
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label for="" class="labelColor">বিভাগ</label>
 
                             <select class='form-control' name="division" id="division" v-model="Pdivision" @change="getdistrictFun" disabled >
@@ -610,7 +610,7 @@
                         </div> -->
 
 
-                        <div class="form-group">
+                        <div class="form-group  d-none">
                             <label for="" class="labelColor">বিভাগ</label>
 
                             <select class='form-control' name="division" id="division" v-model="Perdivision" @change="getdistrictFunPer" disabled >
