@@ -1115,6 +1115,7 @@ die();
           $uniouninfo =   Uniouninfo::where(['short_name_e'=>$request->union])->first();
 
           $Insertdata = $uniouninfo;
+          $Insertdata['socib_signture'] =  asset($uniouninfo->socib_signture);
           $Insertdata['c_signture'] =  asset($uniouninfo->c_signture);
             $Insertdata['sonod_logo'] =  asset($uniouninfo->sonod_logo);
             $Insertdata['u_image'] =  asset($uniouninfo->u_image);
@@ -1127,13 +1128,17 @@ return $Insertdata;
         {
             $id = $request->id;
 
-            $Insertdata = $request->except(['c_signture','sonod_logo','u_image','web_logo']);
+            $Insertdata = $request->except(['socib_signture','c_signture','sonod_logo','u_image','web_logo']);
 
+            $socib_signtureCount =  count(explode(';',$request->socib_signture));
             $c_signtureCount =  count(explode(';',$request->c_signture));
             $sonod_logoCount =  count(explode(';',$request->sonod_logo));
             $u_imageCount =  count(explode(';',$request->u_image));
             $web_logoCount =  count(explode(';',$request->web_logo));
 
+            if($socib_signtureCount>1){
+                $Insertdata['socib_signture'] =  fileupload($request->socib_signture,"unioninfo/socib_signture/");
+            }
             if($c_signtureCount>1){
                 $Insertdata['c_signture'] =  fileupload($request->c_signture,"unioninfo/c_signture/");
             }

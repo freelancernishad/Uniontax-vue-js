@@ -79,6 +79,25 @@
 
 
           <div class="col-md-6">
+          <div class="form-group">
+              <label class="control-label col-form-label">সচিবের নাম (বাংলা)</label>
+
+                  <input type="text" class="form-control"  id="c_name" v-model="form.socib_name"  />
+
+          </div>
+          </div>
+
+          <div class="col-md-6">
+          <div class="form-group">
+              <label class="control-label col-form-label">সচিবের ইমেইল </label>
+
+                  <input type="email" class="form-control"  id="c_email" v-model="form.socib_email"  />
+
+          </div>
+          </div>
+
+
+          <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label col-form-label">ইউনিয়নের কোড (English)</label>
 
@@ -183,6 +202,19 @@
           </div>
           </div>
 
+
+          <div class="col-md-6">
+          <div class="form-group">
+              <label class="control-label col-form-label">সচিবের স্বাক্ষর
+              </label>
+
+                  <input type="file" class="form-control" id="socib_signture"  @change="FileSelected($event, 'socib_signture')"  />
+                  <label for="socib_signture">
+                   <b-img thumbnail fluid :src="form.socib_signture" alt="Image 3"></b-img>
+                </label>
+          </div>
+          </div>
+
           <div class="col-md-6">
           <div class="form-group">
               <label class="control-label col-form-label">ইউনিয়নের ছবি
@@ -237,6 +269,9 @@ export default {
                 c_signture:null,
                 c_name:null,
                 c_email:null,
+                socib_signture:null,
+                socib_email:null,
+                socib_email:null,
                 u_image:null,
                 u_description:null,
                 u_notice:null,

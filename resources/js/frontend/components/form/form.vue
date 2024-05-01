@@ -482,6 +482,14 @@
 
                     <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
                         <div class="form-group">
+                            <label for="" class="labelColor">বকেয়া</label>
+                            <input type="tel" class="form-control" v-model="form.last_years_money" required>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4" v-if="sonodnamedata.enname == 'Trade license'">
+                        <div class="form-group">
                             <label for="" class="labelColor">ব্যবসার বিবরণ</label>
                             <input type="text" class="form-control" v-model="form.applicant_type_of_business" required>
                         </div>
@@ -978,6 +986,7 @@ export default {
                 taxAmount: 0,
                 service: 0,
                 totalamount: 0,
+                last_years_money: 0,
             },
             pesaKor:0,
             waitForPayment: false,
@@ -1052,6 +1061,7 @@ export default {
                 applicant_permanent_district: null,
                 applicant_permanent_Upazila: null,
                 applicant_permanent_post_office: null,
+                last_years_money: 0,
                 //////////////////////////////////////////////
                 // যোগাযোগের ঠিকানা
                 applicant_mobile: null,
@@ -1439,7 +1449,7 @@ export default {
             var vatAmount = ((sonod_fee * vat) / 100);
             var taxAmount = ((sonod_fee * tax) / 100);
             // var totalamount = sonod_fee + vatAmount + taxAmount + service
-
+            var last_years_money = this.form.last_years_money;
             var tradeVat = 15;
             if(this.form.sonod_name=='ট্রেড লাইসেন্স'){
 
@@ -1451,6 +1461,7 @@ export default {
                 var totalamount = sonod_fee
             }
 
+           
 
             this.charages = {
                 sonod_fee: sonod_fee,
@@ -1459,7 +1470,8 @@ export default {
                 pesaKor: this.pesaKor,
                 service: service,
                 tradeVat: tradeVat,
-                totalamount: totalamount,
+                totalamount: Number(totalamount)+Number(last_years_money),
+                last_years_money: last_years_money,
             },
 
 

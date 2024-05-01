@@ -337,6 +337,16 @@ $slug =  str_replace(' ', '_', $sonod->enname);
 
     };
 
+    function sonodView_trade2($id){
+        $row = Sonod::find($id);
+     
+        $sonod = Sonodnamelist::where('bnname',$row->sonod_name)->first();
+        $uniouninfo = Uniouninfo::where('short_name_e',$row->unioun_name)->first();
+        $blade = 'Trade_license2';
+        return view('sonod.'.$blade,compact('row','sonod','uniouninfo'));
+
+    };
+
     function invoiceView($id){
         $row = Sonod::find($id);
         $sonod = Sonodnamelist::where('bnname',$row->sonod_name)->first();

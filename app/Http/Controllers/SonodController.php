@@ -598,9 +598,15 @@ if($payment->status=='Paid'){
         // $Insertdata['sonod_Id'] = $successors;
         $Insertdata['successor_list'] = $successors;
         $Uniouninfo =   Uniouninfo::where('short_name_e', $r->unioun_name)->latest()->first();
+
         $Insertdata['chaireman_name'] = $Uniouninfo->c_name;
         $Insertdata['c_email'] = $Uniouninfo->c_email;
         $Insertdata['chaireman_sign'] = $Uniouninfo->c_signture;
+
+        $Insertdata['socib_name'] = $Uniouninfo->socib_name;
+        $Insertdata['socib_email'] = $Uniouninfo->socib_email;
+        $Insertdata['socib_signture'] = $Uniouninfo->socib_signture;
+
         try {
 
             // return  $this->allsonodId($unioun_name, $sonod_name);
@@ -611,6 +617,7 @@ if($payment->status=='Paid'){
 
 
 
+            $last_years_money = $r->last_years_money;
             $stutus = $r->stutus;
             if($stutus=='Prepaid'){
 
@@ -619,22 +626,24 @@ if($payment->status=='Paid'){
                 $tradeVat = $r->charages['tradeVat'];
                 $pesaKor = $r->charages['pesaKor'];
 
+                $currently_paid_money = $totalamount-$last_years_money;
+
                 $arraydata = [
                 'total_amount' => $totalamount,
                 'pesaKor' => $pesaKor,
                 'tredeLisenceFee' => $sonod_fee,
                 'vatAykor' => $tradeVat,
                 'khat' => '',
-                'last_years_money' => 0,
-                'currently_paid_money' => $totalamount,
+                'last_years_money' => $last_years_money,
+                'currently_paid_money' => $currently_paid_money,
                 ];
                 $amount_deails = json_encode($arraydata);
                 $numto = new NumberToBangla();
                 $the_amount_of_money_in_words = $numto->bnMoney($totalamount) . ' মাত্র';
 
                 $Insertdata['khat'] = '';
-                $Insertdata['last_years_money'] = 0;
-                $Insertdata['currently_paid_money'] = $totalamount;
+                $Insertdata['last_years_money'] = $last_years_money;
+                $Insertdata['currently_paid_money'] = $currently_paid_money;
                 $Insertdata['total_amount'] = $totalamount;
                 $Insertdata['the_amount_of_money_in_words'] = $the_amount_of_money_in_words;
                 $Insertdata['amount_deails'] = $amount_deails;
@@ -861,6 +870,17 @@ if($payment->status=='Paid'){
                 'chaireman_type' => $uniouninfos->c_type,
                 'stutus' => $action,
             ];
+            $updatedata['socib_name'] = $uniouninfos->socib_name;
+            $updatedata['socib_email'] = $uniouninfos->socib_email;
+            $updatedata['socib_signture'] = $uniouninfos->socib_signture;
+
+            if($sonod->sonod_name=='ট্রেড লাইসেন্স'){
+                $updatedata['format'] = $uniouninfos->format;
+            }else{
+                $updatedata['format'] = 1;
+
+            }
+
             $sonod_name =  sonodEnName($sonod->sonod_name);
             $payment_type = $uniouninfos->payment_type;
             if ($payment_type == 'Prepaid') {

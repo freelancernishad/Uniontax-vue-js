@@ -93,11 +93,15 @@ class Sonod extends Model
         'chaireman_type',
         'c_email',
         'chaireman_sign',
+        'socib_name',
+        'socib_signture',
+        'socib_email',
         'cancedby',
         'cancedbyUserid',
         'pBy',
         'sameNameNew',
         'orthoBchor',
+        'format',
     ];
 
 
