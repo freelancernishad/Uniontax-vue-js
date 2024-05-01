@@ -5,7 +5,7 @@ $khatlist = $row->amount_deails;
         $total = $khatlist->tredeLisenceFee;
         $amount = ($total*$khatlist->vatAykor)/100;
 
-        $totalAmount = $khatlist->pesaKor+$total+$amount;
+        $totalAmount = $khatlist->pesaKor+$total+$amount+$khatlist->last_years_money;
 
     $html = "
     <table class='table ' style='width:100%;' cellspacing='0' cellpadding='0' border='1' >
@@ -46,6 +46,14 @@ $khatlist = $row->amount_deails;
 
         <td style='text-align:center'> ".int_en_to_bn($amount)." </td>
         <td style='text-align:center'> ".int_en_to_bn($amount)." </td>
+        <td style='text-align:center'></td>
+        </tr>
+        <tr>
+
+        <td style='text-align:center'>বকেয়া</td>
+
+        <td style='text-align:center'> ".int_en_to_bn($khatlist->last_years_money)." </td>
+        <td style='text-align:center'> ".int_en_to_bn($khatlist->last_years_money)." </td>
         <td style='text-align:center'></td>
         </tr>
 
