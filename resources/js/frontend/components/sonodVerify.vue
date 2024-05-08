@@ -48,6 +48,10 @@
                                     <h2 v-if="row.payment_status=='Unpaid'" style="color:red">This Certificate is Unpaid.</h2>
                                 </div>
                             </div>
+
+
+
+
                             <div>
                                 <div class="row m-0">
                                     <div class="col-md-5 p-0">
@@ -232,6 +236,32 @@
                                 </div>
                             </div>
 
+
+
+                            <h3 v-if="row.sonod_name=='ওয়ারিশান সনদ'" class='mt-3'>ওয়ারিশগনের তালিকা নিম্নরুপঃ</h3>
+
+
+                            <table v-if="row.sonod_name=='ওয়ারিশান সনদ'" width='100%' class='table'>
+                                <thead>
+                                    <tr>
+                                        <th>ক্রমিক নং</th>
+                                        <th>নাম</th>
+                                        <th>সম্পর্ক</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in successor_list" :key="`successor_list`+index">
+                                        <td>{{ int_en_to_bn(index+1) }}</td>
+                                        <td>{{ item.w_name }}</td>
+                                        <td>{{ item.w_relation }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+
+
+
                             <!-- <div class="p-2 text-center border">
                                 For any further assistance, please visit www.dghs.gov.bd or
                                 e-mail: info@dghs.gov.bd <br />(প্রয়োজনে www.dghs.gov.bd ওয়েব
@@ -260,7 +290,8 @@ export default {
             chair: false,
             complate: false,
             cancel: false,
-            row:{}
+            row:{},
+            successor_list:{}
         }
     },
     methods:{
@@ -287,6 +318,7 @@ export default {
 
 
             this.row = res.data
+            this.successor_list = JSON.parse(this.row.successor_list)
 
 
 
