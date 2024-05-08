@@ -9,7 +9,7 @@ $orthoBchor = explode('-',$row->orthoBchor);
 </p> --}}
 
 
-<p style="margin-bottom: 10px;font-size:12px">স্থানীয় সরকার (ইউনিয়ন পরিम) আইন, ২০০৯ (২০০৯ সনের ৬১ নং আইন) এর ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ কর তফসিল, ২০১৩ এর ৬ ও ১৭ নং অনুযায়ী ব্যবসা, বৃত্তি, পেশা, বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিম্নবর্ণিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হলো: <br>
+<p style="margin-bottom: 10px;font-size:12px;text-align:justify">স্থানীয় সরকার (ইউনিয়ন পরিষদ) আইন, ২০০৯ (২০০৯ সনের ৬১ নং আইন) এর ধারা ৬৬ তে প্রদত্ত ক্ষমতাবলে সরকার প্রণীত আদর্শ কর তফসিল, ২০১৩ এর ৬ ও ১৭ নং অনুচ্ছেদ অনুযায়ী ব্যবসা, বৃত্তি, পেশা, বা শিল্প প্রতিষ্ঠানের উপর আরোপিত কর আদায়ের লক্ষ্যে নির্ধারিত শর্তে নিম্নবর্ণিত ব্যক্তি/প্রতিষ্ঠানের অনুকূলে এই ট্রেড লাইসেন্সটি ইস্যু করা হলো: <br>
 </p>
 
 <table width="100%" style="margin-top:0px;font-size:12px">
@@ -75,7 +75,7 @@ $orthoBchor = explode('-',$row->orthoBchor);
             </td>
 
         <td width='50%' align ="right">
-                <p style='border-bottom:2px solid black;'>মালিক/স্বত্বাধিকারীর বর্তমান ঠিকানা</p>
+                <p style='border-bottom:2px solid black;'>মালিক/স্বত্বাধিকারীর স্থায়ী ঠিকানা</p>
                 <ul style='list-style:none'>
                     <li>হোল্ডিং নং : {{ $row->applicant_holding_tax_number }}</li>
                     <li>রোড নং  : </li>
@@ -87,7 +87,7 @@ $orthoBchor = explode('-',$row->orthoBchor);
                 </ul>
             </td>
 
-          
+
         </tr>
     </table>
 
@@ -107,7 +107,7 @@ $orthoBchor = explode('-',$row->orthoBchor);
     <table width='100%' style="font-size: 12px;margin-top:10px">
         <tr>
             <td width='50%'>
-              
+
                 <ul style='list-style:none'>
                     <li>ট্রেড লাইসেন্স ফি (নবায়ন) :-</li>
                     <li>পারমিট ফি  : {{ int_en_to_bn($tredeLisenceFee) }} টাকা</li>
@@ -118,7 +118,7 @@ $orthoBchor = explode('-',$row->orthoBchor);
             </td>
 
         <td width='50%' align ="right">
-        
+
                 <ul style='list-style:none'>
                     <li>পেশা ব্যবসা ও বৃত্তির উপর কর  :- {{ int_en_to_bn($amount_deails->pesaKor) }} টাকা</li>
                     <li>সাইনবোর্ড (পরিচিতিমূলক)  : ০.০০ টাকা</li>
@@ -135,7 +135,7 @@ $orthoBchor = explode('-',$row->orthoBchor);
     <table width='100%' style="font-size: 12px">
         <tr>
             <td width='50%'>
-              
+
                 <b style="color:#159513">অত্র ট্রেড লাইসেন্স এর মেয়াদ : {{ int_en_to_bn("30-06-20".$orthoBchor[1]) }} পর্যন্ত </b>
             </td>
 
