@@ -41,8 +41,8 @@
             <td>
             </td>
             <td style="text-align: center;" width="50%">
-                <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ</p>
-                <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p>
+                <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>
+                {{-- <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p> --}}
             </td>
             <td>
             </td>
@@ -87,8 +87,8 @@
             <td>
             </td>
             <td style="text-align: center;" width="50%">
-                <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ</p>
-                <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p>
+                <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>
+                {{-- <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p> --}}
             </td>
             <td>
             </td>

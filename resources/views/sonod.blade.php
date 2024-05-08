@@ -75,10 +75,10 @@
                     <td>
                     </td>
                     <td style="text-align: center;" width="50%">
-                        <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ @if($row->unioun_name=='gognagar') সরকার @endif </p>
-                         @if($row->unioun_name!='gognagar')
+                        <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার </p>
+                         {{-- @if($row->unioun_name!='gognagar')
                             <p style="font-size:25px">চেয়ারম্যানের কার্যালয়</p>
-                        @endif
+                        @endif --}}
 
                     </td>
                     <td>
