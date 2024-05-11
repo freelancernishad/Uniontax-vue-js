@@ -874,7 +874,7 @@ if($payment->status=='Paid'){
             $updatedata['socib_email'] = $uniouninfos->socib_email;
             $updatedata['socib_signture'] = $uniouninfos->socib_signture;
 
-            if($sonod->sonod_name=='ট্রেড লাইসেন্স'){
+            if($sonod->sonod_name=='ট্রেড লাইসেন্স' || $sonod->sonod_name=='ওয়ারিশান সনদ' || $sonod->sonod_name=='উত্তরাধিকারী সনদ'){
                 $updatedata['format'] = $uniouninfos->format;
             }else{
                 $updatedata['format'] = 1;
@@ -1319,6 +1319,11 @@ if($payment->status=='Paid'){
         // return view('sonod',compact('row','sonod','uniouninfo'));
         $EnsonodName = str_replace(" ", "_", $sonodnames->enname);
         if ($sonod_name == 'ওয়ারিশান সনদ' || $sonod_name == 'উত্তরাধিকারী সনদ') {
+            if($row->format==2){
+                $pdf = LaravelMpdf::loadView('Inheritance-certificate.sonod', compact('row', 'sonod', 'uniouninfo','sonodnames'));
+                return $pdf->stream("$EnsonodName-$row->sonod_Id.pdf");
+            }
+
             $filename = "$EnsonodName-$row->sonod_Id.pdf";
             // return $this->pdfHeader($id,$filename);
             // $pdf = LaravelMpdf::loadView('utsonod', compact('row', 'sonod', 'uniouninfo'));
