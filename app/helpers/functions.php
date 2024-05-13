@@ -339,7 +339,7 @@ $slug =  str_replace(' ', '_', $sonod->enname);
 
     function sonodView_trade2($id){
         $row = Sonod::find($id);
-     
+
         $sonod = Sonodnamelist::where('bnname',$row->sonod_name)->first();
         $uniouninfo = Uniouninfo::where('short_name_e',$row->unioun_name)->first();
         $blade = 'Trade_license2';
@@ -1871,7 +1871,7 @@ function holdingTaxAmount($category='মালিক নিজে বসবা�
 
 
 function sonodView_Inheritance_certificate($id){
-    
+
     $row = Sonod::find($id);
     $sonod_name = $row->sonod_name;
     if ($sonod_name == 'ওয়ারিশান সনদ') {
@@ -1923,9 +1923,9 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 
             ';
 
-          
+
             $nagoriinfo .= '<p style="margin: 0;font-size:11px;">বিঃদ্রঃ উক্ত ওয়ারিশান সনদের সকল দায়ভার  সংশ্লিষ্ট ইউপি সদস্য/সদস্যার যাচাইকারীর ওপর বর্তাইবে ।</p>';
-             
+
 
 
         } else {
@@ -1937,9 +1937,9 @@ if ($sonod_name == 'ওয়ারিশান সনদ') {
 
             </p>';
 
-          
+
             $nagoriinfo .= '<p style="margin: 0;font-size:11px;">বিঃদ্রঃ উক্ত উত্তরাধিকারী সনদের সকল দায়ভার  সংশ্লিষ্ট ইউপি সদস্য/সদস্যার যাচাইকারীর ওপর বর্তাইবে ।</p>';
-         
+
 
 
         }
@@ -1974,7 +1974,7 @@ $nagoriinfo .= '<h4 style="text-align:center;margin-bottom:0px;font-size:11px">'
     $i = 1;
 
 
-    
+
     foreach ($w_list as $rowList) {
         $nagoriinfo .= '
 <tr>
@@ -2019,4 +2019,12 @@ $nagoriinfo .= '<h4 style="text-align:center;margin-bottom:0px;font-size:11px">'
     $output = ' ';
     $output .= '' . $nagoriinfo . '';
     return $output;
+}
+
+function changeSonodName($name){
+    if($name=='ওয়ারিশান সনদ'){
+        return 'ওয়ারিশ সনদ';
+    }else{
+        return $name;
+    }
 }

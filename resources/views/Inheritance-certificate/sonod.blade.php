@@ -126,7 +126,7 @@
         padding:3px 0;
         ">
 
-{{ $row->sonod_name }} </div>
+{{ changeSonodName($row->sonod_name) }} </div>
 
                         </div>
 

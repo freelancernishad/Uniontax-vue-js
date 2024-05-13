@@ -2292,7 +2292,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                 margin:10px auto;
                 margin-bottom:0px;
                 text-align:center
-                ">' . $sonod_name . '</div> <br>
+                ">' . changeSonodName($sonod_name) . '</div> <br>
                 ';
 
                 $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");

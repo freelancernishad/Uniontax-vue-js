@@ -47,7 +47,7 @@
                     <tr>
                         <td>সেবার ধরণ</td>
                         <td>:</td>
-                        <td>{{ $row->sonod_name }}</td>
+                        <td>{{ changeSonodName($row->sonod_name) }}</td>
                     </tr>
 
                     <tr>

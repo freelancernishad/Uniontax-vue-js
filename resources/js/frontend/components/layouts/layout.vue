@@ -149,6 +149,10 @@
 
 
                                         <li class="nav-item">
+                                            <router-link class="nav-link" :to="{ name: 'citizens_corner' }">নাগরিক কর্নার</router-link>
+                                        </li>
+
+                                        <li class="nav-item">
                                             <router-link class="nav-link" :to="{ name: 'login' }">লগইন</router-link>
                                         </li>
                                     </ul>
