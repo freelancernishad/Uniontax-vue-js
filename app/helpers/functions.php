@@ -2024,6 +2024,8 @@ $nagoriinfo .= '<h4 style="text-align:center;margin-bottom:0px;font-size:11px">'
 function changeSonodName($name){
     if($name=='ওয়ারিশান সনদ'){
         return 'ওয়ারিশ সনদ';
+    }elseif($name=='বিবিধ প্রত্যয়নপত্র'){
+        return 'প্রত্যয়নপত্র';
     }else{
         return $name;
     }
