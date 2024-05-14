@@ -20,7 +20,8 @@
                 </p>
                 <div class="contactInfo text-center"  v-if="getType=='main'">
                     <span><b> সোহাগ চন্দ্র সাহা</b></span> <br />
-                    <span><b>উপজেলা নির্বাহী অফিসার</b></span> <br />
+                    <span><b>অতিরিক্ত জেলা প্রশাসক (রাজস্ব) দিনাজপুর</b></span> <br />
+                    <span><b>প্রাক্তন উপজেলা নির্বাহী অফিসার তেঁতুলিয়া</b></span> <br />
                 </div>
 
 
