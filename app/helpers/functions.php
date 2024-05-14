@@ -1994,8 +1994,12 @@ $nagoriinfo .= '<h4 style="text-align:center;margin-bottom:0px;font-size:11px">'
     padding:1px 4px;
     font-size: 11px;">' . int_en_to_bn($rowList->w_nid) . '</td>
 </tr>';
+ 
         $i++;
     }
+
+
+
 
 
 

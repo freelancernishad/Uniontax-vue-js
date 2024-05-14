@@ -150,10 +150,17 @@ $C_color = '#7230A0';
 $C_size = '14px';
 $color = 'black';
 $style = '';
+$w_list = $row->successor_list;
+    $w_list = json_decode($w_list);
+
+$margin_top = 300 - (count($w_list) * 15);
+$marginTop = "margin-top:$margin_top";
+
+
 
 @endphp
 
-<table width="100%" style="border-collapse: collapse; " border="0">
+<table width="100%" style="border-collapse: collapse;{{ $marginTop }}" border="0">
                     <tr>
                         <td style="text-align: center;vertical-align: bottom;"  width="40%">
 
