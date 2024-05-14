@@ -24,7 +24,7 @@
             <table width="100%" style="border-collapse: collapse;" border="0">
                 <tr>
                     <td style="text-align: center;" width="20%">
-                       
+
                             @php
                                 $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
                             //  $qrurl = url("/verification/sonod/$row->id");
@@ -35,7 +35,7 @@
                             @endphp
                                     <br/>
                                     <div class="signature text-center position-relative" style='font-size:11px'>
-                                        ইস্যুর তারিখ: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }}
+                                        সনদ নং: {{ int_en_to_bn($row->sonod_Id) }}  <br /> ইস্যুর তারিখ: {{ int_en_to_bn(date("d/m/Y", strtotime($row->created_at))) }}
                                     </div>
 
                                 </div>
@@ -109,7 +109,7 @@
 
 <div class="nagorik_sonod" style="margin-bottom:10px;">
     <?php
-   
+
 
     $width = '200px';
     $fontsize = '15px';
@@ -165,7 +165,7 @@ $style = '';
                          <br>
 
                          </div>
-                       
+
 
                         </td>
                         <td style="text-align: center; width: 200px;" width="30%">

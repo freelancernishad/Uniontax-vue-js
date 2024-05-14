@@ -1969,7 +1969,7 @@ $nagoriinfo .= '<h4 style="text-align:center;margin-bottom:0px;font-size:11px">'
     font-size: 11px;" width="10%">বয়স</th>
 <th style="        border: 1px dotted black;
     padding:1px 4px;
-    font-size: 11px;" width="20%">জা.প.না./জ.না.</th>
+    font-size: 11px;" width="20%">এনআইডি/জন্ম নিবন্ধন নং</th>
 </tr>';
     $i = 1;
 
