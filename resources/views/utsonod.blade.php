@@ -146,7 +146,7 @@
                             <div class="signature text-center position-relative">
                                 <img width="170px"  src="{{ base64($row->chaireman_sign) }}"><br/>
                                 <b><span style="color:#7230A0;font-size:18px;">{{ $row->chaireman_name }}</span> <br />
-                                        </b><span style="font-size:16px;">চেয়ারম্যান</span><br />
+                                        </b><span style="font-size:16px;">{{ $row->chaireman_type }}</span><br />
 
                                 {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।</div>
                         </td>
