@@ -644,6 +644,8 @@ Route::get('/payment/success', function (Request $request) {
         $redirect = "/holdingPay/success?transId=$transId";
     }elseif($payment->sonod_type=='Tenders_form'){
         $redirect = "/tenderformpay/success?transId=$transId";
+    }elseif($payment->sonod_type=='tender-deposit'){
+        $redirect = "/tenderdeposit/success?transId=$transId";
     }else{
         $sonod = Sonod::find($payment->sonodId);
         if($sonod->pBy=='Pre Pay'){
@@ -685,6 +687,7 @@ Route::get('/holdingPay/success', [HoldingtaxController::class,'holdingPaymentSu
 
 
 Route::get('/tenderformpay/success', [TenderFormBuyController::class,'tenderFormPaymentSuccess']);
+Route::get('/tenderdeposit/success', [TenderFormBuyController::class,'tenderdepositPaymentSuccess']);
 
 
 
