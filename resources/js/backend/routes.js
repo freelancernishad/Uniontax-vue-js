@@ -33,6 +33,7 @@ let userlistedit = require('./components/users/form.vue').default;
 let tenderlist = require('./components/tenders/list.vue').default;
 let tenderlistedit = require('./components/tenders/form.vue').default;
 let tendersubmitlist = require('./components/tenders/tenderSubmit.vue').default;
+let tenderAmountSubmit = require('./components/tenders/tenderAmountSubmit.vue').default;
 
 let citizenlist = require('./components/citizen/list.vue').default;
 let citizenadd = require('./components/citizen/form.vue').default;
@@ -112,6 +113,7 @@ export const routes = [
   { path:  `${prefix}/tender/list/add`, component: tenderlistedit, name:'tenderlistadd',meta: { layout: adminlayout } },
   { path:  `${prefix}/tender/list/edit/:id`, component: tenderlistedit, name:'tenderlistedit',meta: { layout: adminlayout } },
   { path:  `${prefix}/tender/submit/list/:tender_id`, component: tendersubmitlist, name:'tendersubmitlist',meta: { layout: adminlayout } },
+  { path:  `${prefix}/tender/submit/amount/:tender_id`, component: tenderAmountSubmit, name:'tenderAmountSubmit',meta: { layout: adminlayout } },
 
 
 

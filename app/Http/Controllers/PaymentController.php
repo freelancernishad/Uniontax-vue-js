@@ -10,6 +10,7 @@ use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\ReportExport;
 use App\Models\HoldingBokeya;
+use App\Models\TanderInvoice;
 use App\Models\Tender;
 use App\Models\TenderFormBuy;
 use App\Models\TenderList;
@@ -56,6 +57,22 @@ class PaymentController extends Controller
                 $unioun_name = $tenderList->union_name;
                 $deccription = "Your Tender Successfuly submited";
                 SmsNocSmsSend($deccription, $TenderFormBuy->mobile,$unioun_name);
+
+
+
+            }elseif($payment->sonod_type=='tender-deposit'){
+
+
+
+                $TenderFormBuy = TanderInvoice::find($payment->sonodId);
+                $TenderFormBuy->update(['status'=>'Paid']);
+
+
+                // $tenderList = TenderList::find($TenderFormBuy->tender_id);
+                // $unioun_name = $tenderList->union_name;
+
+                $deccription = "Your Tender Successfuly submited";
+                // SmsNocSmsSend($deccription, $TenderFormBuy->mobile,$unioun_name);
 
 
 

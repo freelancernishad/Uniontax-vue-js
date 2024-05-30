@@ -50,4 +50,10 @@ class TenderList extends Model
        'permitDetials',
     ];
 
+
+    public function tanderInvoices()
+    {
+        return $this->hasMany(TanderInvoice::class);
+    }
+
 }

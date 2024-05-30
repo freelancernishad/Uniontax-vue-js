@@ -23,9 +23,10 @@ use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\HoldingBokeyaController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\SonodnamelistController;
+use App\Http\Controllers\TanderInvoiceController;
+use App\Http\Controllers\TenderFormBuyController;
 use App\Http\Controllers\TradeLicenseKhatController;
 use App\Http\Controllers\CitizenInformationController;
-use App\Http\Controllers\TenderFormBuyController;
 use App\Http\Controllers\TradeLicenseKhatFeeController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -174,6 +175,11 @@ Route::get('get/single/tender/{id}', function (Request $request,$id) {
         return TenderList::find($id);
 
   });
+
+
+  Route::apiResource('tander_invoices', TanderInvoiceController::class);
+
+Route::get('tender/payment/{tender_id}', [TanderInvoiceController::class,'tanderDepositAmount']);
 
 
 
