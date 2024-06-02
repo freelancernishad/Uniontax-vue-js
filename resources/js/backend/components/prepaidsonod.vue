@@ -35,6 +35,7 @@
                 <td>Sonod Id</td>
                 <td>Sonod name</td>
                 <td>applicant name</td>
+                <td>trxids</td>
 
                 <td>action</td>
             </tr>
@@ -44,6 +45,10 @@
                 <td>{{ row.sonod_Id }}</td>
                 <td>{{ row.sonod_name }}</td>
                 <td>{{ row.applicant_name }}</td>
+                <td>
+                    <p v-for="trxid in row.payments" :key="`${row.id}${trxid.id}`">{{ trxid.trxId }} <br/></p>
+                </td>
+
                 <td><button type="button" @click="showDetial(row.payments,$event.target)" class="btn btn-info">Show</button></td>
             </tr>
         </table>
