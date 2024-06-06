@@ -144,7 +144,7 @@ class PaymentController extends Controller
 
 
        
-        $trnx_id = $data->trnx_info->mer_trnx_id;
+        // $trnx_id = $data->trnx_info->mer_trnx_id;
         $payment = payment::where('trxid', $trnx_id)->first();
 
 
