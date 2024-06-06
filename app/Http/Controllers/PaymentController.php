@@ -162,15 +162,15 @@ class PaymentController extends Controller
                 $hosdingBokeya = HoldingBokeya::find($payment->sonodId);
                 // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
                 $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
-            }elseif($data->msg_code == '404'){
-                $sonod = Sonod::find($payment->sonodId);
-                $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
-                $Insertdata = ['status' => 'Failed',];
             }else{
                 $sonod = Sonod::find($data->cust_info->cust_id);
                 // return  $sonod;
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
             }
+        }elseif($data->msg_code == '404'){
+            $sonod = Sonod::find($payment->sonodId);
+            $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
+            $Insertdata = ['status' => 'Failed',];
         } else {
             $sonod = Sonod::find($data->cust_info->cust_id);
             $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
