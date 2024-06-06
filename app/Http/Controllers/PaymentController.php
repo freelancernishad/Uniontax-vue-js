@@ -139,12 +139,18 @@ class PaymentController extends Controller
 
         // $data = $request->all();
 
-
-
         Log::info(json_encode($data));
-        $sonod = Sonod::find($data->cust_info->cust_id);
+
+
+
+       
         $trnx_id = $data->trnx_info->mer_trnx_id;
         $payment = payment::where('trxid', $trnx_id)->first();
+
+
+        
+  
+
 
         $Insertdata = [];
         if ($data->msg_code == '1020') {
@@ -156,11 +162,17 @@ class PaymentController extends Controller
                 $hosdingBokeya = HoldingBokeya::find($payment->sonodId);
                 // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
                 $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
+            }elseif($data->msg_code == '404'){
+                $sonod = Sonod::find($payment->sonodId);
+                $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
+                $Insertdata = ['status' => 'Failed',];
             }else{
+                $sonod = Sonod::find($data->cust_info->cust_id);
                 // return  $sonod;
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
             }
         } else {
+            $sonod = Sonod::find($data->cust_info->cust_id);
             $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
             $Insertdata = ['status' => 'Failed',];
         }
