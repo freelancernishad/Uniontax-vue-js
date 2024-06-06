@@ -96,7 +96,14 @@ class PaymentController extends Controller
     {
 
         $trnx_id = $request->trnx_id;
-        $trans_date = date("Y-m-d", strtotime($request->trans_date));
+        $myserver = Payment::where(['trxId'=>$trnx_id])->first();
+        $date = $myserver->date;
+        $union = $myserver->union;
+        $unioninfo = Uniouninfo::where('short_name_e',$union)->first();
+        $AKPAY_MER_REG_ID = $unioninfo->AKPAY_MER_REG_ID;
+
+        // $trans_date = date("Y-m-d", strtotime($request->trans_date));
+        $trans_date = date("Y-m-d", strtotime($date));
 
         $curl = curl_init();
 
@@ -111,6 +118,7 @@ class PaymentController extends Controller
           CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_POSTFIELDS =>'{
 
+        "username":"'.$AKPAY_MER_REG_ID.'",
          "trnx_id":"'.$trnx_id.'",
          "trans_date":"'.$trans_date.'"
 
@@ -169,7 +177,14 @@ class PaymentController extends Controller
     {
 
         $trnx_id = $request->trnx_id;
-        $trans_date = date("Y-m-d", strtotime($request->trans_date));
+        $myserver = Payment::where(['trxId'=>$trnx_id])->first();
+        $date = $myserver->date;
+        $union = $myserver->union;
+        $unioninfo = Uniouninfo::where('short_name_e',$union)->first();
+        $AKPAY_MER_REG_ID = $unioninfo->AKPAY_MER_REG_ID;
+
+        // $trans_date = date("Y-m-d", strtotime($request->trans_date));
+        $trans_date = date("Y-m-d", strtotime($date));
 
         $curl = curl_init();
 
@@ -184,6 +199,7 @@ class PaymentController extends Controller
           CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_POSTFIELDS =>'{
 
+         "username":"'.$AKPAY_MER_REG_ID.'",
          "trnx_id":"'.$trnx_id.'",
          "trans_date":"'.$trans_date.'"
 
@@ -198,7 +214,7 @@ class PaymentController extends Controller
         curl_close($curl);
 
 
-        $myserver = Payment::where(['trxId'=>$trnx_id])->first();
+
 
 
       return   $data =  [

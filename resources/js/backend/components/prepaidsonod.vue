@@ -46,7 +46,7 @@
                 <td>{{ row.sonod_name }}</td>
                 <td>{{ row.applicant_name }}</td>
                 <td>
-                    <p v-for="trxid in row.payments" :key="`${row.id}${trxid.id}`">{{ trxid.trxId }} <br/></p>
+                    <p v-for="trxid in row.payments" :key="`${row.id}${trxid.id}`">{{ trxid.trxId }}  <button @click="ReCallIpn(trxid.trxId)" class="btn btn-danger">Recall IPN</button> <br/></p>
                 </td>
 
                 <td><button type="button" @click="showDetial(row.payments,$event.target)" class="btn btn-info">Show</button></td>
@@ -75,6 +75,10 @@ export default {
                 trnx_id:'',
                 trans_date:'',
             },
+            form2:{
+                trnx_id:'',
+                trans_date:'',
+            },
             rows:{},
             infoModal: {
                 id: 'info-modal',
@@ -97,6 +101,22 @@ export default {
         showDetial(item,button){
             this.infoModal.content = item
             this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+        },
+        async ReCallIpn(trxid=''){
+            this.form2.trnx_id = trxid
+            this.preLooding = true
+            var res = await this.callApi('post',`/api/re/call/ipn`,this.form2);
+            if(res.status==200){
+                Notification.customSuccess('IPN sent success');
+                this.Search();
+
+            }else{
+                Notification.customError('Something want wrong');
+
+            }
+
+            this.preLooding = false
+
         }
 
 

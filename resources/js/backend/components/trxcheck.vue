@@ -11,12 +11,12 @@
                         <input type="text" v-model="form.trnx_id" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Trx date</label>
                         <input type="date" v-model="form.trans_date" class="form-control">
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -40,6 +40,11 @@
 
 <script>
 export default {
+    created() {
+        if(this.$route.query.trxid){
+            this.form.trnx_id = this.$route.query.trxid
+        }
+    },
     data(){
         return {
             preLooding:false,
