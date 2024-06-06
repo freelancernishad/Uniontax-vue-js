@@ -109,6 +109,7 @@ export default {
             if(res.status==200){
                 Notification.customSuccess('IPN sent success');
                 // this.Search();
+                this.getData();
 
             }else{
                 Notification.customError('Something want wrong');
