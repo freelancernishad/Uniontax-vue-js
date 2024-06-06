@@ -108,7 +108,7 @@ export default {
             var res = await this.callApi('post',`/api/re/call/ipn`,this.form2);
             if(res.status==200){
                 Notification.customSuccess('IPN sent success');
-                this.Search();
+                // this.Search();
 
             }else{
                 Notification.customError('Something want wrong');
