@@ -169,8 +169,8 @@ class PaymentController extends Controller
             }
         }elseif($data->msg_code == '404'){
             $sonod = Sonod::find($payment->sonodId);
-            $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
-            $Insertdata = ['status' => 'Failed',];
+            $sonod->update(['khat' => 'সনদ ফি','stutus' => '404', 'payment_status' => 'Failed']);
+            $Insertdata = ['status' => '404',];
         } else {
             $sonod = Sonod::find($data->cust_info->cust_id);
             $sonod->update(['khat' => 'সনদ ফি','stutus' => 'failed', 'payment_status' => 'Failed']);
