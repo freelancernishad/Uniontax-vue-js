@@ -2773,9 +2773,16 @@ return Sonod::where(['sonod_name'=>$sonod_name,'sonod_Id'=>$sonod_Id])->first();
 
 
 
-    function preapidSonod() {
+    function preapidSonod(Request $request) {
 
-         $dates = date('Y-m-d', strtotime(date('Y-m-d')));
+        if($request->date){
+
+            $dates = date('Y-m-d', strtotime($request->date));
+        }else{
+
+            $dates = date('Y-m-d', strtotime(date('Y-m-d')));
+        }
+
 
 
         return Sonod::with('payments')->where('stutus','Prepaid')->where('created_at','LIKE',"%$dates%")->get();

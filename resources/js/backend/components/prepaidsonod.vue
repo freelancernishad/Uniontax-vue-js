@@ -28,6 +28,10 @@
 
         <!-- <pre v-html="result"></pre> -->
 
+        <div class='form-group'>
+            <input type="date" class="form-control" v-model="filter_date">
+            <button class="btn btn-info" @click="checkdata">Search Data</button>
+        </div>
 
         <table width='100%' border="1">
             <tr>
@@ -71,6 +75,7 @@ export default {
     data(){
         return {
             preLooding:false,
+            filter_date:'',
             form:{
                 trnx_id:'',
                 trans_date:'',
@@ -90,9 +95,22 @@ export default {
     },
     methods: {
 
-        async getData(){
+        checkdata(){
+
+            if(this.filter_date){
+
+                this.getData(this.filter_date);
+            }else{
+                alert('input a date');
+            }
+        },
+        async getData(date=''){
+            var q ='';
+            if(date){
+                q = `?date=${date}`;
+            }
             this.preLooding = true
-            var res = await this.callApi('get',`/api/get/prepaid/sonod`,this.form);
+            var res = await this.callApi('get',`/api/get/prepaid/sonod${q}`,this.form);
             this.rows = res.data
             this.preLooding = false
         },
