@@ -127,7 +127,12 @@ export default {
             if(res.status==200){
                 Notification.customSuccess('IPN sent success');
                 // this.Search();
-                this.getData();
+                if(this.filter_date){
+                    this.getData(this.filter_date);
+                }else{
+                    this.getData();
+                }
+             
 
             }else{
                 Notification.customError('Something want wrong');
