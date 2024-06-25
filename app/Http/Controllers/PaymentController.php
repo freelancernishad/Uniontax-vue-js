@@ -47,10 +47,8 @@ class PaymentController extends Controller
                 $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y'),'payOB'=>COB(1)]);
             }elseif($payment->sonod_type=='Tenders_form'){
 
-
-
-                $TenderFormBuy = Tender::find($payment->sonodId);
-                $TenderFormBuy->update(['payment_status'=>'Paid']);
+                $TenderFormBuy = TenderFormBuy::find($payment->sonodId);
+                $TenderFormBuy->update(['status'=>'Paid']);
 
 
                 $tenderList = TenderList::find($TenderFormBuy->tender_id);
