@@ -114,7 +114,7 @@ class TenderFormBuyController extends Controller
         $transId =  $request->transId;
         $payment = Payment::where(['trxId' => $transId])->first();
         $id = $payment->sonodId;
-        $sonod = Tender::find($id);
+        $sonod = TenderFormBuy::find($id);
 
 
 
