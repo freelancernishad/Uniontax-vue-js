@@ -41,11 +41,6 @@ class TenderFormBuyController extends Controller
        $tender_id = $request->tender_id;
        $name = $request->name;
        $PhoneNumber = $request->PhoneNumber;
-        // $countryCode = "880";
-        // if (strpos($PhoneNumber, $countryCode) !== 0) {
-        //     $PhoneNumber = $countryCode . $PhoneNumber;
-        // }
-
 
        $form_code = mt_rand(1000000, 9999999);
 
@@ -114,7 +109,7 @@ class TenderFormBuyController extends Controller
         $transId =  $request->transId;
         $payment = Payment::where(['trxId' => $transId])->first();
         $id = $payment->sonodId;
-        $sonod = TenderFormBuy::find($id);
+        $sonod = Tender::find($id);
 
 
 
@@ -122,7 +117,7 @@ class TenderFormBuyController extends Controller
 
 
                     if($payment->status=='Paid'){
-                        $deccription = "Congratulation! Your application $sonod->form_code has been Paid.Wait for Approval.";
+                        $deccription = "Congratulation! Your application $sonod->dorId has been Paid.Wait for Approval.";
                         return view('tenderSuccess', compact('payment', 'sonod'));
                     }else{
                     echo "
