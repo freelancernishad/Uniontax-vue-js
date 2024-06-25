@@ -15,6 +15,11 @@
 <tbody>
 
     <tr>
+        <td>২8 জুন ২০২৪</td>
+        <td>2024-2025 অর্থবছরের ইজারা । ডাউনলোড নোটিশ ফাইল ঃ <a target="_blank" :href="$asseturl+'ইজারা নোটিশ বোর্ডে দিয়েন.pdf'" class="btn btn-info">Download</a> </td>
+    </tr>
+
+    <tr>
         <td>২8 জানুয়ারি ২০২৪</td>
         <td>গ্রাম পুলিশ নিয়োগ বিজ্ঞপ্তি। ডাউনলোড নোটিশ ফাইল ঃ <a target="_blank" :href="$asseturl+'Village-Police-22.pdf'" class="btn btn-info">Download</a> </td>
     </tr>
