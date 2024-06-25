@@ -122,7 +122,7 @@ class TenderFormBuyController extends Controller
 
 
                     if($payment->status=='Paid'){
-                        $deccription = "Congratulation! Your application $sonod->dorId has been Paid.Wait for Approval.";
+                        $deccription = "Congratulation! Your application $sonod->form_code has been Paid.Wait for Approval.";
                         return view('tenderSuccess', compact('payment', 'sonod'));
                     }else{
                     echo "
