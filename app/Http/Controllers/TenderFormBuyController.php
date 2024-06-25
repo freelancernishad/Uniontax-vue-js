@@ -41,10 +41,10 @@ class TenderFormBuyController extends Controller
        $tender_id = $request->tender_id;
        $name = $request->name;
        $PhoneNumber = $request->PhoneNumber;
-        $countryCode = "880";
-        if (strpos($PhoneNumber, $countryCode) !== 0) {
-            $PhoneNumber = $countryCode . $PhoneNumber;
-        }
+        // $countryCode = "880";
+        // if (strpos($PhoneNumber, $countryCode) !== 0) {
+        //     $PhoneNumber = $countryCode . $PhoneNumber;
+        // }
 
 
        $form_code = mt_rand(1000000, 9999999);
