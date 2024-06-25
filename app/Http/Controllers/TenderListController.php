@@ -278,7 +278,7 @@ class TenderListController extends Controller
                       </td>
                       <td style="text-align: center;" width="50%">
                           <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>
-                   
+
 
                       </td>
                       <td>
@@ -582,7 +582,7 @@ $style = '';
                       </td>
                       <td style="text-align: center;" width="50%">
                           <p style="font-size:20px">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</p>
-                         
+
 
                       </td>
                       <td>
@@ -726,7 +726,7 @@ $style = '';
     function PaymentCreate($id) {
 
 
-        $tenderform = Tender::find($id);
+        $tenderform = TenderFormBuy::find($id);
 
         $sonodFees =  TenderList::find($tenderform->tender_id);
         $sonod_fee =  $sonodFees->form_price;
