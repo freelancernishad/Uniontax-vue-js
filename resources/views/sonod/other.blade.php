@@ -53,7 +53,11 @@
             </tr>
         @endif
 
-
+        @if($row->sonod_name=='বার্ষিক আয়ের প্রত্যয়ন')
+        <tr>
+            <td width="30%">পেশা</td><td>: {{ $row->applicant_occupation }}</td>
+            </tr>
+        @endif
 
 
         @if($row->sonod_name=='বিবিধ প্রত্যয়নপত্র' || $row->sonod_name=='একই নামের প্রত্যয়ন')
@@ -143,7 +147,7 @@
     </table>
 
 
-    <p 
+    <p
     > {!! int_en_to_bn($row->sec_prottoyon) !!}<br>
     </p>
 
