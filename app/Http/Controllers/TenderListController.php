@@ -740,7 +740,7 @@ $style = '';
 
 
         $totalamount = $sonod_fee;
-        $applicant_mobile = $tenderform->PhoneNumber;
+        $applicant_mobile = $tenderform->mobile;
 
 
         $total_amount = $totalamount;
