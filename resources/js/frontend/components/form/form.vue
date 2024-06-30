@@ -503,6 +503,7 @@
                             <label for="" class="labelColor">অর্থ বছর</label>
                             <select class="form-control" v-model="form.orthoBchor" required>
                                 <option value="">অর্থ বছর নির্বাচন করুন</option>
+                                <option value="2024-25">২০২৪-২৫</option>
                                 <option value="2023-24">২০২৩-২৪</option>
                                 <!-- <option value="2022-23">২০২২-২৩</option> -->
                             </select>
@@ -1072,7 +1073,7 @@ export default {
                 applicant_national_id_back_attachment: null,
                 applicant_birth_certificate_attachment: null,
                 prottoyon: null,
-                orthoBchor: '2023-24',
+                orthoBchor: '2024-25',
                 stutus: 'Pending',
                 payment_status: 'Unpaid',
                 successors: [
@@ -1461,7 +1462,7 @@ export default {
                 var totalamount = sonod_fee
             }
 
-           
+
 
             this.charages = {
                 sonod_fee: sonod_fee,
