@@ -726,7 +726,7 @@ $style = '';
     function PaymentCreate($id) {
 
 
-        $tenderform = TenderFormBuy::find($id);
+        $tenderform = Tender::find($id);
 
         $sonodFees =  TenderList::find($tenderform->tender_id);
         $sonod_fee =  $sonodFees->form_price;
