@@ -1592,7 +1592,7 @@ function SmsNocSmsSend($deccription = '', $applicant_mobile = '01909756552',$uni
         return 'you dont have balace';
     }
 
-    $smsnocapikey = '108|DuxHEDfb1kQKISfSZCJ980XfCKQ2mpwvCCLThVqf ';
+    $smsnocapikey = '257|Jge1CWU3dsBioTX8j6sypVEhMS03PKaL4dNrbuE8872be133 ';
     $smsnocsenderid = '8809617611301';
 
 $curl = curl_init();
@@ -1994,7 +1994,7 @@ $nagoriinfo .= '<h4 style="text-align:center;margin-bottom:0px;font-size:11px">'
     padding:1px 4px;
     font-size: 11px;">' . int_en_to_bn($rowList->w_nid) . '</td>
 </tr>';
- 
+
         $i++;
     }
 
