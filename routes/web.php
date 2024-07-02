@@ -256,12 +256,12 @@ $html .= "
    });
 
 Route::get('/holding/tax/renew', function () {
-    $holdingBokeya =  HoldingBokeya::where(['year'=>'2022-2023'])->get();
+    $holdingBokeya =  HoldingBokeya::where(['year'=>'2023-2024'])->get();
     foreach ($holdingBokeya as $value) {
 
         $insertData = [
             "holdingTax_id"=> $value->holdingTax_id,
-            "year"=> "2023-2024",
+            "year"=> "2024-2025",
             "price"=> $value->price,
             "status"=> "Unpaid",
         ];
