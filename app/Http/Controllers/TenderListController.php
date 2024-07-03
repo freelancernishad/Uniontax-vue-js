@@ -313,7 +313,7 @@ class TenderListController extends Controller
 
 
         $sonodNO = ' <div class="signature text-center position-relative">
-        স্মারক নং: ' .  int_en_to_bn($row->memorial_no) . ' <br /> বিজ্ঞপ্তির তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->created_at))).'</div>';
+        স্মারক নং: ' .  int_en_to_bn($row->memorial_no) . ' <br /> বিজ্ঞপ্তির তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->noticeDate))).'</div>';
 
 
 
@@ -618,7 +618,7 @@ $style = '';
 
 
         $sonodNO = ' <div class="signature text-center position-relative">
-        স্মারক নং: ' .  int_en_to_bn($row->memorial_no) . ' <br /> বিজ্ঞপ্তির তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->created_at))).'</div>';
+        স্মারক নং: ' .  int_en_to_bn($row->memorial_no) . ' <br /> বিজ্ঞপ্তির তারিখ: '.int_en_to_bn(date("d/m/Y", strtotime($row->noticeDate))).'</div>';
 
 
 
