@@ -221,6 +221,23 @@
                 <td class="td" style="text-align:center">গ্রামঃ- {{ $tenderDeposit['vill'] }}</td>
                 <td class="td" style="text-align:center">{{ int_en_to_bn($tenderDeposit['mobile']) }}</td>
 
+
+                @elseif($Product->sonod_type=='Tenders_form')
+
+                @php
+                $PDO3 = \DB::connection()->getPdo();
+                $QUERY3 = $PDO3->prepare("SELECT * FROM `tenders` WHERE `id`='".$Product->sonodId."' && `status`='Selected'");
+                $QUERY3->execute();
+                 $Tenders_form=$QUERY3->fetch();
+            // print_r($holdingTax);
+            // print_r($holdingTax['maliker_name']);
+            @endphp
+
+
+                <td class="td" style="text-align:center">{{ $Tenders_form['applicant_orgName'] }}</td>
+                <td class="td" style="text-align:center">গ্রামঃ- {{ $Tenders_form['vill'] }}</td>
+                <td class="td" style="text-align:center">{{ int_en_to_bn($Tenders_form['mobile']) }}</td>
+
                 @else
 
 
