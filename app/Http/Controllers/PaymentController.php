@@ -291,9 +291,9 @@ class PaymentController extends Controller
 
             if($sonod_type=='all'){
             // return Payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
-            $row = Payment::with(['sonod','tax'])->where(['status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','asc')->get();
+            $row = Payment::with(['sonod','tax','tenderinvoice'])->where(['status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','asc')->get();
             }else{
-                 $row = Payment::with(['sonod','tax'])->where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','asc')->get();
+                 $row = Payment::with(['sonod','tax','tenderinvoice'])->where(['sonod_type'=>$sonod_type,'status'=>'Paid'])->where($unionfilter)->where($filter)->whereBetween('date', [$from, $to])->orderBy('id','asc')->get();
             }
 
             // return $row;
