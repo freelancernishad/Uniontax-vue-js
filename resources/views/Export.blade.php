@@ -204,48 +204,12 @@
                     হোল্ডিং নং- {{ int_en_to_bn($holdingTax['holding_no']) }}</td>
                 <td class="td" style="text-align:center">{{ int_en_to_bn($holdingTax['mobile_no']) }}</td>
 
-
-                @elseif($Product->sonod_type=='tender-deposit')
-
-                @php
-                $PDO2 = \DB::connection()->getPdo();
-                $QUERY2 = $PDO2->prepare("SELECT * FROM `tenders` WHERE `tender_id`='".$Product->tenderinvoice->tanderid."' && `status`='Selected'");
-                $QUERY2->execute();
-                 $tenderDeposit=$QUERY2->fetch();
-            // print_r($holdingTax);
-            // print_r($holdingTax['maliker_name']);
-            @endphp
-
-
-                <td class="td" style="text-align:center">{{ $tenderDeposit['applicant_orgName'] }}</td>
-                <td class="td" style="text-align:center">গ্রামঃ- {{ $tenderDeposit['vill'] }}</td>
-                <td class="td" style="text-align:center">{{ int_en_to_bn($tenderDeposit['mobile']) }}</td>
-
-
-                @elseif($Product->sonod_type=='Tenders_form')
-
-                @php
-                $PDO3 = \DB::connection()->getPdo();
-                $QUERY3 = $PDO3->prepare("SELECT * FROM `tenders` WHERE `id`='".$Product->sonodId."' && `status`='Selected'");
-                $QUERY3->execute();
-                 $Tenders_form=$QUERY3->fetch();
-            // print_r($holdingTax);
-            // print_r($holdingTax['maliker_name']);
-            @endphp
-
-
-                <td class="td" style="text-align:center">{{ $Tenders_form['applicant_orgName'] }}</td>
-                <td class="td" style="text-align:center">গ্রামঃ- {{ $Tenders_form['vill'] }}</td>
-                <td class="td" style="text-align:center">{{ int_en_to_bn($Tenders_form['mobile']) }}</td>
-
                 @else
 
-
-
-                <td class="td" style="text-align:center">{{ $Product->sonod->applicant_name }}</td>
-                <td class="td" style="text-align:center">গ্রামঃ- {{ $Product->sonod->applicant_present_village }},
-                    হোল্ডিং নং- {{ int_en_to_bn($Product->sonod->applicant_holding_tax_number) }}</td>
-                <td class="td" style="text-align:center">{{ int_en_to_bn($Product->sonod->applicant_mobile) }}</td>
+                <td class="td" style="text-align:center">@if($Product->sonod){{ $Product->sonod->applicant_name }}@endif</td>
+                <td class="td" style="text-align:center">@if($Product->sonod)গ্রামঃ- {{ $Product->sonod->applicant_present_village }},
+                    হোল্ডিং নং- {{ int_en_to_bn($Product->sonod->applicant_holding_tax_number) }}@endif</td>
+                <td class="td" style="text-align:center">@if($Product->sonod){{ int_en_to_bn($Product->sonod->applicant_mobile) }}@endif</td>
                 @endif
 
                 <td class="td" style="text-align:center">{{ int_en_to_bn(round($Product->amount,2)) }}</td>
