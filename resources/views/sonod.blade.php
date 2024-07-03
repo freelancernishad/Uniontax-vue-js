@@ -215,11 +215,7 @@ margin-left: 83px;
 
                     @php
                      $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
-                    //  $qrurl = url("/verification/sonod/$row->id");
-                    //     $qrcode = \QrCode::size(70)
-                    // ->format('svg')
-                    // ->generate($qrurl);
-                    // $output = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+             
                     @endphp
 
                     <img src="https://api.qrserver.com/v1/create-qr-code/?data={{ $qrurl }}&size=70x70"/>
