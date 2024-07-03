@@ -36,4 +36,8 @@ class Payment extends Model
         return $this->belongsTo(HoldingBokeya::class, 'sonodId', 'id');
     }
 
+    public function tenderinvoice(){
+        return $this->belongsTo(TanderInvoice::class, 'sonodId', 'id');
+    }
+
 }

@@ -204,6 +204,23 @@
                     হোল্ডিং নং- {{ int_en_to_bn($holdingTax['holding_no']) }}</td>
                 <td class="td" style="text-align:center">{{ int_en_to_bn($holdingTax['mobile_no']) }}</td>
 
+
+                @elseif($Product->sonod_type=='tender-deposit')
+
+                @php
+                $PDO2 = \DB::connection()->getPdo();
+                $QUERY2 = $PDO2->prepare("SELECT * FROM `tenders` WHERE `tender_id`='".$Product->tenderinvoice->tanderid."' && `status`='Selected'");
+                $QUERY2->execute();
+                 $tenderDeposit=$QUERY2->fetch();
+            // print_r($holdingTax);
+            // print_r($holdingTax['maliker_name']);
+            @endphp
+
+
+                <td class="td" style="text-align:center">{{ $tenderDeposit['applicant_orgName'] }}</td>
+                <td class="td" style="text-align:center">গ্রামঃ- {{ $tenderDeposit['vill'] }}</td>
+                <td class="td" style="text-align:center">{{ int_en_to_bn($tenderDeposit['mobile']) }}</td>
+
                 @else
 
 
