@@ -218,7 +218,7 @@ margin-left: 83px;
              
                     @endphp
 
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?data={{ $qrurl }}&size=70x70"/>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data={{ $qrurl }}&size=80x80"/>
 
                            <br/>
                             <div class="signature text-center position-relative">
