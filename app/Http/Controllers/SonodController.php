@@ -2109,14 +2109,16 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
             $sessionYear = ($currentYear - 1) . '-' . $currentYear;
         }
 
+        $formattedSessionYear = ($currentMonth >= 7) ? $currentYear . '-' . substr(($currentYear + 1), -2) : ($currentYear - 1) . '-' . substr($currentYear, -2);
+
         // Generate new sonod_Id
-        $sonodId = (string) $this->allsonodId($existingSonod->unioun_name, $existingSonod->sonod_name, $sessionYear);
+        $sonodId = (string) $this->allsonodId($existingSonod->unioun_name, $existingSonod->sonod_name, $formattedSessionYear);
 
         // Replicate existing Sonod data
         $newSonod = $existingSonod->replicate();
 
         // Modify specific fields for the new Sonod
-        $newSonod->orthoBchor = $sessionYear;
+        $newSonod->orthoBchor = $formattedSessionYear;
         $newSonod->sonod_Id = $sonodId;
         $newSonod->stutus = 'prepaid';
         $newSonod->payment_status = 'Unpaid';
