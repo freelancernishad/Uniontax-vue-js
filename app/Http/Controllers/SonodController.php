@@ -2055,8 +2055,9 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         $renewLink = '';
         $renewAble = false;
 
+
         // Validate sessionYear and orthoBchor
-        if ($sonod->orthoBchor !== $sessionYear && $sonod->renewed==0) {
+        if ($sonod->orthoBchor !== $formattedSessionYear && $sonod->renewed==0) {
             $renewLink = "/api/sonod/renew/$sonod->id";
             $response['message'] = 'Session year and orthoBchor do not match. Please renew the Sonod.';
             $renewAble = true;
