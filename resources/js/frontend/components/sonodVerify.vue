@@ -1,4 +1,9 @@
 <template>
+    <div>
+
+
+           <loader v-if="preLooding" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40"
+           objectbg="#999793" opacity="80" name="circular"></loader>
     <div class="container my-4">
         <div class="container">
             <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
@@ -21,14 +26,32 @@
 
 
                     <div class="d-flex justify-content-between">
+
+
                         <div class="col-md-12 p-sm-0">
-                            <div class="text-right mb-2 no-print">
 
-                                <a :href="'/sonod/d/'+row.id" v-if="row.payment_status=='Paid'" target="_blank" class="btn btn-sm btn-success">Download</a>
 
-                                <a :href="'/sonod/d/'+row.id" v-if="row.payment_status=='Unpaid'" target="_blank" class="btn btn-sm btn-success">Pay</a>
+
+                            <div class="text-right mb-2 no-print" v-if="row.renew_able">
+                                <button type="button" @click="RenewSonod(row.renew_link)" class="btn btn-sm btn-success">Renew Sonod</button>
+                            </div>
+
+                            <div class="text-right mb-2 no-print" v-else>
+
+                                <div v-if="row.renewed">
+                                    <a :href="'/sonod/d/'+row.renewed_id" v-if="row.payment_status=='Paid'" target="_blank" class="btn btn-sm btn-success">Renewed Sonod Download</a>
+                                </div>
+                                <div v-else>
+
+                                    <a :href="'/sonod/d/'+row.id" v-if="row.payment_status=='Paid'" target="_blank" class="btn btn-sm btn-success">Download</a>
+
+                                    <a :href="'/sonod/d/'+row.id" v-if="row.payment_status=='Unpaid'" target="_blank" class="btn btn-sm btn-success">Pay</a>
+                                </div>
 
                             </div>
+
+
+
                             <div class="border">
                                 <div class="row m-0 mt-2">
                                     <div class="logo-img col-md-3 col-sm-12 text-right hide-mobile">
@@ -279,6 +302,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 <script>
 export default {
@@ -290,11 +314,45 @@ export default {
             chair: false,
             complate: false,
             cancel: false,
+            preLooding: false,
             row:{},
             successor_list:{}
         }
     },
     methods:{
+
+
+        async RenewSonod(url){
+            Swal.fire({
+                title: 'আপনি কি নিশ্চিত?',
+                text: `আবেদনটি রিনিউ করতে চান!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: `হা নিশ্চিত`,
+                cancelButtonText: `বাতিল`
+            }).then(async (result) => {
+
+                if (result.isConfirmed) {
+                    this.preLooding = true;
+                    var res = await this.callApi('get', `${url}`, []);
+                    Notification.customSuccess(`আবেদনটি রিনিউ হয়েছে!`);
+
+                    window.location.href = res.data;
+
+
+
+                } else {
+                    this.preLooding = false;
+                }
+            })
+        },
+
+
+
+
+
         async sonodVerifiy(){
 
 

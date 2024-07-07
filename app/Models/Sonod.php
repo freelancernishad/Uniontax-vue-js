@@ -101,6 +101,8 @@ class Sonod extends Model
         'pBy',
         'sameNameNew',
         'orthoBchor',
+        'renewed',
+        'renewed_id',
         'format',
     ];
 

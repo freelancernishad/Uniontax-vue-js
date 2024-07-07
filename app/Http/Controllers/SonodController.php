@@ -1306,11 +1306,21 @@ if($payment->status=='Paid'){
 
        $row = Sonod::find($id);
 
+
+
        if($row->stutus=='cancel'){
         return "
             <h1 style='color:red;text-align:center'>সনদটি বাতিল করা হয়েছে!<h1>
         ";
        }
+
+
+       if($row->stutus!='approved'){
+        return "
+            <h1 style='color:red;text-align:center'>সনদটি এখনো অনুমোদন করা হয়নি !<h1>
+        ";
+       }
+
 
         $sonod_name = $row->sonod_name;
         $sonod = Sonodnamelist::where('bnname', $row->sonod_name)->first();
@@ -2013,26 +2023,119 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
         }
         return 0;
     }
+
     public function singlesonod(Request $request, $id)
     {
         $admin = $request->admin;
-        if($admin){
-            $sonod =  Sonod::find($id);
-            $sonodnamedata =  Sonodnamelist::where(['bnname'=>$sonod->sonod_name])->first();
-            $sonod['image'] = asset($sonod->image);
-            $sonod['applicant_national_id_front_attachment'] = asset($sonod->applicant_national_id_front_attachment);
-            $sonod['applicant_national_id_back_attachment'] = asset($sonod->applicant_national_id_back_attachment);
-            $sonod['applicant_birth_certificate_attachment'] = asset($sonod->applicant_birth_certificate_attachment);
+        $sonod = Sonod::find($id);
 
-           return $data = [
-                'sonod'=>$sonod,
-                'sonodnamedata'=>$sonodnamedata,
-            ];
+        if (!$sonod) {
+            return response()->json(['error' => 'Sonod not found'], 404);
         }
 
-        return Sonod::find($id);
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+
+        // Determine the current session year
+        if ($currentMonth >= 7) {
+            $sessionYear = $currentYear . '-' . ($currentYear + 1);
+        } else {
+            $sessionYear = ($currentYear - 1) . '-' . $currentYear;
+        }
+
+        // Format session year as '2023-24'
+        $formattedSessionYear = ($currentMonth >= 7) ? $currentYear . '-' . substr(($currentYear + 1), -2) : ($currentYear - 1) . '-' . substr($currentYear, -2);
+
+        $sonodnamedata = Sonodnamelist::where(['bnname' => $sonod->sonod_name])->first();
+        $sonod['image'] = asset($sonod->image);
+        $sonod['applicant_national_id_front_attachment'] = asset($sonod->applicant_national_id_front_attachment);
+        $sonod['applicant_national_id_back_attachment'] = asset($sonod->applicant_national_id_back_attachment);
+        $sonod['applicant_birth_certificate_attachment'] = asset($sonod->applicant_birth_certificate_attachment);
+
+        $renewLink = '';
+        $renewAble = false;
+
+        // Validate sessionYear and orthoBchor
+        if ($sonod->orthoBchor !== $sessionYear && $sonod->renewed==0) {
+            $renewLink = "/api/sonod/renew/$sonod->id";
+            $response['message'] = 'Session year and orthoBchor do not match. Please renew the Sonod.';
+            $renewAble = true;
+        }
+
+        if ($admin) {
+            $response = [
+                'sonod' => $sonod,
+                'sonodnamedata' => $sonodnamedata,
+                'sessionYear' => $formattedSessionYear, // Return formatted session year for admins
+                'renew_link' => $renewLink,
+            ];
+            return $response;
+        }
+
+
+
+
+        // When user is not admin, return the Sonod with sessionYear and renew_link
+        $sonod['renew_able'] = $renewAble;
+        $sonod['sessionYear'] = $formattedSessionYear; // Return formatted session year for non-admins
+        $sonod['renew_link'] = $renewLink; // Adjust the route as needed
+
+        return $sonod;
     }
 
+
+    public function renewSonod($id)
+    {
+        // Retrieve existing Sonod data
+        $existingSonod = Sonod::find($id);
+
+        if (!$existingSonod) {
+            return response()->json(['error' => 'Sonod not found'], 404);
+        }
+
+
+        // if($existingSonod->renewed){
+        //     return response()->json(['error' => 'Sonod already renewed'], 400);
+        // }
+
+        // Adjust session year (orthoBchor) for the new Sonod
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+
+        if ($currentMonth >= 7) {
+            $sessionYear = $currentYear . '-' . ($currentYear + 1);
+        } else {
+            $sessionYear = ($currentYear - 1) . '-' . $currentYear;
+        }
+
+        // Generate new sonod_Id
+        $sonodId = (string) $this->allsonodId($existingSonod->unioun_name, $existingSonod->sonod_name, $sessionYear);
+
+        // Replicate existing Sonod data
+        $newSonod = $existingSonod->replicate();
+
+        // Modify specific fields for the new Sonod
+        $newSonod->orthoBchor = $sessionYear;
+        $newSonod->sonod_Id = $sonodId;
+        $newSonod->stutus = 'prepaid';
+        $newSonod->payment_status = 'Unpaid';
+
+        // Save the new Sonod record
+        $newSonod->save();
+        $existingSonod->update(['renewed_id'=>$newSonod->id]);
+
+
+
+
+
+        return $redirect = url("/sonod/payment/$newSonod->id");
+
+        // Return the newly inserted Sonod data
+        return response()->json(['message' => 'Sonod renewed successfully', 'new_sonod' => $newSonod], 201);
+
+
+
+    }
 
 
     public function sonodcountall(Request $request)
@@ -2787,6 +2890,10 @@ return Sonod::where(['sonod_name'=>$sonod_name,'sonod_Id'=>$sonod_Id])->first();
 
         return Sonod::with('payments')->where('stutus','Prepaid')->where('created_at','LIKE',"%$dates%")->get();
     }
+
+
+
+
 
 
 

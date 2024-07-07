@@ -77,6 +77,14 @@ class PaymentController extends Controller
 
 
             }else{
+
+
+                $existingSonodcount = Sonod::where('renewed_id',$sonod->id)->count();
+                if($existingSonodcount>0){
+                    $existingSonod = Sonod::where('renewed_id',$sonod->id)->first();
+                    $existingSonod->update(['renewed'=>1]);
+                }
+
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
             }
 
@@ -163,7 +171,19 @@ class PaymentController extends Controller
                 // $hosdingtax= Holdingtax::find($hosdingBokeya->holdingTax_id);
                 $hosdingBokeya->update(['status'=>'Paid','payYear'=>date('Y')]);
             }else{
+
+
                 $sonod = Sonod::find($data->cust_info->cust_id);
+
+
+                $existingSonodcount = Sonod::where('renewed_id',$sonod->id)->count();
+                if($existingSonodcount>0){
+
+                    $existingSonod = Sonod::where('renewed_id',$sonod->id)->first();
+                    $existingSonod->update(['renewed'=>1]);
+                }
+
+
                 // return  $sonod;
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
             }

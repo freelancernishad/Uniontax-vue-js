@@ -241,6 +241,7 @@ Route::get('sonod/list',[SonodController::class,'index']);
 Route::post('role/assign',[authController::class,'roleAssign']);
 
 Route::get('sonod/single/{id}',[SonodController::class, 'singlesonod']);
+Route::get('sonod/renew/{id}',[SonodController::class, 'renewSonod']);
 
 Route::post('sonod/update',[SonodController::class, 'sonod_update']);
 
