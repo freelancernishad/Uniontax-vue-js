@@ -41,7 +41,11 @@ use PhpParser\Node\Stmt\Foreach_;
 */
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 
+Route::get('/files/{path}', function ($path) {
 
+    // Serve the file from the protected disk
+    return response()->file(Storage::disk('protected')->path($path));
+})->where('path', '.*');
 
 Route::get('image/to/text', function (Request $request) {
 

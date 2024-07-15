@@ -42,6 +42,13 @@ return [
             'visibility' => 'public',
         ],
 
+
+        'protected' => [
+            'driver' => 'local',
+            'root' => storage_path('app/protected'), // Path to the protected storage folder
+        ],
+
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

@@ -42,6 +42,9 @@ let tenderView = require('./components/tender/view.vue').default;
 
 let citizens_corner = require('./components/citizens_corner/index.vue').default;
 
+
+let case_form = require('./components/cases/form.vue').default;
+
 let PageNotFound = require('./components/404.vue').default;
 
 
@@ -74,6 +77,10 @@ export const routes = [
     { path:  `${prefix}tenderview/:id`, component: tenderView, name:'tenderView',meta: { layout: layout } },
 
     { path:  `${prefix}citizens_corner`, component: citizens_corner, name:'citizens_corner',meta: { layout: layout } },
+
+
+
+    { path:  `${prefix}cases/form`, component: case_form, name:'case_form',meta: { layout: layout } },
 
   { path: "*", component: PageNotFound }
 

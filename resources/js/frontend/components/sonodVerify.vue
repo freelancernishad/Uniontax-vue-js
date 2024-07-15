@@ -38,7 +38,7 @@
 
                             <div class="text-right mb-2 no-print" v-else>
 
-                                <div v-if="row.renewed">
+                                <div v-if="Number(row.renewed)">
                                     <a :href="'/sonod/d/'+row.renewed_id" v-if="row.payment_status=='Paid'" target="_blank" class="btn btn-sm btn-success">Renewed Sonod Download</a>
                                 </div>
                                 <div v-else>
