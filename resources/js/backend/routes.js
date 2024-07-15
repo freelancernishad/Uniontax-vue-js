@@ -73,6 +73,9 @@ let blogform = require('./components/blogs/form.vue').default;
 let category = require('./components/blogs/category/list.vue').default;
 let categoryform = require('./components/blogs/category/form.vue').default;
 
+
+let cases = require('./components/cases/list.vue').default;
+
 let PageNotFound = require('./components/404.vue').default;
 
 
@@ -166,6 +169,9 @@ export const routes = [
   { path:  `${prefix}/check/trx`, component: trxcheck, name:'trxcheck',meta: { layout: adminlayout } },
   { path:  `${prefix}/get/trx`, component: trxGet, name:'trxGet',meta: { layout: adminlayout } },
   { path:  `${prefix}/get/prepaidsonod`, component: prepaidsonod, name:'prepaidsonod',meta: { layout: adminlayout } },
+
+
+  { path:  `${prefix}/cases/:status`, component: cases, name:'cases',meta: { layout: adminlayout } },
 
 
   { path: "*", component: PageNotFound }

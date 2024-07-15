@@ -7,13 +7,26 @@ use Illuminate\Http\Request;
 
 class VillageCourtController extends Controller
 {
-    // Display a listing of the resource
-    public function index()
+    public function index(Request $request)
     {
-        $villageCourts = VillageCourt::all();
+        $perPage = $request->get('perPage', 10);
+        $villageCourts = VillageCourt::paginate($perPage);
+    
+        // Customize the response
+        $villageCourts->getCollection()->transform(function ($court) {
+            // Add custom logic for photo and signature
+            $court->representative_photo = $court->representative_photo ? url("files/".$court->representative_photo) : null;
+            $court->representative_signature = $court->representative_signature ? url("files/".$court->representative_signature) : null;
+            $court->applicant_photo = $court->applicant_photo ? url("files/".$court->applicant_photo) : null;
+            $court->applicant_signature = $court->applicant_signature ? url("files/".$court->applicant_signature) : null;
+            $court->document = $court->document ? url("files/".$court->document) : null;
+    
+            return $court;
+        });
+    
         return response()->json($villageCourts);
     }
-
+    
     // Store a newly created resource in storage
     public function store(Request $request)
     {

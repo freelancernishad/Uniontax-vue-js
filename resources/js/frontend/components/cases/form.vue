@@ -2,7 +2,7 @@
     <div>
         <div class="container mt-5">
             <form @submit.prevent="submitForm">
-                <h3 class="text-center mb-4">সিধেশনের আবেদন ফরম (লাল চিহ্নিত স্থানগুলো অবশ্যই পূরণীয়)</h3>
+                <h3 class="text-center mb-4">সিধেশনের আবেদন ফরম </h3>
 
                 <div class="form-group">
                     <label class="form-label">মিসকেসের ধরন</label>

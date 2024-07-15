@@ -322,6 +322,28 @@
 
 
 
+                        <li class="nav-item sidebar-nav-item">
+                            <a href="javascript:void(0)" class="nav-link" @click="submenu(1000)"><i class="flaticon-technological"></i><span>গ্রাম আদালত</span></a>
+                            <transition name="slide">
+                                <ul class="nav sub-group-menu menu-open child" v-if="selected == 1000"
+                                    style="display:block">
+
+                                    <li class="nav-item">
+                                        <router-link
+                                            :to="{ name: 'cases', params: { status: 'pending' } }"
+                                            class="nav-link"><i class="fas fa-angle-right"></i> নতুন আবেদন
+                                        </router-link>
+                                    </li>
+
+                                   
+
+
+                                </ul>
+                            </transition>
+                        </li>
+
+
+
 
 
 
