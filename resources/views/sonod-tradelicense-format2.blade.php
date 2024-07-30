@@ -144,11 +144,11 @@ margin-left: 83px;
                         <div class="signature text-center position-relative" style="color:black">
                             <img width="170px" style="{{ $style }}"  src="{{ base64($row->socib_signture) }}"><br/>
                                 <b><span style="color:{{ $C_color }};font-size:{{ $C_size }};">{{ $row->socib_name }}</span> <br />
-                                     </b><span style="font-size:16px;">সচিব</span><br />
+                                     </b><span style="font-size:16px;">প্রশাসনিক কর্মকর্তা</span><br />
                              {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।
                          <br>
                          </div>
-                       
+
 
                         </td>
                         <td style="text-align: center; width: 200px;" width="30%">
