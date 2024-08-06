@@ -602,6 +602,7 @@ if($payment->status=='Paid'){
         $Insertdata['chaireman_name'] = $Uniouninfo->c_name;
         $Insertdata['c_email'] = $Uniouninfo->c_email;
         $Insertdata['chaireman_sign'] = $Uniouninfo->c_signture;
+        $Insertdata['chaireman_type'] = $Uniouninfo->c_type;
 
         $Insertdata['socib_name'] = $Uniouninfo->socib_name;
         $Insertdata['socib_email'] = $Uniouninfo->socib_email;
@@ -2426,7 +2427,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                     // $headerLeft = '<span style="color:#b400ff;"><b>
                     // উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
                     // </span>';
-                    
+
                     $headerLeft = '';
                 }
 
