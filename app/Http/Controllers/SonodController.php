@@ -2422,9 +2422,12 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
                   </div>
                     ';
                 }else{
-                    $headerLeft = '<span style="color:#b400ff;"><b>
-                    উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
-                    </span>';
+
+                    // $headerLeft = '<span style="color:#b400ff;"><b>
+                    // উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
+                    // </span>';
+                    
+                    $headerLeft = '';
                 }
 
 

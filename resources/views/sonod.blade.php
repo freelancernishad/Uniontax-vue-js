@@ -46,15 +46,15 @@
 
                                 </div>
                             @else
-                                <span style="color:#b400ff;"><b>
+                                {{-- <span style="color:#b400ff;"><b>
                                     উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
-                                    </span>
+                                    </span> --}}
                             @endif
 
                         @else
-                            <span style="color:#b400ff;"><b>
+                            {{-- <span style="color:#b400ff;"><b>
                             উন্নয়নের গণতন্ত্র,  <br /> শেখ হাসিনার মূলমন্ত্র </b>
-                            </span>
+                            </span> --}}
                         @endif
 
                     </td>

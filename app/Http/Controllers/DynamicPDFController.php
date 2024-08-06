@@ -9,6 +9,7 @@ use PDF;
 use QrCode;
 
 class DynamicPDFController extends Controller
+class DynamicPDFController extends Controller
 {
     function viewpdf($id)
     {
