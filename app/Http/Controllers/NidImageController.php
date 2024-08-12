@@ -42,7 +42,7 @@ class NidImageController extends Controller
         $frontImagePath = url('files/' . $frontFilePath);
         $backImagePath = url('files/' . $backFilePath);
 
-        return $frontImageText = $this->extractText($frontImagePath, 'front');
+         $frontImageText = $this->extractText($frontImagePath, 'front');
         $backImageText = $this->extractText($backImagePath, 'back');
 
         // Remove spaces from NID No.
