@@ -170,23 +170,22 @@ class HoldingtaxController extends Controller
 
     }
 
-
     public function holdingPaymentInvoice($id)
     {
         $holdingBokeya = HoldingBokeya::find($id);
-
+    
         // Determine the session year (COB)
         $COB = COB(1);
         if ($holdingBokeya->payOB) {
             $COB = $holdingBokeya->payOB;
         }
-
+    
         $payYear = $holdingBokeya->payYear;
         $holdingTax_id = $holdingBokeya->holdingTax_id;
         $holdingTax = Holdingtax::find($holdingTax_id);
         $union = $holdingTax->unioun;
         $unions = Uniouninfo::where(['short_name_e' => $union])->first();
-
+    
         // Filter by status and create/update invoice
         if ($holdingBokeya->status == 'Unpaid') {
             // Filter HoldingBokeyas by session year (COB) and status
@@ -195,19 +194,19 @@ class HoldingtaxController extends Controller
                 'status' => 'Unpaid',
                 'payOB' => $COB
             ])->get();
-
+            
             $holdingBokeyasAmount = HoldingBokeya::where([
                 'holdingTax_id' => $holdingTax_id,
                 'status' => 'Unpaid',
                 'payOB' => $COB
             ])->sum('price');
-
+    
             $TaxInvoicecount = TaxInvoice::where([
                 'holdingTax_id' => $holdingTax_id,
                 'status' => 'Unpaid',
                 'orthoBchor' => $COB
             ])->count();
-
+    
             if ($TaxInvoicecount > 0) {
                 // Update existing unpaid invoice for the session year
                 $TaxInvoice = TaxInvoice::where([
@@ -232,7 +231,7 @@ class HoldingtaxController extends Controller
                 ];
                 TaxInvoice::create($invoice);
             }
-
+    
             // Retrieve the invoice for rendering
             $TaxInvoice = TaxInvoice::where([
                 'holdingTax_id' => $holdingTax_id,
@@ -246,19 +245,19 @@ class HoldingtaxController extends Controller
                 'payYear' => $payYear,
                 'payOB' => $COB
             ])->get();
-
+            
             $holdingBokeyasAmount = HoldingBokeya::where([
                 'holdingTax_id' => $holdingTax_id,
                 'payYear' => $payYear,
                 'payOB' => $COB
             ])->sum('price');
-
+    
             $TaxInvoicecount = TaxInvoice::where([
                 'holdingTax_id' => $holdingTax_id,
                 'PayYear' => $payYear,
                 'orthoBchor' => $COB
             ])->count();
-
+    
             if ($TaxInvoicecount > 0) {
                 // Update existing paid invoice for the session year
                 $TaxInvoice = TaxInvoice::where([
@@ -284,7 +283,7 @@ class HoldingtaxController extends Controller
                 ];
                 TaxInvoice::create($invoice);
             }
-
+    
             // Retrieve the invoice for rendering
             $TaxInvoice = TaxInvoice::where([
                 'holdingTax_id' => $holdingTax_id,
@@ -293,43 +292,46 @@ class HoldingtaxController extends Controller
                 'status' => 'Paid'
             ])->first();
         }
-
+    
         // Calculate the current and previous amounts
         if ($holdingBokeya->status == 'Unpaid') {
             $currentamount = HoldingBokeya::where([
                 'holdingTax_id' => $holdingTax_id,
                 'status' => 'Unpaid',
-                'year' => COB(1),
+                'year' => $COB,
                 'payOB' => $COB
             ])->sum('price');
-
+            
             $previousamount = HoldingBokeya::where([
                 'holdingTax_id' => $holdingTax_id,
                 'status' => 'Unpaid',
                 'payOB' => $COB
-            ])->where('year', '!=', COB(1))->sum('price');
+            ])->where('year', '!=', $COB)->sum('price');
         } else {
+            $currentYear = $TaxInvoice->orthoBchor;
+            $previousYears = $this->getPreviousYears($currentYear); // Helper function to get multiple previous years
+    
             $currentamount = HoldingBokeya::where([
                 'holdingTax_id' => $holdingTax_id,
                 'payYear' => $payYear,
-                'year' => COB(1),
+                'year' => $currentYear,
                 'payOB' => $COB
             ])->sum('price');
-
+            
             $previousamount = HoldingBokeya::where([
                 'holdingTax_id' => $holdingTax_id,
                 'payYear' => $payYear,
                 'payOB' => $COB
-            ])->where('year', '!=', COB(1))->sum('price');
+            ])->whereIn('year', $previousYears)->sum('price');
         }
-
+    
         // Format the amount
         $amounts = number_format((float)$TaxInvoice->totalAmount, 2, '.', '');
         $numto = new NumberToBangla();
         $amount = $numto->bnMoney($amounts) . ' মাত্র';
-
+    
         $qrurl = url("/holding/tax/invoice/$id");
-
+    
         // Generate and return the invoice PDF
         $fileName = 'Invoice-' . date('Y-m-d H:i:s');
         $data['fileName'] = $fileName;
@@ -337,7 +339,18 @@ class HoldingtaxController extends Controller
         $mpdf->WriteHTML($this->invoice($holdingTax, $unions, $amount, $holdingBokeyas, 'right', $TaxInvoice, $currentamount, $previousamount, $id));
         $mpdf->Output($fileName, 'I');
     }
-
+    
+    /**
+     * Helper function to get the previous years
+     */
+    protected function getPreviousYears($currentYear)
+    {
+        list($start, $end) = explode('-', $currentYear);
+        $previousStart = $start - 1;
+        $previousEnd = $end - 1;
+        return [$previousStart . '-' . $previousEnd];
+    }
+    
 
 
 
