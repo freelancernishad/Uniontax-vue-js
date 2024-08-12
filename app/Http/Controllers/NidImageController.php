@@ -142,6 +142,7 @@ class NidImageController extends Controller
         // Close the ImageAnnotatorClient
         $imageAnnotator->close();
 
+        return $text;
         // Split text into chunks based on a delimiter (e.g., newline)
         $textChunks = explode("\n", $text);
 
