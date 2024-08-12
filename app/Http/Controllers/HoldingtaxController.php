@@ -395,7 +395,7 @@ class HoldingtaxController extends Controller
         $invoiceId = $TaxInvoice->invoiceId;
         $status = $TaxInvoice->status;
         $orthoBchor = $TaxInvoice->orthoBchor;
-        $created_at = date("d/m/Y", strtotime($TaxInvoice->updated_at));
+        $created_at = date("d/m/Y", strtotime($bokeyas->updated_at));
         $subtotal = number_format($TaxInvoice->totalAmount,2);
 
 
