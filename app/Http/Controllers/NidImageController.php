@@ -42,14 +42,14 @@ class NidImageController extends Controller
         $frontImagePath = url('files/' . $frontFilePath);
         $backImagePath = url('files/' . $backFilePath);
 
-        $frontImageText = $this->extractText($frontImagePath, 'front');
+        return $frontImageText = $this->extractText($frontImagePath, 'front');
         $backImageText = $this->extractText($backImagePath, 'back');
 
         // Remove spaces from NID No.
         $nid_no = str_replace(' ', '', $frontImageText['NID No.'] ?? '');
 
         // Format date of birth
-     return   $dateOfBirth = $frontImageText['Date of Birth'] ?? '';
+        $dateOfBirth = $frontImageText['Date of Birth'] ?? '';
         $formattedDateOfBirth = date('Y-m-d', strtotime($dateOfBirth));
         $date_of_birth = $formattedDateOfBirth;
 
