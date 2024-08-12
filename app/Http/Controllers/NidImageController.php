@@ -49,7 +49,7 @@ class NidImageController extends Controller
         $nid_no = str_replace(' ', '', $frontImageText['NID No.'] ?? '');
 
         // Format date of birth
-        $dateOfBirth = $frontImageText['Date of Birth'] ?? '';
+     return   $dateOfBirth = $frontImageText['Date of Birth'] ?? '';
         $formattedDateOfBirth = date('Y-m-d', strtotime($dateOfBirth));
         $date_of_birth = $formattedDateOfBirth;
 
