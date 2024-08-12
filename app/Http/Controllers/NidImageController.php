@@ -23,7 +23,7 @@ class NidImageController extends Controller
         // Handle front image upload
         if ($request->hasFile('applicant_national_id_front_attachment')) {
             $frontFile = $request->file('applicant_national_id_front_attachment');
-            $frontFileName = $frontFile->getClientOriginalName();
+            $frontFileName = time().$frontFile->getClientOriginalName();
             $frontFilePath = $frontFile->storeAs('nid_images/temp', $frontFileName, 'protected'); // Store temporarily
         } else {
             return response()->json(['error' => 'No front image file provided.'], 422);
@@ -32,7 +32,7 @@ class NidImageController extends Controller
         // Handle back image upload
         if ($request->hasFile('applicant_national_id_back_attachment')) {
             $backFile = $request->file('applicant_national_id_back_attachment');
-            $backFileName = $backFile->getClientOriginalName();
+            $backFileName = time().$backFile->getClientOriginalName();
             $backFilePath = $backFile->storeAs('nid_images/temp', $backFileName, 'protected'); // Store temporarily
         } else {
             return response()->json(['error' => 'No back image file provided.'], 422);
