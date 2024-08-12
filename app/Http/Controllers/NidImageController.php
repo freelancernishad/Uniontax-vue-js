@@ -39,8 +39,8 @@ class NidImageController extends Controller
         }
 
         // Extract text from front and back images
-        $frontImagePath = storage_path('app/' . $frontFilePath);
-        $backImagePath = storage_path('app/' . $backFilePath);
+        $frontImagePath = url('files/' . $frontFilePath);
+        $backImagePath = url('files/' . $backFilePath);
 
         $frontImageText = $this->extractText($frontImagePath, 'front');
         $backImageText = $this->extractText($backImagePath, 'back');
