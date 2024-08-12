@@ -143,7 +143,7 @@ class NidImageController extends Controller
         $imageAnnotator->close();
 
         // Split text into chunks based on a delimiter (e.g., newline)
-       return $textChunks = explode("\n", $text);
+        $textChunks = explode("\n", $text);
 
         // Get type parameter
         // $type = $request->input('type', 'front');
@@ -155,7 +155,7 @@ class NidImageController extends Controller
                 'পিতা' => '/পিতা\s*(.*?)\s*\n/s',
                 'মাতা' => '/মাতা\s*(.*?)\s*\n/s',
                 'Date of Birth' => '/Date of Birth:\s*(.*?)\s*\n/s',
-                'NID No.' => '/(?:NID No\.|ID No:\.)\s*(.*?)\s*\n/s',
+                'NID No.' => '/(?:NID No\.|ID NO:\.)\s*(.*?)\s*\n/s',
             ];
         } elseif ($type === 'back') {
             $patterns = [
