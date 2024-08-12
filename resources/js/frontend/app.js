@@ -22,10 +22,18 @@ import Notification from '../helpers/Notification';
 window.Notification = Notification
 
 
-import Applicationform from './components/form/form.vue'
-Vue.component('Applicationform', Applicationform);
-import ApplicationformwitnNid from './components/form/formwithNid.vue'
-Vue.component('ApplicationformwitnNid', ApplicationformwitnNid);
+import Form_without_nid from './components/form/form_without_nid.vue'
+Vue.component('Form_without_nid', Form_without_nid);
+
+import Form_with_nid_image_check from './components/form/form_with_nid_image_check.vue'
+Vue.component('Form_with_nid_image_check', Form_with_nid_image_check);
+
+import Form_with_nid from './components/form/form_with_nid.vue'
+Vue.component('Form_with_nid', Form_with_nid);
+
+
+
+
 
 
 import Applicationformprepay from './components/form_pre_pay/form.vue'

@@ -107,12 +107,15 @@
 
 
 
-          <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-form-label">Nid Service</label>
-                    <input type="Number" class="form-control"  id="nidService" v-model="form.nidServicestatus"  />
-
-            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-form-label">Nid Service</label>
+                    <select class="form-control" id="nidService" v-model="form.nidServicestatus">
+                        <option value="0">সাধারণ আবেদন</option>
+                        <option value="1">জাতীয় পরিচয়পত্র যাচাই করে আবেদন</option>
+                        <option value="2">জাতীয় পরিচয়পত্রের ছবি যাচাই করে আবেদন</option>
+                    </select>
+                </div>
             </div>
 
 

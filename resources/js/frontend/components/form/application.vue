@@ -1,7 +1,8 @@
 <template>
     <div>
-        <Applicationform  v-if="nidService==0"/>
-        <ApplicationformwitnNid :nid_balance="nidServicebalace" @check_nid_balace="checkNidBalace" v-else/>
+        <Form_without_nid  v-if="nidService==0"/>
+        <Form_with_nid_image_check  v-else-if="nidService==2"/>
+        <Form_with_nid :nid_balance="nidServicebalace" @check_nid_balace="checkNidBalace" v-else/>
     </div>
 </template>
 

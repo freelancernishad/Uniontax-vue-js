@@ -39,7 +39,7 @@ use PhpParser\Node\Stmt\Foreach_;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
 
 Route::get('/files/{path}', function ($path) {
 
@@ -47,115 +47,6 @@ Route::get('/files/{path}', function ($path) {
     return response()->file(Storage::disk('protected')->path($path));
 })->where('path', '.*');
 
-Route::get('image/to/text', function (Request $request) {
-
-    // Save uploaded image
-    $imagePath = 'https://i.ibb.co/3pgSLH5/IMG-20240227-103212.jpg';
-    // https://ibb.co/0QdtRGM
-    // https://ibb.co/74NWKWQ
-    // Instantiates a client
-    // https://i.ibb.co/74NWKWQ/IMG-20240227-103619.jpg -- front
-    // https://i.ibb.co/yVbScQy/IMG-20240227-103635.jpg -- back
-
-
-
-    $imageAnnotator = new ImageAnnotatorClient();
-
-    // Load the image from local storage
-    $image = file_get_contents($imagePath);
-
-    // Performs text detection on the image file
-    $response = $imageAnnotator->textDetection($image);
-    $texts = $response->getTextAnnotations();
-
-    // Extract text from response
-    $text = '';
-    foreach ($texts as $textAnnotation) {
-        $text .= $textAnnotation->getDescription();
-    }
-
-    // Close the ImageAnnotatorClient
-    $imageAnnotator->close();
-
-    // Split text into chunks based on a delimiter (e.g., newline)
-    $textChunks = explode("\n", $text);
-
-
-
-// $type ='front';
-$type ='back';
-    if($type=='front'){
-        $patterns = [
-            'নাম' => '/নাম\s*(.*?)\s*\n/s',
-            'Name' => '/Name\s*(.*?)\s*\n/s',
-            'পিতা' => '/পিতা\s*(.*?)\s*\n/s',
-            'মাতা' => '/মাতা\s*(.*?)\s*\n/s',
-            'Date of Birth' => '/Date of Birth:\s*(.*?)\s*\n/s',
-            'NID No.' => '/NID No.\s*(.*?)\s*\n/s',
-        ];
-        // Initialize an array to store the extracted values
-        $extractedValues = [];
-        // Iterate through patterns and extract values
-        foreach ($patterns as $key => $pattern) {
-            if (preg_match($pattern, $text, $matches)) {
-                $extractedValues[$key] = trim($matches[1]);
-            }else {
-                // Assign blank value if pattern match fails
-                $extractedValues[$key] = '';
-            }
-        }
-    }elseif($type=='back'){
-        $patterns = [
-            'গ্রাম/রাস্তা' => '/গ্রাম\/রাস্তা:\s*(.*?),/',
-            'ডাকঘর' => '/ডাকঘর:\s*(.*?)(?=\n)/s',
-            'Blood Group' => '/Blood Group:\s*(.*?)(?=\n|$)/s',
-            'Place of Birth' => '/Place of Birth:\s*(.*?)(?=\n|$)/s',
-            'Issue Date' => '/Issue Date:\s*(.*?)\s*\n/',
-        ];
-
-        // Initialize an array to store the extracted values
-        $extractedValues = [];
-
-        // Iterate through patterns and extract values
-        foreach ($patterns as $key => $pattern) {
-            if (preg_match($pattern, $text, $matches)) {
-                $extractedValues[$key] = trim($matches[1]);
-            } else {
-                // Assign blank value if pattern match fails
-                $extractedValues[$key] = '';
-            }
-        }
-
-        if (isset($extractedValues['ডাকঘর'])) {
-            $dakghorValue = $extractedValues['ডাকঘর'];
-            try {
-                $parts = preg_split('/,|-/', $dakghorValue);
-                $postOffice = isset($parts[0]) ? trim($parts[0]) : '';
-                $postcode = isset($parts[1]) ? trim($parts[1]) : '';
-                $thana = isset($parts[2]) ? trim($parts[2]) : '';
-                $district = isset($parts[3]) ? trim($parts[3]) : '';
-            } catch (Exception $e) {
-                $postOffice = '';
-                $postcode = '';
-                $thana = '';
-                $district = '';
-            }
-            $extractedValues['ডাকঘর'] = $postOffice;
-            $extractedValues['পোস্টকোড'] = $postcode;
-            $extractedValues['থানা'] = $thana;
-            $extractedValues['জেলা'] = $district;
-        }
-    }
-
-
-
-
-// Return extracted values
-return response()->json(['extracted_values' => $extractedValues]);
-
-    // Now you can do whatever you want with the extracted text chunks
-    // return response()->json(['text_chunks' => $text]);
-});
 
 
 

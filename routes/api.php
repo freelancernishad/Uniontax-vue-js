@@ -12,6 +12,7 @@ use App\Http\Controllers\CharageController;
 use App\Http\Controllers\CitizenController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\NidImageController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\ActionLogController;
 use App\Http\Controllers\countryApiController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\TenderListController;
 use App\Http\Controllers\UniouninfoController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\BlogCategoryController;
+
 use App\Http\Controllers\HoldingBokeyaController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\SonodnamelistController;
@@ -27,8 +29,6 @@ use App\Http\Controllers\TanderInvoiceController;
 use App\Http\Controllers\TenderFormBuyController;
 use App\Http\Controllers\TradeLicenseKhatController;
 use App\Http\Controllers\CitizenInformationController;
-use App\Http\Controllers\TradeLicenseKhatFeeController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+use App\Http\Controllers\TradeLicenseKhatFeeController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
+Route::get('image/to/text', [NidImageController::class, 'extractText']);
+
+Route::post('/nid-images/upload', [NidImageController::class, 'uploadNidImages']);
 
 
 
