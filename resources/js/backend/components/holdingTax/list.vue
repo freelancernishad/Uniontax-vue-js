@@ -246,7 +246,7 @@
             this.isSending = true
             var page = 1;
                if(type!='menual') if (this.$route.query.page) page = this.$route.query.page;
-            var res = await this.callApi('post',`/api/holding/tax/search?page=${page}&union=${localStorage.getItem('unioun')}`,this.form);
+            var res = await this.callApi('post',`/api/holding/tax/search?page=${page}&word=${this.$route.params.word}&union=${localStorage.getItem('unioun')}`,this.form);
             this.rows = res.data.data;
             this.TotalRows = `${res.data.total}`;
                 this.Totalpage = res.data.links

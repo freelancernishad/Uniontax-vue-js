@@ -1631,45 +1631,37 @@ $total_bokeya = 0;
     }
 
 
+
     public function holdingSearch(Request $r)
     {
-
-
-
         $userdata = $r->userdata;
-        if($r->union){
-            $union = $r->union;
+        $union = $r->union;
+        $word = $r->word;
 
+        $query = DB::table('holdingtaxes');
 
-
-            return DB::table('holdingtaxes')
-            ->where('unioun',$union)
-            ->where(function ($q)  use ($userdata,$union) {
-
-                $q->orWhere('holding_no', 'like', "%$userdata%")
-                ->orWhere('maliker_name', 'like', "%$userdata%")
-                ->orWhere('nid_no', 'like', "%$userdata%")
-                ->orWhere('mobile_no', 'like', "%$userdata%");
-            })
-            ->paginate(20);
+        // If `union` is provided, apply the union filter
+        if ($union) {
+            $query->where('unioun', $union);
         }
 
+        // Apply the search conditions
+        $query->where(function ($q) use ($userdata) {
+            $q->orWhere('holding_no', 'like', "%$userdata%")
+              ->orWhere('maliker_name', 'like', "%$userdata%")
+              ->orWhere('nid_no', 'like', "%$userdata%")
+              ->orWhere('mobile_no', 'like', "%$userdata%");
+        });
 
-        $data['userdata']=$userdata;
+        // If `word` is provided, apply the word filter
+        if ($word) {
+            $query->where('word_no', $word);
+        }
 
-        return DB::table('holdingtaxes')
-
-        ->orWhere('holding_no', 'like', "%$userdata%")
-        ->orWhere('maliker_name', 'like', "%$userdata%")
-        ->orWhere('nid_no', 'like', "%$userdata%")
-        ->orWhere('mobile_no', 'like', "%$userdata%")
-
-        ->paginate(20);
-
-
-
-
+        // Paginate the results
+        return $query->paginate(20);
     }
+
 
 
 }
