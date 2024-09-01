@@ -755,6 +755,7 @@
                                 <option>নাতনি</option>
                                 <option>ভাতিজা</option>
                                 <option>ভাতিজী</option>
+                                <option>চাচা</option>
                             </select>
                             <!-- <input v-model="successor.w_relation" placeholder="সম্পর্ক" class="form-control" /> -->
                         </th>
