@@ -7,11 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+<style>
+    body{
+        font-family: 'noto_sans_bengali', 'sans-serif'
+    }
+
+    .nikosh{
+        font-family: 'bangla', 'sans-serif'
+    }
+
+    .english_text {
+        font-family: 'Roboto', sans-serif; /* Default font for English */
+    }
+
+
+
+</style>
 
 
 </head>
 
-<body style="font-family: 'bangla', sans-serif;">
+<body>
 
 
     <div style="width:800px; padding:20px; border: 10px solid #787878">
@@ -88,7 +104,7 @@
                     <td>
                     </td>
                     <td style="margin-top:0px; margin-bottom:0px; text-align: center;" width=50%>
-                        <h1 style="color: #7230A0; margin: 0px; font-size: 28px">{{ $uniouninfo->full_name }}</h3>
+                        <h1 class="nikosh" style="color: #7230A0; margin: 0px; font-size: 28px">{{ $uniouninfo->full_name }}</h3>
                     </td>
                     <td>
                     </td>
@@ -215,7 +231,7 @@ margin-left: 83px;
 
                     @php
                      $qrurl = url("/verification/sonod/$row->id?sonod_name=$sonod->enname&sonod_Id=$row->sonod_Id");
-             
+
                     @endphp
 
                     <img src="https://api.qrserver.com/v1/create-qr-code/?data={{ $qrurl }}&size=80x80"/>
@@ -276,7 +292,7 @@ margin-left: 83px;
                                 {{ $uniouninfo->full_name }}<br> {{ $uniouninfo->thana }}, {{ $uniouninfo->district }} ।
                             <br>
                             @if($row->unioun_name!='gognagar')
-                            {{ $row->c_email }}
+                            <span class="english_text">{{ $row->c_email }}</span>
                             @endif
                             </div>
 
@@ -292,7 +308,7 @@ margin-left: 83px;
   color: white;
   text-align: center;
   padding: 2px 2px;font-size: 16px;     margin-top: 0px;" class="m-0">"সময়মত ইউনিয়ন কর পরিশোধ করুন। ইউনিয়নের উন্নয়নমূলক কাজে সহায়তা করুন"</p>
-                  <p class="m-0" style="font-size:14px;text-align:center">ইস্যুকৃত সনদটি যাচাই করতে QR কোড স্ক্যান করুন অথবা ভিজিট করুন {{ $uniouninfo->domain }}</p>
+                  <p class="m-0" style="font-size:14px;text-align:center">ইস্যুকৃত সনদটি যাচাই করতে <span class="english_text">QR</span> কোড স্ক্যান করুন অথবা ভিজিট করুন <span class="english_text">{{ $uniouninfo->domain }}</span></p>
             </div>
         </div>
     </div>
