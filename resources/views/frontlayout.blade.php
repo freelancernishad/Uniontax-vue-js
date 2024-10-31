@@ -153,7 +153,7 @@ p.help.text-right {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.5.39') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.5.40') }}" async ></script>
 
 <script>
 

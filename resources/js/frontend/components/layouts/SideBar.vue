@@ -4,10 +4,10 @@
                     <h4>উপদেষ্টা ও তত্ত্বাবধানে</h4>
                 </div>
                 <p class="sidebaruser text-center" v-if="getType=='main'">
-                    <img width="70%" alt="" :src="$asseturl+'assets/img/DC-Panchagarh.png'" />
+                    <img width="70%" alt="" :src="$asseturl+'assets/img/IMG-20240923-WA0005.jpg'" />
                 </p>
                 <div class="contactInfo text-center" v-if="getType=='main'" >
-                    <span><b>জনাব মো: জহুরুল ইসলাম</b></span> <br />
+                    <span><b>জনাব মোঃ সাবেত আলী</b></span> <br />
                     <span><b>জেলা প্রশাসক ও জেলা ম্যাজিস্ট্রেট</b></span> <br />
                 </div>
 
