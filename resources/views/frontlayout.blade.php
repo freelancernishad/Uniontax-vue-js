@@ -109,6 +109,8 @@ p.help.text-right {
 
 </style>
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9489624253487221"
+     crossorigin="anonymous"></script>
 
 </head>
 
