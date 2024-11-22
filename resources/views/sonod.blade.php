@@ -9,7 +9,8 @@
 
 <style>
     body{
-        font-family: 'noto_sans_bengali', 'sans-serif'
+        /*font-family: 'noto_sans_bengali', 'sans-serif';*/
+        font-family: 'bangla', 'sans-serif';
     }
 
     .nikosh{
