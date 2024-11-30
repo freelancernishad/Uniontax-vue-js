@@ -86,6 +86,10 @@ class PaymentController extends Controller
                 }
 
                 $sonod->update(['khat' => 'সনদ ফি','stutus' => 'Pending', 'payment_status' => 'Paid']);
+
+                $deccription = "Congratulation! Your application $sonod->sonod_Id has been Submited.Wait for Approval";
+                // smsSend($deccription, $sonod->applicant_mobile);
+                SmsNocSmsSend($deccription, $sonod->applicant_mobile,$sonod->unioun_name);
             }
 
 
