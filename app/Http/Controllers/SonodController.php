@@ -662,6 +662,7 @@ if($payment->status=='Paid'){
             if ($stutus == 'Pending') {
                 $deccription = "Congratulation! Your application $sonod->sonod_Id has been Submited.Wait for Approval";
                 // smsSend($deccription, $sonod->applicant_mobile);
+                SmsNocSmsSend($deccription, $sonod->applicant_mobile,$unioun_name);
             }
 
             $notifiData = ['union'=>$sonod->unioun_name,'roles'=>'Secretary'];
