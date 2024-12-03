@@ -1499,7 +1499,7 @@ $total_bokeya = 0;
         $holding =  Holdingtax::create($data);
         $curentdata = [
             'holdingTax_id'=>$holding->id,
-            'year'=>"2023-2024",
+            'year'=>"2024-2025",
             'price'=>$current_year_kor,
             'status'=>'Unpaid'
         ];
