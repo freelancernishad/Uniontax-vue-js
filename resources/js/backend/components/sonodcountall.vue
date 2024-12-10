@@ -52,7 +52,7 @@ export default {
     },
     async created() {
 
-        if(localStorage.getItem('position')=='District_admin'){
+        if(localStorage.getItem('position')=='District_admin' || localStorage.getItem('position')=='DLG'){
             this.form.union ='';
         }else{
             this.form.union = localStorage.getItem('unioun');

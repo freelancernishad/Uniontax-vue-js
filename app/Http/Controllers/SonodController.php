@@ -2150,7 +2150,7 @@ $TaxInvoice = Payment::where('sonodId',$row->id)->latest()->first();
 
         if($userid){
             $user = User::find($userid);
-            if($user->position=='District_admin'){
+            if($user->position=='District_admin' || $user->position=='DLG'){
 
                 $district = $user->district;
                 $unionlist = Uniouninfo::where('district',$district)->get();

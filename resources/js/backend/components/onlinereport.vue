@@ -18,7 +18,7 @@
                     <form @submit.stop.prevent="onSubmit">
                         <div class="row">
 
-                            <div class="form-group col-md-3" v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin'">
+                            <div class="form-group col-md-3" v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='DLG' || $localStorage.getItem('position')=='Thana_admin'">
                                 <select v-model="form.union" id="sonod" class="form-control" required>
                                     <option value="">ইউনিয়ন নির্বাচন করুন</option>
 
@@ -105,7 +105,7 @@ export default {
     },
     async created() {
 
-        if(localStorage.getItem('position')=='District_admin'){
+        if(localStorage.getItem('position')=='District_admin' || localStorage.getItem('position')=='DLG'){
             this.form.union ='';
         }else{
             this.form.union = localStorage.getItem('unioun');

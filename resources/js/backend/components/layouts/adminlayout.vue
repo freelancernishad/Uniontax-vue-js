@@ -13,6 +13,7 @@
                         <router-link :to="{ name: 'Dashboard' }" class="text-white">
 
                                 <span v-if="user.position=='District_admin'">জেলা এডমিন প্যানেল</span>
+                                <span v-else-if="user.position=='DLG'">পরিচালক, (যুগ্মসচিব) স্থানীয় সরকার</span>
                                 <span v-else-if="user.position=='super_admin'">সুপার এডমিন প্যানেল</span>
                                 <span v-else-if="user.position=='Sub_District_admin'">উপ-পরিচালক প্যানেল</span>
                                 <span v-else-if="user.position=='Chairman'">চেয়ারম্যান এডমিন প্যানেল</span>
@@ -66,6 +67,7 @@
 
 
                                 <span v-if="user.position=='District_admin'">জেলা প্রশাসক</span>
+                                <span v-else-if="user.position=='DLG'">পরিচালক, (যুগ্মসচিব) স্থানীয় সরকার</span>
                                 <span v-else-if="user.position=='super_admin'">সুপার এডমিন প্যানেল</span>
                                 <span v-else-if="user.position=='Sub_District_admin'">উপপরিচালক </span>
                                 <span v-else-if="user.position=='Chairman'">চেয়ারম্যান</span>
@@ -188,7 +190,7 @@
 
 
                         <li class="nav-item" @click="submenu(0)"
-                            v-if="this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Sub_District_admin'">
+                            v-if="this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Sub_District_admin' || this.$localStorage.getItem('position') == 'DLG'">
                             <router-link :to="{ name: 'sonodcountall' }" class="nav-link"><i
                                     class="flaticon-dashboard"></i><span>ইস্যুকৃত সনদ প্রতিবেদন</span></router-link>
                         </li>
@@ -335,7 +337,7 @@
                                         </router-link>
                                     </li>
 
-                                   
+
 
 
                                 </ul>
@@ -540,7 +542,7 @@ export default {
     async sonodlistCount() {
             var unionname = localStorage.getItem('unioun');
             var useridsent ='';
-            if (this.$localStorage.getItem('position') == 'District_admin') {
+            if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'DLG') {
 
                 var unionname = '';
             }else if(this.$localStorage.getItem('position') == 'Thana_admin'){

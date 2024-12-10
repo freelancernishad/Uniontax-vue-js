@@ -18,7 +18,7 @@
                     <form @submit.stop.prevent="onSubmit">
                         <div class="row" style="align-items: center; justify-content: center;">
 
-                            <div class="form-group col-md-3" v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin'">
+                            <div class="form-group col-md-3" v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='DLG' || $localStorage.getItem('position')=='super_admin'">
                                 <select v-model="form.union" id="sonod" class="form-control" required>
                                     <option value="">ইউনিয়ন নির্বাচন করুন</option>
 
@@ -54,13 +54,13 @@
 
 
 
-                            <div class="form-group col-md-3"   v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin'">
+                            <div class="form-group col-md-3"   v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin' || $localStorage.getItem('position')=='DLG'">
 
                             </div>
 
 
 
-                            <div class="form-group col-md-3"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin'">
+                            <div class="form-group col-md-3"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin' || $localStorage.getItem('position')=='DLG'">
                                 <input type="date" v-model="form.from" class="form-control">
                             </div>
 
@@ -68,7 +68,7 @@
                                 <input type="date" v-model="form.from" class="form-control">
                             </div>
 
-                            <div class="form-group col-md-1"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin'">
+                            <div class="form-group col-md-1"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin' || $localStorage.getItem('position')=='DLG'">
                                থেকে
                             </div>
 
@@ -76,7 +76,7 @@
                                থেকে
                             </div>
 
-                            <div class="form-group col-md-3"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin'">
+                            <div class="form-group col-md-3"  v-if="$localStorage.getItem('position')=='District_admin' || $localStorage.getItem('position')=='Thana_admin' || $localStorage.getItem('position')=='Sub_District_admin' || $localStorage.getItem('position')=='super_admin' || $localStorage.getItem('position')=='DLG'">
                                 <input type="date" v-model="form.to" class="form-control">
                             </div>
 
@@ -145,7 +145,7 @@ export default {
     },
     async created() {
 
-        if(localStorage.getItem('position')=='District_admin'){
+        if(localStorage.getItem('position')=='District_admin' || localStorage.getItem('position')=='DLG'){
             this.form.union ='';
         }else{
             this.form.union = localStorage.getItem('unioun');

@@ -187,7 +187,7 @@ export default {
                 this.approveRoute = '';
                 this.approveType = 'vueAction';
                 this.approveData = 'sec_approved';
-                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'DLG') {
    this.cancelRoute = '';
                     this.approveRoute = '';
                     this.approveType = 'vueAction';
@@ -223,7 +223,7 @@ export default {
                 if (this.$localStorage.getItem('position') == 'Secretary') {
                     this.payRoute = '/api/sonod/pay';
                 }
-                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'DLG') {
 
                 }
             } else if (this.$route.params.type == 'cancel') {
@@ -242,7 +242,7 @@ export default {
 
                 }
 
-                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin') {
+                if (this.$localStorage.getItem('position') == 'District_admin' || this.$localStorage.getItem('position') == 'Thana_admin' || this.$localStorage.getItem('position') == 'DLG') {
 
                 }
             }

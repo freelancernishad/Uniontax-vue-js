@@ -469,7 +469,7 @@ export default {
                 this.approveRoute = '';
                 this.approveType = 'vueAction';
                 this.approveData = 'sec_approved';
-                if (localStorage.getItem('position') == 'District_admin' || localStorage.getItem('position') == 'Thana_admin' || localStorage.getItem('position') == 'Sub_District_admin' || localStorage.getItem('position') == 'super_admin') {
+                if (localStorage.getItem('position') == 'District_admin' || localStorage.getItem('position') == 'Thana_admin' || localStorage.getItem('position') == 'Sub_District_admin' || localStorage.getItem('position') == 'super_admin' || localStorage.getItem('position') == 'DLG') {
                     this.cancelRoute = '';
                     this.approveRoute = '';
                     this.approveType = 'vueAction';
@@ -498,7 +498,7 @@ export default {
                 if (localStorage.getItem('position') == 'Secretary') {
                     this.payRoute = '/api/sonod/pay';
                 }
-                if (localStorage.getItem('position') == 'District_admin' || localStorage.getItem('position') == 'Thana_admin') {
+                if (localStorage.getItem('position') == 'District_admin' || localStorage.getItem('position') == 'Thana_admin' || localStorage.getItem('position') == 'DLG') {
                     this.editRoute='sonodedit';
                 }
             } else if (this.$route.params.type == 'cancel') {
@@ -514,7 +514,7 @@ export default {
                 } else {
                     this.approveRoute = '';
                 }
-                if (localStorage.getItem('position') == 'District_admin' || localStorage.getItem('position') == 'Thana_admin') {
+                if (localStorage.getItem('position') == 'District_admin' || localStorage.getItem('position') == 'Thana_admin' || localStorage.getItem('position') == 'DLG') {
                     this.editRoute='sonodedit';
                 }
             }

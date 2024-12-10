@@ -26,6 +26,7 @@
           <select v-model="form.position" class="form-control">
             <option value="">নির্বাচন করুন</option>
             <option value="District_admin">জেলা এডমিন</option>
+            <option value="DLG">পরিচালক, (যুগ্মসচিব) স্থানীয় সরকার</option>
             <option value="Sub_District_admin">জেলা উপপরিচালক</option>
             <option value="Thana_admin">উপজেলা এডমিন</option>
             <option value="Chairman">চেয়ারম্যান</option>

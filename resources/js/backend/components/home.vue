@@ -7,6 +7,7 @@
 
 
                 <h3 v-if="Users.position=='District_admin'">জেলা প্রশাসকের ড্যাশবোর্ড</h3>
+                <h3 v-else-if="Users.position=='DLG'">পরিচালক, (যুগ্মসচিব) স্থানীয় সরকার</h3>
                 <h3 v-else-if="Users.position=='super_admin'">সুপার এডমিনের ড্যাশবোর্ড</h3>
                 <h3 v-else-if="Users.position=='Sub_District_admin'">উপ-পরিচালকের ড্যাশবোর্ড</h3>
                 <h3 v-else-if="Users.position=='Chairman'">চেয়ারম্যানের ড্যাশবোর্ড</h3>
@@ -20,6 +21,7 @@
                         <router-link :to="{ name: 'Dashboard' }">ড্যাশবোর্ড</router-link>
                     </li>
                      <li v-if="Users.position=='District_admin'">জেলা প্রশাসক </li>
+                    <li v-else-if="Users.position=='DLG'">পরিচালক, (যুগ্মসচিব) স্থানীয় সরকার</li>
                     <li v-else-if="Users.position=='super_admin'">সুপার এডমিন </li>
                     <li v-else-if="Users.position=='Sub_District_admin'">উপ-পরিচালক </li>
                     <li v-else-if="Users.position=='Chairman'">চেয়ারম্যান </li>
