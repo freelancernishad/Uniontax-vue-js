@@ -895,7 +895,9 @@
                 </div>
                 <div class="col-md-6 col-6 mt-3"><b>মোবাইল: </b>{{ form.applicant_mobile }}</div>
                 <div class="col-md-6 col-6 mt-3"><b>ইমেল: </b>{{ form.applicant_email }}</div>
-                <div class="col-md-12">
+
+
+                <!-- <div class="col-md-12">
                     <div class="app-heading">সংযুক্ত</div>
                 </div>
                 <div class="col-md-4 col-6 mt-3"><span>ন্যাশনাল আইডি (Front page)</span> <br> <img width="100%"
@@ -904,6 +906,9 @@
                         :src="form.applicant_national_id_back_attachment" alt=""></div>
                 <div class="col-md-4 col-6 mt-3"><span>জন্ম নিবন্ধন</span> <br> <img width="100%"
                         :src="form.applicant_birth_certificate_attachment" alt=""></div>
+ -->
+
+
                 <div class="col-md-12" v-if="sonodnamedata.enname == 'Certificate of Inheritance' || sonodnamedata.bnname == 'Inheritance certificate'">
                     <div class="app-heading">ওয়ারিশগনের তালিকা </div>
                 </div>

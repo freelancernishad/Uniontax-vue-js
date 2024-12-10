@@ -16642,35 +16642,7 @@ var render = function render() {
     staticClass: "col-md-6 col-6 mt-3"
   }, [_c("b", [_vm._v("মোবাইল: ")]), _vm._v(_vm._s(_vm.form.applicant_mobile))]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6 col-6 mt-3"
-  }, [_c("b", [_vm._v("ইমেল: ")]), _vm._v(_vm._s(_vm.form.applicant_email))]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "app-heading"
-  }, [_vm._v("সংযুক্ত")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("span", [_vm._v("ন্যাশনাল আইডি (Front page)")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("img", {
-    attrs: {
-      width: "100%",
-      src: _vm.form.applicant_national_id_front_attachment,
-      alt: ""
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("span", [_vm._v("ন্যাশনাল আইডি (Back page)")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("img", {
-    attrs: {
-      width: "100%",
-      src: _vm.form.applicant_national_id_back_attachment,
-      alt: ""
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 col-6 mt-3"
-  }, [_c("span", [_vm._v("জন্ম নিবন্ধন")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("img", {
-    attrs: {
-      width: "100%",
-      src: _vm.form.applicant_birth_certificate_attachment,
-      alt: ""
-    }
-  })]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.bnname == "Inheritance certificate" ? _c("div", {
+  }, [_c("b", [_vm._v("ইমেল: ")]), _vm._v(_vm._s(_vm.form.applicant_email))]), _vm._v(" "), _vm.sonodnamedata.enname == "Certificate of Inheritance" || _vm.sonodnamedata.bnname == "Inheritance certificate" ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "app-heading"
@@ -28440,11 +28412,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "header-right-logo col-md-3 col-sm-12 text-left hide-mobile"
-  }, [_c("img", {
-    attrs: {
-      src: _vm.$asseturl + "assets/img/mujib100.75b35add.png"
-    }
-  })])]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "verification-sec text-center mt-2 mb-2"
   }, [_c("h2", [_vm._v("Verification Successful !")]), _vm._v(" "), _vm.row.payment_status == "Paid" ? _c("h2", [_vm._v("This Certificate is Valid.")]) : _vm._e(), _vm._v(" "), _vm.row.payment_status == "Unpaid" ? _c("h2", {
     staticStyle: {
@@ -47158,7 +47126,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading[data-v-5aa8c87a] {\n    text-align: center;\n    margin: 32px 0;\n    font-size: 23px;\n    border-bottom: 1px solid #159513;\n    color: #ffffff;\n    background: #255f95;\n}\n.form-pannel[data-v-5aa8c87a] {\n    border: 1px solid #159513;\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading[data-v-5aa8c87a] {\n    padding: 11px 0px;\n    border-top-right-radius: 6px;\n    border-top-left-radius: 6px;\n    margin-top: 20px;\n}\n.form-pannel[data-v-5aa8c87a] {\n    border-bottom-left-radius: 6px;\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu[data-v-5aa8c87a] {\n    z-index: 99999;\n}\n.labelColor[data-v-5aa8c87a] {\n    color: #493eff;\n    font-weight: 600;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.app-heading[data-v-5aa8c87a] {\r\n    text-align: center;\r\n    margin: 32px 0;\r\n    font-size: 23px;\r\n    border-bottom: 1px solid #159513;\r\n    color: #ffffff;\r\n    background: #255f95;\n}\n.form-pannel[data-v-5aa8c87a] {\r\n    border: 1px solid #159513;\r\n    padding: 25px 25px 25px 25px;\n}\n.panel-heading[data-v-5aa8c87a] {\r\n    padding: 11px 0px;\r\n    border-top-right-radius: 6px;\r\n    border-top-left-radius: 6px;\r\n    margin-top: 20px;\n}\n.form-pannel[data-v-5aa8c87a] {\r\n    border-bottom-left-radius: 6px;\r\n    border-bottom-right-radius: 6px;\n}\n.dropdown-menu[data-v-5aa8c87a] {\r\n    z-index: 99999;\n}\n.labelColor[data-v-5aa8c87a] {\r\n    color: #493eff;\r\n    font-weight: 600;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

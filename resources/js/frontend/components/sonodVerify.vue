@@ -62,7 +62,7 @@
                                         <p>Local Government Division</p>
                                     </div>
                                     <div class="header-right-logo col-md-3 col-sm-12 text-left hide-mobile">
-                                        <img :src="$asseturl+'assets/img/mujib100.75b35add.png'" />
+                                        <!-- <img :src="$asseturl+'assets/img/mujib100.75b35add.png'" /> -->
                                     </div>
                                 </div>
                                 <div class="verification-sec text-center mt-2 mb-2">
