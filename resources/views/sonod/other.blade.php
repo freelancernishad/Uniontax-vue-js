@@ -151,9 +151,16 @@
     > {!! int_en_to_bn($row->sec_prottoyon) !!}<br>
     </p>
 
+    @if($sonod->alive_status==0)
+    <p style="margin-bottom: 6px;"
+    > আমি মৃতের বিদেহী আত্মার মাগফেরাত কামনা করছি।<br>
+    </p>
+    @else
     <p style="margin-bottom: 6px;"
     > {!! $sonod->template  !!}<br>
     </p>
+    @endif
+
 
 
 
