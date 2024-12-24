@@ -153,7 +153,7 @@
 
     @if($sonod->alive_status==0)
     <p style="margin-bottom: 6px;"
-    > আমি মৃতের বিদেহী আত্মার মাগফেরাত কামনা করছি।<br>
+    > &nbsp; &nbsp; &nbsp; আমি মৃতের বিদেহী আত্মার মাগফেরাত কামনা করছি।<br>
     </p>
     @else
     <p style="margin-bottom: 6px;"
